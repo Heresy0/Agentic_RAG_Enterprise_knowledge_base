@@ -150,6 +150,10 @@ main{margin-left:220px}
 .suggestions button span{display:inline;margin-right:12px}
 .welcome{padding-top:22px}
 }
+#citation-dialog{width:min(760px,calc(100vw - 32px));max-height:85vh;overflow:auto}
+#citation-content{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.8;text-align:left}
+button.citation{cursor:pointer;text-align:left;font:inherit}
+button.citation:hover,button.citation:focus-visible{border-color:var(--accent)}
 @media(max-width:700px){body{display:block}
 .sidebar{position:static;width:100%;padding:16px;border-right:0;border-bottom:1px solid var(--line)}
 .brand{font-size:22px}

@@ -74,6 +74,7 @@ function resetWorkspace() {
   clearConversation(); renderDocuments(); renderJobs(); updateControls();
 }
 function clearConversation() {
+  clearCitationPreview();
   state.conversationId = null;
   $("conversation-list").value = "";
   const welcome = $("welcome");
@@ -151,10 +152,44 @@ function renderAnswer(container, data, requestId) {
   const answer = container.querySelector(".message-text"); answer.classList.remove("loading"); answer.textContent = data.answer;
   if (!data.answerable && data.refusal_reason) container.append(element("p", data.refusal_reason, "answer-meta"));
   const citations = element("div", undefined, "citation-list");
-  for (const citation of data.citations || []) citations.append(element("div", `[${citation.citation_id}] ${citation.knowledge_base_name ? `${citation.knowledge_base_name} · ` : ""}${citation.document_name} · ${citation.section_path}`, "citation"));
+  for (const citation of data.citations || []) {
+    const button = element("button", `[${citation.citation_id}] ${citation.knowledge_base_name ? `${citation.knowledge_base_name} · ` : ""}${citation.document_name} · ${citation.section_path} ↗`, "citation");
+    button.type = "button";
+    button.disabled = !citation.knowledge_base_id || !citation.document_id || !citation.chunk_id;
+    button.addEventListener("click", () => previewCitation(citation));
+    citations.append(button);
+  }
   container.append(citations);
   const seconds = data.timings ? `${(data.timings.total_ms / 1000).toFixed(1)} 秒 · ` : "";
   container.append(element("div", `${seconds}${data.citations?.length || 0} 个来源${requestId ? ` · 请求编号 ${requestId}` : ""}`, "answer-meta"));
+}
+let previewRevision = 0;
+function clearCitationPreview() {
+  previewRevision += 1;
+  $("citation-dialog").close();
+  $("citation-title").textContent = "引用原文";
+  $("citation-meta").textContent = "";
+  $("citation-content").textContent = "";
+}
+async function previewCitation(citation) {
+  const revision = state.revision, preview = ++previewRevision;
+  $("citation-title").textContent = "引用原文";
+  $("citation-meta").textContent = "正在加载…";
+  $("citation-content").textContent = "";
+  if (!$("citation-dialog").open) $("citation-dialog").showModal();
+  try {
+    const ids = [citation.knowledge_base_id, citation.document_id, citation.chunk_id].map(encodeURIComponent);
+    const { data } = await api(`/api/knowledge-bases/${ids[0]}/documents/${ids[1]}/chunks/${ids[2]}`);
+    if (!sameContext(revision) || preview !== previewRevision) return;
+    $("citation-title").textContent = data.document_name;
+    $("citation-meta").textContent = `版本 ${data.document_version} · ${data.section_path}`;
+    $("citation-content").textContent = data.content;
+  } catch (error) {
+    if (revision === state.revision && preview === previewRevision) {
+      if (!state.auth.authenticated) { errorNotice(error); return; }
+      $("citation-meta").textContent = error.message || "原文加载失败，请重试。";
+    }
+  }
 }
 async function restoreConversation(id) {
   if (!id) { clearConversation(); updateControls(); return; }

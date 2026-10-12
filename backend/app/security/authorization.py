@@ -204,26 +204,36 @@ class AuthorizationService:
         principal: Principal,
     ) -> set[UUID]:
         """列出当前用户可以查询的知识库。"""
+        return set(self.list_permissions(principal=principal))
+
+    def list_permissions(self, *, principal: Principal) -> dict[UUID, str]:
+        """以固定四次查询计算当前租户各有效知识库的最高权限。"""
         if not self._is_active_principal(principal):
-            return set()
-
-        knowledge_base_ids = self._session.scalars(
-            select(KnowledgeBase.id).where(
-                KnowledgeBase.tenant_id
-                == principal.tenant_id,
-                KnowledgeBase.status == "active",
-            )
-        ).all()
-
-        return {
-            knowledge_base_id
-            for knowledge_base_id
-            in knowledge_base_ids
-            if self.can_access(
-                principal=principal,
-                knowledge_base_id=knowledge_base_id,
-            )
-        }
+            return {}
+        bases = self._session.execute(select(KnowledgeBase.id, KnowledgeBase.visibility).where(
+            KnowledgeBase.tenant_id == principal.tenant_id, KnowledgeBase.status == "active",
+        )).all()
+        active_ids = {kb_id for kb_id, _ in bases}
+        permissions = {kb_id: "viewer" for kb_id, visibility in bases if visibility == "company"}
+        direct = self._session.execute(select(
+            KnowledgeBaseUserGrant.knowledge_base_id, KnowledgeBaseUserGrant.permission,
+        ).where(KnowledgeBaseUserGrant.tenant_id == principal.tenant_id,
+                KnowledgeBaseUserGrant.user_id == principal.user_id)).all()
+        departmental = self._session.execute(select(
+            KnowledgeBaseDepartmentGrant.knowledge_base_id, KnowledgeBaseDepartmentGrant.permission,
+        ).join(DepartmentMembership, and_(
+            DepartmentMembership.tenant_id == KnowledgeBaseDepartmentGrant.tenant_id,
+            DepartmentMembership.department_id == KnowledgeBaseDepartmentGrant.department_id,
+        )).join(Department, and_(
+            Department.tenant_id == DepartmentMembership.tenant_id,
+            Department.id == DepartmentMembership.department_id,
+        )).where(KnowledgeBaseDepartmentGrant.tenant_id == principal.tenant_id,
+                 DepartmentMembership.user_id == principal.user_id,
+                 Department.status == "active")).all()
+        for kb_id, permission in [*direct, *departmental]:
+            if kb_id in active_ids and PERMISSION_LEVELS[permission] > PERMISSION_LEVELS.get(permissions.get(kb_id), 0):
+                permissions[kb_id] = permission
+        return permissions
 
     def _is_active_principal(
         self,

@@ -9,7 +9,7 @@ from docx import Document
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
-CORPUS = ROOT / 'output/pdf/xinghai-department-corpus-v3'
+CORPUS = ROOT / 'sample_docs/xinghai_base'
 
 
 def test_business_corpus_keeps_provenance_outside_bodies_and_preserves_versions():

@@ -46,6 +46,15 @@ class KnowledgeDocumentListResponse(BaseModel):
     items: list[KnowledgeDocumentSummary]
 
 
+class CitationPreview(BaseModel):
+    document_id: UUID
+    document_name: str
+    document_version: int
+    chunk_id: str
+    section_path: str
+    content: str
+
+
 class DocumentIndexingJobSummary(BaseModel):
     id: UUID
     status: str

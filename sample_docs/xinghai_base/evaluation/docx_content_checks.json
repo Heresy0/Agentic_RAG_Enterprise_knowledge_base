@@ -1,0 +1,67 @@
+{
+  "documents": [
+    {
+      "document": "02_差旅与费用报销管理制度.docx",
+      "business_anchors": 65,
+      "content_preserved": true,
+      "native_tables": 2,
+      "native_headings": true,
+      "structure": "passed",
+      "rendered_pages": null,
+      "layout_review": "pending_user_manual_review"
+    },
+    {
+      "document": "04_采购与供应商准入流程手册.docx",
+      "business_anchors": 76,
+      "content_preserved": true,
+      "native_tables": 3,
+      "native_headings": true,
+      "structure": "passed",
+      "rendered_pages": null,
+      "layout_review": "pending_user_manual_review"
+    },
+    {
+      "document": "01_人事考勤与休假管理制度.docx",
+      "business_anchors": 75,
+      "content_preserved": true,
+      "native_tables": 3,
+      "native_headings": true,
+      "structure": "passed",
+      "rendered_pages": null,
+      "layout_review": "pending_user_manual_review"
+    },
+    {
+      "document": "21_新员工入职与试用期评估操作手册.docx",
+      "business_anchors": 35,
+      "content_preserved": true,
+      "native_tables": 1,
+      "native_headings": true,
+      "structure": "passed",
+      "rendered_pages": null,
+      "layout_review": "pending_user_manual_review"
+    },
+    {
+      "document": "05_客户项目交付与变更管理流程手册.docx",
+      "business_anchors": 75,
+      "content_preserved": true,
+      "native_tables": 3,
+      "native_headings": true,
+      "structure": "passed",
+      "rendered_pages": null,
+      "layout_review": "pending_user_manual_review"
+    },
+    {
+      "document": "29_文档入库验收与知识更新规范.docx",
+      "business_anchors": 27,
+      "content_preserved": true,
+      "native_tables": 1,
+      "native_headings": true,
+      "structure": "passed",
+      "rendered_pages": null,
+      "layout_review": "pending_user_manual_review"
+    }
+  ],
+  "business_content": "passed",
+  "visual_layout": "not_checked_by_agent",
+  "manual_review_accepted_by_user": true
+}

@@ -38,3 +38,15 @@ def test_active_credentials_are_still_required(application_environment, monkeypa
     monkeypatch.delenv("DASHSCOPE_API_KEY")
     with pytest.raises(RuntimeError, match="DASHSCOPE_API_KEY"):
         Settings()
+
+
+@pytest.mark.parametrize("value", ["0", "-1", "121", "nan", "inf"])
+def test_embedding_timeout_is_bounded(application_environment, monkeypatch, value):
+    monkeypatch.setenv("EMBEDDING_TIMEOUT_SECONDS", value)
+    with pytest.raises(RuntimeError, match="EMBEDDING_TIMEOUT_SECONDS"):
+        Settings()
+
+
+def test_embedding_timeout_defaults_to_thirty_seconds(application_environment, monkeypatch):
+    monkeypatch.delenv("EMBEDDING_TIMEOUT_SECONDS", raising=False)
+    assert Settings().embedding_timeout_seconds == 30

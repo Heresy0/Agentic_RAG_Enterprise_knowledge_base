@@ -501,3 +501,58 @@ def test_worker_recovers_after_index_commit_before_job_commit(
     assert target_path.read_bytes() == b"new-version"
     assert backup_path.exists() is False
     assert _staged_files(scenario) == []
+
+
+def test_orphan_cleanup_removes_only_old_unreferenced_temporary_files(session, scenario):
+    import os, time
+    from backend.app.documents.orphan_file_cleanup import cleanup_orphan_files
+    document = _add_ready_document(session, scenario, file_name="current.txt", content=b"current")
+    root = _target_path(scenario, document.file_name).parent
+    staging = root / ".staging"
+    staging.mkdir()
+    old = [root / f".deleting-{uuid4().hex}.tmp", root / f".backup-{uuid4()}.tmp", staging / f"{uuid4().hex}.txt"]
+    recent = root / f".deleting-{uuid4().hex}.tmp"
+    unknown = root / "ordinary.tmp"
+    for path in [*old, recent, unknown]:
+        path.write_bytes(b"temporary")
+    for path in old:
+        os.utime(path, (time.time() - 90000, time.time() - 90000))
+    assert cleanup_orphan_files(session=session, storage_dir=scenario.storage_dir) == 3
+    assert all(not path.exists() for path in old)
+    assert recent.exists() and unknown.exists()
+    assert _target_path(scenario, document.file_name).read_bytes() == b"current"
+
+
+def test_orphan_cleanup_preserves_task_references_and_possible_only_backup(session, scenario):
+    import os, time
+    from backend.app.documents.orphan_file_cleanup import cleanup_orphan_files
+    upload = _upload(session, scenario, file_name="upload.txt", content=b"candidate")
+    root = _target_path(scenario, "upload.txt").parent
+    backup = root / f".backup-{upload.indexing_job.id}.tmp"
+    deletion = root / f".deleting-{uuid4().hex}.tmp"
+    for path in [backup, deletion, *_staged_files(scenario)]:
+        if not path.exists():
+            path.write_bytes(b"keep")
+        os.utime(path, (time.time() - 90000, time.time() - 90000))
+    assert cleanup_orphan_files(session=session, storage_dir=scenario.storage_dir) == 0
+    assert backup.exists() and deletion.exists() and _staged_files(scenario)
+    job = session.get(DocumentIndexingJob, upload.indexing_job.id)
+    job.status = "failed"
+    session.commit()
+    assert cleanup_orphan_files(session=session, storage_dir=scenario.storage_dir) == 0
+    assert backup.exists() and deletion.exists()
+
+
+def test_orphan_cleanup_limit_and_outside_directory_are_respected(session, scenario, tmp_path):
+    import os, time
+    from backend.app.documents.orphan_file_cleanup import cleanup_orphan_files
+    root = _target_path(scenario, "x.txt").parent
+    root.mkdir(parents=True)
+    outside = tmp_path / f".deleting-{uuid4().hex}.tmp"
+    files = [root / f".deleting-{uuid4().hex}.tmp" for _ in range(3)]
+    for path in [*files, outside]:
+        path.write_bytes(b"temporary")
+        os.utime(path, (time.time() - 90000, time.time() - 90000))
+    assert cleanup_orphan_files(session=session, storage_dir=scenario.storage_dir, limit=1) == 1
+    assert sum(p.exists() for p in files) == 2
+    assert outside.exists()

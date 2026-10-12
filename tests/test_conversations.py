@@ -360,6 +360,7 @@ def client(data):
     app.state.tenant_concurrency_limiter = SimpleNamespace(
         acquire=lambda **_: ConcurrencyDecision(True, 3, 1, 2, 0, ConcurrencyLease(data.principal.tenant_id, "qa", "token")),
         release=lambda _: True,
+        renew=lambda *_, **__: True,
     )
     app.dependency_overrides[get_database_session] = lambda: data.session
     app.dependency_overrides[get_current_principal] = lambda: data.principal

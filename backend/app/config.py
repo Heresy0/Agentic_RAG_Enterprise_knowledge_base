@@ -113,6 +113,9 @@ class Settings:
         self.chat_api_key = required_env("DASHSCOPE_API_KEY")
 
         self.embedding_model = required_env("DASHSCOPE_EMBEDDING_MODEL")
+        self.embedding_timeout_seconds = float(os.getenv("EMBEDDING_TIMEOUT_SECONDS", "30"))
+        if not 0 < self.embedding_timeout_seconds <= 120:
+            raise RuntimeError("EMBEDDING_TIMEOUT_SECONDS 必须大于0且不超过120秒")
 
         self.rerank_model = required_env("DASHSCOPE_RERANK_MODEL")
         self.rerank_url = required_env("DASHSCOPE_RERANK_URL")
@@ -167,6 +170,9 @@ class Settings:
                 "10",
             )
         )
+        self.indexing_orphan_file_retention_hours = float(os.getenv("INDEXING_ORPHAN_FILE_RETENTION_HOURS", "24"))
+        if not 0 < self.indexing_orphan_file_retention_hours <= 8760:
+            raise RuntimeError("INDEXING_ORPHAN_FILE_RETENTION_HOURS 必须介于 0 和 8760 小时之间")
         self.indexing_worker_stale_seconds = float(
             os.getenv(
                 "INDEXING_WORKER_STALE_SECONDS",

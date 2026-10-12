@@ -15,6 +15,7 @@ from backend.app.governance.redis_client import (
 from backend.app.governance.tenant_concurrency_limiter import (
     ConcurrencyLease,
     TenantConcurrencyLimiter,
+    maintain_concurrency_lease,
 )
 
 
@@ -216,3 +217,24 @@ def test_real_redis_acquire_is_atomic_under_concurrency(
 
     for lease in acquired_leases:
         assert concurrency_limiter.release(lease) is True
+
+
+@pytest.mark.integration
+def test_renewal_keeps_slow_request_counted_and_never_revives_released_token(concurrency_limiter):
+    tenant_id = uuid4()
+    first = concurrency_limiter.acquire(tenant_id=tenant_id, resource="qa-renew", limit=1, lease_seconds=1)
+    with maintain_concurrency_lease(concurrency_limiter, first.lease, lease_seconds=1):
+        sleep(1.2)
+        assert not concurrency_limiter.acquire(tenant_id=tenant_id, resource="qa-renew", limit=1, lease_seconds=1).allowed
+    assert concurrency_limiter.release(first.lease)
+    assert not concurrency_limiter.renew(first.lease, lease_seconds=1)
+    assert concurrency_limiter.acquire(tenant_id=tenant_id, resource="qa-renew", limit=1, lease_seconds=1).allowed
+
+
+@pytest.mark.integration
+def test_acquire_short_lease_does_not_expire_existing_long_lease(concurrency_limiter):
+    tenant_id = uuid4()
+    first = concurrency_limiter.acquire(tenant_id=tenant_id, resource="mixed-ttl", limit=2, lease_seconds=5)
+    concurrency_limiter.acquire(tenant_id=tenant_id, resource="mixed-ttl", limit=2, lease_seconds=1)
+    sleep(1.2)
+    assert concurrency_limiter.renew(first.lease, lease_seconds=5)

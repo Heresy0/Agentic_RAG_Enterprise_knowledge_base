@@ -55,6 +55,7 @@ def create_embeddings(
         dimensions=EMBEDDING_DIMENSION,
         check_embedding_ctx_length=False,
         chunk_size=10,
+        request_timeout=getattr(settings, "embedding_timeout_seconds", 30),
         max_retries=0,
     ))
 

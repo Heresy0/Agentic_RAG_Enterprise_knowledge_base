@@ -62,6 +62,6 @@ Alice目前可访问公共、HR、技术、平台研发四个知识库，不能�
 旧报告的60题分数不直接与80题总分比较；按题号子集比较，报告哈希随题集合并变化。
 
 统一解析语料在`output/knowledge-corpus-unified`，仅为原文的本地副本，不重新入库或生成向量。
-运行`python scripts/merge_xinghai_evaluation.py --prepare-corpus`准备50份原文；需要原30份本地语料和新增20份文档。
+运行`python scripts/merge_xinghai_evaluation.py --prepare-corpus`准备50份原文；原30份位于版本管理中的`sample_docs/xinghai_base`，新增20份位于`sample_docs/xinghai_expansion`，克隆后即可准备。
 `evaluate_system.py`默认读取本80题及统一语料目录；仅测新增题可加`--case-ids CC-001 CC-002`等题号。
 重新生成原题集或扩容包会同步这80题；本次合并只验证结构与来源，不代表实测问答通过。

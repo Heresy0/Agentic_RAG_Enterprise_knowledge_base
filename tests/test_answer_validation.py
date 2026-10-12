@@ -78,6 +78,15 @@ def test_valid_claim_with_existing_citation_passes() -> None:
     assert result.errors == []
 
 
+def test_question_shared_year_is_valid_but_not_new_business_numbers():
+    question = '对比2026年9月20日与10月13日的访问上限？'
+    context = make_context('单次访问上限为8小时。')
+    assert validate(make_answerable_draft('2026年10月13日的上限为8小时。'), context, question).valid
+    assert not validate(make_answerable_draft('2026年10月13日的上限为9小时。'), context, question).valid
+    assert not validate(make_answerable_draft('2027年10月13日的上限为8小时。'), context, question).valid
+    assert not validate(make_answerable_draft('2027年1月1日的上限为8小时。'), context, '2026年12月31日与1月1日的上限？').valid
+
+
 def test_answerable_draft_requires_at_least_one_claim() -> None:
     result = validate(
         AnswerDraft(answerable=True),

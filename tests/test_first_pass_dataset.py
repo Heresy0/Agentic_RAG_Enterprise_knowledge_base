@@ -12,7 +12,7 @@ def test_additional_questions_have_complete_labels_and_are_not_original_case_ids
     assert not {case['question'] for case in cases}.intersection(case['question'] for case in original)
     assert all(case['manual_review_required'] and case['semantic_checks'] for case in cases)
     assert {case['expected_scope'] for case in cases} == {'人力资源部', '技术部', '平台研发部'}
-    corpus = root / 'output/pdf/xinghai-department-corpus-v3/documents'
+    corpus = root / 'sample_docs/xinghai_base/documents'
     for case in cases:
         for evidence in case['expected_evidence']:
             path, = corpus.rglob(evidence['document'])

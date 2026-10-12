@@ -105,7 +105,7 @@ def test_specialist_cover_never_displaces_generic_business_rule():
 
 
 def test_real_corpus_header_first_reproduction_keeps_retry_body():
-    root = Path("output/pdf/xinghai-department-corpus-v3/documents")
+    root = Path("sample_docs/xinghai_base/documents")
     paths = list(root.rglob("30_*.txt"))
     if not paths:
         pytest.skip("Local synthetic corpus not present")

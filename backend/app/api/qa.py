@@ -44,6 +44,7 @@ from ..governance.tenant_concurrency_limiter import (
     ConcurrencyLimiterUnavailable,
     TenantConcurrencyExceeded,
     TenantConcurrencyLimiter,
+    maintain_concurrency_lease,
 )
 
 
@@ -248,6 +249,7 @@ def answer_question(
             response.headers[header] = value
 
         def record_answer_success(result):
+            check_lease()
             commit_audit(outcome="success", details={
                 "answerable": result.answerable, "citation_count": len(result.citations),
                 "scope_mode": "all_accessible" if scope.knowledge_base_id is None else "single",
@@ -255,21 +257,23 @@ def answer_question(
             })
 
         conversation_fields = {}
-        with usage_context(scope=scope, session=session, settings=request.app.state.settings,
-                           request_id=request_id, actor_user_id=principal.user_id,
-                           conversation_id=payload.conversation_id):
-            if payload.conversation_id is not None:
-                result, context_ms = request.app.state.conversation_answer_service.answer(
-                    payload.question, conversation_id=payload.conversation_id,
-                    principal=principal, scope=scope, session=session, commit_success=record_answer_success,
-                )
-                conversation_fields = {
-                    "conversation_id": payload.conversation_id,
-                    "conversation_context_ms": context_ms,
-                }
-            else:
-                result = answer_service.answer(payload.question, scope=scope, session=session)
-                record_answer_success(result)
+        with maintain_concurrency_lease(concurrency_limiter, concurrency_lease,
+                                       lease_seconds=request.app.state.settings.qa_concurrency_lease_seconds) as check_lease:
+            with usage_context(scope=scope, session=session, settings=request.app.state.settings,
+                               request_id=request_id, actor_user_id=principal.user_id,
+                               conversation_id=payload.conversation_id):
+                if payload.conversation_id is not None:
+                    result, context_ms = request.app.state.conversation_answer_service.answer(
+                        payload.question, conversation_id=payload.conversation_id,
+                        principal=principal, scope=scope, session=session, commit_success=record_answer_success,
+                    )
+                    conversation_fields = {
+                        "conversation_id": payload.conversation_id,
+                        "conversation_context_ms": context_ms,
+                    }
+                else:
+                    result = answer_service.answer(payload.question, scope=scope, session=session)
+                    record_answer_success(result)
 
         timing_fields = (
             result.timings.model_dump()

@@ -2,7 +2,7 @@ from collections.abc import Iterator
 from uuid import uuid4
 
 import pytest
-from sqlalchemy import Engine, create_engine, event
+from sqlalchemy import Engine, create_engine, event, select
 from sqlalchemy.orm import Session
 from sqlalchemy.pool import StaticPool
 
@@ -392,3 +392,29 @@ def test_rejects_scope_for_unauthorized_knowledge_base(
             principal=principal,
             knowledge_base_id=permission_data["hr_kb"],
         )
+
+
+def test_batch_permissions_match_single_checks_and_query_count_does_not_grow(session, permission_data):
+    principal = alice_principal(permission_data)
+    service = AuthorizationService(session)
+    for index in range(40):
+        session.add(KnowledgeBase(tenant_id=principal.tenant_id, name=f"额外公共库{index}", visibility="company"))
+    session.commit()
+    statements = []
+    def track(_conn, _cursor, statement, _params, _context, _many):
+        statements.append(statement)
+    event.listen(session.bind, "before_cursor_execute", track)
+    try:
+        batch = service.list_permissions(principal=principal)
+    finally:
+        event.remove(session.bind, "before_cursor_execute", track)
+    assert len(statements) == 4
+    assert len(batch) == 43
+    for kb_id in session.scalars(select(KnowledgeBase.id)).all():
+        assert batch.get(kb_id) == service.get_permission(principal=principal, knowledge_base_id=kb_id)
+    session.get(Department, permission_data["technology"]).status = "disabled"
+    session.commit()
+    assert permission_data["technology_kb"] not in service.list_permissions(principal=principal)
+    session.get(Tenant, principal.tenant_id).status = "disabled"
+    session.commit()
+    assert service.list_permissions(principal=principal) == {}

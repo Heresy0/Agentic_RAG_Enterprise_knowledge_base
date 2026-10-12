@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from ..db.models import (
     DocumentIndexingJob,
     KnowledgeDocument,
+    Tenant,
 )
 from ..audit_service import (
     AuditService,
@@ -49,6 +50,12 @@ class DocumentDeletionService:
         actor_user_id: UUID | None = None,
         request_id: str | None = None,
     ) -> None:
+        # 与上传、孤儿文件回收采用同一锁序：先租户、再文档。
+        # 重命名保留原文件 mtime，不能仅靠文件年龄排除进行中的删除。
+        tenant = self._session.scalar(select(Tenant).where(Tenant.id == scope.tenant_id).with_for_update())
+        if tenant is None:
+            self._session.rollback()
+            raise DocumentNotFoundError("文档不存在。")
         document = self._session.scalar(
             select(KnowledgeDocument)
             .where(

@@ -187,6 +187,10 @@ def main() -> None:
                             )
                         )
 
+                    orphan_count = worker.cleanup_orphan_files()
+                    if orphan_count:
+                        logger.info(event_message("indexing.orphan.cleaned", worker_id=worker_id, count=orphan_count))
+
                 processed = worker.run_once()
 
             if not processed:

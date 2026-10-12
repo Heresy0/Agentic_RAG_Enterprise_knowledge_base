@@ -20,6 +20,7 @@ from ..documents.managed_document_files import (
 )
 from ..monitoring.observability import event_message
 from ..monitoring.metrics import record_indexing_job
+from ..documents.orphan_file_cleanup import cleanup_orphan_files
 from .pgvector_indexing_service import (
     PgVectorIndexingService,
 )
@@ -212,6 +213,11 @@ class DocumentIndexingWorker:
                 .indexing_job_stale_after_seconds
             )
         )
+
+    def cleanup_orphan_files(self, *, limit: int = 100) -> int:
+        return cleanup_orphan_files(session=self._session, storage_dir=self._settings.document_storage_dir,
+                                    retention_hours=getattr(self._settings, "indexing_orphan_file_retention_hours", 24),
+                                    limit=limit)
 
     def cleanup_expired_failed_candidates(
         self,

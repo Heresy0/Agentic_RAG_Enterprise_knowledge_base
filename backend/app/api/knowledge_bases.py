@@ -19,6 +19,7 @@ from ..db.models import (
     DocumentIndexingJob,
     KnowledgeBase,
     KnowledgeDocument,
+    DocumentChunk,
 )
 from ..schemas import (
     AuditEventListResponse,
@@ -31,6 +32,7 @@ from ..schemas import (
     DocumentIndexingJobDetail,
     DocumentIndexingJobListResponse,
     DocumentIndexingJobSummary,
+    CitationPreview,
 )
 from ..audit_service import AuditService
 from ..security.authorization import (
@@ -111,11 +113,8 @@ def list_accessible_knowledge_bases(
     """列出当前用户有权查询的知识库。"""
     authorization = AuthorizationService(session)
 
-    readable_ids = (
-        authorization.list_readable_knowledge_base_ids(
-            principal=principal
-        )
-    )
+    permissions = authorization.list_permissions(principal=principal)
+    readable_ids = set(permissions)
 
     if not readable_ids:
         return KnowledgeBaseListResponse(items=[])
@@ -134,10 +133,7 @@ def list_accessible_knowledge_bases(
     items: list[KnowledgeBaseSummary] = []
 
     for knowledge_base in knowledge_bases:
-        permission = authorization.get_permission(
-            principal=principal,
-            knowledge_base_id=knowledge_base.id,
-        )
+        permission = permissions.get(knowledge_base.id)
 
         if permission is None:
             continue
@@ -232,6 +228,41 @@ def list_knowledge_base_documents(
             for document in documents
         ]
     )
+
+
+@router.get("/{knowledge_base_id}/documents/{document_id}/chunks/{chunk_id}", response_model=CitationPreview)
+def preview_citation(
+    knowledge_base_id: UUID,
+    document_id: UUID,
+    chunk_id: str,
+    response: Response,
+    principal: Principal = Depends(get_current_principal),
+    session: Session = Depends(get_database_session),
+) -> CitationPreview:
+    """重新鉴权后预览当前索引中引用的原文；失效引用不会替换为其他分块。"""
+    response.headers["Cache-Control"] = "no-store"
+    try:
+        AuthorizationService(session).require_permission(
+            principal=principal, knowledge_base_id=knowledge_base_id, required_permission="viewer",
+        )
+    except AuthorizationDenied as exc:
+        raise HTTPException(status_code=403, detail=str(exc)) from exc
+    row = session.execute(select(DocumentChunk, KnowledgeDocument).join(
+        KnowledgeDocument,
+        (KnowledgeDocument.id == DocumentChunk.document_id)
+        & (KnowledgeDocument.tenant_id == DocumentChunk.tenant_id)
+        & (KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id),
+    ).where(
+        DocumentChunk.id == chunk_id, DocumentChunk.document_id == document_id,
+        DocumentChunk.tenant_id == principal.tenant_id, DocumentChunk.knowledge_base_id == knowledge_base_id,
+        KnowledgeDocument.status == "ready",
+    )).first()
+    if row is None:
+        raise HTTPException(status_code=404, detail="引用原文已不可用，文档可能已更新或删除，请重新提问。")
+    chunk, document = row
+    return CitationPreview(document_id=document.id, document_name=document.file_name,
+                           document_version=document.version, chunk_id=chunk.id,
+                           section_path=str(chunk.metadata_json.get("section_path", "")), content=chunk.content)
 
 
 @router.post(

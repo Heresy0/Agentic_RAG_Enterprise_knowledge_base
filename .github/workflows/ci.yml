@@ -84,10 +84,18 @@ jobs:
         run: |
           node --check backend/app/static/app.js
           node --check backend/app/static/auth.js
-          node --test tests/frontend/auth.test.mjs
+          node --test tests/frontend/auth.test.mjs tests/frontend_conversations.test.cjs
 
       - name: Compile
         run: python -m compileall backend scripts
+
+      - name: Prepare and verify versioned evaluation corpus
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y poppler-utils tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-eng
+          python scripts/merge_xinghai_evaluation.py --prepare-corpus
+          python scripts/build_knowledge_expansion.py --check
+          python scripts/evaluate_system.py --mode offline --layers parsing --ocr --strict
 
       - name: Run migrations
         run: python -m alembic upgrade head

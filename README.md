@@ -350,7 +350,7 @@ API 启动后打开 <http://127.0.0.1:8000/>，即可使用内置的“知序”
 页面使用原生 HTML / CSS / JavaScript，由 FastAPI 同源提供，Docker 镜像自动包含
 静态资源，无需 Node.js、前端构建或额外容器。`3000` 端口仍为 Grafana。
 
-- 选择当前账号有权访问的知识库，提交问题并查看答案、引用和耗时。
+- 选择当前账号有权访问的知识库，提交问题并查看答案、引用和耗时；点击引用可预览对应分块原文。每次预览重新校验知识库权限，文档更新或删除后已失效的引用返回 404。
 - 查看文档的索引状态、版本、分块数量和更新时间。
 - editor / admin 可上传和删除文档、查看索引任务、重试失败任务。
 - 上传返回 202 后，页面每 5 秒刷新活动任务；任务完成后文档可用于问答。
@@ -540,6 +540,8 @@ GET /api/knowledge-bases/{knowledge_base_id}/indexing-jobs?status=failed
 ```text
 POST /api/knowledge-bases/{knowledge_base_id}/indexing-jobs/{job_id}/retry
 ```
+
+Worker 还会回收无任务引用的 `.staging`、`.backup-*` 和 `.deleting-*` 临时文件，默认保留 24 小时（`INDEXING_ORPHAN_FILE_RETENTION_HOURS`）。活动任务、仍被任务引用的候选文件及正式文件缺失时可能用于恢复的备份会被保留；清理仅在受管知识库目录内进行。
 
 保留时间由 `INDEXING_FAILED_FILE_RETENTION_HOURS` 控制。超过保留期的
 候选文件会由 Worker 清理，此后需要重新上传原文档。
@@ -845,6 +847,17 @@ git diff --check
 [统一80题评估题集](evals/xinghai_v3/README.md)中的20道新增题及证据标注，覆盖历史版本、相似故障、实际验收与跨库关联。
 生成过程仅使用本地Python；原语料与题集保留。只入库`documents`中的业务文件，评估答案不得入库。
 
+原30份合成基准原文及其清单已纳入`sample_docs/xinghai_base`，克隆后无需本机历史输出。
+运行`python scripts/merge_xinghai_evaluation.py --prepare-corpus`即可准备50份统一评估原文；CI执行相同准备与校验。
+
 ## License
 
 当前仓库尚未声明开源许可证。如需公开复用或接受外部贡献，请先增加明确的 `LICENSE` 文件。
+
+### 请求可靠性补充
+
+嵌入请求默认超时 30 秒，可通过 `EMBEDDING_TIMEOUT_SECONDS` 在 0 至 120 秒内配置（不含 0）。问答执行期间自动续期 Redis 并发租约；续期失败或租约丢失时返回 503，避免将失去并发保护的请求记为成功。知识库列表与全范围检索通过固定次数查询汇总当前公共、部门及个人授权，仍在每次请求重新鉴权。
+
+引用预览接口为 `GET /api/knowledge-bases/{knowledge_base_id}/documents/{document_id}/chunks/{chunk_id}`，只返回当前就绪文档中的对应分块，响应禁止缓存。
+
+同年日期省略年份及季度对比现在保留各期证据；跨年或无法确定年份时不猜测。2026-10-13的实现、真实80题基线、4题修复复测及剩余问题见 [可靠性验收记录](docs/RELIABILITY_ACCEPTANCE_20261013.md)。

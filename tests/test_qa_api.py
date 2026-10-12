@@ -187,6 +187,9 @@ class FakeTenantConcurrencyLimiter:
 
         return True
 
+    def renew(self, lease, *, lease_seconds):
+        return True
+
 
 def create_test_client(
     monkeypatch,
@@ -1009,3 +1012,13 @@ def test_qa_rejects_unauthorized_knowledge_base(
         "knowledge_base_id": str(KNOWLEDGE_BASE_ID),
         "status_code": 403,
     }
+
+
+def test_qa_does_not_return_success_after_lease_loss(monkeypatch):
+    result = AnswerResult(answer="答案", answerable=True, citations=[])
+    client, _, _ = create_test_client(monkeypatch, FakeAnswerService(result=result))
+    renewed = iter([True, False])
+    client.app.state.tenant_concurrency_limiter.renew = lambda *args, **kwargs: next(renewed)
+    response = client.post("/api/qa", json={"knowledge_base_id":str(KNOWLEDGE_BASE_ID), "question":"问题"})
+    assert response.status_code == 503
+    assert client.app.state.tenant_concurrency_limiter.release_calls

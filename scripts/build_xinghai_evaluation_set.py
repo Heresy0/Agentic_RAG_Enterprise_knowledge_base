@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.evaluate_answers import load_dataset
 
-CORPUS = ROOT / "output/pdf/xinghai-department-corpus-v3"
+CORPUS = ROOT / "sample_docs/xinghai_base"
 OUTPUT = ROOT / "evals/xinghai_v3"
 AS_OF = "2026-10-04"
 ANNOTATION_VERSION = "2026-10-06-r6"

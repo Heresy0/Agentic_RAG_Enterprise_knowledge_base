@@ -1,0 +1,116 @@
+[
+  {
+    "id": "XH-MT-01",
+    "turns": [
+      {
+        "question": "海岚项目的用户验收原定什么时候？",
+        "expected_answer": "2026年9月25日。"
+      },
+      {
+        "question": "后来为什么推迟了？",
+        "expected_answer": "CR-026-03新增跨部门审批代理，工作量4人日，影响里程碑。"
+      },
+      {
+        "question": "那最后验收通过了吗？",
+        "expected_answer": "2026年9月29日签署最终验收，遗留一般缺陷DEF-026-08被书面接受。"
+      }
+    ],
+    "sources": [
+      "18_海岚项目周报与变更记录.md",
+      "13_海岚项目最终验收纪要.pdf"
+    ]
+  },
+  {
+    "id": "XH-MT-02",
+    "turns": [
+      {
+        "question": "现在普通员工去上海住宿每晚最多报多少？",
+        "expected_answer": "650元，依据现行版本1.4。"
+      },
+      {
+        "question": "去年呢？",
+        "expected_answer": "2025年历史版本1.2为550元。"
+      },
+      {
+        "question": "部门负责人现在呢？",
+        "expected_answer": "850元。"
+      }
+    ],
+    "sources": [
+      "02_差旅与费用报销管理制度.docx",
+      "08_差旅住宿标准_2025归档版.pdf"
+    ]
+  },
+  {
+    "id": "XH-MT-03",
+    "turns": [
+      {
+        "question": "9月20日维护会影响什么？",
+        "expected_answer": "生产报表导出，窗口02:00至03:00北京时间。"
+      },
+      {
+        "question": "那登录还能用吗？",
+        "expected_answer": "登录、审批和开放API不受此次维护影响。"
+      },
+      {
+        "question": "之前排队的任务要重提吗？",
+        "expected_answer": "不需要，已有任务保留并在恢复后继续执行。"
+      }
+    ],
+    "sources": [
+      "12_生产维护通知_扫描件.pdf",
+      "19_生产支持工单与故障记录.txt",
+      "20_九月内部通知与值班安排.txt"
+    ]
+  },
+  {
+    "id": "XH-D-MT-04",
+    "source_groups": [
+      "人力资源部",
+      "公司公共"
+    ],
+    "sources": [
+      "23_内部培训与学习费用审批指引.md",
+      "02_差旅与费用报销管理制度.docx"
+    ],
+    "turns": [
+      {
+        "question": "2000元的外部课程由谁审批？",
+        "expected_answer": "直属经理批准并由HR登记。"
+      },
+      {
+        "question": "培训结束后多久提交总结？",
+        "expected_answer": "10个自然日内。"
+      },
+      {
+        "question": "如果同时有出差费用，回来后多久报销？",
+        "expected_answer": "行程结束或费用发生后10个自然日内，按现行报销制度。"
+      }
+    ]
+  },
+  {
+    "id": "XH-D-MT-05",
+    "source_groups": [
+      "技术部",
+      "平台研发部"
+    ],
+    "sources": [
+      "27_报表导出重复提交事件复盘.pdf",
+      "30_Webhook投递重试与幂等处理规范.txt"
+    ],
+    "turns": [
+      {
+        "question": "INC-2026-1002首次响应耗时多久？",
+        "expected_answer": "13分钟。"
+      },
+      {
+        "question": "是Webhook的重试问题吗？",
+        "expected_answer": "不是该链路；已确认是客户报表调用重试未复用幂等键。"
+      },
+      {
+        "question": "那Webhook默认最多会投递几次？",
+        "expected_answer": "最多6次，含首次投递和5次自动重试。"
+      }
+    ]
+  }
+]

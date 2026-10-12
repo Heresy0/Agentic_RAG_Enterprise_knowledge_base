@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+from contextlib import contextmanager
+from threading import Event, Thread
 from uuid import UUID, uuid4
 
 from redis import Redis
@@ -50,7 +52,7 @@ if active >= limit then
         )
     end
 
-    redis.call("PEXPIRE", KEYS[1], lease_ms)
+    redis.call("PEXPIRE", KEYS[1], math.max(lease_ms, redis.call("PTTL", KEYS[1])))
 
     return {
         0,
@@ -71,7 +73,7 @@ redis.call(
 
 active = active + 1
 
-redis.call("PEXPIRE", KEYS[1], lease_ms)
+redis.call("PEXPIRE", KEYS[1], math.max(lease_ms, redis.call("PTTL", KEYS[1])))
 
 return {
     1,
@@ -94,6 +96,17 @@ if redis.call("ZCARD", KEYS[1]) == 0 then
 end
 
 return removed
+"""
+
+RENEW_SCRIPT = """
+local clock = redis.call('TIME')
+local now = tonumber(clock[1]) * 1000 + math.floor(tonumber(clock[2]) / 1000)
+local score = redis.call('ZSCORE', KEYS[1], ARGV[1])
+if not score or tonumber(score) <= now then return 0 end
+local lease_ms = tonumber(ARGV[2])
+redis.call('ZADD', KEYS[1], now + lease_ms, ARGV[1])
+redis.call('PEXPIRE', KEYS[1], math.max(lease_ms, redis.call('PTTL', KEYS[1])))
+return 1
 """
 
 
@@ -146,6 +159,7 @@ class TenantConcurrencyLimiter:
                 RELEASE_SCRIPT
             )
         )
+        self.renew_script = redis_client.register_script(RENEW_SCRIPT)
 
     def _key(
         self,
@@ -262,3 +276,45 @@ class TenantConcurrencyLimiter:
             raise ConcurrencyLimiterUnavailable(
                 "Redis 返回了无效的槽位释放结果。"
             ) from exc
+
+    def renew(self, lease: ConcurrencyLease, *, lease_seconds: int) -> bool:
+        """Renew only an existing unexpired token; never recreate a lost lease."""
+        if lease_seconds < 1:
+            raise ValueError("lease_seconds 必须是正整数")
+        try:
+            return bool(int(self.renew_script(keys=[self._key(tenant_id=lease.tenant_id, resource=lease.resource)],
+                                   args=[lease.token, lease_seconds * 1000])))
+        except (RedisError, ValueError, TypeError) as exc:
+            raise ConcurrencyLimiterUnavailable("Redis 并发槽位续期失败。") from exc
+
+
+@contextmanager
+def maintain_concurrency_lease(limiter, lease, *, lease_seconds, interval_seconds=None):
+    """Keep a slow synchronous request counted, and reject success after lease loss."""
+    stop, lost = Event(), Event()
+
+    def check():
+        if lost.is_set() or not limiter.renew(lease, lease_seconds=lease_seconds):
+            lost.set()
+            raise ConcurrencyLimiterUnavailable("问答并发租约已失效，请稍后重试。")
+
+    check()
+    interval = min(30, lease_seconds / 3) if interval_seconds is None else interval_seconds
+    if interval <= 0:
+        raise ValueError("interval_seconds 必须为正数")
+
+    def heartbeat():
+        while not stop.wait(interval):
+            try:
+                check()
+            except Exception:
+                lost.set()
+                return
+
+    thread = Thread(target=heartbeat, name="qa-concurrency-lease", daemon=True)
+    thread.start()
+    try:
+        yield check
+    finally:
+        stop.set()
+        thread.join(timeout=5)

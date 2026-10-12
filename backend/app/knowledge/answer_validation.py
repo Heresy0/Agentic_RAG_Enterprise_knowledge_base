@@ -12,6 +12,7 @@ from .answer_coverage import coverage_errors
 from .context_builder import BuiltContext
 from .calculation_service import CalculationError, compute
 from ..documents.policy_metadata import policy_label
+from .temporal import expand_omitted_years
 
 
 FACT_PATTERN = re.compile(
@@ -72,7 +73,7 @@ class AnswerValidator:
             for item in context.items
         }
         question_facts = self._extract_numeric_facts(
-            question
+            expand_omitted_years(question)
         )
 
         if not draft.answerable:

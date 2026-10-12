@@ -1,0 +1,523 @@
+{
+  "kind": "offline parsing, not retrieval or model quality evaluation",
+  "hashes": "passed",
+  "parsed_documents": 29,
+  "chunks": 268,
+  "single_turn_cases": 45,
+  "evidence_checks": [
+    {
+      "id": "XH-001",
+      "document": "01_人事考勤与休假管理制度.docx",
+      "result": "present in chunk",
+      "text": "每月允许2次、每次不超过15分钟"
+    },
+    {
+      "id": "XH-002",
+      "document": "01_人事考勤与休假管理制度.docx",
+      "result": "present in chunk",
+      "text": "超过3天提前5个工作日"
+    },
+    {
+      "id": "XH-003",
+      "document": "02_差旅与费用报销管理制度.docx",
+      "result": "present in chunk",
+      "text": "每晚不超过650元"
+    },
+    {
+      "id": "XH-004",
+      "document": "02_差旅与费用报销管理制度.docx",
+      "result": "present in chunk",
+      "text": "每晚不超过850元"
+    },
+    {
+      "id": "XH-005",
+      "document": "02_差旅与费用报销管理制度.docx",
+      "result": "present in chunk",
+      "text": "行程结束或费用发生后10个自然日内提交报销单"
+    },
+    {
+      "id": "XH-006",
+      "document": "03_信息安全与数据分级管理制度.pdf",
+      "result": "present in chunk",
+      "text": "并在30分钟内通过安全热线或事件系统报告"
+    },
+    {
+      "id": "XH-007",
+      "document": "03_信息安全与数据分级管理制度.pdf",
+      "result": "present in chunk",
+      "text": "严重漏洞原则上72小时内修复"
+    },
+    {
+      "id": "XH-008",
+      "document": "04_采购与供应商准入流程手册.docx",
+      "result": "present in chunk",
+      "text": "5000元以上至50000元|至少2家有效报价|部门负责人"
+    },
+    {
+      "id": "XH-009",
+      "document": "04_采购与供应商准入流程手册.docx",
+      "result": "present in chunk",
+      "text": "50000元以上至300000元|至少3家有效报价|部门负责人和财务负责人"
+    },
+    {
+      "id": "XH-010",
+      "document": "05_客户项目交付与变更管理流程手册.docx",
+      "result": "present in chunk",
+      "text": "须由双方授权代表书面批准"
+    },
+    {
+      "id": "XH-011",
+      "document": "05_客户项目交付与变更管理流程手册.docx",
+      "result": "present in chunk",
+      "text": "项目质保期为最终验收后90日"
+    },
+    {
+      "id": "XH-012",
+      "document": "06_云服务订阅与数据处理合同示范文本.pdf",
+      "result": "present in chunk",
+      "text": "低于99.5%但不低于99.0%|当月服务费的10%|次月10个工作日内"
+    },
+    {
+      "id": "XH-013",
+      "document": "06_云服务订阅与数据处理合同示范文本.pdf",
+      "result": "present in chunk",
+      "text": "订阅终止后30日内"
+    },
+    {
+      "id": "XH-014",
+      "document": "07_公司组织与产品服务说明.pdf",
+      "result": "present in chunk",
+      "text": "模拟规模180人"
+    },
+    {
+      "id": "XH-015",
+      "document": "07_公司组织与产品服务说明.pdf",
+      "result": "present in chunk",
+      "text": "平台研发部|64|产品研发、平台可靠性与API版本维护"
+    },
+    {
+      "id": "XH-016",
+      "document": "08_差旅住宿标准_2025归档版.pdf",
+      "result": "present in chunk",
+      "text": "A类城市|550元|750元"
+    },
+    {
+      "id": "XH-017",
+      "document": "09_客户数据外发审批补充规定.pdf",
+      "result": "present in chunk",
+      "text": "接收方下载权限必须在72小时后自动失效"
+    },
+    {
+      "id": "XH-018",
+      "document": "10_系统资产复核台账.pdf",
+      "result": "present in chunk",
+      "text": "ASSET-026\n证书管理"
+    },
+    {
+      "id": "XH-019",
+      "document": "11_生产运维值班与回退手册.pdf",
+      "result": "present in chunk",
+      "text": "核心API成功率连续10分钟低于99.0%"
+    },
+    {
+      "id": "XH-020",
+      "document": "12_生产维护通知_扫描件.pdf",
+      "result": "requires separate real OCR check"
+    },
+    {
+      "id": "XH-021",
+      "document": "13_海岚项目最终验收纪要.pdf",
+      "result": "present in chunk",
+      "text": "客户于2026年9月29日签署最终验收"
+    },
+    {
+      "id": "XH-022",
+      "document": "13_海岚项目最终验收纪要.pdf",
+      "result": "present in chunk",
+      "text": "不应将计划修复日期当作已经修复"
+    },
+    {
+      "id": "XH-023",
+      "document": "14_协作云版本发布与兼容说明.pdf",
+      "result": "present in chunk",
+      "text": "开放API仍使用/v1主版本路径"
+    },
+    {
+      "id": "XH-024",
+      "document": "15_开放平台API接入与故障处理技术手册.md",
+      "result": "present in chunk",
+      "text": "RATE-001|429|超过调用额度|按照Retry-After退避"
+    },
+    {
+      "id": "XH-025",
+      "document": "16_员工与客户服务FAQ.md",
+      "result": "present in chunk",
+      "text": "首次响应不等于解决时间"
+    },
+    {
+      "id": "XH-026",
+      "document": "17_协作云部署与备份技术手册.md",
+      "result": "present in chunk",
+      "text": "PostgreSQL|每日全量与连续日志归档|35日|RPO 15分钟，RTO 2小时"
+    },
+    {
+      "id": "XH-027",
+      "document": "18_海岚项目周报与变更记录.md",
+      "result": "present in chunk",
+      "text": "评估工作量为4人日"
+    },
+    {
+      "id": "XH-028",
+      "document": "19_生产支持工单与故障记录.txt",
+      "result": "present in chunk",
+      "text": "首次响应耗时17分钟，恢复耗时43分钟"
+    },
+    {
+      "id": "XH-029",
+      "document": "20_九月内部通知与值班安排.txt",
+      "result": "present in chunk",
+      "text": "时间：2026年9月24日15:00至16:30（北京时间）"
+    },
+    {
+      "id": "XH-030",
+      "document": "15_开放平台API接入与故障处理技术手册.md",
+      "result": "present in chunk",
+      "text": "同一业务操作重试时保持不变，有效期24小时"
+    },
+    {
+      "id": "XH-031",
+      "document": "18_海岚项目周报与变更记录.md",
+      "result": "present in chunk",
+      "text": "评估工作量为4人日"
+    },
+    {
+      "id": "XH-031",
+      "document": "13_海岚项目最终验收纪要.pdf",
+      "result": "present in chunk",
+      "text": "客户于2026年9月29日签署最终验收"
+    },
+    {
+      "id": "XH-D-21",
+      "document": "21_新员工入职与试用期评估操作手册.docx",
+      "result": "present in chunk",
+      "text": "3个工作日"
+    },
+    {
+      "id": "XH-D-22",
+      "document": "22_季度绩效评估与复核流程.md",
+      "result": "present in chunk",
+      "text": "5个工作日"
+    },
+    {
+      "id": "XH-D-23",
+      "document": "23_内部培训与学习费用审批指引.md",
+      "result": "present in chunk",
+      "text": "2000元"
+    },
+    {
+      "id": "XH-D-24",
+      "document": "24_部门调动与账号权限交接清单.txt",
+      "result": "present in chunk",
+      "text": "5个工作日"
+    },
+    {
+      "id": "XH-D-25",
+      "document": "25_员工离职交接与访问撤销流程.pdf",
+      "result": "present in chunk",
+      "text": "2个工作日"
+    },
+    {
+      "id": "XH-D-26",
+      "document": "26_项目测试验收与缺陷分级规范.md",
+      "result": "present in chunk",
+      "text": "2026年10月9日"
+    },
+    {
+      "id": "XH-D-27",
+      "document": "27_报表导出重复提交事件复盘.pdf",
+      "result": "present in chunk",
+      "text": "13分钟"
+    },
+    {
+      "id": "XH-D-28",
+      "document": "28_知识库检索与多轮问答设计说明.md",
+      "result": "present in chunk",
+      "text": "30条"
+    },
+    {
+      "id": "XH-D-29",
+      "document": "29_文档入库验收与知识更新规范.docx",
+      "result": "present in chunk",
+      "text": "ready"
+    },
+    {
+      "id": "XH-D-30",
+      "document": "30_Webhook投递重试与幂等处理规范.txt",
+      "result": "present in chunk",
+      "text": "6次"
+    }
+  ],
+  "exact_evidence_misses": [],
+  "cross_page_condition_preserved": true,
+  "dual_column_condition_preserved": true,
+  "documents": [
+    {
+      "file": "documents/01_公司公共/02_差旅与费用报销管理制度.docx",
+      "group": "公司公共",
+      "chunks": 11,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/01_公司公共/03_信息安全与数据分级管理制度.pdf",
+      "group": "公司公共",
+      "chunks": 10,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/01_公司公共/04_采购与供应商准入流程手册.docx",
+      "group": "公司公共",
+      "chunks": 10,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/01_公司公共/07_公司组织与产品服务说明.pdf",
+      "group": "公司公共",
+      "chunks": 7,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/01_公司公共/08_差旅住宿标准_2025归档版.pdf",
+      "group": "公司公共",
+      "chunks": 5,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/01_公司公共/16_员工与客户服务FAQ.md",
+      "group": "公司公共",
+      "chunks": 32,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/02_人力资源部/01_人事考勤与休假管理制度.docx",
+      "group": "人力资源部",
+      "chunks": 10,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/02_人力资源部/20_九月内部通知与值班安排.txt",
+      "group": "人力资源部",
+      "chunks": 5,
+      "chunk_types": [
+        "paragraph"
+      ]
+    },
+    {
+      "file": "documents/02_人力资源部/21_新员工入职与试用期评估操作手册.docx",
+      "group": "人力资源部",
+      "chunks": 5,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/02_人力资源部/22_季度绩效评估与复核流程.md",
+      "group": "人力资源部",
+      "chunks": 7,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/02_人力资源部/23_内部培训与学习费用审批指引.md",
+      "group": "人力资源部",
+      "chunks": 7,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/02_人力资源部/24_部门调动与账号权限交接清单.txt",
+      "group": "人力资源部",
+      "chunks": 8,
+      "chunk_types": [
+        "paragraph"
+      ]
+    },
+    {
+      "file": "documents/02_人力资源部/25_员工离职交接与访问撤销流程.pdf",
+      "group": "人力资源部",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/03_技术部/05_客户项目交付与变更管理流程手册.docx",
+      "group": "技术部",
+      "chunks": 11,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/03_技术部/06_云服务订阅与数据处理合同示范文本.pdf",
+      "group": "技术部",
+      "chunks": 18,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/03_技术部/09_客户数据外发审批补充规定.pdf",
+      "group": "技术部",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph"
+      ]
+    },
+    {
+      "file": "documents/03_技术部/13_海岚项目最终验收纪要.pdf",
+      "group": "技术部",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/03_技术部/18_海岚项目周报与变更记录.md",
+      "group": "技术部",
+      "chunks": 9,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/03_技术部/19_生产支持工单与故障记录.txt",
+      "group": "技术部",
+      "chunks": 5,
+      "chunk_types": [
+        "paragraph"
+      ]
+    },
+    {
+      "file": "documents/03_技术部/26_项目测试验收与缺陷分级规范.md",
+      "group": "技术部",
+      "chunks": 8,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/03_技术部/27_报表导出重复提交事件复盘.pdf",
+      "group": "技术部",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/04_平台研发部/10_系统资产复核台账.pdf",
+      "group": "平台研发部",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/04_平台研发部/11_生产运维值班与回退手册.pdf",
+      "group": "平台研发部",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph"
+      ]
+    },
+    {
+      "file": "documents/04_平台研发部/14_协作云版本发布与兼容说明.pdf",
+      "group": "平台研发部",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/04_平台研发部/15_开放平台API接入与故障处理技术手册.md",
+      "group": "平台研发部",
+      "chunks": 21,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/04_平台研发部/17_协作云部署与备份技术手册.md",
+      "group": "平台研发部",
+      "chunks": 14,
+      "chunk_types": [
+        "code",
+        "list",
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/04_平台研发部/28_知识库检索与多轮问答设计说明.md",
+      "group": "平台研发部",
+      "chunks": 8,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/04_平台研发部/29_文档入库验收与知识更新规范.docx",
+      "group": "平台研发部",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ]
+    },
+    {
+      "file": "documents/04_平台研发部/30_Webhook投递重试与幂等处理规范.txt",
+      "group": "平台研发部",
+      "chunks": 9,
+      "chunk_types": [
+        "paragraph"
+      ]
+    }
+  ],
+  "external_model_calls": 0
+}

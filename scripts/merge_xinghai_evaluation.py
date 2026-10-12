@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.corpus_expansion_data import AS_OF, GROUPS
 MAIN = ROOT / "evals/xinghai_v3"
-BASE_CORPUS = ROOT / "output/pdf/xinghai-department-corpus-v3"
+BASE_CORPUS = ROOT / "sample_docs/xinghai_base"
 EXPANSION_CORPUS = ROOT / "sample_docs/xinghai_expansion"
 COMBINED_CORPUS = ROOT / "output/knowledge-corpus-unified"
 REVISION = "2026-10-13-unified-v1"
@@ -149,7 +149,7 @@ def merged_artifacts(output=MAIN, base_corpus=BASE_CORPUS, expansion_corpus=EXPA
     guide = guide.replace("合计80个案例", "合计100个案例").replace("单轮60、对话24轮", "单轮80、对话24轮").replace("共96个检查步骤", "共116个检查步骤").replace("不等于96次模型调用", "不等于116次模型调用")
     guide = guide.replace("60道单轮共300分", "80道单轮共400分").replace("420分", "520分")
     guide = guide.replace("当前数据库保留了旧版3份资料，共33份；题集基于新30份。", "历史构建时数据库保留旧版资料；统一题集目前覆盖50份指定语料，数据库可能另有未列入本题集的旧资料。")
-    guide += "\n## 统一扩容入口\n\n默认入口仍为本目录：原60题与新增CC-001至CC-020合并为80题；8组多轮和12项权限用例保持原样。\n原XH题按2026-10-04及其题目日期，CC题按2026-10-13及其题目日期；合并不修改原答案或评分标准。\n旧报告的60题分数不直接与80题总分比较；按题号子集比较，报告哈希随题集合并变化。\n\n统一解析语料在`output/knowledge-corpus-unified`，仅为原文的本地副本，不重新入库或生成向量。\n运行`python scripts/merge_xinghai_evaluation.py --prepare-corpus`准备50份原文；需要原30份本地语料和新增20份文档。\n`evaluate_system.py`默认读取本80题及统一语料目录；仅测新增题可加`--case-ids CC-001 CC-002`等题号。\n重新生成原题集或扩容包会同步这80题；本次合并只验证结构与来源，不代表实测问答通过。\n"
+    guide += "\n## 统一扩容入口\n\n默认入口仍为本目录：原60题与新增CC-001至CC-020合并为80题；8组多轮和12项权限用例保持原样。\n原XH题按2026-10-04及其题目日期，CC题按2026-10-13及其题目日期；合并不修改原答案或评分标准。\n旧报告的60题分数不直接与80题总分比较；按题号子集比较，报告哈希随题集合并变化。\n\n统一解析语料在`output/knowledge-corpus-unified`，仅为原文的本地副本，不重新入库或生成向量。\n运行`python scripts/merge_xinghai_evaluation.py --prepare-corpus`准备50份原文；原30份位于版本管理中的`sample_docs/xinghai_base`，新增20份位于`sample_docs/xinghai_expansion`，克隆后即可准备。\n`evaluate_system.py`默认读取本80题及统一语料目录；仅测新增题可加`--case-ids CC-001 CC-002`等题号。\n重新生成原题集或扩容包会同步这80题；本次合并只验证结构与来源，不代表实测问答通过。\n"
     artifacts[output / "README.md"] = guide
     return artifacts
 

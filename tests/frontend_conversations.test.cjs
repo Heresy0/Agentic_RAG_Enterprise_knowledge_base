@@ -19,7 +19,8 @@ class Node {
   setAttribute() {}
   scrollIntoView() {}
   reset() {}
-  close() {}
+  close() { this.open = false; }
+  showModal() { this.open = true; }
   querySelector(selector) {
     const cls = selector.slice(1);
     for (const child of this.children) {
@@ -163,5 +164,32 @@ test("switching from a loading single KB to all-accessible mode does not leave q
 test("cross-KB citations render the server KB name safely", () => {
   const { $, run } = setup();
   run('renderAnswer(message("assistant", ""), { answer: "结论", answerable: true, citations: [{ citation_id: "资料1", document_name: "手册", section_path: "条件", knowledge_base_name: "技术部<script>" }] })');
-  assert.equal($("answer-area").children.at(-1).querySelector(".citation").textContent, "[资料1] 技术部<script> · 手册 · 条件");
+  assert.equal($("answer-area").children.at(-1).querySelector(".citation").textContent, "[资料1] 技术部<script> · 手册 · 条件 ↗");
+});
+
+test("citation preview uses authorized endpoint and renders source as text", async () => {
+  const { $, run, sandbox } = setup();
+  sandbox.fetch = async url => {
+    assert.equal(url, "/api/knowledge-bases/kb1/documents/doc1/chunks/hash1");
+    return { status: 200, ok: true, headers: new Headers(), json: async () => ({ document_name: "手册", document_version: 2, section_path: "范围", content: "<script>原文</script>" }) };
+  };
+  run('renderAnswer(message("assistant", ""), { answer: "结论", citations: [{ citation_id: "1", knowledge_base_id: "kb1", document_id: "doc1", chunk_id: "hash1" }] })');
+  await $("answer-area").children.at(-1).querySelector(".citation").listeners.click();
+  assert.equal($("citation-content").textContent, "<script>原文</script>");
+  assert.equal($("citation-dialog").open, true);
+  run("resetWorkspace()");
+  assert.equal($("citation-content").textContent, "");
+  assert.equal($("citation-dialog").open, false);
+});
+
+test("late citation response after scope switch is discarded", async () => {
+  const { $, run, sandbox } = setup();
+  let finish;
+  sandbox.fetch = async () => new Promise(resolve => { finish = resolve; });
+  const pending = run('previewCitation({ knowledge_base_id: "kb1", document_id: "doc1", chunk_id: "hash1" })');
+  await new Promise(resolve => setImmediate(resolve));
+  run("resetWorkspace()");
+  finish({ status: 200, ok: true, headers: new Headers(), json: async () => ({ content: "旧库内容" }) });
+  await pending;
+  assert.equal($("citation-content").textContent, "");
 });

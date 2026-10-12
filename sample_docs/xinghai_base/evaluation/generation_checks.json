@@ -1,0 +1,32 @@
+{
+  "document_counts": "passed",
+  "source_hashes": "passed",
+  "unique_output_hashes": "passed",
+  "department_counts": "passed",
+  "docx_content_checks": "passed",
+  "docx_visual_review": "pending_user_manual_review; user explicitly accepted this delivery mode",
+  "word_rendering": "not_run: missing LibreOffice soffice.exe; user will review in Word or WPS",
+  "pdf_visual_review": {
+    "status": "inherited_from_v2_for_byte_identical_files",
+    "documents": 12,
+    "pages": 18
+  },
+  "actual_ocr": {
+    "status": "not_run",
+    "reason": "Docker Desktop Linux engine was unavailable; no usable local Chinese OCR runtime. The scan PDF is retained for later real OCR testing.",
+    "ground_truth_used_as_ocr": false
+  },
+  "parser_validation": {
+    "kind": "offline parsing, not retrieval or model quality evaluation",
+    "hashes": "passed",
+    "parsed_documents": 29,
+    "chunks": 268,
+    "single_turn_cases": 45,
+    "exact_evidence_misses": [],
+    "cross_page_condition_preserved": true,
+    "dual_column_condition_preserved": true,
+    "external_model_calls": 0
+  },
+  "retrieval_and_model_quality": "not_run",
+  "external_model_calls": 0
+}

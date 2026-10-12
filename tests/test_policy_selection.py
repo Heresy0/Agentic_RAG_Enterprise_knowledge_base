@@ -175,7 +175,7 @@ def test_policy_precedes_final_top_k_even_on_reranker_failure(fail):
 
 
 def test_real_corpus_metadata_and_historical_selection():
-    root = Path("output/pdf/xinghai-department-corpus-v3/documents")
+    root = Path("sample_docs/xinghai_base/documents")
     if not root.exists():
         pytest.skip("Local synthetic corpus not present")
     from backend.app.documents.document_splitter import split_docx

@@ -7,6 +7,7 @@ from backend.app.governance.tenant_concurrency_limiter import (
     ConcurrencyLease,
     ConcurrencyLimiterUnavailable,
     TenantConcurrencyLimiter,
+    maintain_concurrency_lease,
 )
 
 
@@ -55,6 +56,7 @@ class FakeRedis:
         self.scripts = [
             acquire_script,
             release_script,
+            FakeScript(result=1),
         ]
         self.registered_sources: list[str] = []
 
@@ -125,7 +127,7 @@ def test_acquire_returns_lease_when_slot_is_available(
     assert decision.lease.resource == "qa"
     UUID(decision.lease.token)
 
-    assert len(redis_client.registered_sources) == 2
+    assert len(redis_client.registered_sources) == 3
     assert "ZREMRANGEBYSCORE" in (
         redis_client.registered_sources[0]
     )
@@ -369,3 +371,48 @@ def test_negative_script_counts_are_clamped() -> None:
     assert decision.active == 0
     assert decision.remaining == 0
     assert decision.retry_after_seconds == 0
+
+
+def test_renew_lost_lease_is_not_recreated():
+    limiter, _, _, redis_client = create_limiter()
+    script = redis_client.scripts[2]
+    script.result = 0
+    lease = ConcurrencyLease(TENANT_A_ID, "qa", "lost")
+    assert limiter.renew(lease, lease_seconds=1) is False
+    script.error = RedisError("offline")
+    with pytest.raises(ConcurrencyLimiterUnavailable):
+        limiter.renew(lease, lease_seconds=1)
+
+
+def test_heartbeat_renews_and_stops_on_context_exit():
+    from threading import Event
+    from types import SimpleNamespace
+    renewed, calls = Event(), []
+    def renew(*args, **kwargs):
+        calls.append(1)
+        if len(calls) > 1:
+            renewed.set()
+        return True
+    with maintain_concurrency_lease(SimpleNamespace(renew=renew), object(), lease_seconds=1, interval_seconds=.01) as check:
+        assert renewed.wait(1)
+        check()
+    count = len(calls)
+    assert count >= 3
+    assert renewed.wait(.03)
+    assert len(calls) == count
+
+
+def test_heartbeat_loss_blocks_success_check():
+    from threading import Event
+    from types import SimpleNamespace
+    failed, calls = Event(), []
+    def renew(*args, **kwargs):
+        calls.append(1)
+        if len(calls) == 1:
+            return True
+        failed.set()
+        return False
+    with maintain_concurrency_lease(SimpleNamespace(renew=renew), object(), lease_seconds=1, interval_seconds=.01) as check:
+        assert failed.wait(1)
+        with pytest.raises(ConcurrencyLimiterUnavailable):
+            check()

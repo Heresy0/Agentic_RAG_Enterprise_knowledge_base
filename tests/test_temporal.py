@@ -4,6 +4,7 @@ from types import SimpleNamespace
 import pytest
 
 from backend.app.knowledge.temporal import clean_followup_time, future_certainty_gap, query_period
+from backend.app.knowledge.temporal import expand_omitted_years
 
 
 @pytest.mark.parametrize('question,expected', [
@@ -15,9 +16,20 @@ from backend.app.knowledge.temporal import clean_followup_time, future_certainty
     ('2026-06-30与2026-07-01标准比较', None),
     ('2025年13月标准？', None),
     ('截至2026-10-04，当前标准？', (date(2026, 10, 4), date(2026, 10, 4))),
+    ('2026年第三季度标准？', (date(2026, 7, 1), date(2026, 9, 30))),
+    ('第三季度和2026年10月标准比较', None),
+    ('2026年9月20日与10月13日标准比较', None),
+    ('2026年9月与10月标准比较', None),
+    ('2026年12月31日与1月1日标准比较', None),
 ])
 def test_business_period(question, expected):
     assert query_period(question) == expected
+
+
+def test_omitted_year_expansion_is_conservative():
+    assert expand_omitted_years('2026年9月与10月13日') == '2026年9月与2026年10月13日'
+    for question in ['2025年9月与2026年10月13日', '2026年12月31日与1月1日', '2026年9月与次年10月13日', '9月与10月13日']:
+        assert expand_omitted_years(question) == question
 
 
 def test_followup_cleanup_never_drops_user_reference_or_changed_business_time():

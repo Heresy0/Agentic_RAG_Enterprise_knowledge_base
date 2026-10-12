@@ -22,7 +22,7 @@ def test_review_is_bound_to_source_page_and_exact_label_not_global_name():
 
 def test_correction_precedes_chunking_and_keeps_review_required():
     import pytest
-    source = Path('output/pdf/xinghai-department-corpus-v3/documents/04_平台研发部/12_生产维护通知_扫描件.pdf')
+    source = Path('sample_docs/xinghai_base/documents/04_平台研发部/12_生产维护通知_扫描件.pdf')
     if not source.is_file():
         pytest.skip('Local test corpus unavailable')
     before = hashlib.sha256(source.read_bytes()).hexdigest()

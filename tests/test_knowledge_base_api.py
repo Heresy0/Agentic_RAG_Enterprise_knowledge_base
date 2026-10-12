@@ -346,3 +346,34 @@ def test_rejects_document_list_for_unauthorized_kb(
     assert response.json() == {
         "detail": "没有权限访问该知识库。",
     }
+
+
+def test_citation_preview_reauthorizes_and_rejects_stale_or_wrong_document(api_context):
+    from backend.app.db.models import DocumentChunk, EMBEDDING_DIMENSION
+    app = api_context["app"]
+    app.dependency_overrides[get_current_principal] = lambda: api_context["principal"]
+    kb_id, doc_id = api_context["technology_kb_id"], api_context["technology_document_id"]
+    chunk_id = "a" * 64
+    with app.state.database_session_factory() as session:
+        session.add(DocumentChunk(id=chunk_id, tenant_id=api_context["principal"].tenant_id,
+            knowledge_base_id=kb_id, document_id=doc_id, chunk_index=0, content="<script>原文</script>",
+            content_hash="b" * 64, chunking_version="test", embedding_model="test",
+            embedding=[0.0] * EMBEDDING_DIMENSION, metadata_json={"section_path": "重试规则"}))
+        session.commit()
+    client = TestClient(app)
+    path = f"/api/knowledge-bases/{kb_id}/documents/{doc_id}/chunks/{chunk_id}"
+    response = client.get(path)
+    assert response.status_code == 200
+    assert response.headers["cache-control"] == "no-store"
+    assert response.json()["content"] == "<script>原文</script>"
+    assert client.get(path.replace(str(doc_id), str(uuid4()))).status_code == 404
+    assert client.get(path.replace(str(kb_id), str(api_context["hr_kb_id"]))).status_code == 403
+    with app.state.database_session_factory() as session:
+        session.query(Department).first().status = "disabled"
+        session.commit()
+    assert client.get(path).status_code == 403
+    with app.state.database_session_factory() as session:
+        session.query(Department).first().status = "active"
+        session.delete(session.get(DocumentChunk, chunk_id))
+        session.commit()
+    assert client.get(path).status_code == 404
