@@ -62,3 +62,6 @@ evals/system_config.local.json
 
 # Local backups, replay probes and other temporary artifacts.
 tmp/
+
+# Reproducible local copies for the unified 50-document evaluation corpus.
+output/knowledge-corpus-unified/

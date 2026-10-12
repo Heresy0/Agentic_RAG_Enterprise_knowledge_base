@@ -1,28 +1,28 @@
 {
   "company": "星海科技有限公司",
-  "as_of": "2026-10-04",
-  "annotation_version": "2026-10-06-r6",
+  "as_of": "2026-10-13",
+  "annotation_version": "2026-10-13-unified-v1",
   "semantic_annotations_execution": "manual_review_only_not_executed_by_current_scorer",
-  "corpus_edition": "department-offline-v3-docx-manual-review",
-  "single_turn_cases": 60,
-  "answerable": 53,
-  "unanswerable": 7,
+  "corpus_edition": "xinghai-unified-50-v1",
+  "single_turn_cases": 80,
+  "answerable": 71,
+  "unanswerable": 9,
   "conversation_cases": 8,
   "conversation_turns": 24,
   "permission_cases": 12,
-  "covered_documents": 30,
+  "covered_documents": 50,
   "covered_formats": {
     "docx": 6,
     "pdf": 12,
-    "md": 8,
+    "md": 28,
     "txt": 4
   },
   "single_turn_scopes": {
-    "人力资源部": 11,
-    "公司公共": 11,
-    "技术部": 13,
-    "平台研发部": 17,
-    "all_accessible": 8
+    "人力资源部": 13,
+    "公司公共": 14,
+    "技术部": 19,
+    "平台研发部": 23,
+    "all_accessible": 11
   },
   "categories": {
     "事实查询": 7,
@@ -30,9 +30,9 @@
     "版本冲突": 1,
     "表格查询": 3,
     "安全流程": 1,
-    "金额边界": 4,
+    "金额边界": 5,
     "区间计算": 1,
-    "历史版本": 1,
+    "历史版本": 5,
     "跨页条款": 1,
     "长表跨页": 1,
     "双栏阅读": 1,
@@ -46,10 +46,10 @@
     "变更关联": 1,
     "时间线计算": 1,
     "技术参数": 1,
-    "跨文档关联": 2,
+    "跨文档关联": 3,
     "不可回答": 7,
     "部门资料事实与边界": 10,
-    "证据边界": 1,
+    "证据边界": 2,
     "时间计算": 1,
     "幂等与租户": 1,
     "权限制度": 1,
@@ -57,7 +57,16 @@
     "检索降级": 1,
     "文档与现实区分": 1,
     "验收条件": 1,
-    "OCR已知缺陷": 1
+    "OCR已知缺陷": 1,
+    "必要条件": 1,
+    "并列条件": 1,
+    "计划与事实": 1,
+    "故障原因": 3,
+    "实际验收": 1,
+    "相似事件区分": 2,
+    "恢复与证据边界": 1,
+    "跨库关联": 1,
+    "资料不足": 2
   },
   "structural_validation": "passed",
   "source_hashes": "passed",
@@ -445,6 +454,216 @@
       "document": "12_生产维护通知_扫描件.pdf",
       "method": "source_scan_ground_truth_not_ocr_accuracy",
       "found": true
+    },
+    {
+      "id": "CC-001",
+      "document": "45_澄川临时外包访问流程_2026三季度归档.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-001",
+      "document": "31_澄川项目临时外包访问流程.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-002",
+      "document": "46_澄川测试采购流程_2026三季度归档.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-002",
+      "document": "32_澄川项目小额测试采购流程.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-003",
+      "document": "47_澄川异地支持补休规则_2026三季度归档.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-003",
+      "document": "33_澄川异地支持补休登记规则.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-004",
+      "document": "48_澄川导师评审清单_2026三季度归档.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-004",
+      "document": "34_澄川支持轮岗导师评审清单.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-005",
+      "document": "35_澄川迁移验证与交付验收流程.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-006",
+      "document": "36_澄川沙箱缓存预热与回滚流程.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-007",
+      "document": "37_澄川项目启动与责任分工纪要.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-007",
+      "document": "40_澄川项目最终验收纪要.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-008",
+      "document": "38_澄川首次迁移演练记录.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-009",
+      "document": "39_澄川非阻断缺陷处理确认单.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-009",
+      "document": "39_澄川非阻断缺陷处理确认单.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-010",
+      "document": "40_澄川项目最终验收纪要.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-010",
+      "document": "40_澄川项目最终验收纪要.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-011",
+      "document": "41_澄川缓存键前缀事件复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-011",
+      "document": "41_澄川缓存键前缀事件复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-012",
+      "document": "42_澄川DNS缓存事件复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-012",
+      "document": "42_澄川DNS缓存事件复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-013",
+      "document": "43_澄川导出任务中断恢复记录.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-013",
+      "document": "43_澄川导出任务中断恢复记录.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-014",
+      "document": "44_澄川附件查询慢请求复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-014",
+      "document": "44_澄川附件查询慢请求复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-015",
+      "document": "49_澄川交付与平台运行责任对照.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-015",
+      "document": "35_澄川迁移验证与交付验收流程.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-016",
+      "document": "50_澄川轮岗与项目申请入口说明.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-016",
+      "document": "34_澄川支持轮岗导师评审清单.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-017",
+      "document": "32_澄川项目小额测试采购流程.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-017",
+      "document": "32_澄川项目小额测试采购流程.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-018",
+      "document": "41_澄川缓存键前缀事件复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-018",
+      "document": "41_澄川缓存键前缀事件复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-018",
+      "document": "42_澄川DNS缓存事件复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
+    },
+    {
+      "id": "CC-018",
+      "document": "42_澄川DNS缓存事件复盘.md",
+      "method": "current_project_splitter_chunk_with_current_file_hash",
+      "found": true
     }
   ],
   "conversations_review": "reference/source assignments reviewed; no live model execution",
@@ -481,6 +700,32 @@
     "17_协作云部署与备份技术手册.md": "3a84f34a476a437933b35271c6924258a175b4e9832ba5e64adb4d1399170c68",
     "28_知识库检索与多轮问答设计说明.md": "5425163ce4f7406313e30734929dc752a5a659ccbe0f0e28f27535114628ec35",
     "29_文档入库验收与知识更新规范.docx": "f67a0c8f6a3d2e522a6665349895132c7515dc5ff0e40a3294fdf85c31a7966e",
-    "30_Webhook投递重试与幂等处理规范.txt": "ed1356d36bd33d015f89f15ae03cc811f46e1119dc05e7332a4d6214160a480a"
-  }
+    "30_Webhook投递重试与幂等处理规范.txt": "ed1356d36bd33d015f89f15ae03cc811f46e1119dc05e7332a4d6214160a480a",
+    "31_澄川项目临时外包访问流程.md": "a6085fb1c871830a36005bbce03afb648a0f43624eae76aa699f60dc0f477132",
+    "32_澄川项目小额测试采购流程.md": "953ee03a311fd230104ae4fc59a28cc92be40d1b0a21e7c74eaa4788e7b4c93f",
+    "33_澄川异地支持补休登记规则.md": "02ab5d11724f812cc9fe7aaa011fbe6b4a0834683840216347e13259e3cd6f3d",
+    "34_澄川支持轮岗导师评审清单.md": "6b069a29759bdae748a42c691d50cedb123cabcfd7a228866ca3781473eab232",
+    "35_澄川迁移验证与交付验收流程.md": "ec575eacdecf41e7124d3ad82b71acad7a684e5e785016cdc57fa82b9e809c50",
+    "36_澄川沙箱缓存预热与回滚流程.md": "a61bd4b2030b1ea243912bc6acf172185445d51221e1337dd6235bdc797704e6",
+    "37_澄川项目启动与责任分工纪要.md": "65f8c302f40eebd15d70634b3ffe9e1c78927907fb13dc16b36337c3370aad87",
+    "38_澄川首次迁移演练记录.md": "b73bb1c35450380384db8d9ec86ee1a68a31184ff514d7f85061b374dbc92733",
+    "39_澄川非阻断缺陷处理确认单.md": "ae4b1df9dd384ab6c842b54f3c4424f7338780ba3fe9433cc443b7d81c3f1351",
+    "40_澄川项目最终验收纪要.md": "795dd823b5e204dd1b06510d7f963579a6f359f57549469da97b284442e838ec",
+    "41_澄川缓存键前缀事件复盘.md": "32d523deaa753ca3bb5502ab14666cab55e732f94c63edeb5530d8b861138ac7",
+    "42_澄川DNS缓存事件复盘.md": "ec6a65d347d4115cb0201e95ecfda0db66643e3e42bcd87d9c2c1fbfee483b38",
+    "43_澄川导出任务中断恢复记录.md": "5f731a29aa60ec1566fd4346caf40283417769e44473da78aa7daa23e0116686",
+    "44_澄川附件查询慢请求复盘.md": "687e59f40176db1e6b0490ffa2cdd08b588e37879e3a8040e60dee56cb1d51e6",
+    "45_澄川临时外包访问流程_2026三季度归档.md": "80a39971bff330ba904ec4000f050ee0f31bc65995bf029af584b011ef78b90c",
+    "46_澄川测试采购流程_2026三季度归档.md": "7d1a300e202d657510b97c5acbfcf5c60778420434b00c3aff47c101fdb9925d",
+    "47_澄川异地支持补休规则_2026三季度归档.md": "118573a08c3451cb82ae100d1572d9599e4166f02841f96fd1c6aceb5c6fec7e",
+    "48_澄川导师评审清单_2026三季度归档.md": "a6709d00f951e14dffb4f973b4a9159b20b8c75894c8cc1a95f6b38b4da32f1a",
+    "49_澄川交付与平台运行责任对照.md": "6f06f53e923042e009833f2be0a3aab45719bb4ce7957cc4ea20e9d398a85ef6",
+    "50_澄川轮岗与项目申请入口说明.md": "ff572322ef07819818d467b18e7dfa3127f6cebc6487f89ef9d855f1e42a7011"
+  },
+  "as_of_by_suite": {
+    "XH": "2026-10-04",
+    "CC": "2026-10-13"
+  },
+  "base_cases": 60,
+  "expansion_cases": 20
 }

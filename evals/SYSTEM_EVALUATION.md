@@ -4,6 +4,12 @@
 
 统一入口：`scripts/evaluate_system.py`。旧的 `scripts/evaluate_answers.py`（HTTP最终回答评估）和 `scripts/summarize_load_test.py`（Locust性能门禁）仍保留，不改变旧题集或历史报告。
 
+2026-10-13：默认主题集`evals/xinghai_v3`现合并为80道单轮题（原60题＋澄川20题），
+71道可回答、9道资料不足，覆盖50份文档。原8组24轮多轮与12项权限用例保留。
+默认解析目录为`output/knowledge-corpus-unified`，先运行`python scripts/merge_xinghai_evaluation.py --prepare-corpus`准备原文副本。
+原XH题和CC题保留各自业务日期；旧报告不重写，不能把历史60题总分直接与80题比较。
+仅测新增题可用`--case-ids CC-001 CC-002`等，以下历史60题/30份语料描述保留其当时语境。
+
 | 评估层 | 当前自动检查 | 尚需人工或专项检查 |
 |---|---|---|
 | parsing | 文件哈希、目录清单、真实项目解析器、非空片段、来源/章节字段、标注证据是否保留；可选真实OCR | 完整版式、所有表格单元格及所有事实的准确性 |

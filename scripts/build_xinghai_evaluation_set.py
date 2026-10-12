@@ -560,6 +560,9 @@ def build(corpus, output, *, refresh=False):
                     live_evaluation_executed=False, external_model_calls=0, database_writes=0,
                     corpus_document_hashes={name: row["sha256"] for name, row in by_name.items()})
     dump(output / "coverage.json", coverage)
+    from scripts.merge_xinghai_evaluation import merge
+    merge(output=output, base_corpus=corpus)
+    coverage = json.loads((output / "coverage.json").read_text(encoding="utf-8"))
     print(json.dumps({key: value for key, value in coverage.items() if key not in ("evidence_checks", "corpus_document_hashes", "categories")}, ensure_ascii=False))
 
 

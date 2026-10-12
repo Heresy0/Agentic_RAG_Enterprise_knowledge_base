@@ -143,7 +143,10 @@ Remove-Item Env:ENTERPRISE_KB_ACCESS_TOKEN
 
 新增 `scripts/evaluate_system.py`，支持离线解析/隔离权限回归、真实授权后端分层评估、真实HTTP多轮/部分权限评估、过程记录回放及性能报告汇总。默认不调用真实模型、不修改业务授权。具体范围、运行命令与未覆盖项见 [分层评估说明](SYSTEM_EVALUATION.md)。
 
-星海部门版30份语料对应题集位于 `evals/xinghai_v3/`；题集与标准答案不要入库。当前分层入口与下面保留的历史Chroma实验不是同一个基线。
+统一主题集位于 `evals/xinghai_v3/`，合并原60题和澄川新增20题，共80道单轮题，覆盖50份文档。
+原8组多轮和12项权限用例保留；默认解析语料为 `output/knowledge-corpus-unified/`，可通过
+`python scripts/merge_xinghai_evaluation.py --prepare-corpus`从两个原文包准备。题集与标准答案不要入库。
+旧60题报告保持原样，不直接与新80题总分比较。当前分层入口与下面保留的历史Chroma实验不是同一个基线。
 
 ## 历史检索实验
 

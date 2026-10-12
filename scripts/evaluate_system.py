@@ -22,7 +22,7 @@ def parse_args(argv=None):
     parser.add_argument("--mode", choices=("offline", "replay", "live"), default="offline")
     parser.add_argument("--layers", default="all", help="all or comma-separated layer names")
     parser.add_argument("--dataset-dir", type=Path, default=ROOT / "evals/xinghai_v3")
-    parser.add_argument("--corpus", type=Path, default=ROOT / "output/pdf/xinghai-department-corpus-v3")
+    parser.add_argument("--corpus", type=Path, default=ROOT / "output/knowledge-corpus-unified")
     parser.add_argument("--config", type=Path, default=ROOT / "evals/system_config.example.json")
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--trace-input", type=Path)

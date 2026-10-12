@@ -841,6 +841,12 @@ git diff --check
 
 问答、追问改写、查询/文档向量化和重排的实际调用用量可独立保存在 PostgreSQL，并接入管理员接口、分层评估报告与 Grafana。未知用量不记为零，价格可配置且保留调用时快照。新增迁移后无需重新入库。配置、权限与准确性边界见 [模型用量审计](docs/MODEL_USAGE_AUDIT.md)。
 
+## 小规模知识库扩容语料
+
+新增的[星海澄川扩容包](sample_docs/xinghai_expansion/README.md)包含20份分部门Markdown文档和
+[统一80题评估题集](evals/xinghai_v3/README.md)中的20道新增题及证据标注，覆盖历史版本、相似故障、实际验收与跨库关联。
+生成过程仅使用本地Python；原语料与题集保留。只入库`documents`中的业务文件，评估答案不得入库。
+
 ## License
 
 当前仓库尚未声明开源许可证。如需公开复用或接受外部贡献，请先增加明确的 `LICENSE` 文件。

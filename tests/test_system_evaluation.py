@@ -196,7 +196,7 @@ def test_targeted_ids_are_offline_by_default_and_filter_before_limit(tmp_path):
                  '--limit', '1', '--output-dir', str(folder)]) == 0
     report = json.loads((folder / 'report.json').read_text(encoding='utf-8'))
     assert report['selected_case_ids'] == ['XH-016']
-    assert report['available_cases'] == 60 and report['selected_cases'] == 1
+    assert report['available_cases'] == 80 and report['selected_cases'] == 1
     assert report['live_model_calls_enabled'] is False
     with pytest.raises(ValueError, match='Unknown single-turn'):
         main(['--layers', 'answer', '--case-ids', 'wrong-id', '--output-dir', str(tmp_path / 'bad')])

@@ -24,9 +24,11 @@ def cases():
 
 
 def test_counts_scopes_and_revision(cases):
-    assert len(cases) == 60
-    assert sum(case["answerable"] for case in cases.values()) == 53
-    assert all(case["annotation_version"] == ANNOTATION_VERSION for case in cases.values())
+    assert len(cases) == 80
+    assert sum(case["answerable"] for case in cases.values()) == 71
+    assert sum(case["id"].startswith("XH-") for case in cases.values()) == 60
+    assert sum(case["id"].startswith("CC-") for case in cases.values()) == 20
+    assert all(case["annotation_version"] == ANNOTATION_VERSION for case in cases.values() if case["id"].startswith("XH-"))
     assert all(case["manual_review_required"] and case["semantic_checks"] for case in cases.values())
     for group in GROUPS:
         scoped = load_dataset(OUTPUT / "by_scope" / f"{group}.jsonl")
@@ -35,8 +37,8 @@ def test_counts_scopes_and_revision(cases):
     assert cross == [case for case in cases.values() if len(case["source_groups"]) > 1]
     negative = load_dataset(OUTPUT / "unanswerable.jsonl")
     assert negative == [case for case in cases.values() if not case["answerable"]]
-    assert len(negative) == 7
-    assert len({item["document"] for case in cases.values() for item in case["expected_evidence"]}) == 30
+    assert len(negative) == 9
+    assert len({item["document"] for case in cases.values() for item in case["expected_evidence"]}) == 50
 
 
 @pytest.mark.parametrize("identifier,core", [
