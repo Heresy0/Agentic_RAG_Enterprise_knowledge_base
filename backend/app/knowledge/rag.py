@@ -1,17 +1,9 @@
 import hashlib
 from pathlib import Path
 
-from langchain_community.document_loaders import (
-    Docx2txtLoader,
-    PyPDFLoader,
-    TextLoader,
-)
 from langchain_core.documents import Document
 from langchain_core.embeddings import Embeddings
 from langchain_openai import OpenAIEmbeddings
-from langchain_text_splitters import (
-    RecursiveCharacterTextSplitter,
-)
 
 from ..config import Settings
 from ..db.models import EMBEDDING_DIMENSION
@@ -30,6 +22,8 @@ def split_file(
     document_name: str | None = None,
 ) -> list[Document]:
     path = Path(file_path).resolve()
+    if not path.is_file():
+        raise FileNotFoundError(f"文件不存在：{file_path}")
 
     if path.suffix.lower() == ".docx":
         return split_docx(
@@ -47,17 +41,7 @@ def split_file(
         split = split_markdown if path.suffix.lower() == ".md" else split_txt
         return split(path, document_name=document_name)
 
-    documents = load_file(path)
-    splitter = create_text_splitter()
-    chunks = splitter.split_documents(documents)
-
-    if document_name is not None:
-        for chunk in chunks:
-            chunk.metadata["document_name"] = (
-                document_name
-            )
-
-    return chunks
+    raise ValueError(f"暂不支持该文件类型：{path.suffix.lower()}")
 
 
 def create_embeddings(
@@ -73,65 +57,6 @@ def create_embeddings(
         chunk_size=10,
         max_retries=0,
     ))
-
-
-def load_file(
-    file_path: str | Path,
-) -> list[Document]:
-    """根据文件扩展名选择加载器。"""
-    path = Path(file_path).resolve()
-
-    if not path.is_file():
-        raise FileNotFoundError(
-            f"文件不存在：{file_path}"
-        )
-
-    suffix = path.suffix.lower()
-
-    if suffix == ".pdf":
-        loader = PyPDFLoader(str(path))
-
-    elif suffix == ".docx":
-        loader = Docx2txtLoader(str(path))
-
-    elif suffix in {".txt", ".md"}:
-        loader = TextLoader(
-            str(path),
-            encoding="utf-8",
-        )
-
-    else:
-        raise ValueError(
-            f"暂不支持该文件类型：{suffix}"
-        )
-
-    documents = loader.load()
-
-    for document in documents:
-        document.metadata["source"] = str(path)
-
-    return documents
-
-
-def create_text_splitter(
-) -> RecursiveCharacterTextSplitter:
-    """创建适合中文企业文档的文本切分器。"""
-    return RecursiveCharacterTextSplitter(
-        separators=[
-            "\n\n",
-            "\n",
-            "。",
-            "！",
-            "？",
-            "；",
-            "，",
-            " ",
-            "",
-        ],
-        chunk_size=500,
-        chunk_overlap=50,
-        add_start_index=True,
-    )
 
 
 def calculate_file_hash(

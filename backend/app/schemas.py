@@ -5,19 +5,6 @@ from datetime import datetime
 
 
 
-class ChatRequest(BaseModel):
-    message: str = Field(
-        min_length=1,
-        max_length=1000,
-    )
-    conversation_id: str | None = None
-
-
-class ChatResponse(BaseModel):
-    conversation_id: str
-    answer: str
-
-
 class KnowledgeQuestionRequest(BaseModel):
     # 缺省或 null：所有当前可访问知识库；指定 ID：单库筛选。
     knowledge_base_id: UUID | None = None

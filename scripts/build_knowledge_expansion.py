@@ -15,7 +15,6 @@ sys.path.insert(0, str(ROOT))
 from scripts.corpus_expansion_data import AS_OF, CASES, DOCUMENTS, GROUPS
 
 CORPUS = ROOT / "sample_docs" / "xinghai_expansion"
-DATASET = ROOT / "tmp" / "xinghai-expansion-generation"
 MAIN_DATASET = ROOT / "evals" / "xinghai_v3"
 EDITION = "xinghai-cc-expansion-v1"
 
@@ -162,10 +161,8 @@ coverage.json只记录文件哈希、规模及证据覆盖，不包含虚构的�
 """
 
 
-def build_artifacts(corpus, dataset):
-    corpus, dataset = Path(corpus).resolve(), Path(dataset).resolve()
-    if corpus.is_relative_to(dataset) or dataset.is_relative_to(corpus):
-        raise ValueError("Corpus and evaluation directories must be separate")
+def build_artifacts(corpus):
+    corpus = Path(corpus).resolve()
     texts = {doc["number"]: render_document(doc) for doc in DOCUMENTS}
     cases = make_cases()
     validate_spec(texts, cases)
@@ -188,23 +185,6 @@ def build_artifacts(corpus, dataset):
     writer.writeheader()
     writer.writerows({key: row[key] for key in writer.fieldnames} for row in entries)
     artifacts[corpus / "入库清单.csv"] = output.getvalue()
-    artifacts[dataset / "single_turn.jsonl"] = "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in cases)
-    for group in GROUPS:
-        artifacts[dataset / "by_scope" / f"{group}.jsonl"] = "".join(
-            json.dumps(row, ensure_ascii=False) + "\n" for row in cases if row["expected_scope"] == group)
-    artifacts[dataset / "cross_scope.jsonl"] = "".join(
-        json.dumps(row, ensure_ascii=False) + "\n" for row in cases if len(row["source_groups"]) > 1)
-    artifacts[dataset / "unanswerable.jsonl"] = "".join(
-        json.dumps(row, ensure_ascii=False) + "\n" for row in cases if not row["answerable"])
-    questions, answers = ["# 澄川扩容测试题册", "", f"基准日期：{AS_OF}。每道单轮题新建会话；只上传业务文档。", ""], ["# 澄川参考答案与证据", "", "事实短语和引用检查为代理，语义关系须人工核查；不上传本文件。", ""]
-    for row in cases:
-        questions += [f"## {row['id']} · {row['category']}", "", row["question"], "",
-                      f"检索范围：{row['expected_scope']}；来源部门：{'、'.join(row['source_groups']) or '全范围拒答'}。", ""]
-        answers += [f"## {row['id']}", "", row["question"], "", row["reference_answer"], ""]
-        answers += [f"- {ev['document']}：{ev['text']}" for ev in row["expected_evidence"]]
-        answers += ["", "人工检查：" + "；".join(row["semantic_checks"]), ""]
-    artifacts[dataset / "测试题册.md"] = "\n".join(questions)
-    artifacts[dataset / "答案与证据.md"] = "\n".join(answers)
     coverage = dict(edition=EDITION, as_of=AS_OF, total_documents=20, single_turn_cases=20,
                     answerable_cases=18, unanswerable_cases=2,
                     covered_documents=sorted({ev["document"] for row in cases for ev in row["expected_evidence"]}),
@@ -214,8 +194,6 @@ def build_artifacts(corpus, dataset):
                     corpus_document_hashes={Path(row["file"]).name: row["sha256"] for row in entries},
                     model_calls=0, token_usage=None, quality_evaluation="not_run",
                     limitation="Synthetic source/anchor coverage only; not retrieval or semantic accuracy.")
-    artifacts[dataset / "coverage.json"] = dumps(coverage)
-    artifacts[dataset / "README.md"] = "# 扩容生成中间产物\n\n这里是生成器的20题中间产物，日常评估使用evals/xinghai_v3的统一80题。\n\n业务文档与题目分开保存，题目和参考答案不得入库。\n"
     return artifacts, coverage
 
 
@@ -246,19 +224,14 @@ def validate_inventory(corpus):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--corpus-dir", type=Path, default=CORPUS)
-    parser.add_argument("--dataset-dir", type=Path, default=DATASET)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--check", action="store_true")
     mode.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
-    target = args.dataset_dir / "single_turn.jsonl"
-    if target.is_file() and any(json.loads(line).get("id", "").startswith("XH-")
-                               for line in target.read_text(encoding="utf-8").splitlines() if line.strip()):
-        parser.error("扩容中间产物不能覆盖主题集；请使用默认目录，由合并器同步80题。")
     validate_inventory(args.corpus_dir)
-    artifacts, coverage = build_artifacts(args.corpus_dir, args.dataset_dir)
+    artifacts, coverage = build_artifacts(args.corpus_dir)
     changed = write_artifacts(artifacts, check=args.check, overwrite=args.overwrite)
-    if args.dataset_dir.resolve() == DATASET.resolve() and (MAIN_DATASET / "single_turn.jsonl").is_file():
+    if args.corpus_dir.resolve() == CORPUS.resolve() and (MAIN_DATASET / "single_turn.jsonl").is_file():
         from scripts.merge_xinghai_evaluation import merged_artifacts
         main_artifacts = merged_artifacts()
         write_artifacts(main_artifacts, check=args.check, overwrite=args.overwrite)

@@ -9,6 +9,18 @@ def _bodies(chunks) -> list[str]:
     return [chunk.page_content.split("\n\n", 1)[1] for chunk in chunks]
 
 
+def test_unknown_document_type_is_rejected(tmp_path):
+    path = tmp_path / "unsupported.csv"
+    path.write_text("name,value", encoding="utf-8")
+    with pytest.raises(ValueError, match="暂不支持该文件类型"):
+        split_file(path)
+
+
+def test_missing_document_is_rejected_before_type_detection(tmp_path):
+    with pytest.raises(FileNotFoundError):
+        split_file(tmp_path / "missing.csv")
+
+
 def test_txt_cleans_bom_and_separates_paragraphs(tmp_path: Path) -> None:
     path = tmp_path / "制度.TXT"
     path.write_bytes(

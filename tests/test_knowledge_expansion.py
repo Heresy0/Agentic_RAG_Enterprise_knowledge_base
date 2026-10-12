@@ -10,7 +10,7 @@ from backend.app.documents.text_splitter import split_markdown
 from backend.app.evaluation.metrics import evidence_metrics, score_answer
 from backend.app.evaluation.offline import evaluate_parsing
 from scripts.build_knowledge_expansion import (
-    CORPUS, DATASET, build_artifacts, validate_inventory, write_artifacts,
+    CORPUS, build_artifacts, validate_inventory, write_artifacts,
 )
 from scripts.corpus_expansion_data import DOCUMENTS
 from scripts.evaluate_answers import load_dataset
@@ -90,7 +90,7 @@ def test_refusal_cases_are_distinct_from_deadline_and_unpriced_future(cases):
 
 
 def test_regeneration_is_byte_identical_and_check_is_read_only(tmp_path):
-    artifacts, _ = build_artifacts(tmp_path / "corpus", tmp_path / "evals")
+    artifacts, _ = build_artifacts(tmp_path / "corpus")
     assert write_artifacts(artifacts) == len(artifacts)
     before = {path: path.stat().st_mtime_ns for path in artifacts}
     assert write_artifacts(artifacts) == 0
@@ -99,21 +99,22 @@ def test_regeneration_is_byte_identical_and_check_is_read_only(tmp_path):
 
 
 def test_existing_changes_stop_generation_before_any_write(tmp_path):
-    artifacts, _ = build_artifacts(tmp_path / "corpus", tmp_path / "evals")
+    artifacts, _ = build_artifacts(tmp_path / "corpus")
     target = next(iter(artifacts))
     target.parent.mkdir(parents=True)
     target.write_text("用户修改，不得覆盖", encoding="utf-8")
     with pytest.raises(ValueError, match="Existing content differs"):
         write_artifacts(artifacts)
     assert target.read_text(encoding="utf-8") == "用户修改，不得覆盖"
-    assert not (tmp_path / "evals" / "single_turn.jsonl").exists()
+    assert not (tmp_path / "corpus" / "manifest.json").exists()
     with pytest.raises(ValueError, match="missing or changed"):
         write_artifacts(artifacts, check=True)
 
 
-def test_evaluation_cannot_be_written_into_ingestion_directory(tmp_path):
-    with pytest.raises(ValueError, match="must be separate"):
-        build_artifacts(tmp_path / "corpus", tmp_path / "corpus" / "documents" / "answers")
+def test_evaluation_is_not_generated_into_ingestion_directory(tmp_path):
+    artifacts, _ = build_artifacts(tmp_path / "corpus")
+    assert len(artifacts) == 23
+    assert not any(path.name in {"single_turn.jsonl", "答案与证据.md", "coverage.json"} for path in artifacts)
     corpus = tmp_path / "corpus"
     (corpus / "documents").mkdir(parents=True)
     (corpus / "documents" / "answers.md").write_text("答案不得入库", encoding="utf-8")
@@ -122,5 +123,5 @@ def test_evaluation_cannot_be_written_into_ingestion_directory(tmp_path):
 
 
 def test_checked_in_artifacts_match_generator():
-    artifacts, _ = build_artifacts(CORPUS, DATASET)
+    artifacts, _ = build_artifacts(CORPUS)
     assert write_artifacts({path: text for path, text in artifacts.items() if path.is_relative_to(CORPUS)}, check=True) == 0

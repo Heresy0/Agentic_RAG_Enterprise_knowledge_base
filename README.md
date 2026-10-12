@@ -80,7 +80,7 @@ flowchart LR
 | 数据库 | PostgreSQL 16、SQLAlchemy、Alembic |
 | 向量检索 | pgvector 0.8.6、HNSW |
 | RAG | LangChain、BM25、DashScope Embedding/Rerank/LLM |
-| 文档处理 | PyPDF、python-docx、docx2txt |
+| 文档处理 | PyPDF、pdfplumber、python-docx、Tesseract OCR |
 | 测试 | pytest、真实 PostgreSQL 集成测试 |
 | 工程化 | Docker Compose、GitHub Actions |
 | 可观测性 | JSON 日志、Grafana Alloy、Loki、Prometheus、Alertmanager、Grafana |
@@ -134,8 +134,6 @@ Copy-Item .env.example .env
 - Keycloak 管理员用户名和密码
 - OIDC issuer、audience 和 JWKS 地址
 - DashScope 对话、Embedding 和 Rerank 模型配置
-- DeepSeek 模型配置
-- OSS 配置
 
 应用启动时会校验必要环境变量，空值会导致启动失败。不要把包含真实密钥的 `.env` 提交到 Git。
 
