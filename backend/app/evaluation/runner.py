@@ -1,6 +1,7 @@
 """Replay and authenticated local-service quality evaluation.
 
-Local service timing is not HTTP performance; all database access is read-only.
+Local service timing is not HTTP performance; business data is read-only.
+Paid-call usage is written independently to the dedicated model usage ledger.
 """
 import hashlib
 import json
@@ -12,6 +13,7 @@ from uuid import UUID
 
 from .metrics import evidence_metrics, score_answer, score_generation, summarize_records, summarize_stages
 from .trace import capture_trace, record_context
+from ..model_usage import summarize_usage, usage_context
 
 
 def score_trace(case, trace, *, include_answer=False):
@@ -19,6 +21,8 @@ def score_trace(case, trace, *, include_answer=False):
     metrics = {stage: evidence_metrics(case["expected_evidence"], rows,
                                      alternative_sets=case.get("accepted_evidence_sets", []))
                for stage, rows in stages.items() if stage in ("vector", "keyword", "fusion", "rerank", "context")}
+    metrics["model_usage"] = summarize_usage(stages.get("model_usage", []), observed="model_usage" in stages)
+    metrics["model_usage"]["events"] = stages.get("model_usage", [])
     violations = sum(bool(row.get("scope_violation")) for rows in stages.values() for row in rows)
     if trace.get("error_type"):
         return dict(id=case["id"], status="error", error_type=trace["error_type"], metrics=metrics)
@@ -153,7 +157,8 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
                         if not required_ids.issubset(scope.knowledge_base_ids):
                             records.append(dict(id=case["id"], status="skipped", reason="required_sources_not_authorized"))
                             continue
-                        with capture_trace() as trace:
+                        with capture_trace() as trace, usage_context(scope=scope, session=session, settings=settings,
+                                                                    actor_user_id=principal.user_id):
                             if answer is not None:
                                 response = answer.answer(case["question"], scope=scope, session=session).model_dump(mode="json")
                             else:
@@ -179,9 +184,10 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
                                 origin="jwt_verified_local_backend_services", error_type=type(exc).__name__,
                                 question_hash=hashlib.sha256(case["question"].encode()).hexdigest()), ensure_ascii=False) + "\n")
                             trace_stream.flush()
-                        records.append(dict(id=case["id"], status="error", error_type=type(exc).__name__))
+                        snapshot = dict(trace.to_dict() if trace is not None else {}, error_type=type(exc).__name__)
+                        records.append(score_trace(case, snapshot, include_answer=include_answer))
                     print(f"Evaluated {case['id']}", file=sys.stderr, flush=True)
-            # No service writes/commits are called; rollback also releases read transactions.
+            # Business data is read-only; model usage commits use independent sessions.
             session.rollback()
     finally:
         if trace_stream:

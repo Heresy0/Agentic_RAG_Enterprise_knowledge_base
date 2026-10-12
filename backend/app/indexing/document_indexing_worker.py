@@ -6,6 +6,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from ..config import Settings
+from ..model_usage import usage_context
 from ..db.models import (
     DocumentIndexingJob,
     KnowledgeDocument,
@@ -106,9 +107,10 @@ class DocumentIndexingWorker:
                 ),
             )
 
-            indexed_chunk_count = (
-                self._indexing_service
-                .index_document_candidate(
+            with usage_context(scope=scope, session=self._session, settings=self._settings,
+                               actor_user_id=job.requested_by_user_id,
+                               job_id=job.id, document_id=job.document_id):
+                indexed_chunk_count = self._indexing_service.index_document_candidate(
                     file_path=swap.target_path,
                     scope=scope,
                     document_id=document.id,
@@ -129,7 +131,6 @@ class DocumentIndexingWorker:
                         document.storage_uri
                     ),
                 )
-            )
 
         except Exception as exc:
             self._handle_failure(

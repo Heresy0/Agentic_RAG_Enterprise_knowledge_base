@@ -15,6 +15,7 @@ from ..documents.chunk_quality import summarize_quality
 from ..documents.ocr_review import review_revision
 
 from ..config import Settings
+from ..model_usage import audited_scope
 from ..db.models import (
     EMBEDDING_DIMENSION,
     DocumentChunk,
@@ -54,6 +55,7 @@ class PgVectorIndexingService:
             embeddings or create_embeddings(settings)
         )
 
+    @audited_scope
     def index_file(
         self,
         *,
@@ -197,6 +199,7 @@ class PgVectorIndexingService:
 
         return len(new_chunks)
 
+    @audited_scope
     def index_document_candidate(
         self,
         *,

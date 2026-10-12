@@ -1,0 +1,18 @@
+{
+  "uid": "enterprise-model-usage",
+  "title": "Enterprise RAG · Model Token Audit",
+  "schemaVersion": 39,
+  "version": 1,
+  "tags": ["enterprise", "rag", "cost"],
+  "timezone": "browser",
+  "refresh": "30s",
+  "time": {"from": "now-24h", "to": "now"},
+  "panels": [
+    {"id": 1, "type": "timeseries", "title": "Physical attempts / 5m (API + Worker)", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}, "targets": [{"expr": "sum by (stage, model, status) (increase(enterprise_model_calls_total[5m]))", "legendFormat": "{{stage}} · {{model}} · {{status}}", "refId": "A"}]},
+    {"id": 2, "type": "timeseries", "title": "Reported tokens / 5m (unknown excluded, not zero)", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}, "targets": [{"expr": "sum by (stage, model) (increase(enterprise_model_tokens_total[5m]))", "legendFormat": "{{stage}} · {{model}}", "refId": "A"}]},
+    {"id": 3, "type": "timeseries", "title": "Unknown usage fraction / 1h", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}, "fieldConfig": {"defaults": {"unit": "percentunit"}}, "targets": [{"expr": "sum by (stage, model) (increase(enterprise_model_usage_unknown_total[1h])) / sum by (stage, model) (increase(enterprise_model_calls_total[1h]))", "legendFormat": "{{stage}} · {{model}}", "refId": "A"}]},
+    {"id": 4, "type": "timeseries", "title": "Estimated cost / 1h by currency (requires rates)", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}, "targets": [{"expr": "sum by (currency, model) (increase(enterprise_model_estimated_cost_total[1h]))", "legendFormat": "{{currency}} · {{model}}", "refId": "A"}]},
+    {"id": 5, "type": "timeseries", "title": "Independent ledger write failures / 5m", "datasource": {"type": "prometheus", "uid": "prometheus"}, "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16}, "targets": [{"expr": "sum by (operation) (increase(enterprise_model_usage_write_failures_total[5m]))", "legendFormat": "{{operation}}", "refId": "A"}]},
+    {"id": 6, "type": "text", "title": "Scope and accounting limits", "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16}, "options": {"mode": "markdown", "content": "Process metrics are operational trends, not billing totals. Restarts, missed scrapes and CLI evaluations can affect these graphs. PostgreSQL holds persistent detail, including pending/unknown calls. No tenant, user or question labels. Keep Grafana and /metrics internal; this dashboard is platform-wide, not tenant-scoped. Estimates use configured price snapshots and never replace supplier bills."}}
+  ]
+}

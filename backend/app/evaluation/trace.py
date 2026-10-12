@@ -29,6 +29,18 @@ def capture_trace():
         _current.reset(token)
 
 
+def record_model_usage(row):
+    trace = _current.get()
+    if trace is not None:
+        trace.stages.setdefault("model_usage", []).append(deepcopy(row))
+
+
+def start_model_usage():
+    trace = _current.get()
+    if trace is not None:
+        trace.stages.setdefault("model_usage", [])
+
+
 def record_scope(query, scope):
     trace = _current.get()
     if trace is not None:

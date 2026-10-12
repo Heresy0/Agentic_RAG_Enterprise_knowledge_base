@@ -154,7 +154,7 @@ class FakeChatModel:
         self.structured_llm = structured_llm
         self.schemas: list[type] = []
 
-    def with_structured_output(self, schema: type):
+    def with_structured_output(self, schema: type, **kwargs):
         self.schemas.append(schema)
         return self.structured_llm
 

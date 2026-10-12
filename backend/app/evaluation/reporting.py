@@ -2,6 +2,7 @@
 import json
 from datetime import datetime, timezone
 from .metrics import summarize_generation
+from ..model_usage import summarize_usage
 
 
 LAYERS = ("parsing", "index", "retrieval", "rerank", "context", "answer", "conversations", "security", "performance")
@@ -23,6 +24,7 @@ def stage_report(quality, stage):
             records.append(dict(id=record["id"], status="skipped", reason="no_observation_or_positive_labels"))
         else:
             records.append(dict(id=record["id"], status="passed" if metric["all_evidence_present"] else "failed", metrics=metric))
+        records[-1]["model_usage"] = record.get("metrics", {}).get("model_usage")
     from .metrics import summarize_records
     return dict(status="completed", summary=summarize_records(records), records=records,
                 metrics=quality.get("stages", {}).get(stage), evaluation_type=quality.get("evaluation_type"))
@@ -35,6 +37,7 @@ def quality_layers(quality):
         status = "error" if record["status"] == "error" else "skipped" if metric is None else "passed" if metric["automatic_proxy_pass"] else "failed"
         answer_records.append(dict(id=record["id"], status=status, metrics=metric,
                                    generation=record.get("metrics", {}).get("generation"),
+                                   model_usage=record.get("metrics", {}).get("model_usage"),
                                    response=record.get("response"), error_type=record.get("error_type")))
     from .metrics import summarize_records
     return dict(
@@ -87,6 +90,18 @@ def compare_baseline(report, baseline):
 def write_report(report, directory):
     report["created_at"] = datetime.now(timezone.utc).isoformat()
     report["overall_status"] = outcome(report)
+    # Quality layers share the SAME call trace. Aggregate answer records only once.
+    quality_records = next((report["layers"][name].get("records", [])
+                            for name in ("answer", "retrieval", "rerank", "context")
+                            if report["layers"].get(name, {}).get("records")), [])
+    usage_rows = [row.get("model_usage") for row in quality_records]
+    usage_rows.extend(turn.get("metrics", {}).get("model_usage")
+                      for row in report["layers"].get("conversations", {}).get("records", []) for turn in row.get("turns", []))
+    observed = [row for row in usage_rows if row and row.get("observed")]
+    events = [event for row in observed for event in row.get("events", [])]
+    report["model_usage"] = dict(**summarize_usage(events, observed=bool(observed)),
+                                observed_requests=len(observed), unobserved_requests=len(usage_rows) - len(observed),
+                                limitation="Known usage subtotal only; unknown usage is not zero. Historical replay is not new spend.")
     (directory / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     lines = ["# 企业知识库分层评估报告", "", "运行模式：" + report["mode"], "",
              "结论：" + report["overall_status"], "", "passed仅表示自动检查通过，不代表语义评审通过或生产安全认证。", "",
@@ -117,6 +132,10 @@ def write_report(report, directory):
         if flagged:
             lines.extend(["非通过项（完整结果见report.json）：", ""])
             lines.extend(f"- {row['id']}：{row['status']}；{row.get('reason', row.get('error_type', '请核对指标和原始结果'))}" for row in flagged)
+    lines.extend(["", "## 模型 Token 与成本审计", "", "```json",
+                  json.dumps(report["model_usage"], ensure_ascii=False, indent=2), "```", "",
+                  "reported_total_tokens 是已知用量的小计。未知不等于零；无定价时费用为空；不同币种分别统计。", "",
+                  "成本按运行时价格快照估算，不等于供应商账单；重放仅展示历史用量，不产生新费用。"])
     lines.extend(["", "## 解读限制", "",
                   "- 未测试不能算通过；不同范围、身份、语料版本的分数不可直接比较。",
                   "- 关键词匹配不能识别所有否定、错误归因或同义表达，需人工抽检。",

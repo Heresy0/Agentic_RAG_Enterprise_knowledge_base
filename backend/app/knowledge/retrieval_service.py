@@ -19,6 +19,7 @@ from .vector_repository import PgVectorRepository
 from .evidence_selection import select_evidence
 from .evidence_expansion import expand_incident_candidates
 from uuid import UUID
+from ..model_usage import audited_scope
 from ..evaluation.trace import record_documents, record_scope
 
 
@@ -52,6 +53,7 @@ class RetrievalService:
             )
         )
 
+    @audited_scope
     def search(
         self,
         query: str,

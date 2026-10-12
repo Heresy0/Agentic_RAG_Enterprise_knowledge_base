@@ -36,3 +36,12 @@ groups:
         annotations:
           summary: QA P95 延迟过高
           description: 知识库问答 P95 延迟连续五分钟超过十五秒。
+
+      - alert: ModelUsageAuditWriteFailed
+        expr: sum by (job, operation) (increase(enterprise_model_usage_write_failures_total[5m])) > 0
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: 模型用量审计写入失败
+          description: 模型调用可能已发生费用，但独立审计写入失败；请检查数据库、日志和长期 pending 事件。

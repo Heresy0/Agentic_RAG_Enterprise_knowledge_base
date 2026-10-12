@@ -21,6 +21,8 @@ class Settings:
             os.getenv("LOG_LEVEL", "INFO").strip().upper()
             or "INFO"
         )
+        from .model_usage import parse_prices
+        self.model_usage_prices = parse_prices(os.getenv("MODEL_USAGE_PRICES_JSON", "{}"))
         self.database_url = required_env("DATABASE_URL")
 
         self.redis_url = required_env("REDIS_URL")

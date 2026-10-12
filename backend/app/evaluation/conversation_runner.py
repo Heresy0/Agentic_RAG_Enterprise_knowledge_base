@@ -18,6 +18,7 @@ from ..security.authorization import AuthorizationService
 from .metrics import score_answer, score_generation, summarize_records, summarize_generation
 from .runner import token_from_environment, verified_principal
 from .trace import capture_trace
+from ..model_usage import summarize_usage, usage_context
 
 
 def evaluate_local_conversations(cases, config, *, save_traces=None):
@@ -59,7 +60,8 @@ def evaluate_local_conversations(cases, config, *, save_traces=None):
                             principal = verified_principal(settings, session,
                                                            token_from_environment(profile['token_env']))
                             scope = authorization.require_retrieval_scope(principal=principal, knowledge_base_id=None)
-                            with capture_trace() as trace:
+                            with capture_trace() as trace, usage_context(scope=scope, session=session, settings=settings,
+                                                                        actor_user_id=principal.user_id, conversation_id=conversation_id):
                                 result, _ = service.answer(turn['question'], conversation_id=conversation_id,
                                                            principal=principal, scope=scope, session=session)
                             snapshot = trace.to_dict()
@@ -69,6 +71,8 @@ def evaluate_local_conversations(cases, config, *, save_traces=None):
                                                    response, snapshot['stages'].get('context'))
                             metrics['generation'] = score_generation(
                                 dict(turn, answerable=turn.get('answerable', True)), snapshot)
+                            metrics['model_usage'] = summarize_usage(snapshot['stages']['model_usage'])
+                            metrics['model_usage']['events'] = snapshot['stages']['model_usage']
                             turns.append(dict(id=turn['id'], status='passed' if metrics['automatic_proxy_pass'] else 'failed',
                                               metrics=metrics, response=response, retrieval_question=trace.query,
                                               latency_ms=round((time.perf_counter() - started) * 1000, 2),
@@ -78,6 +82,9 @@ def evaluate_local_conversations(cases, config, *, save_traces=None):
                             broken = True
                             turns.append(dict(id=turn['id'], status='error', error_type=type(exc).__name__))
                             snapshot = trace.to_dict() if trace is not None else dict(stages={}, scope={})
+                            events = snapshot['stages'].get('model_usage', [])
+                            turns[-1]['metrics'] = dict(model_usage=dict(
+                                **summarize_usage(events, observed='model_usage' in snapshot['stages']), events=events))
                             snapshot['error_type'] = type(exc).__name__  # No credential-bearing exception strings.
                             session.rollback()
                         if stream is not None:

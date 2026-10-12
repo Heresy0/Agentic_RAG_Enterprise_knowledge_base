@@ -15,6 +15,7 @@ data
 evals/reports
 sample_docs
 tests
+tmp
 
 *.sqlite
 *.sqlite3

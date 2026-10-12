@@ -276,7 +276,7 @@ def test_history_window_and_pagination_keep_all_stored_turns(data):
 def test_resolver_bounds_untrusted_context_and_skips_llm_on_first_turn(monkeypatch):
     calls = []
     class Model:
-        def with_structured_output(self, schema):
+        def with_structured_output(self, schema, **kwargs):
             assert schema is ResolvedQuestion
             return self
         def invoke(self, messages):

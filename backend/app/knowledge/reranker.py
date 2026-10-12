@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 import requests
 from pydantic import BaseModel, SecretStr
+from ..model_usage import ModelCall
 
 
 class RerankError(RuntimeError):
@@ -31,12 +32,19 @@ class QwenReranker(BaseReranker):
     model: str = "qwen3-rerank"
     timeout_seconds: float = 5.0
 
-    def rerank(
+    def rerank(self, *, query, documents, top_n):
+        if not documents:
+            return []
+        with ModelCall("rerank", self.model) as call:
+            return self._rerank(query=query, documents=documents, top_n=top_n, call=call)
+
+    def _rerank(
             self,
             *,
             query: str,
             documents: list[str],
             top_n: int,
+            call: ModelCall,
     ) -> list[RerankResult]:
         if not documents:
             return []
@@ -68,6 +76,8 @@ class QwenReranker(BaseReranker):
              )
              response.raise_for_status()
              data = response.json()
+             if isinstance(data, dict):
+                 call.observe(data.get("usage"), data.get("request_id"))
         except requests.RequestException as exc:
             raise RerankError(
                 f"重排序接口调用失败：{exc}"
@@ -77,7 +87,7 @@ class QwenReranker(BaseReranker):
                 "重排序接口返回了无效 JSON"
             ) from exc
 
-        raw_results = data.get("results")
+        raw_results = data.get("results") if isinstance(data, dict) else None
 
         if not isinstance(raw_results,list):
             raise RerankError(

@@ -7,6 +7,7 @@ from langchain_community.document_loaders import (
     TextLoader,
 )
 from langchain_core.documents import Document
+from langchain_core.embeddings import Embeddings
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import (
     RecursiveCharacterTextSplitter,
@@ -17,6 +18,7 @@ from ..db.models import EMBEDDING_DIMENSION
 from ..documents.document_splitter import split_docx
 from ..documents.pdf_splitter import split_pdf
 from ..documents.text_splitter import split_markdown, split_txt
+from .audited_embeddings import AuditedEmbeddings
 
 
 CHUNKING_VERSION = "structured-v4"
@@ -60,16 +62,17 @@ def split_file(
 
 def create_embeddings(
     settings: Settings,
-) -> OpenAIEmbeddings:
+) -> Embeddings:
     """创建用于入库和查询的嵌入模型。"""
-    return OpenAIEmbeddings(
+    return AuditedEmbeddings(OpenAIEmbeddings(
         model=settings.embedding_model,
         openai_api_key=settings.chat_api_key,
         base_url=settings.chat_base_url,
         dimensions=EMBEDDING_DIMENSION,
         check_embedding_ctx_length=False,
         chunk_size=10,
-    )
+        max_retries=0,
+    ))
 
 
 def load_file(

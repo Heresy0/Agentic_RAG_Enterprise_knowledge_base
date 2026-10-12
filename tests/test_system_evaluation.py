@@ -310,7 +310,7 @@ def test_answer_trace_uses_actual_trimmed_context_not_raw_candidates(monkeypatch
                    metadata=dict(tenant_id=str(scope.tenant_id), knowledge_base_id=str(scope.knowledge_base_id),
                                  source="private.docx", document_name="private", section_path="说明"))
     retrieval = SimpleNamespace(search=lambda *a, **kw: [doc])
-    fake_model = SimpleNamespace(with_structured_output=lambda schema:
+    fake_model = SimpleNamespace(with_structured_output=lambda schema, **kwargs:
                       SimpleNamespace(invoke=lambda messages: GenerationAnswerDraft(
                           answerable=False, refusal_reason="资料不足", coverage=[dict(
                               requirement_id="Q1", aspect="q", status="insufficient", claim_indices=[],

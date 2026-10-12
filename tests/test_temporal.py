@@ -31,6 +31,7 @@ def test_followup_cleanup_never_drops_user_reference_or_changed_business_time():
 def test_resolver_applies_cleanup_after_model_rewrite_without_an_extra_call():
     from backend.app.knowledge.conversation_service import ConversationResolver, ResolvedQuestion
     resolver = object.__new__(ConversationResolver)
+    resolver._settings = SimpleNamespace(chat_model="test-model")
     calls = []
     def invoke(messages):
         calls.append(messages)

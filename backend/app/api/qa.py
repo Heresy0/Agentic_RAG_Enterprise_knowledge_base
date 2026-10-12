@@ -15,6 +15,7 @@ from sqlalchemy.orm import Session
 from ..knowledge.answer_service import AnswerService
 from ..knowledge.conversations import ConversationBusy, ConversationNotFound
 from ..audit_service import AuditService
+from ..model_usage import usage_context
 from ..db.dependencies import get_database_session
 from ..schemas import (
     KnowledgeQuestionRequest,
@@ -254,22 +255,21 @@ def answer_question(
             })
 
         conversation_fields = {}
-        if payload.conversation_id is not None:
-            result, context_ms = request.app.state.conversation_answer_service.answer(
-                payload.question, conversation_id=payload.conversation_id,
-                principal=principal, scope=scope, session=session, commit_success=record_answer_success,
-            )
-            conversation_fields = {
-                "conversation_id": payload.conversation_id,
-                "conversation_context_ms": context_ms,
-            }
-        else:
-            result = answer_service.answer(
-                payload.question,
-                scope=scope,
-                session=session,
-            )
-            record_answer_success(result)
+        with usage_context(scope=scope, session=session, settings=request.app.state.settings,
+                           request_id=request_id, actor_user_id=principal.user_id,
+                           conversation_id=payload.conversation_id):
+            if payload.conversation_id is not None:
+                result, context_ms = request.app.state.conversation_answer_service.answer(
+                    payload.question, conversation_id=payload.conversation_id,
+                    principal=principal, scope=scope, session=session, commit_success=record_answer_success,
+                )
+                conversation_fields = {
+                    "conversation_id": payload.conversation_id,
+                    "conversation_context_ms": context_ms,
+                }
+            else:
+                result = answer_service.answer(payload.question, scope=scope, session=session)
+                record_answer_success(result)
 
         timing_fields = (
             result.timings.model_dump()

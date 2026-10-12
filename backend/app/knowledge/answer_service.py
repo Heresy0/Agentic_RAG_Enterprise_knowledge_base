@@ -17,6 +17,7 @@ from .answer_models import (
 from .answer_validation import AnswerValidator
 from .calculation_service import CalculationError, compute
 from ..config import Settings
+from ..model_usage import audited_scope, invoke_structured
 from .context_builder import (
     BuiltContext,
     ContextBuilder,
@@ -53,6 +54,7 @@ class AnswerService:
         context_builder: ContextBuilder | None = None,
         validator: AnswerValidator | None = None,
     ) -> None:
+        self._settings = settings
         self._retrieval_service = retrieval_service
         self._context_builder = (
             context_builder or ContextBuilder()
@@ -72,9 +74,10 @@ class AnswerService:
         )
 
         self._structured_llm = (
-            llm.with_structured_output(GenerationAnswerDraft)
+            llm.with_structured_output(GenerationAnswerDraft, include_raw=True)
         )
 
+    @audited_scope
     def answer(
         self,
         question: str,
@@ -310,7 +313,7 @@ class AnswerService:
         question: str,
         context: BuiltContext,
     ) -> GenerationAnswerDraft:
-        result = self._structured_llm.invoke([
+        result = invoke_structured(self._structured_llm, [
             SystemMessage(
                 content=ANSWER_SYSTEM_PROMPT
             ),
@@ -322,7 +325,7 @@ class AnswerService:
                     f"知识库资料：\n{context.text}"
                 )
             ),
-        ])
+        ], stage="answer_generation", model_name=self._settings.chat_model)
 
         if not isinstance(result, GenerationAnswerDraft):
             if isinstance(result, AnswerDraft):
