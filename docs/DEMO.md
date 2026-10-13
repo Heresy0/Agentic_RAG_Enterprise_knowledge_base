@@ -1,7 +1,7 @@
 # 演示与收尾验收指南
 
 本指南用于本地演示与简历项目验收，不代表生产环境认证。正式问答入口为
-`/api/qa`，前端由 FastAPI 同源提供，检索使用 PostgreSQL + pgvector。
+`/api/qa`，前端由 FastAPI 同源提供，检索使用 PostgreSQL / pg_search + Milvus。
 Wiki、知识图谱和生产多节点部署不在本次收尾范围内。引用现在可点击预览原文，预览仍受当前知识库权限约束。
 
 ## 1. 演示前准备

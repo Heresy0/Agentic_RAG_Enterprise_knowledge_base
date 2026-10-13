@@ -34,7 +34,7 @@
 此前已有按文件哈希、切分版本、OCR修订和模型判断的幂等索引；仅文件字节不变不保证跨版本始终跳过。
 
 ```powershell
-.venv\Scripts\python.exe scripts/index_pgvector.py --directory sample_docs/xinghai_expansion/documents/01_公司公共 --tenant-id <租户UUID> --knowledge-base-id <公共库UUID> --user-id <获准用户UUID>
+.venv\Scripts\python.exe scripts/index_documents.py --directory sample_docs/xinghai_expansion/documents/01_公司公共 --tenant-id <租户UUID> --knowledge-base-id <公共库UUID> --user-id <获准用户UUID>
 ```
 
 新增20题已合并至evals/xinghai_v3，主单轮题集共80题（71道可回答、9道资料不足）；CC-001至CC-020覆盖本包全部20份资料。

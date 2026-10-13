@@ -127,7 +127,7 @@ docker compose ps api worker
 不调用模型的专项测试：
 
 ```powershell
-.venv\Scripts\python.exe -m pytest tests/test_policy_selection.py tests/test_calculation_service.py tests/test_answer_service.py tests/test_pgvector_indexing_service.py tests/test_pgvector_document_candidate_indexing.py -p no:locust -o addopts= -q
+.venv\Scripts\python.exe -m pytest tests/test_policy_selection.py tests/test_calculation_service.py tests/test_answer_service.py tests/test_document_indexing_service.py tests/test_document_candidate_indexing.py -p no:locust -o addopts= -q
 ```
 
 测试包含实际示例语料的历史差旅版本选择；若本地未放置该合成语料则明确跳过该案例。其它测试使用隔离数据库或模拟模型，不修改现有业务数据库。
@@ -145,4 +145,4 @@ docker compose ps api worker
 - backend/app/knowledge/evidence_quality.py：明确说明片段识别与正文优先级保护。
 - backend/app/knowledge/calculation_service.py：输入溯源、白名单计算、受控结果渲染。
 
-接入位置：pgvector_indexing_service.py、vector_repository.py、retrieval_service.py、rerank_retriever.py、context_builder.py、answer_models.py、answer_service.py、answer_validation.py、prompts.py、evaluation/trace.py。
+接入位置：document_indexing_service.py、chunk_repository.py、retrieval_service.py、rerank_retriever.py、context_builder.py、answer_models.py、answer_service.py、answer_validation.py、prompts.py、evaluation/trace.py。

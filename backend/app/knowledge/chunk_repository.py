@@ -36,14 +36,16 @@ class VectorSearchHit(StoredChunk):
     distance: float
 
 
-class PgVectorRepository:
-    """在授权范围内执行pgvector查询。"""
+class ChunkRepository:
+    """使用 SQL 确认权限与当前版本，再从 Milvus 检索向量。"""
 
     def __init__(
         self,
         session: Session,
+        vector_store=None,
     ) -> None:
         self._session = session
+        self._vector_store = vector_store
 
     @staticmethod
     def _build_metadata(
@@ -133,68 +135,47 @@ class PgVectorRepository:
                 "向量检索limit必须在1到100之间"
             )
 
-        distance_expression = (
-            DocumentChunk.embedding.cosine_distance(
-                query_vector
-            ).label("distance")
-        )
-
-        statement = (
-            select(
-                DocumentChunk,
-                KnowledgeDocument,
-                distance_expression,
-            )
-            .join(
-                KnowledgeDocument,
-                and_(
-                    KnowledgeDocument.tenant_id
-                    == DocumentChunk.tenant_id,
-                    KnowledgeDocument.knowledge_base_id
-                    == DocumentChunk.knowledge_base_id,
-                    KnowledgeDocument.id
-                    == DocumentChunk.document_id,
-                ),
-            )
-            .where(
-                DocumentChunk.tenant_id
-                == scope.tenant_id,
-                scope.knowledge_base_filter(DocumentChunk.knowledge_base_id),
-                KnowledgeDocument.status == "ready",
-            )
-            .order_by(distance_expression)
-            .limit(limit)
-        )
-
-        rows = self._session.execute(
-            statement
-        ).all()
-
-        hits: list[VectorSearchHit] = []
-
-        for chunk, document, distance in rows:
-            metadata = self._build_metadata(
-                chunk=chunk,
-                document=document,
-            )
-
-            hits.append(
-                VectorSearchHit(
-                    chunk_id=chunk.id,
-                    document_id=document.id,
-                    tenant_id=chunk.tenant_id,
-                    knowledge_base_id=(
-                        chunk.knowledge_base_id
-                    ),
-                    content=chunk.content,
-                    document_name=document.file_name,
-                    source=document.storage_uri,
-                    metadata=metadata,
-                    distance=float(distance),
-                )
-            )
-
-        return hits
+        if not scope.knowledge_base_ids:
+            return []
+        base = select(DocumentChunk, KnowledgeDocument).join(KnowledgeDocument, and_(
+            KnowledgeDocument.tenant_id == DocumentChunk.tenant_id,
+            KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id,
+            KnowledgeDocument.id == DocumentChunk.document_id,
+        )).where(DocumentChunk.tenant_id == scope.tenant_id,
+                 scope.knowledge_base_filter(DocumentChunk.knowledge_base_id),
+                 KnowledgeDocument.status == "ready")
+        generations = self._session.scalars(base.with_only_columns(DocumentChunk.vector_generation).distinct()).all()
+        if not generations:
+            return []
+        if self._vector_store is None:
+            from .milvus_store import VectorStoreUnavailable
+            raise VectorStoreUnavailable("未初始化 Milvus 向量存储")
+        candidates = self._vector_store.search(scope=scope, generations=generations, vector=query_vector, limit=limit)
+        if not candidates:
+            return []
+        ids = [row.get("chunk_id") for row in candidates if isinstance(row.get("chunk_id"), str)]
+        rows = self._session.execute(base.where(DocumentChunk.id.in_(ids))).all()
+        authoritative = {chunk.id: (chunk, document) for chunk, document in rows}
+        hits, seen = [], set()
+        for candidate in candidates:
+            chunk_id = candidate.get("chunk_id")
+            if chunk_id in seen or chunk_id not in authoritative:
+                continue
+            chunk, document = authoritative[chunk_id]
+            if any(candidate.get(key) != value for key, value in {
+                "tenant_id": str(chunk.tenant_id), "knowledge_base_id": str(chunk.knowledge_base_id),
+                "document_id": str(document.id), "generation": chunk.vector_generation,
+            }.items()):
+                continue
+            score = candidate.get("distance")
+            if isinstance(score, bool) or not isinstance(score, (float, int)) or not isfinite(score):
+                continue
+            seen.add(chunk_id)
+            hits.append(VectorSearchHit(chunk_id=chunk.id, document_id=document.id, tenant_id=chunk.tenant_id,
+                knowledge_base_id=chunk.knowledge_base_id, content=chunk.content,
+                document_name=document.file_name, source=document.storage_uri,
+                metadata=self._build_metadata(chunk=chunk, document=document), distance=1.0 - float(score)))
+        return hits[:limit]
 
     def has_ready_chunks(self, *, scope: RetrievalScope) -> bool:
         """Empty-scope check without loading the entire knowledge base."""

@@ -24,8 +24,8 @@ from backend.app.db.models import (
     Tenant,
     User,
 )
-from backend.app.indexing.pgvector_indexing_service import (
-    PgVectorIndexingService,
+from backend.app.indexing.document_indexing_service import (
+    DocumentIndexingService,
 )
 from backend.app.security.retrieval_scope import (
     RetrievalScope,
@@ -173,10 +173,10 @@ def _count(
 
 def test_policy_persistence_legacy_read_and_scope_guards(session, scope_data, tmp_path):
     from copy import deepcopy
-    from backend.app.knowledge.vector_repository import PgVectorRepository
+    from backend.app.knowledge.chunk_repository import ChunkRepository
     path = tmp_path / "Webhook规范.txt"
     path.write_text("文档编号: RULE-B\n版本: 1.4\n生效日期: 2026年7月1日\n规则正文。", encoding="utf-8")
-    service = PgVectorIndexingService(session=session, settings=_settings(), embeddings=FakeEmbeddings())
+    service = DocumentIndexingService(session=session, settings=_settings(), embeddings=FakeEmbeddings())
     scopes = [RetrievalScope(scope_data.tenant_id, knowledge_base_id=kb) for kb in
               (scope_data.technology_kb_id, scope_data.hr_kb_id)]
     for scope in scopes:
@@ -189,7 +189,7 @@ def test_policy_persistence_legacy_read_and_scope_guards(session, scope_data, tm
     own.metadata_json = {k: v for k, v in own.metadata_json.items() if k != "policy"}
     session.commit()  # Emulate a ready legacy index without document policy metadata.
     before = deepcopy(own.metadata_json)
-    repository = PgVectorRepository(session)
+    repository = ChunkRepository(session)
     ids = [doc.id for doc in documents]
     policies = repository.candidate_policies(scope=scopes[0], document_ids=ids)
     assert set(policies) == {str(own.id)}
@@ -206,7 +206,7 @@ def test_policy_persistence_legacy_read_and_scope_guards(session, scope_data, tm
 def test_reindex_refreshes_source_policy_but_preserves_governed_relations(session, scope_data, tmp_path):
     path = tmp_path / "规范.txt"
     path.write_text("文档编号: RULE-B\n版本: 1.4\n生效日期: 2026年7月1日", encoding="utf-8")
-    service = PgVectorIndexingService(session=session, settings=_settings(), embeddings=FakeEmbeddings())
+    service = DocumentIndexingService(session=session, settings=_settings(), embeddings=FakeEmbeddings())
     scope = RetrievalScope(scope_data.tenant_id, knowledge_base_id=scope_data.technology_kb_id)
     service.index_file(file_path=path, scope=scope, created_by_user_id=scope_data.user_id)
     doc = session.scalar(select(KnowledgeDocument))
@@ -233,7 +233,7 @@ def test_indexes_file_and_skips_unchanged_file(
     )
 
     embeddings = FakeEmbeddings()
-    service = PgVectorIndexingService(
+    service = DocumentIndexingService(
         session=session,
         settings=_settings(),
         embeddings=embeddings,
@@ -291,9 +291,9 @@ def test_ocr_quality_is_persisted_without_guessing_correct_name(session, scope_d
         "source": str(path), "parser": "ocr", "page_start": 1, "page_end": 1,
         "chunk_type": "paragraph", "parent_key": "page:1", "chunk_in_parent": 0,
     })])
-    monkeypatch.setattr("backend.app.indexing.pgvector_indexing_service.split_file", lambda *_args, **_kwargs: parsed)
+    monkeypatch.setattr("backend.app.indexing.document_indexing_service.split_file", lambda *_args, **_kwargs: parsed)
     scope = RetrievalScope(scope_data.tenant_id, knowledge_base_id=scope_data.technology_kb_id)
-    service = PgVectorIndexingService(session=session, settings=_settings(), embeddings=FakeEmbeddings())
+    service = DocumentIndexingService(session=session, settings=_settings(), embeddings=FakeEmbeddings())
     service.index_file(file_path=path, scope=scope, created_by_user_id=scope_data.user_id)
     document = session.scalar(select(KnowledgeDocument))
     chunk = session.scalar(select(DocumentChunk))
@@ -310,7 +310,7 @@ def test_old_chunking_version_is_rebuilt_only_on_explicit_indexing(session, scop
     path.write_text("401不得自动重试。", encoding="utf-8")
     scope = RetrievalScope(scope_data.tenant_id, knowledge_base_id=scope_data.technology_kb_id)
     embeddings = FakeEmbeddings()
-    service = PgVectorIndexingService(session=session, settings=_settings(), embeddings=embeddings)
+    service = DocumentIndexingService(session=session, settings=_settings(), embeddings=embeddings)
     service.index_file(file_path=path, scope=scope, created_by_user_id=scope_data.user_id)
     document = session.scalar(select(KnowledgeDocument))
     document.metadata_json = {**document.metadata_json, "chunking_version": "structured-v3"}
@@ -335,7 +335,7 @@ def test_same_file_in_two_knowledge_bases_has_distinct_chunks(
         encoding="utf-8",
     )
 
-    service = PgVectorIndexingService(
+    service = DocumentIndexingService(
         session=session,
         settings=_settings(),
         embeddings=FakeEmbeddings(),
@@ -405,7 +405,7 @@ def test_embedding_failure_preserves_previous_version(
         ),
     )
 
-    good_service = PgVectorIndexingService(
+    good_service = DocumentIndexingService(
         session=session,
         settings=_settings(),
         embeddings=FakeEmbeddings(),
@@ -433,7 +433,7 @@ def test_embedding_failure_preserves_previous_version(
         encoding="utf-8",
     )
 
-    failing_service = PgVectorIndexingService(
+    failing_service = DocumentIndexingService(
         session=session,
         settings=_settings(),
         embeddings=WrongDimensionEmbeddings(),

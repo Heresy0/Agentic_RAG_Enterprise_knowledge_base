@@ -13,8 +13,8 @@ from backend.app.db.models import (
 from backend.app.security.retrieval_scope import (
     RetrievalScope,
 )
-from backend.app.knowledge.vector_repository import (
-    PgVectorRepository,
+from backend.app.knowledge.chunk_repository import (
+    ChunkRepository,
 )
 
 
@@ -41,28 +41,35 @@ def test_companion_read_is_bounded_by_scope_ready_candidate_ids_and_chunk_count(
 def test_multi_scope_filters_before_limit_and_empty_scope_is_never_unrestricted(ids):
     repository, session = _repository()
     scope = RetrievalScope(tenant_id=uuid4(), knowledge_base_ids=ids)
-    repository.search(scope=scope, query_embedding=_valid_embedding(), limit=8)
-    statement = session.execute.call_args.args[0]
+    assert repository.search(scope=scope, query_embedding=_valid_embedding(), limit=8) == []
+    if not ids:
+        session.scalars.assert_not_called()
+        repository._vector_store.search.assert_not_called()
+        return
+    statement = session.scalars.call_args.args[0]
     sql = str(statement.compile(dialect=postgresql.dialect(), compile_kwargs={"literal_binds": True}))
     assert "document_chunks.knowledge_base_id IN" in sql
     assert str(scope.tenant_id) in sql
     assert "documents.status = 'ready'" in sql
-    assert sql.index("WHERE") < sql.index("ORDER BY") < sql.index("LIMIT")
     for kb_id in ids:
         assert str(kb_id) in sql
-    if not ids:
-        assert "1 != 1" in sql
+    assert repository._vector_store.search.call_args.kwargs["limit"] == 8
+    assert repository._vector_store.search.call_args.kwargs["scope"] == scope
 
 
 def _repository(
     rows: list[tuple] | None = None,
-) -> tuple[PgVectorRepository, Mock]:
+) -> tuple[ChunkRepository, Mock]:
     session = Mock(spec=Session)
-    session.execute.return_value.all.return_value = (
-        rows or []
-    )
+    store = Mock()
+    session.scalars.return_value.all.return_value = ["a" * 32]
+    session.execute.return_value.all.return_value = [row[:2] for row in (rows or [])]
+    store.search.return_value = [{"chunk_id": chunk.id, "tenant_id": str(chunk.tenant_id),
+        "knowledge_base_id": str(chunk.knowledge_base_id), "document_id": str(chunk.document_id),
+        "generation": chunk.vector_generation, "distance": 1 - distance}
+        for chunk, document, distance in (rows or []) if len((chunk, document, distance)) == 3] if rows and len(rows[0]) == 3 else []
+    return ChunkRepository(session, store), session
 
-    return PgVectorRepository(session), session
 
 
 @pytest.mark.parametrize("chunk_id,exists", [(None, False), ("c" * 64, True)])
@@ -158,7 +165,7 @@ def test_search_sql_contains_required_scope_filters() -> None:
 
     assert results == []
 
-    statement = session.execute.call_args.args[0]
+    statement = session.scalars.call_args.args[0]
     compiled = statement.compile(
         dialect=postgresql.dialect()
     )
@@ -208,7 +215,7 @@ def test_maps_database_rows_to_search_hits() -> None:
         parent_id=None,
         chunking_version="structured-v1",
         embedding_model="text-embedding-v4",
-        embedding=_valid_embedding(),
+        vector_generation="a" * 32,
         metadata_json={
             "tenant_id": "伪造的租户",
             "custom": "保留",
@@ -280,7 +287,7 @@ def test_list_chunks_is_scoped_and_maps_ready_documents() -> None:
         parent_id=None,
         chunking_version="structured-v1",
         embedding_model="text-embedding-v4",
-        embedding=_valid_embedding(),
+        vector_generation="a" * 32,
         metadata_json={"section_path": "故障处理"},
     )
     repository, session = _repository([
@@ -314,3 +321,15 @@ def test_list_chunks_is_scoped_and_maps_ready_documents() -> None:
     assert "documents.status =" in sql
     assert scope.tenant_id in compiled.params.values()
     assert scope.knowledge_base_id in compiled.params.values()
+
+
+@pytest.mark.parametrize("field", ["tenant_id", "knowledge_base_id", "document_id", "generation", "chunk_id", "distance"])
+def test_milvus_candidates_must_match_sql_identity_and_current_generation(field):
+    tenant_id, kb_id, doc_id = uuid4(), uuid4(), uuid4()
+    chunk = DocumentChunk(id="c" * 64, tenant_id=tenant_id, knowledge_base_id=kb_id, document_id=doc_id,
+        vector_generation="a" * 32, content="授权内容", content_hash="h" * 64, metadata_json={}, chunk_index=0)
+    document = KnowledgeDocument(id=doc_id, tenant_id=tenant_id, knowledge_base_id=kb_id, file_name="授权文档",
+        storage_uri="test://source", source_id="s" * 64, status="ready", metadata_json={})
+    repository, _ = _repository([(chunk, document, 0.1)])
+    repository._vector_store.search.return_value[0][field] = float("nan") if field == "distance" else "forged"
+    assert repository.search(scope=RetrievalScope(tenant_id, kb_id), query_embedding=_valid_embedding()) == []

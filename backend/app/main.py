@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from .config import Settings
 from .knowledge.retrieval_service import RetrievalService
 from .knowledge.keyword_repository import verify_keyword_index
+from .knowledge.milvus_store import MilvusVectorStore
 from .knowledge.answer_service import AnswerService
 from .knowledge.conversation_service import ConversationAnswerService, ConversationResolver
 from .api.conversations import router as conversations_router
@@ -82,6 +83,9 @@ async def lifespan(app: FastAPI):
 
         verify_database_connection(database_engine)
         verify_keyword_index(database_engine)
+        vector_store = MilvusVectorStore(settings)
+        vector_store.ensure_collection()
+        app.state.vector_store = vector_store
 
         redis_client = create_redis_client(
             settings.redis_url,
@@ -109,7 +113,7 @@ async def lifespan(app: FastAPI):
         )
 
         retrieval_service = RetrievalService(
-            settings=settings
+            settings=settings, vector_store=vector_store
         )
 
         answer_service = AnswerService(

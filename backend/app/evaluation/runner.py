@@ -101,7 +101,9 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
     from ..knowledge.context_builder import ContextBuilder
     from ..knowledge.retrieval_service import RetrievalService
     from ..security.authorization import AuthorizationService
+    from ..knowledge.milvus_store import MilvusVectorStore
     settings = Settings()
+    vector_store = MilvusVectorStore(settings)
     kb_map = {group: UUID(value) for group, value in config["knowledge_bases"].items()}
     profile = config["profiles"]["全范围测试用户"]
     token = token_from_environment(profile["token_env"])
@@ -132,8 +134,14 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
                     valid = (doc.status == "ready" and bool(chunks)
                              and len(chunks) == doc.metadata_json.get("chunk_count")
                              and all(chunk.tenant_id == doc.tenant_id and chunk.knowledge_base_id == doc.knowledge_base_id
-                                     and len(chunk.embedding) == EMBEDDING_DIMENSION and chunk.keyword_text.strip()
+                                     and len(chunk.vector_generation) == 32 and chunk.keyword_text.strip()
                                      for chunk in chunks))
+                    if valid:
+                        expression = ' and '.join(f'{field} == {json.dumps(value)}' for field, value in {
+                            "tenant_id": str(doc.tenant_id), "knowledge_base_id": str(doc.knowledge_base_id),
+                            "document_id": str(doc.id), "generation": chunks[0].vector_generation,
+                        }.items())
+                        valid = len({c.vector_generation for c in chunks}) == 1 and vector_store.count(expression) == len(chunks)
                     key = (doc.knowledge_base_id, doc.file_name)
                     seen.add(key)
                     if key in expected:

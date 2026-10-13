@@ -3,10 +3,10 @@ from uuid import uuid4
 from langchain_core.embeddings import Embeddings
 
 from backend.app.db.models import EMBEDDING_DIMENSION
-from backend.app.knowledge.pgvector_retriever import PgVectorRetriever
+from backend.app.knowledge.milvus_retriever import MilvusRetriever
 from backend.app.security.retrieval_scope import RetrievalScope
-from backend.app.knowledge.vector_repository import (
-    PgVectorRepository,
+from backend.app.knowledge.chunk_repository import (
+    ChunkRepository,
     VectorSearchHit,
 )
 
@@ -32,7 +32,7 @@ class FakeEmbeddings(Embeddings):
         )
 
 
-class FakeRepository(PgVectorRepository):
+class FakeRepository(ChunkRepository):
     def __init__(self, hit: VectorSearchHit) -> None:
         self.hit = hit
         self.calls: list[dict] = []
@@ -74,7 +74,7 @@ def test_embeds_query_and_maps_scoped_search_hit() -> None:
     )
     embeddings = FakeEmbeddings()
     repository = FakeRepository(hit)
-    retriever = PgVectorRetriever(
+    retriever = MilvusRetriever(
         repository=repository,
         embeddings=embeddings,
         scope=scope,

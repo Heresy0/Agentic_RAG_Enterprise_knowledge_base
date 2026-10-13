@@ -20,9 +20,9 @@ from backend.app.db.models import (
     Tenant,
     User,
 )
-from backend.app.indexing.pgvector_indexing_service import (
+from backend.app.indexing.document_indexing_service import (
     DocumentCandidateNotFound,
-    PgVectorIndexingService,
+    DocumentIndexingService,
 )
 from backend.app.security.retrieval_scope import RetrievalScope
 
@@ -190,7 +190,7 @@ def _add_old_chunk(
             parent_id=None,
             chunking_version="structured-v1",
             embedding_model="text-embedding-v4",
-            embedding=[0.0] * EMBEDDING_DIMENSION,
+            vector_generation="a" * 32,
             metadata_json={},
         )
     )
@@ -214,14 +214,14 @@ def _write_candidate(
 
 
 def test_review_revision_change_reindexes_same_file_and_version_once(session, scenario, tmp_path, monkeypatch):
-    from backend.app.indexing import pgvector_indexing_service as module
+    from backend.app.indexing import document_indexing_service as module
     path, digest = _write_candidate(tmp_path, '经过核查的示例内容。')
     uri = path.resolve().as_uri()
     document = _add_document(session, scenario, file_name='review.txt', storage_uri=uri,
                              content_hash=digest, status='pending', version=1, marker='r')
     session.commit()
     embeddings = FakeEmbeddings()
-    service = PgVectorIndexingService(session=session, settings=_settings(), embeddings=embeddings)
+    service = DocumentIndexingService(session=session, settings=_settings(), embeddings=embeddings)
     args = dict(file_path=path, scope=scenario.technology_scope, document_id=document.id,
                 created_by_user_id=scenario.user_id, target_version=1, candidate_file_name='review.txt',
                 candidate_mime_type='text/plain', candidate_content_hash=digest, final_storage_uri=uri)
@@ -259,7 +259,7 @@ def test_indexes_pending_document_at_version_one_and_is_idempotent(
     )
     session.commit()
     embeddings = FakeEmbeddings()
-    service = PgVectorIndexingService(
+    service = DocumentIndexingService(
         session=session,
         settings=_settings(),
         embeddings=embeddings,
@@ -340,7 +340,7 @@ def test_replaces_existing_chunks_at_exact_target_version(
         marker="b",
     )
     old_chunk_id = _add_old_chunk(session, document)
-    service = PgVectorIndexingService(
+    service = DocumentIndexingService(
         session=session,
         settings=_settings(),
         embeddings=FakeEmbeddings(),
@@ -399,7 +399,7 @@ def test_hash_mismatch_preserves_existing_document_and_chunks(
     )
     old_chunk_id = _add_old_chunk(session, document)
     embeddings = FakeEmbeddings()
-    service = PgVectorIndexingService(
+    service = DocumentIndexingService(
         session=session,
         settings=_settings(),
         embeddings=embeddings,
@@ -462,7 +462,7 @@ def test_document_lookup_is_limited_to_retrieval_scope(
     )
     session.commit()
     embeddings = FakeEmbeddings()
-    service = PgVectorIndexingService(
+    service = DocumentIndexingService(
         session=session,
         settings=_settings(),
         embeddings=embeddings,

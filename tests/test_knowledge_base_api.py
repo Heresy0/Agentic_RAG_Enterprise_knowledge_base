@@ -358,7 +358,7 @@ def test_citation_preview_reauthorizes_and_rejects_stale_or_wrong_document(api_c
         session.add(DocumentChunk(id=chunk_id, tenant_id=api_context["principal"].tenant_id,
             knowledge_base_id=kb_id, document_id=doc_id, chunk_index=0, content="<script>原文</script>",
             content_hash="b" * 64, chunking_version="test", embedding_model="test",
-            embedding=[0.0] * EMBEDDING_DIMENSION, metadata_json={"section_path": "重试规则"}))
+            vector_generation="a" * 32, metadata_json={"section_path": "重试规则"}))
         session.commit()
     client = TestClient(app)
     path = f"/api/knowledge-bases/{kb_id}/documents/{doc_id}/chunks/{chunk_id}"

@@ -36,6 +36,7 @@ def health_app(tmp_path: Path):
     session_factory = create_session_factory(engine)
     app = FastAPI()
     app.state.redis_client = HealthyRedis()
+    app.state.vector_store = SimpleNamespace(verify=lambda: None)
     app.state.database_engine = engine
     app.state.database_session_factory = session_factory
     app.state.settings = SimpleNamespace(
@@ -66,6 +67,7 @@ def test_liveness_and_readiness_are_separate(
         "status": "ok",
         "database": "up",
         "redis": "up",
+        "milvus": "up",
     }
 
 
@@ -107,6 +109,7 @@ def test_readiness_returns_503_when_database_is_down(
         "status": "unavailable",
         "database": "down",
         "redis": "up",
+        "milvus": "up",
     }
 
 
@@ -125,4 +128,16 @@ def test_readiness_returns_503_when_redis_is_down(
         "status": "unavailable",
         "database": "up",
         "redis": "down",
+        "milvus": "up",
     }
+
+
+def test_readiness_returns_503_when_milvus_is_down(health_app):
+    app, _, _ = health_app
+    def broken():
+        raise RuntimeError("Milvus down")
+    app.state.vector_store = SimpleNamespace(verify=broken)
+    response = TestClient(app).get("/health/ready")
+    assert response.status_code == 503
+    assert response.json()["milvus"] == "down"
+    assert TestClient(app).get("/health/live").status_code == 200

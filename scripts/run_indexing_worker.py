@@ -30,6 +30,8 @@ from backend.app.monitoring.metrics import (  # noqa: E402
 from backend.app.indexing.worker_heartbeat_service import (  # noqa: E402
     WorkerHeartbeatService,
 )
+from backend.app.indexing.vector_sync_service import VectorSyncService
+from backend.app.knowledge.milvus_store import MilvusVectorStore
 from backend.app.knowledge.keyword_repository import verify_keyword_index  # noqa: E402
 
 
@@ -96,6 +98,9 @@ def main() -> None:
     session_factory = create_session_factory(engine)
     verify_database_connection(engine)
     verify_keyword_index(engine)
+    vector_store = MilvusVectorStore(settings)
+    vector_store.ensure_collection()
+    last_vector_cleanup = float("-inf")
     metrics_server, metrics_thread = start_http_server(
         settings.indexing_worker_metrics_port,
         addr="0.0.0.0",
@@ -192,6 +197,15 @@ def main() -> None:
                         logger.info(event_message("indexing.orphan.cleaned", worker_id=worker_id, count=orphan_count))
 
                 processed = worker.run_once()
+                vector_sync = VectorSyncService(session, vector_store)
+                processed = vector_sync.run_once() or processed
+                if monotonic() - last_vector_cleanup >= 3600:
+                    last_vector_cleanup = monotonic()
+                    try:
+                        vector_sync.cleanup_orphans()
+                    except Exception as exc:
+                        session.rollback()
+                        logger.warning("向量孤儿回收失败：error_type=%s", type(exc).__name__)
 
             if not processed:
                 stop_event.wait(poll_seconds)

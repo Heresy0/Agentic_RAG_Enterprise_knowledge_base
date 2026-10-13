@@ -6,8 +6,8 @@ from ..config import Settings
 from .hybrid_retriever import (
     create_hybrid_retriever,
 )
-from .pgvector_retriever import (
-    PgVectorRetriever,
+from .milvus_retriever import (
+    MilvusRetriever,
 )
 from .keyword_repository import PgKeywordRepository
 from .pg_bm25_retriever import PgBM25Retriever
@@ -15,7 +15,8 @@ from .rag import create_embeddings
 from .reranker import BaseReranker, QwenReranker
 from .rerank_retriever import RerankRetriever
 from ..security.retrieval_scope import RetrievalScope
-from .vector_repository import PgVectorRepository
+from .chunk_repository import ChunkRepository
+from .milvus_store import MilvusVectorStore
 from .evidence_selection import select_evidence
 from .evidence_expansion import expand_incident_candidates
 from uuid import UUID
@@ -36,8 +37,10 @@ class RetrievalService:
         *,
         embeddings: Embeddings | None = None,
         reranker: BaseReranker | None = None,
+        vector_store=None,
     ) -> None:
         self._settings = settings
+        self._vector_store = vector_store or MilvusVectorStore(settings)
         self._embeddings = (
             embeddings or create_embeddings(settings)
         )
@@ -68,14 +71,14 @@ class RetrievalService:
             raise ValueError("问题不能为空")
         record_scope(query, scope)
 
-        repository = PgVectorRepository(session)
+        repository = ChunkRepository(session, self._vector_store)
 
         if not repository.has_ready_chunks(scope=scope):
             for stage in ("vector", "keyword", "fusion", "rerank"):
                 record_documents(stage, [])
             return []
 
-        vector_retriever = PgVectorRetriever(
+        vector_retriever = MilvusRetriever(
             repository=repository,
             embeddings=self._embeddings,
             scope=scope,

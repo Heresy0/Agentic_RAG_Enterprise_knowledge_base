@@ -26,6 +26,81 @@ services:
       timeout: 5s
       retries: 10
 
+  milvus-etcd:
+    image: quay.io/coreos/etcd:v3.5.25
+    container_name: enterprise-knowledge-milvus-etcd
+    environment:
+      ETCD_AUTO_COMPACTION_MODE: revision
+      ETCD_AUTO_COMPACTION_RETENTION: "1000"
+      ETCD_QUOTA_BACKEND_BYTES: "4294967296"
+      ETCD_SNAPSHOT_COUNT: "50000"
+    command: [etcd, --advertise-client-urls=http://milvus-etcd:2379, --listen-client-urls=http://0.0.0.0:2379, --data-dir=/etcd]
+    volumes:
+      - enterprise_milvus_etcd:/etcd
+    healthcheck:
+      test: [CMD, etcdctl, endpoint, health]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  milvus-minio:
+    image: milvusdb/minio:RELEASE.2024-12-18T13-15-44Z
+    container_name: enterprise-knowledge-milvus-minio
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    command: [minio, server, /minio_data, --console-address, ':9001']
+    volumes:
+      - enterprise_milvus_minio:/minio_data
+    healthcheck:
+      test: [CMD, mc, ready, local]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  milvus-volume-init:
+    image: registry.hub.docker.com/milvusdb/milvus:v3.0.2@sha256:5f13bf88e110a517911c3e6dd8172454e90042c21e606a868084615a4302c8a0
+    user: '0:0'
+    network_mode: none
+    entrypoint: [/bin/sh, -c]
+    command:
+      - 'chown -R "$$(id -u milvus):$$(id -g milvus)" /var/lib/milvus'
+    volumes:
+      - enterprise_milvus_data:/var/lib/milvus
+    restart: 'no'
+
+  milvus:
+    image: registry.hub.docker.com/milvusdb/milvus:v3.0.2@sha256:5f13bf88e110a517911c3e6dd8172454e90042c21e606a868084615a4302c8a0
+    container_name: enterprise-knowledge-milvus
+    command: [milvus, run, standalone]
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      ETCD_ENDPOINTS: milvus-etcd:2379
+      MINIO_ADDRESS: milvus-minio:9000
+      MQ_TYPE: woodpecker
+      MINIO_REGION: us-east-1
+    volumes:
+      - enterprise_milvus_data:/var/lib/milvus
+    ports:
+      - '127.0.0.1:19531:19530'
+    depends_on:
+      milvus-volume-init:
+        condition: service_completed_successfully
+      milvus-etcd:
+        condition: service_healthy
+      milvus-minio:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, curl, -f, http://localhost:9091/healthz]
+      interval: 10s
+      timeout: 5s
+      start_period: 60s
+      retries: 20
+    restart: unless-stopped
+
   redis:
     image: redis:8.2.10-alpine
     container_name: enterprise-knowledge-redis
@@ -72,6 +147,7 @@ services:
     env_file:
       - .env
     environment:
+      MILVUS_URI: http://milvus:19530
       REDIS_URL: redis://redis:6379/0
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       OIDC_JWKS_URL: http://keycloak:8080/realms/enterprise-knowledge/protocol/openid-connect/certs
@@ -81,6 +157,7 @@ services:
       - -c
       - >
         alembic upgrade head &&
+        python scripts/sync_vectors.py --require-imports &&
         exec python -m uvicorn backend.app.main:app
         --host 0.0.0.0
         --port 8000
@@ -89,6 +166,8 @@ services:
     volumes:
       - enterprise_document_data:/app/data/documents
     depends_on:
+      milvus:
+        condition: service_healthy
       redis:
         condition: service_healthy
       postgres:
@@ -104,6 +183,7 @@ services:
     env_file:
       - .env
     environment:
+      MILVUS_URI: http://milvus:19530
       REDIS_URL: redis://redis:6379/0
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       DOCUMENT_STORAGE_DIR: /app/data/documents
@@ -277,3 +357,6 @@ volumes:
   enterprise_alertmanager_data:
   enterprise_loki_data:
   enterprise_alloy_data:
+  enterprise_milvus_etcd:
+  enterprise_milvus_minio:
+  enterprise_milvus_data:

@@ -156,7 +156,7 @@ def _create_document(
             parent_id=None,
             chunking_version="test-v1",
             embedding_model="test-embedding",
-            embedding=[0.0] * EMBEDDING_DIMENSION,
+            vector_generation="a" * 32,
             metadata_json={},
         )
     )

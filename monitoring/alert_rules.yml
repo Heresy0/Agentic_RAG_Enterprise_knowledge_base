@@ -1,6 +1,24 @@
 groups:
   - name: enterprise-knowledge
     rules:
+      - alert: MilvusUnavailable
+        expr: enterprise_vector_store_up{job="enterprise-knowledge-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Milvus 向量集合不可用
+          description: 检查 Milvus、etcd、对象存储及集合加载状态。
+
+      - alert: VectorSyncFailed
+        expr: enterprise_vector_sync_jobs{job="enterprise-knowledge-api",status="failed"} > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: Milvus 同步任务达到重试上限
+          description: 排除故障后运行 scripts/sync_vectors.py --retry-failed --audit。
+
       - alert: IndexingWorkerUnavailable
         expr: up{job="enterprise-knowledge-worker"} == 0 or enterprise_indexing_workers_active{job="enterprise-knowledge-api"} < 1
         for: 1m

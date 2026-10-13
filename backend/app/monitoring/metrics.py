@@ -101,6 +101,21 @@ METRICS_REFRESH_FAILURES = Counter(
     "enterprise_metrics_refresh_failures_total",
     "刷新数据库派生指标失败的次数。",
 )
+VECTOR_SYNC_QUEUE = Gauge("enterprise_vector_sync_jobs", "Milvus 同步任务数量。", ("status",))
+VECTOR_STORE_UP = Gauge("enterprise_vector_store_up", "Milvus 集合是否可用。")
+
+
+def refresh_vector_metrics(session, store):
+    from sqlalchemy import func, select
+    from ..db.models import VectorSyncJob
+    counts = dict(session.execute(select(VectorSyncJob.status, func.count()).group_by(VectorSyncJob.status)).all())
+    for state in ("queued", "succeeded", "failed"):
+        VECTOR_SYNC_QUEUE.labels(status=state).set(counts.get(state, 0))
+    try:
+        store.verify()
+        VECTOR_STORE_UP.set(1)
+    except Exception:
+        VECTOR_STORE_UP.set(0)
 
 
 def record_qa_request(

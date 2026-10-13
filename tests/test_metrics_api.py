@@ -32,6 +32,7 @@ def metrics_app() -> Iterator[tuple[FastAPI, object]]:
     app = FastAPI()
     app.state.database_engine = engine
     app.state.database_session_factory = session_factory
+    app.state.vector_store = SimpleNamespace(verify=lambda: None)
     app.state.settings = SimpleNamespace(
         indexing_worker_stale_seconds=30,
     )
@@ -67,6 +68,8 @@ def test_metrics_endpoint_exports_queue_and_worker_gauges(
         "text/plain"
     )
     assert "enterprise_indexing_workers_active 1.0" in body
+    assert "enterprise_vector_store_up 1.0" in body
+    assert 'enterprise_vector_sync_jobs{status="queued"} 0.0' in body
     assert (
         'enterprise_indexing_queue_jobs{status="queued"} 0.0'
         in body

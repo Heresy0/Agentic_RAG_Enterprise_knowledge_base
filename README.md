@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/Heresy0/Multi-tenant-long-context-rag-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/Heresy0/Multi-tenant-long-context-rag-engine/actions/workflows/ci.yml)
 
-面向企业内部知识库的多租户 RAG 问答系统。项目使用 Keycloak 完成 OIDC 身份认证，在 PostgreSQL 中维护租户、部门、用户、知识库和授权关系，并通过 pgvector 实现带强制权限范围的向量检索。
+面向企业内部知识库的多租户 RAG 问答系统。项目使用 Keycloak 完成 OIDC 身份认证，在 PostgreSQL 中维护租户、部门、用户、知识库和授权关系，并通过 Milvus 实现带强制权限范围与当前索引版本过滤的向量检索。
 
 系统已经覆盖文档上传、幂等索引、混合检索、重排、答案生成、引用校验、结构化观测日志和离线评估等核心链路，重点解决企业知识库中“用户是谁、能够查询哪些资料、回答依据来自哪里”的问题。
 
@@ -12,10 +12,10 @@
 - 租户、部门、用户和知识库四层权限模型
 - 用户授权与部门授权，支持 `viewer`、`editor` 和 `admin` 权限
 - 不可变 `RetrievalScope`，检索时强制携带 `tenant_id` 和后端计算的授权知识库范围
-- PostgreSQL 16、pgvector 0.8.6 和余弦距离 HNSW 索引
+- PostgreSQL 16 保存权限、正文与 BM25；Milvus 3.0.2 保存 1024 维向量并使用 COSINE / HNSW
 - PDF、DOCX、TXT、Markdown 文档解析、切分和 1024 维向量入库
 - 文件内容未变化时跳过重复入库，更新失败时保留旧版本
-- pgvector 向量检索、pg_search 0.25.11 持久化 BM25、融合和重排
+- Milvus 向量检索、pg_search 0.25.11 持久化 BM25、融合和重排
 - 可回答性判断、资料引用和拒答机制
 - 文档列表、上传、更新及删除 API
 - 租户级问答限流、并发限制及文档数量/存储配额
@@ -28,6 +28,8 @@
 - Locust 稳定负载、治理压力场景和自动性能基线门禁
 - Docker Compose 本地环境及 GitHub Actions 持续集成
 - 同源浏览器工作台，支持企业登录、知识问答、文档管理及索引任务状态查看
+
+Milvus 的迁移、故障重试与备份恢复步骤见 [Milvus 运维说明](docs/MILVUS_MIGRATION.md)。
 
 演示与收尾验收步骤见 [演示验收指南](docs/DEMO.md)。项目当前面向功能演示和
 技术方案验证，不将小样本评估结果或单机压测结果等同于生产级服务承诺。
@@ -42,7 +44,8 @@ flowchart LR
     A --> I[身份认证与权限校验]
     I --> S[RetrievalScope]
     S --> R[混合检索与重排]
-    R --> P[(PostgreSQL + pgvector)]
+    R --> P[(PostgreSQL + pg_search)]
+    R --> V[(Milvus)]
     R --> L[大模型服务]
     A --> D[文档管理服务]
     D --> F[(受管文件目录)]
@@ -50,6 +53,7 @@ flowchart LR
     J --> W[索引 Worker]
     W --> F
     W --> P
+    W --> V
     A --> O[结构化日志与耗时指标]
     A --> AU[(不可变审计事件)]
     O --> M[Prometheus]
@@ -67,7 +71,7 @@ flowchart LR
 1. API 验证 Keycloak JWT，并把外部身份映射为本地租户用户。
 2. 授权服务验证用户对目标知识库的访问权限。
 3. 系统生成不可变的 `RetrievalScope`。
-4. 检索仓储在数据库查询中强制过滤租户和知识库。
+4. SQL 读取已授权且 ready 的索引版本，Milvus 在 ANN 前过滤租户、知识库和版本，SQL 回查再次核验命中。
 5. 系统完成向量与关键词混合检索、结果融合和重排。
 6. 大模型根据受控上下文生成答案，系统校验并输出引用。
 
@@ -78,7 +82,7 @@ flowchart LR
 | Web API | FastAPI、Pydantic、Uvicorn |
 | 身份认证 | Keycloak、OIDC、JWT |
 | 数据库 | PostgreSQL 16、SQLAlchemy、Alembic |
-| 向量检索 | pgvector 0.8.6、HNSW |
+| 向量检索 | Milvus 3.0.2、REST v2、COSINE / HNSW |
 | RAG | LangChain、BM25、DashScope Embedding/Rerank/LLM |
 | 文档处理 | PyPDF、pdfplumber、python-docx、Tesseract OCR |
 | 测试 | pytest、真实 PostgreSQL 集成测试 |
@@ -549,7 +553,7 @@ Worker 还会回收无任务引用的 `.staging`、`.backup-*` 和 `.deleting-*`
 ### 通过命令行写入单个文件
 
 ```powershell
-python scripts/index_pgvector.py `
+python scripts/index_documents.py `
   --file "sample_docs/example.docx" `
   --tenant-id "<tenant UUID>" `
   --knowledge-base-id "<knowledge base UUID>" `
@@ -559,7 +563,7 @@ python scripts/index_pgvector.py `
 ### 批量写入目录
 
 ```powershell
-python scripts/index_pgvector.py `
+python scripts/index_documents.py `
   --directory "sample_docs" `
   --recursive `
   --tenant-id "<tenant UUID>" `
@@ -616,11 +620,11 @@ Authorization: Bearer <access_token>
 python -m pytest -q
 ```
 
-运行真实 PostgreSQL 与 pgvector 集成测试：
+运行真实 PostgreSQL 与 Milvus 集成测试（使用名称以 `_test` 结尾的独立测试库）：
 
 ```powershell
 $env:RUN_POSTGRES_INTEGRATION_TESTS = "1"
-python -m pytest tests/test_pgvector_integration.py -q
+python -m pytest tests/test_milvus_integration.py -q
 Remove-Item Env:RUN_POSTGRES_INTEGRATION_TESTS
 ```
 
@@ -632,7 +636,7 @@ python -m compileall backend scripts
 
 GitHub Actions 会在 Pull Request 和 `main` 分支推送时自动执行：
 
-1. 启动真实 pgvector PostgreSQL 服务。
+1. 启动 PostgreSQL / pg_search、Milvus / etcd / MinIO 服务。
 2. 安装开发依赖。
 3. 编译 Python 源码。
 4. 执行 Alembic 数据库迁移。
@@ -754,7 +758,7 @@ python -m alembic upgrade head
 - BM25 索引由数据库持久化，分块的插入、更新、删除和回滚随数据库事务生效；不再维护独立内存缓存。
 - API 和 Worker 启动时检查扩展版本、预加载配置和索引状态。缺少扩展时明确报错，不会偷偷回退到全库扫描。Python BM25 工厂只保留给小型离线评估和单元测试。
 
-数据库镜像基于原来的 PostgreSQL 16 / Debian Bookworm / pgvector 0.8.6，额外安装固定版本、校验 SHA256 的 pg_search 安装包。支持 amd64 / arm64，保持原数据库主版本、数据目录和 Compose 数据卷不变。已有数据卷不会重新运行初始化脚本，所以 Compose 显式设置 `shared_preload_libraries=pg_search`。
+数据库镜像基于原来的 PostgreSQL 16 / Debian Bookworm / pgvector 0.8.6，额外安装固定版本、校验 SHA256 的 pg_search 安装包。该镜像里的 vector 扩展是 pg_search 的依赖，也供历史迁移使用；当前业务不再保存 SQL embedding 列或使用 pgvector 向量查询。支持 amd64 / arm64，保持原数据库主版本、数据目录和 Compose 数据卷不变。已有数据卷不会重新运行初始化脚本，所以 Compose 显式设置 `shared_preload_libraries=pg_search`。
 
 ### 已有环境升级
 
@@ -790,7 +794,7 @@ $env:RUN_BM25_INTEGRATION_TESTS = '1'
 python -m pytest tests/test_pg_bm25_integration.py -q
 ```
 
-测试覆盖真实扩展的中文、数字/错误码匹配，租户与知识库过滤先于 LIMIT，非 ready 文档排除，以及分块更新、删除和回滚。CI 使用同一个数据库 Dockerfile 构建镜像，并运行 BM25 和原有 pgvector 集成测试。
+测试覆盖真实扩展的中文、数字/错误码匹配，租户与知识库过滤先于 LIMIT，非 ready 文档排除，以及分块更新、删除和回滚。CI 使用同一个数据库 Dockerfile 构建镜像，并运行 BM25 和 Milvus 集成测试。
 
 实现采用固定版本的 [pg_search v0.25.11](https://github.com/paradedb/paradedb/tree/v0.25.11)，索引与查询 API 参考该版本的 [create-index](https://github.com/paradedb/paradedb/blob/v0.25.11/docs/documentation/indexing/create-index.mdx)、[whitespace](https://github.com/paradedb/paradedb/blob/v0.25.11/docs/documentation/tokenizers/available-tokenizers/whitespace.mdx) 和 [match](https://github.com/paradedb/paradedb/blob/v0.25.11/docs/documentation/full-text/match.mdx) 文档。
 

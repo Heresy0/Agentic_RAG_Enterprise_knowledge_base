@@ -1,9 +1,10 @@
 import hashlib
+import json
 import mimetypes
 from collections.abc import Sequence
 from math import isfinite
 from pathlib import Path
-from uuid import UUID
+from uuid import UUID, uuid4
 
 from langchain_core.embeddings import Embeddings
 from langchain_core.documents import Document
@@ -20,6 +21,7 @@ from ..db.models import (
     EMBEDDING_DIMENSION,
     DocumentChunk,
     KnowledgeDocument,
+    Tenant,
 )
 from ..knowledge.rag import (
     CHUNKING_VERSION,
@@ -29,6 +31,8 @@ from ..knowledge.rag import (
     split_file,
 )
 from ..security.retrieval_scope import RetrievalScope
+from ..knowledge.milvus_store import MilvusVectorStore, make_vector_records
+from .vector_sync_service import enqueue_vector_delete
 
 
 class DocumentCandidateNotFound(LookupError):
@@ -39,8 +43,8 @@ class StaleDocumentCandidate(RuntimeError):
     """候选文件的目标版本已经失效。"""
 
 
-class PgVectorIndexingService:
-    """将文件切分并以事务方式写入pgvector。"""
+class DocumentIndexingService:
+    """先写入 Milvus 候选版本，再事务发布 SQL 当前版本。"""
 
     def __init__(
         self,
@@ -48,9 +52,11 @@ class PgVectorIndexingService:
         session: Session,
         settings: Settings,
         embeddings: Embeddings | None = None,
+        vector_store=None,
     ) -> None:
         self._session = session
         self._settings = settings
+        self._vector_store = vector_store or MilvusVectorStore(settings)
         self._embeddings = (
             embeddings or create_embeddings(settings)
         )
@@ -109,6 +115,7 @@ class PgVectorIndexingService:
         )
 
         try:
+            self._lock_tenant(scope)
             document = self._find_document(
                 scope=scope,
                 source_id=source_id,
@@ -156,6 +163,7 @@ class PgVectorIndexingService:
                 document.last_error = None
                 self._session.flush()
 
+            self._retire_generations(scope=scope, document_id=document.id)
             self._session.execute(
                 delete(DocumentChunk).where(
                     DocumentChunk.tenant_id
@@ -176,6 +184,8 @@ class PgVectorIndexingService:
                 file_hash=file_hash,
             )
 
+            # New generations are excluded by the SQL-derived search filter until commit.
+            self._vector_store.upsert(make_vector_records(new_chunks, validated_embeddings))
             self._session.add_all(new_chunks)
 
             document.status = "ready"
@@ -306,6 +316,7 @@ class PgVectorIndexingService:
         )
 
         try:
+            self._lock_tenant(scope)
             document = self._session.scalar(
                 select(KnowledgeDocument)
                 .where(
@@ -365,6 +376,7 @@ class PgVectorIndexingService:
                 file_hash=candidate_content_hash,
             )
 
+            self._retire_generations(scope=scope, document_id=document.id)
             self._session.execute(
                 delete(DocumentChunk).where(
                     DocumentChunk.tenant_id
@@ -375,6 +387,8 @@ class PgVectorIndexingService:
                     == document.id,
                 )
             )
+            # New generations are excluded by the SQL-derived search filter until commit.
+            self._vector_store.upsert(make_vector_records(new_chunks, validated_embeddings))
             self._session.add_all(new_chunks)
 
             document.created_by_user_id = (
@@ -408,6 +422,18 @@ class PgVectorIndexingService:
             raise
 
         return len(new_chunks)
+
+    def _lock_tenant(self, scope):
+        tenant = self._session.scalar(select(Tenant).where(Tenant.id == scope.tenant_id).with_for_update())
+        if tenant is None:
+            raise DocumentCandidateNotFound("租户不存在")
+
+    def _retire_generations(self, *, scope, document_id):
+        generations = self._session.scalars(select(DocumentChunk.vector_generation).where(
+            DocumentChunk.tenant_id == scope.tenant_id, DocumentChunk.knowledge_base_id == scope.knowledge_base_id,
+            DocumentChunk.document_id == document_id).distinct()).all()
+        for generation in generations:
+            enqueue_vector_delete(self._session, scope=scope, document_id=document_id, generation=generation)
 
     def _find_document(
         self,
@@ -502,7 +528,7 @@ class PgVectorIndexingService:
             )
         )
 
-        return actual_count == expected_count
+        return actual_count == expected_count and self._current_vectors_complete(document, expected_count)
 
     def _candidate_is_current(
         self,
@@ -564,7 +590,20 @@ class PgVectorIndexingService:
             )
         )
 
-        return actual_count == expected_count
+        return actual_count == expected_count and self._current_vectors_complete(document, expected_count)
+
+    def _current_vectors_complete(self, document, expected_count):
+        generations = self._session.scalars(select(DocumentChunk.vector_generation).where(
+            DocumentChunk.tenant_id == document.tenant_id,
+            DocumentChunk.knowledge_base_id == document.knowledge_base_id,
+            DocumentChunk.document_id == document.id).distinct()).all()
+        if len(generations) != 1:
+            return False
+        expression = ' and '.join(f'{key} == {json.dumps(value)}' for key, value in {
+            "tenant_id": str(document.tenant_id), "knowledge_base_id": str(document.knowledge_base_id),
+            "document_id": str(document.id), "generation": generations[0],
+        }.items())
+        return self._vector_store.count(expression) == expected_count
 
     def _validate_candidate_version(
         self,
@@ -673,6 +712,7 @@ class PgVectorIndexingService:
         file_hash: str,
     ) -> list[DocumentChunk]:
         records: list[DocumentChunk] = []
+        generation = uuid4().hex
 
         for index, (
             chunk,
@@ -725,7 +765,7 @@ class PgVectorIndexingService:
                     embedding_model=(
                         self._settings.embedding_model
                     ),
-                    embedding=list(embedding),
+                    vector_generation=generation,
                     metadata_json=dict(chunk.metadata),
                 )
             )

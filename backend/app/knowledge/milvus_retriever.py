@@ -7,8 +7,8 @@ from langchain_core.retrievers import BaseRetriever
 from pydantic import ConfigDict, Field
 
 from ..security.retrieval_scope import RetrievalScope
-from .vector_repository import (
-    PgVectorRepository,
+from .chunk_repository import (
+    ChunkRepository,
     StoredChunk,
     VectorSearchHit,
 )
@@ -56,14 +56,14 @@ def vector_search_hit_to_document(
     return stored_chunk_to_document(hit)
 
 
-class PgVectorRetriever(BaseRetriever):
-    """在固定授权范围内执行pgvector向量检索。"""
+class MilvusRetriever(BaseRetriever):
+    """在固定授权范围内执行Milvus 向量检索。"""
 
     model_config = ConfigDict(
         arbitrary_types_allowed=True,
     )
 
-    repository: PgVectorRepository
+    repository: ChunkRepository
     embeddings: Embeddings
     scope: RetrievalScope
     k: int = Field(

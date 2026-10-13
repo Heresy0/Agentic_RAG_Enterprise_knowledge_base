@@ -17,6 +17,7 @@ from ..audit_service import (
     log_committed_audit_event,
 )
 from ..security.retrieval_scope import RetrievalScope
+from ..indexing.vector_sync_service import enqueue_vector_delete
 
 
 logger = logging.getLogger(__name__)
@@ -135,6 +136,7 @@ class DocumentDeletionService:
                         "document_version": document.version,
                     },
                 )
+            enqueue_vector_delete(self._session, scope=scope, document_id=document_id)
             self._session.delete(document)
             self._session.commit()
             if audit_event is not None:

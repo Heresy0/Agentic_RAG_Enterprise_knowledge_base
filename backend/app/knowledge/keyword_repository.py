@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from ..db.models import DocumentChunk, KnowledgeDocument
 from ..security.retrieval_scope import RetrievalScope
 from .keyword_tokenizer import build_keyword_text
-from .vector_repository import PgVectorRepository, StoredChunk
+from .chunk_repository import ChunkRepository, StoredChunk
 
 KEYWORD_INDEX_NAME = "ix_document_chunks_keyword_bm25"
 PG_SEARCH_VERSION = "0.25.11"
@@ -65,7 +65,7 @@ class PgKeywordRepository:
             chunk_id=chunk.id, document_id=document.id,
             tenant_id=chunk.tenant_id, knowledge_base_id=chunk.knowledge_base_id,
             content=chunk.content, document_name=document.file_name, source=document.storage_uri,
-            metadata=PgVectorRepository._build_metadata(chunk=chunk, document=document),
+            metadata=ChunkRepository._build_metadata(chunk=chunk, document=document),
             score=float(score),
         ) for chunk, document, score in rows]
 

@@ -8,6 +8,7 @@ from ..monitoring.indexing_observability_service import (
 from ..monitoring.metrics import (
     record_metrics_refresh_failure,
     refresh_indexing_metrics,
+    refresh_vector_metrics,
     render_metrics,
 )
 from ..system_schemas import (
@@ -41,7 +42,8 @@ def prometheus_metrics(request: Request) -> Response:
                     settings.indexing_worker_stale_seconds
                 )
             )
-        refresh_indexing_metrics(snapshot)
+            refresh_indexing_metrics(snapshot)
+            refresh_vector_metrics(session, request.app.state.vector_store)
     except Exception:
         record_metrics_refresh_failure()
 
@@ -73,9 +75,10 @@ def readiness(
     request: Request,
     response: Response,
 ) -> ReadinessResponse:
-    """确认 API 能够连接数据库和 Redis。"""
+    """确认 API 能够连接 PostgreSQL、Redis 和 Milvus。"""
     database_status = "up"
     redis_status = "up"
+    milvus_status = "up"
 
     try:
         with (
@@ -95,8 +98,14 @@ def readiness(
     except Exception:
         redis_status = "down"
 
+    try:
+        request.app.state.vector_store.verify()
+    except Exception:
+        milvus_status = "down"
+
     if (
-        database_status != "up"
+        milvus_status != "up"
+        or database_status != "up"
         or redis_status != "up"
     ):
         response.status_code = (
@@ -109,11 +118,13 @@ def readiness(
             if (
                 database_status == "up"
                 and redis_status == "up"
+                and milvus_status == "up"
             )
             else "unavailable"
         ),
         database=database_status,
         redis=redis_status,
+        milvus=milvus_status,
     )
 
 

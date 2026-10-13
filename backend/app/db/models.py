@@ -25,7 +25,6 @@ EMBEDDING_DIMENSION = 1024
 DEFAULT_TENANT_MAX_DOCUMENT_COUNT = 1000
 DEFAULT_TENANT_MAX_STORAGE_BYTES = 10 * 1024 * 1024 * 1024
 
-from pgvector.sqlalchemy import VECTOR
 
 
 class TimestampMixin:
@@ -995,9 +994,8 @@ class DocumentChunk(TimestampMixin, Base):
         nullable=False,
     )
 
-    embedding: Mapped[list[float]] = mapped_column(
-        VECTOR(EMBEDDING_DIMENSION),
-        nullable=False,
+    vector_generation: Mapped[str] = mapped_column(
+        String(32), nullable=False, default=lambda: uuid4().hex,
     )
 
     metadata_json: Mapped[dict[str, object]] = mapped_column(
@@ -1048,16 +1046,25 @@ class DocumentChunk(TimestampMixin, Base):
             "knowledge_base_id",
             "document_id",
         ),
-        Index(
-            "ix_document_chunks_embedding_hnsw",
-            "embedding",
-            postgresql_using="hnsw",
-            postgresql_with={
-                "m": 16,
-                "ef_construction": 64,
-            },
-            postgresql_ops={
-                "embedding": "vector_cosine_ops",
-            },
-        ),
+    )
+
+
+class VectorSyncJob(TimestampMixin, Base):
+    """Milvus 导入和删除的事务发件箱；删除文档后任务仍须保留。"""
+
+    __tablename__ = "vector_sync_jobs"
+    id: Mapped[UUID] = mapped_column(Uuid(as_uuid=True), primary_key=True, default=uuid4)
+    tenant_id: Mapped[UUID] = mapped_column(Uuid(as_uuid=True), nullable=False)
+    knowledge_base_id: Mapped[UUID] = mapped_column(Uuid(as_uuid=True), nullable=False)
+    document_id: Mapped[UUID] = mapped_column(Uuid(as_uuid=True), nullable=False)
+    operation: Mapped[str] = mapped_column(String(20), nullable=False)
+    payload: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default="queued", server_default=text("'queued'"))
+    attempt_count: Mapped[int] = mapped_column(Integer, nullable=False, default=0, server_default=text("0"))
+    last_error: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    available_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, server_default=func.now())
+    __table_args__ = (
+        CheckConstraint("operation IN ('upsert', 'delete')", name="ck_vector_sync_jobs_operation"),
+        CheckConstraint("status IN ('queued', 'succeeded', 'failed')", name="ck_vector_sync_jobs_status"),
+        Index("ix_vector_sync_jobs_claim", "status", "available_at", "created_at"),
     )

@@ -24,6 +24,20 @@ class Settings:
         from .model_usage import parse_prices
         self.model_usage_prices = parse_prices(os.getenv("MODEL_USAGE_PRICES_JSON", "{}"))
         self.database_url = required_env("DATABASE_URL")
+        from math import isfinite
+        import re
+        from urllib.parse import urlparse
+        self.milvus_uri = os.getenv("MILVUS_URI", "http://127.0.0.1:19531").strip().rstrip("/")
+        self.milvus_collection = os.getenv("MILVUS_COLLECTION", "enterprise_chunks").strip()
+        self.milvus_token = os.getenv("MILVUS_TOKEN", "").strip()
+        self.milvus_timeout_seconds = float(os.getenv("MILVUS_TIMEOUT_SECONDS", "10"))
+        uri = urlparse(self.milvus_uri)
+        if uri.scheme not in ("http", "https") or not uri.hostname or uri.username or uri.query or uri.fragment:
+            raise RuntimeError("MILVUS_URI 必须是有效的 HTTP(S) 服务地址")
+        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]{0,254}", self.milvus_collection):
+            raise RuntimeError("MILVUS_COLLECTION 必须是有效的集合名")
+        if not isfinite(self.milvus_timeout_seconds) or not 0 < self.milvus_timeout_seconds <= 120:
+            raise RuntimeError("MILVUS_TIMEOUT_SECONDS 必须大于0且不超过120秒")
 
         self.redis_url = required_env("REDIS_URL")
         self.redis_connect_timeout_seconds = float(

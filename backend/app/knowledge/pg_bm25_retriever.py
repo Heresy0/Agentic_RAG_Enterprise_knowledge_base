@@ -5,7 +5,7 @@ from pydantic import ConfigDict, Field
 
 from ..security.retrieval_scope import RetrievalScope
 from .keyword_repository import PgKeywordRepository
-from .pgvector_retriever import stored_chunk_to_document
+from .milvus_retriever import stored_chunk_to_document
 
 
 class PgBM25Retriever(BaseRetriever):

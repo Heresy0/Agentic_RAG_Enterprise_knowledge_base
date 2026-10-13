@@ -105,10 +105,7 @@ def test_stores_document_chunk_in_kb_scope(
             content_hash="d" * 64,
             chunking_version="structured-v1",
             embedding_model="text-embedding-v4",
-            embedding=(
-                [1.0]
-                + [0.0] * (EMBEDDING_DIMENSION - 1)
-            ),
+            vector_generation="a" * 32,
         )
     )
     session.commit()
@@ -122,7 +119,7 @@ def test_stores_document_chunk_in_kb_scope(
     assert stored_chunk.tenant_id == tenant_id
     assert stored_chunk.knowledge_base_id == knowledge_base_id
     assert stored_chunk.document_id == document_id
-    assert len(stored_chunk.embedding) == EMBEDDING_DIMENSION
+    assert len(stored_chunk.vector_generation) == 32
 
 
 def _add_tenant(
@@ -191,10 +188,7 @@ def _new_chunk(
         content_hash="f" * 64,
         chunking_version="structured-v1",
         embedding_model="text-embedding-v4",
-        embedding=(
-            [1.0]
-            + [0.0] * (EMBEDDING_DIMENSION - 1)
-        ),
+        vector_generation="a" * 32,
     )
 
 

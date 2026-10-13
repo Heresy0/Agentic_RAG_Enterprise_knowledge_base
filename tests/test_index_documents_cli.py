@@ -7,7 +7,7 @@ from uuid import uuid4
 import pytest
 from sqlalchemy.exc import SQLAlchemyError
 
-from scripts import index_pgvector as cli
+from scripts import index_documents as cli
 
 from backend.app.security.authorization import (
     AuthorizationDenied,
@@ -19,7 +19,7 @@ from backend.app.security.retrieval_scope import (
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_PATH = (
-    PROJECT_ROOT / "scripts" / "index_pgvector.py"
+    PROJECT_ROOT / "scripts" / "index_documents.py"
 )
 VALID_UUID = "00000000-0000-0000-0000-000000000001"
 

@@ -25,8 +25,8 @@ from backend.app.security.authorization import (  # noqa: E402
 from backend.app.security.principal import (  # noqa: E402
     Principal,
 )
-from backend.app.indexing.pgvector_indexing_service import (  # noqa: E402
-    PgVectorIndexingService,
+from backend.app.indexing.document_indexing_service import (  # noqa: E402
+    DocumentIndexingService,
 )
 from backend.app.security.retrieval_scope import (  # noqa: E402
     RetrievalScope,
@@ -64,7 +64,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "将本地文件或目录批量写入指定的 "
-            "pgvector 知识库。"
+            "Milvus 知识库。"
         ),
     )
     input_group = parser.add_mutually_exclusive_group(
@@ -169,7 +169,7 @@ def discover_files(
 
 def index_paths(
     *,
-    indexing_service: PgVectorIndexingService,
+    indexing_service: DocumentIndexingService,
     file_paths: list[Path],
     scope: RetrievalScope,
     created_by_user_id: UUID,
@@ -312,9 +312,13 @@ def run() -> None:
                 ),
             )
 
-            indexing_service = PgVectorIndexingService(
+            from backend.app.knowledge.milvus_store import MilvusVectorStore
+            vector_store = MilvusVectorStore(settings)
+            vector_store.ensure_collection()
+            indexing_service = DocumentIndexingService(
                 session=session,
                 settings=settings,
+                vector_store=vector_store,
             )
 
             summary = index_paths(

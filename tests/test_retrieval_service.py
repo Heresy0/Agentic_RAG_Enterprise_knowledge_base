@@ -8,8 +8,8 @@ from backend.app.db.models import EMBEDDING_DIMENSION
 from backend.app.knowledge.reranker import BaseReranker, RerankResult
 from backend.app.knowledge.retrieval_service import RetrievalService
 from backend.app.security.retrieval_scope import RetrievalScope
-from backend.app.knowledge.vector_repository import (
-    PgVectorRepository,
+from backend.app.knowledge.chunk_repository import (
+    ChunkRepository,
     StoredChunk,
     VectorSearchHit,
 )
@@ -60,7 +60,7 @@ class FakeReranker(BaseReranker):
         ]
 
 
-class FakeRepository(PgVectorRepository):
+class FakeRepository(ChunkRepository):
     def __init__(
         self,
         chunks: list[StoredChunk],
@@ -154,13 +154,13 @@ def _service(
     reranker = FakeReranker(calls=[])
     sessions: list[object] = []
 
-    def create_repository(session: object) -> FakeRepository:
+    def create_repository(session: object, _vector_store) -> FakeRepository:
         sessions.append(session)
         return repository
 
     monkeypatch.setattr(
         service_module,
-        "PgVectorRepository",
+        "ChunkRepository",
         create_repository,
     )
 
@@ -177,6 +177,7 @@ def _service(
 
     service = RetrievalService(
         settings=object(),
+        vector_store=object(),
         embeddings=embeddings,
         reranker=reranker,
     )
@@ -229,7 +230,7 @@ def test_empty_scope_returns_without_embedding_or_reranking(
     assert reranker.calls == []
 
 
-def test_search_runs_scoped_pgvector_hybrid_and_rerank_pipeline(
+def test_search_runs_scoped_milvus_hybrid_and_rerank_pipeline(
     monkeypatch,
 ) -> None:
     scope = _scope()

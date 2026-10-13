@@ -11,6 +11,7 @@ class ReadinessResponse(BaseModel):
     status: str
     database: str
     redis: str
+    milvus: str
 
 
 class IndexingQueueStatus(BaseModel):

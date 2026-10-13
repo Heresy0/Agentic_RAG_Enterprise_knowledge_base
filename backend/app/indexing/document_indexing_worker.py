@@ -21,8 +21,8 @@ from ..documents.managed_document_files import (
 from ..monitoring.observability import event_message
 from ..monitoring.metrics import record_indexing_job
 from ..documents.orphan_file_cleanup import cleanup_orphan_files
-from .pgvector_indexing_service import (
-    PgVectorIndexingService,
+from .document_indexing_service import (
+    DocumentIndexingService,
 )
 from ..security.retrieval_scope import RetrievalScope
 
@@ -38,7 +38,7 @@ class DocumentIndexingWorker:
         *,
         session: Session,
         settings: Settings,
-        indexing_service: PgVectorIndexingService | None = None,
+        indexing_service: DocumentIndexingService | None = None,
     ) -> None:
         self._session = session
         self._settings = settings
@@ -50,7 +50,7 @@ class DocumentIndexingWorker:
         )
         self._indexing_service = (
             indexing_service
-            or PgVectorIndexingService(
+            or DocumentIndexingService(
                 session=session,
                 settings=settings,
             )

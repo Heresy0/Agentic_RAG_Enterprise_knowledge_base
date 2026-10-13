@@ -50,3 +50,14 @@ def test_embedding_timeout_is_bounded(application_environment, monkeypatch, valu
 def test_embedding_timeout_defaults_to_thirty_seconds(application_environment, monkeypatch):
     monkeypatch.delenv("EMBEDDING_TIMEOUT_SECONDS", raising=False)
     assert Settings().embedding_timeout_seconds == 30
+
+
+@pytest.mark.parametrize("name,value", [
+    ("MILVUS_URI", "file:///tmp/store"), ("MILVUS_URI", "http://user:secret@host:19530"),
+    ("MILVUS_COLLECTION", 'bad"collection'), ("MILVUS_TIMEOUT_SECONDS", "nan"),
+    ("MILVUS_TIMEOUT_SECONDS", "0"), ("MILVUS_TIMEOUT_SECONDS", "121"),
+])
+def test_milvus_configuration_is_validated(application_environment, monkeypatch, name, value):
+    monkeypatch.setenv(name, value)
+    with pytest.raises(RuntimeError, match=name):
+        Settings()
