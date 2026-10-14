@@ -1,0 +1,8 @@
+{"id": "XH-001", "group": "simple", "question": "星海员工每月可以有几次免说明的轻微迟到？", "answerable": true}
+{"id": "XH-D-29", "group": "simple", "question": "文档上传成功后是否就可以检索，失败文档能否参与候选？", "answerable": true}
+{"id": "XH-E-050", "group": "simple", "question": "不同租户的Webhook具有相同event_id，应视为同一事件去重吗？去重记录保留多久？", "answerable": true}
+{"id": "CC-007", "group": "complex", "question": "澄川启动会议计划哪天最终验收，实际在哪天签署？", "answerable": true}
+{"id": "MH-001", "group": "complex", "question": "截至2026年10月14日，青屿档案项目适用哪些全量校验与缺陷准入条件？", "answerable": true}
+{"id": "MH-005", "group": "complex", "question": "截至2026年10月14日，青屿当前选用的证据包是否满足项目的全量校验和缺陷条件？", "answerable": true}
+{"id": "MH-010", "group": "refusal", "question": "青屿项目已经批准的2027年归档存储预算是多少元？", "answerable": false}
+{"id": "MH-012", "group": "refusal", "question": "截至2026年10月14日，WC-FIX-22永久整改实际在哪天上线完成？", "answerable": false}

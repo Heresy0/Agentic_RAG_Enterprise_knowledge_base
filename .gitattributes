@@ -5,3 +5,4 @@
 sample_docs/xinghai_base/** -text whitespace=cr-at-eol
 sample_docs/xinghai_expansion/** -text
 evals/xinghai_v3/** -text
+tests/load/current_workload.jsonl -text

@@ -2,9 +2,10 @@ import csv
 import io
 import json
 import locale
+import math
 import re
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping
@@ -39,7 +40,7 @@ def _positive_float(
         value = float(values.get(name, default))
     except ValueError as exc:
         raise ValueError(f"{name} 必须是数字") from exc
-    if value <= 0:
+    if not math.isfinite(value) or value <= 0:
         raise ValueError(f"{name} 必须大于 0")
     return value
 
@@ -78,15 +79,62 @@ def load_questions(
 
 
 @dataclass(frozen=True, slots=True)
+class LoadCase:
+    case_id: str
+    group: str
+    question: str
+    expected_answerable: bool | None = None
+
+
+def load_cases(path: Path, *, categories=frozenset(), groups=frozenset()) -> tuple[LoadCase, ...]:
+    cases = []
+    seen = set()
+    for number, line in enumerate(path.read_text(encoding="utf-8-sig").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"题集第 {number} 行不是有效 JSON") from exc
+        if not isinstance(row, dict):
+            raise ValueError(f"题集第 {number} 行不是对象")
+        if categories and row.get("category") not in categories:
+            continue
+        group = row.get("group", "legacy")
+        if not isinstance(group, str) or not re.fullmatch(r"[a-z][a-z0-9_]{0,31}", group):
+            raise ValueError("压测 group 必须是短英文标识")
+        if groups and group not in groups:
+            continue
+        case_id = row.get("id", f"row-{number}")
+        if not isinstance(case_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", case_id) or case_id in seen:
+            raise ValueError("压测 id 必须唯一且只含英文、数字、下划线或连字符")
+        question = row.get("question")
+        if not isinstance(question, str) or not question.strip():
+            raise ValueError(f"题集第 {number} 行缺少有效 question")
+        expected = row.get("answerable")
+        if expected is not None and type(expected) is not bool:
+            raise ValueError("answerable 必须是布尔值")
+        seen.add(case_id)
+        cases.append(LoadCase(case_id, group, question.strip(), expected))
+    if not cases:
+        raise ValueError("压测题集为空或没有匹配的分类/分组")
+    return tuple(cases)
+
+
+@dataclass(frozen=True, slots=True)
 class LoadTestConfig:
     base_url: str
-    access_token: str
-    knowledge_base_id: UUID
+    access_token: str = field(repr=False)
+    knowledge_base_id: UUID | None
     questions: tuple[str, ...]
     mode: str
     wait_min_seconds: float
     wait_max_seconds: float
     request_timeout_seconds: float
+    cases: tuple[LoadCase, ...] = ()
+    max_requests: int = 0
+    observations_path: Path | None = None
+    preview_citations: bool = False
 
     @classmethod
     def from_environment(
@@ -103,6 +151,9 @@ class LoadTestConfig:
         if (
             parsed_url.scheme not in {"http", "https"}
             or not parsed_url.netloc
+            or parsed_url.username or parsed_url.password
+            or parsed_url.query or parsed_url.fragment
+            or parsed_url.path not in {"", "/"}
         ):
             raise ValueError(
                 "LOAD_TEST_BASE_URL 必须是有效的 HTTP URL"
@@ -116,8 +167,11 @@ class LoadTestConfig:
                 f"{ACCESS_TOKEN_ENV} 不是有效的 JWT"
             )
 
+        scope_mode = values.get("LOAD_TEST_SCOPE", "single").strip()
+        if scope_mode not in {"single", "all"}:
+            raise ValueError("LOAD_TEST_SCOPE 必须是 single 或 all")
         try:
-            knowledge_base_id = UUID(
+            knowledge_base_id = None if scope_mode == "all" else UUID(
                 _required(
                     values,
                     "LOAD_TEST_KNOWLEDGE_BASE_ID",
@@ -173,14 +227,28 @@ class LoadTestConfig:
                 "LOAD_TEST_WAIT_MAX_SECONDS 不能小于最小等待时间"
             )
 
+        groups = frozenset(item.strip() for item in values.get("LOAD_TEST_GROUPS", "").split(",") if item.strip())
+        cases = load_cases(dataset_path, categories=categories, groups=groups)
+        try:
+            max_requests = int(values.get("LOAD_TEST_MAX_REQUESTS", "0"))
+        except ValueError as exc:
+            raise ValueError("LOAD_TEST_MAX_REQUESTS 必须是整数") from exc
+        if not 0 <= max_requests <= 1000:
+            raise ValueError("LOAD_TEST_MAX_REQUESTS 必须介于 0 和 1000")
+        observation_value = values.get("LOAD_TEST_OBSERVATIONS_FILE", "").strip()
+        if observation_value and not max_requests:
+            raise ValueError("记录逐请求压测数据时必须设置 LOAD_TEST_MAX_REQUESTS")
+        preview = values.get("LOAD_TEST_PREVIEW_CITATIONS", "false").strip().lower()
+        if preview not in {"true", "false"}:
+            raise ValueError("LOAD_TEST_PREVIEW_CITATIONS 必须是 true 或 false")
+        if preview == "true" and not observation_value:
+            raise ValueError("引用预览压测必须同时记录 observations")
+
         return cls(
             base_url=base_url,
             access_token=token,
             knowledge_base_id=knowledge_base_id,
-            questions=load_questions(
-                dataset_path,
-                categories=categories,
-            ),
+            questions=tuple(case.question for case in cases),
             mode=mode,
             wait_min_seconds=wait_min,
             wait_max_seconds=wait_max,
@@ -189,6 +257,10 @@ class LoadTestConfig:
                 "LOAD_TEST_REQUEST_TIMEOUT_SECONDS",
                 "120",
             ),
+            cases=cases,
+            max_requests=max_requests,
+            observations_path=Path(observation_value).resolve() if observation_value else None,
+            preview_citations=preview == "true",
         )
 
 
@@ -281,9 +353,17 @@ def _number(
 ) -> float:
     for name in names:
         value = row.get(name)
-        if value not in (None, ""):
+        if value not in (None, "", "N/A"):
             return float(value)
     return 0.0
+
+
+def _optional_number(row, name):
+    value = row.get(name)
+    if value in (None, "", "N/A"):
+        return None
+    parsed = float(value)
+    return parsed if math.isfinite(parsed) else None
 
 
 def _read_csv_rows(path: Path) -> list[dict[str, str]]:
@@ -333,7 +413,7 @@ def read_locust_stats(path: Path) -> dict[str, object]:
             status_counts[status_label] = (
                 status_counts.get(status_label, 0) + count
             )
-            outcomes[status_label] = {
+            current = {
                 "request_count": count,
                 "failure_count": int(
                     _number(row, "Failure Count")
@@ -347,14 +427,27 @@ def read_locust_stats(path: Path) -> dict[str, object]:
                     "Median Response Time",
                     "50%",
                 ),
-                "p95_ms": _number(row, "95%"),
-                "p99_ms": _number(row, "99%"),
+                "p95_ms": _optional_number(row, "95%"),
+                "p99_ms": _optional_number(row, "99%"),
                 "max_ms": _number(
                     row,
                     "Max Response Time",
                     "100%",
                 ),
             }
+            if status_label not in outcomes:
+                outcomes[status_label] = current
+            else:
+                previous = outcomes[status_label]
+                combined_count = int(previous["request_count"]) + count
+                outcomes[status_label] = {
+                    "request_count": combined_count,
+                    "failure_count": int(previous["failure_count"]) + int(current["failure_count"]),
+                    "average_ms": (float(previous["average_ms"]) * int(previous["request_count"]) + float(current["average_ms"]) * count) / combined_count if combined_count else 0,
+                    "max_ms": max(float(previous["max_ms"]), float(current["max_ms"])),
+                    # Percentiles of different endpoint rows cannot be merged from CSV summaries.
+                    "median_ms": None, "p95_ms": None, "p99_ms": None,
+                }
 
     request_count = int(_number(aggregate, "Request Count"))
     failure_count = int(_number(aggregate, "Failure Count"))
@@ -379,8 +472,8 @@ def read_locust_stats(path: Path) -> dict[str, object]:
             "Median Response Time",
             "50%",
         ),
-        "p95_ms": _number(aggregate, "95%"),
-        "p99_ms": _number(aggregate, "99%"),
+        "p95_ms": _optional_number(aggregate, "95%"),
+        "p99_ms": _optional_number(aggregate, "99%"),
         "max_ms": _number(
             aggregate,
             "Max Response Time",
@@ -417,9 +510,16 @@ def build_load_test_report(
     failures_path: Path | None,
     thresholds: LoadTestThresholds,
     scenario: str,
+    observations_path: Path | None = None,
 ) -> dict[str, object]:
     summary = read_locust_stats(stats_path)
-    server_errors = count_server_errors(failures_path)
+    observations = None
+    if observations_path is not None:
+        from scripts.load_test_telemetry import summarize_observations
+        observations = summarize_observations(json.loads(observations_path.read_text(encoding="utf-8")))
+        summary = {**observations["qa"], "all_http_csv": summary}
+    server_errors = max(count_server_errors(failures_path), sum(
+        int(count) for status, count in summary["status_counts"].items() if str(status).startswith("5")))
     status_counts = summary.get("status_counts")
     if not isinstance(status_counts, dict):
         raise ValueError("Locust 汇总缺少状态码统计")
@@ -435,13 +535,13 @@ def build_load_test_report(
         raise ValueError("Locust 汇总缺少按状态分类的指标")
     successful = outcomes.get("200")
     successful_request_count = (
-        int(successful["request_count"])
+        int(successful["request_count"]) - int(successful["failure_count"])
         if isinstance(successful, dict)
         else 0
     )
     successful_p95_ms = (
         float(successful["p95_ms"])
-        if isinstance(successful, dict)
+        if isinstance(successful, dict) and successful.get("p95_ms") is not None
         else None
     )
     checks = {
@@ -467,6 +567,10 @@ def build_load_test_report(
             throttled >= thresholds.min_throttled_requests
         ),
     }
+    if observations is not None:
+        csv_count = int(summary["all_http_csv"]["request_count"])
+        checks.update(observations["checks"])
+        checks["csv_observations_match"] = csv_count == request_count + observations["previews"]["request_count"]
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "scenario": scenario,
@@ -493,4 +597,8 @@ def build_load_test_report(
             ),
         },
         "checks": checks,
+        **({"schema_version": 2, "observations": observations,
+            "limitations": ["HTTP/answerability checks do not establish semantic correctness.",
+                             "Small bounded load runs do not establish production capacity.",
+                             "Metrics deltas include other traffic in the same process."]} if observations is not None else {}),
     }

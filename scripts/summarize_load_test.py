@@ -29,6 +29,7 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         help="Locust 生成的 *_failures.csv。",
     )
+    parser.add_argument("--observations", type=Path, help="新版 Locust 生成的不含正文的逐请求 observations JSON。")
     parser.add_argument(
         "--output",
         type=Path,
@@ -99,6 +100,7 @@ def main() -> int:
         ),
         thresholds=LoadTestThresholds(**numeric_values),
         scenario=args.scenario,
+        observations_path=args.observations.resolve() if args.observations else None,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

@@ -1,0 +1,809 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-14",
+  "evaluation_type": "bounded_real_http_load_test_with_separate_read_only_preview_confirmation",
+  "application_base_commit": "9da810b075d13d01f3cb7f53d419602405569c7a",
+  "implementation_branch": "codex/rag-load-testing",
+  "status": "qa_components_passed_original_combined_gates_failed_corrected_full_run_not_executed",
+  "runs": {
+    "governance": {
+      "qa_summary": {
+        "request_count": 12,
+        "failure_count": 0,
+        "failure_rate": 0.0,
+        "requests_per_second": 1.2694382735637681,
+        "median_ms": 292.612,
+        "p95_ms": 8089.076,
+        "p99_ms": 8807.598,
+        "max_ms": 8987.228699996194,
+        "successful_request_count": 3,
+        "successful_p95_ms": 8823.928,
+        "status_counts": {
+          "429-concurrency": 9,
+          "200": 3
+        },
+        "server_error_count": 0,
+        "throttled_request_count": 9
+      },
+      "original_combined_gate_passed": false,
+      "original_gate_checks": {
+        "minimum_requests": true,
+        "minimum_successful_requests": true,
+        "failure_rate": true,
+        "p95_latency": true,
+        "server_errors": true,
+        "throttled_requests": true,
+        "bounded_run_complete": true,
+        "workload_covered": true,
+        "answerability": true,
+        "parent_citations": true,
+        "preview_contract": true,
+        "metrics_available": false,
+        "metrics_comparable": false,
+        "csv_observations_match": true,
+        "locust_completed": true
+      },
+      "qa_checks_passed": true,
+      "groups": {
+        "simple": {
+          "request_count": 12,
+          "failure_count": 0,
+          "failure_rate": 0.0,
+          "requests_per_second": 1.2694382735637681,
+          "samples": 12,
+          "average_ms": 2022.428,
+          "median_ms": 292.612,
+          "p95_ms": 8089.076,
+          "p99_ms": 8807.598,
+          "max_ms": 8987.228699996194,
+          "status_counts": {
+            "429-concurrency": 9,
+            "200": 3
+          },
+          "outcomes": {
+            "429-concurrency": {
+              "request_count": 9,
+              "failure_count": 0,
+              "samples": 9,
+              "average_ms": 183.073,
+              "median_ms": 212.457,
+              "p95_ms": 301.249,
+              "p99_ms": 303.837,
+              "max_ms": 304.4837000052212
+            },
+            "200": {
+              "request_count": 3,
+              "failure_count": 0,
+              "samples": 3,
+              "average_ms": 7540.493,
+              "median_ms": 7354.223,
+              "p95_ms": 8823.928,
+              "p99_ms": 8954.569,
+              "max_ms": 8987.228699996194
+            }
+          },
+          "answerability_samples": 3,
+          "answerability_mismatches": 0,
+          "answerable_count": 3,
+          "refusal_count": 0
+        }
+      },
+      "stages": {
+        "agent_decision_ms": {
+          "samples": 0,
+          "average_ms": null,
+          "median_ms": null,
+          "p95_ms": null,
+          "p99_ms": null,
+          "max_ms": null
+        },
+        "agent_tool_ms": {
+          "samples": 0,
+          "average_ms": null,
+          "median_ms": null,
+          "p95_ms": null,
+          "p99_ms": null,
+          "max_ms": null
+        },
+        "answer_regeneration_ms": {
+          "samples": 0,
+          "average_ms": null,
+          "median_ms": null,
+          "p95_ms": null,
+          "p99_ms": null,
+          "max_ms": null
+        },
+        "answer_repair_ms": {
+          "samples": 0,
+          "average_ms": null,
+          "median_ms": null,
+          "p95_ms": null,
+          "p99_ms": null,
+          "max_ms": null
+        },
+        "context_build_ms": {
+          "samples": 3,
+          "average_ms": 4.98,
+          "median_ms": 2.59,
+          "p95_ms": 9.799,
+          "p99_ms": 10.44,
+          "max_ms": 10.6
+        },
+        "feedback_search_ms": {
+          "samples": 0,
+          "average_ms": null,
+          "median_ms": null,
+          "p95_ms": null,
+          "p99_ms": null,
+          "max_ms": null
+        },
+        "generation_ms": {
+          "samples": 3,
+          "average_ms": 3666.223,
+          "median_ms": 3579.86,
+          "p95_ms": 4719.215,
+          "p99_ms": 4820.491,
+          "max_ms": 4845.81
+        },
+        "hybrid_retrieval_ms": {
+          "samples": 3,
+          "average_ms": 1859.313,
+          "median_ms": 2578.02,
+          "p95_ms": 2579.073,
+          "p99_ms": 2579.167,
+          "max_ms": 2579.19
+        },
+        "query_planning_ms": {
+          "samples": 3,
+          "average_ms": 974.25,
+          "median_ms": 3.81,
+          "p95_ms": 2627.193,
+          "p99_ms": 2860.383,
+          "max_ms": 2918.68
+        },
+        "render_ms": {
+          "samples": 3,
+          "average_ms": 0.077,
+          "median_ms": 0.06,
+          "p95_ms": 0.114,
+          "p99_ms": 0.119,
+          "max_ms": 0.12
+        },
+        "rerank_ms": {
+          "samples": 3,
+          "average_ms": 404.953,
+          "median_ms": 382.07,
+          "p95_ms": 457.004,
+          "p99_ms": 463.665,
+          "max_ms": 465.33
+        },
+        "search_total_ms": {
+          "samples": 3,
+          "average_ms": 2615.827,
+          "median_ms": 3401.84,
+          "p95_ms": 3471.509,
+          "p99_ms": 3477.702,
+          "max_ms": 3479.25
+        },
+        "total_ms": {
+          "samples": 3,
+          "average_ms": 7267.15,
+          "median_ms": 7065.72,
+          "p95_ms": 8570.772,
+          "p99_ms": 8704.554,
+          "max_ms": 8738.0
+        },
+        "validation_ms": {
+          "samples": 3,
+          "average_ms": 5.063,
+          "median_ms": 4.36,
+          "p95_ms": 7.096,
+          "p99_ms": 7.339,
+          "max_ms": 7.4
+        }
+      },
+      "metrics": {
+        "available": false,
+        "comparable": false,
+        "samples": []
+      },
+      "provenance": {
+        "local_report": "data/load-tests/current-rag-20261014-governance/report.json",
+        "report_sha256": "01c914fca3fa95b1b09da81f508102e379908a8efe203790baf486c59148b167",
+        "observations_sha256": "14170d2cd2f81bd6c2acdae1a11e1a7f58f088e17d5d630deeffb66f1db860ee"
+      },
+      "preview_request_count": 0
+    },
+    "mixed": {
+      "qa_summary": {
+        "request_count": 24,
+        "failure_count": 0,
+        "failure_rate": 0.0,
+        "requests_per_second": 0.3177461208494445,
+        "median_ms": 4605.718,
+        "p95_ms": 8516.229,
+        "p99_ms": 9040.123,
+        "max_ms": 9178.24180000025,
+        "successful_request_count": 24,
+        "successful_p95_ms": 8516.229,
+        "status_counts": {
+          "200": 24
+        },
+        "server_error_count": 0,
+        "throttled_request_count": 0
+      },
+      "original_combined_gate_passed": false,
+      "original_gate_checks": {
+        "minimum_requests": true,
+        "minimum_successful_requests": true,
+        "failure_rate": true,
+        "p95_latency": true,
+        "server_errors": true,
+        "throttled_requests": true,
+        "bounded_run_complete": true,
+        "workload_covered": true,
+        "answerability": true,
+        "parent_citations": true,
+        "preview_contract": false,
+        "metrics_available": true,
+        "metrics_comparable": true,
+        "csv_observations_match": true,
+        "locust_completed": false
+      },
+      "qa_checks_passed": true,
+      "groups": {
+        "complex": {
+          "request_count": 9,
+          "failure_count": 0,
+          "failure_rate": 0.0,
+          "requests_per_second": 0.11915479531854167,
+          "samples": 9,
+          "average_ms": 5885.006,
+          "median_ms": 5016.997,
+          "p95_ms": 8178.948,
+          "p99_ms": 8497.969,
+          "max_ms": 8577.724100003252,
+          "status_counts": {
+            "200": 9
+          },
+          "outcomes": {
+            "200": {
+              "request_count": 9,
+              "failure_count": 0,
+              "samples": 9,
+              "average_ms": 5885.006,
+              "median_ms": 5016.997,
+              "p95_ms": 8178.948,
+              "p99_ms": 8497.969,
+              "max_ms": 8577.724100003252
+            }
+          },
+          "answerability_samples": 9,
+          "answerability_mismatches": 0,
+          "answerable_count": 9,
+          "refusal_count": 0
+        },
+        "refusal": {
+          "request_count": 6,
+          "failure_count": 0,
+          "failure_rate": 0.0,
+          "requests_per_second": 0.07943653021236112,
+          "samples": 6,
+          "average_ms": 4088.193,
+          "median_ms": 3865.345,
+          "p95_ms": 5225.075,
+          "p99_ms": 5383.991,
+          "max_ms": 5423.720200000389,
+          "status_counts": {
+            "200": 6
+          },
+          "outcomes": {
+            "200": {
+              "request_count": 6,
+              "failure_count": 0,
+              "samples": 6,
+              "average_ms": 4088.193,
+              "median_ms": 3865.345,
+              "p95_ms": 5225.075,
+              "p99_ms": 5383.991,
+              "max_ms": 5423.720200000389
+            }
+          },
+          "answerability_samples": 6,
+          "answerability_mismatches": 0,
+          "answerable_count": 0,
+          "refusal_count": 6
+        },
+        "simple": {
+          "request_count": 9,
+          "failure_count": 0,
+          "failure_rate": 0.0,
+          "requests_per_second": 0.11915479531854167,
+          "samples": 9,
+          "average_ms": 5417.022,
+          "median_ms": 4224.553,
+          "p95_ms": 8774.049,
+          "p99_ms": 9097.403,
+          "max_ms": 9178.24180000025,
+          "status_counts": {
+            "200": 9
+          },
+          "outcomes": {
+            "200": {
+              "request_count": 9,
+              "failure_count": 0,
+              "samples": 9,
+              "average_ms": 5417.022,
+              "median_ms": 4224.553,
+              "p95_ms": 8774.049,
+              "p99_ms": 9097.403,
+              "max_ms": 9178.24180000025
+            }
+          },
+          "answerability_samples": 9,
+          "answerability_mismatches": 0,
+          "answerable_count": 9,
+          "refusal_count": 0
+        }
+      },
+      "stages": {
+        "agent_decision_ms": {
+          "samples": 0,
+          "average_ms": null,
+          "median_ms": null,
+          "p95_ms": null,
+          "p99_ms": null,
+          "max_ms": null
+        },
+        "agent_tool_ms": {
+          "samples": 0,
+          "average_ms": null,
+          "median_ms": null,
+          "p95_ms": null,
+          "p99_ms": null,
+          "max_ms": null
+        },
+        "answer_regeneration_ms": {
+          "samples": 0,
+          "average_ms": null,
+          "median_ms": null,
+          "p95_ms": null,
+          "p99_ms": null,
+          "max_ms": null
+        },
+        "answer_repair_ms": {
+          "samples": 1,
+          "average_ms": 1687.34,
+          "median_ms": 1687.34,
+          "p95_ms": 1687.34,
+          "p99_ms": 1687.34,
+          "max_ms": 1687.34
+        },
+        "context_build_ms": {
+          "samples": 24,
+          "average_ms": 2.394,
+          "median_ms": 1.99,
+          "p95_ms": 4.886,
+          "p99_ms": 7.941,
+          "max_ms": 8.82
+        },
+        "feedback_search_ms": {
+          "samples": 1,
+          "average_ms": 837.53,
+          "median_ms": 837.53,
+          "p95_ms": 837.53,
+          "p99_ms": 837.53,
+          "max_ms": 837.53
+        },
+        "generation_ms": {
+          "samples": 24,
+          "average_ms": 3880.68,
+          "median_ms": 3283.245,
+          "p95_ms": 6565.51,
+          "p99_ms": 6688.208,
+          "max_ms": 6707.01
+        },
+        "hybrid_retrieval_ms": {
+          "samples": 24,
+          "average_ms": 393.558,
+          "median_ms": 310.79,
+          "p95_ms": 729.571,
+          "p99_ms": 1130.653,
+          "max_ms": 1237.73
+        },
+        "query_planning_ms": {
+          "samples": 24,
+          "average_ms": 265.126,
+          "median_ms": 0.13,
+          "p95_ms": 2074.513,
+          "p99_ms": 2319.447,
+          "max_ms": 2381.66
+        },
+        "render_ms": {
+          "samples": 24,
+          "average_ms": 0.067,
+          "median_ms": 0.07,
+          "p95_ms": 0.108,
+          "p99_ms": 0.133,
+          "max_ms": 0.14
+        },
+        "rerank_ms": {
+          "samples": 24,
+          "average_ms": 400.105,
+          "median_ms": 371.705,
+          "p95_ms": 673.256,
+          "p99_ms": 714.083,
+          "max_ms": 714.49
+        },
+        "search_total_ms": {
+          "samples": 24,
+          "average_ms": 990.808,
+          "median_ms": 880.555,
+          "p95_ms": 1661.731,
+          "p99_ms": 1990.977,
+          "max_ms": 2064.6
+        },
+        "total_ms": {
+          "samples": 24,
+          "average_ms": 5228.767,
+          "median_ms": 4574.52,
+          "p95_ms": 8481.301,
+          "p99_ms": 9010.689,
+          "max_ms": 9150.77
+        },
+        "validation_ms": {
+          "samples": 24,
+          "average_ms": 74.105,
+          "median_ms": 3.8,
+          "p95_ms": 9.577,
+          "p99_ms": 1306.667,
+          "max_ms": 1694.04
+        }
+      },
+      "metrics": {
+        "available": true,
+        "comparable": true,
+        "samples": [
+          {
+            "name": "enterprise_agent_runs_total",
+            "labels": {
+              "outcome": "bypassed"
+            },
+            "delta": 24.0
+          },
+          {
+            "name": "enterprise_model_calls_total",
+            "labels": {
+              "model": "qwen3-rerank",
+              "provider": "dashscope",
+              "stage": "rerank",
+              "status": "success"
+            },
+            "delta": 25.0
+          },
+          {
+            "name": "enterprise_model_calls_total",
+            "labels": {
+              "model": "qwen3.7-flash",
+              "provider": "dashscope",
+              "stage": "answer_generation",
+              "status": "success"
+            },
+            "delta": 24.0
+          },
+          {
+            "name": "enterprise_model_calls_total",
+            "labels": {
+              "model": "qwen3.7-flash",
+              "provider": "dashscope",
+              "stage": "answer_repair",
+              "status": "success"
+            },
+            "delta": 1.0
+          },
+          {
+            "name": "enterprise_model_calls_total",
+            "labels": {
+              "model": "qwen3.7-flash",
+              "provider": "dashscope",
+              "stage": "query_planning",
+              "status": "success"
+            },
+            "delta": 3.0
+          },
+          {
+            "name": "enterprise_model_calls_total",
+            "labels": {
+              "model": "text-embedding-v4",
+              "provider": "dashscope",
+              "stage": "query_embedding",
+              "status": "success"
+            },
+            "delta": 25.0
+          },
+          {
+            "name": "enterprise_model_tokens_total",
+            "labels": {
+              "model": "qwen3-rerank",
+              "provider": "dashscope",
+              "stage": "rerank"
+            },
+            "delta": 126713.0
+          },
+          {
+            "name": "enterprise_model_tokens_total",
+            "labels": {
+              "model": "qwen3.7-flash",
+              "provider": "dashscope",
+              "stage": "answer_generation"
+            },
+            "delta": 149939.0
+          },
+          {
+            "name": "enterprise_model_tokens_total",
+            "labels": {
+              "model": "qwen3.7-flash",
+              "provider": "dashscope",
+              "stage": "answer_repair"
+            },
+            "delta": 2027.0
+          },
+          {
+            "name": "enterprise_model_tokens_total",
+            "labels": {
+              "model": "qwen3.7-flash",
+              "provider": "dashscope",
+              "stage": "query_planning"
+            },
+            "delta": 1158.0
+          },
+          {
+            "name": "enterprise_model_tokens_total",
+            "labels": {
+              "model": "text-embedding-v4",
+              "provider": "dashscope",
+              "stage": "query_embedding"
+            },
+            "delta": 577.0
+          },
+          {
+            "name": "enterprise_qa_requests_total",
+            "labels": {
+              "answerable": "false",
+              "outcome": "completed"
+            },
+            "delta": 6.0
+          },
+          {
+            "name": "enterprise_qa_requests_total",
+            "labels": {
+              "answerable": "true",
+              "outcome": "completed"
+            },
+            "delta": 18.0
+          },
+          {
+            "name": "enterprise_rag_budget_requests_total",
+            "labels": {
+              "outcome": "unused",
+              "reason": "none"
+            },
+            "delta": 19.0
+          },
+          {
+            "name": "enterprise_rag_budget_requests_total",
+            "labels": {
+              "outcome": "used",
+              "reason": "none"
+            },
+            "delta": 5.0
+          },
+          {
+            "name": "enterprise_rag_feedback_total",
+            "labels": {
+              "outcome": "ineligible"
+            },
+            "delta": 1.0
+          },
+          {
+            "name": "enterprise_rag_feedback_total",
+            "labels": {
+              "outcome": "no_new_evidence"
+            },
+            "delta": 1.0
+          },
+          {
+            "name": "enterprise_rag_repairs_total",
+            "labels": {
+              "outcome": "model_repaired"
+            },
+            "delta": 1.0
+          },
+          {
+            "name": "enterprise_rag_routes_total",
+            "labels": {
+              "phase": "plan",
+              "strategy": "reflective"
+            },
+            "delta": 12.0
+          },
+          {
+            "name": "enterprise_rag_routes_total",
+            "labels": {
+              "phase": "plan",
+              "strategy": "standard"
+            },
+            "delta": 12.0
+          },
+          {
+            "name": "enterprise_rag_routes_total",
+            "labels": {
+              "phase": "retrieval_route",
+              "strategy": "reflective"
+            },
+            "delta": 12.0
+          },
+          {
+            "name": "enterprise_rag_routes_total",
+            "labels": {
+              "phase": "retrieval_route",
+              "strategy": "standard"
+            },
+            "delta": 12.0
+          },
+          {
+            "name": "enterprise_rag_routes_total",
+            "labels": {
+              "phase": "strategy_transition",
+              "strategy": "agentic"
+            },
+            "delta": 1.0
+          },
+          {
+            "name": "enterprise_rag_routes_total",
+            "labels": {
+              "phase": "strategy_transition",
+              "strategy": "reflective"
+            },
+            "delta": 1.0
+          },
+          {
+            "name": "enterprise_rag_terminal_results_total",
+            "labels": {
+              "answerable": "false",
+              "stage": "final"
+            },
+            "delta": 6.0
+          },
+          {
+            "name": "enterprise_rag_terminal_results_total",
+            "labels": {
+              "answerable": "true",
+              "stage": "final"
+            },
+            "delta": 18.0
+          }
+        ],
+        "attribution": "process_wide_window_including_other_traffic"
+      },
+      "provenance": {
+        "local_report": "data/load-tests/current-rag-20261014-mixed/report.json",
+        "report_sha256": "dc6216f9c17c89da67e07a88d6a695da600bb71e2e0f7a9b9812161f16b4208c",
+        "observations_sha256": "ffbbb6114da1f47e6fb3b17742688b96e38c0cdc18729ec8b9f466d75c14c0e7"
+      },
+      "preview_request_count": 6
+    }
+  },
+  "preview_confirmation": {
+    "evaluation_type": "read_only_revalidation_of_same_six_preview_urls_not_a_new_qa_load_run",
+    "new_model_calls": 0,
+    "total": 6,
+    "passed": 6,
+    "latency": {
+      "samples": 6,
+      "average_ms": 179.732,
+      "median_ms": 174.96,
+      "p95_ms": 195.551,
+      "p99_ms": 198.969,
+      "max_ms": 199.82350000645965
+    }
+  },
+  "model_usage_ledger": {
+    "governance": {
+      "qa_requests": 12,
+      "requests_with_model_calls": 3,
+      "model_calls": 10,
+      "known_tokens": 36723,
+      "unknown_usage_calls": 0,
+      "provider_errors": 0,
+      "stages": {
+        "query_embedding": 3,
+        "query_planning": 1,
+        "rerank": 3,
+        "answer_generation": 3
+      },
+      "calls_for_throttled_requests": 0,
+      "calls_for_preview_verification": 0
+    },
+    "mixed": {
+      "qa_requests": 24,
+      "requests_with_model_calls": 24,
+      "model_calls": 78,
+      "known_tokens": 280414,
+      "unknown_usage_calls": 0,
+      "provider_errors": 0,
+      "stages": {
+        "answer_generation": 24,
+        "query_planning": 3,
+        "rerank": 25,
+        "query_embedding": 25,
+        "answer_repair": 1
+      },
+      "calls_for_throttled_requests": 0,
+      "calls_for_preview_verification": 0,
+      "process_metrics_match_ledger": {
+        "calls": true,
+        "tokens": true
+      }
+    }
+  },
+  "total_model_usage": {
+    "calls": 88,
+    "known_tokens": 317137,
+    "unknown_usage_calls": 0
+  },
+  "tests": {
+    "tests": 1048,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 48,
+    "passed": 1000
+  },
+  "application_deployment": {
+    "knowledge_code_sha256": {
+      "answer_contract.py": "92a1b32c4947e82b40ebb72cac41e81517111b6396fc10677d31cda76a87b881",
+      "parent_context_selection.py": "f05065496d3d78a658f32eadebf147988c22ed35fcabe82975b1c7fa7370f1cc",
+      "context_builder.py": "7ef4f15d070d957fa8d9071738975fcca268290fc6dc7288bf933eb8035b1964",
+      "answer_service.py": "087c92e6930316b998ed2bd57e1f950793649e0488ae2dc409fe3551592d8597",
+      "answer_models.py": "9ef8ac23c7be9da1e9aa25f65c448057cc8fc0b10a730ffbf62c9827008c5250",
+      "answer_repair.py": "e788598799acd2c57e8a2b48ad84481ae2ee08821e6c05b8a7158ab55e42ab4f",
+      "chunk_repository.py": "e184cfb7e7a0240e788c428a5bc594f7575cf692cd72d7e0a7ed36822ec3ba99",
+      "prompts.py": "e2bac7fdf870f3a6b416fba013cb58b51aef19ad5c6239567333a67ccfd3e732"
+    },
+    "settings": {
+      "rag_rerank_top_k": 12,
+      "rag_parent_context_enabled": true,
+      "rag_planner_mode": "auto",
+      "agentic_rag_mode": "auto",
+      "rag_repair_enabled": true,
+      "rag_feedback_enabled": true,
+      "rag_max_optional_calls": 4,
+      "rag_max_optional_tokens": 32000,
+      "rag_max_optional_seconds": 35.0,
+      "rag_max_searches": 3,
+      "qa_rate_limit_requests": 60,
+      "qa_rate_limit_window_seconds": 60,
+      "chat_model": "qwen3.7-flash",
+      "qa_max_concurrent_requests_per_tenant": 3
+    },
+    "local_source_revision": "9da810b075d13d01f3cb7f53d419602405569c7a",
+    "code_matches_working_tree": true
+  },
+  "final_harness_sha256_lf_normalized": {
+    "scripts/load_test_support.py": "dfe875d99c3c613c7eb2ff503ae9e7bd5a4923a7cb5ef2fcd19e427978b48c20",
+    "scripts/load_test_telemetry.py": "bb3867333d59b9ca8813f761ee2404ac2e0ef1bedf81fef6e0efb76be8cf94d7",
+    "scripts/run_load_test.py": "02b7bb96c23af3d6d048e326b7bab74da0ad3db7d5220ba3b6d549f0e34441a6",
+    "scripts/summarize_load_test.py": "e77227ea69f499ff3fdc922f7d2483a81f97e3d5dfa2d6a39308e3a280667411",
+    "tests/load/locustfile.py": "37ee67dde3578498fed871eb514f142aa0ecb6f7664912423e9118600160f906",
+    "tests/load/current_workload.jsonl": "895f9865b0d53fe10844c274ee187e694e12594a8ee4c4b16b482445f8eb69cd"
+  },
+  "limitations": [
+    "Original reports are immutable; no paid QA rerun after harness corrections.",
+    "Preview confirmation is six read-only requests, not a new concurrent QA run.",
+    "Answerability matching does not establish semantic correctness.",
+    "No executed Agent decision/tool loop, regeneration, or budget exhaustion cases.",
+    "One account, two QA users, and one six-user burst do not establish production capacity.",
+    "No isolated host, controlled warmup, repetitions, or comparable historical baseline.",
+    "Metric deltas are process-wide and may include other traffic."
+  ]
+}
