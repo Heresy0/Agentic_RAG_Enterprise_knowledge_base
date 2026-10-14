@@ -39,6 +39,7 @@ class RagBudget:
     feedback_attempts: int = 0
     regenerations: int = 0
     seen_queries: set[str] = field(default_factory=set)
+    limited_by: str | None = None
 
     @classmethod
     def from_settings(cls, settings):
@@ -60,12 +61,20 @@ class RagBudget:
         reservation = prompt_bytes + output_tokens
         if (self.calls >= self.max_calls or reservation > self.remaining_tokens
                 or self.remaining_seconds <= 0):
+            self._note_limit('calls' if self.calls >= self.max_calls else
+                             'tokens' if reservation > self.remaining_tokens else 'time')
             raise RagBudgetExceeded("可选 RAG 模型预算已耗尽")
+
+    def _note_limit(self, reason):
+        # Record actual shared-quota rejection, not normal loop completion.
+        if self.limited_by is None:
+            self.limited_by = reason
 
     def begin_feedback(self):
         if self.feedback_attempts >= 1:
             raise RagBudgetExceeded("本次定向补查已使用")
         if self.searches >= self.max_searches or self.remaining_seconds <= 0:
+            self._note_limit('searches' if self.searches >= self.max_searches else 'time')
             raise RagBudgetExceeded("共享补查预算已耗尽")
         self.feedback_attempts += 1
 
@@ -97,9 +106,11 @@ class RagBudget:
     @contextmanager
     def tool_attempt(self, action, *, query=None):
         if self.remaining_seconds <= 0:
+            self._note_limit('time')
             raise RagBudgetExceeded("可选 RAG 时间预算已耗尽")
         if action == "search":
             if self.searches >= self.max_searches:
+                self._note_limit('searches')
                 raise RagBudgetExceeded("共享检索预算已耗尽")
             if query is not None and query_key(query) in self.seen_queries:
                 raise RagBudgetExceeded("不能重复已执行的查询")
@@ -108,6 +119,7 @@ class RagBudget:
                 self.note_query(query)
         elif action == "read":
             if self.reads >= self.max_reads:
+                self._note_limit('reads')
                 raise RagBudgetExceeded("共享读取预算已耗尽")
             self.reads += 1
         else:
@@ -121,7 +133,8 @@ class RagBudget:
     def snapshot(self):
         return dict(calls=self.calls, charged_tokens=self.charged_tokens,
                     optional_seconds=round(self.seconds, 3), searches=self.searches, reads=self.reads,
-                    feedback_attempts=self.feedback_attempts, regenerations=self.regenerations)
+                    feedback_attempts=self.feedback_attempts, regenerations=self.regenerations,
+                    limited_by=self.limited_by)
 
 
 def current_rag_budget():

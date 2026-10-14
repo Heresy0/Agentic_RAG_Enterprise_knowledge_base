@@ -330,6 +330,8 @@ class AnswerService:
                 + "；".join(validation.errors)
             )
             record_answer_decision(stage="validation", answerable=False, reason="evidence_validation_failed")
+            if regenerated:
+                record_rag_event(dict(kind='feedback_final', answerable=False))
             timings["render_ms"] = _elapsed_ms(
                 render_started
             )
@@ -346,6 +348,8 @@ class AnswerService:
                 or "知识库资料不足。"
             )
             record_answer_decision(stage="final", answerable=False, reason=draft.refusal_reason)
+            if regenerated:
+                record_rag_event(dict(kind='feedback_final', answerable=False))
             timings["render_ms"] = _elapsed_ms(
                 render_started
             )
@@ -361,6 +365,8 @@ class AnswerService:
             context=context,
         )
         record_answer_decision(stage="final", answerable=True)
+        if regenerated:
+            record_rag_event(dict(kind='feedback_final', answerable=True))
         timings["render_ms"] = _elapsed_ms(
             render_started
         )

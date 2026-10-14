@@ -1,0 +1,64 @@
+{
+  "company": "星海科技有限公司",
+  "fictional": true,
+  "edition": "xinghai-multihop-6-v1",
+  "as_of": "2026-10-14",
+  "total_documents": 6,
+  "counts": {
+    "md": 6
+  },
+  "group_counts": {
+    "技术部": 2,
+    "平台研发部": 4
+  },
+  "documents": [
+    {
+      "file": "documents/03_技术部/51_青屿项目范围与适用规则登记.md",
+      "group": "技术部",
+      "format": "md",
+      "document_code": "XH-QY-SCOPE",
+      "characters": 581,
+      "sha256": "701e0d31246fd02b55ec98f73b7c9e4a484d3712db01a8f04b7cd802ff262750"
+    },
+    {
+      "file": "documents/04_平台研发部/52_青屿验收接口规则与版本条件.md",
+      "group": "平台研发部",
+      "format": "md",
+      "document_code": "XH-QY-ACCEPT",
+      "characters": 572,
+      "sha256": "9ec1f7ab7fe9bdaf9b67d65f760dec3331ddb1245736ed27f4eb2161f38b0cbe"
+    },
+    {
+      "file": "documents/03_技术部/53_青屿校验批次与验收签署记录.md",
+      "group": "技术部",
+      "format": "md",
+      "document_code": "XH-QY-RESULT",
+      "characters": 577,
+      "sha256": "ed2f7b9fde07da1e69a659f9886a44dfe93241ac92e1be20fb3475077c3f346c"
+    },
+    {
+      "file": "documents/04_平台研发部/54_雾岑服务配置与适配器映射.md",
+      "group": "平台研发部",
+      "format": "md",
+      "document_code": "XH-WC-CONFIG",
+      "characters": 547,
+      "sha256": "6a4c4f81fe6508e1311fb523cb5572d15644e6dae2226cb8f8ad2da560e6576c"
+    },
+    {
+      "file": "documents/04_平台研发部/55_雾岑服务分级与响应约定.md",
+      "group": "平台研发部",
+      "format": "md",
+      "document_code": "XH-WC-SLA",
+      "characters": 559,
+      "sha256": "bbcc57a9e5cb946db358cf8a066350d9e7cf1d3d0fda4e5e4f8fe00065040b92"
+    },
+    {
+      "file": "documents/04_平台研发部/56_雾岑同步与预览事件运行记录.md",
+      "group": "平台研发部",
+      "format": "md",
+      "document_code": "XH-WC-INCIDENTS",
+      "characters": 825,
+      "sha256": "f8a4c64ea0a94b9c1f3f6dd1432053b1f7b3a47d14c7ca4634228c1375a05b37"
+    }
+  ]
+}

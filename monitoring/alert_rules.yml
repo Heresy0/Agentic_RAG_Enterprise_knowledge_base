@@ -63,3 +63,48 @@ groups:
         annotations:
           summary: 模型用量审计写入失败
           description: 模型调用可能已发生费用，但独立审计写入失败；请检查数据库、日志和长期 pending 事件。
+
+      # Windowed ratios require a minimum sample count; low-traffic demos stay quiet.
+      - alert: RagRepairFailuresHigh
+        expr: |
+          ((sum(increase(enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome=~"rejected|fallback"}[15m])) or vector(0)) / clamp_min(sum(increase(enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome=~"model_repaired|rejected|fallback"}[15m])), 1) > 0.3)
+          and (sum(increase(enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome=~"model_repaired|rejected|fallback"}[15m])) >= 10)
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: RAG 修复异常或拒绝比例升高
+          description: 最近15分钟至少10次模型修复结果中，异常或未通过校验比例超过30%并持续5分钟。先检查修复诊断、供应商输出及共享预算；不是自动放宽最终校验的依据。
+
+      - alert: RagFeedbackRefusalsHigh
+        expr: |
+          ((sum(increase(enterprise_rag_feedback_final_total{job="enterprise-knowledge-api",answerable="false"}[15m])) or vector(0)) / clamp_min(sum(increase(enterprise_rag_feedback_final_total{job="enterprise-knowledge-api"}[15m])), 1) > 0.8)
+          and (sum(increase(enterprise_rag_feedback_final_total{job="enterprise-knowledge-api"}[15m])) >= 10)
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: 补查再生成后仍拒答比例升高
+          description: 最近15分钟至少10个已接受补查再生成的最终结果中，拒答比例超过80%并持续5分钟。检查知识覆盖和无效补查成本；正确拒答也计入，不等于答案错误。
+
+      - alert: RagSharedBudgetLimitedHigh
+        expr: |
+          ((sum(increase(enterprise_rag_budget_requests_total{job="enterprise-knowledge-api",outcome="limited"}[15m])) or vector(0)) / clamp_min(sum(increase(enterprise_rag_budget_requests_total{job="enterprise-knowledge-api"}[15m])), 1) > 0.2)
+          and (sum(increase(enterprise_rag_budget_requests_total{job="enterprise-knowledge-api"}[15m])) >= 20)
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: RAG 共享预算受限请求比例升高
+          description: 最近15分钟至少20个进入问答服务的请求中，共享预算实际拦截可选步骤的比例超过20%并持续5分钟。按 reason 检查调用、tokens、耗时及工具配额；先分析再调整。
+
+      - alert: RagValidationRefusalsHigh
+        expr: |
+          ((sum(increase(enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="validation",answerable="false"}[15m])) or vector(0)) / clamp_min(sum(increase(enterprise_rag_terminal_results_total{job="enterprise-knowledge-api"}[15m])), 1) > 0.2)
+          and (sum(increase(enterprise_rag_terminal_results_total{job="enterprise-knowledge-api"}[15m])) >= 20)
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: RAG 最终校验拒答比例升高
+          description: 最近15分钟至少20个产生最终结果的请求中，引用、覆盖或计算校验拒答比例超过20%并持续5分钟。检查模型草稿和证据绑定；该指标不能独立判定误拒答。

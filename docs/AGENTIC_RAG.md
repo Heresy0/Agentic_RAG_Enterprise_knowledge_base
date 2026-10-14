@@ -376,3 +376,41 @@ python scripts/verify_rag_feedback.py --allow-model-calls --output data/ingestio
 保留输入规划、一次缺证据反馈、有限修复、共享预算、权限回查与最终校验。
 当前阶段冻结新增检索路由、工具和循环层数，后续变更优先处理可复现的通用缺陷、安全问题与明确性能退化。
 已有报告继续保留原始评分与失败记录；收尾提交不重新调用收费模型，不改变语料或评分标准。
+
+## RAG 看板与告警
+
+沿用现有 Prometheus、Grafana 与 Alertmanager，在 `Enterprise Knowledge RAG` 看板新增 RAG 分区，
+保持原看板 UID 和现有面板不变，不增加监控组件。
+新面板展示分阶段策略选择、Agent实际工具调用与停止原因、答案修复/格式恢复、补查处理、
+补查再生成后的最终结果、共享预算状态、回答终态、新增阶段P95和追加模型报告tokens。
+
+除现有计数外，新增四项低基数指标：
+
+| 指标 | 口径 |
+| --- | --- |
+| `enterprise_rag_schema_repairs_total{outcome}` | 格式恢复生成状态；generated不代表最终校验通过 |
+| `enterprise_rag_budget_requests_total{outcome,reason}` | 每次进入AnswerService只记一次；unused/used/limited，reason仅为none/calls/tokens/time/searches/reads |
+| `enterprise_rag_feedback_final_total{answerable}` | 已接受的补查再生成产生最终结果后计数；在最终校验之后记录 |
+| `enterprise_rag_terminal_results_total{stage,answerable}` | pre_generation/generation_error/validation/final之一；异常中断或HTTP提交失败应结合HTTP指标和日志检查 |
+
+预算limited仅表示共享配额实际拦截了可选步骤。达到上限但未尝试超额、重复查询被拦截、
+Agent正常达到局部决策上限都不据此记为共享预算受限；多个拦截也只记录该请求的第一个配额原因。
+阶段路由计数不能相加当成请求量，阶段耗时可能包含子阶段，补查后可回答也不能等同语义正确或修复收益。
+指标不包含用户、租户、文档、问题或request_id标签。未知tokens不当作零；无样本保持空数据。
+
+新增四条warning告警，统一使用15分钟窗口并持续5分钟：
+
+| 告警 | 阈值 | 最低样本数 |
+| --- | --- | --- |
+| `RagRepairFailuresHigh` | 模型修复结果中的rejected/fallback比例 > 30% | 10次model_repaired/rejected/fallback结果 |
+| `RagFeedbackRefusalsHigh` | 已接受补查再生成的最终拒答比例 > 80% | 10个最终结果 |
+| `RagSharedBudgetLimitedHigh` | 共享配额拦截请求比例 > 20% | 20个进入AnswerService的请求 |
+| `RagValidationRefusalsHigh` | 最终校验拒答比例 > 20% | 20个回答终态 |
+
+上述阈值是初始运维检查阈值，需结合实际流量复核。正确的缺资料拒答也会进入补查拒答率，
+告警只提示检查知识覆盖、绑定错误或额外成本，不要求放宽校验或自动提高预算。
+仅统计Prometheus的API job，不将本地评估进程混入线上口径。
+
+验证使用现有Prometheus容器中的`promtool check rules`和`promtool test rules`，
+测试文件为`tests/prometheus_rag_rules.test.yml`，覆盖高比例触发、低流量、无样本、正常结果、
+低于阈值、无补查的正确拒答、计数器重置及非API数据排除。无需调用收费模型。

@@ -9,6 +9,10 @@ from prometheus_client import Counter
 RAG_ROUTES = Counter("enterprise_rag_routes", "RAG strategy selections by phase", ["phase", "strategy"])
 RAG_REPAIRS = Counter("enterprise_rag_repairs", "Bounded answer repair outcomes", ["outcome"])
 RAG_FEEDBACK = Counter("enterprise_rag_feedback", "One evidence feedback round outcomes", ["outcome"])
+RAG_SCHEMA_REPAIRS = Counter("enterprise_rag_schema_repairs", "Structured output recovery generation outcomes", ["outcome"])
+RAG_BUDGET_REQUESTS = Counter("enterprise_rag_budget_requests", "One shared optional budget outcome per answer request", ["outcome", "reason"])
+RAG_FEEDBACK_FINAL = Counter("enterprise_rag_feedback_final", "Final answerability after accepted feedback regeneration; not semantic accuracy", ["answerable"])
+RAG_TERMINAL_RESULTS = Counter("enterprise_rag_terminal_results", "Terminal answer results before HTTP commit; not semantic accuracy", ["stage", "answerable"])
 
 
 @dataclass
@@ -125,6 +129,8 @@ def record_context_selection(decision):
 
 def record_answer_decision(*, stage, answerable, reason=None, temporal=None):
     """Structured outcome only; never collect hidden model reasoning."""
+    if stage in {'pre_generation', 'generation_error', 'validation', 'final'} and type(answerable) is bool:
+        RAG_TERMINAL_RESULTS.labels(stage, str(answerable).lower()).inc()
     trace = _current.get()
     if trace is not None:
         trace.stages.setdefault("answer_decisions", []).append(dict(
@@ -175,6 +181,15 @@ def record_rag_event(event):
         RAG_REPAIRS.labels(event["outcome"]).inc()
     if kind == "feedback":
         RAG_FEEDBACK.labels(event["outcome"]).inc()
+    if kind == 'schema_repair':
+        RAG_SCHEMA_REPAIRS.labels(event['outcome']).inc()
+    if kind == 'feedback_final' and type(event.get('answerable')) is bool:
+        RAG_FEEDBACK_FINAL.labels(str(event['answerable']).lower()).inc()
+    if kind == 'budget':
+        limited_by = event.get('limited_by')
+        reason = limited_by if limited_by in {'calls', 'tokens', 'time', 'searches', 'reads'} else 'none'
+        used = bool(event.get('calls') or event.get('reads') or event.get('searches', 1) > 1)
+        RAG_BUDGET_REQUESTS.labels('limited' if reason != 'none' else 'used' if used else 'unused', reason).inc()
     trace = _current.get()
     if trace is not None:
         trace.stages.setdefault("rag_routing", []).append(deepcopy(event))

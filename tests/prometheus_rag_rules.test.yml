@@ -1,0 +1,226 @@
+rule_files:
+  - ../monitoring/alert_rules.yml
+evaluation_interval: 1m
+tests:
+  - name: sustained_failures_with_enough_samples
+    interval: 1m
+    input_series:
+      - series: 'enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome="rejected"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_feedback_final_total{job="enterprise-knowledge-api",answerable="false"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_budget_requests_total{job="enterprise-knowledge-api",outcome="limited",reason="calls"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="validation",answerable="false"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome="model_repaired"}'
+        values: '0+0x30'
+      - series: 'enterprise_rag_feedback_final_total{job="enterprise-knowledge-api",answerable="true"}'
+        values: '0+0x30'
+      - series: 'enterprise_rag_budget_requests_total{job="enterprise-knowledge-api",outcome="used",reason="none"}'
+        values: '0+0x30'
+      - series: 'enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="final",answerable="true"}'
+        values: '0+0x30'
+    alert_rule_test:
+      - eval_time: 20m
+        alertname: RagRepairFailuresHigh
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+            exp_annotations:
+              summary: RAG 修复异常或拒绝比例升高
+              description: 最近15分钟至少10次模型修复结果中，异常或未通过校验比例超过30%并持续5分钟。先检查修复诊断、供应商输出及共享预算；不是自动放宽最终校验的依据。
+      - eval_time: 20m
+        alertname: RagFeedbackRefusalsHigh
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+            exp_annotations:
+              summary: 补查再生成后仍拒答比例升高
+              description: 最近15分钟至少10个已接受补查再生成的最终结果中，拒答比例超过80%并持续5分钟。检查知识覆盖和无效补查成本；正确拒答也计入，不等于答案错误。
+      - eval_time: 20m
+        alertname: RagSharedBudgetLimitedHigh
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+            exp_annotations:
+              summary: RAG 共享预算受限请求比例升高
+              description: 最近15分钟至少20个进入问答服务的请求中，共享预算实际拦截可选步骤的比例超过20%并持续5分钟。按 reason 检查调用、tokens、耗时及工具配额；先分析再调整。
+      - eval_time: 20m
+        alertname: RagValidationRefusalsHigh
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+            exp_annotations:
+              summary: RAG 最终校验拒答比例升高
+              description: 最近15分钟至少20个产生最终结果的请求中，引用、覆盖或计算校验拒答比例超过20%并持续5分钟。检查模型草稿和证据绑定；该指标不能独立判定误拒答。
+  - name: no_samples
+    interval: 1m
+    input_series: []
+    alert_rule_test:
+      - eval_time: 20m
+        alertname: RagRepairFailuresHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagFeedbackRefusalsHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagSharedBudgetLimitedHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagValidationRefusalsHigh
+        exp_alerts: []
+  - name: single_failure_low_traffic
+    interval: 1m
+    input_series:
+      - series: 'enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome="rejected"}'
+        values: '0+0x19 1+0x10'
+      - series: 'enterprise_rag_feedback_final_total{job="enterprise-knowledge-api",answerable="false"}'
+        values: '0+0x19 1+0x10'
+      - series: 'enterprise_rag_budget_requests_total{job="enterprise-knowledge-api",outcome="limited",reason="calls"}'
+        values: '0+0x19 1+0x10'
+      - series: 'enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="validation",answerable="false"}'
+        values: '0+0x19 1+0x10'
+    alert_rule_test:
+      - eval_time: 20m
+        alertname: RagRepairFailuresHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagFeedbackRefusalsHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagSharedBudgetLimitedHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagValidationRefusalsHigh
+        exp_alerts: []
+  - name: healthy_high_traffic
+    interval: 1m
+    input_series:
+      - series: 'enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome="rejected"}'
+        values: '0+0x30'
+      - series: 'enterprise_rag_feedback_final_total{job="enterprise-knowledge-api",answerable="false"}'
+        values: '0+0x30'
+      - series: 'enterprise_rag_budget_requests_total{job="enterprise-knowledge-api",outcome="limited",reason="calls"}'
+        values: '0+0x30'
+      - series: 'enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="validation",answerable="false"}'
+        values: '0+0x30'
+      - series: 'enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome="model_repaired"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_feedback_final_total{job="enterprise-knowledge-api",answerable="true"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_budget_requests_total{job="enterprise-knowledge-api",outcome="used",reason="none"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="final",answerable="true"}'
+        values: '0+2x30'
+    alert_rule_test:
+      - eval_time: 20m
+        alertname: RagRepairFailuresHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagFeedbackRefusalsHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagSharedBudgetLimitedHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagValidationRefusalsHigh
+        exp_alerts: []
+  - name: below_ratio_thresholds
+    interval: 1m
+    input_series:
+      - series: 'enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome="rejected"}'
+        values: '0+1x30'
+      - series: 'enterprise_rag_feedback_final_total{job="enterprise-knowledge-api",answerable="false"}'
+        values: '0+1x30'
+      - series: 'enterprise_rag_budget_requests_total{job="enterprise-knowledge-api",outcome="limited",reason="calls"}'
+        values: '0+1x30'
+      - series: 'enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="validation",answerable="false"}'
+        values: '0+1x30'
+      - series: 'enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome="model_repaired"}'
+        values: '0+9x30'
+      - series: 'enterprise_rag_feedback_final_total{job="enterprise-knowledge-api",answerable="true"}'
+        values: '0+9x30'
+      - series: 'enterprise_rag_budget_requests_total{job="enterprise-knowledge-api",outcome="used",reason="none"}'
+        values: '0+9x30'
+      - series: 'enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="final",answerable="true"}'
+        values: '0+9x30'
+    alert_rule_test:
+      - eval_time: 20m
+        alertname: RagRepairFailuresHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagFeedbackRefusalsHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagSharedBudgetLimitedHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagValidationRefusalsHigh
+        exp_alerts: []
+  - name: correct_refusal_without_feedback
+    interval: 1m
+    input_series:
+      - series: 'enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="final",answerable="false"}'
+        values: '0+2x30'
+    alert_rule_test:
+      - eval_time: 20m
+        alertname: RagRepairFailuresHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagFeedbackRefusalsHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagSharedBudgetLimitedHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagValidationRefusalsHigh
+        exp_alerts: []
+  - name: counter_reset_without_new_failures
+    interval: 1m
+    input_series:
+      - series: 'enterprise_rag_repairs_total{job="enterprise-knowledge-api",outcome="rejected"}'
+        values: '100+0x9 0+0x20'
+      - series: 'enterprise_rag_feedback_final_total{job="enterprise-knowledge-api",answerable="false"}'
+        values: '100+0x9 0+0x20'
+      - series: 'enterprise_rag_budget_requests_total{job="enterprise-knowledge-api",outcome="limited",reason="calls"}'
+        values: '100+0x9 0+0x20'
+      - series: 'enterprise_rag_terminal_results_total{job="enterprise-knowledge-api",stage="validation",answerable="false"}'
+        values: '100+0x9 0+0x20'
+    alert_rule_test:
+      - eval_time: 20m
+        alertname: RagRepairFailuresHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagFeedbackRefusalsHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagSharedBudgetLimitedHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagValidationRefusalsHigh
+        exp_alerts: []
+  - name: non_api_evaluation_is_excluded
+    interval: 1m
+    input_series:
+      - series: 'enterprise_rag_repairs_total{job="local-evaluation",outcome="rejected"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_feedback_final_total{job="local-evaluation",answerable="false"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_budget_requests_total{job="local-evaluation",outcome="limited",reason="calls"}'
+        values: '0+2x30'
+      - series: 'enterprise_rag_terminal_results_total{job="local-evaluation",stage="validation",answerable="false"}'
+        values: '0+2x30'
+    alert_rule_test:
+      - eval_time: 20m
+        alertname: RagRepairFailuresHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagFeedbackRefusalsHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagSharedBudgetLimitedHigh
+        exp_alerts: []
+      - eval_time: 20m
+        alertname: RagValidationRefusalsHigh
+        exp_alerts: []

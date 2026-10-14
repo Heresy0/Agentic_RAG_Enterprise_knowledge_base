@@ -61,3 +61,6 @@ tmp/
 
 # Reproducible local copies for the unified 50-document evaluation corpus.
 output/knowledge-corpus-unified/
+
+# Reproducible local corpus copy for the six-document multihop increment.
+output/knowledge-corpus-multihop/

@@ -108,6 +108,444 @@
       "targets": [{"expr": "sum by (outcome) (rate(enterprise_alert_webhook_deliveries_total{job=\"enterprise-knowledge-alert-webhook\"}[5m]))", "legendFormat": "{{outcome}}", "refId": "A"}],
       "title": "Webhook 网关处理速率",
       "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 11,
+      "panels": [],
+      "title": "RAG、Agent 与共享预算",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "每个阶段分别计数；输入规划、证据路由和策略变更不能相加当作请求数。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 29
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (phase, strategy) (rate(enterprise_rag_routes_total{job=\"enterprise-knowledge-api\"}[5m]))",
+          "legendFormat": "{{phase}} / {{strategy}}",
+          "refId": "A"
+        }
+      ],
+      "title": "RAG 策略与路由（按阶段）",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "只统计实际执行的 search/read；finish 是决策，不是检索调用。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 29
+      },
+      "id": 13,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (action) (rate(enterprise_agent_actions_total{job=\"enterprise-knowledge-api\"}[5m]))",
+          "legendFormat": "{{action}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Agent 工具调用",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "包含 bypassed；局部循环上限与共享预算受限是不同停止原因。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 37
+      },
+      "id": 14,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (outcome) (rate(enterprise_agent_runs_total{job=\"enterprise-knowledge-api\"}[5m]))",
+          "legendFormat": "{{outcome}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Agent 证据收集结果",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "model_repaired 是候选通过修复校验；格式恢复 generated 仅表示形成草稿，不等于最终通过。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 37
+      },
+      "id": 15,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (outcome) (rate(enterprise_rag_repairs_total{job=\"enterprise-knowledge-api\"}[5m]))",
+          "legendFormat": "修复 / {{outcome}}",
+          "refId": "A"
+        },
+        {
+          "expr": "sum by (outcome) (rate(enterprise_rag_schema_repairs_total{job=\"enterprise-knowledge-api\"}[5m]))",
+          "legendFormat": "格式恢复 / {{outcome}}",
+          "refId": "B"
+        }
+      ],
+      "title": "答案修复与格式恢复",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "regenerated 表示完成证据刷新并接受再生成草稿；最终是否仍拒答见相邻面板。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 45
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (outcome) (rate(enterprise_rag_feedback_total{job=\"enterprise-knowledge-api\"}[5m]))",
+          "legendFormat": "{{outcome}}",
+          "refId": "A"
+        }
+      ],
+      "title": "缺证据补查处理结果",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "仅统计已接受的补查再生成且产生最终结果的请求。可回答不等于语义正确；异常中断不计入。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 45
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (answerable) (rate(enterprise_rag_feedback_final_total{job=\"enterprise-knowledge-api\"}[5m]))",
+          "legendFormat": "answerable={{answerable}}",
+          "refId": "A"
+        }
+      ],
+      "title": "补查再生成后的最终结果",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "每次进入 AnswerService 的请求只记录一次。limited 是共享配额实际拒绝可选步骤；达到上限但没有尝试超额不算受限。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 53
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (outcome, reason) (rate(enterprise_rag_budget_requests_total{job=\"enterprise-knowledge-api\"}[5m]))",
+          "legendFormat": "{{outcome}} / {{reason}}",
+          "refId": "A"
+        }
+      ],
+      "title": "共享预算请求状态",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "每个正常返回的请求只产生一个终态：pre_generation、generation_error、validation 或 final。校验拒答不是误拒答判定。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 53
+      },
+      "id": 19,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (stage, answerable) (rate(enterprise_rag_terminal_results_total{job=\"enterprise-knowledge-api\"}[5m]))",
+          "legendFormat": "{{stage}} / {{answerable}}",
+          "refId": "A"
+        }
+      ],
+      "title": "RAG 最终回答与校验状态",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "只展示有耗时观测的阶段；部分计时包含子阶段，不可相加当作端到端耗时。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 61
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum by (le, stage) (rate(enterprise_qa_stage_duration_seconds_bucket{job=\"enterprise-knowledge-api\",stage=~\"query_planning_ms|agent_decision_ms|agent_tool_ms|answer_repair_ms|feedback_search_ms|answer_regeneration_ms\"}[5m])))",
+          "legendFormat": "{{stage}}",
+          "refId": "A"
+        }
+      ],
+      "title": "RAG 新增阶段 P95",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "description": "包含规划、Agent 决策、修复和再生成；未知用量不计为零。完整用量质量见 Model Token Audit 看板。",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "暂无样本"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 61
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (stage) (rate(enterprise_model_tokens_total{job=\"enterprise-knowledge-api\",stage=~\"query_planning|agent_decision|answer_repair|answer_regeneration\"}[5m]))",
+          "legendFormat": "{{stage}}",
+          "refId": "A"
+        }
+      ],
+      "title": "RAG 追加模型已报告 tokens / 秒",
+      "type": "timeseries"
     }
   ],
   "refresh": "15s",
@@ -119,5 +557,5 @@
   "timezone": "browser",
   "title": "Enterprise Knowledge RAG",
   "uid": "enterprise-knowledge-rag",
-  "version": 2
+  "version": 3
 }

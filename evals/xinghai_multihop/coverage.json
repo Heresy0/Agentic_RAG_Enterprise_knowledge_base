@@ -1,0 +1,139 @@
+{
+  "edition": "xinghai-multihop-6-v1",
+  "single_turn_cases": 12,
+  "answerable": 9,
+  "unanswerable": 3,
+  "case_kinds": {
+    "two_hop": 4,
+    "three_hop": 2,
+    "complex": 3,
+    "boundary": 3
+  },
+  "corpus_document_hashes": {
+    "51_青屿项目范围与适用规则登记.md": "701e0d31246fd02b55ec98f73b7c9e4a484d3712db01a8f04b7cd802ff262750",
+    "52_青屿验收接口规则与版本条件.md": "9ec1f7ab7fe9bdaf9b67d65f760dec3331ddb1245736ed27f4eb2161f38b0cbe",
+    "53_青屿校验批次与验收签署记录.md": "ed2f7b9fde07da1e69a659f9886a44dfe93241ac92e1be20fb3475077c3f346c",
+    "54_雾岑服务配置与适配器映射.md": "6a4c4f81fe6508e1311fb523cb5572d15644e6dae2226cb8f8ad2da560e6576c",
+    "55_雾岑服务分级与响应约定.md": "bbcc57a9e5cb946db358cf8a066350d9e7cf1d3d0fda4e5e4f8fe00065040b92",
+    "56_雾岑同步与预览事件运行记录.md": "f8a4c64ea0a94b9c1f3f6dd1432053b1f7b3a47d14c7ca4634228c1375a05b37"
+  },
+  "document_chunk_counts": {
+    "51_青屿项目范围与适用规则登记.md": 7,
+    "52_青屿验收接口规则与版本条件.md": 7,
+    "53_青屿校验批次与验收签署记录.md": 8,
+    "54_雾岑服务配置与适配器映射.md": 8,
+    "55_雾岑服务分级与响应约定.md": 7,
+    "56_雾岑同步与预览事件运行记录.md": 9
+  },
+  "total_chunks": 46,
+  "structural_validation": "passed",
+  "evidence_checks": [
+    {
+      "id": "MH-001",
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 5,
+      "reciprocal_rank": 0.2,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "expected_evidence_count": 2,
+      "matched_evidence_count": 2
+    },
+    {
+      "id": "MH-002",
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 25,
+      "reciprocal_rank": 0.04,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "expected_evidence_count": 2,
+      "matched_evidence_count": 2
+    },
+    {
+      "id": "MH-003",
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 29,
+      "reciprocal_rank": 0.034482758620689655,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "expected_evidence_count": 2,
+      "matched_evidence_count": 2
+    },
+    {
+      "id": "MH-004",
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 13,
+      "reciprocal_rank": 0.07692307692307693,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "expected_evidence_count": 3,
+      "matched_evidence_count": 3
+    },
+    {
+      "id": "MH-005",
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 5,
+      "reciprocal_rank": 0.2,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "expected_evidence_count": 7,
+      "matched_evidence_count": 7
+    },
+    {
+      "id": "MH-006",
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 25,
+      "reciprocal_rank": 0.04,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "expected_evidence_count": 6,
+      "matched_evidence_count": 6
+    },
+    {
+      "id": "MH-007",
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 4,
+      "reciprocal_rank": 0.25,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "expected_evidence_count": 6,
+      "matched_evidence_count": 6
+    },
+    {
+      "id": "MH-008",
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 13,
+      "reciprocal_rank": 0.07692307692307693,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "expected_evidence_count": 5,
+      "matched_evidence_count": 5
+    },
+    {
+      "id": "MH-009",
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 25,
+      "reciprocal_rank": 0.04,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "expected_evidence_count": 8,
+      "matched_evidence_count": 8
+    }
+  ],
+  "external_model_calls": 0,
+  "database_writes": 0,
+  "semantic_annotations_execution": "manual_review_only_not_executed_by_current_scorer",
+  "live_answer_evaluation": "not_run",
+  "limitations": [
+    "合成增量集，不是严格独立企业盲测。",
+    "逻辑证据链不等于固定工具调用次数。"
+  ]
+}
