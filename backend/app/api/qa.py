@@ -261,6 +261,7 @@ def answer_question(
                                        lease_seconds=request.app.state.settings.qa_concurrency_lease_seconds) as check_lease:
             with usage_context(scope=scope, session=session, settings=request.app.state.settings,
                                request_id=request_id, actor_user_id=principal.user_id,
+                               actor_external_subject=principal.external_subject,
                                conversation_id=payload.conversation_id):
                 if payload.conversation_id is not None:
                     result, context_ms = request.app.state.conversation_answer_service.answer(

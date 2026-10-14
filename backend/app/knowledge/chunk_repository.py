@@ -68,6 +68,7 @@ class ChunkRepository:
             "chunk_id": chunk.id,
             "chunk_index": chunk.chunk_index,
             "chunk_content_hash": chunk.content_hash,
+            "vector_generation": chunk.vector_generation,
             "document_name": document.file_name,
             "source": document.storage_uri,
         })
@@ -97,6 +98,54 @@ class ChunkRepository:
         return {identifier: {**extract_policy("\n".join(contents), doc.file_name),
                             **((doc.metadata_json or {}).get("policy") if isinstance((doc.metadata_json or {}).get("policy"), dict) else {})}
                 for identifier, (doc, contents) in grouped.items()}
+
+    def _current_rows(self, scope):
+        return select(DocumentChunk, KnowledgeDocument).join(KnowledgeDocument, and_(
+            KnowledgeDocument.id == DocumentChunk.document_id,
+            KnowledgeDocument.tenant_id == DocumentChunk.tenant_id,
+            KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id,
+        )).where(DocumentChunk.tenant_id == scope.tenant_id,
+                 scope.knowledge_base_filter(DocumentChunk.knowledge_base_id),
+                 KnowledgeDocument.status == "ready").execution_options(populate_existing=True)
+
+    def current_chunks(self, *, scope, expected):
+        """Rehydrate a bounded evidence pool; retired versions cannot re-enter."""
+        if not expected:
+            return []
+        if len(expected) > 32:
+            raise ValueError("证据池最多允许 32 个分块")
+        rows = self._session.execute(self._current_rows(scope).where(DocumentChunk.id.in_(expected))).all()
+        result = {}
+        for chunk, document in rows:
+            previous = expected[chunk.id]
+            if (previous.get("vector_generation") != chunk.vector_generation
+                    or str(previous.get("document_id")) != str(document.id)
+                    or str(previous.get("knowledge_base_id")) != str(chunk.knowledge_base_id)):
+                continue
+            result[chunk.id] = self._stored(chunk, document)
+        return [result[key] for key in expected if key in result]
+
+    def neighboring_chunks(self, *, scope, chunk_id, generation, document_id, radius=2):
+        """Read at most five neighbors of one already-authorized current anchor."""
+        if not 0 <= radius <= 2:
+            raise ValueError("相邻原文窗口最多为 2")
+        anchor = self._session.execute(self._current_rows(scope).where(
+            DocumentChunk.id == chunk_id, DocumentChunk.document_id == document_id,
+            DocumentChunk.vector_generation == generation,
+        )).first()
+        if anchor is None:
+            return []
+        chunk, _ = anchor
+        rows = self._session.execute(self._current_rows(scope).where(
+            DocumentChunk.document_id == document_id, DocumentChunk.vector_generation == generation,
+            DocumentChunk.chunk_index.between(max(0, chunk.chunk_index - radius), chunk.chunk_index + radius),
+        ).order_by(DocumentChunk.chunk_index).limit(5)).all()
+        return [self._stored(c, d) for c, d in rows]
+
+    def _stored(self, chunk, document):
+        return StoredChunk(chunk_id=chunk.id, document_id=document.id, tenant_id=chunk.tenant_id,
+            knowledge_base_id=chunk.knowledge_base_id, content=chunk.content, document_name=document.file_name,
+            source=document.storage_uri, metadata=self._build_metadata(chunk=chunk, document=document))
 
     def candidate_companions(self, *, scope, document_ids):
         """First eight chunks of at most two already matched documents, scoped."""

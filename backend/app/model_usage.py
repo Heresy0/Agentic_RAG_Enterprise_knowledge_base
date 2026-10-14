@@ -19,7 +19,7 @@ from .db.model_usage_models import ModelUsageEvent, ModelUsageScope
 
 logger = logging.getLogger(__name__)
 _current = ContextVar("model_usage_context", default=None)
-STAGES = {"answer_generation", "conversation_rewrite", "query_embedding", "document_embedding", "rerank"}
+STAGES = {"answer_generation", "conversation_rewrite", "query_embedding", "document_embedding", "rerank", "agent_decision"}
 CALLS = Counter("enterprise_model_calls", "Physical model attempts", ["stage", "provider", "model", "status"])
 TOKENS = Counter("enterprise_model_tokens", "Reported total tokens (not estimates)", ["stage", "provider", "model"])
 UNKNOWN = Counter("enterprise_model_usage_unknown", "Calls without trustworthy total usage", ["stage", "provider", "model"])
@@ -137,10 +137,12 @@ class UsageContext:
     prices: dict = field(default_factory=dict)
     links: dict = field(default_factory=dict)
     events: list = field(default_factory=list)
+    actor_external_subject: str | None = None
 
 
 @contextmanager
-def usage_context(*, scope, session=None, settings=None, request_id=None, actor_user_id=None, **links):
+def usage_context(*, scope, session=None, settings=None, request_id=None, actor_user_id=None,
+                  actor_external_subject=None, **links):
     from .evaluation.trace import start_model_usage
     start_model_usage()
     parent = _current.get()
@@ -161,6 +163,7 @@ def usage_context(*, scope, session=None, settings=None, request_id=None, actor_
     context = UsageContext(scope, request_id or uuid4().hex, actor_user_id, sink,
                            getattr(settings, "model_usage_prices", {}),
                            {k: str(v) for k, v in links.items() if k in {"conversation_id", "job_id", "document_id"} and v is not None})
+    context.actor_external_subject = actor_external_subject
     token = _current.set(context)
     try:
         yield context
@@ -176,9 +179,15 @@ def audited_scope(function):
         with usage_context(scope=kwargs["scope"], session=kwargs.get("session", getattr(self, "_session", None)),
                            settings=getattr(self, "_settings", None),
                            actor_user_id=getattr(principal, "user_id", kwargs.get("created_by_user_id")),
+                           actor_external_subject=getattr(principal, "external_subject", None),
                            conversation_id=kwargs.get("conversation_id"), document_id=kwargs.get("document_id")):
             return function(self, *args, **kwargs)
     return wrapped
+
+
+def current_usage_context():
+    """Trusted request-local actor and accounting, never exposed as a model tool."""
+    return _current.get()
 
 
 class ModelCall:

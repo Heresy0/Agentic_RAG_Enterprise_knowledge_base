@@ -81,6 +81,8 @@ class Citation(BaseModel):
 
 
 class AnswerTimings(BaseModel):
+    agent_decision_ms: float | None = Field(default=None, exclude_if=lambda value: value is None)
+    agent_tool_ms: float | None = Field(default=None, exclude_if=lambda value: value is None)
     hybrid_retrieval_ms: float | None = None
     rerank_ms: float | None = None
     search_total_ms: float

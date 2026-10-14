@@ -77,6 +77,7 @@ def record_documents(stage, documents):
                          matched_incident_ids=metadata.get('matched_incident_ids', []),
                          evidence_role=metadata.get("evidence_role"),
                          quality=metadata.get("quality"),
+                         vector_generation=metadata.get("vector_generation"),
                          cleaning_version=metadata.get("cleaning_version"),
                          chunk_type=metadata.get("chunk_type"),
                          parser=metadata.get("parser"),
@@ -149,3 +150,18 @@ def record_conversation_resolution(question, resolved, history_count):
         trace.stages['conversation_resolution'] = [dict(
             question=question, retrieval_question=resolved, history_count=history_count,
         )]
+
+
+def record_agent_event(event):
+    """Visible actions/limits only; no hidden reasoning or credentials."""
+    trace = _current.get()
+    if trace is not None:
+        trace.stages.setdefault("agent_decisions", []).append(deepcopy(event))
+
+
+def record_agent_retrieval(snapshot):
+    trace = _current.get()
+    if trace is not None:
+        trace.stages.setdefault("agent_retrieval", []).append(deepcopy(snapshot))
+        for row in snapshot.get("stages", {}).get("model_usage", []):
+            record_model_usage(row)

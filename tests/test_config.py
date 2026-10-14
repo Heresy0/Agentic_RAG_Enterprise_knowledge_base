@@ -90,3 +90,14 @@ def test_milvus_secret_file_and_purpose_override(application_environment, monkey
     monkeypatch.setenv("MILVUS_WORKER_TOKEN_FILE", str(writer))
     assert Settings().milvus_token == "reader:read-secret"
     assert Settings(milvus_access="write").milvus_token == "writer:write-secret"
+
+
+@pytest.mark.parametrize('name,value', [
+    ('AGENTIC_RAG_MODE','unbounded'), ('AGENT_MAX_DECISIONS','4'), ('AGENT_MAX_SEARCHES','0'),
+    ('AGENT_MAX_READS','3'), ('AGENT_MAX_EVIDENCE','1000'), ('AGENT_MAX_PROMPT_BYTES','999999'),
+    ('AGENT_MAX_OUTPUT_TOKENS','0'), ('AGENT_MAX_DECISION_TOKENS','1'), ('AGENT_MAX_SECONDS','nan'),
+    ('AGENT_DECISION_TIMEOUT_SECONDS','inf'), ('AGENT_MAX_DECISIONS','not-an-int')])
+def test_agent_limits_are_validated(application_environment, monkeypatch, name, value):
+    monkeypatch.setenv(name, value)
+    with pytest.raises(RuntimeError, match=name):
+        Settings()

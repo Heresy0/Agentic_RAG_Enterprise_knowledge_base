@@ -38,6 +38,33 @@ class Settings:
         )
         from .model_usage import parse_prices
         self.model_usage_prices = parse_prices(os.getenv("MODEL_USAGE_PRICES_JSON", "{}"))
+        self.agentic_rag_mode = os.getenv("AGENTIC_RAG_MODE", "auto").strip().lower()
+        if self.agentic_rag_mode not in {"off", "auto", "always"}:
+            raise RuntimeError("AGENTIC_RAG_MODE 必须为 off、auto 或 always")
+        agent_limits = {
+            "agent_max_decisions": ("AGENT_MAX_DECISIONS", 2, 1, 3),
+            "agent_max_searches": ("AGENT_MAX_SEARCHES", 2, 1, 3),
+            "agent_max_reads": ("AGENT_MAX_READS", 1, 0, 2),
+            "agent_max_evidence": ("AGENT_MAX_EVIDENCE", 24, 8, 32),
+            "agent_max_prompt_bytes": ("AGENT_MAX_PROMPT_BYTES", 12000, 2000, 24000),
+            "agent_max_output_tokens": ("AGENT_MAX_OUTPUT_TOKENS", 384, 128, 1024),
+            "agent_max_decision_tokens": ("AGENT_MAX_DECISION_TOKENS", 16000, 4000, 64000),
+        }
+        for attribute, (variable, default, minimum, maximum) in agent_limits.items():
+            try:
+                value = int(os.getenv(variable, str(default)))
+            except ValueError:
+                raise RuntimeError(f"{variable} 必须为整数") from None
+            if not minimum <= value <= maximum:
+                raise RuntimeError(f"{variable} 必须在 {minimum} 至 {maximum} 之间")
+            setattr(self, attribute, value)
+        from math import isfinite
+        self.agent_max_seconds = float(os.getenv("AGENT_MAX_SECONDS", "20"))
+        self.agent_decision_timeout_seconds = float(os.getenv("AGENT_DECISION_TIMEOUT_SECONDS", "8"))
+        for name, value in (("AGENT_MAX_SECONDS", self.agent_max_seconds),
+                            ("AGENT_DECISION_TIMEOUT_SECONDS", self.agent_decision_timeout_seconds)):
+            if not isfinite(value) or not 0 < value <= 60:
+                raise RuntimeError(f"{name} 必须大于 0 且不超过 60 秒")
         self.database_url = required_env("DATABASE_URL")
         from math import isfinite
         import re

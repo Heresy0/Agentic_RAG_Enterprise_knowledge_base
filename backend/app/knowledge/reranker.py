@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import requests
 from pydantic import BaseModel, SecretStr
 from ..model_usage import ModelCall
+from .request_budget import remaining_timeout
 
 
 class RerankError(RuntimeError):
@@ -72,7 +73,7 @@ class QwenReranker(BaseReranker):
                      "Content-Type":"application/json",
                  },
                  json=payload,
-                 timeout=self.timeout_seconds,
+                 timeout=remaining_timeout(self.timeout_seconds),
              )
              response.raise_for_status()
              data = response.json()

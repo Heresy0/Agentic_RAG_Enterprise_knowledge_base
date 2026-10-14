@@ -61,7 +61,9 @@ def evaluate_local_conversations(cases, config, *, save_traces=None):
                                                            token_from_environment(profile['token_env']))
                             scope = authorization.require_retrieval_scope(principal=principal, knowledge_base_id=None)
                             with capture_trace() as trace, usage_context(scope=scope, session=session, settings=settings,
-                                                                        actor_user_id=principal.user_id, conversation_id=conversation_id):
+                                                                        actor_user_id=principal.user_id,
+                                                                        actor_external_subject=principal.external_subject,
+                                                                        conversation_id=conversation_id):
                                 result, _ = service.answer(turn['question'], conversation_id=conversation_id,
                                                            principal=principal, scope=scope, session=session)
                             snapshot = trace.to_dict()

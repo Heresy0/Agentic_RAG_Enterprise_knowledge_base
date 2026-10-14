@@ -8,6 +8,7 @@ from .hybrid_retriever import (
 )
 from .milvus_retriever import (
     MilvusRetriever,
+    stored_chunk_to_document,
 )
 from .keyword_repository import PgKeywordRepository
 from .pg_bm25_retriever import PgBM25Retriever
@@ -55,6 +56,31 @@ class RetrievalService:
                 ),
             )
         )
+
+    def refresh_evidence(self, documents, *, scope, session):
+        expected = {doc.metadata["chunk_id"]: doc.metadata for doc in documents
+                    if scope.contains(doc.metadata.get("tenant_id"), doc.metadata.get("knowledge_base_id"))
+                    and doc.metadata.get("chunk_id")}
+        repository = ChunkRepository(session, self._vector_store)
+        current = [stored_chunk_to_document(row) for row in repository.current_chunks(scope=scope, expected=expected)]
+        original = {doc.metadata.get("chunk_id"): doc.metadata for doc in documents}
+        policies = repository.candidate_policies(scope=scope,
+            document_ids={UUID(doc.metadata["document_id"]) for doc in current})
+        names = {str(key): name for key, name in scope.knowledge_base_names}
+        for doc in current:
+            for key in ("rerank_score", "rerank_status", "retrieval_latency_ms", "rerank_latency_ms"):
+                if key in original.get(doc.metadata["chunk_id"], {}):
+                    doc.metadata[key] = original[doc.metadata["chunk_id"]][key]
+            if doc.metadata["document_id"] in policies:
+                doc.metadata["policy"] = policies[doc.metadata["document_id"]]
+            doc.metadata["knowledge_base_name"] = names.get(doc.metadata["knowledge_base_id"])
+        return current
+
+    def read_evidence(self, anchor, *, scope, session):
+        rows = ChunkRepository(session, self._vector_store).neighboring_chunks(scope=scope,
+            chunk_id=anchor.metadata["chunk_id"], generation=anchor.metadata["vector_generation"],
+            document_id=UUID(anchor.metadata["document_id"]))
+        return [stored_chunk_to_document(row) for row in rows]
 
     @audited_scope
     def search(

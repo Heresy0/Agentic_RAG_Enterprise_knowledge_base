@@ -4,15 +4,18 @@ from contextvars import ContextVar
 from langchain_core.embeddings import Embeddings
 
 from ..model_usage import ModelCall
+from .request_budget import active_deadline, remaining_timeout
 
 _stage = ContextVar("embedding_usage_stage", default="document_embedding")
 
 
 class EmbeddingClient:
-    def __init__(self, client, model):
-        self.client, self.model = client, model
+    def __init__(self, client, model, timeout=30):
+        self.client, self.model, self.timeout = client, model, timeout
 
     def create(self, *args, **kwargs):
+        if active_deadline():
+            kwargs["timeout"] = remaining_timeout(self.timeout)
         with ModelCall(_stage.get(), self.model) as call:
             response = self.client.create(*args, **kwargs)
             data = response if isinstance(response, dict) else response.model_dump()
@@ -23,7 +26,7 @@ class EmbeddingClient:
 class AuditedEmbeddings(Embeddings):
     def __init__(self, embeddings):
         self.embeddings = embeddings
-        embeddings.client = EmbeddingClient(embeddings.client, embeddings.model)
+        embeddings.client = EmbeddingClient(embeddings.client, embeddings.model, getattr(embeddings, "request_timeout", 30) or 30)
 
     def embed_documents(self, texts):
         token = _stage.set("document_embedding")

@@ -28,6 +28,7 @@ from .answer_completion import complete_answer
 from .answer_coverage import coverage_errors, coverage_snapshot, requirement_prompt
 from .temporal import future_certainty_gap
 from .retrieval_service import RetrievalService
+from .evidence_coordinator import EvidenceCoordinator
 from ..security.retrieval_scope import RetrievalScope
 from ..evaluation.trace import (record_context, record_documents, record_scope, record_calculations,
                                 record_answer_decision, record_answer_completion, record_answer_generation)
@@ -53,9 +54,11 @@ class AnswerService:
         retrieval_service: RetrievalService,
         context_builder: ContextBuilder | None = None,
         validator: AnswerValidator | None = None,
+        evidence_coordinator: EvidenceCoordinator | None = None,
     ) -> None:
         self._settings = settings
         self._retrieval_service = retrieval_service
+        self._evidence_coordinator = evidence_coordinator or EvidenceCoordinator(settings, retrieval_service)
         self._context_builder = (
             context_builder or ContextBuilder()
         )
@@ -103,11 +106,14 @@ class AnswerService:
         }
 
         search_started = time.perf_counter()
-        documents = self._retrieval_service.search(
+        collected = self._evidence_coordinator.collect(
             question,
             scope=scope,
             session=session,
         )
+        documents = collected.documents
+        timings["agent_decision_ms"] = collected.decision_ms
+        timings["agent_tool_ms"] = collected.tool_ms
         # 防御性校验：缺少来源范围或越权的分块不得进入上下文/生成模型。
         documents = [document for document in documents if scope.contains(
             document.metadata.get("tenant_id"), document.metadata.get("knowledge_base_id"),

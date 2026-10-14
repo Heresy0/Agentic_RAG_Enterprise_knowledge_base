@@ -9,6 +9,7 @@ from uuid import UUID
 import requests
 
 from ..db.models import EMBEDDING_DIMENSION
+from .request_budget import active_deadline, remaining_timeout
 
 
 class VectorStoreUnavailable(RuntimeError):
@@ -31,11 +32,15 @@ class MilvusVectorStore:
         headers = {"Content-Type": "application/json"}
         if self.token:
             headers["Authorization"] = "Bearer " + self.token
+        timeout = (min(3, self.timeout), self.timeout)
+        if active_deadline():
+            remaining = remaining_timeout(self.timeout)
+            timeout = (min(3, remaining / 2), remaining / 2)
         try:
             response = self._transport.post(
                 self.uri + "/v2/vectordb/" + operation,
                 json={"collectionName": self.collection, **values}, headers=headers,
-                timeout=(min(3, self.timeout), self.timeout),
+                timeout=timeout,
             )
             response.raise_for_status()
             result = response.json()

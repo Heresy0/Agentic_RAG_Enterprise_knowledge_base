@@ -166,7 +166,8 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
                             records.append(dict(id=case["id"], status="skipped", reason="required_sources_not_authorized"))
                             continue
                         with capture_trace() as trace, usage_context(scope=scope, session=session, settings=settings,
-                                                                    actor_user_id=principal.user_id):
+                                                                    actor_user_id=principal.user_id,
+                                                                    actor_external_subject=principal.external_subject):
                             if answer is not None:
                                 response = answer.answer(case["question"], scope=scope, session=session).model_dump(mode="json")
                             else:
@@ -203,6 +204,7 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
         engine.dispose()
     return dict(status="completed", evaluation_type="authenticated_local_backend_not_http_endpoint",
                 runtime=dict(tenant_id=str(principal.tenant_id), user_id=str(principal.user_id),
+                             agentic_rag_mode=getattr(settings, "agentic_rag_mode", "off"),
                              embedding_model=settings.embedding_model, rerank_model=settings.rerank_model,
                              answer_model=settings.chat_model),
                 summary=summarize_records(records), stages=summarize_stages(records), records=records,
