@@ -37,6 +37,16 @@ def test_settings_only_require_active_rag_services(application_environment):
     assert not hasattr(settings, "summary_model") and not hasattr(settings, "database_path")
 
 
+def test_memory_switch_is_explicit_and_rejects_invalid_values(application_environment, monkeypatch):
+    monkeypatch.delenv('CONVERSATION_MEMORY_ENABLED', raising=False)
+    assert Settings().conversation_memory_enabled
+    monkeypatch.setenv('CONVERSATION_MEMORY_ENABLED', 'false')
+    assert not Settings().conversation_memory_enabled
+    monkeypatch.setenv('CONVERSATION_MEMORY_ENABLED', 'yes')
+    with pytest.raises(RuntimeError, match='CONVERSATION_MEMORY_ENABLED'):
+        Settings()
+
+
 @pytest.mark.parametrize('name,value', [('RAG_RERANK_TOP_K','0'),('RAG_RERANK_TOP_K','25'),
     ('RAG_RERANK_TOP_K','bad'),('RAG_PARENT_CONTEXT_ENABLED','yes')])
 def test_parent_configuration_rejects_invalid_values(application_environment,monkeypatch,name,value):

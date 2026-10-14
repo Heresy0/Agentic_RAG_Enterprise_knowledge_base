@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 from ..audit_service import AuditService
 from ..db.dependencies import get_database_session
 from ..knowledge.answer_models import AnswerResult
-from ..knowledge.conversations import ConversationBusy, ConversationNotFound, ConversationStore
+from ..knowledge.conversations import ConversationBusy, ConversationNotFound, ConversationStore, invalidate_owned_context
 from ..security.authorization import AuthorizationDenied, AuthorizationService
 from ..security.dependencies import get_current_principal
 from ..security.principal import Principal
@@ -54,6 +54,7 @@ def get_store(knowledge_base_id: UUID | None = None, principal: Principal = Depe
             principal=principal, knowledge_base_id=knowledge_base_id,
         )
     except AuthorizationDenied as exc:
+        invalidate_owned_context(session, principal, knowledge_base_id)
         raise HTTPException(status_code=403, detail=str(exc)) from exc
     return ConversationStore(session, principal, scope)
 

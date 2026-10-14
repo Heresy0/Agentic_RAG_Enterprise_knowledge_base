@@ -36,6 +36,7 @@ data/documents/
 
 # 本地压测原始结果
 data/load-tests/
+data/conversation-memory/
 
 # Local ingestion receipts and operational verification reports.
 data/ingestion-reports/

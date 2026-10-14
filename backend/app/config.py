@@ -80,6 +80,10 @@ class Settings:
         if parent_enabled not in {"true", "false"}:
             raise RuntimeError("RAG_PARENT_CONTEXT_ENABLED 必须为 true 或 false")
         self.rag_parent_context_enabled = parent_enabled == "true"
+        memory_enabled = os.getenv("CONVERSATION_MEMORY_ENABLED", "true").strip().lower()
+        if memory_enabled not in {"true", "false"}:
+            raise RuntimeError("CONVERSATION_MEMORY_ENABLED 必须为 true 或 false")
+        self.conversation_memory_enabled = memory_enabled == "true"
         try:
             self.rag_rerank_top_k = int(os.getenv("RAG_RERANK_TOP_K", "12"))
         except ValueError:

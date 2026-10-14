@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-14",
+  "branch": "codex/conversation-memory",
+  "status": "real_model_validation_failed_not_ready",
+  "evaluation_type": "real_http_conversation_with_private_sql_memory_diagnostics",
+  "model": "qwen3.7-flash",
+  "planned_qa_turns": 42,
+  "completed_qa_turns": 42,
+  "http_200_turns": 42,
+  "answerable_turns": 19,
+  "answerability_is_not_accuracy": true,
+  "memory_phase_turns": 24,
+  "memory_phase_clarifications": 21,
+  "scenario_passed": 0,
+  "scenario_total": 3,
+  "scenarios": [
+    {
+      "id": "MEM-RETAIN",
+      "turns": 15,
+      "end_to_end_passed": false,
+      "cleanup": "deleted_owned_temporary_conversation_via_http",
+      "checkpoint_failed_checks": {
+        "MEM-RETAIN-T15": [
+          "rewrite_has_2025",
+          "rewrite_has_普通员工",
+          "rewrite_has_上海",
+          "active_2025",
+          "active_普通员工",
+          "active_上海",
+          "active_部门负责人",
+          "active_不讨论餐补",
+          "clarification_expected",
+          "answerable_expected",
+          "answer_has_550",
+          "answer_has_1.2",
+          "state_complete"
+        ]
+      }
+    },
+    {
+      "id": "MEM-CORRECT",
+      "turns": 15,
+      "end_to_end_passed": false,
+      "cleanup": "deleted_owned_temporary_conversation_via_http",
+      "checkpoint_failed_checks": {
+        "MEM-CORRECT-T07": [
+          "active_2025",
+          "clarification_expected",
+          "state_complete"
+        ],
+        "MEM-CORRECT-T08": [
+          "active_2026",
+          "clarification_expected",
+          "answerable_expected",
+          "answer_has_650",
+          "answer_has_1.4",
+          "state_complete"
+        ],
+        "MEM-CORRECT-T15": [
+          "rewrite_has_2026",
+          "rewrite_has_普通员工",
+          "rewrite_has_上海",
+          "active_2026",
+          "clarification_expected",
+          "answerable_expected",
+          "answer_has_650",
+          "answer_has_1.4",
+          "state_complete"
+        ]
+      }
+    },
+    {
+      "id": "MEM-CONFLICT",
+      "turns": 12,
+      "end_to_end_passed": false,
+      "cleanup": "deleted_owned_temporary_conversation_via_http",
+      "checkpoint_failed_checks": {
+        "MEM-CONFLICT-T07": [
+          "clarification_expected"
+        ],
+        "MEM-CONFLICT-T08": [
+          "conflict_expected",
+          "state_complete"
+        ],
+        "MEM-CONFLICT-T09": [
+          "conflict_expected",
+          "answer_has_2",
+          "answer_has_小时",
+          "state_complete"
+        ],
+        "MEM-CONFLICT-T10": [
+          "conflict_expected",
+          "state_complete"
+        ],
+        "MEM-CONFLICT-T11": [
+          "state_complete"
+        ],
+        "MEM-CONFLICT-T12": [
+          "state_complete"
+        ]
+      }
+    }
+  ],
+  "http_run_usage": {
+    "call_count": 108,
+    "stages": {
+      "query_planning": 2,
+      "query_embedding": 21,
+      "rerank": 21,
+      "agent_decision": 2,
+      "answer_generation": 21,
+      "conversation_rewrite": 39,
+      "answer_repair": 2
+    },
+    "known_tokens": 216752,
+    "unknown_usage_calls": 2,
+    "statuses": {
+      "success": 106,
+      "error": 2
+    }
+  },
+  "separate_resolver_probe_usage": {
+    "call_count": 3,
+    "known_tokens": 3363,
+    "unknown_usage_calls": 0
+  },
+  "combined_usage": {
+    "call_count": 111,
+    "known_tokens": 220115,
+    "unknown_usage_calls": 2
+  },
+  "probe_reproductions": [
+    {
+      "case": "MEM-RETAIN",
+      "turn": 7,
+      "merge": "rejected",
+      "reason": "unverified memory proposal",
+      "not_original_http_call": true
+    },
+    {
+      "case": "MEM-CORRECT",
+      "turn": 7,
+      "merge": "rejected",
+      "reason": "unanchored memory qualifier",
+      "not_original_http_call": true
+    },
+    {
+      "case": "MEM-CONFLICT",
+      "turn": 8,
+      "merge": "rejected",
+      "reason": "replacement lacks explicit correction",
+      "not_original_http_call": true
+    }
+  ],
+  "annotation_review": {
+    "turn_id": "MEM-CONFLICT-T09",
+    "initial_expected_two_hours_incorrect": true,
+    "cited_default_ttl_seconds": 3600,
+    "answer_correct_on_manual_review": true,
+    "unrelated_topic_not_blocked": true,
+    "original_report_preserved": true
+  },
+  "partial_successes": [
+    "Initial unverified claim recorded with user source",
+    "Unrelated topic answered without carrying project money",
+    "Explicit correction recorded as a new user source",
+    "After explicit correction the project question returned a cited answer"
+  ],
+  "production_sources_unchanged_from_offline_receipt": {
+    "backend/app/knowledge/conversation_memory.py": true,
+    "backend/app/knowledge/conversation_service.py": true,
+    "backend/app/knowledge/conversations.py": true,
+    "backend/app/api/conversations.py": true,
+    "backend/app/api/qa.py": true,
+    "backend/app/config.py": true,
+    "backend/app/db/conversation_models.py": true
+  },
+  "raw_report_sha256": "b060f54607dbecd3a749e60f810ad11094c2964c0ac2e108ab01263751c895e2",
+  "probe_report_sha256": "0ea9d4b16b2cc77a08b1a5c2163d987f11096f8eddf7dedb1abf5037041c7c32",
+  "original_cases_sha256": "6a351eae2960c074cf6f7a24f0c9a2ae8d3197a3eab350e8f877010feb51d7d8",
+  "corrected_fixture_sha256": "421c6d9b0452d0edddd4f33f07c79d92ab0372277dae66d2a0683252250e6582",
+  "limitations": [
+    "Single run per scenario, not a statistical accuracy or conflict recall estimate",
+    "Model replacements were stopped by source/operation validation; no permission or final-validation relaxation",
+    "Three probe calls are separate reproductions, not captured original model proposals",
+    "Incomplete state flags persist after partial recovery; raw composite checks are not answer accuracy",
+    "No real permission revocation or concurrency mutation in this live run"
+  ]
+}

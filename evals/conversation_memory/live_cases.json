@@ -1,0 +1,373 @@
+[
+  {
+    "id": "MEM-RETAIN",
+    "purpose": "Retain first-turn conditions beyond the six-turn raw window",
+    "turns": [
+      {
+        "id": "MEM-RETAIN-T01",
+        "question": "请查询差旅住宿标准：2025年普通员工去上海的住宿上限和制度版本；排除部门负责人，只讨论住宿、不讨论餐补，但历史制度版本也需说明。"
+      },
+      {
+        "id": "MEM-RETAIN-T02",
+        "question": "这份标准属于现行还是归档版本？"
+      },
+      {
+        "id": "MEM-RETAIN-T03",
+        "question": "该历史版本的适用年份是什么？"
+      },
+      {
+        "id": "MEM-RETAIN-T04",
+        "question": "单晚住宿标准用什么单位？"
+      },
+      {
+        "id": "MEM-RETAIN-T05",
+        "question": "这项上限主要适用于哪种费用？"
+      },
+      {
+        "id": "MEM-RETAIN-T06",
+        "question": "标准超限时可以直接按更高额度报销吗？"
+      },
+      {
+        "id": "MEM-RETAIN-T07",
+        "question": "归档标准与现在的标准能混用吗？"
+      },
+      {
+        "id": "MEM-RETAIN-T08",
+        "question": "这类费用通常需要什么报销凭证？"
+      },
+      {
+        "id": "MEM-RETAIN-T09",
+        "question": "这个口径能直接用于计算餐补吗？"
+      },
+      {
+        "id": "MEM-RETAIN-T10",
+        "question": "该制度版本主要规范哪些费用？"
+      },
+      {
+        "id": "MEM-RETAIN-T11",
+        "question": "依据该标准报销应注意什么？"
+      },
+      {
+        "id": "MEM-RETAIN-T12",
+        "question": "它有金额上限吗？"
+      },
+      {
+        "id": "MEM-RETAIN-T13",
+        "question": "超出标准能否直接报销？"
+      },
+      {
+        "id": "MEM-RETAIN-T14",
+        "question": "那上限和版本分别是什么？"
+      },
+      {
+        "id": "MEM-RETAIN-T15",
+        "question": "那上限和版本分别是什么？",
+        "expect": {
+          "rewrite_contains": [
+            "2025",
+            "普通员工",
+            "上海"
+          ],
+          "window_excludes": [
+            "2025",
+            "普通员工",
+            "上海",
+            "部门负责人"
+          ],
+          "active": [
+            {
+              "field": "time",
+              "contains": [
+                "2025"
+              ],
+              "source_turn": 1
+            },
+            {
+              "contains": [
+                "普通员工"
+              ]
+            },
+            {
+              "contains": [
+                "上海"
+              ]
+            },
+            {
+              "field": "exclusion",
+              "contains": [
+                "部门负责人"
+              ]
+            },
+            {
+              "contains": [
+                "不讨论餐补"
+              ]
+            }
+          ],
+          "clarification": false,
+          "answerable": true,
+          "answer_contains": [
+            "550",
+            "1.2"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "MEM-CORRECT",
+    "purpose": "Explicit year correction and retention beyond six further turns",
+    "turns": [
+      {
+        "id": "MEM-CORRECT-T01",
+        "question": "请查询差旅住宿标准：2025年普通员工去上海的单晚住宿上限；排除部门负责人。"
+      },
+      {
+        "id": "MEM-CORRECT-T02",
+        "question": "这份标准属于现行还是归档版本？"
+      },
+      {
+        "id": "MEM-CORRECT-T03",
+        "question": "该历史版本的适用年份是什么？"
+      },
+      {
+        "id": "MEM-CORRECT-T04",
+        "question": "单晚住宿标准用什么单位？"
+      },
+      {
+        "id": "MEM-CORRECT-T05",
+        "question": "这项上限主要适用于哪种费用？"
+      },
+      {
+        "id": "MEM-CORRECT-T06",
+        "question": "标准超限时可以直接按更高额度报销吗？"
+      },
+      {
+        "id": "MEM-CORRECT-T07",
+        "question": "那单晚上限和历史制度版本分别是什么？",
+        "expect": {
+          "rewrite_contains": [
+            "2025",
+            "普通员工",
+            "上海"
+          ],
+          "active": [
+            {
+              "field": "time",
+              "contains": [
+                "2025"
+              ]
+            }
+          ],
+          "clarification": false
+        }
+      },
+      {
+        "id": "MEM-CORRECT-T08",
+        "question": "更正：此后改查2026年，员工类型仍为普通员工，城市仍为上海，仍排除部门负责人。请给出单晚住宿上限和适用版本。",
+        "expect": {
+          "active": [
+            {
+              "field": "time",
+              "contains": [
+                "2026"
+              ],
+              "source_turn": 8
+            }
+          ],
+          "active_excludes": [
+            "2025"
+          ],
+          "conflict": false,
+          "clarification": false,
+          "answerable": true,
+          "answer_contains": [
+            "650",
+            "1.4"
+          ]
+        }
+      },
+      {
+        "id": "MEM-CORRECT-T09",
+        "question": "刚才更正后的版本属于现行还是归档？"
+      },
+      {
+        "id": "MEM-CORRECT-T10",
+        "question": "改后的上限主要针对哪种费用？"
+      },
+      {
+        "id": "MEM-CORRECT-T11",
+        "question": "报销口径应该继续沿用旧版本吗？"
+      },
+      {
+        "id": "MEM-CORRECT-T12",
+        "question": "通常需要保留什么住宿报销凭证？"
+      },
+      {
+        "id": "MEM-CORRECT-T13",
+        "question": "单晚住宿上限用什么单位？"
+      },
+      {
+        "id": "MEM-CORRECT-T14",
+        "question": "现行制度与归档版本可以混用吗？"
+      },
+      {
+        "id": "MEM-CORRECT-T15",
+        "question": "那上限和版本分别是什么？",
+        "expect": {
+          "rewrite_contains": [
+            "2026",
+            "普通员工",
+            "上海"
+          ],
+          "rewrite_excludes": [
+            "2025"
+          ],
+          "window_excludes": [
+            "2026",
+            "2025",
+            "普通员工",
+            "上海",
+            "部门负责人"
+          ],
+          "active": [
+            {
+              "field": "time",
+              "contains": [
+                "2026"
+              ],
+              "source_turn": 8
+            }
+          ],
+          "active_excludes": [
+            "2025"
+          ],
+          "conflict": false,
+          "clarification": false,
+          "answerable": true,
+          "answer_contains": [
+            "650",
+            "1.4"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "MEM-CONFLICT",
+    "purpose": "Unverified user claim conflict, unrelated topic, explicit conflict resolution",
+    "turns": [
+      {
+        "id": "MEM-CONFLICT-T01",
+        "question": "青屿项目合同金额是3000元。请查询青屿项目的全量校验与缺陷准入条件。"
+      },
+      {
+        "id": "MEM-CONFLICT-T02",
+        "question": "它的全量校验是什么意思？"
+      },
+      {
+        "id": "MEM-CONFLICT-T03",
+        "question": "它的准入条件主要关注什么？"
+      },
+      {
+        "id": "MEM-CONFLICT-T04",
+        "question": "它的缺陷条件是什么？"
+      },
+      {
+        "id": "MEM-CONFLICT-T05",
+        "question": "它要求保留什么验证证据？"
+      },
+      {
+        "id": "MEM-CONFLICT-T06",
+        "question": "这个项目需要核验全部档案吗？"
+      },
+      {
+        "id": "MEM-CONFLICT-T07",
+        "question": "那全量校验的要求是什么？",
+        "expect": {
+          "active": [
+            {
+              "field": "claim",
+              "contains": [
+                "3000"
+              ],
+              "source_turn": 1
+            }
+          ],
+          "conflict": false,
+          "clarification": false
+        }
+      },
+      {
+        "id": "MEM-CONFLICT-T08",
+        "question": "青屿项目合同金额是4000元。请继续说明它的缺陷准入条件。",
+        "expect": {
+          "conflict": true,
+          "clarification": true,
+          "no_rag_calls": true
+        }
+      },
+      {
+        "id": "MEM-CONFLICT-T09",
+        "question": "开放平台访问令牌有效期是多少？",
+        "expect": {
+          "conflict": true,
+          "clarification": false,
+          "answerable": true,
+          "answer_contains": [
+            "3600",
+            "秒"
+          ],
+          "rewrite_excludes": [
+            "青屿",
+            "3000",
+            "4000"
+          ]
+        },
+        "annotation_note": "已核对引用原文：默认有效期3600秒。首次运行的2小时预期标注错误，原始报告保持不变，另附人工复核。"
+      },
+      {
+        "id": "MEM-CONFLICT-T10",
+        "question": "继续查青屿项目的缺陷准入条件。",
+        "expect": {
+          "conflict": true,
+          "clarification": true,
+          "no_rag_calls": true
+        }
+      },
+      {
+        "id": "MEM-CONFLICT-T11",
+        "question": "更正：青屿项目合同金额以3000元为准，之前4000元说错了。请查询它的缺陷准入条件。",
+        "expect": {
+          "conflict": false,
+          "clarification": false,
+          "active": [
+            {
+              "field": "claim",
+              "contains": [
+                "3000"
+              ],
+              "source_turn": 11
+            }
+          ]
+        }
+      },
+      {
+        "id": "MEM-CONFLICT-T12",
+        "question": "现在它的全量校验与缺陷准入条件是什么？",
+        "expect": {
+          "conflict": false,
+          "clarification": false,
+          "rewrite_contains": [
+            "青屿"
+          ],
+          "rewrite_excludes": [
+            "3000",
+            "4000"
+          ],
+          "answerable": true
+        }
+      }
+    ]
+  }
+]
