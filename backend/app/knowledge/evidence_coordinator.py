@@ -4,6 +4,7 @@ import logging
 import re
 import time
 import unicodedata
+from contextlib import nullcontext
 from dataclasses import dataclass
 from typing import Literal
 
@@ -15,12 +16,13 @@ from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 
 from ..db.models import User
-from ..evaluation.trace import capture_trace, record_agent_event, record_agent_retrieval, record_documents, record_scope
+from ..evaluation.trace import capture_trace, record_agent_event, record_agent_retrieval, record_documents, record_scope, record_rag_event
 from ..model_usage import current_usage_context, invoke_structured
 from ..security.authorization import AuthorizationDenied, AuthorizationService
 from ..security.principal import Principal
 from .evidence_selection import select_evidence
 from .request_budget import evidence_deadline
+from .rag_budget import current_rag_budget, RagBudgetExceeded
 
 logger = logging.getLogger(__name__)
 RUNS = Counter("enterprise_agent_runs", "Optional evidence collection outcomes", ["outcome"])
@@ -161,13 +163,15 @@ class EvidenceCoordinator:
                 pool.setdefault(_key(doc), doc)
         return list(pool.values())[:self._limit("agent_max_evidence", 24)]
 
-    def _payload(self, question, pool, registry, history, *, byte_limit):
+    def _payload(self, question, pool, registry, history, *, byte_limit, plan=None):
         # Model sees bounded content and descriptive labels, never storage paths.
         rows = [dict(evidence_id=registry[_key(doc)], document=str(doc.metadata.get("document_name", ""))[:100],
                      section=str(doc.metadata.get("section_path", ""))[:120],
                      applicability=str(doc.metadata.get("policy", {}))[:300], content=doc.page_content[:650])
                 for doc in pool]
         data = dict(question=question, evidence=rows, executed_tools=history)
+        if plan is not None:
+            data["auxiliary_plan"] = plan.model_dump()
         def render():
             return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
         overhead = len((AGENT_PROMPT + json.dumps(AgentDecision.model_json_schema())).encode("utf-8")) + 256
@@ -184,10 +188,21 @@ class EvidenceCoordinator:
             return None
         return payload
 
-    def collect(self, question, *, scope, session):
+    def collect(self, question, *, scope, session, plan=None):
+        budget = current_rag_budget()
+        if budget:
+            budget.note_query(question)
         initial = self._merge([], self.retrieval.search(question, scope=scope, session=session), scope)
         mode = self._limit("agentic_rag_mode", "off")
         route = route_reason(question, initial)
+        if plan is not None:
+            # Input route is advisory. Empty/front-matter evidence may escalate.
+            route = ("input_plan" if plan.strategy == "agentic" else
+                     "evidence_gap" if route == "evidence_gap" else None)
+            record_rag_event(dict(kind="retrieval_route", initial_strategy=plan.strategy,
+                selected_strategy=("agentic" if mode != "off" and (mode == "always" or route)
+                                   else "reflective" if plan.strategy == "reflective" else "standard"),
+                reason=route or "initial_evidence", agent_enabled=mode != "off"))
         if mode == "off" or (mode == "auto" and route is None):
             record_agent_event(dict(kind="summary", outcome="bypassed", route=route, searches=1, decisions=0))
             RUNS.labels("bypassed").inc()
@@ -198,7 +213,9 @@ class EvidenceCoordinator:
             RUNS.labels("identity_missing").inc()
             return CollectedEvidence(initial)
         started = self.clock()
-        deadline = started + self._limit("agent_max_seconds", 20)
+        budget = current_rag_budget()
+        seconds = self._limit("agent_max_seconds", 20)
+        deadline = started + (min(seconds, budget.remaining_seconds) if budget else seconds)
         pool, registry, history = initial, {}, []
         searches, reads, decisions, charged_tokens = 1, 0, 0, 0
         decision_ms = tool_ms = 0.0
@@ -216,7 +233,9 @@ class EvidenceCoordinator:
                     output_limit = self._limit("agent_max_output_tokens", 384)
                     byte_limit = min(self._limit("agent_max_prompt_bytes", 12000),
                         self._limit("agent_max_decision_tokens", 16000) - charged_tokens - output_limit)
-                    payload = self._payload(question, pool, registry, history, byte_limit=byte_limit)
+                    if budget:
+                        byte_limit = min(byte_limit, budget.remaining_tokens - output_limit)
+                    payload = self._payload(question, pool, registry, history, byte_limit=byte_limit, plan=plan)
                     if payload is None:
                         outcome = "token_budget"
                         break
@@ -227,15 +246,22 @@ class EvidenceCoordinator:
                     if tick >= deadline:
                         outcome = "time_budget"
                         break
-                    decisions += 1
+                    attempted = False
                     try:
-                        decision = self.decider.decide(payload,
-                            timeout=min(self._limit("agent_decision_timeout_seconds", 8), deadline - tick))
+                        attempt = (budget.model_attempt(prompt_bytes=reserved - output_limit, output_tokens=output_limit)
+                                   if budget else nullcontext(deadline - tick))
+                        with attempt as remaining:
+                            attempted = True
+                            decisions += 1
+                            decision = self.decider.decide(payload,
+                                timeout=min(self._limit("agent_decision_timeout_seconds", 8), deadline - tick, remaining))
                     finally:
-                        decision_ms += max(0, self.clock() - tick) * 1000
-                        reported = sum(row["total_tokens"] for row in usage.events[cursor:]
-                            if row.get("total_tokens") is not None) if usage else 0
-                        charged_tokens += reported or reserved  # Unknown usage is not free.
+                        if attempted:
+                            decision_ms += max(0, self.clock() - tick) * 1000
+                            events = usage.events[cursor:] if usage else []
+                            reported = sum(row["total_tokens"] for row in events if row.get("total_tokens") is not None)
+                            charged_tokens += (reported if events and all(row.get("total_tokens") is not None for row in events)
+                                               else max(reported, reserved))
                     decision = AgentDecision.model_validate(decision)
                     guard.require()
                     record_agent_event(dict(kind="decision", step=decisions, **decision.model_dump()))
@@ -254,8 +280,9 @@ class EvidenceCoordinator:
                         if _query_key(decision.query) in {_query_key(q) for q in queries}:
                             outcome = "repeated_tool"
                             break
-                        searches += 1
-                        with capture_trace() as tool_trace:
+                        attempt = budget.tool_attempt("search", query=decision.query) if budget else nullcontext()
+                        with attempt, capture_trace() as tool_trace:
+                            searches += 1
                             extra = self.retrieval.search(decision.query, scope=scope, session=session)
                         record_agent_retrieval(tool_trace.to_dict())
                         history.append(dict(action="search", query=decision.query))
@@ -270,8 +297,10 @@ class EvidenceCoordinator:
                         if any(row.get("evidence_id") == decision.evidence_id for row in history):
                             outcome = "repeated_tool"
                             break
-                        reads += 1
-                        extra = self.retrieval.read_evidence(anchors[decision.evidence_id], scope=scope, session=session)
+                        attempt = budget.tool_attempt("read") if budget else nullcontext()
+                        with attempt:
+                            reads += 1
+                            extra = self.retrieval.read_evidence(anchors[decision.evidence_id], scope=scope, session=session)
                         history.append(dict(action="read", evidence_id=decision.evidence_id))
                     tool_ms += max(0, self.clock() - tick) * 1000
                     ACTIONS.labels(decision.action).inc()
@@ -282,6 +311,8 @@ class EvidenceCoordinator:
                         break
         except (AuthorizationDenied, SQLAlchemyError):
             raise
+        except RagBudgetExceeded:
+            outcome = "shared_budget"
         except Exception as exc:
             outcome = "fallback"
             logger.warning("agent.collection_failed error_type=%s", type(exc).__name__)

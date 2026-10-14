@@ -90,3 +90,60 @@ def test_revocation_during_agent_model_step_stops_real_store_tools(scenario):
     coordinator=EvidenceCoordinator(SimpleNamespace(agentic_rag_mode='always'),retrieval,decider=SimpleNamespace(decide=decide))
     with usage_context(scope=scope, session=session, actor_user_id=actor, actor_external_subject=str(actor)), pytest.raises(AuthorizationDenied):
         coordinator.collect('Compare workflows',scope=scope,session=session)
+
+
+def test_input_planner_and_agent_use_same_real_authorization(scenario):
+    from backend.app.knowledge.query_planner import QueryPlanner
+    from backend.app.knowledge.rag_budget import RagBudget, rag_budget_scope
+    session, scope, actor, retrieval, _ = scenario
+    settings = SimpleNamespace(rag_planner_mode='auto', agentic_rag_mode='auto', chat_model='fake',
+                               chat_base_url='https://fake.invalid', chat_api_key='fake')
+    result = dict(intent='comparison', strategy='agentic', reason='multiple_aspects', subquestions=[
+        dict(question='alpha workflow', source_quote='alpha', depends_on=[]),
+        dict(question='beta workflow', source_quote='beta', depends_on=[])])
+    factory = lambda **kwargs: SimpleNamespace(with_structured_output=lambda *args, **kwargs:
+        SimpleNamespace(invoke=lambda messages: result))
+    planner = QueryPlanner(settings, model_factory=factory)
+    coordinator = EvidenceCoordinator(settings, retrieval, decider=SimpleNamespace(
+        decide=lambda *args, **kwargs: dict(action='finish', reason='cannot_help')))
+    with usage_context(scope=scope, actor_user_id=actor, actor_external_subject=str(actor)), \
+            rag_budget_scope(RagBudget()) as budget, capture_trace() as trace:
+        plan = planner.plan('比较 alpha 与 beta workflow', scope=scope, session=session)
+        collected = coordinator.collect('比较 alpha 与 beta workflow', scope=scope, session=session, plan=plan)
+    assert plan.strategy == 'agentic' and budget.calls == 2
+    assert all(doc.metadata['knowledge_base_id'] == str(scope.knowledge_base_id) for doc in collected.documents)
+    assert 'private secret' not in str(trace.to_dict())
+
+
+@pytest.mark.parametrize('phase', ['planner', 'repair'])
+def test_new_model_phases_cannot_continue_after_real_grant_revocation(scenario, phase):
+    from sqlalchemy import delete
+    from backend.app.knowledge.query_planner import QueryPlanner
+    from backend.app.knowledge.answer_repair import AnswerRepair
+    from backend.app.knowledge.answer_models import GenerationAnswerDraft
+    from backend.app.knowledge.answer_validation import AnswerValidator
+    from backend.app.knowledge.context_builder import ContextBuilder
+    from backend.app.knowledge.rag_budget import RagBudget, rag_budget_scope
+    session, scope, actor, retrieval, _ = scenario
+    settings = SimpleNamespace(rag_planner_mode='auto', rag_repair_enabled=True, chat_model='fake',
+                               chat_base_url='https://fake.invalid', chat_api_key='fake')
+    question = '比较 alpha 与 beta workflow' if phase == 'planner' else 'alpha workflow是什么？'
+    context = ContextBuilder().build(retrieval.search(question, scope=scope, session=session), question=question)
+    draft = GenerationAnswerDraft.model_validate(dict(answerable=True, claims=[
+        dict(text='alpha workflow approved evidence', citations=['资料1'])], coverage=[
+        dict(requirement_id='Q1', aspect='workflow', status='answered', claim_indices=[2], missing_information=None)],
+        refusal_reason=None))
+    fixed = draft.model_copy(deep=True)
+    fixed.coverage[0].claim_indices = [1]
+    def invoke(messages):
+        session.execute(delete(KnowledgeBaseUserGrant).where(KnowledgeBaseUserGrant.user_id == actor))
+        session.commit()
+        return dict(intent='comparison', strategy='agentic', reason='multiple_aspects', subquestions=[]) if phase == 'planner' else fixed
+    factory = lambda **kwargs: SimpleNamespace(with_structured_output=lambda *args, **kwargs: SimpleNamespace(invoke=invoke))
+    with usage_context(scope=scope, actor_user_id=actor, actor_external_subject=str(actor)), \
+            rag_budget_scope(RagBudget()), pytest.raises(AuthorizationDenied):
+        if phase == 'planner':
+            QueryPlanner(settings, model_factory=factory).plan(question, scope=scope, session=session)
+        else:
+            AnswerRepair(settings, model_factory=factory).repair(draft, question=question, context=context,
+                validator=AnswerValidator(), scope=scope, session=session, refresh_context=lambda: True)

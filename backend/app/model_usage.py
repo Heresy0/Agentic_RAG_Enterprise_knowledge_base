@@ -19,7 +19,8 @@ from .db.model_usage_models import ModelUsageEvent, ModelUsageScope
 
 logger = logging.getLogger(__name__)
 _current = ContextVar("model_usage_context", default=None)
-STAGES = {"answer_generation", "conversation_rewrite", "query_embedding", "document_embedding", "rerank", "agent_decision"}
+STAGES = {"answer_generation", "conversation_rewrite", "query_embedding", "document_embedding", "rerank", "agent_decision",
+          "query_planning", "answer_repair", "answer_regeneration"}
 CALLS = Counter("enterprise_model_calls", "Physical model attempts", ["stage", "provider", "model", "status"])
 TOKENS = Counter("enterprise_model_tokens", "Reported total tokens (not estimates)", ["stage", "provider", "model"])
 UNKNOWN = Counter("enterprise_model_usage_unknown", "Calls without trustworthy total usage", ["stage", "provider", "model"])

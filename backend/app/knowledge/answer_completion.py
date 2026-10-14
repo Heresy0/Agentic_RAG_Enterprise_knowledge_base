@@ -234,5 +234,50 @@ def complete_cited_incident_cause(question, draft, context):
 
 
 def complete_answer(question, draft, context):
-    return [decision for operation in (complete_cited_stage_budgets, complete_cited_incident_cause)
+    return [decision for operation in (complete_cited_stage_budgets, complete_cited_incident_cause,
+                                      complete_explicit_cause)
             if (decision := operation(question, draft, context)) is not None]
+
+
+def complete_explicit_cause(question, draft, context):
+    """Quote a single explicit cause for a uniquely named coded object.
+
+    This narrower fallback also covers non-INC objects. It does not infer causes
+    from correlation, select among conflicting causes or claim semantic entailment.
+    """
+    if not draft.answerable or not re.search(r'为什么|为何|原因|根因', question):
+        return None
+    pattern = r'(?<![A-Za-z0-9_-])[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)+(?![A-Za-z0-9_-])'
+    identifiers = set(re.findall(pattern, question, re.I))
+    if len(identifiers) != 1:
+        return None
+    identifier = next(iter(identifiers)).casefold()
+    cited = {citation for claim in draft.claims if claim.calculation is None for citation in claim.citations}
+    roots = []
+    for item in context.items:
+        for paragraph in item.content.splitlines():
+            ids = {value.casefold() for value in re.findall(pattern, paragraph, re.I)}
+            if identifier not in ids or re.search(r'可能|假设|待核实|未确认|尚未确认|参见|详见', paragraph):
+                continue
+            for match in re.finditer(r'(?:根因|原因)(?:是|为|[:：])([^。；\n]{2,180})', paragraph):
+                preceding_ids = {value.casefold() for value in re.findall(pattern, paragraph[:match.start()], re.I)}
+                if preceding_ids != {identifier}:
+                    continue
+                prefix = paragraph[max(0, match.start() - 8):match.start()]
+                if re.search(r'不是|并非|不确定|未查明', prefix):
+                    continue
+                roots.append((item, match.group()))
+    if not roots:
+        return None
+    if len({_normalize(quote) for _, quote in roots}) != 1:
+        return dict(kind='explicit_cause', status='skipped_ambiguous_causes')
+    eligible = [(item, quote) for item, quote in roots if item.citation_id in cited]
+    if not eligible:
+        return dict(kind='explicit_cause', status='skipped_uncited_cause')
+    item, quote = eligible[0]
+    mechanism = re.sub(r'^(?:根因|原因)(?:是|为|[:：])', '', quote)
+    if any(item.citation_id in claim.citations and _normalize(mechanism) in _normalize(claim.text)
+           for claim in draft.claims if claim.calculation is None):
+        return dict(kind='explicit_cause', status='already_present')
+    draft.claims.append(AnswerClaim(text='资料原文原因说明：' + quote, citations=[item.citation_id]))
+    return dict(kind='explicit_cause', status='appended', citation_id=item.citation_id)

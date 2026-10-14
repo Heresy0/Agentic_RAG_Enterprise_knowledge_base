@@ -65,6 +65,47 @@ class Settings:
                             ("AGENT_DECISION_TIMEOUT_SECONDS", self.agent_decision_timeout_seconds)):
             if not isfinite(value) or not 0 < value <= 60:
                 raise RuntimeError(f"{name} 必须大于 0 且不超过 60 秒")
+        self.rag_planner_mode = os.getenv("RAG_PLANNER_MODE", "auto").strip().lower()
+        if self.rag_planner_mode not in {"off", "auto"}:
+            raise RuntimeError("RAG_PLANNER_MODE 必须为 off 或 auto")
+        repair_enabled = os.getenv("RAG_REPAIR_ENABLED", "true").strip().lower()
+        if repair_enabled not in {"true", "false"}:
+            raise RuntimeError("RAG_REPAIR_ENABLED 必须为 true 或 false")
+        self.rag_repair_enabled = repair_enabled == "true"
+        feedback_enabled = os.getenv("RAG_FEEDBACK_ENABLED", "true").strip().lower()
+        if feedback_enabled not in {"true", "false"}:
+            raise RuntimeError("RAG_FEEDBACK_ENABLED 必须为 true 或 false")
+        self.rag_feedback_enabled = feedback_enabled == "true"
+        rag_limits = {
+            "rag_max_optional_calls": ("RAG_MAX_OPTIONAL_CALLS", 4, 1, 6),
+            "rag_max_optional_tokens": ("RAG_MAX_OPTIONAL_TOKENS", 32000, 4000, 128000),
+            "rag_planner_output_tokens": ("RAG_PLANNER_OUTPUT_TOKENS", 768, 256, 2048),
+            "rag_repair_output_tokens": ("RAG_REPAIR_OUTPUT_TOKENS", 1536, 512, 4096),
+            "rag_repair_prompt_bytes": ("RAG_REPAIR_PROMPT_BYTES", 24000, 4000, 48000),
+            "rag_max_searches": ("RAG_MAX_SEARCHES", 3, 1, 4),
+            "rag_regeneration_output_tokens": ("RAG_REGENERATION_OUTPUT_TOKENS", 2048, 512, 4096),
+        }
+        for attribute, (variable, default, minimum, maximum) in rag_limits.items():
+            try:
+                value = int(os.getenv(variable, str(default)))
+            except ValueError:
+                raise RuntimeError(f"{variable} 必须为整数") from None
+            if not minimum <= value <= maximum:
+                raise RuntimeError(f"{variable} 必须在 {minimum} 至 {maximum} 之间")
+            setattr(self, attribute, value)
+        for attribute, variable, default in (
+            ("rag_max_optional_seconds", "RAG_MAX_OPTIONAL_SECONDS", 35),
+            ("rag_planner_timeout_seconds", "RAG_PLANNER_TIMEOUT_SECONDS", 8),
+            ("rag_repair_timeout_seconds", "RAG_REPAIR_TIMEOUT_SECONDS", 8),
+            ("rag_regeneration_timeout_seconds", "RAG_REGENERATION_TIMEOUT_SECONDS", 15),
+        ):
+            try:
+                value = float(os.getenv(variable, str(default)))
+            except ValueError:
+                raise RuntimeError(f"{variable} 必须为有限数字") from None
+            if not isfinite(value) or not 0 < value <= 60:
+                raise RuntimeError(f"{variable} 必须大于 0 且不超过 60 秒")
+            setattr(self, attribute, value)
         self.database_url = required_env("DATABASE_URL")
         from math import isfinite
         import re

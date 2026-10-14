@@ -4,6 +4,11 @@ from contextvars import ContextVar
 from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import PurePosixPath
+from prometheus_client import Counter
+
+RAG_ROUTES = Counter("enterprise_rag_routes", "RAG strategy selections by phase", ["phase", "strategy"])
+RAG_REPAIRS = Counter("enterprise_rag_repairs", "Bounded answer repair outcomes", ["outcome"])
+RAG_FEEDBACK = Counter("enterprise_rag_feedback", "One evidence feedback round outcomes", ["outcome"])
 
 
 @dataclass
@@ -85,7 +90,7 @@ def record_documents(stage, documents):
     trace.stages[stage] = rows
 
 
-def record_context(context):
+def record_context(context, *, stage="context"):
     trace = _current.get()
     if trace is None:
         return
@@ -103,7 +108,7 @@ def record_context(context):
                              cleaning_version=item.cleaning_version,
                              matched_incident_ids=list(item.matched_incident_ids),
                              knowledge_base_id=str(item.knowledge_base_id)))
-    trace.stages["context"] = rows
+    trace.stages[stage] = rows
 
 
 def record_calculations(records):
@@ -133,11 +138,11 @@ def record_answer_completion(records):
         trace.stages['answer_completion'] = deepcopy(records)
 
 
-def record_answer_generation(response, claims, coverage, *, changed, validation_errors):
+def record_answer_generation(response, claims, coverage, *, changed, validation_errors, stage="answer_generation"):
     """Opt-in visible first answer/coverage only, never hidden reasoning or public API fields."""
     trace = _current.get()
     if trace is not None:
-        trace.stages['answer_generation'] = [dict(
+        trace.stages[stage] = [dict(
             response=response.model_dump(mode='json'), claims=deepcopy(claims),
             coverage=deepcopy(coverage), completion_changed=changed,
             validation_errors=list(validation_errors),
@@ -159,9 +164,33 @@ def record_agent_event(event):
         trace.stages.setdefault("agent_decisions", []).append(deepcopy(event))
 
 
+def record_rag_event(event):
+    """Visible plans, strategy transitions and repair outcomes, opt-in only."""
+    kind = event.get("kind")
+    if kind in {"plan", "retrieval_route", "strategy_transition"}:
+        strategy = event.get("selected_strategy", event.get("strategy"))
+        if strategy in {"standard", "reflective", "agentic"}:
+            RAG_ROUTES.labels(kind, strategy).inc()
+    if kind == "repair":
+        RAG_REPAIRS.labels(event["outcome"]).inc()
+    if kind == "feedback":
+        RAG_FEEDBACK.labels(event["outcome"]).inc()
+    trace = _current.get()
+    if trace is not None:
+        trace.stages.setdefault("rag_routing", []).append(deepcopy(event))
+
+
 def record_agent_retrieval(snapshot):
     trace = _current.get()
     if trace is not None:
         trace.stages.setdefault("agent_retrieval", []).append(deepcopy(snapshot))
+        for row in snapshot.get("stages", {}).get("model_usage", []):
+            record_model_usage(row)
+
+
+def record_feedback_retrieval(snapshot):
+    trace = _current.get()
+    if trace is not None:
+        trace.stages.setdefault("feedback_retrieval", []).append(deepcopy(snapshot))
         for row in snapshot.get("stages", {}).get("model_usage", []):
             record_model_usage(row)

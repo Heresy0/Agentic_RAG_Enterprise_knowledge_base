@@ -22,12 +22,26 @@ def question_requirements(question: str, context=None) -> list[QuestionRequireme
     # Conservative syntactic anchors, not domain-specific or semantic splitting.
     # Keep any long tail together rather than dropping parts of the user's query.
     parts = [part.strip() for part in re.findall(r"[^？?；;\n]+[？?；;]?", question) if part.strip()]
+    anchored = []
+    for part in parts:
+        premise = re.match(r'^(?:均为|均按|全部为|时间(?:均)?为|时区(?:均)?为|币种(?:均)?为|单位(?:均)?为|假设|前提是)', part)
+        asks = re.search(r'[？?]|什么|多少|多久|是否|如何|怎么|哪里|何时|请(?:说明|列出|计算)|解释|比较', part)
+        if anchored and premise and not asks:
+            anchored[-1] += ' ' + part
+        else:
+            anchored.append(part)
+    parts = anchored
     if not parts and question.strip():
         parts = [question.strip()]
     if len(parts) > 8:
         parts = parts[:7] + ["\n".join(parts[7:])]
     anchors = [QuestionRequirement(f"Q{index}", text) for index, text in enumerate(parts, 1)]
-    return anchors + [QuestionRequirement(f"E{index}", row.text, row.citation_id)
+    # A scoped input plan adds obligations; it never replaces original Q/E anchors.
+    from .query_planner import current_query_plan
+    plan = current_query_plan()
+    planned = [QuestionRequirement(f"P{index}", row.question)
+               for index, row in enumerate(plan.subquestions, 1)] if plan else []
+    return anchors + planned + [QuestionRequirement(f"E{index}", row.text, row.citation_id)
                       for index, row in enumerate(condition_requirements(question, context), 1)]
 
 
@@ -43,6 +57,8 @@ def coverage_errors(draft: GenerationAnswerDraft, question: str, context=None) -
     expected = set(requirements)
     actual = {row.requirement_id for row in draft.coverage}
     errors = []
+    if draft.answerable and draft.evidence_gap is not None:
+        errors.append("可回答结果不能同时声明证据缺口")
     if expected - actual:
         errors.append("缺少必答问题的覆盖记录：" + "、".join(sorted(expected - actual)))
     if actual - expected:

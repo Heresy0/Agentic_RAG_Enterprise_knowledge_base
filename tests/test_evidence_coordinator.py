@@ -86,6 +86,57 @@ def test_ordinary_question_has_no_agent_call_or_extra_retrieval():
     assert trace['stages']['agent_decisions'][-1]['outcome'] == 'bypassed'
 
 
+@pytest.mark.parametrize("strategy", ["standard", "reflective"])
+def test_input_route_can_keep_comparison_in_one_pass(strategy):
+    from backend.app.knowledge.query_planner import QueryPlan
+    scope, retrieval, guard, decider, coordinator = setup(mode="auto")
+    plan = QueryPlan(intent="comparison", strategy=strategy, reason="answer_constraints")
+    with capture_trace() as trace:
+        result = coordinator.collect("比较甲乙流程", scope=scope, session=object(), plan=plan)
+    assert not decider.calls and len(retrieval.searches) == 1
+    assert trace.stages["rag_routing"][0]["selected_strategy"] == strategy
+
+
+def test_input_standard_route_escalates_on_actual_evidence_gap():
+    from backend.app.knowledge.query_planner import QueryPlan
+    scope, retrieval, guard, decider, coordinator = setup(mode="auto", initial=lambda scope: [], actions=[
+        dict(action="search", reason="missing_evidence", query="补查工艺温度")], agent_max_decisions=1)
+    plan = QueryPlan(intent="fact", strategy="standard", reason="direct_lookup")
+    with capture_trace() as trace:
+        coordinator.collect("工艺温度是多少", scope=scope, session=object(), plan=plan)
+    assert len(decider.calls) == 1 and len(retrieval.searches) == 2
+    assert trace.stages["rag_routing"][0]["selected_strategy"] == "agentic"
+
+
+def test_planning_call_budget_is_shared_with_agent_decisions():
+    from backend.app.knowledge.rag_budget import RagBudget, rag_budget_scope
+    scope, retrieval, guard, decider, coordinator = setup(mode="always", actions=[
+        dict(action="search", reason="missing_evidence", query="补查工艺温度")])
+    budget = RagBudget(max_calls=1)
+    with budget.model_attempt(prompt_bytes=10, output_tokens=10):
+        pass  # The input planner already consumed the sole optional call.
+    with rag_budget_scope(budget):
+        result, trace = collect(scope, coordinator)
+    assert not decider.calls and len(retrieval.searches) == 1
+    assert result.documents and budget.calls == 1
+    assert trace['stages']['agent_decisions'][-1]['decisions'] == 0
+    assert trace['stages']['agent_decisions'][-1]['charged_decision_tokens'] == 0
+
+
+def test_agent_receives_anchored_subquestions_without_replacing_original_query():
+    from backend.app.knowledge.query_planner import QueryPlan, SubQuestion
+    scope, retrieval, guard, decider, coordinator = setup(mode="auto", actions=[
+        dict(action="finish", reason="sufficient")])
+    question = "甲流程温度是多少；乙流程温度是多少"
+    plan = QueryPlan(intent="comparison", strategy="agentic", reason="multiple_aspects", subquestions=[
+        SubQuestion(question="甲流程温度是多少", source_quote="甲流程温度是多少"),
+        SubQuestion(question="乙流程温度是多少", source_quote="乙流程温度是多少")])
+    coordinator.collect(question, scope=scope, session=object(), plan=plan)
+    assert decider.calls[0][0]["question"] == question
+    assert decider.calls[0][0]["auxiliary_plan"]["subquestions"] == [row.model_dump() for row in plan.subquestions]
+    assert retrieval.searches[0] == (question, scope)
+
+
 def test_search_read_loop_merges_unique_evidence_and_preserves_original_trace():
     scope, retrieval, _, decider, coordinator = setup(
         extra=lambda s: [document(s, "另一个流程的证据", chunk="b")],

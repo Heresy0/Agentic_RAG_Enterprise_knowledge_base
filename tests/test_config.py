@@ -101,3 +101,34 @@ def test_agent_limits_are_validated(application_environment, monkeypatch, name, 
     monkeypatch.setenv(name, value)
     with pytest.raises(RuntimeError, match=name):
         Settings()
+
+
+@pytest.mark.parametrize("name,value", [
+    ("RAG_PLANNER_MODE", "always"), ("RAG_REPAIR_ENABLED", "yes"),
+    ("RAG_MAX_OPTIONAL_CALLS", "7"), ("RAG_MAX_OPTIONAL_CALLS", "secret-invalid"),
+    ("RAG_MAX_OPTIONAL_TOKENS", "0"), ("RAG_MAX_OPTIONAL_SECONDS", "nan"),
+    ("RAG_PLANNER_OUTPUT_TOKENS", "1"), ("RAG_PLANNER_TIMEOUT_SECONDS", "inf"),
+    ("RAG_REPAIR_OUTPUT_TOKENS", "9000"), ("RAG_REPAIR_PROMPT_BYTES", "999999"),
+    ("RAG_REPAIR_TIMEOUT_SECONDS", "secret-invalid"),
+])
+def test_rag_routing_limits_are_validated(application_environment, monkeypatch, name, value):
+    monkeypatch.setenv(name, value)
+    with pytest.raises(RuntimeError, match=name) as error:
+        Settings()
+    assert "secret-invalid" not in str(error.value)
+
+
+def test_rag_routing_defaults(application_environment):
+    settings = Settings()
+    assert settings.rag_planner_mode == "auto" and settings.rag_repair_enabled
+    assert settings.rag_max_optional_calls == 4 and settings.rag_max_optional_tokens == 32000
+    assert settings.rag_feedback_enabled and settings.rag_max_searches == 3
+    assert settings.rag_regeneration_output_tokens == 2048 and settings.rag_regeneration_timeout_seconds == 15
+
+
+@pytest.mark.parametrize('name,value', [('RAG_FEEDBACK_ENABLED','yes'), ('RAG_MAX_SEARCHES','0'),
+    ('RAG_MAX_SEARCHES','5'), ('RAG_REGENERATION_OUTPUT_TOKENS','1'), ('RAG_REGENERATION_TIMEOUT_SECONDS','nan')])
+def test_feedback_limits_are_validated(application_environment, monkeypatch, name, value):
+    monkeypatch.setenv(name, value)
+    with pytest.raises(RuntimeError, match=name):
+        Settings()

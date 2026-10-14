@@ -1,4 +1,7 @@
 import time
+import json
+from pydantic import ValidationError
+from langchain_core.exceptions import OutputParserException
 
 from langchain_core.messages import (
     HumanMessage,
@@ -29,9 +32,13 @@ from .answer_coverage import coverage_errors, coverage_snapshot, requirement_pro
 from .temporal import future_certainty_gap
 from .retrieval_service import RetrievalService
 from .evidence_coordinator import EvidenceCoordinator
+from .evidence_feedback import EvidenceFeedback
+from .query_planner import QueryPlanner, query_plan_scope
+from .answer_repair import AnswerRepair
+from .rag_budget import RagBudget, rag_budget_scope, current_rag_budget
 from ..security.retrieval_scope import RetrievalScope
 from ..evaluation.trace import (record_context, record_documents, record_scope, record_calculations,
-                                record_answer_decision, record_answer_completion, record_answer_generation)
+                                record_answer_decision, record_answer_completion, record_answer_generation, record_rag_event)
 
 
 REFUSAL_TEXT = (
@@ -55,16 +62,25 @@ class AnswerService:
         context_builder: ContextBuilder | None = None,
         validator: AnswerValidator | None = None,
         evidence_coordinator: EvidenceCoordinator | None = None,
+        query_planner: QueryPlanner | None = None,
+        answer_repair: AnswerRepair | None = None,
+        evidence_feedback: EvidenceFeedback | None = None,
+        regeneration_model_factory=None,
     ) -> None:
         self._settings = settings
         self._retrieval_service = retrieval_service
         self._evidence_coordinator = evidence_coordinator or EvidenceCoordinator(settings, retrieval_service)
+        self._query_planner = query_planner or QueryPlanner(settings)
+        self._answer_repair = answer_repair or AnswerRepair(settings)
         self._context_builder = (
             context_builder or ContextBuilder()
         )
         self._validator = (
             validator or AnswerValidator()
         )
+        self._evidence_feedback = evidence_feedback or EvidenceFeedback(settings, retrieval_service,
+            self._evidence_coordinator, self._context_builder)
+        self._regeneration_model_factory = regeneration_model_factory or ChatOpenAI
 
         llm = ChatOpenAI(
             model=settings.chat_model,
@@ -92,10 +108,22 @@ class AnswerService:
 
         if not question:
             raise ValueError("问题不能为空")
-        record_scope(question, scope)
-
         total_started = time.perf_counter()
+        with rag_budget_scope(RagBudget.from_settings(self._settings)) as budget:
+            try:
+                planning_started = time.perf_counter()
+                plan = self._query_planner.plan(question, scope=scope, session=session)
+                planning_ms = _elapsed_ms(planning_started) if plan is not None else None
+                with query_plan_scope(plan):
+                    return self._answer(question, scope=scope, session=session, plan=plan,
+                                        planning_ms=planning_ms, total_started=total_started)
+            finally:
+                record_rag_event(dict(kind="budget", **budget.snapshot()))
+
+    def _answer(self, question, *, scope, session, plan, planning_ms, total_started):
+        record_scope(question, scope)
         timings: dict[str, float | None] = {
+            "query_planning_ms": planning_ms,
             "hybrid_retrieval_ms": None,
             "rerank_ms": None,
             "search_total_ms": 0.0,
@@ -110,6 +138,7 @@ class AnswerService:
             question,
             scope=scope,
             session=session,
+            **({"plan": plan} if plan is not None else {}),
         )
         documents = collected.documents
         timings["agent_decision_ms"] = collected.decision_ms
@@ -163,17 +192,70 @@ class AnswerService:
                 total_started=total_started,
             )
 
+        def refresh_context():
+            current = self._retrieval_service.refresh_evidence(documents, scope=scope, session=session)
+            refreshed = self._context_builder.build(current, question=question)
+            return [(item.chunk_id, item.content, item.policy) for item in refreshed.items] == [
+                (item.chunk_id, item.content, item.policy) for item in context.items]
+
         generation_started = time.perf_counter()
-        draft = self._generate_draft(
-            question=question,
-            context=context,
-        )
+        schema_recovered = False
+        try:
+            draft = self._generate_draft(question=question, context=context)
+        except (ValidationError, OutputParserException) as exc:
+            if not getattr(self._settings, 'rag_repair_enabled', False):
+                raise
+            errors = ([dict(location=[str(part) for part in error['loc']], type=error['type'])
+                       for error in exc.errors(include_input=False, include_context=False, include_url=False)[:12]]
+                      if isinstance(exc, ValidationError) else [])
+            record_rag_event(dict(kind='schema_error', error_type=type(exc).__name__, errors=errors))
+            record_answer_generation(self._refusal('首次生成未形成结构化草稿。'), [],
+                dict(requirements=json.loads(requirement_prompt(question, context)), coverage=[],
+                     errors=['结构化输出解析失败'], structurally_complete=False),
+                changed=False, validation_errors=['结构化输出解析失败'])
+            schema_started = time.perf_counter()
+            draft = self._answer_repair.recover_schema(messages=self._generation_messages(question, context),
+                scope=scope, session=session, refresh_context=refresh_context)
+            timings['answer_repair_ms'] = _elapsed_ms(schema_started)
+            schema_recovered = True
+            if draft is None:
+                timings['generation_ms'] = _elapsed_ms(generation_started)
+                record_answer_decision(stage='generation_error', answerable=False, reason='structured_output_invalid')
+                return self._finish_result(result=self._refusal('模型输出格式异常，未形成可验证答案，请重试。'),
+                                           timings=timings, total_started=total_started)
         timings["generation_ms"] = _elapsed_ms(
             generation_started
         )
         record_answer_decision(stage="generation", answerable=draft.answerable,
                                reason=draft.refusal_reason,
                                temporal=temporal_evidence_context(question, context.items))
+
+        regenerated = False
+        original_draft, original_context = draft, context
+        feedback = self._evidence_feedback.run(draft, question=question, documents=documents,
+            context=context, scope=scope, session=session,
+            preflight=lambda candidate_context: self._regeneration_preflight(question, candidate_context),
+            regenerate=lambda candidate_context: self._regenerate_draft(question=question, context=candidate_context))
+        if feedback is not None:
+            timings["feedback_search_ms"] = feedback.search_ms
+            timings["answer_regeneration_ms"] = feedback.regeneration_ms
+            if feedback.search_ms is not None:
+                timings["search_total_ms"] += feedback.search_ms
+            if feedback.regenerated:
+                record_context(original_context, stage="initial_context")
+                record_documents("initial_authorized", documents)
+                record_answer_generation(self._refusal(original_draft.refusal_reason or "知识库资料不足。"),
+                    [claim.model_dump() for claim in original_draft.claims],
+                    coverage_snapshot(original_draft, question, original_context), changed=False,
+                    validation_errors=self._validator.validate(draft=original_draft,
+                        context=original_context, question=question).errors,
+                    stage='answer_schema_recovery' if schema_recovered else 'answer_generation')
+                draft, documents, context = feedback.draft, feedback.documents, feedback.context
+                regenerated = True
+                record_documents("authorized_final", documents)
+                record_context(context)
+                record_answer_decision(stage="regeneration", answerable=draft.answerable,
+                    reason=draft.refusal_reason, temporal=temporal_evidence_context(question, context.items))
 
         validation_started = time.perf_counter()
         # Coverage is checked against the original draft, before any supplement.
@@ -202,6 +284,16 @@ class AnswerService:
         first_claims = [claim.model_dump() for claim in draft.claims]
         first_answerable = draft.answerable
         first_coverage = coverage_snapshot(draft, question, context)
+        first_errors = list(dict.fromkeys([*coverage_failures, *first_validation.errors]))
+        repair_started = time.perf_counter()
+        repaired = (draft if schema_recovered else self._answer_repair.repair(draft,
+            question=question, context=context, validator=self._validator, scope=scope,
+            session=session, refresh_context=refresh_context))
+        if repaired != draft:
+            draft = repaired
+            coverage_failures = coverage_errors(draft, question, context)
+        if getattr(self._settings, "rag_repair_enabled", False) and first_errors:
+            timings["answer_repair_ms"] = _elapsed_ms(repair_started)
         decisions = []
         if not coverage_failures:
             before_conditions = [claim.model_dump() for claim in draft.claims]
@@ -213,7 +305,9 @@ class AnswerService:
         record_answer_generation(
             first_response, first_claims, first_coverage,
             changed=first_claims != [claim.model_dump() for claim in draft.claims] or first_answerable != draft.answerable,
-            validation_errors=list(dict.fromkeys([*coverage_failures, *first_validation.errors])),
+            validation_errors=first_errors,
+            stage=("answer_regeneration" if regenerated else
+                   "answer_schema_recovery" if schema_recovered else "answer_generation"),
         )
         # Coverage describes first-pass claims. Existing citation/calculation checks
         # validate the final supplement too, without relabelling it as first-pass coverage.
@@ -319,7 +413,12 @@ class AnswerService:
         question: str,
         context: BuiltContext,
     ) -> GenerationAnswerDraft:
-        result = invoke_structured(self._structured_llm, [
+        result = invoke_structured(self._structured_llm, self._generation_messages(question, context),
+                                   stage="answer_generation", model_name=self._settings.chat_model)
+        return self._as_generation_draft(result)
+
+    def _generation_messages(self, question, context):
+        return [
             SystemMessage(
                 content=ANSWER_SYSTEM_PROMPT
             ),
@@ -331,8 +430,30 @@ class AnswerService:
                     f"知识库资料：\n{context.text}"
                 )
             ),
-        ], stage="answer_generation", model_name=self._settings.chat_model)
+        ]
 
+    def _regeneration_preflight(self, question, context):
+        messages = self._generation_messages(question, context)
+        prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
+        prompt_bytes += len(json.dumps(GenerationAnswerDraft.model_json_schema()).encode("utf-8")) + 256
+        output = getattr(self._settings, "rag_regeneration_output_tokens", 2048)
+        current_rag_budget().check_model(prompt_bytes=prompt_bytes, output_tokens=output)
+        return messages, prompt_bytes, output
+
+    def _regenerate_draft(self, *, question, context):
+        messages, prompt_bytes, output = self._regeneration_preflight(question, context)
+        with current_rag_budget().model_attempt(prompt_bytes=prompt_bytes, output_tokens=output,
+                                                purpose="regeneration") as remaining:
+            model = self._regeneration_model_factory(model=self._settings.chat_model,
+                base_url=self._settings.chat_base_url, api_key=self._settings.chat_api_key, temperature=0,
+                reasoning_effort="none", max_retries=0, max_tokens=output,
+                timeout=min(getattr(self._settings, "rag_regeneration_timeout_seconds", 15), remaining)
+            ).with_structured_output(GenerationAnswerDraft, include_raw=True)
+            result = invoke_structured(model, messages, stage="answer_regeneration", model_name=self._settings.chat_model)
+            return self._as_generation_draft(result)
+
+    @staticmethod
+    def _as_generation_draft(result):
         if not isinstance(result, GenerationAnswerDraft):
             if isinstance(result, AnswerDraft):
                 result = result.model_dump()

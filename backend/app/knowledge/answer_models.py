@@ -1,7 +1,7 @@
 from uuid import UUID
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class CalculationOperand(BaseModel):
@@ -59,6 +59,21 @@ class AnswerCoverage(BaseModel):
         description="未回答时明确缺口或整体拒答原因；已回答为null")
 
 
+class EvidenceGap(BaseModel):
+    """Visible retrieval feedback, never tool identity or a free-form query."""
+    model_config = ConfigDict(extra="forbid")
+    reason: Literal["missing_evidence", "conflict", "unsupported_request"]
+    requirement_ids: list[str] = Field(min_length=1, max_length=3,
+        description="本次清单中缺证据的必答项编号，最多三个，如Q1、P2")
+    source_quote: str | None = Field(default=None, min_length=2, max_length=200,
+        description="missing_evidence时填写原问题中需要重点查证的连续原文片段；其他原因为null。不是查询指令。")
+
+    @field_validator("source_quote", mode="before")
+    @classmethod
+    def normalize_unused_quote(cls, value):
+        return None if isinstance(value, str) and not value.strip() else value
+
+
 class GenerationAnswerDraft(BaseModel):
     """Required live-generation contract; old stored drafts/public APIs stay unchanged."""
 
@@ -68,6 +83,8 @@ class GenerationAnswerDraft(BaseModel):
     answerable: bool
     claims: list[AnswerClaim] = Field(default_factory=list)
     refusal_reason: str | None = None
+    evidence_gap: EvidenceGap | None = Field(default=None,
+        description="仅明确缺证据时请求一次定向补查；冲突/超出能力按原因区分，完整可回答为null。")
 
 
 class Citation(BaseModel):
@@ -81,6 +98,10 @@ class Citation(BaseModel):
 
 
 class AnswerTimings(BaseModel):
+    feedback_search_ms: float | None = Field(default=None, exclude_if=lambda value: value is None)
+    answer_regeneration_ms: float | None = Field(default=None, exclude_if=lambda value: value is None)
+    query_planning_ms: float | None = Field(default=None, exclude_if=lambda value: value is None)
+    answer_repair_ms: float | None = Field(default=None, exclude_if=lambda value: value is None)
     agent_decision_ms: float | None = Field(default=None, exclude_if=lambda value: value is None)
     agent_tool_ms: float | None = Field(default=None, exclude_if=lambda value: value is None)
     hybrid_retrieval_ms: float | None = None
