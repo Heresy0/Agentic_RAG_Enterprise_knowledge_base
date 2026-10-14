@@ -70,6 +70,7 @@ from ..documents.document_deletion_service import (
     DocumentDeletionService,
     DocumentNotFoundError,
 )
+from ..knowledge.chunk_repository import ChunkRepository
 
 
 router = APIRouter(
@@ -236,6 +237,7 @@ def preview_citation(
     document_id: UUID,
     chunk_id: str,
     response: Response,
+    parent_id: str | None = Query(default=None, min_length=64, max_length=64, pattern=r'^[a-f0-9]{64}$'),
     principal: Principal = Depends(get_current_principal),
     session: Session = Depends(get_database_session),
 ) -> CitationPreview:
@@ -260,9 +262,18 @@ def preview_citation(
     if row is None:
         raise HTTPException(status_code=404, detail="引用原文已不可用，文档可能已更新或删除，请重新提问。")
     chunk, document = row
+    content, section = chunk.content, str(chunk.metadata_json.get('section_path',''))
+    if parent_id is not None:
+        repository = ChunkRepository(session)
+        anchor = repository._stored(chunk, document)
+        parents = repository.parent_chunks(scope=RetrievalScope(principal.tenant_id, knowledge_base_id=knowledge_base_id),
+            expected={chunk.id:{**anchor.metadata, 'parent_id':parent_id}})
+        if not parents or parents[0].metadata.get('parent_id')!=parent_id:
+            raise HTTPException(status_code=404, detail='引用父块已不可用，请重新提问。')
+        content, section = parents[0].content, str(parents[0].metadata.get('section_path',''))
     return CitationPreview(document_id=document.id, document_name=document.file_name,
                            document_version=document.version, chunk_id=chunk.id,
-                           section_path=str(chunk.metadata_json.get("section_path", "")), content=chunk.content)
+                           section_path=section, content=content)
 
 
 @router.post(

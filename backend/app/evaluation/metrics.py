@@ -86,7 +86,8 @@ def score_answer(case, response, context=None):
             candidates = [row for row in context if row.get("citation_id") == citation.get("citation_id")
                           and document_key(row.get("document_name", "")) == document_key(citation.get("document_name", ""))
                           and (not citation.get("chunk_id") or row.get("chunk_id") == citation["chunk_id"])
-                          and (not citation.get("knowledge_base_id") or row.get("knowledge_base_id") == str(citation["knowledge_base_id"]))]
+                          and (not citation.get("knowledge_base_id") or row.get("knowledge_base_id") == str(citation["knowledge_base_id"]))
+                          and row.get('parent_id') == citation.get('parent_id')]
             if not candidates:
                 integrity = False
             matched_context.extend(candidates)

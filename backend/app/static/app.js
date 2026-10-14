@@ -179,7 +179,8 @@ async function previewCitation(citation) {
   if (!$("citation-dialog").open) $("citation-dialog").showModal();
   try {
     const ids = [citation.knowledge_base_id, citation.document_id, citation.chunk_id].map(encodeURIComponent);
-    const { data } = await api(`/api/knowledge-bases/${ids[0]}/documents/${ids[1]}/chunks/${ids[2]}`);
+    const parent = citation.parent_id ? `?parent_id=${encodeURIComponent(citation.parent_id)}` : "";
+    const { data } = await api(`/api/knowledge-bases/${ids[0]}/documents/${ids[1]}/chunks/${ids[2]}${parent}`);
     if (!sameContext(revision) || preview !== previewRevision) return;
     $("citation-title").textContent = data.document_name;
     $("citation-meta").textContent = `版本 ${data.document_version} · ${data.section_path}`;

@@ -62,7 +62,9 @@ class RetrievalService:
                     if scope.contains(doc.metadata.get("tenant_id"), doc.metadata.get("knowledge_base_id"))
                     and doc.metadata.get("chunk_id")}
         repository = ChunkRepository(session, self._vector_store)
-        current = [stored_chunk_to_document(row) for row in repository.current_chunks(scope=scope, expected=expected)]
+        reader = (repository.parent_chunks if getattr(getattr(self, '_settings', None), 'rag_parent_context_enabled', False)
+                  else repository.current_chunks)
+        current = [stored_chunk_to_document(row) for row in reader(scope=scope, expected=expected)]
         original = {doc.metadata.get("chunk_id"): doc.metadata for doc in documents}
         policies = repository.candidate_policies(scope=scope,
             document_ids={UUID(doc.metadata["document_id"]) for doc in current})
@@ -80,6 +82,9 @@ class RetrievalService:
         rows = ChunkRepository(session, self._vector_store).neighboring_chunks(scope=scope,
             chunk_id=anchor.metadata["chunk_id"], generation=anchor.metadata["vector_generation"],
             document_id=UUID(anchor.metadata["document_id"]))
+        if getattr(getattr(self, '_settings', None), 'rag_parent_context_enabled', False):
+            rows = ChunkRepository(session, self._vector_store).parent_chunks(scope=scope,
+                expected={row.chunk_id:row.metadata for row in rows})
         return [stored_chunk_to_document(row) for row in rows]
 
     @audited_scope
@@ -141,12 +146,13 @@ class RetrievalService:
             record_documents("policy_candidates", candidates)
             return candidates
 
+        final_k = getattr(self._settings, 'rag_rerank_top_k', FINAL_K)
         retriever = RerankRetriever(
             base_retriever=hybrid_retriever,
             reranker=self._reranker,
-            top_n=FINAL_K,
+            top_n=final_k,
             search_kwargs={
-                "k": FINAL_K,
+                "k": final_k,
                 "fetch_k": FETCH_K,
             },
             candidate_processor=prepare_candidates,
@@ -155,6 +161,16 @@ class RetrievalService:
 
         documents = retriever.invoke(query)
         record_documents("rerank", documents)
+        if getattr(self._settings, 'rag_parent_context_enabled', False):
+            original = {doc.metadata['chunk_id']:doc.metadata for doc in documents}
+            parents = repository.parent_chunks(scope=scope, expected=original)
+            documents = [stored_chunk_to_document(row) for row in parents]
+            for doc in documents:
+                for key in ('rerank_score','rerank_status','retrieval_latency_ms','rerank_latency_ms'):
+                    if key in original.get(doc.metadata['chunk_id'],{}):
+                        doc.metadata[key]=original[doc.metadata['chunk_id']][key]
+            documents = select_evidence(query, documents)
+            record_documents('parent_context', documents)
         names = {str(kb_id): name for kb_id, name in scope.knowledge_base_names}
         for document in documents:
             document.metadata["knowledge_base_name"] = names.get(document.metadata.get("knowledge_base_id"))

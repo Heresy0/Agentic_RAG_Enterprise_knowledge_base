@@ -208,6 +208,8 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
                              rag_planner_mode=getattr(settings, "rag_planner_mode", "off"),
                              rag_repair_enabled=getattr(settings, "rag_repair_enabled", False),
                              rag_feedback_enabled=getattr(settings, "rag_feedback_enabled", False),
+                             rag_rerank_top_k=getattr(settings, 'rag_rerank_top_k', 8),
+                             rag_parent_context_enabled=getattr(settings, 'rag_parent_context_enabled', False),
                              embedding_model=settings.embedding_model, rerank_model=settings.rerank_model,
                              answer_model=settings.chat_model),
                 summary=summarize_records(records), stages=summarize_stages(records), records=records,

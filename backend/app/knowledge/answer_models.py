@@ -23,6 +23,8 @@ class AnswerClaim(BaseModel):
         min_length=1,
         description=(
         "依据知识库资料生成的一条独立结论，"
+        "判定题先给总体结论，并引用适用规则与实际证据；不能只列事实。"
+        "日期沿用所引原文，有年份就保留、无年份就不补充。"
         "文本中不要自行编造引用编号。"
         ),
     )
@@ -52,7 +54,8 @@ class AnswerCoverage(BaseModel):
     aspect: str = Field(min_length=1, max_length=200,
                         description="该问题实际要求回答的一个要点；同一问题可有多个要点，不是思维过程")
     status: Literal["answered", "insufficient", "withheld"] = Field(
-        description="已回答、缺证据、因整体拒答未输出；不能把指路或背景当成已回答")
+        description="已回答、缺证据、因整体拒答未输出。问计划和是否已完成，且原文明示计划不能证明完成时，"
+                    "有引用的计划与证据边界各标answered；问实际完成日期但无日期才标insufficient。不能把指路或背景当答案。")
     claim_indices: list[Annotated[int, Field(strict=True, ge=1)]] = Field(
         description="回答该要点的claims序号，从1开始；未回答时为空数组")
     missing_information: str | None = Field(
@@ -80,7 +83,8 @@ class GenerationAnswerDraft(BaseModel):
     coverage: list[AnswerCoverage] = Field(
         min_length=1, max_length=32,
         description="先识别各问题的必答要点，再生成对应结论；所有问题编号都须出现")
-    answerable: bool
+    answerable: bool = Field(description="本次原问题是否得到完整且有依据的回答。计划及原文明示的完成证据边界可完整回答计划/是否已完成问题，"
+                            "但不能回答未知的实际完成日期。true时所有必答项answered；false时claims必须为空。")
     claims: list[AnswerClaim] = Field(default_factory=list)
     refusal_reason: str | None = None
     evidence_gap: EvidenceGap | None = Field(default=None,
@@ -93,6 +97,7 @@ class Citation(BaseModel):
     document_name: str
     section_path: str
     chunk_id: str | None = None
+    parent_id: str | None = Field(default=None, exclude_if=lambda value: value is None)
     knowledge_base_id: UUID | None = None
     knowledge_base_name: str | None = None
 

@@ -9,10 +9,12 @@ from sqlalchemy.orm import Session
 from ..db.models import (
     EMBEDDING_DIMENSION,
     DocumentChunk,
+    DocumentParent,
     KnowledgeDocument,
 )
 from ..security.retrieval_scope import RetrievalScope
 from ..documents.policy_metadata import extract_policy
+from ..documents.parent_chunks import body_text
 
 
 @dataclass(frozen=True, slots=True)
@@ -141,6 +143,53 @@ class ChunkRepository:
             DocumentChunk.chunk_index.between(max(0, chunk.chunk_index - radius), chunk.chunk_index + radius),
         ).order_by(DocumentChunk.chunk_index).limit(5)).all()
         return [self._stored(c, d) for c, d in rows]
+
+    def parent_chunks(self, *, scope, expected):
+        """Resolve at most 32 current anchors to scoped, generation-bound parents.
+
+        The anchor child ID remains the citation address; parent ID is explicit.
+        Missing legacy parents fall back to child text. A previously expanded
+        parent disappearing/changing is stale evidence and is dropped.
+        """
+        current = self.current_chunks(scope=scope, expected=expected)
+        if not current:
+            return []
+        ids = [row.chunk_id for row in current]
+        join = and_(DocumentParent.id==DocumentChunk.parent_id,
+            DocumentParent.tenant_id==DocumentChunk.tenant_id,
+            DocumentParent.knowledge_base_id==DocumentChunk.knowledge_base_id,
+            DocumentParent.document_id==DocumentChunk.document_id,
+            DocumentParent.vector_generation==DocumentChunk.vector_generation,
+            DocumentParent.document_version==KnowledgeDocument.version,
+            DocumentParent.document_content_hash==KnowledgeDocument.content_hash,
+            DocumentParent.first_chunk_index<=DocumentChunk.chunk_index,
+            DocumentParent.last_chunk_index>=DocumentChunk.chunk_index)
+        rows = self._session.execute(self._current_rows(scope).add_columns(DocumentParent)
+            .join(DocumentParent, join).where(DocumentChunk.id.in_(ids))).all()
+        parents = {c.id:p for c, _, p in rows}
+        result, seen = [], set()
+        for row in current:
+            parent = parents.get(row.chunk_id)
+            previous = expected[row.chunk_id]
+            if previous.get('parent_id') and (parent is None or parent.id!=previous['parent_id']
+                or (previous.get('parent_content_hash') and parent.content_hash!=previous['parent_content_hash'])):
+                continue
+            if parent is None:
+                result.append(row)
+                continue
+            if parent.id in seen:
+                continue
+            seen.add(parent.id)
+            metadata = {**row.metadata, 'parent_id':parent.id, 'parent_content_hash':parent.content_hash,
+                'child_content_hash':row.metadata['chunk_content_hash'], 'chunk_content_hash':parent.content_hash,
+                'matched_child_content':body_text(row.content),
+                'matched_child_section':row.metadata.get('section_path', ''),
+                'section_path':parent.metadata_json.get('section_path',''), 'chunk_type':'parent',
+                'parent_first_index':parent.first_chunk_index, 'parent_last_index':parent.last_chunk_index}
+            result.append(StoredChunk(chunk_id=row.chunk_id, document_id=row.document_id,
+                tenant_id=row.tenant_id, knowledge_base_id=row.knowledge_base_id,
+                content=parent.content, document_name=row.document_name, source=row.source, metadata=metadata))
+        return result
 
     def _stored(self, chunk, document):
         return StoredChunk(chunk_id=chunk.id, document_id=document.id, tenant_id=chunk.tenant_id,

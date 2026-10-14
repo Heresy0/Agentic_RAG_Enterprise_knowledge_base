@@ -932,6 +932,33 @@ event.listen(
 )
 
 
+class DocumentParent(TimestampMixin, Base):
+    """Generation-bound parent text; only child chunks have search vectors."""
+
+    __tablename__ = "document_parents"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    tenant_id: Mapped[UUID] = mapped_column(Uuid(as_uuid=True), nullable=False)
+    knowledge_base_id: Mapped[UUID] = mapped_column(Uuid(as_uuid=True), nullable=False)
+    document_id: Mapped[UUID] = mapped_column(Uuid(as_uuid=True), nullable=False)
+    vector_generation: Mapped[str] = mapped_column(String(32), nullable=False)
+    document_version: Mapped[int] = mapped_column(Integer, nullable=False)
+    document_content_hash: Mapped[str] = mapped_column(String(64), nullable=False)
+    first_chunk_index: Mapped[int] = mapped_column(Integer, nullable=False)
+    last_chunk_index: Mapped[int] = mapped_column(Integer, nullable=False)
+    content: Mapped[str] = mapped_column(Text, nullable=False)
+    content_hash: Mapped[str] = mapped_column(String(64), nullable=False)
+    metadata_json: Mapped[dict[str, object]] = mapped_column(JSON, nullable=False, default=dict)
+    __table_args__ = (
+        ForeignKeyConstraint(["tenant_id", "knowledge_base_id", "document_id"],
+            ["documents.tenant_id", "documents.knowledge_base_id", "documents.id"],
+            name="fk_document_parents_document", ondelete="CASCADE"),
+        CheckConstraint("first_chunk_index >= 0 AND last_chunk_index >= first_chunk_index",
+                        name="ck_document_parents_range"),
+        CheckConstraint("document_version >= 1", name="ck_document_parents_version"),
+        Index("ix_document_parents_scope", "tenant_id", "knowledge_base_id", "document_id", "vector_generation"),
+    )
+
+
 class DocumentChunk(TimestampMixin, Base):
     """文档切分后用于混合检索的内容块。"""
 

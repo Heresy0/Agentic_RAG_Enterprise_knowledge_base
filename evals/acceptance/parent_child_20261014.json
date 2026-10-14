@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "record_type": "historical_evaluation_acceptance_snapshot",
+  "date": "2026-10-14",
+  "implementation_branch": "codex/parent-child-rag",
+  "base_commit": "f0f87cbbb7e93fbb8d602e161efab4e9e9b14c49",
+  "optimization_status": "paused_by_user",
+  "defaults": {
+    "rag_rerank_top_k": 12,
+    "rag_parent_context_enabled": true
+  },
+  "original_cases_and_labels_unchanged": true,
+  "final_target_cases_passed": true,
+  "reports": {
+    "80": {
+      "local_report_directory": "evals/reports/system/parent-guidance-fixes-final-80-20261014",
+      "report_json_sha256": "83e4008049b3dcecc1e5c316057a536bd91cb3519bdfe7ed574cbb05eaea5029",
+      "created_at": "2026-10-14T08:24:32.941409+00:00",
+      "dataset_sha256": "705e9606622e2ecbb13ea0363da61269b2c25b566b3c183e6b0d568703148982",
+      "corpus_manifest_sha256": "8dd2bd5c01ccf639bbe38b52b3d72916490024bb6d399051508ecc5aba5d9f61",
+      "scope_config_sha256": "5b5c64b12dc7c3fa976f09dd4d6d0debaea752173c689de5fc89dffb6ebec67d",
+      "answer": {
+        "total": 80,
+        "passed": 71,
+        "failed": 9,
+        "error": 0,
+        "skipped": 0,
+        "partial": 0,
+        "not_applicable": 0,
+        "pass_rate": 0.8875
+      },
+      "positive_complete_context": 71,
+      "negative_correct": 9,
+      "negative_count": 9,
+      "labelled_false_refusal_ids": [
+        "XH-031",
+        "XH-E-049",
+        "CC-003"
+      ],
+      "model_usage": {
+        "observed": true,
+        "calls": 257,
+        "reported_total_tokens": 918161,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 257,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0,
+        "observed_requests": 80,
+        "unobserved_requests": 0,
+        "limitation": "Known usage subtotal only; unknown usage is not zero. Historical replay is not new spend."
+      },
+      "observed_max_searches_per_request": 1,
+      "observed_max_optional_calls_per_request": 3,
+      "observed_context_scope_violations": 0,
+      "recovered_ids": [
+        "XH-D-26",
+        "XH-E-050",
+        "CC-007"
+      ],
+      "new_failed_ids": [
+        "XH-027",
+        "XH-D-29",
+        "XH-E-053"
+      ],
+      "persistent_failed_ids": [
+        "XH-022",
+        "XH-031",
+        "XH-E-049",
+        "CC-003",
+        "CC-005",
+        "CC-012"
+      ],
+      "baseline_comparison_status": "compared"
+    },
+    "12": {
+      "local_report_directory": "evals/reports/system/parent-guidance-fixes-final-12-20261014",
+      "report_json_sha256": "e8361add4525d45e15ee69e612bec5a8e3b43f73d1a9f5c9421d5193c7d63402",
+      "created_at": "2026-10-14T08:19:02.234411+00:00",
+      "dataset_sha256": "27e6476f6cb62767bd2ed5c8f3151676d10b9d071c49fc2eab389f7fbc698997",
+      "corpus_manifest_sha256": "8dd2bd5c01ccf639bbe38b52b3d72916490024bb6d399051508ecc5aba5d9f61",
+      "scope_config_sha256": "5b5c64b12dc7c3fa976f09dd4d6d0debaea752173c689de5fc89dffb6ebec67d",
+      "answer": {
+        "total": 12,
+        "passed": 11,
+        "failed": 1,
+        "error": 0,
+        "skipped": 0,
+        "partial": 0,
+        "not_applicable": 0,
+        "pass_rate": 0.9166666666666666
+      },
+      "positive_complete_context": 9,
+      "negative_correct": 3,
+      "negative_count": 3,
+      "labelled_false_refusal_ids": [
+        "MH-009"
+      ],
+      "model_usage": {
+        "observed": true,
+        "calls": 46,
+        "reported_total_tokens": 148088,
+        "unknown_usage_calls": 1,
+        "unknown_usage_rate": 0.021739130434782608,
+        "unpriced_calls": 46,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 1,
+        "observed_requests": 12,
+        "unobserved_requests": 0,
+        "limitation": "Known usage subtotal only; unknown usage is not zero. Historical replay is not new spend."
+      },
+      "observed_max_searches_per_request": 1,
+      "observed_max_optional_calls_per_request": 3,
+      "observed_context_scope_violations": 0,
+      "recovered_ids": [
+        "MH-005"
+      ],
+      "new_failed_ids": [
+        "MH-009"
+      ],
+      "persistent_failed_ids": [],
+      "baseline_comparison_status": "compared"
+    }
+  },
+  "tests": {
+    "pytest": {
+      "local_receipt": "data/ingestion-reports/parent-guidance-regression-fixes/complete-final-tests.xml",
+      "receipt_sha256": "a6a18e81f1eb0d17cbb554324b5b423a1e2f7b93f0ac8fb2410fd9a2debbf380",
+      "tests": 1031,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 48,
+      "passed": 983
+    },
+    "milvus_security": {
+      "local_receipt": "data/ingestion-reports/parent-guidance-regression-fixes/milvus-security-tests.xml",
+      "receipt_sha256": "4da6004583c5ff247c42173c0592475e89b8678d11e0c645672cee337157aae5",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 5
+    }
+  },
+  "knowledge_code_sha256_lf_normalized": {
+    "answer_contract.py": "92a1b32c4947e82b40ebb72cac41e81517111b6396fc10677d31cda76a87b881",
+    "parent_context_selection.py": "f05065496d3d78a658f32eadebf147988c22ed35fcabe82975b1c7fa7370f1cc",
+    "context_builder.py": "7ef4f15d070d957fa8d9071738975fcca268290fc6dc7288bf933eb8035b1964",
+    "answer_service.py": "087c92e6930316b998ed2bd57e1f950793649e0488ae2dc409fe3551592d8597",
+    "answer_models.py": "9ef8ac23c7be9da1e9aa25f65c448057cc8fc0b10a730ffbf62c9827008c5250",
+    "answer_repair.py": "e788598799acd2c57e8a2b48ad84481ae2ee08821e6c05b8a7158ab55e42ab4f",
+    "chunk_repository.py": "e184cfb7e7a0240e788c428a5bc594f7575cf692cd72d7e0a7ed36822ec3ba99",
+    "prompts.py": "e2bac7fdf870f3a6b416fba013cb58b51aef19ad5c6239567333a67ccfd3e732"
+  },
+  "historical_deployment_hash_checks": {
+    "api": true,
+    "worker": true
+  },
+  "full_evaluations_usage": {
+    "model_calls": 303,
+    "known_reported_tokens": 1066249,
+    "unknown_usage_calls": 1
+  },
+  "latest_fix_diagnostics_and_full_runs_ledger_audit": {
+    "calls": 410,
+    "known_reported_tokens": 1456154,
+    "unknown_usage_calls": 1,
+    "ledger_rows": 410,
+    "ledger_all_match": true
+  },
+  "limitations": [
+    "Automatic source/phrase proxies require semantic review; labels were not changed.",
+    "Final two batches ran in parallel; latency is not a controlled performance comparison.",
+    "Local authenticated services bypass HTTP rate limiting/audit; no full HTTP multi-user or load test.",
+    "One repair timeout has unknown billed usage; missing tokens are not zero.",
+    "Automatic results are regression proxies, not independent semantic accuracy.",
+    "Cases used for diagnosis and tuning are not a held-out generalization benchmark.",
+    "No new model evaluation was run during documentation closeout.",
+    "Local raw reports, configuration, JWTs and evidence text are intentionally not committed.",
+    "Historical deployment hash checks do not establish production safety or current service health."
+  ]
+}

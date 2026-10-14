@@ -91,6 +91,8 @@ def record_documents(stage, documents):
                          chunk_type=metadata.get("chunk_type"),
                          parser=metadata.get("parser"),
                          section_path=metadata.get("section_path")))
+        if metadata.get('parent_id'):
+            rows[-1]['parent_id'] = metadata['parent_id']
     trace.stages[stage] = rows
 
 
@@ -112,6 +114,8 @@ def record_context(context, *, stage="context"):
                              cleaning_version=item.cleaning_version,
                              matched_incident_ids=list(item.matched_incident_ids),
                              knowledge_base_id=str(item.knowledge_base_id)))
+            if item.parent_id:
+                rows[-1]['parent_id'] = item.parent_id
     trace.stages[stage] = rows
 
 

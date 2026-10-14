@@ -10,6 +10,7 @@ from ..documents.policy_metadata import policy_label
 from .evidence_quality import evidence_role, prioritize_content
 from .context_selection import select_context_chunks, source_key
 from ..evaluation.trace import record_context_selection
+from .parent_context_selection import select_parent_context
 
 
 @dataclass(frozen=True)
@@ -30,6 +31,7 @@ class ContextItem:
     parser: str | None = None
     cleaning_version: str | None = None
     matched_incident_ids: tuple[str, ...] = ()
+    parent_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -75,6 +77,7 @@ class ContextBuilder:
             return BuiltContext.empty()
 
         documents = prioritize_content(self._deduplicate(documents), question=question)
+        documents = [select_parent_context(document, question) for document in documents]
         candidate_count = len(documents)
         documents, reservations = select_context_chunks(
             documents, question=question, max_per_source=self.max_chunks_per_source,
@@ -120,6 +123,9 @@ class ContextBuilder:
                 f"文档：{document_name}\n"
                 f"章节：{section_path}\n"
                 f"{policy_header}"
+                + (f"检索命中章节：{metadata['matched_child_section']}（父块其余内容须核对适用性）\n"
+                   if metadata.get('matched_child_section') and metadata.get('parent_id') else "")
+                +
                 "内容："
             )
             separator_size = 2 if rendered_blocks else 0
@@ -183,6 +189,7 @@ class ContextBuilder:
                 parser=metadata.get("parser"),
                 cleaning_version=metadata.get("cleaning_version"),
                 matched_incident_ids=tuple(metadata.get('matched_incident_ids') or ()),
+                parent_id=metadata.get('parent_id'),
             )
             rendered_block = f"{prefix}{content}"
 
@@ -197,6 +204,8 @@ class ContextBuilder:
             max_characters=self.max_characters, max_chunks_per_source=self.max_chunks_per_source,
             reservations=[dict(row, included=any(item.chunk_id == row["chunk_id"] for item in items))
                           for row in reservations],
+            parent_selections=[dict(chunk_id=str(document.id), **document.metadata['parent_selection'])
+                               for document in documents if document.metadata.get('parent_selection')],
         ))
         if not items:
             return BuiltContext.empty()

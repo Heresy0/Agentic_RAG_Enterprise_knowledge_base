@@ -14,6 +14,7 @@ from ..knowledge.keyword_tokenizer import build_keyword_text
 from ..documents.policy_metadata import enrich_chunks
 from ..documents.chunk_quality import summarize_quality
 from ..documents.ocr_review import review_revision
+from ..documents.parent_chunks import publish_parents
 
 from ..config import Settings
 from ..model_usage import audited_scope
@@ -201,6 +202,7 @@ class DocumentIndexingService:
                 ),
             }
 
+            publish_parents(self._session, document, new_chunks)
             self._session.commit()
 
         except Exception:
@@ -415,6 +417,7 @@ class DocumentIndexingService:
                 ),
             }
 
+            publish_parents(self._session, document, new_chunks)
             self._session.commit()
 
         except Exception:

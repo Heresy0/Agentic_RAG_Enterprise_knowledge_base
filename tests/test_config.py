@@ -37,6 +37,20 @@ def test_settings_only_require_active_rag_services(application_environment):
     assert not hasattr(settings, "summary_model") and not hasattr(settings, "database_path")
 
 
+@pytest.mark.parametrize('name,value', [('RAG_RERANK_TOP_K','0'),('RAG_RERANK_TOP_K','25'),
+    ('RAG_RERANK_TOP_K','bad'),('RAG_PARENT_CONTEXT_ENABLED','yes')])
+def test_parent_configuration_rejects_invalid_values(application_environment,monkeypatch,name,value):
+    monkeypatch.setenv(name,value)
+    with pytest.raises(RuntimeError):Settings()
+
+
+def test_parent_configuration_is_explicit_and_reproducible(application_environment,monkeypatch):
+    monkeypatch.setenv('RAG_RERANK_TOP_K','12')
+    monkeypatch.setenv('RAG_PARENT_CONTEXT_ENABLED','true')
+    settings=Settings()
+    assert settings.rag_rerank_top_k==12 and settings.rag_parent_context_enabled
+
+
 def test_active_credentials_are_still_required(application_environment, monkeypatch):
     monkeypatch.delenv("DASHSCOPE_API_KEY")
     with pytest.raises(RuntimeError, match="DASHSCOPE_API_KEY"):

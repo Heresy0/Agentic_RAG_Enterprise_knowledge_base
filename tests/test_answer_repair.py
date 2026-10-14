@@ -45,10 +45,10 @@ def repair_service(result, *, hook=None):
     return AnswerRepair(settings, model_factory=factory, guard_factory=lambda *args: guard), calls, guard
 
 
-def execute(service, original, *, refresh=lambda: True, budget=None, context=None):
+def execute(service, original, *, refresh=lambda: True, budget=None, context=None, question="温度是多少？"):
     context = context or ContextBuilder().build([make_document("温度是80摄氏度。")], question="温度是多少？")
     with usage_context(scope=TEST_SCOPE) as usage, rag_budget_scope(budget or RagBudget()), capture_trace() as trace:
-        result = service.repair(original, question="温度是多少？", context=context,
+        result = service.repair(original, question=question, context=context,
             validator=AnswerValidator(), scope=TEST_SCOPE, session=object(), refresh_context=refresh)
     return result, usage, trace
 
@@ -152,6 +152,115 @@ def test_large_repair_prompt_is_not_truncated_or_sent():
     result, _, trace = execute(service, original)
     assert result == original and not calls
     assert trace.stages["rag_routing"][-1]["outcome"] == "prompt_budget"
+
+
+def test_numeric_binding_can_use_existing_repair_without_rewriting_or_searching():
+    context = ContextBuilder().build([make_document('标准温度是60摄氏度。', chunk_id='rule'),
+        make_document('实测温度是80摄氏度。', chunk_id='measurement')])
+    original = draft(text='实测温度是80摄氏度', indices=(1,))
+    fixed = draft(text='实测温度是80摄氏度', citation='资料2', indices=(1,))
+    service, calls, _ = repair_service(fixed)
+    result, usage, trace = execute(service, original, context=context)
+    assert result == fixed and original.claims[0].citations == ['资料1']
+    assert len(calls) == len(usage.events) == 1
+    assert trace.stages['rag_routing'][-1]['outcome'] == 'model_repaired'
+
+
+def decision_fixture():
+    context = ContextBuilder().build([make_document('实测温度是80摄氏度。', chunk_id='measurement'),
+        make_document('验收条件为温度不超过85摄氏度。', chunk_id='rule')])
+    original = draft(text='实测温度是80摄氏度', indices=(1,))
+    candidate = original.model_copy(deep=True)
+    from backend.app.knowledge.answer_models import AnswerClaim
+    candidate.claims.insert(0, AnswerClaim(text='本批次满足验收条件，实测80摄氏度不超过85摄氏度',
+                                          citations=['资料1','资料2']))
+    candidate.coverage[0].claim_indices = [1,2]
+    return context, original, candidate
+
+
+def test_one_existing_repair_can_add_a_verdict_while_preserving_all_original_facts():
+    context, original, candidate = decision_fixture()
+    service, calls, _ = repair_service(candidate.claims[0])
+    candidate.coverage[0].claim_indices=[2]
+    result, usage, trace = execute(service, original, context=context, question='本批次是否满足验收条件？')
+    assert result == candidate and result.claims[1:] == original.claims
+    assert len(calls) == len(usage.events) == 1
+    assert trace.stages['rag_routing'][-1]['outcome'] == 'model_repaired'
+
+
+@pytest.mark.parametrize('mutation', ['number','citation','no_verdict'])
+def test_verdict_repair_cannot_weaken_validation_or_rewrite_original_claims(mutation):
+    context, original, candidate = decision_fixture()
+    if mutation=='number':candidate.claims[0].text='本批次满足验收条件，实测999摄氏度'
+    elif mutation=='citation':candidate.claims[0].citations=['资料999']
+    else:candidate.claims[0].text='本批次采用温度验收条件'
+    service, calls, _ = repair_service(candidate.claims[0])
+    result, _, trace = execute(service, original, context=context, question='本批次是否满足验收条件？')
+    assert result == original and len(calls) == 1
+    assert trace.stages['rag_routing'][-1]['outcome'] == 'rejected'
+
+
+def test_verdict_repair_obeys_budget_and_evidence_refresh():
+    context, original, candidate = decision_fixture()
+    service, calls, _ = repair_service(candidate.claims[0])
+    result, _, _ = execute(service, original, context=context, question='本批次是否满足验收条件？',
+                            budget=RagBudget(max_calls=0))
+    assert result == original and not calls
+    checks=iter([True,False])
+    result, _, trace = execute(service, original, context=context, question='本批次是否满足验收条件？',
+                               refresh=lambda:next(checks))
+    assert result == original and len(calls)==1
+    assert trace.stages['rag_routing'][-1]['outcome']=='rejected'
+
+
+def test_revocation_during_verdict_repair_is_enforced():
+    context, original, candidate = decision_fixture()
+    service, calls, _ = repair_service(candidate.claims[0],hook=lambda guard:setattr(guard,'allowed',False))
+    with pytest.raises(AuthorizationDenied):
+        execute(service,original,context=context,question='本批次是否满足验收条件？')
+    assert len(calls)==1
+
+
+def test_refusal_and_unknown_evidence_never_enter_verdict_supplement():
+    context, original, candidate = decision_fixture()
+    original.answerable=False;original.claims=[];original.refusal_reason='没有实测证据'
+    original.coverage[0].status='insufficient';original.coverage[0].claim_indices=[]
+    original.coverage[0].missing_information='没有实测证据'
+    service, calls, _ = repair_service(candidate)
+    result, _, _ = execute(service,original,context=context,question='本批次是否满足验收条件？')
+    assert result==original and not calls
+
+
+def test_verdict_model_cannot_return_a_rewritten_whole_draft():
+    context, original, candidate=decision_fixture()
+    candidate.claims[1].text='伪造的新事实'
+    service, calls, _=repair_service(candidate)
+    result, _, trace=execute(service,original,context=context,question='本批次是否满足验收条件？')
+    assert result==original and len(calls)==1
+    assert trace.stages['rag_routing'][-1]['outcome']=='fallback'
+
+
+def test_pipeline_refuses_an_unrepaired_incomplete_verdict_without_extra_search(monkeypatch):
+    context, original, _ = decision_fixture()
+    service, retrieval, generation, *_ = build_service(monkeypatch, model_result=original,
+        documents=[make_document('实测温度是80摄氏度。')])
+    result=answer(service,'本批次是否满足验收条件？')
+    assert not result.answerable and '缺少首条总体判定' in result.refusal_reason
+    assert len(retrieval.calls)==len(generation.calls)==1
+
+
+@pytest.mark.parametrize('candidate', [
+    draft(text='实测温度是90摄氏度', citation='资料2', indices=(1,)),
+    draft(text='实测温度是80摄氏度', citation='资料1', indices=(1,)),
+])
+def test_numeric_binding_repair_still_rejects_rewritten_or_unvalidated_candidate(candidate):
+    context = ContextBuilder().build([make_document('标准温度是60摄氏度。', chunk_id='rule'),
+        make_document('实测温度是80摄氏度。', chunk_id='measurement')])
+    original = draft(text='实测温度是80摄氏度', indices=(1,))
+    service, calls, _ = repair_service(candidate)
+    result, _, trace = execute(service, original, context=context)
+    assert result == original and len(calls) == 1
+    assert trace.stages['rag_routing'][-1]['outcome'] == 'rejected'
 
 
 def test_answer_pipeline_repair_preserves_first_pass_failure_trace(monkeypatch):

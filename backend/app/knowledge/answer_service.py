@@ -29,6 +29,7 @@ from .prompts import ANSWER_SYSTEM_PROMPT
 from .answer_constraints import complete_cited_table_conditions, generation_constraints, temporal_evidence_context
 from .answer_completion import complete_answer
 from .answer_coverage import coverage_errors, coverage_snapshot, requirement_prompt
+from .answer_contract import answer_contract, direct_answer_errors
 from .temporal import future_certainty_gap
 from .retrieval_service import RetrievalService
 from .evidence_coordinator import EvidenceCoordinator
@@ -278,13 +279,14 @@ class AnswerService:
                                                 proposed=claim.calculation.model_dump()))
         record_calculations(calculation_records)
         first_validation = self._validator.validate(draft=draft, context=context, question=question)
+        first_contract_errors = direct_answer_errors(question, draft)
         first_response = (self._render_result(draft=draft, context=context)
-                          if first_validation.valid and draft.answerable and not coverage_failures
+                          if first_validation.valid and draft.answerable and not coverage_failures and not first_contract_errors
                           else self._refusal(draft.refusal_reason or "首次生成未通过证据与必答项校验。"))
         first_claims = [claim.model_dump() for claim in draft.claims]
         first_answerable = draft.answerable
         first_coverage = coverage_snapshot(draft, question, context)
-        first_errors = list(dict.fromkeys([*coverage_failures, *first_validation.errors]))
+        first_errors = list(dict.fromkeys([*coverage_failures, *first_validation.errors, *first_contract_errors]))
         repair_started = time.perf_counter()
         repaired = (draft if schema_recovered else self._answer_repair.repair(draft,
             question=question, context=context, validator=self._validator, scope=scope,
@@ -319,6 +321,10 @@ class AnswerService:
         if coverage_failures:
             validation.valid = False
             validation.errors.extend(coverage_failures)
+        contract_failures = direct_answer_errors(question, draft)
+        if contract_failures:
+            validation.valid = False
+            validation.errors.extend(contract_failures)
         timings["validation_ms"] = _elapsed_ms(
             validation_started
         )
@@ -424,14 +430,18 @@ class AnswerService:
         return self._as_generation_draft(result)
 
     def _generation_messages(self, question, context):
+        requirements = requirement_prompt(question, context)
+        # Only server-selected fixed guidance and compiler-owned IDs go into
+        # the system message. Original questions and source text remain data.
+        contract = answer_contract(question, json.loads(requirements))
         return [
             SystemMessage(
-                content=ANSWER_SYSTEM_PROMPT
+                content=ANSWER_SYSTEM_PROMPT + "\n本次回答要求（不改变必答项、权限与最终校验）：\n" + contract
             ),
             HumanMessage(
                 content=(
                     f"用户问题：\n{question}\n\n"
-                    f"必答问题清单（用户数据）：\n{requirement_prompt(question, context)}\n\n"
+                    f"必答问题清单（用户数据）：\n{requirements}\n\n"
                     f"作答检查：\n{generation_constraints(question, context)}\n\n"
                     f"知识库资料：\n{context.text}"
                 )
@@ -507,6 +517,7 @@ class AnswerService:
                     document_name=item.document_name,
                     section_path=item.section_path,
                     chunk_id=item.chunk_id,
+                    parent_id=item.parent_id,
                     knowledge_base_id=item.knowledge_base_id,
                     knowledge_base_name=item.knowledge_base_name,
                 )

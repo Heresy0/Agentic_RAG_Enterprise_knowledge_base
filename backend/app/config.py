@@ -76,6 +76,16 @@ class Settings:
         if feedback_enabled not in {"true", "false"}:
             raise RuntimeError("RAG_FEEDBACK_ENABLED 必须为 true 或 false")
         self.rag_feedback_enabled = feedback_enabled == "true"
+        parent_enabled = os.getenv("RAG_PARENT_CONTEXT_ENABLED", "true").strip().lower()
+        if parent_enabled not in {"true", "false"}:
+            raise RuntimeError("RAG_PARENT_CONTEXT_ENABLED 必须为 true 或 false")
+        self.rag_parent_context_enabled = parent_enabled == "true"
+        try:
+            self.rag_rerank_top_k = int(os.getenv("RAG_RERANK_TOP_K", "12"))
+        except ValueError:
+            raise RuntimeError("RAG_RERANK_TOP_K 必须为整数") from None
+        if not 1 <= self.rag_rerank_top_k <= 24:
+            raise RuntimeError("RAG_RERANK_TOP_K 必须在1至24之间")
         rag_limits = {
             "rag_max_optional_calls": ("RAG_MAX_OPTIONAL_CALLS", 4, 1, 6),
             "rag_max_optional_tokens": ("RAG_MAX_OPTIONAL_TOKENS", 32000, 4000, 128000),
