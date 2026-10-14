@@ -15,8 +15,23 @@ def required_env(name: str) -> str:
     return value
 
 
+def read_milvus_token_file(filename: str) -> str:
+    """Read a native Milvus credential without putting its contents in errors."""
+    path = Path(filename)
+    if not path.is_absolute():
+        path = PROJECT_ROOT / path
+    try:
+        token = path.read_text(encoding="utf-8").strip()
+    except (OSError, UnicodeError):
+        raise RuntimeError("无法读取 MILVUS_TOKEN_FILE 密钥文件") from None
+    username, separator, password = token.partition(":")
+    if not separator or not username or not password or "\n" in token or "\r" in token:
+        raise RuntimeError("MILVUS_TOKEN_FILE 必须包含 username:password")
+    return token
+
+
 class Settings:
-    def __init__(self):
+    def __init__(self, *, milvus_access="read"):
         self.log_level = (
             os.getenv("LOG_LEVEL", "INFO").strip().upper()
             or "INFO"
@@ -29,7 +44,14 @@ class Settings:
         from urllib.parse import urlparse
         self.milvus_uri = os.getenv("MILVUS_URI", "http://127.0.0.1:19531").strip().rstrip("/")
         self.milvus_collection = os.getenv("MILVUS_COLLECTION", "enterprise_chunks").strip()
-        self.milvus_token = os.getenv("MILVUS_TOKEN", "").strip()
+        if milvus_access not in ("read", "write"):
+            raise ValueError("无效的 Milvus 访问用途")
+        token_file = os.getenv("MILVUS_TOKEN_FILE", "").strip()
+        if milvus_access == "write":
+            token_file = os.getenv("MILVUS_WORKER_TOKEN_FILE", "").strip() or token_file
+        self.milvus_token = read_milvus_token_file(token_file) if token_file else os.getenv("MILVUS_TOKEN", "").strip()
+        if not self.milvus_token:
+            raise RuntimeError("缺少 Milvus 服务凭据：MILVUS_TOKEN_FILE 或 MILVUS_TOKEN")
         self.milvus_timeout_seconds = float(os.getenv("MILVUS_TIMEOUT_SECONDS", "10"))
         uri = urlparse(self.milvus_uri)
         if uri.scheme not in ("http", "https") or not uri.hostname or uri.username or uri.query or uri.fragment:

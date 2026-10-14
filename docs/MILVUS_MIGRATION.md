@@ -6,6 +6,7 @@ PostgreSQL 16 保留租户、部门、权限、文档、正文分块、pg_search
 ## 本地部署
 
 ```powershell
+python scripts/initialize_milvus_secrets.py
 docker compose up -d --build --wait --wait-timeout 180
 Invoke-RestMethod http://127.0.0.1:8000/health/ready
 ```
@@ -14,11 +15,69 @@ Milvus 使用独立的 etcd、MinIO 和三个命名数据卷。一次性初始�
 宿主机 REST 地址是 `http://127.0.0.1:19531`，容器内为 `http://milvus:19530`。
 19531 避开本机其他项目的 19530；MinIO 和 etcd 不映射宿主机端口，Milvus 管理端口也不对外映射。
 MinIO 使用 Milvus 官方维护的固定版本镜像 `milvusdb/minio:RELEASE.2024-12-18T13-15-44Z`。
-本地对象存储凭据仅用于此演示网络；生产部署应另行配置访问凭据、网络隔离及 Milvus 认证。
+本地对象存储凭据仅用于此演示网络；生产部署应另行配置对象存储凭据及网络隔离。
 镜像与卷初始化参考 [Milvus 官方 Compose](https://github.com/milvus-io/milvus/blob/master/deployments/docker/standalone/docker-compose.yml)。
 
-`.env.example` 提供 `MILVUS_URI`、`MILVUS_COLLECTION`、`MILVUS_TIMEOUT_SECONDS` 和可选 `MILVUS_TOKEN`。
+`.env.example` 提供 `MILVUS_URI`、`MILVUS_COLLECTION`、`MILVUS_TIMEOUT_SECONDS`、
+`MILVUS_TOKEN_FILE`（宿主机查询/评估账号）和 `MILVUS_WORKER_TOKEN_FILE`（宿主机入库/同步账号）。
+运行时必须提供凭据；也支持通过部署平台注入 `MILVUS_TOKEN`，指定文件时以文件为准。
 API 和 Worker 在启动时验证集合字段、1024 维向量、COSINE 度量和集合加载状态；集合默认使用 HNSW。
+
+## 服务认证与账号权限
+
+Compose 固定设置 `COMMON_SECURITY_AUTHORIZATIONENABLED=true`，对应
+`common.security.authorizationEnabled`，重启 Milvus 生效。
+环境变量映射和加载规则参考 [Milvus 3.0.2 配置源码](https://github.com/milvus-io/milvus/blob/v3.0.2/pkg/util/paramtable/base_table.go)，
+认证机制参考 [官方认证说明](https://milvus.io/docs/authenticate.md?tab=docker)。
+
+| Milvus 账号 | 权限与用途 | 密钥接收方 |
+| --- | --- | --- |
+| root | 集合创建/加载、账号与授权维护，随机密码 | 一次性初始化服务 |
+| kb_api | default 数据库的指定集合：Search、Query、DescribeCollection、IndexDetail、GetLoadState | API、宿主机评估 |
+| kb_worker | 同一集合的上述读取权限，以及 Upsert、Delete | Worker、宿主机入库和同步脚本 |
+
+原生 public 角色仍允许部分元数据查询；上述专用角色不使用通配符，不授予数据读取范围外的写入、建表或用户管理权限。
+Milvus RBAC 控制数据库/集合操作，不代替租户/部门授权。现有 SQL 授权、Milvus tenant/KB/generation 过滤和 SQL 回查仍全部保留。
+服务账号可读取该集合内的向量，所以后端凭据不能交给浏览器或业务用户。
+
+首次部署先运行 `initialize_milvus_secrets.py`。它使用安全随机数、独占创建及 Unix 0600 权限生成三个文件，
+重复运行保留已有凭据；Windows 上另用文件 ACL 限制本机用户读取。
+例如在实际运行 Docker Desktop 的 Windows 用户下执行（仅修改本项目密钥目录权限）：
+
+```powershell
+$milvusSecretSid = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+icacls .secrets/milvus /inheritance:r /grant:r "*${milvusSecretSid}:(OI)(CI)F" '*S-1-5-18:(OI)(CI)F' '*S-1-5-32-544:(OI)(CI)F'
+```
+
+`.secrets/` 被 Git 与 Docker build 排除，Compose 通过独立 secret 挂载。
+文件形式的 Compose secrets 不是加密密钥库，需保护宿主机文件；生产可替换为部署平台密钥管理。
+
+初始化容器短暂使用 root 读取宿主机 0600 密钥，通过原子替换将两个服务凭据写入独立命名卷，
+目录为 app 用户所有的 0700，文件为 0400。API / Worker 仍以非 root app 用户运行，
+各自只读挂载一个凭据卷，不挂载管理员密钥或另一服务的凭据。
+这避免 Linux 上文件型 Compose secret 不支持 uid/mode 重映射导致非 root 服务无法读取。
+两个凭据卷含明文密码，保护范围与其他数据库卷相同，不能分享给业务用户。
+
+已有匿名部署升级：
+
+```powershell
+python scripts/initialize_milvus_secrets.py
+# 在 .env 配置两个服务 token 文件路径，参照 .env.example
+docker compose stop worker api
+docker compose up -d --build --wait --wait-timeout 240
+```
+
+`milvus-init` 先确认服务器拒绝匿名访问，再用目标 root 凭据登录；仅首次必要时尝试厂商默认凭据并立即修改。
+随后初始化集合、严格限定服务角色，使用 Worker 密钥执行迁移导入。任何一步失败都会阻止 API 启动。
+角色已有额外授权或服务账号持有额外角色时停止初始化，要求维护人员处理，避免带着意外高权限启动。
+如果之前已自行修改 root 密码，直接调用 `bootstrap_milvus.py --current-admin-token-file <当前凭据文件>` 完成轮换；
+文件内容都是原生 `username:password`，不使用 Keycloak JWT。
+
+不要删除或重新生成正在使用的密钥文件。需要轮换时使用官方更新密码接口、更新对应宿主机文件，
+重跑 `milvus-init` 发布服务凭据卷，再重新启动对应 API / Worker。
+只修改本地文件不会自动改变数据库密码。保留 root 文件的安全备份；不要将其写进共享报告、Git、命令参数或前端。
+Milvus 单独重启后可运行 `docker compose run --rm milvus-init` 重新加载集合，再启动 API / Worker。
+认证失败或集合未初始化/加载时，API / Worker 启动校验失败，不会自动使用管理员或退回匿名访问。
 
 ## 检索与版本发布
 
@@ -51,7 +110,7 @@ SQL 发布失败产生的未发布向量由 Worker 每小时回收，保留至�
 3. 删除 `document_chunks.embedding` 与 SQL HNSW 索引。
 
 随后 `scripts/sync_vectors.py` 幂等导入 Milvus。成功任务清空向量载荷，避免在 PostgreSQL 重复保存向量。
-Compose 的 API 启动命令先执行迁移和 `sync_vectors.py --require-imports`，未完成导入时不会开放问答入口。
+Compose 的一次性 `milvus-init` 服务先执行迁移和 `sync_vectors.py --require-imports`，未完成导入时不会开放问答入口。
 
 ```powershell
 python -m alembic upgrade head
@@ -83,6 +142,25 @@ Milvus 数据卷丢失且成功导入载荷已经清空时，需要恢复 Milvus
 不要把已迁移数据库直接交给旧分支运行。现有 Git 历史仍可查看迁移前实现。
 
 ## 本次迁移记录
+
+### 服务认证补充验收（2026-10-13）
+
+- 已启用 Milvus 原生认证，修改默认 root 密码并建立 kb_api / kb_worker 专用角色。
+- 原生匿名、错误密码及原默认密码查询均返回 HTTP 401 / code 1800。
+- API 无法 Upsert、Delete、Load；两个服务账号无法读取其他集合、删除集合、创建用户或分配角色；Worker 无法创建集合。
+- Worker 的真实 Upsert / Query / Delete 成功；合成数据验证 tenant、知识库和 generation 过滤，空授权范围仍返回空。
+- API / Worker 以 uid/gid 999 的 app 用户运行，各自凭据卷只读，文件为 0400；管理员凭据仅初始化服务可见。
+- 初始化重复执行成功，导入队列 processed=0、pending=0。业务问答匿名请求仍返回 401，服务就绪检查 200。
+- 认证前后 470 个向量及元数据逐条相同；SQL 54 份文档、470 个当前分块全部匹配；54 份文档原向量查询均召回。
+- 735 项单元/API 测试、5 项真实 Milvus 认证/权限集成测试和 19 项前端测试通过；本次未重跑旧 PostgreSQL 集成测试或 80 题模型评估。
+- 本机自动加载的 Locust pytest 插件会影响 TestClient 线程测试，验收和 CI 均关闭插件自动加载。
+- 密钥文件受本机 ACL 保护，Git 与 Docker build 忽略；本次模型调用为 0，没有新增模型费用。
+
+本地证据保存在被 Git 忽略的 `data/ingestion-reports/milvus-auth/`：
+`vectors-before.json`、`data-verification.json`、`retrieval-probes.json`、`unit-tests.xml`、`security-tests.xml`。
+向量快照含项目数据，不能公开分享；报告和日志不包含密码。认证只补齐数据库入口，业务隔离仍由应用授权与 SQL / Milvus 过滤实现，不是数据库行级 RBAC。
+
+### 向量迁移验收
 
 2026-10-13 在 `codex/migrate-to-milvus` 分支完成本地部署：
 

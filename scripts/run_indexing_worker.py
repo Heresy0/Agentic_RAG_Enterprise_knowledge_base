@@ -74,7 +74,7 @@ def _heartbeat_loop(
 
 
 def main() -> None:
-    settings = Settings()
+    settings = Settings(milvus_access="write")
     logging.basicConfig(
         level=settings.log_level,
         format="%(message)s",
@@ -99,7 +99,7 @@ def main() -> None:
     verify_database_connection(engine)
     verify_keyword_index(engine)
     vector_store = MilvusVectorStore(settings)
-    vector_store.ensure_collection()
+    vector_store.verify()
     last_vector_cleanup = float("-inf")
     metrics_server, metrics_thread = start_http_server(
         settings.indexing_worker_metrics_port,

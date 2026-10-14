@@ -1,4 +1,5 @@
 # 密钥和本地配置
+.secrets/
 .env
 .env.*
 !.env.example

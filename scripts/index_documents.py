@@ -264,7 +264,7 @@ def run() -> None:
     )
     directory_mode = args.directory is not None
 
-    settings = Settings()
+    settings = Settings(milvus_access="write")
     engine = create_database_engine(
         settings.database_url
     )
@@ -314,7 +314,7 @@ def run() -> None:
 
             from backend.app.knowledge.milvus_store import MilvusVectorStore
             vector_store = MilvusVectorStore(settings)
-            vector_store.ensure_collection()
+            vector_store.verify()
             indexing_service = DocumentIndexingService(
                 session=session,
                 settings=settings,

@@ -9,7 +9,7 @@ from types import SimpleNamespace
 from backend.app.knowledge.milvus_store import MilvusVectorStore, make_vector_records
 from sqlalchemy.orm import Session
 
-from backend.app.config import Settings, required_env
+from backend.app.config import Settings, required_env, read_milvus_token_file
 from backend.app.db.models import (
     EMBEDDING_DIMENSION,
     DocumentChunk,
@@ -107,8 +107,11 @@ def postgres_session() -> Iterator[Session]:
 
 @pytest.fixture
 def vector_store():
+    # Only these uniquely named disposable test collections receive an admin
+    # client. Runtime service credentials deliberately cannot create/drop them.
+    token = read_milvus_token_file(required_env("MILVUS_INTEGRATION_ADMIN_TOKEN_FILE"))
     store = MilvusVectorStore(SimpleNamespace(milvus_uri=os.getenv("MILVUS_URI", "http://127.0.0.1:19531"),
-        milvus_collection="enterprise_milvus_test_" + uuid4().hex, milvus_timeout_seconds=20))
+        milvus_collection="enterprise_milvus_test_" + uuid4().hex, milvus_timeout_seconds=20, milvus_token=token))
     try:
         store.ensure_collection()
         yield store

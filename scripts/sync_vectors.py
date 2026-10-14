@@ -44,11 +44,11 @@ def main():
     args = parser.parse_args()
     if args.limit < 1:
         parser.error("--limit 必须为正整数")
-    settings = Settings()
+    settings = Settings(milvus_access="write")
     engine = create_database_engine(settings.database_url)
     store = MilvusVectorStore(settings)
     try:
-        store.ensure_collection()
+        store.verify()
         with create_session_factory(engine)() as session:
             if args.retry_failed:
                 session.execute(update(VectorSyncJob).where(VectorSyncJob.status == "failed").values(

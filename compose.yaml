@@ -82,6 +82,8 @@ services:
       MINIO_ADDRESS: milvus-minio:9000
       MQ_TYPE: woodpecker
       MINIO_REGION: us-east-1
+      # Equivalent to common.security.authorizationEnabled in milvus.yaml.
+      COMMON_SECURITY_AUTHORIZATIONENABLED: "true"
     volumes:
       - enterprise_milvus_data:/var/lib/milvus
     ports:
@@ -140,6 +142,43 @@ services:
     mem_limit: 1g
     restart: unless-stopped
 
+  milvus-init:
+    build:
+      context: .
+    # Read host secrets (0600 on Linux), then publish per-service 0400 files
+    # owned by the non-root app user in separate credential volumes.
+    user: '0:0'
+    env_file:
+      - .env
+    environment:
+      MILVUS_URI: http://milvus:19530
+      MILVUS_TOKEN: ""
+      MILVUS_TOKEN_FILE: /run/secrets/milvus_worker_token
+      MILVUS_WORKER_TOKEN_FILE: /run/secrets/milvus_worker_token
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    secrets:
+      - milvus_admin_token
+      - milvus_api_token
+      - milvus_worker_token
+    volumes:
+      - enterprise_milvus_api_credential:/run/milvus-api-credential
+      - enterprise_milvus_worker_credential:/run/milvus-worker-credential
+    command:
+      - sh
+      - -c
+      - >
+        python scripts/bootstrap_milvus.py --allow-default-root --publish-service-secrets &&
+        alembic upgrade head &&
+        exec python scripts/sync_vectors.py --require-imports
+    depends_on:
+      milvus:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      disable: true
+    restart: 'no'
+
   api:
     build:
       context: .
@@ -148,6 +187,9 @@ services:
       - .env
     environment:
       MILVUS_URI: http://milvus:19530
+      MILVUS_TOKEN: ""
+      MILVUS_TOKEN_FILE: /run/milvus-credential/token
+      MILVUS_WORKER_TOKEN_FILE: ""
       REDIS_URL: redis://redis:6379/0
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       OIDC_JWKS_URL: http://keycloak:8080/realms/enterprise-knowledge/protocol/openid-connect/certs
@@ -156,8 +198,6 @@ services:
       - sh
       - -c
       - >
-        alembic upgrade head &&
-        python scripts/sync_vectors.py --require-imports &&
         exec python -m uvicorn backend.app.main:app
         --host 0.0.0.0
         --port 8000
@@ -165,9 +205,10 @@ services:
       - "127.0.0.1:8000:8000"
     volumes:
       - enterprise_document_data:/app/data/documents
+      - enterprise_milvus_api_credential:/run/milvus-credential:ro
     depends_on:
-      milvus:
-        condition: service_healthy
+      milvus-init:
+        condition: service_completed_successfully
       redis:
         condition: service_healthy
       postgres:
@@ -184,6 +225,9 @@ services:
       - .env
     environment:
       MILVUS_URI: http://milvus:19530
+      MILVUS_TOKEN: ""
+      MILVUS_TOKEN_FILE: /run/milvus-credential/token
+      MILVUS_WORKER_TOKEN_FILE: /run/milvus-credential/token
       REDIS_URL: redis://redis:6379/0
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       DOCUMENT_STORAGE_DIR: /app/data/documents
@@ -194,6 +238,7 @@ services:
       - "9101"
     volumes:
       - enterprise_document_data:/app/data/documents
+      - enterprise_milvus_worker_credential:/run/milvus-credential:ro
     depends_on:
       api:
         condition: service_healthy
@@ -348,6 +393,14 @@ services:
         condition: service_started
     restart: unless-stopped
 
+secrets:
+  milvus_admin_token:
+    file: ./.secrets/milvus/admin_token
+  milvus_api_token:
+    file: ./.secrets/milvus/api_token
+  milvus_worker_token:
+    file: ./.secrets/milvus/worker_token
+
 volumes:
   enterprise_postgres_data:
   keycloak_data:
@@ -360,3 +413,5 @@ volumes:
   enterprise_milvus_etcd:
   enterprise_milvus_minio:
   enterprise_milvus_data:
+  enterprise_milvus_api_credential:
+  enterprise_milvus_worker_credential:

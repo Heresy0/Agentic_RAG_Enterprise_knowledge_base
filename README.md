@@ -130,6 +130,7 @@ Set-Location Multi-tenant-long-context-rag-engine
 
 ```powershell
 Copy-Item .env.example .env
+python scripts/initialize_milvus_secrets.py
 ```
 
 编辑 `.env`，至少设置以下配置：
@@ -140,6 +141,11 @@ Copy-Item .env.example .env
 - DashScope 对话、Embedding 和 Rerank 模型配置
 
 应用启动时会校验必要环境变量，空值会导致启动失败。不要把包含真实密钥的 `.env` 提交到 Git。
+
+Milvus 密钥保存在被 Git 和 Docker 构建排除的 `.secrets/milvus/`，不输出到终端。
+一次性 `milvus-init` 服务修改默认 root 密码、初始化集合及只读 API / 读写 Worker 账号，并执行 SQL 迁移和旧向量导入。
+API 和 Worker 仅挂载各自的服务密钥，不持有 Milvus 管理员凭据。业务用户仍然通过 Keycloak 登录。
+现有部署启用步骤与密钥维护见 [Milvus 运维说明](docs/MILVUS_MIGRATION.md#服务认证与账号权限)。
 
 ### 4. 启动基础服务
 
@@ -624,8 +630,10 @@ python -m pytest -q
 
 ```powershell
 $env:RUN_POSTGRES_INTEGRATION_TESTS = "1"
+$env:MILVUS_INTEGRATION_ADMIN_TOKEN_FILE = ".secrets/milvus/admin_token"
 python -m pytest tests/test_milvus_integration.py -q
 Remove-Item Env:RUN_POSTGRES_INTEGRATION_TESTS
+Remove-Item Env:MILVUS_INTEGRATION_ADMIN_TOKEN_FILE
 ```
 
 运行编译检查：

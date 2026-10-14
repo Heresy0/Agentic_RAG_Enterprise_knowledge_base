@@ -27,9 +27,14 @@ jobs:
           --health-retries 20
 
     env:
+      # Locust's pytest plugin monkey-patches threading and can stall TestClient.
+      # This suite uses synchronous tests and needs no auto-loaded plugins.
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
       DATABASE_URL: >-
         postgresql+psycopg://enterprise_app:enterprise_test@127.0.0.1:5432/enterprise_knowledge_test
       MILVUS_URI: http://127.0.0.1:19531
+      MILVUS_INTEGRATION_ADMIN_TOKEN_FILE: .secrets/milvus/admin_token
+      RUN_MILVUS_SECURITY_TESTS: "1"
       RUN_POSTGRES_INTEGRATION_TESTS: "1"
       RUN_MODEL_USAGE_INTEGRATION_TESTS: "1"
       BM25_TEST_DATABASE_URL: >-
@@ -79,6 +84,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements-dev.txt
+
+      - name: Initialize authenticated Milvus service accounts
+        run: |
+          python scripts/initialize_milvus_secrets.py
+          python scripts/bootstrap_milvus.py --allow-default-root \
+            --admin-token-file .secrets/milvus/admin_token \
+            --api-token-file .secrets/milvus/api_token \
+            --worker-token-file .secrets/milvus/worker_token
 
       - name: Set up Node for frontend tests
         uses: actions/setup-node@v7

@@ -84,7 +84,7 @@ async def lifespan(app: FastAPI):
         verify_database_connection(database_engine)
         verify_keyword_index(database_engine)
         vector_store = MilvusVectorStore(settings)
-        vector_store.ensure_collection()
+        vector_store.verify()
         app.state.vector_store = vector_store
 
         redis_client = create_redis_client(

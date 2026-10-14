@@ -19,6 +19,9 @@ def application_environment(monkeypatch):
         "DASHSCOPE_RERANK_URL": "https://models.example.invalid/rerank",
         "RERANK_TIMEOUT_SECONDS": "5",
         "MODEL_USAGE_PRICES_JSON": "{}",
+        "MILVUS_TOKEN": "test_reader:test-placeholder",
+        "MILVUS_TOKEN_FILE": "",
+        "MILVUS_WORKER_TOKEN_FILE": "",
     }
     for name, value in active.items():
         monkeypatch.setenv(name, value)
@@ -61,3 +64,29 @@ def test_milvus_configuration_is_validated(application_environment, monkeypatch,
     monkeypatch.setenv(name, value)
     with pytest.raises(RuntimeError, match=name):
         Settings()
+
+
+def test_milvus_credentials_fail_closed(application_environment, monkeypatch, tmp_path):
+    monkeypatch.setenv("MILVUS_TOKEN", "")
+    with pytest.raises(RuntimeError, match="缺少 Milvus"):
+        Settings()
+    monkeypatch.setenv("MILVUS_TOKEN_FILE", str(tmp_path / "missing"))
+    with pytest.raises(RuntimeError, match="无法读取"):
+        Settings()
+    path = tmp_path / "credential"
+    path.write_text("secret-without-username", encoding="utf-8")
+    monkeypatch.setenv("MILVUS_TOKEN_FILE", str(path))
+    with pytest.raises(RuntimeError, match="username:password") as error:
+        Settings()
+    assert "secret-without-username" not in str(error.value)
+
+
+def test_milvus_secret_file_and_purpose_override(application_environment, monkeypatch, tmp_path):
+    reader = tmp_path / "reader"
+    writer = tmp_path / "writer"
+    reader.write_text("reader:read-secret\n", encoding="utf-8")
+    writer.write_text("writer:write-secret\n", encoding="utf-8")
+    monkeypatch.setenv("MILVUS_TOKEN_FILE", str(reader))
+    monkeypatch.setenv("MILVUS_WORKER_TOKEN_FILE", str(writer))
+    assert Settings().milvus_token == "reader:read-secret"
+    assert Settings(milvus_access="write").milvus_token == "writer:write-secret"
