@@ -1,0 +1,263 @@
+{
+  "created_at": "2026-10-16T07:26:03.683224+00:00",
+  "evaluation_type": "authenticated_local_backend_not_http_or_load_test",
+  "scorer_version": "2026-10-16-r7",
+  "scoring_rules_sha256": "d841dd9d6b93895782f22877e33f6cb5c136cfcd873a1d272ab6757f09c8d134",
+  "old_rules_old_answers_passed": 89,
+  "new_rules_old_answers_passed": 92,
+  "dataset": "evals/xinghai_v4",
+  "cases": 100,
+  "answerable_cases": 87,
+  "unanswerable_cases": 13,
+  "dataset_sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a",
+  "corpus_manifest_sha256": "f3a3f93465fb6aff3d4d06668868a45388966e03614d2890f93518e731f5b511",
+  "scope_config_sha256": "5b5c64b12dc7c3fa976f09dd4d6d0debaea752173c689de5fc89dffb6ebec67d",
+  "runtime": {
+    "agentic_rag_mode": "auto",
+    "rag_planner_mode": "auto",
+    "rag_repair_enabled": true,
+    "rag_feedback_enabled": true,
+    "rag_rerank_top_k": 12,
+    "rag_parent_context_enabled": true,
+    "embedding_model": "text-embedding-v4",
+    "rerank_model": "qwen3-rerank",
+    "answer_model": "qwen3.7-flash"
+  },
+  "counts": {
+    "passed": 91,
+    "failed": 9
+  },
+  "automatic_answer_pass_rate": {
+    "numerator": 91,
+    "denominator": 100,
+    "rate": 0.91
+  },
+  "answerable_strict_pass_rate": {
+    "numerator": 78,
+    "denominator": 87,
+    "rate": 0.896551724137931
+  },
+  "answerability_accuracy": {
+    "numerator": 93,
+    "denominator": 100,
+    "rate": 0.93
+  },
+  "overall_refusal_rate": {
+    "numerator": 20,
+    "denominator": 100,
+    "rate": 0.2
+  },
+  "correct_refusal_rate_negative": {
+    "numerator": 13,
+    "denominator": 13,
+    "rate": 1.0
+  },
+  "false_refusal_rate_positive": {
+    "numerator": 7,
+    "denominator": 87,
+    "rate": 0.08045977011494253
+  },
+  "false_accept_rate_negative": {
+    "numerator": 0,
+    "denominator": 13,
+    "rate": 0.0
+  },
+  "false_refusal_ids": [
+    "XH-E-049",
+    "CC-003",
+    "NQ-002",
+    "NQ-004",
+    "NQ-008",
+    "NQ-014",
+    "NQ-015"
+  ],
+  "evidence": {
+    "fusion": {
+      "observed_positive_cases": 87,
+      "expected_positive_cases": 87,
+      "hit_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "macro_evidence_recall": 1.0,
+      "micro_evidence_recall": {
+        "numerator": 135,
+        "denominator": 135,
+        "rate": 1.0
+      },
+      "complete_evidence_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "mrr": 0.8794198139025725
+    },
+    "rerank": {
+      "observed_positive_cases": 87,
+      "expected_positive_cases": 87,
+      "hit_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "macro_evidence_recall": 0.9948275862068965,
+      "micro_evidence_recall": {
+        "numerator": 134,
+        "denominator": 136,
+        "rate": 0.9852941176470589
+      },
+      "complete_evidence_rate": {
+        "numerator": 85,
+        "denominator": 87,
+        "rate": 0.9770114942528736
+      },
+      "mrr": 0.8914887794198139
+    },
+    "context": {
+      "observed_positive_cases": 87,
+      "expected_positive_cases": 87,
+      "hit_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "macro_evidence_recall": 1.0,
+      "micro_evidence_recall": {
+        "numerator": 136,
+        "denominator": 136,
+        "rate": 1.0
+      },
+      "complete_evidence_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "mrr": 0.9626436781609196
+    }
+  },
+  "subsets": {
+    "legacy80": {
+      "total": 80,
+      "passed": 76,
+      "failed": 4,
+      "errors": 0,
+      "failed_ids": [
+        "XH-019",
+        "XH-E-049",
+        "XH-E-053",
+        "CC-003"
+      ]
+    },
+    "new20": {
+      "total": 20,
+      "passed": 15,
+      "failed": 5,
+      "errors": 0,
+      "failed_ids": [
+        "NQ-002",
+        "NQ-004",
+        "NQ-008",
+        "NQ-014",
+        "NQ-015"
+      ]
+    }
+  },
+  "failure_review_categories": {
+    "XH-019": "实际条件遗漏",
+    "XH-E-049": "计算及来源绑定失败",
+    "XH-E-053": "短语评分差异及授权边界表述",
+    "CC-003": "实体与标准意图误判",
+    "NQ-002": "正确草稿被覆盖记录拦截",
+    "NQ-004": "运算协议及输入绑定错误",
+    "NQ-008": "重试时间计算结构失败",
+    "NQ-014": "派生数字未通过证据校验",
+    "NQ-015": "时刻差运算与来源绑定错误"
+  },
+  "baseline_comparison": {
+    "status": "incompatible",
+    "mismatches": [
+      "scorer_version",
+      "scoring_rules_sha256"
+    ]
+  },
+  "case_changes": {
+    "recovered": [
+      "XH-027",
+      "XH-E-054"
+    ],
+    "new_failed": [
+      "XH-019",
+      "XH-E-053",
+      "NQ-008"
+    ],
+    "persistent_failed": [
+      "XH-E-049",
+      "CC-003",
+      "NQ-002",
+      "NQ-004",
+      "NQ-014",
+      "NQ-015"
+    ]
+  },
+  "manual_review": {
+    "scope": "Targeted review of all9 failures plus recovered XH-027/XH-E-054 and NQ-011. Not a full independent semantic audit of100 answers.",
+    "automatic_scores_changed": false,
+    "old_rules_old_answers": 89,
+    "new_rules_old_answers_replay": 92,
+    "new_rules_new_live_answers": 91,
+    "rule_only_recovered_ids": [
+      "XH-031",
+      "XH-D-29",
+      "CC-012"
+    ],
+    "new_live_recovered_ids": [
+      "XH-027",
+      "XH-E-054"
+    ],
+    "new_live_failed_ids": [
+      "XH-019",
+      "XH-E-053",
+      "NQ-008"
+    ],
+    "targeted_reviews": {
+      "XH-027": "New final answer includes the missing work content,4person-days and date adjustment; core requested facts supported.",
+      "XH-E-054": "New final answer includes target configuration, test environment and inability to prove production enablement.",
+      "NQ-011": "New final answer explains D3 acceptance conditions and explicitly says acceptance does not prove repair. Conditions listed as examples rather than an exhaustive sufficient condition.",
+      "NQ-014": "Current draft has correct comparison; final response still refuses. Historical comparison error is not evidence that this draft repeats it.",
+      "XH-E-053": "Equivalent fusion wording remains outside the frozen aliases; permission-boundary explanation also requires review."
+    },
+    "limitations": [
+      "Rules frozen before live run; no failed quality case retried.",
+      "Same questions, corpus manifest, scope configuration and model settings; live outputs may vary.",
+      "Positive/negative phrase guards do not resolve every quotation, conditional or object binding.",
+      "No claim of semantic accuracy improvement from89 to91; compare91 to rescored92."
+    ]
+  },
+  "infrastructure_retry_ids": [],
+  "model_usage": {
+    "observed": true,
+    "calls": 335,
+    "reported_total_tokens": 1147767,
+    "unknown_usage_calls": 3,
+    "unknown_usage_rate": 0.008955223880597015,
+    "unpriced_calls": 335,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 3,
+    "observed_requests": 100,
+    "unobserved_requests": 0,
+    "limitation": "Known usage subtotal only; unknown usage is not zero. Historical replay is not new spend."
+  },
+  "local_report_directory": "evals/reports/system/scoring-r7-100-20261016T071520Z",
+  "report_sha256": "44bbc70d4c4eeeb306e7d34926a8ff063d80dcb1d246883a836c4acd3ac84290",
+  "trace_sha256": "ddf44ee1e85161224f2cab3e417f7002a05239333d5ff369c8ea493c6a28d1dd",
+  "limitations": [
+    "Strict automatic phrase/source/evidence proxy, not an independent semantic accuracy measurement.",
+    "Failure reviews do not alter the original score or constitute a full manual review of all100 answers.",
+    "Evidence recall covers annotated evidence only; synthetic regression data is not a held-out enterprise benchmark.",
+    "Old answers rescored under r7 give92/100; compare new live observations to that baseline. Historical89/100 used different scoring rules.",
+    "Local backend execution does not measure HTTP gateway, governance, deployed multi-user security or load capacity.",
+    "Known token subtotal only; missing usage and unconfigured pricing are not zero cost."
+  ]
+}

@@ -3,7 +3,10 @@ import re
 import unicodedata
 from pathlib import PurePosixPath
 from urllib.parse import unquote
-from .assertions import negative_assertion_match
+from .assertions import fact_assertion_match
+
+
+SCORER_VERSION = "2026-10-16-r9"
 
 
 def normalize(value):
@@ -63,7 +66,7 @@ def score_answer(case, response, context=None):
         if rule:
             options = [normalize(option) for option in options]
             rule = dict(rule, contradictions=[normalize(value) for value in rule.get('contradictions', [])])
-            matched, conflicting = negative_assertion_match(normalize(response['answer']), options, rule)
+            matched, conflicting = fact_assertion_match(normalize(response['answer']), options, rule)
             if conflicting:
                 contradictions[fact] = conflicting
         else:

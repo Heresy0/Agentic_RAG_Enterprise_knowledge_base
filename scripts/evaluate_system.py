@@ -15,6 +15,8 @@ from backend.app.evaluation.runner import evaluate_local, replay
 from backend.app.evaluation.http_runner import evaluate_conversations, evaluate_permissions
 from backend.app.evaluation.conversation_runner import evaluate_local_conversations
 from scripts.evaluate_answers import load_dataset
+from backend.app.evaluation.metrics import SCORER_VERSION
+from backend.app.evaluation.scoring_rules import apply_scoring_rules
 
 
 def parse_args(argv=None):
@@ -58,7 +60,8 @@ def main(argv=None):
     directory.mkdir(parents=True, exist_ok=True)
     if (directory / "report.json").exists() or (directory / "report.md").exists():
         raise ValueError("Choose a new output directory; previous reports are not overwritten")
-    cases = load_dataset(args.dataset_dir / "single_turn.jsonl")
+    rules_path = args.dataset_dir / 'scoring_rules.json'
+    cases = apply_scoring_rules(load_dataset(args.dataset_dir / "single_turn.jsonl"), rules_path)
     full_case_count = len(cases)
     if args.case_ids:
         unknown = set(args.case_ids) - {case['id'] for case in cases}
@@ -67,7 +70,9 @@ def main(argv=None):
         cases = [case for case in cases if case['id'] in args.case_ids]
     if args.limit:
         cases = cases[:args.limit]
-    report = dict(schema_version=1, mode=args.mode, selected_cases=len(cases), available_cases=full_case_count,
+    report = dict(schema_version=1, scorer_version=SCORER_VERSION,
+                  scoring_rules_sha256=hashlib.sha256(rules_path.read_bytes()).hexdigest() if rules_path.is_file() else None,
+                  mode=args.mode, selected_cases=len(cases), available_cases=full_case_count,
                   selected_case_ids=[case["id"] for case in cases],
                   requested_conversation_ids=args.conversation_ids,
                   conversation_backend=args.conversation_backend if 'conversations' in args.layers else None,

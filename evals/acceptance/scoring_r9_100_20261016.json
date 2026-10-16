@@ -1,0 +1,364 @@
+{
+  "created_at": "2026-10-16T07:44:16.423252+00:00",
+  "evaluation_type": "offline_rescore_of_fresh_authenticated_live_observations",
+  "mode": "replay",
+  "new_model_calls_for_rescore": 0,
+  "source_live_report_directory": "evals/reports/system/scoring-r8-100-20261016T073321Z",
+  "source_live_original_passed": 93,
+  "scorer_version": "2026-10-16-r9",
+  "scoring_rules_sha256": "a369c6f49309bf4738430f69fd5161ba01b9502aae1dc72cae99aed5efb2817b",
+  "old_rules_old_answers_passed": 91,
+  "new_rules_old_answers_passed": 92,
+  "dataset": "evals/xinghai_v4",
+  "cases": 100,
+  "answerable_cases": 87,
+  "unanswerable_cases": 13,
+  "dataset_sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a",
+  "corpus_manifest_sha256": "f3a3f93465fb6aff3d4d06668868a45388966e03614d2890f93518e731f5b511",
+  "scope_config_sha256": null,
+  "runtime": {
+    "agentic_rag_mode": "auto",
+    "rag_planner_mode": "auto",
+    "rag_repair_enabled": true,
+    "rag_feedback_enabled": true,
+    "rag_rerank_top_k": 12,
+    "rag_parent_context_enabled": true,
+    "embedding_model": "text-embedding-v4",
+    "rerank_model": "qwen3-rerank",
+    "answer_model": "qwen3.7-flash"
+  },
+  "counts": {
+    "passed": 94,
+    "failed": 6
+  },
+  "automatic_answer_pass_rate": {
+    "numerator": 94,
+    "denominator": 100,
+    "rate": 0.94
+  },
+  "answerable_strict_pass_rate": {
+    "numerator": 81,
+    "denominator": 87,
+    "rate": 0.9310344827586207
+  },
+  "answerability_accuracy": {
+    "numerator": 94,
+    "denominator": 100,
+    "rate": 0.94
+  },
+  "overall_refusal_rate": {
+    "numerator": 19,
+    "denominator": 100,
+    "rate": 0.19
+  },
+  "correct_refusal_rate_negative": {
+    "numerator": 13,
+    "denominator": 13,
+    "rate": 1.0
+  },
+  "false_refusal_rate_positive": {
+    "numerator": 6,
+    "denominator": 87,
+    "rate": 0.06896551724137931
+  },
+  "false_accept_rate_negative": {
+    "numerator": 0,
+    "denominator": 13,
+    "rate": 0.0
+  },
+  "false_refusal_ids": [
+    "XH-E-049",
+    "CC-003",
+    "NQ-002",
+    "NQ-004",
+    "NQ-014",
+    "NQ-015"
+  ],
+  "evidence": {
+    "fusion": {
+      "observed_positive_cases": 87,
+      "expected_positive_cases": 87,
+      "hit_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "macro_evidence_recall": 1.0,
+      "micro_evidence_recall": {
+        "numerator": 135,
+        "denominator": 135,
+        "rate": 1.0
+      },
+      "complete_evidence_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "mrr": 0.8794198139025725
+    },
+    "rerank": {
+      "observed_positive_cases": 87,
+      "expected_positive_cases": 87,
+      "hit_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "macro_evidence_recall": 0.9948275862068965,
+      "micro_evidence_recall": {
+        "numerator": 134,
+        "denominator": 136,
+        "rate": 0.9852941176470589
+      },
+      "complete_evidence_rate": {
+        "numerator": 85,
+        "denominator": 87,
+        "rate": 0.9770114942528736
+      },
+      "mrr": 0.8914887794198139
+    },
+    "context": {
+      "observed_positive_cases": 87,
+      "expected_positive_cases": 87,
+      "hit_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "macro_evidence_recall": 1.0,
+      "micro_evidence_recall": {
+        "numerator": 136,
+        "denominator": 136,
+        "rate": 1.0
+      },
+      "complete_evidence_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "mrr": 0.9626436781609196
+    }
+  },
+  "subsets": {
+    "legacy80": {
+      "total": 80,
+      "passed": 78,
+      "failed": 2,
+      "errors": 0,
+      "failed_ids": [
+        "XH-E-049",
+        "CC-003"
+      ]
+    },
+    "new20": {
+      "total": 20,
+      "passed": 16,
+      "failed": 4,
+      "errors": 0,
+      "failed_ids": [
+        "NQ-002",
+        "NQ-004",
+        "NQ-014",
+        "NQ-015"
+      ]
+    }
+  },
+  "failure_review_categories": {
+    "XH-E-049": "计算结构及输入绑定失败",
+    "CC-003": "项目实体及标准意图误判",
+    "NQ-002": "正确草稿被覆盖记录拦截",
+    "NQ-004": "派生数字未提供计算绑定",
+    "NQ-014": "派生数字及真实比较错误",
+    "NQ-015": "时刻差及来源绑定错误"
+  },
+  "baseline_comparison": {
+    "status": "compared",
+    "changes": [
+      {
+        "layer": "retrieval",
+        "metric": "hit_rate",
+        "baseline": 1.0,
+        "current": 1.0,
+        "delta": 0.0
+      },
+      {
+        "layer": "retrieval",
+        "metric": "mrr",
+        "baseline": 0.8794198139025725,
+        "current": 0.8794198139025725,
+        "delta": 0.0
+      },
+      {
+        "layer": "retrieval",
+        "metric": "mean_evidence_recall",
+        "baseline": 1.0,
+        "current": 1.0,
+        "delta": 0.0
+      },
+      {
+        "layer": "retrieval",
+        "metric": "all_evidence_rate",
+        "baseline": 1.0,
+        "current": 1.0,
+        "delta": 0.0
+      },
+      {
+        "layer": "retrieval",
+        "metric": "pass_rate",
+        "baseline": 1.0,
+        "current": 1.0,
+        "delta": 0.0
+      },
+      {
+        "layer": "rerank",
+        "metric": "hit_rate",
+        "baseline": 1.0,
+        "current": 1.0,
+        "delta": 0.0
+      },
+      {
+        "layer": "rerank",
+        "metric": "mrr",
+        "baseline": 0.8914887794198139,
+        "current": 0.8914887794198139,
+        "delta": 0.0
+      },
+      {
+        "layer": "rerank",
+        "metric": "mean_evidence_recall",
+        "baseline": 0.9948275862068965,
+        "current": 0.9948275862068965,
+        "delta": 0.0
+      },
+      {
+        "layer": "rerank",
+        "metric": "all_evidence_rate",
+        "baseline": 0.9770114942528736,
+        "current": 0.9770114942528736,
+        "delta": 0.0
+      },
+      {
+        "layer": "rerank",
+        "metric": "pass_rate",
+        "baseline": 0.9770114942528736,
+        "current": 0.9770114942528736,
+        "delta": 0.0
+      },
+      {
+        "layer": "context",
+        "metric": "hit_rate",
+        "baseline": 1.0,
+        "current": 1.0,
+        "delta": 0.0
+      },
+      {
+        "layer": "context",
+        "metric": "mrr",
+        "baseline": 0.9626436781609196,
+        "current": 0.9626436781609196,
+        "delta": 0.0
+      },
+      {
+        "layer": "context",
+        "metric": "mean_evidence_recall",
+        "baseline": 1.0,
+        "current": 1.0,
+        "delta": 0.0
+      },
+      {
+        "layer": "context",
+        "metric": "all_evidence_rate",
+        "baseline": 1.0,
+        "current": 1.0,
+        "delta": 0.0
+      },
+      {
+        "layer": "context",
+        "metric": "pass_rate",
+        "baseline": 1.0,
+        "current": 1.0,
+        "delta": 0.0
+      },
+      {
+        "layer": "answer",
+        "metric": "pass_rate",
+        "baseline": 0.92,
+        "current": 0.94,
+        "delta": 0.019999999999999907
+      }
+    ],
+    "limitation": "Deltas are diagnostic, not an automatic deployment gate."
+  },
+  "case_changes": {
+    "recovered": [
+      "XH-019",
+      "NQ-008"
+    ],
+    "new_failed": [],
+    "persistent_failed": [
+      "XH-E-049",
+      "CC-003",
+      "NQ-002",
+      "NQ-004",
+      "NQ-014",
+      "NQ-015"
+    ]
+  },
+  "manual_review": {
+    "scope": "All6 failures, recovered XH-019/NQ-008, and XH-E-053 reviewed; not an independent audit of every claim in100 answers.",
+    "source_live_mode": "live",
+    "final_scoring_mode": "replay",
+    "new_model_calls_for_rescore": 0,
+    "source_live_original_r8_passed": 93,
+    "source_live_final_r9_passed": 94,
+    "previous_r7_answers_original_passed": 91,
+    "previous_r7_answers_under_r9_passed": 92,
+    "only_source_live_grade_changed_by_r9": [
+      "XH-E-053"
+    ],
+    "relative_to_same_rule_old_answers": {
+      "recovered": [
+        "XH-019",
+        "NQ-008"
+      ],
+      "new_failed": []
+    },
+    "targeted_reviews": {
+      "XH-019": "New answer includes both the10-minute/99.0% trigger and write-error trigger, with the responsible approver.",
+      "NQ-008": "Program-verified09:23:20 and original intervals are correct. Identical calculation appears twice; a presentation duplication, not a wrong result.",
+      "XH-E-053": "Full equivalent retain-as-fallback wording is now accepted. Source and fallback requirements retained; explicit ACL boundary is not automatically certified by these fact labels.",
+      "NQ-014": "Current draft repeats the incorrect recovery comparison. It is an actual assertion, not a hypothetical instruction; final response refuses and remains failed."
+    },
+    "remaining_scoring_limits": [
+      "Numeric/role binding, refusal-body consistency and scope-failure aggregation issues identified in the prior audit are outside this false-penalty fix and remain unresolved.",
+      "Only reviewed complete aliases and bounded remediation templates are supported; no general semantic judge.",
+      "Fresh live responses are retained unchanged; final r9 rescore is not a new generation or an independent semantic accuracy measurement."
+    ]
+  },
+  "infrastructure_retry_ids": [],
+  "model_usage": {
+    "observed": true,
+    "calls": 333,
+    "reported_total_tokens": 1142503,
+    "unknown_usage_calls": 4,
+    "unknown_usage_rate": 0.012012012012012012,
+    "unpriced_calls": 333,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 4,
+    "observed_requests": 100,
+    "unobserved_requests": 0,
+    "limitation": "Known usage subtotal only; unknown usage is not zero. Historical replay is not new spend."
+  },
+  "local_report_directory": "evals/reports/system/scoring-r9-replay-100-20261016",
+  "report_sha256": "4a660e3a2d632947f4157bfa77c5a2faa5f4da1a5b603c7c1564a068cfa4493d",
+  "trace_sha256": "3b8e3f46367af390825b6b5d9c6ca7d809284b20608248207d3b375dd7a14f33",
+  "limitations": [
+    "Strict automatic phrase/source/evidence proxy, not an independent semantic accuracy measurement.",
+    "Failure reviews do not alter the original score or constitute a full manual review of all100 answers.",
+    "Evidence recall covers annotated evidence only; synthetic regression data is not a held-out enterprise benchmark.",
+    "Prior r7 live answers rescore92/100 under r9. This final report rescores all100 fresh r8 live responses under r9; it does not make new model calls.",
+    "Local backend execution does not measure HTTP gateway, governance, deployed multi-user security or load capacity.",
+    "Known token subtotal only; missing usage and unconfigured pricing are not zero cost."
+  ]
+}

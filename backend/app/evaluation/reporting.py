@@ -65,7 +65,7 @@ def outcome(report):
 
 def compare_baseline(report, baseline):
     """Only compare like-for-like runs; never turn historical Chroma numbers into current gates."""
-    keys = ("schema_version", "mode", "dataset_sha256", "selected_case_ids", "requested_conversation_ids",
+    keys = ("schema_version", "scorer_version", "scoring_rules_sha256", "mode", "dataset_sha256", "selected_case_ids", "requested_conversation_ids",
             "conversation_backend", "conversations_sha256", "corpus_manifest_sha256", "scope_config_sha256")
     mismatches = [key for key in keys if report.get(key) != baseline.get(key)]
     if set(report["layers"]) != set(baseline.get("layers", {})):
