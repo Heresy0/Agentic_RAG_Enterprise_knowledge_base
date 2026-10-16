@@ -1,0 +1,276 @@
+{
+  "evaluation_type": "ragas_judge_of_frozen100_responses_and_actual_contexts",
+  "date": "2026-10-16",
+  "cases": 100,
+  "metric_values": 200,
+  "original_rule_passed": 94,
+  "original_rule_failed": 6,
+  "metrics": {
+    "factual_correctness": {
+      "scored": 100,
+      "mean": 0.4235,
+      "undefined": 0,
+      "errors": 0,
+      "at_or_above_threshold": 16,
+      "threshold": 0.8
+    },
+    "faithfulness": {
+      "scored": 100,
+      "mean": 0.9223619713619714,
+      "undefined": 0,
+      "errors": 0,
+      "at_or_above_threshold": 87,
+      "threshold": 0.9
+    }
+  },
+  "groups": {
+    "all": {
+      "cases": 100,
+      "factual_correctness": {
+        "scored": 100,
+        "mean": 0.4235
+      },
+      "faithfulness": {
+        "scored": 100,
+        "mean": 0.9223619713619714
+      }
+    },
+    "answerable87": {
+      "cases": 87,
+      "factual_correctness": {
+        "scored": 87,
+        "mean": 0.4032183908045977
+      },
+      "faithfulness": {
+        "scored": 87,
+        "mean": 0.9259907716804269
+      }
+    },
+    "delivered_answers81": {
+      "cases": 81,
+      "factual_correctness": {
+        "scored": 81,
+        "mean": 0.4330864197530864
+      },
+      "faithfulness": {
+        "scored": 81,
+        "mean": 0.9820165431276542
+      }
+    },
+    "false_refusals6": {
+      "cases": 6,
+      "factual_correctness": {
+        "scored": 6,
+        "mean": 0.0
+      },
+      "faithfulness": {
+        "scored": 6,
+        "mean": 0.16964285714285715
+      }
+    },
+    "unanswerable13": {
+      "cases": 13,
+      "factual_correctness": {
+        "scored": 13,
+        "mean": 0.5592307692307692
+      },
+      "faithfulness": {
+        "scored": 13,
+        "mean": 0.8980769230769231
+      }
+    }
+  },
+  "diagnostic_screen": {
+    "scored": 100,
+    "passed": 16,
+    "thresholds": {
+      "factual_correctness": 0.8,
+      "faithfulness": 0.9
+    },
+    "not_semantic_accuracy": true
+  },
+  "comparison_matrix": {
+    "original_True_judge_True": 16,
+    "original_True_judge_False": 78,
+    "original_True_judge_None": 0,
+    "original_False_judge_True": 0,
+    "original_False_judge_False": 6,
+    "original_False_judge_None": 0
+  },
+  "disagreement_count": 78,
+  "disagreement_ids": [
+    "XH-001",
+    "XH-002",
+    "XH-003",
+    "XH-004",
+    "XH-005",
+    "XH-006",
+    "XH-007",
+    "XH-008",
+    "XH-009",
+    "XH-010",
+    "XH-011",
+    "XH-012",
+    "XH-013",
+    "XH-014",
+    "XH-015",
+    "XH-016",
+    "XH-017",
+    "XH-018",
+    "XH-019",
+    "XH-021",
+    "XH-022",
+    "XH-024",
+    "XH-025",
+    "XH-026",
+    "XH-027",
+    "XH-030",
+    "XH-031",
+    "XH-032",
+    "XH-033",
+    "XH-034",
+    "XH-035",
+    "XH-D-21",
+    "XH-D-22",
+    "XH-D-23",
+    "XH-D-24",
+    "XH-D-27",
+    "XH-D-28",
+    "XH-D-29",
+    "XH-D-30",
+    "XH-E-046",
+    "XH-E-048",
+    "XH-E-051",
+    "XH-E-052",
+    "XH-E-053",
+    "XH-E-054",
+    "XH-E-055",
+    "XH-E-056",
+    "XH-E-058",
+    "XH-E-059",
+    "CC-001",
+    "CC-002",
+    "CC-006",
+    "CC-007",
+    "CC-008",
+    "CC-009",
+    "CC-010",
+    "CC-011",
+    "CC-013",
+    "CC-015",
+    "CC-016",
+    "CC-017",
+    "CC-018",
+    "CC-019",
+    "CC-020",
+    "NQ-003",
+    "NQ-005",
+    "NQ-006",
+    "NQ-007",
+    "NQ-008",
+    "NQ-009",
+    "NQ-010",
+    "NQ-011",
+    "NQ-012",
+    "NQ-016",
+    "NQ-017",
+    "NQ-018",
+    "NQ-019",
+    "NQ-020"
+  ],
+  "review_categories": {
+    "reference_scope": 44,
+    "claim_decomposition": 13,
+    "reference_optional": 7,
+    "refusal_metric": 11,
+    "judge_entailment": 1,
+    "question_premise": 2
+  },
+  "review_assessments": {
+    "metric_mismatch": 76,
+    "needs_review": 2
+  },
+  "wording_risk_ids": [
+    "XH-003",
+    "XH-E-056"
+  ],
+  "review_method": "Assistant examined question/final response/reference/judge verdicts for all78 discrepancies and revisited actual context for key disputes; not an independent100-case claim-level truth audit.",
+  "judge_usage": {
+    "calls": 603,
+    "reported_total_tokens": 900798,
+    "unknown_usage_calls": 0,
+    "http_errors": 0,
+    "no_response_calls": 0
+  },
+  "business_rag_calls": 0,
+  "judge_model": "qwen3.7-flash",
+  "judge_base_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+  "dependency_versions": {
+    "ragas": "0.4.3",
+    "instructor": "1.17.0",
+    "openai": "2.54.0",
+    "httpx": "0.28.1",
+    "pydantic": "2.14.1",
+    "langchain-community": "0.3.31"
+  },
+  "parameters": {
+    "factual_correctness": {
+      "mode": "f1",
+      "atomicity": "high",
+      "coverage": "high"
+    },
+    "thresholds": {
+      "factual_correctness": 0.8,
+      "faithfulness": 0.9
+    },
+    "refusal_policy": "Final answer plus saved user-visible refusal_reason; never draft claims.",
+    "context_policy": "Only actual saved context text with original citation ID and document name; no additional sources.",
+    "temperature": 0,
+    "top_p": 0.1,
+    "max_output_tokens": 4096,
+    "reasoning_effort": "none",
+    "sdk_retries": 0,
+    "instructor_max_attempts": 2,
+    "concurrency": 3,
+    "max_physical_calls": 800,
+    "same_model_family_as_generator": true,
+    "ragas_telemetry": false
+  },
+  "dataset_sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a",
+  "source_report_sha256": "4a660e3a2d632947f4157bfa77c5a2faa5f4da1a5b603c7c1564a068cfa4493d",
+  "source_traces_sha256": "3b8e3f46367af390825b6b5d9c6ca7d809284b20608248207d3b375dd7a14f33",
+  "adapter_sha256": "3f8b8b8e8162016c8bbb6ed0d908b8319b5c3ba29b104e970ece33670d204f5d",
+  "requirements_sha256": "6f96f66a2d39a9c8ca252482efd47137eefea20435402b73b2748a733340f339",
+  "primary_metric_errors": 1,
+  "final_metric_errors": 0,
+  "retried_error_metrics": [
+    {
+      "id": "XH-033",
+      "metric": "faithfulness",
+      "result": 1.0
+    }
+  ],
+  "retry_calls": 2,
+  "retry_formatting_only": true,
+  "all_original_valid_scores_unchanged": true,
+  "local_report_directory": "evals/reports/system/ragas-100-20261016",
+  "artifact_hashes": {
+    "effective-report.json": "222c6b3d8041bcb3f67261bdb19e59b658117436e64a742bab767ee2487fbfd3",
+    "scores.jsonl": "caa8a3f68ed030862519292210e34fdc637480688db28bb6887b86d28cad0f27",
+    "effective-scores.jsonl": "c196de6755746ba25c3160dd7443c48c368c28da7cc30c59c79e2b76e3274d80",
+    "judge-calls.jsonl": "06adc0e4f9af3c83ac472209863d0d1f717dc6e4dfa9e9bf9ae050208601efe9",
+    "judge-attempts.jsonl": "c3c0822cac3a33e137c88af697ecd614030ad6a4e17f38dff3fc1aff307d3041",
+    "disagreement-review.json": "aa5a7aa35867b1563c36e5e8f448c39edd356ff1b53e98cf151e28fe92d0dfef",
+    "protocol.json": "91a942a01560a8641a7348ad6d034b597d9166191e1f083ad8a3831d0c4fca13",
+    "metric-error-retry-1/protocol.json": "0dcaaeaa927be1f75f9555a990a19a091a9e1af2cc5972a33c6728a5dbe7cb0f"
+  },
+  "limitations": [
+    "Ragas scores and predeclared thresholds are diagnostic, not calibrated accuracy.",
+    "Short references omit subjects and may include optional facts; Ragas F1 does not receive the question.",
+    "Claim decomposition sometimes changes conjunctions, negation, composite keys or question premises.",
+    "Same model as generator; no independent external human100-case truth audit.",
+    "One format-only retry for an errored metric, preserving the initial error and all valid scores.",
+    "No new RAG generation, retrieval, security-state changes or production/load evaluation.",
+    "Token totals are judge-only usage, not monetary cost."
+  ]
+}

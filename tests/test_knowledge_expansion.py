@@ -18,7 +18,7 @@ from scripts.evaluate_answers import load_dataset
 
 @pytest.fixture(scope="module")
 def cases():
-    return [case for case in load_dataset(Path(__file__).resolve().parents[1] / "evals/xinghai_v3/single_turn.jsonl")
+    return [case for case in load_dataset(Path(__file__).resolve().parents[1] / 'evals/archive/xinghai_v3/single_turn.jsonl')
             if case["id"].startswith("CC-")]
 
 

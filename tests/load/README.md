@@ -1,5 +1,7 @@
 # 多租户 QA 性能压测
 
+统一入口现为`python scripts/evaluate.py load`，默认负载位于`evals/current/load_workload.jsonl`，与原8题负载逐字一致。旧负载归档至`evals/archive/load`。以下`run_load_test.py`子入口仍可兼容，质量题不因压测复用重复计数。
+
 Locust 场景直接调用受 OIDC、知识库权限、租户限流和并发限制保护的
 `POST /api/qa`，不会绕过正式业务链路。访问令牌只从环境变量读取，原始 CSV
 写入已被 Git 忽略的 `data/load-tests`。
@@ -8,7 +10,7 @@ Locust 场景直接调用受 OIDC、知识库权限、租户限流和并发限�
 
 新入口为 `scripts/run_load_test.py`，保留下方旧命令的兼容性，不修改 API、RAG 算法、权限或监控组件。
 2026-10-14 的实测、工具误判与验证边界见 [新版压测验收记录](../../docs/LOAD_TEST_ACCEPTANCE_20261014.md)。原始门禁结果未改写，尚未重跑修正后工具的完整付费场景。
-使用 [固定 8 题负载](current_workload.jsonl)：3 道简单业务问题、3 道比较/多跳问题、2 道拒答问题，逐字复用现有 80/12 题的原问题及可回答性标注。分组表示负载类型，不保证实际选择某条 RAG 路由；运行时路由使用现有指标观察。
+使用 [固定 8 题负载](../../evals/current/load_workload.jsonl)：3 道简单业务问题、3 道比较/多跳问题、2 道拒答问题，逐字复用现有 80/12 题的原问题及可回答性标注。分组表示负载类型，不保证实际选择某条 RAG 路由；运行时路由使用现有指标观察。
 
 | profile | 负载 | 建议用户数 | 请求上限 |
 | --- | --- | ---: | ---: |

@@ -1,0 +1,2144 @@
+{
+  "version": "2026-10-16-reference-v1-r10",
+  "dataset_sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a",
+  "scoring_rules_sha256": "41445f2dc30229f21f8b94cf76008f32cea2f5640ce2efac8e8faded9c7db9d7",
+  "scorer_version": "2026-10-16-r10",
+  "policy": "补全主体、数值绑定、条件、时间与事实状态。必答范围沿用r9；可选补充不因未输出而扣分。只以required_reference作为原生Ragas F1参考；可选信息用于审阅，不传入F1参考。原生F1的precision仍可能扣减正确额外解释，忠实度独立核对实际上下文。",
+  "provenance": "仅依据冻结题集的问题、原参考、事实及语义标注与r9覆盖规则编写，未使用被评答案生成或补齐参考；未添加知识库事实。",
+  "cases": [
+    {
+      "id": "XH-001",
+      "question_sha256": "8c856b60e3a2090804cd0d105bb2b3515c5733f21541a1629bfb41bbc1841d23",
+      "original_reference": "每月2次，每次不超过15分钟。",
+      "original_reference_sha256": "a6eb789740a03430bba22ed722efed507eae684b7f402f886bf4724f08f066b0",
+      "original_criteria_sha256": "26c81ce06e951eac8d28d5a462229ee26ed7cc6b5ed04ccc1bc49d70a52ac16d",
+      "answerable": true,
+      "necessary_background": "星海员工每月可以有几次免说明的轻微迟到？",
+      "required_reference": "星海员工每月可有2次免说明的轻微迟到。",
+      "optional_information": [
+        "每次免说明的轻微迟到不超过15分钟。"
+      ],
+      "required_facts": [
+        "2次"
+      ],
+      "optional_facts": [
+        "每次不超过15分钟"
+      ],
+      "semantic_checks": [
+        "免说明次数为每月2次，不是12次；若补充时间限定，应为每次不超过15分钟。"
+      ],
+      "forbidden_claims": [
+        "每月允许12次免说明迟到"
+      ]
+    },
+    {
+      "id": "XH-002",
+      "question_sha256": "d3ab9c6e740e55ce5aa069cdbadc5d6a2ad90935af608be2b931e76536cc94ed",
+      "original_reference": "提前5个工作日，连续超过3个工作日还需部门负责人审批。",
+      "original_reference_sha256": "ec6682282047eb07650e3352dae904771cea72067336f80bacc3ff43bd839aef",
+      "original_criteria_sha256": "396b3e3c137a646856beb9efb223ec4e772dcab87dde7730fcc9917d43274c29",
+      "answerable": true,
+      "necessary_background": "连续休4个工作日年休假要提前多久申请？",
+      "required_reference": "员工连续休4个工作日年休假，应至少提前5个工作日申请。",
+      "optional_information": [
+        "连续年休假超过3个工作日还需部门负责人审批。"
+      ],
+      "required_facts": [
+        "5个工作日"
+      ],
+      "optional_facts": [
+        "连续休假超过3个工作日还需部门负责人审批"
+      ],
+      "semantic_checks": [
+        "连续4个工作日属于超过3天档，申请至少提前5个工作日。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-003",
+      "question_sha256": "ac1752de45a55eb83e06972fbe172391f2d9dcbba099d961d6a07a9bde74cd4d",
+      "original_reference": "650元，现行版本1.4于2026年7月1日生效，旧版550元不可用于当前标准。",
+      "original_reference_sha256": "7da69a5bc5c9c398c6ed63792d3386414fedb82a62b2259a910e0a6985e1a6c6",
+      "original_criteria_sha256": "3030b5f51bba007bef759c9a8140937ded57ab635e7f378d3b8aac50151eafd3",
+      "answerable": true,
+      "necessary_background": "截至2026-10-04，现在普通员工去上海出差，住宿每晚报销上限多少？",
+      "required_reference": "截至2026年10月4日，普通员工去上海出差的住宿报销上限为每晚650元。",
+      "optional_information": [
+        "现行差旅制度版本1.4于2026年7月1日生效。",
+        "旧版每晚550元不能作为当前普通员工上海住宿标准。"
+      ],
+      "required_facts": [
+        "650元"
+      ],
+      "optional_facts": [
+        "现行版本1.4于2026年7月1日生效"
+      ],
+      "semantic_checks": [
+        "现行普通员工上海住宿每晚650元；不得沿用历史550元或负责人850元。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-004",
+      "question_sha256": "30b493cb9d1c51896df9bed6b299f60398ef00c50755bfdf91c5c8e22a6f9c4a",
+      "original_reference": "每晚850元，含税费后的单间价格。",
+      "original_reference_sha256": "9e6641ce2197d3d0f6fb86913865ad45342f726f517a8369f66675abedd1204c",
+      "original_criteria_sha256": "aad6eb80b6064125d5f904a2b43227a9d9c9414301f12e98a8c9ba3f5067fae3",
+      "answerable": true,
+      "necessary_background": "截至2026-10-04，部门负责人现在去A类城市的每晚住宿上限多少？",
+      "required_reference": "截至2026年10月4日，部门负责人去A类城市出差，每晚住宿报销上限为850元。",
+      "optional_information": [
+        "住宿上限按含税费后的单间价格计算。"
+      ],
+      "required_facts": [
+        "850元"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-005",
+      "question_sha256": "45abdc0fec2154468eb215c3c1d5a9a7ba00690b06a1d70a4a6523f9c34ab64d",
+      "original_reference": "10个自然日内。",
+      "original_reference_sha256": "c68633e03524762956532c62a6d0e7f0d9167c0ae0e8b37abd7b7cea58e8e084",
+      "original_criteria_sha256": "4885c0f77314713e00210df75395eefdfdc791b979ef33f9302cd6dae97e297c",
+      "answerable": true,
+      "necessary_background": "行程结束后多久提交差旅报销？",
+      "required_reference": "员工应在差旅行程结束后10个自然日内提交差旅报销。",
+      "optional_information": [],
+      "required_facts": [
+        "10个自然日"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-006",
+      "question_sha256": "acbf753785db50413a74271706c49d34a1836f7a9fe33e442414cece8b5b8d18",
+      "original_reference": "立即停止扩大影响的操作，30分钟内报告，不得自行删除日志。",
+      "original_reference_sha256": "6f386ed6ed602d87b774a0675dccb02c353e10fcc54386159ce8a50b95874e95",
+      "original_criteria_sha256": "0072a97f0fbf35e37be52b7d3f441b00ae8a328b08d2abdd7cf366893d822e0c",
+      "answerable": true,
+      "necessary_background": "发生客户名单误发，多久报告？",
+      "required_reference": "发生客户名单误发，应在30分钟内报告该信息安全事件。",
+      "optional_information": [
+        "应立即停止扩大影响的操作。",
+        "不得自行删除事件日志。"
+      ],
+      "required_facts": [
+        "30分钟"
+      ],
+      "optional_facts": [
+        "停止扩大影响的操作",
+        "不得自行删除日志"
+      ],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-007",
+      "question_sha256": "53ae6c33686bfdc45449b23b0e768156dbc61069149ec423901b2f215ced3f37",
+      "original_reference": "72小时内。",
+      "original_reference_sha256": "06e2991abb81673f93777c7d82f4939da0e1880970354a1da078ed08eb9df3bb",
+      "original_criteria_sha256": "450a32940bb07d35c76e4c2a3774b47a958d6118c3d11dc848bf63a68db0a913",
+      "answerable": true,
+      "necessary_background": "互联网暴露系统的严重漏洞原则上多久修复？",
+      "required_reference": "互联网暴露系统的严重漏洞原则上应在72小时内修复。",
+      "optional_information": [],
+      "required_facts": [
+        "72小时"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-008",
+      "question_sha256": "fdafc5753708785dbe0f7924d0fa08922ebd628983e8349ed9c52dbb701d7d2d",
+      "original_reference": "至少2家有效报价，由部门负责人批准并形成比价记录。",
+      "original_reference_sha256": "3b214baa1591599c51d4f59be4995949bbf761df92dd5ffdc3ac52a78d468573",
+      "original_criteria_sha256": "cf95269f98e4e751969726687bba1e7f7f80d047bfbb711728337b132d9f84ec",
+      "answerable": true,
+      "necessary_background": "恰好50000元的采购至少需要几家报价，谁批准？",
+      "required_reference": "恰好50000元的采购，至少需要2家有效报价，由部门负责人批准。",
+      "optional_information": [
+        "该采购应形成比价记录。"
+      ],
+      "required_facts": [
+        "2家",
+        "部门负责人"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-009",
+      "question_sha256": "fdaa995c0dc2eecb172e17450e91124aedc137a489440c76dfd317e9a39c4a27",
+      "original_reference": "至少3家有效报价，由部门负责人和财务负责人批准，并完成供应商准入。",
+      "original_reference_sha256": "0be5cc1e319200ecb4e010a8cc95daab39986aad1fdb49c721aabb02682d8204",
+      "original_criteria_sha256": "a2479da7e7909d32217ae6d66b23d6c03a230b8853e8e86aecdf3101066c9102",
+      "answerable": true,
+      "necessary_background": "6万元的一般采购需要几家报价和哪些批准人？",
+      "required_reference": "6万元的一般采购至少需要3家有效报价，由部门负责人和财务负责人批准。",
+      "optional_information": [
+        "该采购还应完成供应商准入。"
+      ],
+      "required_facts": [
+        "3家",
+        "部门负责人",
+        "财务负责人"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-010",
+      "question_sha256": "c8b3943168adb1da489d49f6ba009e84fb41d93f26dab7a5f342713e7c422351",
+      "original_reference": "双方授权代表书面批准。",
+      "original_reference_sha256": "93b61496912994e44825b290f5e5f9e4a3d7022924113a92378529c58284c31e",
+      "original_criteria_sha256": "a816f329ab5c212c4348f3499155395468ae5af36be2095bc80338fe5ba53130",
+      "answerable": true,
+      "necessary_background": "影响里程碑的变更谁批准？",
+      "required_reference": "影响项目里程碑的变更，须由双方授权代表书面批准。",
+      "optional_information": [],
+      "required_facts": [
+        "双方授权代表",
+        "书面批准"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-011",
+      "question_sha256": "f472ec8195ef8589ca17666cccdd33e18546ace75903d200423b7693ff3add3f",
+      "original_reference": "最终验收后90日，除合同另有约定。",
+      "original_reference_sha256": "35c76fdda8366c8f4c9626d409c484dd89a9bd7e2d73535d4931496420a1a7d2",
+      "original_criteria_sha256": "aedccbd3c7e247061b25b19223bf48bbbdba868433bec2dd7df716e9041c230a",
+      "answerable": true,
+      "necessary_background": "默认项目质保期多长？",
+      "required_reference": "项目默认质保期为最终验收后90日；合同另有约定时按合同约定。",
+      "optional_information": [],
+      "required_facts": [
+        "最终验收后90日"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-012",
+      "question_sha256": "19e058978265ab8f035f428d1d012a72ca6b1c2728e97b579524647903abe0e0",
+      "original_reference": "当月服务费10%，次月10个工作日内申请。",
+      "original_reference_sha256": "46512e3c39654d9787480131121e43f47db0b561090322bbffee3b142afed34f",
+      "original_criteria_sha256": "5391b4b16bbb182ea15920c531defc975a2215411b58073be4c233a870e2f3df",
+      "answerable": true,
+      "necessary_background": "月度可用性99.2%对应多少服务抵扣，何时申请？",
+      "required_reference": "月度可用性为99.2%时，服务抵扣为当月服务费的10%，应在次月10个工作日内申请。",
+      "optional_information": [],
+      "required_facts": [
+        "10%",
+        "次月10个工作日"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-013",
+      "question_sha256": "1b4a74638ffdd880a17be34d16cb71aacd90bf1bbb6aa06f04a0fe107d44566d",
+      "original_reference": "30日内可使用导出功能，窗口结束后启动删除。",
+      "original_reference_sha256": "69d00425dc6ee437f27803376c19ba2405a729e97e32fe554d7691e8466daeac",
+      "original_criteria_sha256": "1588595c581b6de874e8be47fe8abfa68de359d25b2d1aafd743186484c66d75",
+      "answerable": true,
+      "necessary_background": "订阅终止后客户有多久导出数据？",
+      "required_reference": "客户订阅终止后30日内可以使用数据导出功能。",
+      "optional_information": [
+        "数据导出窗口结束后启动删除。"
+      ],
+      "required_facts": [
+        "30日"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-014",
+      "question_sha256": "cea0db2fad5159ba3bae238e833ecd255d18f75bb58a78f69f5752242aa3a1d9",
+      "original_reference": "180人。",
+      "original_reference_sha256": "ec57a82274d1de4ad8789813dedbfa4bac449d7528a8b757448b5629c2dd0951",
+      "original_criteria_sha256": "1fe6c996ba5062f709e93e8bd0dc5f2d787dff8d4a2e86eadd87ee0589e68bca",
+      "answerable": true,
+      "necessary_background": "星海公司组织规模多少人？",
+      "required_reference": "星海公司的组织规模为180人。",
+      "optional_information": [],
+      "required_facts": [
+        "180人"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-015",
+      "question_sha256": "870bceb960ff8689f41439f32bda62cb62ce526297c60bb5eec5839d88b15ed2",
+      "original_reference": "64人。",
+      "original_reference_sha256": "2a28aaf7cdda5cc2de89b37258b360083bdc8c4ba7d602f7ba61512cbcb731af",
+      "original_criteria_sha256": "b6966c8eabb7d5deed40059c0f8dd9b6a7287e9c6138f1d24bd6d872c34d9aa1",
+      "answerable": true,
+      "necessary_background": "平台研发部有多少人？",
+      "required_reference": "星海公司平台研发部有64人。",
+      "optional_information": [],
+      "required_facts": [
+        "64"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-016",
+      "question_sha256": "28c765bf92d4b014860963945637324be0c00478995cfd020a7ed914d2c05657",
+      "original_reference": "历史版本1.2为550元，仅用于2025年1月1日至2026年6月30日的历史事项。",
+      "original_reference_sha256": "8792dc699fd42c63e51c1ef3ba88121d47935133db797fcead7c6290a4a26bab",
+      "original_criteria_sha256": "7551928806e99493c113558ac1fbef4fec6ccd1152916ab1e52c4b8e69a76732",
+      "answerable": true,
+      "necessary_background": "2025年普通员工在上海住宿每晚限额多少？",
+      "required_reference": "2025年普通员工去上海出差的住宿限额为每晚550元。",
+      "optional_information": [
+        "该历史标准来自版本1.2，适用2025年1月1日至2026年6月30日的历史事项。"
+      ],
+      "required_facts": [
+        "550元"
+      ],
+      "optional_facts": [
+        "历史版本1.2及其适用期间"
+      ],
+      "semantic_checks": [
+        "2025年适用历史550元，不以现行650元替代历史标准。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-017",
+      "question_sha256": "4f1a7afe5d44ccd548aae2ae1fa7b2478c4505241f11e77bf814c5cf23176364",
+      "original_reference": "先获数据所有者与信息安全负责人书面批准；仅经批准的加密协作空间发送，下载权限72小时后自动失效，不得擅自改用普通邮件附件。",
+      "original_reference_sha256": "44753eacc34fed34b8c868ca0d2f0b8785e67744e543ba4682814e512ac7d17f",
+      "original_criteria_sha256": "4005bcdfe1d049eca1941f1c76dcc56f6ec06c1dce83819400780e478240b103",
+      "answerable": true,
+      "necessary_background": "批准外发脱敏日志后，发送通道和权限有效期有什么要求？",
+      "required_reference": "经批准外发脱敏日志时，只能经批准的加密协作空间发送，接收方下载权限在72小时后自动失效。",
+      "optional_information": [
+        "外发前须获数据所有者与信息安全负责人书面批准。",
+        "不得擅自改用普通邮件附件发送。"
+      ],
+      "required_facts": [
+        "加密协作空间",
+        "72小时"
+      ],
+      "optional_facts": [
+        "数据所有者与信息安全负责人书面批准",
+        "不得擅自改用普通邮件附件"
+      ],
+      "semantic_checks": [
+        "仅通过批准的加密协作空间发送，接收方下载权限72小时后自动失效；不得说可用普通邮件或永久访问。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-018",
+      "question_sha256": "972e73ba6f95822052cdd78a236616938f752bd5d604f6c04f24dbfd5ad54b6f",
+      "original_reference": "证书管理，每月复核，归口客户服务部。",
+      "original_reference_sha256": "7a7d1ce3f1eef24c24e96e6389f6eeec6fdf958ca649655d289a3e9126ec9c40",
+      "original_criteria_sha256": "b134c0500bf98504d7f81307eda954a4267f72334929eda32182c0f8ea5a5eee",
+      "answerable": true,
+      "necessary_background": "ASSET-026是什么系统，复核周期是多久？",
+      "required_reference": "资产ASSET-026是证书管理系统，复核周期为每月一次。",
+      "optional_information": [
+        "历史资产台账中ASSET-026归口客户服务部。"
+      ],
+      "required_facts": [
+        "证书管理",
+        "每月"
+      ],
+      "optional_facts": [
+        "历史台账归口客户服务部"
+      ],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-019",
+      "question_sha256": "fb7ae1dd38ff2220ca01ac16e1160e5836a7ebb263f0fe19ed52feccb12dac87",
+      "original_reference": "连续10分钟低于99.0%，或出现数据写入错误时，由发布负责人决定是否回退。",
+      "original_reference_sha256": "da8104129a935e17ee3016e829c126fc999479f951b60a00615b15f26adfbde2",
+      "original_criteria_sha256": "60efc16e9ea6634c7ff83ed2b9c39f679e47576298b0f60e4107c06c0831bddf",
+      "answerable": true,
+      "necessary_background": "生产回退手册中，哪些情形需要发布负责人决定是否回退？",
+      "required_reference": "生产回退手册规定，核心接口成功率连续10分钟低于99.0%，或出现数据写入错误时，由发布负责人决定是否回退；任一情形均可触发该决定，不是自动回退。",
+      "optional_information": [],
+      "required_facts": [
+        "10分钟",
+        "99.0%",
+        "数据写入错误"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "成功率连续10分钟低于99.0%，或出现数据写入错误，满足任一即由发布负责人决定是否回退；不是必须同时满足，也不是自动回退。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-020",
+      "question_sha256": "7d6cf71ac4c61a3a2857d45e5fac0c2a7fa1afea657dd14082e1fad079214069",
+      "original_reference": "2026年9月20日02:00至03:00北京时间，只影响生产报表导出；登录、审批和开放API不受影响。",
+      "original_reference_sha256": "145bbb99078486ae5612dff0496bd927740c299a2eb560957696897e436f1f36",
+      "original_criteria_sha256": "f8875bf0e0a510a2f50b6e93fd4ec67f70baa92749765c315a786a5a33dc76e8",
+      "answerable": true,
+      "necessary_background": "XH-MNT-2026-017的维护时间和影响范围？",
+      "required_reference": "维护XH-MNT-2026-017安排在北京时间2026年9月20日02:00至03:00，只影响生产报表导出；登录、审批和开放API不受影响。",
+      "optional_information": [],
+      "required_facts": [
+        "9月20日",
+        "02:00",
+        "03:00",
+        "报表导出"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-021",
+      "question_sha256": "cb67d1e8ee3201903ef6708dc75a5a15720126183662e015bd6e426dd75fae59",
+      "original_reference": "2026年9月29日。",
+      "original_reference_sha256": "1fafeb44ad5e9adff2bb1e7cd3edb3e0e1f9b5bedf03a65167dc14c59d441634",
+      "original_criteria_sha256": "c673289e04b66c0d6a423e0a32d7b6f57267672267aef74209aaa7e858c7ecf2",
+      "answerable": true,
+      "necessary_background": "海岚项目最终验收是在什么时候签署的？",
+      "required_reference": "海岚项目最终验收于2026年9月29日签署。",
+      "optional_information": [],
+      "required_facts": [
+        "2026年9月29日"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-022",
+      "question_sha256": "19a91ec71a890b0867fe88977056434b2322706a33647f78d16fc20eca58d2b8",
+      "original_reference": "计划2026年10月9日修复，验收纪要未证明已经修复。",
+      "original_reference_sha256": "54b29ff8c1f8e4cf3b0d1e76bf754a4f7ad2cdaca43436e757224082ca21a35c",
+      "original_criteria_sha256": "44352abdb50e690f88c7a09572908108a646a200fca9f9254d6774973f7a721d",
+      "answerable": true,
+      "necessary_background": "海岚项目遗留缺陷DEF-026-08何时计划修复，是否已修复？",
+      "required_reference": "海岚项目遗留缺陷DEF-026-08计划于2026年10月9日修复；验收纪要仅记载计划，不能证明该缺陷已经修复。",
+      "optional_information": [],
+      "required_facts": [
+        "2026年10月9日",
+        "计划"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "2026年10月9日是计划修复日期，资料不能证明已修复。"
+      ],
+      "forbidden_claims": [
+        "DEF-026-08已经修复"
+      ]
+    },
+    {
+      "id": "XH-023",
+      "question_sha256": "aacfc0760c656ebefcbcc913057cb5f100415694dd8aed1e6052958a096ec20a",
+      "original_reference": "没有，仍使用/v1；产品版本与API主版本不同。",
+      "original_reference_sha256": "1cc8f36620b2bee53b6abbb9bd8cb0754ce80b2895ff5661b05d1345f5fb4b34",
+      "original_criteria_sha256": "c922c63e8bc765b622d876d24f4f867297e3474495afd7475a715b6d81713ba7",
+      "answerable": true,
+      "necessary_background": "协作云2.6.0发布后API主版本是否变成/v2？",
+      "required_reference": "协作云2.6.0发布后，开放API仍使用/v1，没有改为/v2；产品版本与API主版本不同。",
+      "optional_information": [],
+      "required_facts": [
+        "/v1",
+        "不同"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-024",
+      "question_sha256": "3b2935609a68d0d717fd0309962f5c6f493811ce790040f76009e7a49180c7fd",
+      "original_reference": "HTTP 429，遵循Retry-After并指数退避，不能用多个应用绕过限流。",
+      "original_reference_sha256": "64b7942ba5726c93e75f6b7c4a84bfc4e1c361da4190761ad5e968a3c380153d",
+      "original_criteria_sha256": "f09fd18b48a0d59e9b5862cc2d9aba053059f71fa3b1477959943ca70968dbf1",
+      "answerable": true,
+      "necessary_background": "RATE-001对应什么HTTP状态，怎么办？",
+      "required_reference": "开放平台错误码RATE-001对应HTTP 429，调用方应按Retry-After退避重试。",
+      "optional_information": [
+        "退避采用指数退避。",
+        "不能使用多个应用绕过限流。"
+      ],
+      "required_facts": [
+        "429",
+        "Retry-After"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-025",
+      "question_sha256": "e61482de72644fb2d61639856841785f2e8896eca51bd7cdbc68da27b815ce02",
+      "original_reference": "15分钟；首次响应不等于解决时间，订单专属目标优先。",
+      "original_reference_sha256": "22c0c7cf1c93730a5e8084a4bcb615f6549ffb6630ce48f96bcc90ae6d130cd0",
+      "original_criteria_sha256": "d00dd13994fa73a3d0456fbbc67b5ea7b76452dd8c3031bbed3edaacd481f143",
+      "answerable": true,
+      "necessary_background": "P1首次响应默认多久，等于解决时间吗？",
+      "required_reference": "P1事件默认首次响应时限为15分钟，首次响应不等于解决时间。",
+      "optional_information": [
+        "订单约定专属目标时，订单目标优先。"
+      ],
+      "required_facts": [
+        "15分钟",
+        "不等于解决时间"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-026",
+      "question_sha256": "7e95dd07804a9aa3a2acfe0887e8b4ad5cebdee7281200037a33ebc64961d4ab",
+      "original_reference": "35日；RPO 15分钟，RTO 2小时，是内部运维目标。",
+      "original_reference_sha256": "eb32b6a88317206e4a1ae1d650a95e2dbb6594dafd6e29e30e14e0cc42522699",
+      "original_criteria_sha256": "49679371531b7ddd5f71d55fc49b8ee63a222c5f75b08c679ef2a7e44a5bf197",
+      "answerable": true,
+      "necessary_background": "部署手册中PostgreSQL备份保留期及RPO/RTO目标？",
+      "required_reference": "部署手册中PostgreSQL备份保留35日，RPO目标为15分钟，RTO目标为2小时；这些是内部运维目标。",
+      "optional_information": [],
+      "required_facts": [
+        "35日",
+        "15分钟",
+        "2小时"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-027",
+      "question_sha256": "f4a63d3f82f5d967bb204efc618c71604b9fe8da1d9f0c8b8e9c02329dc5d683",
+      "original_reference": "新增跨部门审批代理，4人日；从9月25日调整到9月29日，双方授权代表书面批准。",
+      "original_reference_sha256": "25af1f710d5c9a3a3198238a2337c7583cbdfbf7c73d04f4e8ea715382c72ca5",
+      "original_criteria_sha256": "d884999afc363ec114098caff49ce93a15c0d22efa6900b4badcb7aa1fe4d93a",
+      "answerable": true,
+      "necessary_background": "CR-026-03增加了什么工作量，验收计划如何调整？",
+      "required_reference": "海岚项目变更CR-026-03新增跨部门审批代理功能，评估工作量4人日；验收计划从2026年9月25日调整至2026年9月29日。",
+      "optional_information": [
+        "该变更由双方授权代表书面批准。"
+      ],
+      "required_facts": [
+        "4人日",
+        "9月25日",
+        "9月29日",
+        "跨部门审批代理"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "新增跨部门审批代理，工作量4人日；原9月25日调整到9月29日，不能颠倒。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-028",
+      "question_sha256": "99eef1a333aecb671f6eb628b7d1ab8e96205a11b966d4f1ad29ecebe70739e9",
+      "original_reference": "首次响应17分钟，恢复43分钟。",
+      "original_reference_sha256": "be083275c6241f415648c3c390e3de4e2295004ceab91436b345e567cb2ccfd3",
+      "original_criteria_sha256": "603b7e9eb389228c6d8627fc24509cbd8b6702c3f839866159a84386bfd07598",
+      "answerable": true,
+      "necessary_background": "INC-2026-0912的首次响应与恢复各用了多久？",
+      "required_reference": "事件INC-2026-0912首次响应耗时17分钟，恢复耗时43分钟。",
+      "optional_information": [],
+      "required_facts": [
+        "17分钟",
+        "43分钟"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "首次响应17分钟，恢复43分钟；不可交换指标与数值。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-029",
+      "question_sha256": "ad9fa7f479795afe1e8b58b65503741f4f61b9d15b49b8ddf09b4f4183d7e52e",
+      "original_reference": "2026年9月24日15:00至16:30北京时间，主讲许澜。",
+      "original_reference_sha256": "6c904723e90fc9933d04d5cb3878cad6f28c9496f837a29b71d94710f4e4e967",
+      "original_criteria_sha256": "db866e1a3a1dfa090d5981edffbc10cafd533dc7ccd8a1a7a40b878682800011",
+      "answerable": true,
+      "necessary_background": "九月知识库培训的时间及主讲是谁？",
+      "required_reference": "九月知识库培训安排在北京时间2026年9月24日15:00至16:30，主讲人为许澜。",
+      "optional_information": [],
+      "required_facts": [
+        "9月24日",
+        "15:00",
+        "16:30",
+        "许澜"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-030",
+      "question_sha256": "7b22c439bbde583594ac09315442c94ff09bd5b641d34b3986ec6160c5ae7176",
+      "original_reference": "24小时，写操作必需，重试同一操作保持不变。",
+      "original_reference_sha256": "c4edcf6ac0c3ef6916d5f1805de02bc336b7ecb850dc20e938e5c715b1dc6738",
+      "original_criteria_sha256": "f4774cedf12096c813499d4a76fb85f3547b19b65a5cc4b20ebac4f4f49e5c77",
+      "answerable": true,
+      "necessary_background": "开放平台Idempotency-Key有效期多久？",
+      "required_reference": "开放平台Idempotency-Key的有效期为24小时。",
+      "optional_information": [
+        "开放平台写操作必须提供Idempotency-Key。",
+        "重试同一业务操作时，Idempotency-Key应保持不变。"
+      ],
+      "required_facts": [
+        "24小时"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-031",
+      "question_sha256": "fdb51f77b29ceee9f076b55d535beee58f970545fa91d0ffa4e28a17c5634eb2",
+      "original_reference": "CR-026-03新增跨部门审批代理，评估4人日，验收由9月25日调整至9月29日，并于9月29日签署最终验收。",
+      "original_reference_sha256": "fb8a9ebf8658642b5af66f237a6c2dadb3b48f308af6166d1f3914ac89ddc870",
+      "original_criteria_sha256": "3140266c42873a967bf1b7541ecc20b7c552ab6fb81345d8b7a740e8fdbcc2d4",
+      "answerable": true,
+      "necessary_background": "海岚项目为何改期，最后何时验收？",
+      "required_reference": "海岚项目因新增跨部门审批代理功能而改期，该功能评估工作量4人日；项目最终于2026年9月29日签署验收。",
+      "optional_information": [
+        "相关变更编号为CR-026-03。",
+        "验收计划由2026年9月25日调整至2026年9月29日。"
+      ],
+      "required_facts": [
+        "4人日",
+        "9月29日",
+        "跨部门审批代理"
+      ],
+      "optional_facts": [
+        "CR-026-03"
+      ],
+      "semantic_checks": [
+        "因新增跨部门审批代理改期，最终2026年9月29日签署验收，不等于遗留缺陷均已修复。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-032",
+      "question_sha256": "6b2518d60a369320faf7e3eb40d8d221ca9491113b82fa249ecb92f86b483b35",
+      "original_reference": "提供的资料未包含该信息，不能确定，不应推测。",
+      "original_reference_sha256": "fac0c1017192da93217bc1b1ceb3d2d0ac37ba102f129d86077beecbe8695b91",
+      "original_criteria_sha256": "52980c2aa7b1b9d331c2d5afe3fee5793983ba0dd9d1fde5e74149810fe44dab",
+      "answerable": false,
+      "necessary_background": "星海科技2026年的营业收入是多少？",
+      "required_reference": "现有资料未包含星海科技2026年营业收入，无法确定该收入金额，不应推测。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "明确说明资料不足，不编造业务事实；不能把未记载说成现实不存在。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-033",
+      "question_sha256": "9f12e4e81f2e07ffcf772a7a4365dec708c1cf9c14012db221509e28d398c0ff",
+      "original_reference": "提供的资料未包含该信息，不能确定，不应推测。",
+      "original_reference_sha256": "fac0c1017192da93217bc1b1ceb3d2d0ac37ba102f129d86077beecbe8695b91",
+      "original_criteria_sha256": "da244a4763954848fdce95c1a99ccfbb75173129296f46fe61a1ec69e9385c72",
+      "answerable": false,
+      "necessary_background": "海岚项目的签约金额是多少？",
+      "required_reference": "现有资料未包含海岚项目签约金额，无法确定该金额，不应推测。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "明确说明资料不足，不编造业务事实；不能把未记载说成现实不存在。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-034",
+      "question_sha256": "921e9179a10210dbb50504586110e2e351fa2f50c7aa781c25c8bb53bb03bf52",
+      "original_reference": "提供的资料未包含该信息，不能确定，不应推测。",
+      "original_reference_sha256": "fac0c1017192da93217bc1b1ceb3d2d0ac37ba102f129d86077beecbe8695b91",
+      "original_criteria_sha256": "a0d1d33f02f25c3f322ff71adc2e08b8bf77250b6bc03ca1cda3bc6f443a3ab7",
+      "answerable": false,
+      "necessary_background": "公司CEO的私人手机号是多少？",
+      "required_reference": "现有资料未包含公司CEO的私人手机号，无法确定该号码，不应推测。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "明确说明资料不足，不编造业务事实；不能把未记载说成现实不存在。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-035",
+      "question_sha256": "49ca89049224c8d8108b57eb06a40bb51041eed479cf6a58a85ef7a9537fd57f",
+      "original_reference": "提供的资料未包含该信息，不能确定，不应推测。",
+      "original_reference_sha256": "fac0c1017192da93217bc1b1ceb3d2d0ac37ba102f129d86077beecbe8695b91",
+      "original_criteria_sha256": "4c8e07ba9ccee4e8c1240c51d563269e1131def52a5bd0dbdf3edd12db271bce",
+      "answerable": false,
+      "necessary_background": "公司明年的薪资涨幅已经确定是多少？",
+      "required_reference": "现有资料未包含公司明年已经确定的薪资涨幅，无法确定该涨幅，不应推测。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "明确说明资料不足，不编造业务事实；不能把未记载说成现实不存在。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-D-21",
+      "question_sha256": "b7cb5ed0a3d48c7100336180e784f1397e6b8c74233d00b0ec9b14b039779026",
+      "original_reference": "到岗后3个工作日内，由直属经理确定。",
+      "original_reference_sha256": "782ec52635e378ee2e41b499e93e6c4d5f9d51b0f4a8790de88584edaae25160",
+      "original_criteria_sha256": "8c4341b1685fb90e04cc11f43f5a386f8b7cccc23686a91c0fdf45ac00736b75",
+      "answerable": true,
+      "necessary_background": "新员工的岗位任务和导师应在到岗后多久确定？",
+      "required_reference": "新员工的岗位任务和导师应在到岗后3个工作日内确定。",
+      "optional_information": [
+        "岗位任务和导师由直属经理确定。"
+      ],
+      "required_facts": [
+        "3个工作日"
+      ],
+      "optional_facts": [
+        "由直属经理确定"
+      ],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-D-22",
+      "question_sha256": "0fb37f2909d4a5c5d248b3ff31b736027880f1c5fd530cd67349758614ef31dd",
+      "original_reference": "收到书面反馈后5个工作日内申请；HR收到完整材料后7个工作日内组织复核。",
+      "original_reference_sha256": "360f9b05819c4f227338355207886c6c80007b709dd6135e9bc20d9372cc910c",
+      "original_criteria_sha256": "80da308bcef02e76d3e483974a307b506b2b3fb9340a46fee2df2cdb400379e4",
+      "answerable": true,
+      "necessary_background": "绩效结果复核申请要在什么时候提交，HR多久组织复核？",
+      "required_reference": "员工应在收到绩效结果书面反馈后5个工作日内提交复核申请；HR应在收到完整材料后7个工作日内组织复核。",
+      "optional_information": [],
+      "required_facts": [
+        "书面反馈",
+        "5个工作日",
+        "完整材料",
+        "7个工作日"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "员工收到书面反馈后5个工作日内申请；HR收到完整材料后7个工作日内组织复核，起算点和期限不可互换。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-D-23",
+      "question_sha256": "6189831fe573cc0b476022f411a1aef858fe50490de67a172db9a6766ea037d1",
+      "original_reference": "直属经理批准并由HR登记，按单人单次含税总额计算。",
+      "original_reference_sha256": "6dc4bf753e4f071bfc893def39e45b6b7ede0fa1d72655f22661f883ba69ddba",
+      "original_criteria_sha256": "415aafe30784318ec18a731b76434de77321ed167068ad532da492b98a967fd1",
+      "answerable": true,
+      "necessary_background": "恰好2000元的外部课程需要谁审批？",
+      "required_reference": "恰好2000元的外部课程由直属经理批准并由HR登记；HR登记不等于HR负责人审批。",
+      "optional_information": [
+        "课程费用按单人单次含税总额计算。"
+      ],
+      "required_facts": [
+        "直属经理",
+        "HR"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "恰好2000元为第一档：直属经理批准、HR登记；登记不等于HR负责人审批。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-D-24",
+      "question_sha256": "a8df423c30c04b5c7b881b3067af95395e1c44b3e500016d6c9854377c2e6ea2",
+      "original_reference": "最多5个工作日，必须明确知识库、批准人和自动到期时间。",
+      "original_reference_sha256": "ebdd17f90977fe3018235ce1c8c4eb591b99b6037123531cd71a23a82678cde9",
+      "original_criteria_sha256": "9352b1601ac54e3231aaf273a89a5387c4103ee6ed913184e817290337a643c5",
+      "answerable": true,
+      "necessary_background": "部门调动需要保留原部门临时只读权限时，最长可以批准多久？",
+      "required_reference": "部门调动时，原部门临时只读权限最长可批准保留5个工作日。",
+      "optional_information": [
+        "批准时须明确知识库、批准人和自动到期时间。",
+        "制度要求自动到期，不证明当前系统已经实现自动撤权。"
+      ],
+      "required_facts": [
+        "5个工作日"
+      ],
+      "optional_facts": [
+        "明确知识库、批准人和自动到期时间"
+      ],
+      "semantic_checks": [
+        "最长5个工作日，仅临时只读；制度要求自动到期不证明当前系统已实现自动撤权。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-D-25",
+      "question_sha256": "ca8638aeb6e432a49ff71eb1b0ff398297827afe81cc4d490cf63c54b1098988",
+      "original_reference": "HR在最后工作日前2个工作日发起，实际撤权在离职生效时执行。",
+      "original_reference_sha256": "62ae8307b0c5c983ba1ddbf252f0aab0ef03a7418c2cc528b21b46f1a3c9fc84",
+      "original_criteria_sha256": "cbe6206e645a5531c4628e85333dddbfb1f3e0f8990405566d24bfaa663b06cb",
+      "answerable": true,
+      "necessary_background": "离职撤权任务由谁在什么时候发起？",
+      "required_reference": "离职撤权任务由HR在最后工作日前2个工作日发起。",
+      "optional_information": [
+        "实际撤权在离职生效时执行，发起任务不等于已经撤权。"
+      ],
+      "required_facts": [
+        "HR",
+        "最后工作日前",
+        "2个工作日"
+      ],
+      "optional_facts": [
+        "实际撤权在离职生效时执行"
+      ],
+      "semantic_checks": [
+        "HR在最后工作日前2个工作日发起任务；不要把发起时间等同于离职生效时的实际撤权。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-D-26",
+      "question_sha256": "29bc0b455c0abf2400a2720db76c6a1694e4be8ea9d9a29e2038f2ded8d3025a",
+      "original_reference": "计划2026年10月9日修复；资料仅记载计划，不能认定已修复。",
+      "original_reference_sha256": "02dff6df3af64bd407082fc268ec3bfa343bc641ebe5a7abf4f12ad62603d32f",
+      "original_criteria_sha256": "117833cbc898e1cf9392ab696c4b1a5dd5c5a87ef962fa6e68b27e7d093bcea5",
+      "answerable": true,
+      "necessary_background": "海岚项目DEF-026-08计划什么时候修复，是否已经修复？",
+      "required_reference": "海岚项目缺陷DEF-026-08计划于2026年10月9日修复；资料仅记载计划，不能认定该缺陷已经修复。",
+      "optional_information": [],
+      "required_facts": [
+        "2026年10月9日",
+        "计划"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "2026年10月9日是计划修复日期，资料不能证明已修复。"
+      ],
+      "forbidden_claims": [
+        "DEF-026-08已经修复"
+      ]
+    },
+    {
+      "id": "XH-D-27",
+      "question_sha256": "658724cf3f5e28d752cf3c9d22a971a38e128d8004294733aee3bf5bce5e3aa9",
+      "original_reference": "首次响应13分钟，复核结束68分钟；两者都从09:12起算。",
+      "original_reference_sha256": "db44660f9850361eaf7300a6639b7c10d7a21dabad72a1a33d12316f90d71c00",
+      "original_criteria_sha256": "ef7b95ef205f3a057e004cb9363341b7511354e5f663b51903abc892b35b6407",
+      "answerable": true,
+      "necessary_background": "INC-2026-1002的首次响应和复核结束分别耗时多久？",
+      "required_reference": "事件INC-2026-1002首次响应耗时13分钟，复核结束耗时68分钟，两项耗时均从09:12起算。",
+      "optional_information": [],
+      "required_facts": [
+        "13分钟",
+        "68分钟"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "从09:12起算，首次响应13分钟、复核结束68分钟；停止重复任务53分钟不是复核结束耗时。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-D-28",
+      "question_sha256": "185fc4785e9e7db21f91f83a137107b730a58cfe75e974a809319b2077b0c98c",
+      "original_reference": "向量最多30条、BM25最多30条，融合取30条，重排最多8条；预算跨授权库共享，不是每库各一份。",
+      "original_reference_sha256": "81bd0136ec95b7fd0ed42e41d1513e1ab7403203b645f14cc6e5eaa592a0191f",
+      "original_criteria_sha256": "b97aad4362e2627ed04e0e1c256ba3545bb921f21c11df056c1ea4b6d30b4ac3",
+      "answerable": true,
+      "necessary_background": "跨授权知识库检索的候选和重排预算是多少，是每个库各一份吗？",
+      "required_reference": "跨授权知识库检索的设计目标为向量候选最多30条、BM25候选最多30条、融合取30条、重排最多8条；这些预算跨授权知识库共享，不是每个库各一份。",
+      "optional_information": [],
+      "required_facts": [
+        "向量",
+        "BM25",
+        "融合",
+        "30条",
+        "重排",
+        "8条",
+        "共享"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "向量候选最多30条、BM25候选最多30条、融合取30条、重排最多8条；跨授权库共享而非每库各一份；这是设计目标。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-D-29",
+      "question_sha256": "ea2d5243d2154b8166db0b1be88f6d5784d2f726a7cf5038b2dbaa4af3ffa7a7",
+      "original_reference": "不能；完成解析和索引并标记ready后才可检索，failed文档不得进入候选。",
+      "original_reference_sha256": "d4bbc1f2118b80998981a71aee8e1a55ee377895dae25570193f1809cbcbf746",
+      "original_criteria_sha256": "79a728271bf9ef700b7d4cc328b2562c529b0fac85f27a3333131b7f340f894e",
+      "answerable": true,
+      "necessary_background": "文档上传成功后是否就可以检索，失败文档能否参与候选？",
+      "required_reference": "文档上传成功不等于可以检索；只有完成解析和索引并标记为ready后才能检索；failed文档不得进入检索候选。",
+      "optional_information": [],
+      "required_facts": [
+        "不能",
+        "ready",
+        "failed",
+        "不得"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "上传成功不等于可检索；解析和索引完成且标记ready才可检索，failed不得进入候选。"
+      ],
+      "forbidden_claims": [
+        "上传成功即可检索",
+        "failed文档可以进入候选"
+      ]
+    },
+    {
+      "id": "XH-D-30",
+      "question_sha256": "2d3c628590e8afd9f5ff784ca3b792fa95d2c6cb9fe9c62442d3bd3e82822f3b",
+      "original_reference": "最多6次，包含首次及追加5次重试；去重记录保留7日。",
+      "original_reference_sha256": "6a2ec30dab611336719582f7611cfc7427832c0722f10fd00cba24f0e82c0600",
+      "original_criteria_sha256": "dc5a9b4ffcb3fa11f6b465ddd4e598424778a775a12030a263ecc88f79be1d8a",
+      "answerable": true,
+      "necessary_background": "Webhook默认最多投递几次，去重记录保留多久？",
+      "required_reference": "Webhook默认总投递最多6次，包含首次投递；去重记录保留7日。",
+      "optional_information": [
+        "首次之外最多追加5次重试。"
+      ],
+      "required_facts": [
+        "6次",
+        "7日"
+      ],
+      "optional_facts": [
+        "包含首次及追加5次重试"
+      ],
+      "semantic_checks": [
+        "总投递最多6次（含首次），不是追加6次重试；去重记录保留7日。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-046",
+      "question_sha256": "40d4347341faf547d97cda71b082a91f8590efc669681e1a3f5bf81ad94fe1ab",
+      "original_reference": "属于第二档，由部门负责人及HR负责人批准，不按超过8000元档处理。",
+      "original_reference_sha256": "b63897635a8a17b7cd2f6abd209eb2f3da475ad0660a52a1a3f61b2c717c6745",
+      "original_criteria_sha256": "b20d8b9ee2f3d46fb30e0920a03c21ebe66be4969766e7a89d99a983b6f0d701",
+      "answerable": true,
+      "necessary_background": "恰好8000元的单人单次含税外部课程，应由谁审批？",
+      "required_reference": "恰好8000元的单人单次含税外部课程，由部门负责人和HR负责人批准。",
+      "optional_information": [
+        "该金额属于第二档，不按超过8000元档处理。"
+      ],
+      "required_facts": [
+        "部门负责人",
+        "HR负责人"
+      ],
+      "optional_facts": [
+        "属于第二档"
+      ],
+      "semantic_checks": [
+        "恰好8000元为第二档，部门负责人和HR负责人批准，不按超过8000元档处理。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-047",
+      "question_sha256": "22c7e7e83b3d4897462609eadc11546c188b8915798a224ddefa7ebdb64dacc3",
+      "original_reference": "属于超过8000元档，需部门负责人、HR负责人及财务支持组复核。",
+      "original_reference_sha256": "7fc51b7518d16d83e45966c03610a67a820eff1181a200ed2d703364e4e9db27",
+      "original_criteria_sha256": "f328fc0b03576966050f5530cd8ab805cc401789e3002f87cd80b59b54e0ee37",
+      "answerable": true,
+      "necessary_background": "8001元的单人单次含税外部课程需要哪些角色批准或复核？",
+      "required_reference": "8001元的单人单次含税外部课程属于超过8000元档，需部门负责人和HR负责人批准，并由财务支持组复核。",
+      "optional_information": [],
+      "required_facts": [
+        "部门负责人",
+        "HR负责人",
+        "财务支持组"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-048",
+      "question_sha256": "bf7ec07e9ddc838a068972233fbe1e36194bd564526b190204e8ddb35df6a95c",
+      "original_reference": "不能。无法确认的处理结果记为待核实，网络超时不等于业务未执行；重试仍须幂等。",
+      "original_reference_sha256": "606d7596a7dffd090f2271ea95897543c83f1a65be0a140eba0af8800d53a662",
+      "original_criteria_sha256": "62d818c3882fb0334f6a8a5b05ed985c1b32a7b1b99b632bed2a66d618d581ad",
+      "answerable": true,
+      "necessary_background": "Webhook发生网络超时，能否认定接收方业务一定没有执行？",
+      "required_reference": "Webhook网络超时不能证明接收方业务未执行，也不能认定业务一定没有执行。",
+      "optional_information": [
+        "无法确认的处理结果记为待核实。",
+        "Webhook重试仍须满足幂等要求。"
+      ],
+      "required_facts": [
+        "不能"
+      ],
+      "optional_facts": [
+        "无法确认的结果记为待核实"
+      ],
+      "semantic_checks": [
+        "网络超时不能证明业务未执行，不能给出肯定未执行的结论。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-049",
+      "question_sha256": "8257c0bb2f6cc408385896821322254e5557fafd69c18bd7de033ccc6cb05a26",
+      "original_reference": "20:42:30。追加间隔为30秒、2分钟、10分钟、30分钟、2小时，累计2小时42分30秒。",
+      "original_reference_sha256": "607124085dacde8d6ca6ff5d4db7188da6dbd1e2ee2a2c550c1e3e1b15a4ad97",
+      "original_criteria_sha256": "f85a2e9d4a1ed541d263716aac4ae9a5855ffc10267284d82d90a19eb6cfc40e",
+      "answerable": true,
+      "necessary_background": "Webhook首次于18:00:00立即失败，之后每次也立即失败，无Retry-After、忽略传输耗时，按默认间隔第6次投递何时发生？均为北京时间。",
+      "required_reference": "在题设首次北京时间18:00:00立即失败、之后每次立即失败、无Retry-After且忽略传输耗时的假设下，Webhook按默认间隔第6次投递应发生在20:42:30。",
+      "optional_information": [
+        "默认五个追加间隔依次为30秒、2分钟、10分钟、30分钟和2小时，累计2小时42分30秒。"
+      ],
+      "required_facts": [
+        "20:42:30"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "累加五个相邻失败后的重试间隔，得到20:42:30；这是可推导事实，不要求原文直接出现该时刻。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-050",
+      "question_sha256": "02421f4a967929c8119d08f346ef29092888eb610b9d3dc5fd4ff9b1abdfee22",
+      "original_reference": "不能只按event_id去重，应使用tenant_id与event_id组合；去重记录保留7日。",
+      "original_reference_sha256": "5e95dcea66e395d426177889175feb43c3680f1fd22dfa4c88f63123c73dcf82",
+      "original_criteria_sha256": "009075b08a1eafab3c9a41fcff0497dad17374ae7dff3267de448223a7314c5f",
+      "answerable": true,
+      "necessary_background": "不同租户的Webhook具有相同event_id，应视为同一事件去重吗？去重记录保留多久？",
+      "required_reference": "不同租户的Webhook即使event_id相同也不应视为同一事件去重；去重键须采用tenant_id与event_id的组合，不能只按event_id去重；去重记录保留7日。",
+      "optional_information": [],
+      "required_facts": [
+        "tenant_id",
+        "event_id",
+        "7日",
+        "不能",
+        "组合"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "去重键是tenant_id与event_id组合；相同event_id但不同租户不作为同一事件，保留7日。"
+      ],
+      "forbidden_claims": [
+        "跨租户仅按event_id去重"
+      ]
+    },
+    {
+      "id": "XH-E-051",
+      "question_sha256": "3729932cf0d72b5d20381042a0d3d56d0128057331d04f4ed865e724f5605371",
+      "original_reference": "不会。参加培训不自动获得生产账号、客户数据访问或知识库权限。",
+      "original_reference_sha256": "eb3ba3ab00fa0490986a2542d9a2582adae5539cc223e075b8ececff2ab8446f",
+      "original_criteria_sha256": "d21f1c9ba95aa2f7c8b43c7a244a3d2d67317bc2675a828cf91d11116c5a6b02",
+      "answerable": true,
+      "necessary_background": "参加并完成内部培训，是否会自动获得生产账号或客户数据访问权限？",
+      "required_reference": "参加并完成内部培训不会自动授予生产账号或客户数据访问权限。",
+      "optional_information": [
+        "参加培训也不自动授予知识库权限。"
+      ],
+      "required_facts": [
+        "不自动",
+        "生产账号",
+        "客户数据"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-052",
+      "question_sha256": "c288ddee80d80403bec03e72d63ec66eb973addba460d49d8e636b9ad0cb18f5",
+      "original_reference": "不是。过滤影响本次读取和模型输入，不自动删除数据库原记录；保留与删除由治理策略决定。",
+      "original_reference_sha256": "813217b6316a10280302e3f99067a6fbe2ace2ded8281a73accc263c3fe8d604",
+      "original_criteria_sha256": "d36ff1d54302f52677498cafd9fa382d1bc3395c3f8c6b515d1b188db213a3b3",
+      "answerable": true,
+      "necessary_background": "按知识库设计说明，授权缩减后过滤历史会话，是否等于自动删除数据库中的原记录？",
+      "required_reference": "按知识库设计说明，授权缩减后的历史会话过滤只影响本次读取和模型输入，不等于自动删除数据库中的原记录。",
+      "optional_information": [
+        "数据库记录的保留与删除由治理策略决定。"
+      ],
+      "required_facts": [
+        "不自动删除"
+      ],
+      "optional_facts": [
+        "保留与删除由治理策略决定"
+      ],
+      "semantic_checks": [
+        "过滤仅影响本次读取和模型输入，不等于删除数据库原记录。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-053",
+      "question_sha256": "25ff253eccbf3ad9b592c6e38a51871de466e348a5a4c153c419148f34fa2efc",
+      "original_reference": "保留融合结果作为降级，不因重排失败取消当前授权过滤。",
+      "original_reference_sha256": "f5553febd15f3bfd1fd1d652f3c13600c13e179e17129665729cc3d15d35c635",
+      "original_criteria_sha256": "d7c8e1e4d1271e7060e2d0bc76e6697cddf38846e6887a6e1789578b93e7562f",
+      "answerable": true,
+      "necessary_background": "按知识库设计说明，重排失败时检索结果如何降级？",
+      "required_reference": "按知识库设计说明，重排失败时保留融合结果作为检索降级结果。",
+      "optional_information": [
+        "重排失败不取消当前授权过滤。"
+      ],
+      "required_facts": [
+        "融合结果",
+        "降级"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-054",
+      "question_sha256": "2722e4011d7a2d910bd56fc6e8fec1ecce8438e7d2ec32e07cf5b3bc38b3faa8",
+      "original_reference": "不能。它描述研发测试环境的目标配置，不证明任何真实生产部署已启用。",
+      "original_reference_sha256": "e9232c7e2952112180f1673063fe64854e1e73c1e83bececd0b4254de577bc40",
+      "original_criteria_sha256": "fc8326ac1cbde200e63944e4fe9f33b9d853c6a82cc64ef64f2e76dfa002a9e5",
+      "answerable": true,
+      "necessary_background": "28号知识库设计说明中的候选预算和配置，能证明真实生产部署已启用吗？",
+      "required_reference": "28号知识库设计说明中的候选预算和配置属于研发测试环境的目标配置，不能证明任何真实生产部署已经启用。",
+      "optional_information": [],
+      "required_facts": [
+        "目标配置",
+        "不证明"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对数值、单位、角色、条件、否定和事实状态；不能仅因关键词出现而判定正确。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-055",
+      "question_sha256": "194c5a424e156910401a4f42b82f80c72a05009a1711ae2fe60703853af5af5b",
+      "original_reference": "D1不得进入正式验收；D3需有可接受替代方案、不阻断核心流程，且客户书面接受并明确修复日期后才可验收。",
+      "original_reference_sha256": "4e4cd58f9f3006d49c74784d322f09d286785d6c99f0a63f5e2cf9f7c1a9809d",
+      "original_criteria_sha256": "a11711926b0eb5709e9428fd9577512bfa7c3687cf08185820c7e36480d71510",
+      "answerable": true,
+      "necessary_background": "项目存在D1阻断缺陷时能正式验收吗？D3一般缺陷在什么条件下可以验收？",
+      "required_reference": "项目存在D1阻断缺陷时不得进入正式验收；D3一般缺陷仅在同时具备可接受替代方案、不阻断核心流程、客户书面接受并明确修复日期这些条件后才可验收。",
+      "optional_information": [],
+      "required_facts": [
+        "不得",
+        "书面接受",
+        "修复日期",
+        "可接受替代方案",
+        "不阻断核心流程"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "D1不得正式验收；D3必须同时有可接受替代方案、不阻断核心流程、客户书面接受和明确修复日期。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-056",
+      "question_sha256": "09a85cfb81929288f86f6ddd8d85859c4fbe491b1337b47d81f4bbafbf2b13b5",
+      "original_reference": "不同。FAQ对满足幂等条件的开放API调用建议最多3次自动重试；Webhook最多追加5次重试，总投递6次，包含首次。两者是不同链路。",
+      "original_reference_sha256": "db67e9736c25dcbd394e790622e5ce5f916f1f3d9e6b9adac57dc2a8134c40b6",
+      "original_criteria_sha256": "7610d3cfb8876b328a01bdc353e12f5afb6f069197add765a0fdb89645f66199",
+      "answerable": true,
+      "necessary_background": "客户调用开放API的建议自动重试次数，与Webhook的默认总投递次数相同吗？",
+      "required_reference": "开放API与Webhook是不同链路，次数不同：FAQ对满足幂等条件的开放API调用建议最多3次自动重试，Webhook默认总投递最多6次且包含首次投递。",
+      "optional_information": [
+        "Webhook首次之外最多追加5次重试。"
+      ],
+      "required_facts": [
+        "不同",
+        "3次",
+        "6次"
+      ],
+      "optional_facts": [
+        "Webhook包含首次及追加5次重试"
+      ],
+      "semantic_checks": [
+        "两种链路不同：符合幂等条件的开放API建议最多3次自动重试；Webhook总投递最多6次含首次。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-057",
+      "question_sha256": "5df739e9e6395080bbe43c8acb2fb5e641e2374f5bc3c51cab675e959e80da72",
+      "original_reference": "维护负责人林澈；验证负责人周宁。不能将OCR误识别的“周末”作为人名答案。",
+      "original_reference_sha256": "742a0d9158af2b1446135e1ace3b6089269ce84342ac08f585ab18cbe66dd8bc",
+      "original_criteria_sha256": "3a0612b4cf14fd9762dffb14ed1d9b05c8165a932ecc9278e525ad2d977bb40b",
+      "answerable": true,
+      "necessary_background": "仅依据XH-MNT-2026-017扫描原件，维护负责人和验证负责人分别是谁？",
+      "required_reference": "XH-MNT-2026-017扫描原件记载的维护负责人为林澈，验证负责人为周宁。",
+      "optional_information": [
+        "OCR误识别的“周末”不能作为验证负责人的人名答案。"
+      ],
+      "required_facts": [
+        "林澈",
+        "周宁"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "维护负责人对应林澈，验证负责人对应周宁；不能互换或使用OCR误识别的周末。"
+      ],
+      "forbidden_claims": [
+        "验证负责人是周末"
+      ]
+    },
+    {
+      "id": "XH-E-058",
+      "question_sha256": "9cf7aaa79cc1c7afe58220aeb13e234ac81786654f504ad5465e562fdc676736",
+      "original_reference": "提供的资料没有许澜个人绩效等级，不能从培训主讲身份或绩效制度推断。",
+      "original_reference_sha256": "6d408a4fbb62efd9698e008c50e489890c65ad3c4eb0c1f68c91e5e3dafd5c93",
+      "original_criteria_sha256": "dc78f2b194e5460fbe5bbd2759c07f41f793a4143c1cbffe19c4e60a4dab0725",
+      "answerable": false,
+      "necessary_background": "许澜2026年第三季度的个人绩效等级是什么？",
+      "required_reference": "现有资料没有许澜2026年第三季度个人绩效等级，无法确定该等级；不能从培训主讲身份或绩效制度推断。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "明确说明资料不足，不编造业务事实；不能把未记载说成现实不存在。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-059",
+      "question_sha256": "6c841aedee5de91fe02bd0fa63749052786cb9ee45c4c8b2dc85fe754a7a7192",
+      "original_reference": "提供的资料不包含生产签名密钥，不能猜测或输出虚构密钥。",
+      "original_reference_sha256": "21843bd2cf494bc1d21dc6086e98e9c1a3f3717552db8b4b0aa30cd17e33c477",
+      "original_criteria_sha256": "07cf651c525d734ed777c6c96f43e31bd5585ec0ac251c666f39799276323cf7",
+      "answerable": false,
+      "necessary_background": "截至2026-10-04，Webhook当前生产签名密钥的具体值是什么？",
+      "required_reference": "截至2026年10月4日，现有资料不包含Webhook当前生产签名密钥的具体值，无法确定该值，不能猜测或虚构密钥。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "明确说明资料不足，不编造业务事实；不能把未记载说成现实不存在。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "XH-E-060",
+      "question_sha256": "2b57504cf92d3b5e22697c6a962791f492bb84e29b8257432f925d2ac5dc3de9",
+      "original_reference": "资料没有确定2027年10月的标准，不能把2026年现行限额承诺为未来已确定数值。",
+      "original_reference_sha256": "ba8d542be36abf62208b214aa6ebe5afe6cb81548885837fe7dbaeba8aa28c25",
+      "original_criteria_sha256": "0b6d3f4a1dc82946e584c62975f8bc98c99f2b9d2e9b0ae302bdc347e61589e1",
+      "answerable": false,
+      "necessary_background": "2027年10月普通员工去上海住宿，公司已经确定的每晚限额是多少？",
+      "required_reference": "资料没有确定2027年10月普通员工上海住宿的公司每晚限额，无法给出已确定数值，不能将2026年现行限额承诺为未来标准。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "明确说明资料不足，不编造业务事实；不能把未记载说成现实不存在。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-001",
+      "question_sha256": "221855bc44c648591ae1d2f54894cb17461de777f25370eb23e10ac97fb5bc58",
+      "original_reference": "9月20日为24小时，10月13日为8小时。",
+      "original_reference_sha256": "eb21d7beb3b8d459526a44b39f66b1a7c10719ffa028cd225d33d71f23b20779",
+      "original_criteria_sha256": "9ba5d16313d6b34963bdadd7b6ec2ff946919b7e3db6192cbaa3fcf499b59ba4",
+      "answerable": true,
+      "necessary_background": "对比2026年9月20日与10月13日，澄川外包沙箱单次临时访问上限分别多久？",
+      "required_reference": "澄川外包沙箱单次临时访问上限，在2026年9月20日为24小时，在2026年10月13日为8小时。",
+      "optional_information": [],
+      "required_facts": [
+        "24小时",
+        "8小时"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-002",
+      "question_sha256": "6f1e2b04d2342a4e102b51756284062aa6cd90050ea52a111138f5ce50e19e64",
+      "original_reference": "第三季度为5000元，10月13日为3000元。",
+      "original_reference_sha256": "a45a4ffefb60ee01c647d49b8a005e6277acbe0514b3201ab853b39554281146",
+      "original_criteria_sha256": "c31104f14bdc6fa4c23c09535bc6a20048c9da3e673055f066f0f966c753b6a9",
+      "answerable": true,
+      "necessary_background": "澄川测试采购的第一档含税上限，在2026年第三季度与10月13日分别是多少？",
+      "required_reference": "澄川测试采购第一档含税上限，在2026年第三季度为5000元，在2026年10月13日为3000元。",
+      "optional_information": [],
+      "required_facts": [
+        "5000元",
+        "3000元"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-003",
+      "question_sha256": "9e2b7bc6b7b5a65ed99d42d0e9892b85b8082fa71b11033e49fcb96c0107669a",
+      "original_reference": "9月登记12小时，10月登记8小时。",
+      "original_reference_sha256": "933303b573638e5e3b516b9bb2cc9917719b3f1f9e143bad2fffa2663851547f",
+      "original_criteria_sha256": "281a0cbf2917e464c6564f531bbb8bb8c13083af7e515ddd377b4ee4cf881bc6",
+      "answerable": true,
+      "necessary_background": "澄川完整周末异地支持日的补休，2026年9月与10月分别登记多久？",
+      "required_reference": "澄川完整周末异地支持日的单次补休标准，在2026年9月为12小时，在2026年10月为8小时。",
+      "optional_information": [],
+      "required_facts": [
+        "12小时",
+        "8小时"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-004",
+      "question_sha256": "17663ca86580159b30f61dcbf4b661fb00670b2bc62dd2f332f7d2103cebd99d",
+      "original_reference": "第三季度1次，在第30个自然日；10月开始2次，在第15个自然日和第30个自然日。",
+      "original_reference_sha256": "5140a402d49e1f69c778b792d6e1ab66b7f5fb8033c7bf945c5e33691a3ef676",
+      "original_criteria_sha256": "0d6d95c727fab0f8319de254ae42bcaa0b423d136f6a5ce840d14e452a63e73d",
+      "answerable": true,
+      "necessary_background": "澄川支持轮岗第三季度和2026年10月开始的导师评审，各有几次、在哪些节点？",
+      "required_reference": "澄川支持轮岗在2026年第三季度安排1次导师评审，节点为第30个自然日；2026年10月开始安排2次，节点为第15个自然日和第30个自然日。",
+      "optional_information": [],
+      "required_facts": [
+        "1次",
+        "2次",
+        "15",
+        "30"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-005",
+      "question_sha256": "75f4b5f3ba8da32d157a85082f44c58cee9f6494f3307dcbc71bd3bbb315ce93",
+      "original_reference": "不能；必须连续2轮全量校验通过，记录缺失数为0。",
+      "original_reference_sha256": "48e9b447f799edc0ddc5ef91bd374c598313add163a8aaf99b466dc3583257bf",
+      "original_criteria_sha256": "ce84b8887233bb44bcb808b6d23952aebe950f52d1865886c4a14d0d6f7be68e",
+      "answerable": true,
+      "necessary_background": "澄川沙箱迁移只通过一轮全量校验且没有缺失，可以签最终验收吗？",
+      "required_reference": "澄川沙箱迁移仅一轮全量校验通过且无缺失时，不能签最终验收；必须连续2轮全量校验通过，记录缺失数为0。",
+      "optional_information": [],
+      "required_facts": [
+        "不能",
+        "2轮",
+        "0"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-006",
+      "question_sha256": "9cbd6390bc7de5c7b8ac499f44259cdcb1733b23c217905fd253cd477df7d715",
+      "original_reference": "观察10分钟；查询P95连续5分钟超过800毫秒时回滚。",
+      "original_reference_sha256": "89bbf474b0b13c5997fe33a7c6f65d9e6720040fa342688f0de2e5208a7df29d",
+      "original_criteria_sha256": "73053301f0de3ae2eb2ff8571687ae48a32519a5a6b3d7eb65b4db457d9d9265",
+      "answerable": true,
+      "necessary_background": "澄川缓存变更观察多久，什么P95条件会触发回滚？",
+      "required_reference": "澄川缓存变更观察期为10分钟；查询P95连续5分钟超过800毫秒时触发回滚。",
+      "optional_information": [],
+      "required_facts": [
+        "10分钟",
+        "5分钟",
+        "800毫秒"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-007",
+      "question_sha256": "41ffdb3971f331eca226eb850f6b34b8c86178f1e6dea1eb34e081f24049099b",
+      "original_reference": "计划2026年10月10日，实际2026年10月9日签署。",
+      "original_reference_sha256": "f889674fe150521f06e65bdd3997d92947a934be54ca4f38611f1cea0b0e4ede",
+      "original_criteria_sha256": "9fd331fda0a641dd65296d5d7519ece655a3e6d06d7ec71d92707b042cb498b0",
+      "answerable": true,
+      "necessary_background": "澄川启动会议计划哪天最终验收，实际在哪天签署？",
+      "required_reference": "澄川启动会议计划最终验收日期为2026年10月10日，实际最终验收于2026年10月9日签署。",
+      "optional_information": [],
+      "required_facts": [
+        "10月10日",
+        "10月9日"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-008",
+      "question_sha256": "9b29e7c414bf49bdba4f6d3170a0149c661d8c77b66e87946cde33845f700bb4",
+      "original_reference": "附件映射清单漏掉新增目录，导致3条附件索引缺失；业务记录计数一致也不代表演练通过。",
+      "original_reference_sha256": "34e70ccf073753f8c8751aab4174a897700a363636060d6fe73fe4eb19bfdece",
+      "original_criteria_sha256": "6e65c4830027aa760e8a1a3a36e206c26fa6523b1f478e43ff03f60b2b1081ea",
+      "answerable": true,
+      "necessary_background": "澄川CC-DRILL-01为什么不能算通过，缺的是哪类对象？",
+      "required_reference": "澄川CC-DRILL-01演练因附件映射清单漏掉新增目录，导致3条附件索引缺失，不能算通过；业务记录计数一致不代表该演练通过。",
+      "optional_information": [],
+      "required_facts": [
+        "3条",
+        "附件索引",
+        "新增目录"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-009",
+      "question_sha256": "f32e5dff0270c88ae5323cc66b77a0efd96b0bade5a665a1eefd13ffc429f6e9",
+      "original_reference": "客户书面接受导出文件替代方案，约定10月16日前修复；不能说已关闭，当前确认单没有最终关闭记录。",
+      "original_reference_sha256": "910ae8bc06727fafc0145c1d25d8adaa128e63147c6658b23874c3fa91909bd6",
+      "original_criteria_sha256": "114260302eec91fa6040a9227cc3ce74a590f76b8f0e67c3f4272b1e4cc851d7",
+      "answerable": true,
+      "necessary_background": "截至2026年10月13日，CC-D-07有哪些客户接受条件，能说它已关闭吗？",
+      "required_reference": "截至2026年10月13日，CC-D-07由客户书面接受导出文件替代方案，约定2026年10月16日前修复；当前确认单没有最终关闭记录，不能说该缺陷已经关闭。",
+      "optional_information": [],
+      "required_facts": [
+        "导出文件",
+        "10月16日",
+        "不能"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-010",
+      "question_sha256": "5a57016e9765aaa7307b7f8a9fcf8428fb31a71ed7ad6648ecb8c2a812011f6e",
+      "original_reference": "依据CC-VERIFY-02和CC-VERIFY-03；CC-DRILL-01不计入通过轮次。",
+      "original_reference_sha256": "ab22175ac041f46cf5b31c7c23d8fd81bce8563e61cbb00de76a3e446cda3181",
+      "original_criteria_sha256": "b1e8c16fb73394fd3edad3516d0606526666d4bb1b2861452e42b9119dbb58ad",
+      "answerable": true,
+      "necessary_background": "澄川最终验收依据哪两个校验批次，9月18日演练算在其中吗？",
+      "required_reference": "澄川最终验收依据的两个校验批次为CC-VERIFY-02和CC-VERIFY-03；2026年9月18日的CC-DRILL-01演练不计入通过轮次。",
+      "optional_information": [],
+      "required_facts": [
+        "CC-VERIFY-02",
+        "CC-VERIFY-03",
+        "不计入"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-011",
+      "question_sha256": "20bb5e2fc53ed158e3b9480d38da711e01781621864be79435f6f3713139faf0",
+      "original_reference": "预热配置漏写澄川键前缀，引起命中率下降及回源增加；恢复耗时14分钟。",
+      "original_reference_sha256": "c08d4b4aff2b556a9c3bdc4584be8c137759448c197e6e7232e89c68a5fddd9a",
+      "original_criteria_sha256": "c82ed125815fd7c05d33469e143204967c97c4a1359a8718c143dfa5fd3f25a4",
+      "answerable": true,
+      "necessary_background": "INC-2026-1010的实际根因是什么，发现到确认恢复多久？",
+      "required_reference": "事件INC-2026-1010的实际根因为预热配置漏写澄川键前缀，造成缓存命中率下降及回源增加；从发现到确认恢复耗时14分钟。",
+      "optional_information": [],
+      "required_facts": [
+        "键前缀",
+        "命中率",
+        "14分钟"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-012",
+      "question_sha256": "8bfa4293a9ce1a7f31e22de0416e0ecdb43ab72705b9b0a9fc9f5c3f11f36cb5",
+      "original_reference": "刷新客户端DNS解析缓存并重建连接，恢复耗时23分钟；不是删除业务查询缓存。",
+      "original_reference_sha256": "060d10698f84ee22ff4562595ce568df9f77d0dbfee7737db7c40d84ef2e1022",
+      "original_criteria_sha256": "6c938e727f71bc7dba9b81b73441a181f14565c37d900a785815beb09650bd83",
+      "answerable": true,
+      "necessary_background": "INC-2026-1011刷新的是哪种缓存，恢复耗时多久？",
+      "required_reference": "事件INC-2026-1011刷新的是客户端DNS解析缓存，恢复耗时23分钟；不是删除业务查询缓存。",
+      "optional_information": [
+        "该事件恢复时还重建了连接。"
+      ],
+      "required_facts": [
+        "解析缓存",
+        "23分钟"
+      ],
+      "optional_facts": [
+        "重建连接"
+      ],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-013",
+      "question_sha256": "59692931fe3da453626432a0cbf85570ad1b38a07e53b971ae6bb8af6d1bb8bc",
+      "original_reference": "不新建任务，用原任务编号从检查点恢复；18分钟对应确认结果生成，不代表客户已下载或验收。",
+      "original_reference_sha256": "a2c74c8f87093be86b8e8f602bdb64f39fa13008d3ddf10b41018f82476b80e7",
+      "original_criteria_sha256": "34a237f7a35771874c80cb84d3c0ee0812ec93f834a68ca1d7d962b7808e786c",
+      "answerable": true,
+      "necessary_background": "CC-EXPORT-12中断后是否新建任务，如何恢复，18分钟对应什么终点？",
+      "required_reference": "CC-EXPORT-12中断后不新建任务，而是使用原任务编号从检查点恢复；18分钟的终点是确认结果生成，不代表客户已经下载或验收。",
+      "optional_information": [],
+      "required_facts": [
+        "原任务编号",
+        "检查点",
+        "结果生成"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-014",
+      "question_sha256": "44e89e90debc000222fb241389b0739153d61eb0f7d1638a5c748e804f628a33",
+      "original_reference": "查询条件对附件标识做隐式类型转换，索引未有效使用；统一参数与字段类型后恢复，没有通过增加连接池处理。",
+      "original_reference_sha256": "d6d694b14e83a57ff87d414f8ecfe8f9fd805371be457bc8eb007cff6a4405a9",
+      "original_criteria_sha256": "07a4809f64da4a76015a3ac20f11e6a90e67bf0a9c28700b4db792945aad0a02",
+      "answerable": true,
+      "necessary_background": "INC-2026-1013为何附件查询慢，是增加连接池解决的吗？",
+      "required_reference": "事件INC-2026-1013中，附件查询条件对附件标识做隐式类型转换，使索引未有效使用；统一参数与字段类型后恢复，并非增加连接池解决。",
+      "optional_information": [],
+      "required_facts": [
+        "隐式类型转换",
+        "索引",
+        "字段类型"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-015",
+      "question_sha256": "39cddf9d4c4e7bab84592d4ed391b5d5591582a9e23f874340d7a17201ba6ae3",
+      "original_reference": "技术部测试负责人确认迁移验收；平台研发部获准值班人员执行缓存回滚；迁移须连续2轮通过且缺失数为0。",
+      "original_reference_sha256": "8bda775a2d0ee34726cc9aeaa0b6136b1147887e5394e802d5184a205c4c6b78",
+      "original_criteria_sha256": "9901291c5c6804a12790c190f209735363ffb84c521e3539f06065db73651d6f",
+      "answerable": true,
+      "necessary_background": "澄川迁移验收由谁确认，缓存回滚由谁执行，迁移连续校验要求是什么？",
+      "required_reference": "澄川迁移验收由技术部测试负责人确认，缓存回滚由平台研发部获准值班人员执行；迁移要求连续2轮全量校验通过且记录缺失数为0。",
+      "optional_information": [],
+      "required_facts": [
+        "技术部测试负责人",
+        "平台研发部",
+        "2轮",
+        "0"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-016",
+      "question_sha256": "212e2d2702a2245204d26990ad701fcf688dc44df5df0bd3fd0d9e5663993703",
+      "original_reference": "向人力资源部登记，在轮岗第15个自然日和第30个自然日评审。",
+      "original_reference_sha256": "191e560f316e73489b639aaa9b45273c39e47a5c34748ac4eff440183c9cc409",
+      "original_criteria_sha256": "b03eeaa40dfec5769c742c6034b5804f728f1393f131b7e1b9ec4f8fe8243c1b",
+      "answerable": true,
+      "necessary_background": "2026年10月13日澄川轮岗评审找哪个部门登记，导师检查在哪些节点？",
+      "required_reference": "2026年10月13日，澄川轮岗评审向人力资源部登记；导师在轮岗第15个自然日和第30个自然日检查评审。",
+      "optional_information": [],
+      "required_facts": [
+        "人力资源部",
+        "15",
+        "30"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-017",
+      "question_sha256": "824f13ca27427d60856f415e4849bd47529d87bdb0a28a685c886863cb4f01bd",
+      "original_reference": "属于第一档，由项目负责人批准，无须因金额增加财务复核；批准前不得付款。",
+      "original_reference_sha256": "f746c57651284735fb671c3ac67b8e43eb5190eff342a437e112e816f54b7e49",
+      "original_criteria_sha256": "75dbce04321f6bf311c7d340edfc78f98681d274916ab52686c613b6814158e3",
+      "answerable": true,
+      "necessary_background": "2026年10月13日澄川测试设备短租恰好3000元，是否必须财务复核，能先付款吗？",
+      "required_reference": "按2026年10月13日澄川测试采购规则，若测试设备短租恰好3000元，则属于第一档，由项目负责人批准，无须因该金额增加财务复核，批准前不得付款。",
+      "optional_information": [],
+      "required_facts": [
+        "第一档",
+        "项目负责人",
+        "不得"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-018",
+      "question_sha256": "019b208691f03cb076a4da62efc14f821229f3c6c286186d5f19eba81c652e32",
+      "original_reference": "不同：前者漏写缓存键前缀，14分钟恢复；后者客户端保留旧DNS解析缓存，23分钟恢复。",
+      "original_reference_sha256": "16b043f23b33dcdb507da3491deb7c2154a5360d9a4e20221e18100ae16748a9",
+      "original_criteria_sha256": "d65177c78c9668a62c4fd788961456bdb5dcb80240148f53bd08c9fc5f270012",
+      "answerable": true,
+      "necessary_background": "INC-2026-1010与INC-2026-1011的根因是否相同？分别多久恢复？",
+      "required_reference": "INC-2026-1010与INC-2026-1011根因不同：INC-2026-1010漏写缓存键前缀，14分钟恢复；INC-2026-1011由客户端保留旧DNS解析缓存引起，23分钟恢复。",
+      "optional_information": [],
+      "required_facts": [
+        "不同",
+        "键前缀",
+        "解析缓存",
+        "14分钟",
+        "23分钟"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对时间、版本、对象及否定范围；关键词齐全不能代替语义审核。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-019",
+      "question_sha256": "71dde0fe3ecba38dbe8760153a32a94b6be2eddd3b1abc99316770bb8ec487ce",
+      "original_reference": "资料没有已批准的2027年维护报价，无法给出金额。",
+      "original_reference_sha256": "38816619448e7001fe3327abe402d08209d9822ddd33da7fd09d000dbb80db12",
+      "original_criteria_sha256": "583ca12d48490d4b8d68fef61ac40869de17e3bf507b0e565d3c8c83c2513d17",
+      "answerable": false,
+      "necessary_background": "澄川项目已经批准的2027年维护报价是多少元？",
+      "required_reference": "现有资料没有澄川项目已经批准的2027年维护报价，无法给出该报价金额。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "拒答且不编造数值或完成日期；引用约定期限不能证明实际完成。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "CC-020",
+      "question_sha256": "aeb45747f06ec72760c337f714887c57f24169f831a8fec79955d58c9f4dbeb1",
+      "original_reference": "资料只有约定修复期限，没有实际完成和关闭日期，无法回答。",
+      "original_reference_sha256": "d9883867f089796cece6307bf017b0ee0990b2e132a84d3ba3889fda36aed28a",
+      "original_criteria_sha256": "3cf44ad3a0790008cd7f3e0c83f301a43f5c4f37bdf681e5dc79089ef306c089",
+      "answerable": false,
+      "necessary_background": "截至2026年10月13日，CC-D-07实际在哪天完成修复并关闭？",
+      "required_reference": "截至2026年10月13日，CC-D-07资料只有约定修复期限，没有实际完成修复和关闭日期，无法确定该缺陷的实际完成及关闭日期。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "拒答且不编造数值或完成日期；引用约定期限不能证明实际完成。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-001",
+      "question_sha256": "47225d58df33cb86d5266ab920da85b9bd9c3b36687c03888f7a2abaeb428a9e",
+      "original_reference": "完整材料确认后3个工作日内给出受理意见；等待申请人补正的时间不计入。",
+      "original_reference_sha256": "29f222e83f1b7b42f9fc3216e7a422b587af1bfa380b4efeae1ace620feb8962",
+      "original_criteria_sha256": "cc4b78bdd4450ee3a670d2c7538928ad5b92b74e9836b98e4ba11c112c5b90c0",
+      "answerable": true,
+      "necessary_background": "南栖验收申请的受理意见应在多久内给出，从何时开始计时？等待补正算进去吗？",
+      "required_reference": "南栖验收申请的受理意见应在完整材料确认后3个工作日内给出；等待申请人补正材料的时间不计入该期限。",
+      "optional_information": [],
+      "required_facts": [
+        "3个工作日",
+        "完整材料",
+        "不计入"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-002",
+      "question_sha256": "fbe91225dd925b2911aa5defcceec22c246227f7594422e98cece0f46a1b2eee",
+      "original_reference": "9月30日每个完整日10小时；10月1日每个完整日8小时。",
+      "original_reference_sha256": "5792450d7e1833de5e80c4aa63208a8489aa93db36ec57b11583924cb693fa1c",
+      "original_criteria_sha256": "d69a8d2b4b6dfd7e4124f741c45daf28281de80636e83694d0794b49e833df12",
+      "answerable": true,
+      "necessary_background": "南栖每个完整异地值守日的补休标准，2026年9月30日与10月1日分别是多少小时？",
+      "required_reference": "南栖每个完整异地值守日的单次补休标准，在2026年9月30日为10小时，在2026年10月1日为8小时。",
+      "optional_information": [],
+      "required_facts": [
+        "10小时",
+        "8小时"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "必须将9月30日绑定10小时、10月1日绑定8小时；这里问单次标准，不需要整月任务数量。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-003",
+      "question_sha256": "7605498fcfc47a05860c0ccfbf7c9098045375f24c6aca35e16b10cd0a5f549d",
+      "original_reference": "每个已确认半日登记4小时补休。",
+      "original_reference_sha256": "bdea17cee033ffc3a34a63fb405a2d8576cc27c043f25a3ca89d81ebd5aa1572",
+      "original_criteria_sha256": "909b4c232fd2491da058b0c2f84a0f4f54fccc95fa97e8ccecbc5662e1b1643c",
+      "answerable": true,
+      "necessary_background": "按2026年10月16日的南栖规则，每个已确认半日异地值守登记多少小时补休？",
+      "required_reference": "按2026年10月16日南栖规则，每个已确认半日异地值守登记4小时补休。",
+      "optional_information": [],
+      "required_facts": [
+        "4小时"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-004",
+      "question_sha256": "88a70f1ae7fb95b332a11a5ef13e003c81640904f18ea25c6de186a6f482273d",
+      "original_reference": "2个完整日各8小时，1个半日4小时，合计20小时。",
+      "original_reference_sha256": "d192e25edf6d34d3cc07fda244acd732b67ae4456fa08675874251ceb12d2388",
+      "original_criteria_sha256": "94336658f975c1a06e91eac1c0ad4b67adb9f62825ce89c9477a65a12ce82227",
+      "answerable": true,
+      "necessary_background": "南栖批次NQ-REST-1013所列三项任务合计应登记多少小时补休？请说明完整日和半日数量及所用单次标准。",
+      "required_reference": "南栖批次NQ-REST-1013包含2个完整异地值守日和1个半日，完整日各按8小时、半日按4小时登记补休，合计2×8+1×4=20小时。",
+      "optional_information": [],
+      "required_facts": [
+        "2个",
+        "8小时",
+        "1个",
+        "4小时",
+        "20小时"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "计算2×8+1×4=20；不能把每次标准当成整个批次总量，也不能套用历史10小时。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-005",
+      "question_sha256": "1cc3e745a24388225dabfabba6627cc2065f7183ca4bf5b95b620c390c176143",
+      "original_reference": "不会自动授予生产账号或客户数据访问权限，仍须另行申请并获得批准。",
+      "original_reference_sha256": "e2f274ddcbdc21f45e1c01d0a0781a4716f6f100724743eb743fb3fa23e99de0",
+      "original_criteria_sha256": "ace6086562787f56d020ae998898975c480f77fcb620d6240635d3e8163c6bbb",
+      "answerable": true,
+      "necessary_background": "南栖批次NQ-REST-1013复核通过，是否自动授予生产账号或客户数据访问权限？还需要什么？",
+      "required_reference": "南栖批次NQ-REST-1013复核通过不会自动授予生产账号或客户数据访问权限；这些权限仍须另行申请并获得批准。",
+      "optional_information": [],
+      "required_facts": [
+        "不会",
+        "生产账号",
+        "客户数据",
+        "批准"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-006",
+      "question_sha256": "22eacc988f5b99ca9610ec756758ef9a4fcb26bfe3c313998b538210988bd12c",
+      "original_reference": "不应合并；完整去重键是tenant_id、subscription_id与event_id。",
+      "original_reference_sha256": "fdfb807c008bb5023ca9f63115976fcd6c7f7fb939b866bbadc30770fb63d430",
+      "original_criteria_sha256": "60e76cdcf8b70f38cab3dbf0a9ad5d7e2bc773a5f3346e7818559f32931a761d",
+      "answerable": true,
+      "necessary_background": "南栖同一租户的两个不同订阅具有相同event_id，是否应合并去重？完整去重键包含哪些字段？",
+      "required_reference": "南栖同一租户下不同订阅的相同event_id不应合并去重；完整去重键是tenant_id、subscription_id与event_id三个字段的组合。",
+      "optional_information": [],
+      "required_facts": [
+        "不应",
+        "tenant_id",
+        "subscription_id",
+        "event_id"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-007",
+      "question_sha256": "d9b710290f49a9786c2edfeeabd31a1262e28fdb9b30d21bf383348c644aac80",
+      "original_reference": "总共最多投递4次，包含首次投递和最多3次自动重试。",
+      "original_reference_sha256": "e00b783e56e59b5d0b1f23fcda7bb2a7fc25cde76891e45d3c64a39fbd4a4520",
+      "original_criteria_sha256": "515a5ea7e1b68148e3462fe9e61d5a184bb7215e8a07934515c2d1c7f0dfe351",
+      "answerable": true,
+      "necessary_background": "南栖通知默认总共最多投递几次，其中自动重试最多几次？",
+      "required_reference": "南栖通知默认总共最多投递4次，包含首次投递和最多3次自动重试。",
+      "optional_information": [],
+      "required_facts": [
+        "4次",
+        "3次"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-008",
+      "question_sha256": "7a2436623e3549c22f6ec66f298a8c32c7f48823722e52e82d0f63f3af905aae",
+      "original_reference": "09:23:20，依次累加20秒、3分钟、20分钟。",
+      "original_reference_sha256": "287d3ee833a84a4a29267fca69e48fedcfb2bb91fa578947b6d139934b828951",
+      "original_criteria_sha256": "b2db3dc2a13a9e50385e31d41c249475760f8f0ecbdebe33a0482f59a3a895a8",
+      "answerable": true,
+      "necessary_background": "南栖通知首次于09:00:00立即失败，之后每次也立即失败，无Retry-After且忽略传输耗时，第4次投递在何时？均为北京时间。",
+      "required_reference": "在题设北京时间09:00:00首次立即失败、之后每次立即失败、无Retry-After并忽略传输耗时的假设下，南栖通知第4次投递应发生在09:23:20。",
+      "optional_information": [
+        "该时刻由09:00:00依次累加20秒、3分钟和20分钟得到。"
+      ],
+      "required_facts": [
+        "09:23:20"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "09:00:00+00:00:20+00:03:00+00:20:00=09:23:20；不能把每段间隔都从首次投递起算。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-009",
+      "question_sha256": "30515b50bfe0d50e87ceae3f54beff7796ffa2ae143ee06b4fb6bc5f77279b9c",
+      "original_reference": "采用AC-N2，连续2轮全量校验通过，两轮记录缺失数均为0，附件摘要比对一致。",
+      "original_reference_sha256": "93bddf60fdff79612c82931a2bca30cc28024afcb276d292046f39cbf699acf1",
+      "original_criteria_sha256": "db62c5d3146e9bef2625f61237086e26bfd230d0fffe411ec15d057440ccfb8d",
+      "answerable": true,
+      "necessary_background": "截至2026年10月16日，南栖项目采用哪个验收规则？该规则要求几轮校验、怎样的缺失数与附件比对结果？",
+      "required_reference": "截至2026年10月16日，南栖项目采用验收规则AC-N2；该规则要求连续2轮全量校验通过，两轮记录缺失数均为0，附件摘要比对一致。",
+      "optional_information": [],
+      "required_facts": [
+        "AC-N2",
+        "2轮",
+        "0",
+        "附件摘要",
+        "一致"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "公共登记只能确定规则关联，准入条件必须由技术部规则支持；需要两个来源。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-010",
+      "question_sha256": "71a3b8607090e60ba8c6298957e3e0d7216e3d69d8ad88c7172afb1c4d24bd4f",
+      "original_reference": "满足。当前选包NQ-PACK-03适用AC-N2；连续2轮缺失数0、附件摘要一致且没有未关闭D1或D2；D3已由客户书面接受并明确修复期限。",
+      "original_reference_sha256": "60c1e0d972a178ec8b6039e9af866ae0c5066c0f454e928ef22d7cc253b3c20b",
+      "original_criteria_sha256": "7adfe55d966925bfe208b360cbd3833111a5a9a8bed5e659c8ec5617680b98a1",
+      "answerable": true,
+      "necessary_background": "截至2026年10月16日，南栖当前选用的证据包能否满足全量校验及缺陷准入条件？请给出选包、规则和实测依据。",
+      "required_reference": "截至2026年10月16日，南栖当前选用证据包NQ-PACK-03，适用验收规则AC-N2，满足全量校验及缺陷准入条件：实测连续2轮记录缺失数均为0、附件摘要一致、没有未关闭D1或D2缺陷，保留的D3缺陷已经客户书面接受并明确修复期限。",
+      "optional_information": [],
+      "required_facts": [
+        "满足",
+        "NQ-PACK-03",
+        "AC-N2",
+        "2轮",
+        "0",
+        "附件摘要",
+        "D1",
+        "D2",
+        "书面接受",
+        "修复期限"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "必须使用当前包，不混入旧包的3条缺失；规则、当前选包与实测分别需要来源。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-011",
+      "question_sha256": "7e373889bb725fcc6e7892374e95de863ce2859118dca9e61953eeb87ff7183f",
+      "original_reference": "该缺陷为不阻断核心流程的D3，客户已书面接受并明确修复期限，因此可保留签署；不能证明已经修复。",
+      "original_reference_sha256": "d21721335c9b71109cdaaddd217f9afc995e7fd2a166496eda21aa71f79d10aa",
+      "original_criteria_sha256": "3b8bbf1dfa5244e1daf50fa0d02fb7c20c1a4e0d93b435faaf10dfaa84c565e2",
+      "answerable": true,
+      "necessary_background": "南栖NQ-PACK-03保留的缺陷为什么仍允许签署？客户接受是否证明该缺陷已经修复？",
+      "required_reference": "南栖NQ-PACK-03保留的缺陷为不阻断核心流程的D3，客户已书面接受并明确修复期限，因此仍允许保留缺陷签署；客户接受不能证明该缺陷已经修复。",
+      "optional_information": [],
+      "required_facts": [
+        "D3",
+        "不阻断核心流程",
+        "书面接受",
+        "修复期限",
+        "不能证明"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-012",
+      "question_sha256": "85912862a0fb6462610dc9105e13d1fe23df89e6d0160976aae0bf1836e7ae17",
+      "original_reference": "原计划2026年10月15日，实际2026年10月16日。",
+      "original_reference_sha256": "f0cb044e169a3be0b3bcfd7fadd884afb19db3422678263897e74a74241ddfdf",
+      "original_criteria_sha256": "5787123ebebc17792fde193d111c379faea46bb8cb11e3d1b05f275210ef3a34",
+      "answerable": true,
+      "necessary_background": "南栖项目原计划与实际最终验收签署日期分别是什么？",
+      "required_reference": "南栖项目最终验收原计划于2026年10月15日签署，实际于2026年10月16日签署。",
+      "optional_information": [],
+      "required_facts": [
+        "10月15日",
+        "10月16日"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "15日对应计划、16日对应实际，不能交换；不强制回答签署时刻。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-013",
+      "question_sha256": "60bfed1448e395d43d9fbc76bc08c1973fd7867f4dd22ce834e4f62656ccecf5",
+      "original_reference": "CFG-NQ-102绑定SL-NQ-B，首响应8分钟，恢复30分钟。",
+      "original_reference_sha256": "06b8b86b0e158fc2489bdc8eb2ca31e9f49700a0f6a7ece2386ca7452e9edaf4",
+      "original_criteria_sha256": "793de7f04d02b18f709f1a4323cd7ad26ea7d0b9dba92c7d2be888de86db22e2",
+      "answerable": true,
+      "necessary_background": "南栖档案同步服务当前实际配置绑定哪个服务等级？首响应和恢复时限各是多少？",
+      "required_reference": "南栖档案同步服务当前实际配置CFG-NQ-102绑定服务等级SL-NQ-B，首响应时限8分钟，恢复时限30分钟。",
+      "optional_information": [],
+      "required_facts": [
+        "SL-NQ-B",
+        "8分钟",
+        "30分钟"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "不能采用旧配置的10/40分钟，也不能采用尚未上线候选配置。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-014",
+      "question_sha256": "94c3c77b16c749f202afa46710aa56592243446b4b67b525a49bdd09ca89b626",
+      "original_reference": "均满足。CFG-NQ-102对应SL-NQ-B；首响应7分钟不超过8分钟，恢复28分钟不超过30分钟。",
+      "original_reference_sha256": "8d7a09cdd8e6e49cdf89ff79ec1605135d4013bbdbffad89f5e9cc78a749358a",
+      "original_criteria_sha256": "fe609cd08c422782589d8ff543115dd0fa1ef0bca3182a385e7dfc7f544e0855",
+      "answerable": true,
+      "necessary_background": "南栖事件INC-NQ-1015的首响应与恢复是否都满足其实际配置对应的服务时限？分别列出实测与目标。",
+      "required_reference": "南栖事件INC-NQ-1015实际配置CFG-NQ-102对应服务等级SL-NQ-B，首响应实测7分钟不超过目标8分钟，恢复实测28分钟不超过目标30分钟，两项均满足服务时限。",
+      "optional_information": [],
+      "required_facts": [
+        "满足",
+        "7分钟",
+        "8分钟",
+        "28分钟",
+        "30分钟"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "首响应09:00到09:07=7分钟；恢复09:03到09:31=28分钟；不得混用时钟。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-015",
+      "question_sha256": "4d9707fd8247d5f90b47cfcb1ac17674de554434fd75db4f2dc6177fbe595d79",
+      "original_reference": "恢复从人工确认异常09:03到业务复核确认恢复09:31计算，为28分钟。09:00是首次告警。",
+      "original_reference_sha256": "eba443075ef534ddebcd324434be3194eeffb97b686ca70c70686a32b8ecce2a",
+      "original_criteria_sha256": "19f7b27e5c06d3ded08e16970054175e7aecb3fda5fb3588fe08c2a0c06cf654",
+      "answerable": true,
+      "necessary_background": "南栖事件INC-NQ-1015的恢复耗时为何不是从09:00起算的31分钟？正确起止点和耗时是什么？",
+      "required_reference": "南栖事件INC-NQ-1015恢复耗时从人工确认异常09:03起算，至业务复核确认恢复09:31结束，共28分钟；09:00是首次告警，不是恢复耗时的起点，所以不按31分钟计算。",
+      "optional_information": [],
+      "required_facts": [
+        "09:03",
+        "09:31",
+        "28分钟"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-016",
+      "question_sha256": "75e176c5423fd6f21f71130097c6e3a48e9c686dad744b0a25eee061c48b5b93",
+      "original_reference": "仅覆盖脱敏档案沙箱，不能认定生产部署已经启用。",
+      "original_reference_sha256": "c3d7867ffd0d498915b9f8ce2a071079627157a0e6bec108fbca0b1c62049a40",
+      "original_criteria_sha256": "8630b9c31e99ae5fa772fb43dbd63f31f6bc83427fac6dde70f3aab52b721245",
+      "answerable": true,
+      "necessary_background": "南栖项目及其支持服务覆盖什么环境，能据此认定同名生产部署已经启用吗？",
+      "required_reference": "南栖项目及其支持服务仅覆盖脱敏档案沙箱，不能据此认定同名生产部署已经启用。",
+      "optional_information": [],
+      "required_facts": [
+        "脱敏档案沙箱",
+        "不能"
+      ],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-017",
+      "question_sha256": "9f124854c8e007166d1b52e6690492ce159b475df6bfa3b30cba7aa263fbee81",
+      "original_reference": "无法确认，只有10月20日计划，没有实际上线完成记录。",
+      "original_reference_sha256": "bd2471db0db461bbec0352c0d6defcdb604d71d6087778087d19607eff15c7e8",
+      "original_criteria_sha256": "7cabc857f637d897eb3b0aa0a4b10db6be2a0bac0bae2e4441251bd3d8d4886a",
+      "answerable": false,
+      "necessary_background": "截至2026年10月16日，南栖永久整改NQ-FIX-07实际哪天上线完成？",
+      "required_reference": "截至2026年10月16日，现有资料没有南栖永久整改NQ-FIX-07实际上线完成记录，无法确定实际完成日期。",
+      "optional_information": [
+        "NQ-FIX-07仅有2026年10月20日的计划日期，计划不等于实际完成。"
+      ],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-018",
+      "question_sha256": "c2fd78748e0b3fc3811434b08cc29a6e335c67b7013e91dad4bf56bc9c6bb94c",
+      "original_reference": "资料缺少全月请求日志、样本数和P95，无法确定。",
+      "original_reference_sha256": "655499b601d408d367a716cb281a053198db86a61cbda82a1c09d2bd02ee48e0",
+      "original_criteria_sha256": "2db8247e317d1e22941b1ca718a7609aa0fed6c181fe4fea73caf526c7b9d6b2",
+      "answerable": false,
+      "necessary_background": "南栖脱敏档案沙箱2026年9月全月请求的实际P95响应耗时是多少毫秒？",
+      "required_reference": "现有资料缺少南栖脱敏档案沙箱2026年9月全月请求日志、样本数及全月P95，无法确定该月全月实际P95响应耗时。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-019",
+      "question_sha256": "19dcd0ee6c8fa16569b10a6da945d014863d81a4add9af1851b2d5a677529445",
+      "original_reference": "资料没有订单金额，不能从服务范围或时限推算。",
+      "original_reference_sha256": "8b26fe8bf6a8f0b5bd66476712f6381c21fc2aa767bb2c2ad06daa1ad17c43f6",
+      "original_criteria_sha256": "5008a3e6581ee264a29aa2233565dde3a1abdb03fc78f45a9450f688acd80254",
+      "answerable": false,
+      "necessary_background": "南栖支持服务已经签署的订单含税总金额具体是多少元？",
+      "required_reference": "现有资料没有南栖支持服务已签署订单的含税总金额，无法确定该金额，不能从服务范围或时限推算。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    },
+    {
+      "id": "NQ-020",
+      "question_sha256": "2f9c294af2073c3feda0cf127395cc5c88aa9cc7142fe45e6bb1a168eecd1e3e",
+      "original_reference": "资料未载明2027年10月已经批准的标准，不能把当前标准当作未来承诺。",
+      "original_reference_sha256": "70c2c508120ec60160c7d8aa60080a5b727bafbc9636644625283749e0044177",
+      "original_criteria_sha256": "ca5a474d08e16a4fece0be733991acc7a02cc7fd6808e1af0a3256874e59688a",
+      "answerable": false,
+      "necessary_background": "公司已经批准的南栖项目2027年10月每个完整异地值守日补休标准是多少小时？",
+      "required_reference": "现有资料未载明公司已经批准的南栖项目2027年10月每个完整异地值守日补休标准，无法给出已批准小时数，不能将当前标准当作未来承诺。",
+      "optional_information": [],
+      "required_facts": [],
+      "optional_facts": [],
+      "semantic_checks": [
+        "核对对象、日期、数值绑定和否定范围；自动事实匹配不代替语义审查。"
+      ],
+      "forbidden_claims": []
+    }
+  ]
+}

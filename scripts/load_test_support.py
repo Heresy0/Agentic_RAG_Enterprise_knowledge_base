@@ -193,7 +193,7 @@ class LoadTestConfig:
 
         dataset_value = values.get(
             "LOAD_TEST_QUESTIONS_FILE",
-            "evals/datasets/answer_test.jsonl",
+            'evals/current/load_workload.jsonl',
         ).strip()
         dataset_path = Path(dataset_value)
         if not dataset_path.is_absolute():

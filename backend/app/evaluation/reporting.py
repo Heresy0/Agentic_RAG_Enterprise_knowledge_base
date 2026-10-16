@@ -66,7 +66,8 @@ def outcome(report):
 def compare_baseline(report, baseline):
     """Only compare like-for-like runs; never turn historical Chroma numbers into current gates."""
     keys = ("schema_version", "scorer_version", "scoring_rules_sha256", "mode", "dataset_sha256", "selected_case_ids", "requested_conversation_ids",
-            "conversation_backend", "conversations_sha256", "corpus_manifest_sha256", "scope_config_sha256")
+            "conversation_backend", "conversations_sha256", "corpus_manifest_sha256", "scope_config_sha256",
+            "suite_sha256", "selected_groups")
     mismatches = [key for key in keys if report.get(key) != baseline.get(key)]
     if set(report["layers"]) != set(baseline.get("layers", {})):
         mismatches.append("selected_layers")
@@ -109,6 +110,15 @@ def write_report(report, directory):
     for name, layer in report["layers"].items():
         summary = layer.get("summary", {})
         lines.append(f"| {name} | {layer['status']} | {summary.get('passed', '—')} | {summary.get('failed', '—')} | {summary.get('error', '—')} | {summary.get('skipped', 0) + summary.get('partial', 0) if summary else '—'} | {summary.get('not_applicable', 0) if summary else '—'} |")
+    if report.get('group_scores'):
+        lines.extend(['','## 单轮分组评分','',
+            '各组使用原事实标准；历史100题成绩只属于main组，缺失观察不计为通过。','',
+            '| 分组 | 层 | 已选题数 | 通过 | 失败 | 错误 | 未观察/部分 | 不适用 | Hit Rate | MRR | 全证据完整率 |',
+            '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|'])
+        for group in report['group_scores'].values():
+            for name,layer in group['layers'].items():
+                s=layer['summary'];m=layer.get('metrics') or {}
+                lines.append(f"| {group['name']} | {name} | {group['selected_cases']} | {s['passed']} | {s['failed']} | {s['error']} | {s['skipped']+s['partial']} | {s['not_applicable']} | {m.get('hit_rate','—')} | {m.get('mrr','—')} | {m.get('all_evidence_rate','—')} |")
     for name, layer in report["layers"].items():
         lines.extend(["", "## " + name, ""])
         for key in ("reason", "limitation", "evaluation_type"):

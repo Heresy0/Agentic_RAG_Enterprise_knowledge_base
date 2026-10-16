@@ -1,8 +1,19 @@
 # RAG 评估
 
-本目录保存企业知识库的检索、答案及分层评估数据和实验结论。默认入口已扩充为 [100 题 v4](xinghai_v4/README.md)：原 80 题逐字保留，新增 [南栖 20 题](xinghai_nanqi/README.md)，共 87 道可回答、13 道资料不足。新增 12 份业务文档已入库，详情见 [扩容快照](acceptance/nanqi_expansion_20261016.json)。2026-10-16 首次完整 100 题实测严格自动通过 89/100，最终上下文证据召回 135/135，正确拒答 13/13，误拒答 6/87；原 80 题子集 73/80、新增子集 16/20。分阶段召回、11 道未通过题及口径见 [100 题评估快照](acceptance/current_100_20261016.json)。自动通过率不等于独立语义准确率。
+当前统一入口为`python scripts/evaluate.py`，题集和运行指南见[当前套件](current/README.md)。单轮共120题：main100题、multihop12题、completeness8题，104道可回答、16道资料不足，各组单独评分。另有8组24轮多轮、12项权限与8题复用压测负载。问题和事实标准不变，筛选视图自动生成；这仍是合成回归集，不是独立业务盲测。
 
-[原 80 题](xinghai_v3/README.md) 与 [单独的 12 道复杂多跳题](xinghai_multihop/README.md) 继续保留。2026-10-14 历史结果为 71/80 与 11/12，见 [验收记录](../docs/PARENT_CHILD_ACCEPTANCE_20261014.md) 和 [可提交汇总](acceptance/parent_child_20261014.json)。汇总不包含用户问题、答案正文、授权原文或凭据；完整报告和 trace 保存在被 Git 忽略的 `reports/system/`。
+```powershell
+python scripts/evaluate.py check
+python scripts/evaluate.py system --mode offline --layers parsing --ocr --strict
+```
+
+旧数据已移到[归档](archive/README.md)，`manifest.json`记录原路径和字节哈希。历史报告及验收收据留在原位置。原main组94/100以及12题对照、Ragas结果保留原分母；不能当成120题新实测。详细指标与定位方法见[分层说明](SYSTEM_EVALUATION.md)。
+
+## 历史100题与扩容记录
+
+原[100题v4](archive/xinghai_v4/README.md)保留原80题，新增[南栖20题](archive/xinghai_nanqi/README.md)，共87道可回答、13道资料不足。新增12份业务文档已入库，详情见[扩容快照](acceptance/nanqi_expansion_20261016.json)。2026-10-16首次完整100题实测严格自动通过89/100，最终上下文证据召回135/135，正确拒答13/13，误拒答6/87；原80题子集73/80、新增子集16/20。分阶段召回、11道未通过题及口径见[首轮历史快照](acceptance/current_100_20261016.json)。最终r9回放为94/100，见[最终记录](acceptance/scoring_r9_100_20261016.json)。
+
+[原 80 题](archive/xinghai_v3/README.md) 与 [单独的 12 道复杂多跳题](archive/xinghai_multihop/README.md) 继续保留。2026-10-14 历史结果为 71/80 与 11/12，见 [验收记录](../docs/PARENT_CHILD_ACCEPTANCE_20261014.md) 和 [可提交汇总](acceptance/parent_child_20261014.json)。汇总不包含用户问题、答案正文、授权原文或凭据；完整报告和 trace 保存在被 Git 忽略的 `reports/system/`。
 
 以下旧实验衡量子块召回、排序质量、分阶段延迟及基于 Top-1 重排分数的检索层无答案判断，保留作历史记录。这些判断不等同于大模型最终答案的正确性、忠实度或真实拒答行为，也不代表当前父子块版本的成绩。
 
@@ -10,11 +21,14 @@
 
 ```text
 evals/
-├── datasets/
-│   ├── retrieval_dev.jsonl
-│   ├── retrieval_test.jsonl
-│   ├── answer_dev.jsonl
-│   └── answer_test.jsonl
+├── current/                 # 当前120题、分组视图、多轮/权限和复用负载
+│   ├── single_turn.jsonl
+│   ├── suite.json
+│   └── groups/
+├── archive/                 # 冻结旧题集与原路径/哈希索引
+│   ├── datasets/
+│   ├── xinghai_v3/
+│   └── xinghai_v4/
 ├── reports/
 │   ├── retrieval_baseline.json
 │   ├── retrieval_hybrid_v1.json
@@ -69,7 +83,7 @@ $env:ENTERPRISE_KB_ACCESS_TOKEN = $token
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\evaluate_answers.py `
-  --dataset evals\datasets\answer_dev.jsonl `
+  --dataset evals\archive\datasets\answer_dev.jsonl `
   --knowledge-base-id "8e4af664-22c1-480e-9393-36ac401da0f5" `
   --category technical `
   --limit 1 `
@@ -80,7 +94,7 @@ $env:ENTERPRISE_KB_ACCESS_TOKEN = $token
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\evaluate_answers.py `
-  --dataset evals\datasets\answer_dev.jsonl `
+  --dataset evals\archive\datasets\answer_dev.jsonl `
   --knowledge-base-id "8e4af664-22c1-480e-9393-36ac401da0f5" `
   --category technical `
   --category unanswerable `
@@ -92,7 +106,7 @@ $env:ENTERPRISE_KB_ACCESS_TOKEN = $token
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\evaluate_answers.py `
-  --dataset evals\datasets\answer_test.jsonl `
+  --dataset evals\archive\datasets\answer_test.jsonl `
   --knowledge-base-id "8e4af664-22c1-480e-9393-36ac401da0f5" `
   --category technical `
   --category unanswerable `
@@ -147,7 +161,7 @@ Remove-Item Env:ENTERPRISE_KB_ACCESS_TOKEN
 
 新增 `scripts/evaluate_system.py`，支持离线解析/隔离权限回归、真实授权后端分层评估、真实HTTP多轮/部分权限评估、过程记录回放及性能报告汇总。默认不调用真实模型、不修改业务授权。具体范围、运行命令与未覆盖项见 [分层评估说明](SYSTEM_EVALUATION.md)。
 
-当前统一主题集位于 `evals/xinghai_v4/`，共100道单轮题；用 `python scripts/build_100_evaluation.py --prepare-corpus` 准备68份指定语料。原80题入口 `evals/xinghai_v3/` 继续保留，合并原60题和澄川新增20题，覆盖50份文档。
+当前套件位于`evals/current/`，共120道单轮题并保留三个分组。原100题及80题分别归档于`evals/archive/xinghai_v4/`、`evals/archive/xinghai_v3/`。用`python scripts/build_100_evaluation.py --prepare-corpus`准备68份指定语料；旧80题的50份语料准备方式继续用于历史复现。
 原8组多轮和12项权限用例保留；旧80题的解析语料为 `output/knowledge-corpus-unified/`，可通过
 `python scripts/merge_xinghai_evaluation.py --prepare-corpus`从两个原文包准备。题集与标准答案不要入库。
 旧60题、80题报告保持原样，不直接与新100题总分比较。当前分层入口与下面保留的历史Chroma实验不是同一个基线。

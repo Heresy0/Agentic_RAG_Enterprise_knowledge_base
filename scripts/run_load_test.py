@@ -36,7 +36,7 @@ def remaining_token_seconds(token, now=None):
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--profile", choices=PROFILES, default="mixed")
-    parser.add_argument("--workload", type=Path, default=ROOT / "tests/load/current_workload.jsonl")
+    parser.add_argument("--workload", type=Path, default=ROOT / "evals/current/load_workload.jsonl")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--token-file", type=Path, default=ROOT / ".env.evaluation")
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")

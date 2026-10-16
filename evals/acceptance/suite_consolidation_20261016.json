@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-16",
+  "change": "统一题集、入口、依赖迁移与冻结归档；问题与事实标准不变",
+  "entrypoint": "scripts/evaluate.py",
+  "suite": "evals/current/suite.json",
+  "suite_sha256": "a9733bab137d2db5dcc5bffb55c323962f49a90e556ce7097a94c9d23fcdf924",
+  "archive_manifest": "evals/archive/manifest.json",
+  "archive_manifest_sha256": "4b78ae4d8d834c76751744191ecfc262de7c681d98e5c0f6408ef78caeb3b0c9",
+  "archived_files": 51,
+  "prior_question_pack_files_verified": 50,
+  "historical_report_and_acceptance_files_unchanged": 427,
+  "single_turn": {
+    "cases": 120,
+    "answerable": 104,
+    "unanswerable": 16,
+    "groups": {
+      "main": {
+        "cases": 100,
+        "source_sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a"
+      },
+      "multihop": {
+        "cases": 12,
+        "source_sha256": "27e6476f6cb62767bd2ed5c8f3151676d10b9d071c49fc2eab389f7fbc698997"
+      },
+      "completeness": {
+        "cases": 8,
+        "source_sha256": "f9beff7cff5321716e5a1b8c5cce0fe2e28b8c10838a140bac2bbaad2addf4e6"
+      }
+    }
+  },
+  "conversations": {
+    "groups": 8,
+    "turns": 24,
+    "sha256": "e6f976b8564b893b8fa8735eb00d46fdcc9e6f959cea587c2c5bf5cae17dbaf7"
+  },
+  "security": {
+    "cases": 12,
+    "sha256": "22fcc9616ff3897526a177935ec9e20d639c76d5aac5f9475f26cf1ce00ec21e"
+  },
+  "load": {
+    "cases": 8,
+    "reuses_single_turn_cases": true,
+    "sha256": "8a5a92b902b85766b09e796ff98affb4ef3f74a2941a342f3a66cc67dadadb9c"
+  },
+  "unchanged_original_case_bytes": true,
+  "unchanged_effective_fact_criteria": true,
+  "main_replay": {
+    "cases": 100,
+    "passed": 94,
+    "failed": 6,
+    "all_case_status_metric_response_equal": true,
+    "retrieval_rerank_context_metrics_equal": true,
+    "mode": "replay_not_new_model_generation",
+    "report_sha256": "20b5c7d4ccc49987050ae26ae8260b8dbf11dfc89bdff985682e50579df45b3b",
+    "new_model_calls": 0
+  },
+  "regressions": {
+    "tests": 1152,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 48,
+    "passed": 1104
+  },
+  "regression_junit_sha256": "d71160fcbd276825c2bb060daa46121cd948eaa8a3622ea6a59b31420335288f",
+  "parsing": {
+    "overall_status": "incomplete",
+    "summary": {
+      "total": 173,
+      "passed": 170,
+      "failed": 0,
+      "error": 0,
+      "skipped": 3,
+      "partial": 0,
+      "not_applicable": 0,
+      "pass_rate": 1.0
+    },
+    "untested": [
+      {
+        "id": "12_生产维护通知_扫描件.pdf",
+        "reason": "ocr_runtime_unavailable"
+      },
+      {
+        "id": "XH-020",
+        "reason": "source_not_parsed"
+      },
+      {
+        "id": "XH-E-057",
+        "reason": "source_not_parsed"
+      }
+    ],
+    "limitation": "本机OCR运行环境不可用，扫描件及2道证据检查未完成；不记为通过。"
+  },
+  "ragas_dry_run": 100,
+  "load_dry_run_cases": 8,
+  "new_paid_model_calls": 0,
+  "limitations": [
+    "本次为数据迁移、离线检查及旧100题回放，不是新120题live评估。",
+    "历史成绩保留原分母；多轮、权限和性能不合并为单轮分数。",
+    "48项全量回归跳过，未执行的检查不算通过。"
+  ]
+}

@@ -1,11 +1,13 @@
 """Paired authenticated comparison against the project's single-pass RAG ablation.
 
-Uses the same sources, prompt, parent context and validation. Only planning,
-agent tools, feedback/regeneration and model repair are disabled in the baseline.
+Uses the same sources, prompt and validation. The default paired comparison
+shares parent context. Parent ablation compares ordinary child-only RAG,
+current child-only RAG and current RAG with parent context in one fresh run.
 """
 import argparse
 from copy import copy
 import hashlib
+from itertools import permutations
 import json
 from pathlib import Path
 import sys
@@ -26,6 +28,24 @@ def baseline_settings(settings):
 
 def paired_order(index):
     return ('current', 'ordinary') if index % 2 == 0 else ('ordinary', 'current')
+
+
+def comparison_settings(settings, comparison):
+    if comparison == 'paired':
+        return {'current': settings, 'ordinary': baseline_settings(settings)}
+    if comparison != 'parent-ablation':
+        raise ValueError('Unknown comparison')
+    child = copy(settings)
+    child.rag_parent_context_enabled = False
+    parent = copy(settings)
+    parent.rag_parent_context_enabled = True
+    return {'ordinary_child': baseline_settings(child), 'current_child': child,
+            'current_parent': parent}
+
+
+def comparison_order(index, names):
+    orders = tuple(permutations(names))
+    return orders[index % len(orders)]
 
 
 def fingerprint(value):
@@ -68,10 +88,11 @@ def corpus_snapshot(session, principal, readable_ids):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, required=True)
-    parser.add_argument('--dataset-dir', type=Path, default=ROOT/'evals/xinghai_multihop')
+    parser.add_argument('--dataset-dir', type=Path, default=ROOT/'evals/current/groups/multihop')
     parser.add_argument('--corpus', type=Path, default=ROOT/'output/knowledge-corpus-100')
     parser.add_argument('--output-dir', type=Path, required=True)
     parser.add_argument('--allow-model-calls', action='store_true')
+    parser.add_argument('--comparison', choices=('paired', 'parent-ablation'), default='paired')
     args = parser.parse_args(argv)
     if not args.allow_model_calls:
         parser.error('Explicit --allow-model-calls is required')
@@ -101,10 +122,10 @@ def main(argv=None):
     if any(row['status'] != 'passed' for row in audit['index']['records']):
         raise ValueError('Corpus index audit failed; no paired model calls made')
     settings = Settings()
-    variants = {'current': settings, 'ordinary': baseline_settings(settings)}
+    variants = comparison_settings(settings, args.comparison)
     models = ('chat_model', 'embedding_model', 'rerank_model', 'chat_base_url', 'rerank_url',
-              'chat_api_key', 'rag_parent_context_enabled', 'rag_rerank_top_k')
-    if any(getattr(settings, key) != getattr(variants['ordinary'], key) for key in models):
+              'chat_api_key', 'rag_rerank_top_k')
+    if any(getattr(settings, key) != getattr(value, key) for value in variants.values() for key in models):
         raise ValueError('Shared retrieval/model settings mismatch')
     kb_map = {key: UUID(value) for key, value in config['knowledge_bases'].items()}
     profile = config['profiles']['全范围测试用户']
@@ -116,8 +137,11 @@ def main(argv=None):
         scope_config_sha256=fingerprint({k: config.get(k) for k in ('base_url', 'knowledge_bases', 'profiles')}),
         scorer_version=SCORER_VERSION, scoring_rules_sha256=None,
         variants={name: runtime(value) for name, value in variants.items()},
-        order=[dict(id=case['id'], variants=paired_order(index)) for index, case in enumerate(cases)],
-        baseline='Project single-pass ablation, retaining shared parent context, prompt, deterministic supplements and final safety validation.',
+        comparison=args.comparison,
+        order=[dict(id=case['id'], variants=comparison_order(index, tuple(variants))) for index, case in enumerate(cases)],
+        baseline=('Project single-pass ablation, retaining shared parent context, prompt, deterministic supplements and final safety validation.'
+                  if args.comparison == 'paired' else
+                  'Three-arm ablation: ordinary_child disables optional multistep controls and parent context; current_child disables parent context only; current_parent enables parent context. Same child retrieval settings, prompt, deterministic supplements and final validation. Agent child-neighbor reads remain available in current_child.'),
         timing='latency_ms: backend scope check + answer pipeline and usage context; excludes initial authentication, client construction and index audit; no HTTP gateway.',
         repetitions_per_variant=1, warmup_model_calls=0, business_permission_changes=False)
     try:
@@ -136,7 +160,7 @@ def main(argv=None):
             (out/'protocol.json').write_text(json.dumps(protocol, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
             for index, case in enumerate(cases):
                 pair_scopes = []
-                for name in paired_order(index):
+                for name in comparison_order(index, tuple(variants)):
                     trace = None
                     started = time.perf_counter()
                     try:
@@ -160,7 +184,7 @@ def main(argv=None):
                     results[name].append(score_trace(case, snapshot, include_answer=True))
                     pair_scopes.append(snapshot.get('scope'))
                     print(json.dumps(dict(case=case['id'], variant=name, status=results[name][-1]['status']), ensure_ascii=False), flush=True)
-                if pair_scopes[0] != pair_scopes[1]:
+                if any(scope != pair_scopes[0] for scope in pair_scopes[1:]):
                     raise ValueError('Paired authorization scopes differ')
             current_readable = authorization.list_readable_knowledge_base_ids(principal=principal)
             protocol['corpus_after'] = corpus_snapshot(session, principal, current_readable)

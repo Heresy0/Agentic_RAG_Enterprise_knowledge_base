@@ -15,9 +15,9 @@ from scripts.corpus_100_data import AS_OF, DOCUMENTS, EDITION, GROUPS, make_case
 from scripts.build_knowledge_expansion import write_artifacts
 
 CORPUS=ROOT/'sample_docs/xinghai_nanqi'
-DATASET=ROOT/'evals/xinghai_v4'
-DELTA=ROOT/'evals/xinghai_nanqi'
-LEGACY=ROOT/'evals/xinghai_v3'
+DATASET=ROOT/'evals/archive/xinghai_v4'
+DELTA=ROOT/'evals/archive/xinghai_nanqi'
+LEGACY=ROOT/'evals/archive/xinghai_v3'
 UNIFIED=ROOT/'output/knowledge-corpus-100'
 SOURCE_ROOTS=[ROOT/'sample_docs/xinghai_base',ROOT/'sample_docs/xinghai_expansion',ROOT/'sample_docs/xinghai_multihop']
 

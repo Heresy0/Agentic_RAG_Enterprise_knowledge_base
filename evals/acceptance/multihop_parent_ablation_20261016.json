@@ -1,0 +1,677 @@
+{
+  "evaluation_type": "fresh_three_arm_authenticated_local_backend_not_http_or_load_test",
+  "dataset": "evals/xinghai_multihop",
+  "cases_per_arm": 12,
+  "total_observations": 36,
+  "positive_cases": 9,
+  "negative_cases": 3,
+  "dataset_sha256": "27e6476f6cb62767bd2ed5c8f3151676d10b9d071c49fc2eab389f7fbc698997",
+  "corpus_manifest_sha256": "f3a3f93465fb6aff3d4d06668868a45388966e03614d2890f93518e731f5b511",
+  "scope_config_sha256": "4f446142aacf6e839e40ff636958c53725d4e6f4b8b6150e41c09d7fa16b2cf0",
+  "scorer_version": "2026-10-16-r9",
+  "git_head": "07227d692beb0afdfd611b2520d430251efa189c",
+  "corpus_counts": {
+    "documents": 72,
+    "chunks": 600,
+    "parents": 158
+  },
+  "same_corpus_before_after": true,
+  "same_effective_permissions": true,
+  "arms": {
+    "ordinary_child": {
+      "runtime": {
+        "agentic_rag_mode": "off",
+        "rag_planner_mode": "off",
+        "rag_repair_enabled": false,
+        "rag_feedback_enabled": false,
+        "rag_parent_context_enabled": false,
+        "rag_rerank_top_k": 12,
+        "chat_model": "qwen3.7-flash",
+        "embedding_model": "text-embedding-v4",
+        "rerank_model": "qwen3-rerank",
+        "rag_max_optional_calls": 4,
+        "rag_max_optional_tokens": 32000,
+        "rag_max_optional_seconds": 35.0,
+        "rag_max_searches": 3,
+        "temperature": 0,
+        "reasoning_effort": "none",
+        "max_retries": 0,
+        "context_max_characters": 12000,
+        "context_max_chunks_per_source": 4,
+        "model_destinations": {
+          "chat_base_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+          "rerank_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-api/v1/reranks"
+        }
+      },
+      "counts": {
+        "total": 12,
+        "passed": 6,
+        "failed": 6,
+        "error": 0,
+        "skipped": 0,
+        "partial": 0,
+        "not_applicable": 0,
+        "pass_rate": 0.5
+      },
+      "automatic_pass_rate": 0.5,
+      "manual_correct_count": 8,
+      "manual_accuracy": 0.6666666666666666,
+      "observed_responses": 12,
+      "refusals": 4,
+      "refusal_rate": 0.3333333333333333,
+      "false_refusal_count": 1,
+      "correct_refusal_count": 3,
+      "evidence": {
+        "observed_positive_cases": 9,
+        "macro_recall": 0.783068783068783,
+        "matched": 30,
+        "expected": 41,
+        "complete": 4
+      },
+      "latency_ms": {
+        "mean": 6274.735,
+        "median": 5669.719999999999,
+        "p95": 11124.569499999994,
+        "total": 75296.81999999999
+      },
+      "model_usage": {
+        "observed": true,
+        "calls": 36,
+        "reported_total_tokens": 124961,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 36,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "by_stage": {
+        "answer_generation": {
+          "observed": true,
+          "calls": 12,
+          "reported_total_tokens": 62635,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 12,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_embedding": {
+          "observed": true,
+          "calls": 12,
+          "reported_total_tokens": 326,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 12,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "rerank": {
+          "observed": true,
+          "calls": 12,
+          "reported_total_tokens": 62000,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 12,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      },
+      "mean_context_characters": 1172.5833333333333
+    },
+    "current_child": {
+      "runtime": {
+        "agentic_rag_mode": "auto",
+        "rag_planner_mode": "auto",
+        "rag_repair_enabled": true,
+        "rag_feedback_enabled": true,
+        "rag_parent_context_enabled": false,
+        "rag_rerank_top_k": 12,
+        "chat_model": "qwen3.7-flash",
+        "embedding_model": "text-embedding-v4",
+        "rerank_model": "qwen3-rerank",
+        "rag_max_optional_calls": 4,
+        "rag_max_optional_tokens": 32000,
+        "rag_max_optional_seconds": 35.0,
+        "rag_max_searches": 3,
+        "temperature": 0,
+        "reasoning_effort": "none",
+        "max_retries": 0,
+        "context_max_characters": 12000,
+        "context_max_chunks_per_source": 4,
+        "model_destinations": {
+          "chat_base_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+          "rerank_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-api/v1/reranks"
+        }
+      },
+      "counts": {
+        "total": 12,
+        "passed": 7,
+        "failed": 5,
+        "error": 0,
+        "skipped": 0,
+        "partial": 0,
+        "not_applicable": 0,
+        "pass_rate": 0.5833333333333334
+      },
+      "automatic_pass_rate": 0.5833333333333334,
+      "manual_correct_count": 9,
+      "manual_accuracy": 0.75,
+      "observed_responses": 12,
+      "refusals": 5,
+      "refusal_rate": 0.4166666666666667,
+      "false_refusal_count": 2,
+      "correct_refusal_count": 3,
+      "evidence": {
+        "observed_positive_cases": 9,
+        "macro_recall": 0.783068783068783,
+        "matched": 30,
+        "expected": 41,
+        "complete": 4
+      },
+      "latency_ms": {
+        "mean": 7677.435833333333,
+        "median": 5694.605,
+        "p95": 14992.066499999999,
+        "total": 92129.23
+      },
+      "model_usage": {
+        "observed": true,
+        "calls": 46,
+        "reported_total_tokens": 138595,
+        "unknown_usage_calls": 1,
+        "unknown_usage_rate": 0.021739130434782608,
+        "unpriced_calls": 46,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 1
+      },
+      "by_stage": {
+        "agent_decision": {
+          "observed": true,
+          "calls": 3,
+          "reported_total_tokens": 7988,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 3,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "answer_generation": {
+          "observed": true,
+          "calls": 12,
+          "reported_total_tokens": 62620,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 12,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "answer_repair": {
+          "observed": true,
+          "calls": 2,
+          "reported_total_tokens": 4054,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 2,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_embedding": {
+          "observed": true,
+          "calls": 12,
+          "reported_total_tokens": 326,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 12,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_planning": {
+          "observed": true,
+          "calls": 5,
+          "reported_total_tokens": 1607,
+          "unknown_usage_calls": 1,
+          "unknown_usage_rate": 0.2,
+          "unpriced_calls": 5,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 1
+        },
+        "rerank": {
+          "observed": true,
+          "calls": 12,
+          "reported_total_tokens": 62000,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 12,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      },
+      "mean_context_characters": 1172.5833333333333
+    },
+    "current_parent": {
+      "runtime": {
+        "agentic_rag_mode": "auto",
+        "rag_planner_mode": "auto",
+        "rag_repair_enabled": true,
+        "rag_feedback_enabled": true,
+        "rag_parent_context_enabled": true,
+        "rag_rerank_top_k": 12,
+        "chat_model": "qwen3.7-flash",
+        "embedding_model": "text-embedding-v4",
+        "rerank_model": "qwen3-rerank",
+        "rag_max_optional_calls": 4,
+        "rag_max_optional_tokens": 32000,
+        "rag_max_optional_seconds": 35.0,
+        "rag_max_searches": 3,
+        "temperature": 0,
+        "reasoning_effort": "none",
+        "max_retries": 0,
+        "context_max_characters": 12000,
+        "context_max_chunks_per_source": 4,
+        "model_destinations": {
+          "chat_base_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+          "rerank_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-api/v1/reranks"
+        }
+      },
+      "counts": {
+        "total": 12,
+        "passed": 10,
+        "failed": 2,
+        "error": 0,
+        "skipped": 0,
+        "partial": 0,
+        "not_applicable": 0,
+        "pass_rate": 0.8333333333333334
+      },
+      "automatic_pass_rate": 0.8333333333333334,
+      "manual_correct_count": 11,
+      "manual_accuracy": 0.9166666666666666,
+      "observed_responses": 12,
+      "refusals": 4,
+      "refusal_rate": 0.3333333333333333,
+      "false_refusal_count": 1,
+      "correct_refusal_count": 3,
+      "evidence": {
+        "observed_positive_cases": 9,
+        "macro_recall": 1.0,
+        "matched": 41,
+        "expected": 41,
+        "complete": 9
+      },
+      "latency_ms": {
+        "mean": 7861.3725,
+        "median": 7450.139999999999,
+        "p95": 12242.945,
+        "total": 94336.47
+      },
+      "model_usage": {
+        "observed": true,
+        "calls": 46,
+        "reported_total_tokens": 144275,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 46,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "by_stage": {
+        "agent_decision": {
+          "observed": true,
+          "calls": 1,
+          "reported_total_tokens": 2582,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 1,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "answer_generation": {
+          "observed": true,
+          "calls": 12,
+          "reported_total_tokens": 67899,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 12,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "answer_repair": {
+          "observed": true,
+          "calls": 2,
+          "reported_total_tokens": 3882,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 2,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_embedding": {
+          "observed": true,
+          "calls": 13,
+          "reported_total_tokens": 363,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 13,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_planning": {
+          "observed": true,
+          "calls": 5,
+          "reported_total_tokens": 1993,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 5,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "rerank": {
+          "observed": true,
+          "calls": 13,
+          "reported_total_tokens": 67556,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 13,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      },
+      "mean_context_characters": 2446.0833333333335
+    }
+  },
+  "case_reviews": {
+    "ordinary_child": {
+      "MH-001": {
+        "verdict": "correct"
+      },
+      "MH-002": {
+        "verdict": "correct"
+      },
+      "MH-003": {
+        "verdict": "correct"
+      },
+      "MH-004": {
+        "verdict": "incorrect"
+      },
+      "MH-005": {
+        "verdict": "incorrect"
+      },
+      "MH-006": {
+        "verdict": "correct"
+      },
+      "MH-007": {
+        "verdict": "incorrect"
+      },
+      "MH-008": {
+        "verdict": "correct"
+      },
+      "MH-009": {
+        "verdict": "incorrect"
+      },
+      "MH-010": {
+        "verdict": "correct"
+      },
+      "MH-011": {
+        "verdict": "correct"
+      },
+      "MH-012": {
+        "verdict": "correct"
+      }
+    },
+    "current_child": {
+      "MH-001": {
+        "verdict": "correct"
+      },
+      "MH-002": {
+        "verdict": "correct"
+      },
+      "MH-003": {
+        "verdict": "correct"
+      },
+      "MH-004": {
+        "verdict": "correct"
+      },
+      "MH-005": {
+        "verdict": "incorrect"
+      },
+      "MH-006": {
+        "verdict": "correct"
+      },
+      "MH-007": {
+        "verdict": "incorrect"
+      },
+      "MH-008": {
+        "verdict": "correct"
+      },
+      "MH-009": {
+        "verdict": "incorrect"
+      },
+      "MH-010": {
+        "verdict": "correct"
+      },
+      "MH-011": {
+        "verdict": "correct"
+      },
+      "MH-012": {
+        "verdict": "correct"
+      }
+    },
+    "current_parent": {
+      "MH-001": {
+        "verdict": "correct"
+      },
+      "MH-002": {
+        "verdict": "correct"
+      },
+      "MH-003": {
+        "verdict": "correct"
+      },
+      "MH-004": {
+        "verdict": "correct"
+      },
+      "MH-005": {
+        "verdict": "correct"
+      },
+      "MH-006": {
+        "verdict": "correct"
+      },
+      "MH-007": {
+        "verdict": "incorrect"
+      },
+      "MH-008": {
+        "verdict": "correct"
+      },
+      "MH-009": {
+        "verdict": "correct"
+      },
+      "MH-010": {
+        "verdict": "correct"
+      },
+      "MH-011": {
+        "verdict": "correct"
+      },
+      "MH-012": {
+        "verdict": "correct"
+      }
+    }
+  },
+  "comparison_checks": [
+    {
+      "id": "MH-001",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-002",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-003",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-004",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-005",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-006",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-007",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-008",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-009",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-010",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-011",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    },
+    {
+      "id": "MH-012",
+      "same_scope": true,
+      "same_fusion": true,
+      "same_rerank": true,
+      "child_context_same": true
+    }
+  ],
+  "findings": [
+    "三组同题的有效权限、融合候选和重排结果全部相同，两组关闭父块的最终上下文也完全一致。开启父块后必要证据微平均召回从73.2%（30/41）升至100%（41/41），每题平均召回从78.3%升至100%，证据完整正例从4/9升至9/9。两种召回口径分别保留。",
+    "MH-001：关闭父块时缺少项目到AR-T2的登记证据，引用规则中的条件本身正确，复核不把少一份来源单独判为事实错误。开启父块后登记与规则一起进入证据，严格检查也通过。",
+    "MH-004：两组子块上下文相同且证据已完整。普通答案只描述D3保留的一般条件，没有串联项目实际已接受及修复期限；当前关闭父块给出了实际接受与期限，完整通过。该题发生一次规划结构错误并回退，Agent仅finish，没有补查或邻块读取，不能把差异归因于Agent工具取证。",
+    "MH-005：子块上下文只有5/7条必要证据，缺少保留D3的书面接受与修复期限；两组关闭父块均只检查两轮校验和D1/D2，满足结论的解释不完整。父块补全7/7，当前开启父块给出完整判定，一次模型修复成功。",
+    "MH-006：三组最终均正确给出7分50秒≤8分钟、32分钟≤35分钟及两类起点。子块缺少配置到等级映射；父块虽取齐6/6，最终仍未引用映射资料，严格成绩都未通过。复核接受事实正确，同时保留来源链缺口，不修改原始自动成绩。",
+    "MH-007：普通关闭父块给出与原文相容的完成轮数，却用已完成1/2轮代替对应日期的规则要求，未取到旧规则和适用登记，回答不完整。当前关闭父块缺证据后拒答；当前开启父块证据已齐、草稿事实正确，但日期所在结论只引用规则、没有绑定适用登记，触发校验后误拒答。",
+    "MH-009：关闭父块时只取齐4/8条必要证据，两组最终均拒答；开启父块取齐8/8后正确判断同步达标、预览未达标。两个服务的配置、等级和时间线必须共同核对。",
+    "MH-010至MH-012三组均正确拒答。当前开启父块在MH-010额外进行一次反馈搜索，没有新增有效证据，未再生成；这次补查没有增加正例证据召回。",
+    "普通关闭父块共36次调用；当前关闭父块46次（5次规划、3次Agent决策均finish、2次成功修复）；当前开启父块46次（5次规划、1次Agent决策finish、2次成功修复，另有一次反馈检索带来嵌入和重排）。三组均没有邻块读取或反馈再生成。",
+    "平均后端耗时为6.27秒、7.68秒、7.86秒。开启父块的当前链路相对普通关闭父块慢25.3%，相对当前关闭父块慢2.4%。上下文正文平均由1173字符增至2446字符。",
+    "总报告Token分别为124961、至少138595、144275。当前关闭父块在MH-004的一次规划调用发生ValidationError，用量未知，不能把138595当作真实完整总量或据此精确比较两组当前链路的Token增幅。其余两组用量完整；开启父块当前链路比普通关闭父块多15.5%。"
+  ],
+  "limitations": [
+    "只有12道同源合成回归题、每组一次，未建立统计稳定收益或未见企业语料上的泛化准确率。当前开启父块本轮自动10/12、上轮11/12，都是各自保留的单次观测，不混合分母。",
+    "助手复核同时看到组别，不是独立外部人工盲测。要求最终答案覆盖所问事实与依据；缺项目实际条件或用完成记录代替规则要求判不完整，单纯缺预设来源数量不直接判事实错误。逐项方法与意见已保存。",
+    "普通RAG仍保留共享业务候选选择、生成提示、确定性补全和最终校验，属于本项目单次RAG消融，不能代表所有普通RAG。",
+    "普通关闭父块到当前关闭父块同时改变多个可选机制；单轮组合对照不能隔离每个Agent、规划或修复组件的独立因果收益。",
+    "耗时是本地后端质量评估墙钟时间，不含HTTP网关或初始化，也没有测并发容量。小样本P95不是生产服务承诺。",
+    "跨嵌入、重排与生成模型的Token相加不等同于费用；未知用量不当成零，未配置价格，未推算金额。"
+  ],
+  "manual_review_method": {
+    "scope": "All36 final answers reviewed by this assistant with arm labels visible, against the6 source documents. Not an independent external human audit.",
+    "rubric": [
+      "Final delivered answer only; answerable-case final refusal fails.",
+      "All requested components must be answered without factual contradiction; missing project-specific acceptance facts or substituting completed counts for required counts is incomplete.",
+      "A required-source count failure alone is not a factual error; correct facts with provenance gaps are separately annotated.",
+      "Original automatic scores, expected evidence and business validation remain unchanged."
+    ],
+    "examples": {
+      "weak_provenance_correct": [
+        "ordinary_child/MH-001",
+        "current_child/MH-001",
+        "ordinary_child/MH-006",
+        "current_child/MH-006",
+        "current_parent/MH-006"
+      ],
+      "incomplete": [
+        "ordinary_child/MH-004",
+        "ordinary_child/MH-005",
+        "ordinary_child/MH-007",
+        "current_child/MH-005"
+      ]
+    }
+  },
+  "validation": {
+    "validation": "passed",
+    "code_snapshot_files_verified": 142,
+    "tests_passed": 24,
+    "observations": 36,
+    "scope_violations": 0,
+    "case_errors": 0,
+    "same_scope_cases": 12,
+    "same_fusion_cases": 12,
+    "same_rerank_cases": 12,
+    "child_context_same_cases": 12,
+    "final_parent_items_by_arm": {
+      "ordinary_child": 0,
+      "current_child": 0,
+      "current_parent": 48
+    },
+    "model_calls": 128,
+    "reported_tokens": 407831
+  },
+  "local_report_directory": "evals/reports/system/multihop-parent-ablation-20261016T084822Z",
+  "report_hashes": {
+    "ordinary_child": "be15c7c3933e1694c6440ab163164b7f1595515cc336407c57aa6121f73ed4d0",
+    "current_child": "3adcd267fcf61f0177b31c50cd1aaf4aac610969b53b2fcc146c4600c679a937",
+    "current_parent": "e4de8c87b323fd06231e554c9d04f6f8b1da94ccdaa915a0c3683531d6959a24"
+  },
+  "trace_hashes": {
+    "ordinary_child": "9e6d3b0e2e33640f76432c8823ebbd168c0c7b83429d95b52308952430432ab9",
+    "current_child": "ce4f6242b4fb12e59e5fb18c3754f4d6e61e7d67d416200627e81df9ad613de8",
+    "current_parent": "c5f40c0614772dbb87bcb83b87aed6017e3324db1fbb1550a20604fdf84a59bc"
+  }
+}

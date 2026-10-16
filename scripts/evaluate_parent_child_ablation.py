@@ -24,7 +24,7 @@ if __name__=='__main__':
         os.environ['RAG_PARENT_CONTEXT_ENABLED']=str(parents).lower()
         print('Starting '+name,flush=True)
         result=main(['--mode','live','--config',str(ROOT/'evals/system_config.local.json'),
-            '--dataset-dir',str(ROOT/'evals/xinghai_multihop'),
+            '--dataset-dir',str(ROOT/'evals/current/groups/multihop'),
             '--corpus',str(ROOT/'output/knowledge-corpus-multihop'),
             '--layers','retrieval,rerank,context,answer','--allow-model-calls','--save-traces',
             '--output-dir',str(args.output_dir/name)])

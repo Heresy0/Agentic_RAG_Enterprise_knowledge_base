@@ -9,7 +9,7 @@ from backend.app.documents.document_splitter import split_docx
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATASET_DIRECTORY = PROJECT_ROOT / "evals" / "datasets"
+DATASET_DIRECTORY = PROJECT_ROOT / 'evals' / 'archive' / 'datasets'
 DOCUMENT_DIRECTORY = (
     PROJECT_ROOT
     / "sample_docs"

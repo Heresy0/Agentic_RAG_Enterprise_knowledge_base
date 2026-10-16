@@ -17,13 +17,15 @@ from backend.app.evaluation.conversation_runner import evaluate_local_conversati
 from scripts.evaluate_answers import load_dataset
 from backend.app.evaluation.metrics import SCORER_VERSION
 from backend.app.evaluation.scoring_rules import apply_scoring_rules
+from backend.app.evaluation.suite import load_suite, select_groups, group_scores
 
 
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("offline", "replay", "live"), default="offline")
     parser.add_argument("--layers", default="all", help="all or comma-separated layer names")
-    parser.add_argument("--dataset-dir", type=Path, default=ROOT / "evals/xinghai_v4")
+    parser.add_argument("--dataset-dir", type=Path, default=ROOT / 'evals/current')
+    parser.add_argument('--group',action='append',help='Repeat main/multihop/completeness; default: all single-turn groups')
     parser.add_argument("--corpus", type=Path, default=ROOT / "output/knowledge-corpus-100")
     parser.add_argument("--config", type=Path, default=ROOT / "evals/system_config.example.json")
     parser.add_argument("--output-dir", type=Path)
@@ -62,7 +64,9 @@ def main(argv=None):
         raise ValueError("Choose a new output directory; previous reports are not overwritten")
     rules_path = args.dataset_dir / 'scoring_rules.json'
     cases = apply_scoring_rules(load_dataset(args.dataset_dir / "single_turn.jsonl"), rules_path)
+    suite=load_suite(args.dataset_dir,cases)
     full_case_count = len(cases)
+    cases=select_groups(cases,suite,args.group)
     if args.case_ids:
         unknown = set(args.case_ids) - {case['id'] for case in cases}
         if unknown:
@@ -84,6 +88,9 @@ def main(argv=None):
                   dataset_sha256=hashlib.sha256((args.dataset_dir / "single_turn.jsonl").read_bytes()).hexdigest(),
                   live_model_calls_enabled=args.mode == "live" and args.allow_model_calls,
                   business_permission_changes=False, layers={name: skipped("not_selected") for name in args.layers})
+    report.update(suite_sha256=hashlib.sha256((args.dataset_dir/'suite.json').read_bytes()).hexdigest() if suite else None,
+                  selected_groups=list(dict.fromkeys(args.group)) if args.group else None)
+    quality=None
     def run_layer(name, operation):
         print("Evaluating " + name, file=sys.stderr, flush=True)
         try:
@@ -156,6 +163,8 @@ def main(argv=None):
         report["layers"]["security"]["limitation"] = "Isolated mocked/SQLite regressions only; deployed-profile ACL tests have not run."
     if "performance" in args.layers:
         run_layer("performance", lambda: read_performance_report(args.performance_report))
+    if suite and quality_requested and quality and quality.get('records') is not None:
+        report['group_scores']=group_scores(quality,suite,report['selected_case_ids'],quality_requested)
     if args.baseline_report:
         baseline = json.loads(args.baseline_report.read_text(encoding="utf-8"))
         report["baseline_comparison"] = compare_baseline(report, baseline)

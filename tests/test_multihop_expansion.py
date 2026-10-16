@@ -99,7 +99,7 @@ def test_elapsed_times_are_recomputed_from_source_timestamps():
 
 
 def test_reproducibility_preserves_original_dataset_and_corpus():
-    originals = [*pack.ROOT.joinpath('evals/xinghai_v3').rglob('*'),
+    originals = [*pack.ROOT.joinpath('evals/archive/xinghai_v3').rglob('*'),
                  pack.ROOT/'sample_docs/xinghai_base/manifest.json',
                  pack.ROOT/'sample_docs/xinghai_expansion/manifest.json']
     before = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in originals if p.is_file()}

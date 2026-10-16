@@ -1,0 +1,181 @@
+{
+  "created_at": "2026-10-16T11:28:36.920401+00:00",
+  "protocol": {
+    "name": "assistant_semantic_review_v1",
+    "reviewer": "Codex assistant",
+    "independent_human_review": false,
+    "blind_review": false,
+    "rubric": [
+      "以用户实际收到的最终答案及拒答理由评分；可回答题最终拒答一律不正确，不给正确草稿加分。",
+      "覆盖原问题全部必答事实；不强制原标注的选答信息；漏掉关键条件或所问组成部分不正确。",
+      "数值、单位、实体角色、日期版本、条件、否定和计划/实际完成状态必须对应正确；不得有实质矛盾或无依据的额外业务事实。",
+      "检查实际上下文支持；只缺预设来源数量不自动等同事实错误，引用支持缺口另记；错误来源导致实质错误时判错。",
+      "资料不足、同级规则未解冲突及未来承诺题，拒答且不编造为正确；本集16题按原不可回答标注。",
+      "不改变原事实门槛；冗余、重复或不改变核心结论的措辞问题单列改进项，不为了提高或降低分数新增必答项。"
+    ],
+    "limitations": [
+      "复核者是同一助手，并接触过自动分与历史失败，属于非盲、非独立的辅助语义审核。",
+      "样本为多轮开发使用的合成回归集，不据此声称独立业务黄金集或生产泛化准确率。",
+      "按实际保存上下文和原事实标准复核，没有重新验证上传原始文件字节或真实业务事实。",
+      "最新汇总由一轮120题和后来CC-005单题新答案组成，并非一轮新的120题全量生成。"
+    ]
+  },
+  "provenance": {
+    "method": "Assistant semantic review of frozen final answers, original business facts, and actual contexts; no paid calls; not independent human audit",
+    "source_full_run": "evals/reports/system/current-120-20261016T104935Z",
+    "latest_override": {
+      "CC-005": "evals/reports/system/cc005-r10-live-20261016T110740Z"
+    },
+    "cases": 120,
+    "source_sha256": {
+      "evals\\reports\\system\\current-120-20261016T104935Z\\report.json": "2ad79eb957ed2f30e9980340192eb553ade6f73cb54ef3a5618a8c4376483322",
+      "evals\\reports\\system\\current-120-20261016T104935Z\\traces.jsonl": "c623dc0b577345dfb3a623ab3e1c97b7886004ea9138761765ba8c3b5ded7eb8",
+      "evals\\reports\\system\\cc005-r10-live-20261016T110740Z\\report.json": "e19df5a36b6a79a48fdbf3ca3368c92ae6ceba7e35db35b49f13a088a76f491e",
+      "evals\\reports\\system\\cc005-r10-live-20261016T110740Z\\traces.jsonl": "299f14ddefbd6d83b566dbc10ddf6b49fe91004bf5a47fa94933ec680a16107b"
+    },
+    "dataset_sha256": "c1ef8bef5a0b5f717d716d40bf00755c42e5f4850ae869958efdb83208ada19d"
+  },
+  "overall": {
+    "cases": 120,
+    "correct": 108,
+    "incorrect": 12,
+    "accuracy": 0.9,
+    "answerable_cases": 104,
+    "answerable_correct": 92,
+    "answerable_accuracy": 0.8846153846153846,
+    "negative_cases": 16,
+    "negative_correct": 16,
+    "false_refusal_count": 11,
+    "wrong_nonrefusal_count": 1,
+    "failed_ids": [
+      "XH-010",
+      "XH-027",
+      "XH-E-049",
+      "CC-003",
+      "NQ-002",
+      "NQ-004",
+      "NQ-008",
+      "NQ-010",
+      "NQ-014",
+      "NQ-015",
+      "MH-006",
+      "MH-009"
+    ],
+    "flagged_ids": [
+      "XH-E-055",
+      "XH-E-056",
+      "CC-008",
+      "CC-014",
+      "MH-007",
+      "FP-006"
+    ]
+  },
+  "groups": {
+    "main": {
+      "cases": 100,
+      "correct": 90,
+      "incorrect": 10,
+      "accuracy": 0.9,
+      "answerable_cases": 87,
+      "answerable_correct": 77,
+      "answerable_accuracy": 0.8850574712643678,
+      "negative_cases": 13,
+      "negative_correct": 13,
+      "false_refusal_count": 9,
+      "wrong_nonrefusal_count": 1,
+      "failed_ids": [
+        "XH-010",
+        "XH-027",
+        "XH-E-049",
+        "CC-003",
+        "NQ-002",
+        "NQ-004",
+        "NQ-008",
+        "NQ-010",
+        "NQ-014",
+        "NQ-015"
+      ],
+      "flagged_ids": [
+        "XH-E-055",
+        "XH-E-056",
+        "CC-008",
+        "CC-014"
+      ]
+    },
+    "multihop": {
+      "cases": 12,
+      "correct": 10,
+      "incorrect": 2,
+      "accuracy": 0.8333333333333334,
+      "answerable_cases": 9,
+      "answerable_correct": 7,
+      "answerable_accuracy": 0.7777777777777778,
+      "negative_cases": 3,
+      "negative_correct": 3,
+      "false_refusal_count": 2,
+      "wrong_nonrefusal_count": 0,
+      "failed_ids": [
+        "MH-006",
+        "MH-009"
+      ],
+      "flagged_ids": [
+        "MH-007"
+      ]
+    },
+    "completeness": {
+      "cases": 8,
+      "correct": 8,
+      "incorrect": 0,
+      "accuracy": 1.0,
+      "answerable_cases": 8,
+      "answerable_correct": 8,
+      "answerable_accuracy": 1.0,
+      "negative_cases": 0,
+      "negative_correct": 0,
+      "false_refusal_count": 0,
+      "wrong_nonrefusal_count": 0,
+      "failed_ids": [],
+      "flagged_ids": [
+        "FP-006"
+      ]
+    }
+  },
+  "automatic_comparison": {
+    "passed": 108,
+    "disagreements": []
+  },
+  "flags": {
+    "MH-007": {
+      "kind": "wording",
+      "note": "旧规则未载明D2禁止条件，答复称AR-T1时期不限制，措辞强于原文。结合问题限定和括号说明，未将其解读为任何场景都可带D2验收；核心版本对照计正确，建议改为旧版未载明该新增限制。"
+    },
+    "XH-E-056": {
+      "kind": "boundary_clarity",
+      "note": "次数对照正确，建议在附加重试说明中补足写操作的幂等前提；答复未明确允许非幂等写操作重试，不据此判错。"
+    },
+    "XH-E-055": {
+      "kind": "presentation",
+      "note": "末尾两段补全重复前文定义和处理规则，不改变事实正确性。"
+    },
+    "CC-008": {
+      "kind": "presentation",
+      "note": "新增目录的原因说明重复一次，未影响结论。"
+    },
+    "CC-014": {
+      "kind": "presentation",
+      "note": "末尾原因说明重复，未影响事实正确性。"
+    },
+    "FP-006": {
+      "kind": "presentation",
+      "note": "末尾重复补全D2和D3规则，核心回答完整正确。"
+    }
+  },
+  "new_model_calls": 0,
+  "local_report_directory": "evals/reports/system/assistant-review-current120-20261016",
+  "report_sha256": {
+    "review.json": "ea1551c5803c1f95404db717ecf4f5c68285844424e5d017a434ce3aca24f967",
+    "analysis.md": "1d054a042d5f154f435604c07724173764e9c4f099994b5cf71282ba4c13b27a",
+    "case-review.csv": "1baae9702d75b2def3cecb384ffaf2b49064ca08b613d0e81c72e8dc5d10431b",
+    "review-input.json": "7f6a12a71794e902557d861797c77e1403270e14157d44a9c36b5c188c28ffce"
+  }
+}

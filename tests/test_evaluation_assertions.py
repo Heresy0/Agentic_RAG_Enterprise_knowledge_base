@@ -10,9 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def cases():
-    single = [json.loads(line) for line in (ROOT / 'evals/xinghai_v3/single_turn.jsonl').read_text(encoding='utf-8').splitlines()]
-    sessions = json.loads((ROOT / 'evals/xinghai_v3/conversations.json').read_text(encoding='utf-8'))
-    extra = [json.loads(line) for line in (ROOT / 'evals/first_pass_generalization/single_turn.jsonl').read_text(encoding='utf-8').splitlines()]
+    single = [json.loads(line) for line in (ROOT / 'evals/archive/xinghai_v3/single_turn.jsonl').read_text(encoding='utf-8').splitlines()]
+    sessions = json.loads((ROOT / 'evals/archive/xinghai_v3/conversations.json').read_text(encoding='utf-8'))
+    extra = [json.loads(line) for line in (ROOT / 'evals/archive/first_pass_generalization/single_turn.jsonl').read_text(encoding='utf-8').splitlines()]
     return {row['id']: row for row in single + extra + [dict(turn, answerable=True) for session in sessions for turn in session['turns']]}
 
 

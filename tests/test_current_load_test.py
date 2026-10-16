@@ -39,9 +39,9 @@ def complete(record, answers=(True, False), durations=(100, 200)):
 def test_current_workload_matches_original_question_text_and_annotations():
     root = Path(__file__).resolve().parents[1]
     original = {}
-    for path in [root / 'evals/xinghai_v3/single_turn.jsonl', root / 'evals/xinghai_multihop/single_turn.jsonl']:
+    for path in [root / 'evals/current/single_turn.jsonl']:
         original.update({row['id']: row for row in (json.loads(line) for line in path.read_text(encoding='utf-8').splitlines() if line.strip())})
-    for case in load_cases(root / 'tests/load/current_workload.jsonl'):
+    for case in load_cases(root / 'evals/current/load_workload.jsonl'):
         assert case.question == original[case.case_id]['question']
         assert case.expected_answerable == original[case.case_id]['answerable']
 

@@ -74,7 +74,7 @@ def check(trace_path, dataset):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--trace-input', required=True, type=Path)
-    parser.add_argument('--dataset', type=Path, default=ROOT / 'evals/xinghai_v3/single_turn.jsonl')
+    parser.add_argument('--dataset', type=Path, default=ROOT / 'evals/current/single_turn.jsonl')
     args = parser.parse_args()
     result = check(args.trace_input, args.dataset)
     print(json.dumps(result, ensure_ascii=False))

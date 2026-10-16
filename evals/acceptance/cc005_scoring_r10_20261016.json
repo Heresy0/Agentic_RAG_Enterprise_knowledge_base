@@ -1,0 +1,68 @@
+{
+  "created_at": "2026-10-16T11:09:56.400122+00:00",
+  "scorer_version": "2026-10-16-r10",
+  "case_id": "CC-005",
+  "change": "Only reviewed equivalent negative wording and opposite one-round approval protection; all required facts and evidence unchanged",
+  "dataset_sha256": "c1ef8bef5a0b5f717d716d40bf00755c42e5f4850ae869958efdb83208ada19d",
+  "scoring_rules_sha256": "41445f2dc30229f21f8b94cf76008f32cea2f5640ce2efac8e8faded9c7db9d7",
+  "source_report": "evals/reports/system/current-120-20261016T104935Z/report.json",
+  "source_report_sha256": "2ad79eb957ed2f30e9980340192eb553ade6f73cb54ef3a5618a8c4376483322",
+  "previous_status": "failed",
+  "saved_answer_rescore": {
+    "mode": "replay",
+    "directory": "evals/reports/system/cc005-r10-saved-replay-20261016",
+    "passed": 1,
+    "selected_cases": 1,
+    "new_model_calls": 0
+  },
+  "new_run": {
+    "mode": "live",
+    "directory": "evals/reports/system/cc005-r10-live-20261016T110740Z",
+    "selected_cases": 1,
+    "selected_case_ids": [
+      "CC-005"
+    ],
+    "answer": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "error": 0,
+      "skipped": 0,
+      "partial": 0,
+      "not_applicable": 0,
+      "pass_rate": 1.0
+    },
+    "context_evidence_recall": 1.0,
+    "refusal_rate": 0,
+    "latency_seconds": 6.39838,
+    "model_usage": {
+      "observed": true,
+      "calls": 3,
+      "reported_total_tokens": 12497,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 3,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "observed_requests": 1,
+      "unobserved_requests": 0,
+      "limitation": "Known usage subtotal only; unknown usage is not zero. Historical replay is not new spend."
+    }
+  },
+  "verification": {
+    "scoring_regression_tests_passed": 94,
+    "subsequent_adapter_suite_tests_passed": 34,
+    "test_batches_overlap": true,
+    "only_case_annotation_added": "CC-005",
+    "archives_unchanged": true,
+    "original_120_report_unchanged": true,
+    "index_records_unchanged": true,
+    "ragas_reference_prose_unchanged": true
+  },
+  "hashes": {
+    "report.json": "e19df5a36b6a79a48fdbf3ca3368c92ae6ceba7e35db35b49f13a088a76f491e",
+    "traces.jsonl": "299f14ddefbd6d83b566dbc10ddf6b49fe91004bf5a47fa94933ec680a16107b",
+    "run-provenance.json": "d262b5671f16a0982e3be74febbe67aa8241b6240c8202c0a666950a5088a990"
+  }
+}

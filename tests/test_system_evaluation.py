@@ -49,7 +49,7 @@ def test_explicit_fact_aliases_and_numeric_boundaries_do_not_remove_fact_require
 
 
 def test_r5_conversation_annotations_match_question_scope_without_weakening_root_cause():
-    dataset = Path(__file__).resolve().parents[1] / 'evals/xinghai_v3/conversations.json'
+    dataset = Path(__file__).resolve().parents[1] / 'evals/archive/xinghai_v3/conversations.json'
     sessions = {session['id']: session for session in json.loads(dataset.read_text(encoding='utf-8'))}
     queued = sessions['XH-MT-03']['turns'][2]
     assert queued['question'] == '之前排队的任务要重提吗？'
@@ -196,7 +196,7 @@ def test_targeted_ids_are_offline_by_default_and_filter_before_limit(tmp_path):
                  '--limit', '1', '--output-dir', str(folder)]) == 0
     report = json.loads((folder / 'report.json').read_text(encoding='utf-8'))
     assert report['selected_case_ids'] == ['XH-016']
-    assert report['available_cases'] == 100 and report['selected_cases'] == 1
+    assert report['available_cases'] == 120 and report['selected_cases'] == 1
     assert report['live_model_calls_enabled'] is False
     with pytest.raises(ValueError, match='Unknown single-turn'):
         main(['--layers', 'answer', '--case-ids', 'wrong-id', '--output-dir', str(tmp_path / 'bad')])

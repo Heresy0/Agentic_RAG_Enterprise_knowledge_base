@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.corpus_expansion_data import AS_OF, GROUPS
-MAIN = ROOT / "evals/xinghai_v3"
+MAIN = ROOT / 'evals/archive/xinghai_v3'
 BASE_CORPUS = ROOT / "sample_docs/xinghai_base"
 EXPANSION_CORPUS = ROOT / "sample_docs/xinghai_expansion"
 COMBINED_CORPUS = ROOT / "output/knowledge-corpus-unified"

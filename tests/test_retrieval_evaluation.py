@@ -20,8 +20,7 @@ def load_dataset(path: Path) -> list[dict]:
 def test_independent_dataset_has_valid_evidence() -> None:
     dataset_path = (
         PROJECT_ROOT
-        / "evals"
-        / "datasets"
+        / 'evals' / 'archive' / 'datasets'
         / "retrieval_test.jsonl"
     )
     document_root = (
@@ -54,8 +53,7 @@ def test_independent_dataset_has_valid_evidence() -> None:
         json.loads(line)["question"]
         for line in (
             PROJECT_ROOT
-            / "evals"
-            / "datasets"
+            / 'evals' / 'archive' / 'datasets'
             / "retrieval_dev.jsonl"
         ).read_text(encoding="utf-8").splitlines()
         if line.strip()

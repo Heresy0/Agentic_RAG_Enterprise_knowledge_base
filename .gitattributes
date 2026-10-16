@@ -4,8 +4,6 @@
 # Corpus hashes and generated artifact checks must survive checkout on Windows.
 sample_docs/xinghai_base/** -text whitespace=cr-at-eol
 sample_docs/xinghai_expansion/** -text
-evals/xinghai_v3/** -text
 sample_docs/xinghai_nanqi/** -text
-evals/xinghai_v4/** -text whitespace=cr-at-eol
-evals/xinghai_nanqi/** -text
-tests/load/current_workload.jsonl -text
+evals/archive/** -text whitespace=cr-at-eol
+evals/current/** -text whitespace=cr-at-eol

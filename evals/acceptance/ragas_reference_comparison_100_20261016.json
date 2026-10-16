@@ -1,0 +1,2294 @@
+{
+  "evaluation": "Ragas100题完整参考复跑对照",
+  "date": "2026-10-16",
+  "baseline": "ragas-100-20261016",
+  "current": "ragas-normalized-references-100-20261016",
+  "reference_version": "2026-10-16-reference-v1",
+  "reference_file": "evals/xinghai_v4/ragas_references_v1.json",
+  "reference_sha256": "66cc21869963ed0f266e5bcaae740a7a024452337eac2ae948650187ce870f89",
+  "source_hashes": {
+    "evals/xinghai_v4/single_turn.jsonl": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a",
+    "evals/xinghai_v4/scoring_rules.json": "a369c6f49309bf4738430f69fd5161ba01b9502aae1dc72cae99aed5efb2817b",
+    "evals/reports/system/scoring-r9-replay-100-20261016/report.json": "4a660e3a2d632947f4157bfa77c5a2faa5f4da1a5b603c7c1564a068cfa4493d",
+    "evals/reports/system/scoring-r9-replay-100-20261016/traces.jsonl": "3b8e3f46367af390825b6b5d9c6ca7d809284b20608248207d3b375dd7a14f33"
+  },
+  "all_sources_unchanged": true,
+  "same100_answers_and_actual_context": true,
+  "judge_model": "qwen3.7-flash",
+  "judge_base_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+  "ragas_version": "0.4.3",
+  "metric_parameters": {
+    "mode": "f1",
+    "atomicity": "high",
+    "coverage": "high"
+  },
+  "thresholds": {
+    "factual_correctness": 0.8,
+    "faithfulness": 0.9
+  },
+  "required_optional_policy": "补全主体、数值绑定、条件、时间与事实状态。必答范围沿用r9；可选补充不因未输出而扣分。只以required_reference作为原生Ragas F1参考；可选信息用于审阅，不传入F1参考。原生F1的precision仍可能扣减正确额外解释，忠实度独立核对实际上下文。",
+  "optional_information_cases": 32,
+  "reference_authorship": "仅依据冻结题集的问题、原参考、事实及语义标注与r9覆盖规则编写，未使用被评答案生成或补齐参考；未添加知识库事实。",
+  "business_rag_calls": 0,
+  "baseline_metrics": {
+    "factual_correctness": {
+      "scored": 100,
+      "mean": 0.4235,
+      "undefined": 0,
+      "errors": 0,
+      "at_or_above_threshold": 16,
+      "threshold": 0.8
+    },
+    "faithfulness": {
+      "scored": 100,
+      "mean": 0.9223619713619714,
+      "undefined": 0,
+      "errors": 0,
+      "at_or_above_threshold": 87,
+      "threshold": 0.9
+    }
+  },
+  "current_metrics": {
+    "factual_correctness": {
+      "scored": 100,
+      "mean": 0.6851,
+      "undefined": 0,
+      "errors": 0,
+      "at_or_above_threshold": 44,
+      "threshold": 0.8
+    },
+    "faithfulness": {
+      "scored": 100,
+      "mean": 0.9247294372294372,
+      "undefined": 0,
+      "errors": 0,
+      "at_or_above_threshold": 89,
+      "threshold": 0.9
+    }
+  },
+  "comparison": {
+    "cases": 100,
+    "groups": {
+      "all": {
+        "cases": 100,
+        "factual_correctness": {
+          "before": 0.4235,
+          "after": 0.6851,
+          "delta": 0.2616
+        },
+        "faithfulness": {
+          "before": 0.9223619713619714,
+          "after": 0.9247294372294372,
+          "delta": 0.0023674658674600006
+        }
+      },
+      "delivered_answers": {
+        "cases": 81,
+        "factual_correctness": {
+          "before": 0.4330864197530864,
+          "after": 0.7317283950617284,
+          "delta": 0.298641975308642
+        },
+        "faithfulness": {
+          "before": 0.9820165431276542,
+          "after": 0.9844209288653734,
+          "delta": 0.0024043857377160495
+        }
+      },
+      "false_refusals": {
+        "cases": 6,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.12833333333333333,
+          "delta": 0.12833333333333333
+        },
+        "faithfulness": {
+          "before": 0.16964285714285715,
+          "after": 0.14583333333333334,
+          "delta": -0.023809523809499997
+        }
+      },
+      "unanswerable": {
+        "cases": 13,
+        "factual_correctness": {
+          "before": 0.5592307692307692,
+          "after": 0.6515384615384615,
+          "delta": 0.09230769230769231
+        },
+        "faithfulness": {
+          "before": 0.8980769230769231,
+          "after": 0.9122960372960373,
+          "delta": 0.014219114219076926
+        }
+      }
+    },
+    "original_passed": 94,
+    "before_screen_passed": 16,
+    "after_screen_passed": 43,
+    "before_disagreements": 78,
+    "after_disagreements": 51,
+    "screen_recovered": [
+      "XH-001",
+      "XH-009",
+      "XH-012",
+      "XH-017",
+      "XH-018",
+      "XH-021",
+      "XH-022",
+      "XH-024",
+      "XH-025",
+      "XH-026",
+      "XH-034",
+      "XH-D-21",
+      "XH-D-24",
+      "XH-E-052",
+      "XH-E-054",
+      "XH-E-056",
+      "CC-001",
+      "CC-002",
+      "CC-006",
+      "CC-011",
+      "CC-015",
+      "CC-016",
+      "NQ-003",
+      "NQ-005",
+      "NQ-006",
+      "NQ-007",
+      "NQ-009",
+      "NQ-017"
+    ],
+    "screen_regressed": [
+      "NQ-013"
+    ],
+    "before_usage": {
+      "calls": 603,
+      "reported_total_tokens": 900798,
+      "unknown_usage_calls": 0,
+      "http_errors": 0,
+      "no_response_calls": 0
+    },
+    "after_usage": {
+      "calls": 600,
+      "reported_total_tokens": 899050,
+      "unknown_usage_calls": 0,
+      "http_errors": 0,
+      "no_response_calls": 0
+    },
+    "records": [
+      {
+        "id": "XH-001",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-002",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.5,
+          "after": 0.5,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "提前5个工作日正确；可选的部门负责人审批不在必答参考中，仍被precision扣分。裁判还把“连续休4日”规则拆成实际休假事实。"
+        }
+      },
+      {
+        "id": "XH-003",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.22,
+          "after": 0.4,
+          "delta": 0.18
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "wording_risk",
+          "assessment": "needs_review",
+          "analysis": "普通员工上海650元正确；A类城市和含税单间说明超出必答参考。原答案“该标准适用于全体员工”可能把普通员工档扩展至负责人，措辞风险仍需复核。"
+        }
+      },
+      {
+        "id": "XH-004",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.67,
+          "delta": 0.67
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "claim_decomposition",
+          "assessment": "metric_mismatch",
+          "analysis": "850元及角色正确；参考被拆出“负责人已去A类城市出差”的实际事件，原问是政策标准而非出行记录。"
+        }
+      },
+      {
+        "id": "XH-005",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "10个自然日正确；答案带有来源中的“或费用发生”条件及FAQ归属，必答参考只覆盖行程结束，裁判将附加条件整句判不支持。忠实度为1。"
+        }
+      },
+      {
+        "id": "XH-006",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.4,
+          "after": 0.0,
+          "delta": -0.4
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "30分钟正确；热线/事件系统通道和停止扩大影响属于正确补充，却超出必答参考，precision为0；并非把期限答错。"
+        }
+      },
+      {
+        "id": "XH-007",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.67,
+          "delta": 0.67
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "claim_decomposition",
+          "assessment": "metric_mismatch",
+          "analysis": "严重漏洞原则72小时修复正确；裁判拆出“系统存在严重漏洞”后要求参考证明实际发生，混淆规则与事件。"
+        }
+      },
+      {
+        "id": "XH-008",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.67,
+          "delta": 0.67
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "2家报价及部门负责人正确；金额档位和比价记录是额外说明，未进入必答参考，被precision扣分。"
+        }
+      },
+      {
+        "id": "XH-009",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-010",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.4,
+          "delta": 0.4
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "影响里程碑变更须双方书面批准正确；额外列出超过2人日、合同范围与数据类别三种触发情形，参考未涵盖。"
+        }
+      },
+      {
+        "id": "XH-011",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.67,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "claim_decomposition",
+          "assessment": "metric_mismatch",
+          "analysis": "答案保留合同例外，90日也正确；裁判拆解后丢掉“除合同另有约定”，再把拆出的绝对陈述判不支持。"
+        }
+      },
+      {
+        "id": "XH-012",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.5,
+          "after": 1.0,
+          "delta": 0.5
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-013",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.5,
+          "after": 0.5,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "导出窗口30日正确；答案补充删除例外及90日删除安排，超出只问导出期限的必答参考。"
+        }
+      },
+      {
+        "id": "XH-014",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "judge_entailment",
+          "assessment": "metric_mismatch",
+          "analysis": "180人一致；裁判以“星海公司”未显式等同“星海科技有限公司”为由，拒绝简称与全称的正向蕴含。"
+        }
+      },
+      {
+        "id": "XH-015",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.33,
+          "delta": 0.33
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "平台研发部64人正确；全公司及其他部门人数补充超出参考，另有参考中的公司简称与答案未写公司名导致的反向蕴含争议。"
+        }
+      },
+      {
+        "id": "XH-016",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.5,
+          "delta": 0.5
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "claim_decomposition",
+          "assessment": "metric_mismatch",
+          "analysis": "2025年上海550元正确；裁判拆掉上海地点后将普通员工550元视为泛化，上海A类城市补充也超出参考。"
+        }
+      },
+      {
+        "id": "XH-017",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.75,
+          "after": 1.0,
+          "delta": 0.25
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-018",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-019",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.4,
+          "delta": 0.4
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "judge_entailment",
+          "assessment": "metric_mismatch",
+          "analysis": "两个任一触发条件正确且保留负责人决定；裁判对“立即”以及参考中的“生产回退手册规定”来源归属要求逐字对应，压低F1。"
+        }
+      },
+      {
+        "id": "XH-020",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.89,
+          "after": 0.8,
+          "delta": -0.09
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-021",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-022",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.86,
+          "delta": 0.19
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-023",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.86,
+          "after": 1.0,
+          "delta": 0.14
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-024",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-025",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-026",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.89,
+          "delta": 0.89
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-027",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.46,
+          "after": 0.71,
+          "delta": 0.25
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "4人日、审批代理及9月25→29日均正确；双方书面批准、里程碑影响、实际最终验收为补充，不全在必答参考中。"
+        }
+      },
+      {
+        "id": "XH-028",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-029",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.86,
+          "after": 0.86,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-030",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.33,
+          "after": 0.5,
+          "delta": 0.17
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "24小时正确；写操作和重试保持幂等键的可选补充被precision扣分。"
+        }
+      },
+      {
+        "id": "XH-031",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.6,
+          "after": 0.33,
+          "delta": -0.27
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "改期原因、4人日及最终9月29日正确；可选编号CR-026-03被带入多个拆分结论，参考不含编号使这些结论整体判不支持。"
+        }
+      },
+      {
+        "id": "XH-032",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.46,
+          "after": 0.36,
+          "delta": -0.1
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "refusal_metric",
+          "assessment": "metric_mismatch",
+          "analysis": "正确拒答营业收入；拒答原因列举资料范围不在参考中，另有“不应推测”的规范语句被当作未回答事实，压低F1。"
+        }
+      },
+      {
+        "id": "XH-033",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.57,
+          "delta": -0.1
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "refusal_metric",
+          "assessment": "metric_mismatch",
+          "analysis": "正确拒答签约金额；资料名称及范围说明超出参考，“不应推测”被拆成独立要求；不是金额幻觉。"
+        }
+      },
+      {
+        "id": "XH-034",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.33,
+          "after": 0.86,
+          "delta": 0.53
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-035",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.5,
+          "after": 0.46,
+          "delta": -0.04
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "refusal_metric",
+          "assessment": "metric_mismatch",
+          "analysis": "正确拒答未来薪资涨幅；拒答原因枚举相关制度，参考未枚举这些文件，故被precision扣分。"
+        }
+      },
+      {
+        "id": "XH-D-21",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-D-22",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.67,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "judge_entailment",
+          "assessment": "metric_mismatch",
+          "analysis": "5/7工作日和两个起算点正确；答案的季度绩效与有异议条件比必答参考更具体，被裁判判成未支持。"
+        }
+      },
+      {
+        "id": "XH-D-23",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.67,
+          "delta": 0.67
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "直属经理批准、HR登记正确；第一档为额外解释，参考强调登记不等于负责人审批也被判答案未明说。"
+        }
+      },
+      {
+        "id": "XH-D-24",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-D-25",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.8,
+          "after": 1.0,
+          "delta": 0.2
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-D-26",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 1.0,
+          "after": 0.86,
+          "delta": -0.14
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-D-27",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.67,
+          "delta": 0.67
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_background",
+          "assessment": "metric_mismatch",
+          "analysis": "13/68分钟正确；参考为明确指标时钟补充09:12起算，裁判将这个计算背景当成必须复述的两条结论。原规则只要求正确时长及起算语义，不能据此新增业务失败。"
+        }
+      },
+      {
+        "id": "XH-D-28",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.73,
+          "after": 0.67,
+          "delta": -0.06
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "30/30/30/8及共享预算正确；答案照录来源表格，增加RRF、权重、过滤、SQL及降级说明，超出必答参考。"
+        }
+      },
+      {
+        "id": "XH-D-29",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.73,
+          "after": 0.73,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "上传成功不等于可检索、ready条件、failed不得入候选正确；切分、关键词及向量索引细化超出参考。"
+        }
+      },
+      {
+        "id": "XH-D-30",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.75,
+          "after": 0.75,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "总投递6次、含首次及去重7日正确；HTTP 2xx成功即停止投递为附加说明，超出参考。"
+        }
+      },
+      {
+        "id": "XH-E-046",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.67,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "审批角色正确；金额第二档说明超出必答参考，裁判还把假设金额规则拆成一笔实际费用事实。"
+        }
+      },
+      {
+        "id": "XH-E-047",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.8,
+          "after": 1.0,
+          "delta": 0.2
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-E-048",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.4,
+          "after": 0.5,
+          "delta": 0.1
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "不能据网络超时断定业务未执行的结论正确；待核实处理及规范名称归属不在必答参考中，被整句判未支持。"
+        }
+      },
+      {
+        "id": "XH-E-049",
+        "original_status": "failed",
+        "expected_answerable": true,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 0.14285714285714285,
+          "after": 0.0,
+          "delta": -0.142857142857
+        }
+      },
+      {
+        "id": "XH-E-050",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-E-051",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.4,
+          "after": 0.5,
+          "delta": 0.1
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "培训不自动授予生产/客户数据权限正确；答案还列导师评审、值守复核及另行申请三类制度，超出参考范围。"
+        }
+      },
+      {
+        "id": "XH-E-052",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.4,
+          "after": 0.8,
+          "delta": 0.4
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-E-053",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.67,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_background",
+          "assessment": "metric_mismatch",
+          "analysis": "保留融合结果作为降级正确；参考“按知识库设计说明”的背景被拆成必须明确复述来源名称的结论，原答案已有引用。"
+        }
+      },
+      {
+        "id": "XH-E-054",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.5,
+          "after": 0.8,
+          "delta": 0.3
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-E-055",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.75,
+          "after": 0.56,
+          "delta": -0.19
+        },
+        "faithfulness": {
+          "before": 0.8461538461538461,
+          "after": 1.0,
+          "delta": 0.153846153846
+        },
+        "review": {
+          "category": "claim_decomposition",
+          "assessment": "metric_mismatch",
+          "analysis": "D1禁止验收及D3定义、客户书面接受和修复日期均有输出；裁判将同时满足条件拆成单项即可充分验收，并把D3定义与准入条件视作不能互推，导致F1低。"
+        }
+      },
+      {
+        "id": "XH-E-056",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.75,
+          "after": 0.86,
+          "delta": 0.11
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-E-057",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.8,
+          "after": 1.0,
+          "delta": 0.2
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "XH-E-058",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.46,
+          "after": 0.55,
+          "delta": 0.09
+        },
+        "faithfulness": {
+          "before": 0.375,
+          "after": 0.375,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "refusal_metric",
+          "assessment": "metric_mismatch",
+          "analysis": "正确拒答许澜绩效等级；资料范围列表被拆成每一类都是整套资料主要内容，导致忠实度0.375；参考未枚举资料范围也压低F1。"
+        }
+      },
+      {
+        "id": "XH-E-059",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.44,
+          "after": 0.44,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 0.8,
+          "after": 1.0,
+          "delta": 0.2
+        },
+        "review": {
+          "category": "refusal_metric",
+          "assessment": "metric_mismatch",
+          "analysis": "正确拒答生产密钥，无密钥虚构；引用资料1/7及不展示密钥规范超出参考，参考“不能猜测”又被拆成独立遗漏。"
+        }
+      },
+      {
+        "id": "XH-E-060",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 1.0,
+          "after": 0.86,
+          "delta": -0.14
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-001",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-002",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-003",
+        "original_status": "failed",
+        "expected_answerable": true,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.77,
+          "delta": 0.77
+        },
+        "faithfulness": {
+          "before": 0.875,
+          "after": 0.875,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-004",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-005",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-006",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 1.0,
+          "delta": 0.33
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-007",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.67,
+          "delta": 0.67
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "judge_entailment",
+          "assessment": "metric_mismatch",
+          "analysis": "计划10月10日、实际10月9日正确；答案未在计划句复述年份，参考又未列客户授权代表，产生双向蕴含扣分。"
+        }
+      },
+      {
+        "id": "CC-008",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.59,
+          "after": 0.67,
+          "delta": 0.08
+        },
+        "faithfulness": {
+          "before": 0.9090909090909091,
+          "after": 1.0,
+          "delta": 0.090909090909
+        },
+        "review": {
+          "category": "wording_risk",
+          "assessment": "needs_review",
+          "analysis": "3条附件索引缺失和新增目录根因正确；连续2轮等补充超出参考。答案“发现问题不得签署最终验收”若脱离本次失败演练可能过于绝对，需结合允许保留合规D3的条款复核，不能把所有扣分都当误判。"
+        }
+      },
+      {
+        "id": "CC-009",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.71,
+          "after": 0.67,
+          "delta": -0.04
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "替代方案、期限及未关闭状态正确；客户10月8日接受的日期、显示问题范围及不能扩大接受范围的说明超出参考，部分否定对象也被拆错。"
+        }
+      },
+      {
+        "id": "CC-010",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.25,
+          "delta": 0.25
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "claim_decomposition",
+          "assessment": "metric_mismatch",
+          "analysis": "两批次与失败演练不计入正确；裁判把CC-VERIFY-02和03的组合拆为各自就是“两个批次”，并对答案未复述2026年扣分；全量/0缺失/附件一致为额外说明。"
+        }
+      },
+      {
+        "id": "CC-011",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.5,
+          "after": 0.8,
+          "delta": 0.3
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-012",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 1.0,
+          "after": 0.86,
+          "delta": -0.14
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-013",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.57,
+          "after": 0.67,
+          "delta": 0.1
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "原任务检查点恢复、不新建任务及18分钟对应结果生成正确；核对重复项/记录数与15:00、15:18时刻为补充，超出参考。"
+        }
+      },
+      {
+        "id": "CC-014",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.89,
+          "after": 0.89,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-015",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.8,
+          "delta": 0.13
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-016",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.33,
+          "after": 0.86,
+          "delta": 0.53
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "CC-017",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.55,
+          "after": 0.73,
+          "delta": 0.18
+        },
+        "faithfulness": {
+          "before": 0.5714285714285714,
+          "after": 0.5714285714285714,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "question_premise",
+          "assessment": "metric_mismatch",
+          "analysis": "第一档、项目批准、无需财务复核及不得先付款正确；裁判将题设恰好3000元当成真实交易，要求上下文提供该交易。财务支持组及不得先下单等补充也超出参考。"
+        }
+      },
+      {
+        "id": "CC-018",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.22,
+          "after": 0.55,
+          "delta": 0.33
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "两个根因及14/23分钟绑定正确；预热配置、澄川前缀、命中率和回源等具体说明超出参考，判定对沙箱客户端的具体化也过严。"
+        }
+      },
+      {
+        "id": "CC-019",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.67,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "refusal_metric",
+          "assessment": "metric_mismatch",
+          "analysis": "正确拒答2027年维护报价；引用启动和验收纪要的具体排除条款不在参考中，压低precision。"
+        }
+      },
+      {
+        "id": "CC-020",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.6,
+          "after": 0.73,
+          "delta": 0.13
+        },
+        "faithfulness": {
+          "before": 0.8333333333333334,
+          "after": 0.6666666666666666,
+          "delta": -0.166666666667
+        },
+        "review": {
+          "category": "refusal_metric",
+          "assessment": "metric_mismatch",
+          "analysis": "正确拒答实际关闭日期；10月8日接受、10月16日约定期限及资料编号超出参考。忠实度还把“无法回答该问题”拆成任何问题都无法回答，把并列范围中的“仅”解释为整套文档只含一件事。"
+        }
+      },
+      {
+        "id": "NQ-001",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.86,
+          "after": 0.86,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-002",
+        "original_status": "failed",
+        "expected_answerable": true,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-003",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.8,
+          "delta": 0.8
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-004",
+        "original_status": "failed",
+        "expected_answerable": true,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-005",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 1.0,
+          "delta": 1.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-006",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.89,
+          "delta": 0.22
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-007",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 1.0,
+          "delta": 0.33
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-008",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.67,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 0.3,
+          "after": 0.25,
+          "delta": -0.05
+        },
+        "review": {
+          "category": "question_premise",
+          "assessment": "metric_mismatch",
+          "analysis": "09:23:20计算正确；F1把分段间隔视为超出只给计算结果的必答参考，忠实度又要求上下文证明题设09:00、立即失败等假设。输入与上轮完全相同而忠实度0.30→0.25，显示裁判拆解波动。"
+        }
+      },
+      {
+        "id": "NQ-009",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.43,
+          "after": 0.83,
+          "delta": 0.4
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-010",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.19,
+          "after": 0.27,
+          "delta": 0.08
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "当前包、规则、两轮0缺失、附件一致及缺陷条件完整；答案按题目要求区分选包/规则/实测来源，含文档名、批次日期、缺陷ID及修复期限。参考未枚举这些来源归属，导致大量正确结论整句判不支持。忠实度1。"
+        }
+      },
+      {
+        "id": "NQ-011",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.56,
+          "after": 0.63,
+          "delta": 0.07
+        },
+        "faithfulness": {
+          "before": 0.9166666666666666,
+          "after": 0.9166666666666666,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "wording_risk",
+          "assessment": "needs_review",
+          "analysis": "保留D3及书面接受、修复期限、不等于已修复的核心结论正确；规则/缺陷ID及接受日期超出参考。原答案“这是允许签署的前提条件之一”可能混淆有保留缺陷时的条件与所有验收必需有D3，宜收紧措辞。"
+        }
+      },
+      {
+        "id": "NQ-012",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.67,
+          "delta": 0.67
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "原计划10月15日、实际10月16日正确；答案补充10:20签署时刻，超出只要求日期的参考，precision扣分。"
+        }
+      },
+      {
+        "id": "NQ-013",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": true,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.86,
+          "after": 0.75,
+          "delta": -0.11
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_background",
+          "assessment": "metric_mismatch",
+          "analysis": "SL-NQ-B及8/30分钟正确；参考补充实际配置编号CFG-NQ-102以固定版本，裁判将编号拆成两条必须复述的结论。原规则并未要求输出该编号，不能据此增加业务扣分。"
+        }
+      },
+      {
+        "id": "NQ-014",
+        "original_status": "failed",
+        "expected_answerable": true,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-015",
+        "original_status": "failed",
+        "expected_answerable": true,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        }
+      },
+      {
+        "id": "NQ-016",
+        "original_status": "passed",
+        "expected_answerable": true,
+        "answerable": true,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.44,
+          "after": 0.44,
+          "delta": 0.0
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "reference_extra",
+          "assessment": "metric_mismatch",
+          "analysis": "仅脱敏沙箱、不能推出生产已部署正确；资料范围、项目ID、服务响应目标及沙箱演练不能证明生产可用性的额外说明超出参考。"
+        }
+      },
+      {
+        "id": "NQ-017",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": true,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 1.0,
+          "delta": 0.33
+        },
+        "faithfulness": {
+          "before": 0.6666666666666666,
+          "after": 1.0,
+          "delta": 0.333333333333
+        }
+      },
+      {
+        "id": "NQ-018",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.4,
+          "after": 0.6,
+          "delta": 0.2
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "refusal_metric",
+          "assessment": "metric_mismatch",
+          "analysis": "正确拒答全月P95；资料范围列表超出参考，且“没有性能监控数据”与参考特指缺全月日志/样本数/P95存在宽窄差异；不应据此认定给出过错误P95数值。"
+        }
+      },
+      {
+        "id": "NQ-019",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.4,
+          "after": 0.8,
+          "delta": 0.4
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 0.8181818181818182,
+          "delta": -0.181818181818
+        },
+        "review": {
+          "category": "citation_attribution",
+          "assessment": "needs_review",
+          "analysis": "正确拒答已签订单总金额，F1达0.8；忠实度指出资料2/3不包含“以已签订单为准”条款，答案将资料1的规则概括成资料1/2/3共同说明，存在实际引用归属风险，需复核。"
+        }
+      },
+      {
+        "id": "NQ-020",
+        "original_status": "passed",
+        "expected_answerable": false,
+        "answerable": false,
+        "before_screen": false,
+        "after_screen": false,
+        "factual_correctness": {
+          "before": 0.67,
+          "after": 0.57,
+          "delta": -0.1
+        },
+        "faithfulness": {
+          "before": 1.0,
+          "after": 1.0,
+          "delta": 0.0
+        },
+        "review": {
+          "category": "refusal_metric",
+          "assessment": "metric_mismatch",
+          "analysis": "正确拒答2027年已批准补休标准；说明当前8小时及生效日超出参考，笼统“历史/未来时期”也被判过宽。未将8小时承诺为未来标准。"
+        }
+      }
+    ],
+    "factual_correctness_changes": {
+      "increased": 60,
+      "decreased": 14,
+      "unchanged": 26
+    },
+    "faithfulness_changes": {
+      "increased": 4,
+      "decreased": 4,
+      "unchanged": 92
+    },
+    "assistant_review_categories": {
+      "reference_extra": 23,
+      "wording_risk": 3,
+      "claim_decomposition": 6,
+      "judge_entailment": 4,
+      "refusal_metric": 9,
+      "reference_background": 3,
+      "question_premise": 2,
+      "citation_attribution": 1
+    },
+    "assistant_review_assessments": {
+      "metric_mismatch": 47,
+      "needs_review": 4
+    },
+    "assistant_review_note": "助手差异归因，不是独立人工逐结论真值标注。",
+    "qualitative_risks": {
+      "XH-003": "650元普通员工档与“标准适用于全体员工”的措辞可能混淆。",
+      "XH-E-056": "两链路次数比较正确；API重试建议未明确幂等及可重试错误前提，本轮筛查通过也不能排除该措辞风险。",
+      "CC-008": "本次演练失败原因正确；“发现问题不得签署最终验收”的泛化说法可能忽略允许保留合规D3的情形。",
+      "NQ-011": "允许保留D3的条件不宜泛称为一切验收签署的前提，需限定本题保留缺陷的情境。",
+      "NQ-019": "将仅见资料1的订单依据条款概括归属资料1/2/3，存在引用归属风险。"
+    }
+  },
+  "source_validation": "validation.json",
+  "current_artifact_sha256": {
+    "protocol.json": "aa5b39aca5156378d51a86015868b1e0385d7dc6f7262e94bc898821a5284715",
+    "samples.jsonl": "96bfb2cebc787e74afd607270ee2d8487f9222469ce80b41c3c14c3f3f758f80",
+    "scores.jsonl": "8d4085bcb2aeee6f1b18bce59b4280d443f3acdbb596f44d4b883a2bd35f804a",
+    "report.json": "12a61c36e499759cc9e2eb9efb7b665f893f0ac3c45eeeaea956a1b783fa479f",
+    "judge-calls.jsonl": "d266814f02075ea84f883e0259f5f20ca73dc49f57f5fc47b143e820a9f2440d",
+    "judge-attempts.jsonl": "4c2ae6374192903b60d634d630d7074ec0c3d434e0133fa500956378a8d73e51",
+    "adapter.py": "da19ba5daf87709810981caa6eac4a948805422c790c323869105bb774fcfe57",
+    "references.json": "66cc21869963ed0f266e5bcaae740a7a024452337eac2ae948650187ce870f89",
+    "disagreement-review.json": "c21b4a2b21266989302e995f2341eb2743dfbedce423f9c4bc37fd588984b4c4",
+    "comparison/comparison.json": "36a68b5f8569ed19e83e6d6e0da14c347a1c8be10834369b8304add8711ce08f",
+    "validation.json": "61d83e649ad649ca69ba9d6da89c19452ae9863382a298e5d22811d4d11c609b"
+  },
+  "baseline_artifact_sha256": {
+    "protocol.json": "91a942a01560a8641a7348ad6d034b597d9166191e1f083ad8a3831d0c4fca13",
+    "effective-report.json": "222c6b3d8041bcb3f67261bdb19e59b658117436e64a742bab767ee2487fbfd3",
+    "effective-scores.jsonl": "c196de6755746ba25c3160dd7443c48c368c28da7cc30c59c79e2b76e3274d80",
+    "adapter.py": "3f8b8b8e8162016c8bbb6ed0d908b8319b5c3ba29b104e970ece33670d204f5d"
+  },
+  "limitations": [
+    "F1是连续诊断分而非业务准确率，筛查阈值未经独立标注校准。",
+    "原生F1仍可能惩罚正确额外解释；背景、简称、合取与假设拆解仍可能误判。",
+    "相同忠实度输入仍有裁判波动；不能将全部F1变化严格归因为参考补全。",
+    "业务回答未改变，原规则94/100及六道误拒答不因参考修改而改善。",
+    "生成与裁判同型号，存在相关偏差；本次差异审阅不是独立人工金标。"
+  ]
+}

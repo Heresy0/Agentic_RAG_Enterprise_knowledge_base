@@ -9,7 +9,7 @@ from backend.app.evaluation.scoring_rules import apply_scoring_rules
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PACK = ROOT / 'evals/xinghai_v4'
+PACK = ROOT / 'evals/archive/xinghai_v4'
 
 
 def cases():
@@ -20,6 +20,37 @@ def cases():
 def response(case, text):
     return dict(answerable=True, answer=text, citations=[dict(document_name=name)
                 for name in case['required_source_documents']])
+
+
+def current_cc005():
+    rows=[json.loads(line) for line in (PACK/'single_turn.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+    return next(row for row in apply_scoring_rules(rows,ROOT/'evals/scoring_rules.json') if row['id']=='CC-005')
+
+
+@pytest.mark.parametrize('text',[
+    '不可以。只通过一轮全量校验不得签署最终验收；必须连续2轮全量校验通过，且记录缺失数为0。',
+    '只通过1轮不得签最终验收；必须连续2轮全量校验通过，且记录缺失数为0。',
+    '不可签署最终验收；必须连续2轮全量校验通过，且记录缺失数为0。',
+    '不允许签署最终验收；必须连续2轮全量校验通过，且记录缺失数为0。',
+])
+def test_cc005_equivalent_refusal_keeps_round_count_and_evidence_requirements(text):
+    case=current_cc005();r=response(case,text)
+    assert score_answer(case,r)['automatic_proxy_pass']
+    assert not score_answer(case,dict(r,citations=[]))['automatic_proxy_pass']
+    assert not score_answer(case,r,[])['automatic_proxy_pass']
+    assert not score_answer(case,response(case,text.replace('2轮','1轮')))['automatic_proxy_pass']
+    assert not score_answer(case,response(case,text.replace('为0','为1')))['automatic_proxy_pass']
+
+
+@pytest.mark.parametrize('text',[
+    '并非不可以；连续2轮全量校验通过，记录缺失数为0。',
+    '不是不能；连续2轮全量校验通过，记录缺失数为0。',
+    '不可以缺少日志；只通过一轮即可签署最终验收，连续2轮且缺失数0只是建议。',
+    '不可以。但是只通过1轮可以签署最终验收，连续2轮、缺失数0不是必需。',
+    '只通过一轮可以签署最终验收；连续2轮且缺失数0。',
+])
+def test_cc005_reversals_and_one_round_approval_still_fail(text):
+    assert not score_answer(current_cc005(),response(current_cc005(),text))['automatic_proxy_pass']
 
 
 @pytest.mark.parametrize('identifier,fact,text', [

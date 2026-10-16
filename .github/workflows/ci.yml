@@ -116,7 +116,8 @@ jobs:
           python scripts/build_knowledge_expansion.py --check
           python scripts/build_100_evaluation.py --prepare-corpus
           python scripts/build_100_evaluation.py --check
-          python scripts/evaluate_system.py --mode offline --layers parsing --ocr --strict
+          python scripts/evaluate.py check
+          python scripts/evaluate.py system --mode offline --layers parsing --ocr --strict
 
       - name: Run migrations
         run: python -m alembic upgrade head

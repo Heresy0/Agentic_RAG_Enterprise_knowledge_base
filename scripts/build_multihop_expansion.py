@@ -10,7 +10,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 CORPUS = ROOT / 'sample_docs/xinghai_multihop'
-DATASET = ROOT / 'evals/xinghai_multihop'
+DATASET = ROOT / 'evals/archive/xinghai_multihop'
 UNIFIED = ROOT / 'output/knowledge-corpus-multihop'
 EDITION = 'xinghai-multihop-6-v1'
 AS_OF = '2026-10-14'

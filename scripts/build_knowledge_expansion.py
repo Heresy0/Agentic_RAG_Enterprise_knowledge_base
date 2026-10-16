@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT))
 from scripts.corpus_expansion_data import AS_OF, CASES, DOCUMENTS, GROUPS
 
 CORPUS = ROOT / "sample_docs" / "xinghai_expansion"
-MAIN_DATASET = ROOT / "evals" / "xinghai_v3"
+MAIN_DATASET = ROOT / 'evals' / 'archive' / 'xinghai_v3'
 EDITION = "xinghai-cc-expansion-v1"
 
 RECORD_HANDLING = {

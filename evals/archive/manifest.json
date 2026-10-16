@@ -1,0 +1,261 @@
+{
+  "version": 1,
+  "purpose": "Frozen source packs; byte-preserving consolidation. Historical reports remain in place.",
+  "files": [
+    {
+      "original_path": "evals/datasets/answer_dev.jsonl",
+      "archived_path": "evals/archive/datasets/answer_dev.jsonl",
+      "sha256": "90997c7387d164cd24f8128a71495c50fbabbe4db916c6f1c256c7bde90c70d0"
+    },
+    {
+      "original_path": "evals/datasets/answer_test.jsonl",
+      "archived_path": "evals/archive/datasets/answer_test.jsonl",
+      "sha256": "0652e4149431ad4cda9830ef619643b13f8042443c71917ca71bc0bc46e2cad0"
+    },
+    {
+      "original_path": "evals/datasets/retrieval_dev.jsonl",
+      "archived_path": "evals/archive/datasets/retrieval_dev.jsonl",
+      "sha256": "35afe842abef05b426c3f321a711b4f2d9300f23453a81bdf40064b57a804be1"
+    },
+    {
+      "original_path": "evals/datasets/retrieval_test.jsonl",
+      "archived_path": "evals/archive/datasets/retrieval_test.jsonl",
+      "sha256": "8af266a7047788f578d932baf6befbb45439cde3245f40eb508da51eaec492ff"
+    },
+    {
+      "original_path": "evals/xinghai_v3/conversations.json",
+      "archived_path": "evals/archive/xinghai_v3/conversations.json",
+      "sha256": "e6f976b8564b893b8fa8735eb00d46fdcc9e6f959cea587c2c5bf5cae17dbaf7"
+    },
+    {
+      "original_path": "evals/xinghai_v3/coverage.json",
+      "archived_path": "evals/archive/xinghai_v3/coverage.json",
+      "sha256": "4432d8b73b7ba2ba83b791aa39fe31389b31d8105ec36984c94ac5530b8b3cb0"
+    },
+    {
+      "original_path": "evals/xinghai_v3/cross_scope.jsonl",
+      "archived_path": "evals/archive/xinghai_v3/cross_scope.jsonl",
+      "sha256": "c2facd1f8048e4d061aeec4180c17cd2eac6710bdc0c4f923c02309b5a32bee8"
+    },
+    {
+      "original_path": "evals/xinghai_v3/permissions.json",
+      "archived_path": "evals/archive/xinghai_v3/permissions.json",
+      "sha256": "22fcc9616ff3897526a177935ec9e20d639c76d5aac5f9475f26cf1ce00ec21e"
+    },
+    {
+      "original_path": "evals/xinghai_v3/README.md",
+      "archived_path": "evals/archive/xinghai_v3/README.md",
+      "sha256": "af95c597bcbbf30e081482b425af01b3bb16c1b80e947e7f10540d3d030268cd"
+    },
+    {
+      "original_path": "evals/xinghai_v3/single_turn.jsonl",
+      "archived_path": "evals/archive/xinghai_v3/single_turn.jsonl",
+      "sha256": "705e9606622e2ecbb13ea0363da61269b2c25b566b3c183e6b0d568703148982"
+    },
+    {
+      "original_path": "evals/xinghai_v3/unanswerable.jsonl",
+      "archived_path": "evals/archive/xinghai_v3/unanswerable.jsonl",
+      "sha256": "0c6fd2664972ec07e7b59799d243b4ebf52cb7ff7d1ce28b2cc7d18b8533f9b4"
+    },
+    {
+      "original_path": "evals/xinghai_v3/测试题册.md",
+      "archived_path": "evals/archive/xinghai_v3/测试题册.md",
+      "sha256": "db877698aa45226927e9a9182c12696da2770821b96261649a73985e43677790"
+    },
+    {
+      "original_path": "evals/xinghai_v3/答案与评分.md",
+      "archived_path": "evals/archive/xinghai_v3/答案与评分.md",
+      "sha256": "4f165d362ca21536e7d3b4c45a9a50a749a1e26b62ed2e018e802a7cb66668bf"
+    },
+    {
+      "original_path": "evals/xinghai_v3/by_scope/人力资源部.jsonl",
+      "archived_path": "evals/archive/xinghai_v3/by_scope/人力资源部.jsonl",
+      "sha256": "6e7c49c4645bb684b642f68a8c21d30a2c7dbf799ef276dda6011a0466ce70bd"
+    },
+    {
+      "original_path": "evals/xinghai_v3/by_scope/公司公共.jsonl",
+      "archived_path": "evals/archive/xinghai_v3/by_scope/公司公共.jsonl",
+      "sha256": "57c93961c7db30f8672f6eb96cc79f3a0c238f3d9a30baccbf2413ee314dcdfa"
+    },
+    {
+      "original_path": "evals/xinghai_v3/by_scope/平台研发部.jsonl",
+      "archived_path": "evals/archive/xinghai_v3/by_scope/平台研发部.jsonl",
+      "sha256": "4dca40eb7005c61fb6c7d729ea4f6decb5f36435414b1994cbc4d4c93681df9d"
+    },
+    {
+      "original_path": "evals/xinghai_v3/by_scope/技术部.jsonl",
+      "archived_path": "evals/archive/xinghai_v3/by_scope/技术部.jsonl",
+      "sha256": "68deb942a0ba8d3e934f47b7429bbff4c96aa2fb09df07812fdc57d17e9be7c7"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/coverage.json",
+      "archived_path": "evals/archive/xinghai_nanqi/coverage.json",
+      "sha256": "9bd1750a78acfbd20116fd4fb7a025fb14d1a90fd2ee30565b3a80de8093c30b"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/cross_scope.jsonl",
+      "archived_path": "evals/archive/xinghai_nanqi/cross_scope.jsonl",
+      "sha256": "2ab8318399aeb98876731e67651f28d9321b485c90240e604ecee38c8d7e1f08"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/README.md",
+      "archived_path": "evals/archive/xinghai_nanqi/README.md",
+      "sha256": "7e639acf617b3d1a35952136f74478afdfdba9d2acf14716834ac9ab674ce6a3"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/single_turn.jsonl",
+      "archived_path": "evals/archive/xinghai_nanqi/single_turn.jsonl",
+      "sha256": "da0e1cb03ba8b05d303295e7c94c4f513d4ce7a116b7ab642900caf87b40fe35"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/unanswerable.jsonl",
+      "archived_path": "evals/archive/xinghai_nanqi/unanswerable.jsonl",
+      "sha256": "23cda7256a8561513039694a0e8d97dee2f42e0f396b2352fc162eafe036f581"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/测试题册.md",
+      "archived_path": "evals/archive/xinghai_nanqi/测试题册.md",
+      "sha256": "18b5b0e52db8d5ab72942f307d546c147a500c68eae0f601f5b5fbb038298823"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/答案与评分.md",
+      "archived_path": "evals/archive/xinghai_nanqi/答案与评分.md",
+      "sha256": "a695a02ccc98f1ff32c656791da1f0e6c93d56eee5e421ba9191dd7340b01c9a"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/by_scope/人力资源部.jsonl",
+      "archived_path": "evals/archive/xinghai_nanqi/by_scope/人力资源部.jsonl",
+      "sha256": "aa814aba9ce71e409483d329943bbd0162017493b2be6772fdb974581526c3e6"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/by_scope/公司公共.jsonl",
+      "archived_path": "evals/archive/xinghai_nanqi/by_scope/公司公共.jsonl",
+      "sha256": "05e071e038c8eee1466cfd79e33a1c4be9921b86bd24590beb3c98711a000367"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/by_scope/平台研发部.jsonl",
+      "archived_path": "evals/archive/xinghai_nanqi/by_scope/平台研发部.jsonl",
+      "sha256": "4632a6e41f5e6325d1242bb855239bea713bd1ce204d9d4dd883974f64233193"
+    },
+    {
+      "original_path": "evals/xinghai_nanqi/by_scope/技术部.jsonl",
+      "archived_path": "evals/archive/xinghai_nanqi/by_scope/技术部.jsonl",
+      "sha256": "ad3a193f3127b210696cd7c54cd91803a6b2d8698de1498a4ce9128670e9709f"
+    },
+    {
+      "original_path": "evals/xinghai_v4/conversations.json",
+      "archived_path": "evals/archive/xinghai_v4/conversations.json",
+      "sha256": "e6f976b8564b893b8fa8735eb00d46fdcc9e6f959cea587c2c5bf5cae17dbaf7"
+    },
+    {
+      "original_path": "evals/xinghai_v4/coverage.json",
+      "archived_path": "evals/archive/xinghai_v4/coverage.json",
+      "sha256": "2b8717ad0550e9a12f31c0d2a822ea0535fd6370fd2844b6b750c138fbd67107"
+    },
+    {
+      "original_path": "evals/xinghai_v4/cross_scope.jsonl",
+      "archived_path": "evals/archive/xinghai_v4/cross_scope.jsonl",
+      "sha256": "90a841ad68e43772d675677a1e27de67b8050f8dec2223f20a4e768532ecc5f9"
+    },
+    {
+      "original_path": "evals/xinghai_v4/permissions.json",
+      "archived_path": "evals/archive/xinghai_v4/permissions.json",
+      "sha256": "22fcc9616ff3897526a177935ec9e20d639c76d5aac5f9475f26cf1ce00ec21e"
+    },
+    {
+      "original_path": "evals/xinghai_v4/ragas_references_v1.json",
+      "archived_path": "evals/archive/xinghai_v4/ragas_references_v1.json",
+      "sha256": "66cc21869963ed0f266e5bcaae740a7a024452337eac2ae948650187ce870f89"
+    },
+    {
+      "original_path": "evals/xinghai_v4/README.md",
+      "archived_path": "evals/archive/xinghai_v4/README.md",
+      "sha256": "9dfdd4497299eb2989bc1760ad4bd77a28e1ba6eed2d8b3b16ee3cd5057475d4"
+    },
+    {
+      "original_path": "evals/xinghai_v4/scoring_rules.json",
+      "archived_path": "evals/archive/xinghai_v4/scoring_rules.json",
+      "sha256": "a369c6f49309bf4738430f69fd5161ba01b9502aae1dc72cae99aed5efb2817b"
+    },
+    {
+      "original_path": "evals/xinghai_v4/single_turn.jsonl",
+      "archived_path": "evals/archive/xinghai_v4/single_turn.jsonl",
+      "sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a"
+    },
+    {
+      "original_path": "evals/xinghai_v4/unanswerable.jsonl",
+      "archived_path": "evals/archive/xinghai_v4/unanswerable.jsonl",
+      "sha256": "4d41b667496572b72d1e0145d4e4a69dddae8ed8869929c28ab1a2e34896ce67"
+    },
+    {
+      "original_path": "evals/xinghai_v4/测试题册.md",
+      "archived_path": "evals/archive/xinghai_v4/测试题册.md",
+      "sha256": "8512d597f73a8b1e6f7fd1cfe098fcba8032d24df882d53467786b9dedcec6d7"
+    },
+    {
+      "original_path": "evals/xinghai_v4/答案与评分.md",
+      "archived_path": "evals/archive/xinghai_v4/答案与评分.md",
+      "sha256": "6decbbc4b624173e57676b1959d9f1e27c0c759a7b506275ea9aca7961e0b346"
+    },
+    {
+      "original_path": "evals/xinghai_v4/by_scope/人力资源部.jsonl",
+      "archived_path": "evals/archive/xinghai_v4/by_scope/人力资源部.jsonl",
+      "sha256": "f6b2ff6fcd26db0ee4a25daae3a1af553b3650f97c36da0dd97f88b69afbdb46"
+    },
+    {
+      "original_path": "evals/xinghai_v4/by_scope/公司公共.jsonl",
+      "archived_path": "evals/archive/xinghai_v4/by_scope/公司公共.jsonl",
+      "sha256": "e18fd35dbe6d6d6a6bed47a27886cada0f8cfa290f5ba0368ebde0afc800ac87"
+    },
+    {
+      "original_path": "evals/xinghai_v4/by_scope/平台研发部.jsonl",
+      "archived_path": "evals/archive/xinghai_v4/by_scope/平台研发部.jsonl",
+      "sha256": "f6dc419afae620f41ef221e1e254753b80d4190aee44a016f9e15ca257761b66"
+    },
+    {
+      "original_path": "evals/xinghai_v4/by_scope/技术部.jsonl",
+      "archived_path": "evals/archive/xinghai_v4/by_scope/技术部.jsonl",
+      "sha256": "bfdae1e83c974c7dd1c7644e7fe1f0bfb3cdcf5047f4a3d7f8246b27fec39593"
+    },
+    {
+      "original_path": "evals/xinghai_multihop/coverage.json",
+      "archived_path": "evals/archive/xinghai_multihop/coverage.json",
+      "sha256": "0613e5c932b6d444f09f9ff06e8ca21ed2b1553986d1f7b068aee172532e4f01"
+    },
+    {
+      "original_path": "evals/xinghai_multihop/README.md",
+      "archived_path": "evals/archive/xinghai_multihop/README.md",
+      "sha256": "61aa3938119516c35a8210bc017b7ada9048f68c3da368dd90207d3c8aa8d239"
+    },
+    {
+      "original_path": "evals/xinghai_multihop/single_turn.jsonl",
+      "archived_path": "evals/archive/xinghai_multihop/single_turn.jsonl",
+      "sha256": "27e6476f6cb62767bd2ed5c8f3151676d10b9d071c49fc2eab389f7fbc698997"
+    },
+    {
+      "original_path": "evals/xinghai_multihop/测试题册.md",
+      "archived_path": "evals/archive/xinghai_multihop/测试题册.md",
+      "sha256": "9f3092e39ebe9d750981df4187c3a75297d7c5a749b13190fbd88770ef2c039a"
+    },
+    {
+      "original_path": "evals/xinghai_multihop/答案与证据链.md",
+      "archived_path": "evals/archive/xinghai_multihop/答案与证据链.md",
+      "sha256": "2ea147b0f4880876e45994a2f6ce2ea8b51b2c73df4e8017b67cedfd8a485e0f"
+    },
+    {
+      "original_path": "evals/first_pass_generalization/README.md",
+      "archived_path": "evals/archive/first_pass_generalization/README.md",
+      "sha256": "d5e60c5978547bbd4a607778b0e82299f7dfff074020a4ad210376d0b676227e"
+    },
+    {
+      "original_path": "evals/first_pass_generalization/single_turn.jsonl",
+      "archived_path": "evals/archive/first_pass_generalization/single_turn.jsonl",
+      "sha256": "f9beff7cff5321716e5a1b8c5cce0fe2e28b8c10838a140bac2bbaad2addf4e6"
+    },
+    {
+      "original_path": "tests/load/current_workload.jsonl",
+      "archived_path": "evals/archive/load/current_workload.jsonl",
+      "sha256": "8a5a92b902b85766b09e796ff98affb4ef3f74a2941a342f3a66cc67dadadb9c"
+    }
+  ]
+}

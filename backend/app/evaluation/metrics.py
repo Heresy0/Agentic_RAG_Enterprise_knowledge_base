@@ -6,7 +6,7 @@ from urllib.parse import unquote
 from .assertions import fact_assertion_match
 
 
-SCORER_VERSION = "2026-10-16-r9"
+SCORER_VERSION = "2026-10-16-r10"
 
 
 def normalize(value):

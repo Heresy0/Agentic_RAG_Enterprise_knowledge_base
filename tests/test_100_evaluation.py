@@ -16,7 +16,7 @@ from scripts.evaluate_system import parse_args
 ROOT=Path(__file__).resolve().parents[1]
 
 def test_default_pack_has_100_cases_and_preserves_all_legacy_bytes():
-    args=parse_args([])
+    args=parse_args(['--dataset-dir',str(DATASET)])
     assert args.dataset_dir==DATASET and args.corpus==UNIFIED
     old=(LEGACY/'single_turn.jsonl').read_bytes()
     assert (DATASET/'single_turn.jsonl').read_bytes().startswith(old)

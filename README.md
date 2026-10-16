@@ -48,12 +48,27 @@ Agent 可决定补查或读取相邻原文。生成后的覆盖记录与引用�
 
 ## 量化效果与普通 RAG 对照
 
-以下为截至 2026-10-16 已完成的评估结果。整体 100 题与另外 12 道复杂多跳题分别统计，不合并分母。
+当前已统一为[120题评估套件](evals/current/README.md)，保留main100题、multihop12题、completeness8题各自成绩。以下区分2026-10-16最新汇总与历史批次，避免混用分母和评分口径。
+
+### 最新120题回归汇总
+
+120题真实运行原始r9成绩为107/120；修复CC-005否定等价表达误扣后，仅重跑该题并通过。最新汇总为108/120，助手逐题语义复核同为108/120；这是一轮120题加单题更新的汇总，不是另一轮120题全量生成。
+
+| 分组 | 严格自动通过率 / 助手复核准确率 | 最终上下文标注证据召回 |
+|---|---:|---:|
+| 主回归100题 | 90%（90/100） | 100%（136/136） |
+| 多跳12题 | 83.33%（10/12） | 100%（41/41） |
+| 完整性8题 | 100%（8/8） | 100%（18/18） |
+| 全部120题 | 90%（108/120） | 100%（195/195） |
+
+104道可回答题正确92道（88.46%）；16道资料不足题全部正确拒答。12道未通过项包括11道误拒答和1道漏答关键事实。助手复核为非盲、非独立辅助审核；本套题为合成回归集，不能等同独立业务黄金集或生产泛化准确率。
+
+见[原120题运行](evals/acceptance/current_120_20261016.json)、[CC-005修复与单题重跑](evals/acceptance/cc005_scoring_r10_20261016.json)、[120题助手复核](evals/acceptance/current_120_assistant_review_20261016.json)。后面的100题94%及12题对照为各自历史批次，保留原成绩。
 
 ### 100 题整体效果
 
-使用 [100 题 v4](evals/xinghai_v4/README.md)，包含 87 道可回答题与 13 道资料不足题。
-成绩来自最近一轮真实模型运行，并按最终 r9 规则对保存的原始回答重评分；重评分没有重新生成答案。
+使用 [100 题 v4](evals/archive/xinghai_v4/README.md)，包含 87 道可回答题与 13 道资料不足题。
+该历史批次来自真实模型运行，并按r9规则对保存的原始回答重评分；重评分没有重新生成答案。
 
 | 指标 | 当前结果 |
 | --- | ---: |
@@ -73,7 +88,7 @@ Agent 可决定补查或读取相邻原文。生成后的覆盖记录与引用�
 
 ### 12 道复杂多跳题对照
 
-两组使用相同的 [12 道多跳题](evals/xinghai_multihop/README.md)、经认证的评估账号、有效权限和语料；
+两组使用相同的 [12 道多跳题](evals/archive/xinghai_multihop/README.md)、经认证的评估账号、有效权限和语料；
 实际可读 72 份文档、600 个子块、158 个父块。模型均为 `qwen3.7-flash`、`text-embedding-v4` 和 `qwen3-rerank`。
 每题每组运行一次，交替执行先后顺序，共 24 个最终答案。
 
@@ -751,13 +766,24 @@ P95、5xx 数量以及治理场景是否真的出现 429。任一门槛不通过
 
 ## 答案级评估
 
-评估脚本通过受保护的 `/api/qa` 接口运行，因此需要有效的 JWT：
+统一入口为`python scripts/evaluate.py`，默认使用[当前120题套件](evals/current/README.md)。主回归100题、多跳12题和完整性8题分别评分；多轮8组24轮、权限12项与压测负载单独统计。旧题集已移至[冻结归档](evals/archive/README.md)，历史报告保留原样。
+
+```powershell
+python scripts/evaluate.py check
+python scripts/evaluate.py system --mode offline --layers parsing --ocr --strict
+python scripts/evaluate.py system --mode live --config evals/system_config.local.json --layers retrieval,rerank,context,answer --allow-model-calls --save-traces
+# 可加 --group main / --group multihop / --group completeness；--group可重复
+```
+
+真实运行需要现有有效JWT及授权。`report.json`的`group_scores`与Markdown分组表保留各组质量指标；题目、事实标准和权限标注未改。Ragas默认复用main组保存的100题答案，压测使用统一套件中的8题负载。
+
+以下保留旧HTTP答案入口的历史兼容用法，需要有效JWT：
 
 ```powershell
 $env:ENTERPRISE_KB_ACCESS_TOKEN = "<JWT>"
 
 python scripts/evaluate_answers.py `
-  --dataset evals/datasets/answer_test.jsonl `
+  --dataset evals/archive/datasets/answer_test.jsonl `
   --knowledge-base-id "<knowledge base UUID>" `
   --category technical `
   --output evals/reports/answer_test_technical.json
@@ -775,10 +801,12 @@ Remove-Item Env:ENTERPRISE_KB_ACCESS_TOKEN
 - 总耗时及检索、重排、生成等阶段的 P50/P95 耗时
 
 历史独立技术测试集包含 11 条样本。旧报告中，可回答性准确率为 100%，必要事实覆盖率为 92.86%，引用来源准确率和召回率均为 100%；它不是当前版本的完整验收结果。
-当前分层评估默认使用 [100 题 v4](evals/xinghai_v4/README.md)：保留原 80 题，增加 20 道南栖题，共 87 道可回答、13 道资料不足。
+当前套件中的main组来自[原100题v4](evals/archive/xinghai_v4/README.md)：保留原80题，增加20道南栖题，共87道可回答、13道资料不足。
 新增 [12 份南栖业务文档](sample_docs/xinghai_nanqi/README.md) 已按四个知识库各 3 份入库；2026-10-16 本地授权范围内共有 72 份 ready 文档。
 运行 `python scripts/build_100_evaluation.py --prepare-corpus` 准备 68 份指定评估原文（其余为未列入清单的旧资料）。
-原 80 题、多跳 12 题与历史报告继续保留。最新 100 题按最终 r9 规则严格自动通过 94/100，最终上下文标注证据召回 136/136，资料不足题正确拒答 13/13；另有 6/87 道可回答题最终拒答。见 [100 题最终评分记录](evals/acceptance/scoring_r9_100_20261016.json)及上方量化效果与对照表。首轮 89/100 的 [历史快照](evals/acceptance/current_100_20261016.json)保留原样；题集、语料或评分口径不同的总体分数不能直接比较。
+原80题、多跳12题与历史报告继续保留。历史100题批次按r9规则严格自动通过94/100，最终上下文标注证据召回136/136，资料不足题正确拒答13/13；另有6/87道可回答题最终拒答。见[历史100题最终评分记录](evals/acceptance/scoring_r9_100_20261016.json)；当前120题汇总见上方最新表。首轮89/100的[历史快照](evals/acceptance/current_100_20261016.json)保留原样；题集、语料或评分口径不同的总体分数不能直接比较。
+
+可选的 [Ragas旁路评估](docs/RAGAS_EVALUATION.md)复用100题最终答案和实际上下文，不进入问答运行链路。2026-10-16补全参考主体及必要背景、单列必答与可选信息后，同批答案的事实F1均值由0.4235升至0.6851，忠实度由0.9224变为0.9247；诊断筛查通过由16/100变为43/100，与原规则的差异由78题减至51题。答案、上下文及r9事实标准未变，原自动通过仍为94/100；F1不是准确率，残留正确扩展扣分、裁判拆解和少量业务措辞/引用风险。见 [原轮次记录](evals/acceptance/ragas_saved_100_20261016.json)与[完整参考对照](evals/acceptance/ragas_reference_comparison_100_20261016.json)。
 历史结果与已知问题见 [2026-10-14 验收记录](docs/PARENT_CHILD_ACCEPTANCE_20261014.md)，扩容收据见 [2026-10-16 扩容快照](evals/acceptance/nanqi_expansion_20261016.json)。
 
 ## 权限与数据隔离
@@ -943,7 +971,7 @@ git diff --check
 ## 小规模知识库扩容语料
 
 新增的[星海澄川扩容包](sample_docs/xinghai_expansion/README.md)包含20份分部门Markdown文档和
-[统一80题评估题集](evals/xinghai_v3/README.md)中的20道新增题及证据标注，覆盖历史版本、相似故障、实际验收与跨库关联。
+[统一80题评估题集](evals/archive/xinghai_v3/README.md)中的20道新增题及证据标注，覆盖历史版本、相似故障、实际验收与跨库关联。
 生成过程仅使用本地Python；原语料与题集保留。只入库`documents`中的业务文件，评估答案不得入库。
 
 原30份合成基准原文及其清单已纳入`sample_docs/xinghai_base`，克隆后无需本机历史输出。
