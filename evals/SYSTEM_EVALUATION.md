@@ -4,16 +4,20 @@
 
 统一入口：`scripts/evaluate_system.py`。旧的 `scripts/evaluate_answers.py`（HTTP最终回答评估）和 `scripts/summarize_load_test.py`（Locust性能门禁）仍保留，不改变旧题集或历史报告。
 
-2026-10-13：默认主题集`evals/xinghai_v3`现合并为80道单轮题（原60题＋澄川20题），
+2026-10-16：默认主题集为 `evals/xinghai_v4`，共100道单轮题（原80题＋南栖20题），87道可回答、13道资料不足。旧80题逐字保留，多轮与权限文件原样继承。新增12份文档按四库各3份入库，未修改旧文档或业务授权。
+默认解析目录为 `output/knowledge-corpus-100`；先运行 `python scripts/build_100_evaluation.py --prepare-corpus`，准备原50份＋原6份多跳背景＋新12份，共68份指定文档。100题正例证据覆盖其中62份。
+只生成题集和通过解析不代表在线问答通过。随后于2026-10-16执行完整100题：严格自动通过89/100，原80题子集73/80、新20题16/20；融合证据召回135/135，重排133/135，父块回取后的最终上下文135/135；正确拒答13/13，误拒答6/87。失败分布与口径见 [评估快照](acceptance/current_100_20261016.json)，不作为独立语义准确率或扩容前后的严格算法对照。显式使用 `--dataset-dir evals/xinghai_v3 --corpus output/knowledge-corpus-unified` 可复现旧80题范围。
+
+2026-10-13历史入口：`evals/xinghai_v3`合并为80道单轮题（原60题＋澄川20题），
 71道可回答、9道资料不足，覆盖50份文档。原8组24轮多轮与12项权限用例保留。
-默认解析目录为`output/knowledge-corpus-unified`，先运行`python scripts/merge_xinghai_evaluation.py --prepare-corpus`准备原文副本。
+当时解析目录为`output/knowledge-corpus-unified`，运行`python scripts/merge_xinghai_evaluation.py --prepare-corpus`可继续准备该旧版原文副本。
 原XH题和CC题保留各自业务日期；旧报告不重写，不能把历史60题总分直接与80题比较。
 仅测新增题可用`--case-ids CC-001 CC-002`等，以下历史60题/30份语料描述保留其当时语境。
 
 | 评估层 | 当前自动检查 | 尚需人工或专项检查 |
 |---|---|---|
 | parsing | 文件哈希、目录清单、真实项目解析器、非空片段、来源/章节字段、标注证据是否保留；可选真实OCR | 完整版式、所有表格单元格及所有事实的准确性 |
-| index | 真实授权范围内的文档ready状态、片段数量、向量维度、关键词非空、租户/库一致性、30份语料的DB哈希和缺失文件 | 存储文件字节校验、数据库搜索索引维护状态、更新/删除传播时限、备份恢复 |
+| index | 真实授权范围内的文档ready状态、片段数量、向量维度、关键词非空、租户/库一致性、清单内语料的DB哈希和缺失文件 | 存储文件字节校验、数据库搜索索引维护状态、更新/删除传播时限、备份恢复 |
 | retrieval | 向量、BM25、RRF分别记录候选；按文档名+证据片段计算命中率、首个正确证据排名和证据覆盖 | 完整相关性标注、同义证据人工确认 |
 | rerank | 与融合候选分开计算MRR和证据覆盖，检查重排后必要证据是否丢失 | 没有分级相关性标签时不伪造NDCG |
 | context | 检查实际选入/截断后的上下文，不用全部候选代替；计算必要证据覆盖 | 标题与正文歧义、复杂跨句依赖 |
@@ -64,7 +68,7 @@
 .venv\Scripts\python.exe scripts/evaluate_system.py --mode live --config evals/system_config.local.json --layers retrieval,rerank,context,answer --limit 3 --allow-model-calls --save-traces
 ```
 
-这3道题只做小规模冒烟，不代表60道全部通过。`--limit`分别限制每个题集的案例数，不是总请求数/总模型次数；一组多轮还会产生多个回答和追问改写请求，SDK可能有额外重试，不能直接据此推算token费用。
+这3道题只做小规模冒烟，不代表100道全部通过。`--limit`分别限制每个题集的案例数，不是总请求数/总模型次数；一组多轮还会产生多个回答和追问改写请求，SDK可能有额外重试，不能直接据此推算token费用。
 
 精确选择单轮题可用 `--case-ids XH-016 XH-E-060`；多轮按完整组选择 `--conversation-ids XH-MT-02 XH-D-MT-05`。筛选后才应用`--limit`，未知题号报错，未选题不算通过。r3逐题等价短语、充分来源组合与OCR校对边界见 [定向回归优化](../docs/RAG_REGRESSION_OPTIMIZATION.md)。
 
@@ -84,7 +88,7 @@
 .venv\Scripts\python.exe scripts/evaluate_system.py --mode live --config evals/system_config.local.json --layers index
 ```
 
-全语料索引审计要求对30份语料所在库都有读权限，不把无权限资料当成“缺失”。检测到其他旧资料不会删除它们。
+全语料索引审计要求对清单内全部语料所在库都有读权限，不把无权限资料当成“缺失”。检测到其他旧资料不会删除它们。
 
 本地运行需`.env`的DATABASE_URL、OIDC/JWKS及模型配置可从本机访问。容器中的主机名`postgres`等不一定可从宿主机解析；不要为运行评估覆盖现有服务配置。也可在包含新代码的容器中挂载题集/语料/配置/输出运行，本次没有自动重建或重启容器。
 

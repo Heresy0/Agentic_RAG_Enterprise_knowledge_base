@@ -1,6 +1,8 @@
 # RAG 评估
 
-本目录保存企业知识库的检索、答案及分层评估数据和实验结论。当前完整分层评估使用 [统一 80 题](xinghai_v3/README.md) 与 [新增 12 道复杂多跳题](xinghai_multihop/README.md)，覆盖检索、重排、父块上下文、答案及拒答。2026-10-14 最终结果为 71/80 与 11/12，详见 [验收记录](../docs/PARENT_CHILD_ACCEPTANCE_20261014.md) 和 [可提交汇总](acceptance/parent_child_20261014.json)。汇总不包含用户问题、答案正文、授权原文或凭据；完整报告和 trace 保存在被 Git 忽略的 `reports/system/`。
+本目录保存企业知识库的检索、答案及分层评估数据和实验结论。默认入口已扩充为 [100 题 v4](xinghai_v4/README.md)：原 80 题逐字保留，新增 [南栖 20 题](xinghai_nanqi/README.md)，共 87 道可回答、13 道资料不足。新增 12 份业务文档已入库，详情见 [扩容快照](acceptance/nanqi_expansion_20261016.json)。2026-10-16 首次完整 100 题实测严格自动通过 89/100，最终上下文证据召回 135/135，正确拒答 13/13，误拒答 6/87；原 80 题子集 73/80、新增子集 16/20。分阶段召回、11 道未通过题及口径见 [100 题评估快照](acceptance/current_100_20261016.json)。自动通过率不等于独立语义准确率。
+
+[原 80 题](xinghai_v3/README.md) 与 [单独的 12 道复杂多跳题](xinghai_multihop/README.md) 继续保留。2026-10-14 历史结果为 71/80 与 11/12，见 [验收记录](../docs/PARENT_CHILD_ACCEPTANCE_20261014.md) 和 [可提交汇总](acceptance/parent_child_20261014.json)。汇总不包含用户问题、答案正文、授权原文或凭据；完整报告和 trace 保存在被 Git 忽略的 `reports/system/`。
 
 以下旧实验衡量子块召回、排序质量、分阶段延迟及基于 Top-1 重排分数的检索层无答案判断，保留作历史记录。这些判断不等同于大模型最终答案的正确性、忠实度或真实拒答行为，也不代表当前父子块版本的成绩。
 
@@ -145,10 +147,10 @@ Remove-Item Env:ENTERPRISE_KB_ACCESS_TOKEN
 
 新增 `scripts/evaluate_system.py`，支持离线解析/隔离权限回归、真实授权后端分层评估、真实HTTP多轮/部分权限评估、过程记录回放及性能报告汇总。默认不调用真实模型、不修改业务授权。具体范围、运行命令与未覆盖项见 [分层评估说明](SYSTEM_EVALUATION.md)。
 
-统一主题集位于 `evals/xinghai_v3/`，合并原60题和澄川新增20题，共80道单轮题，覆盖50份文档。
-原8组多轮和12项权限用例保留；默认解析语料为 `output/knowledge-corpus-unified/`，可通过
+当前统一主题集位于 `evals/xinghai_v4/`，共100道单轮题；用 `python scripts/build_100_evaluation.py --prepare-corpus` 准备68份指定语料。原80题入口 `evals/xinghai_v3/` 继续保留，合并原60题和澄川新增20题，覆盖50份文档。
+原8组多轮和12项权限用例保留；旧80题的解析语料为 `output/knowledge-corpus-unified/`，可通过
 `python scripts/merge_xinghai_evaluation.py --prepare-corpus`从两个原文包准备。题集与标准答案不要入库。
-旧60题报告保持原样，不直接与新80题总分比较。当前分层入口与下面保留的历史Chroma实验不是同一个基线。
+旧60题、80题报告保持原样，不直接与新100题总分比较。当前分层入口与下面保留的历史Chroma实验不是同一个基线。
 
 ## 历史检索实验
 

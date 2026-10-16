@@ -1,0 +1,202 @@
+{
+  "created_at": "2026-10-16T06:41:32.659069+00:00",
+  "evaluation_type": "authenticated_local_backend_not_http_or_load_test",
+  "dataset": "evals/xinghai_v4",
+  "cases": 100,
+  "answerable_cases": 87,
+  "unanswerable_cases": 13,
+  "dataset_sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a",
+  "corpus_manifest_sha256": "f3a3f93465fb6aff3d4d06668868a45388966e03614d2890f93518e731f5b511",
+  "scope_config_sha256": "5b5c64b12dc7c3fa976f09dd4d6d0debaea752173c689de5fc89dffb6ebec67d",
+  "runtime": {
+    "agentic_rag_mode": "auto",
+    "rag_planner_mode": "auto",
+    "rag_repair_enabled": true,
+    "rag_feedback_enabled": true,
+    "rag_rerank_top_k": 12,
+    "rag_parent_context_enabled": true,
+    "embedding_model": "text-embedding-v4",
+    "rerank_model": "qwen3-rerank",
+    "answer_model": "qwen3.7-flash"
+  },
+  "counts": {
+    "passed": 89,
+    "failed": 11
+  },
+  "automatic_answer_pass_rate": {
+    "numerator": 89,
+    "denominator": 100,
+    "rate": 0.89
+  },
+  "answerable_strict_pass_rate": {
+    "numerator": 76,
+    "denominator": 87,
+    "rate": 0.8735632183908046
+  },
+  "answerability_accuracy": {
+    "numerator": 94,
+    "denominator": 100,
+    "rate": 0.94
+  },
+  "overall_refusal_rate": {
+    "numerator": 19,
+    "denominator": 100,
+    "rate": 0.19
+  },
+  "correct_refusal_rate_negative": {
+    "numerator": 13,
+    "denominator": 13,
+    "rate": 1.0
+  },
+  "false_refusal_rate_positive": {
+    "numerator": 6,
+    "denominator": 87,
+    "rate": 0.06896551724137931
+  },
+  "false_accept_rate_negative": {
+    "numerator": 0,
+    "denominator": 13,
+    "rate": 0.0
+  },
+  "false_refusal_ids": [
+    "XH-E-049",
+    "CC-003",
+    "NQ-002",
+    "NQ-004",
+    "NQ-014",
+    "NQ-015"
+  ],
+  "evidence": {
+    "fusion": {
+      "observed_positive_cases": 87,
+      "expected_positive_cases": 87,
+      "hit_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "macro_evidence_recall": 1.0,
+      "micro_evidence_recall": {
+        "numerator": 135,
+        "denominator": 135,
+        "rate": 1.0
+      },
+      "complete_evidence_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "mrr": 0.8794198139025725
+    },
+    "rerank": {
+      "observed_positive_cases": 87,
+      "expected_positive_cases": 87,
+      "hit_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "macro_evidence_recall": 0.9948275862068965,
+      "micro_evidence_recall": {
+        "numerator": 133,
+        "denominator": 135,
+        "rate": 0.9851851851851852
+      },
+      "complete_evidence_rate": {
+        "numerator": 85,
+        "denominator": 87,
+        "rate": 0.9770114942528736
+      },
+      "mrr": 0.8838259441707718
+    },
+    "context": {
+      "observed_positive_cases": 87,
+      "expected_positive_cases": 87,
+      "hit_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "macro_evidence_recall": 1.0,
+      "micro_evidence_recall": {
+        "numerator": 135,
+        "denominator": 135,
+        "rate": 1.0
+      },
+      "complete_evidence_rate": {
+        "numerator": 87,
+        "denominator": 87,
+        "rate": 1.0
+      },
+      "mrr": 0.9568965517241379
+    }
+  },
+  "subsets": {
+    "legacy80": {
+      "total": 80,
+      "passed": 73,
+      "failed": 7,
+      "errors": 0,
+      "failed_ids": [
+        "XH-027",
+        "XH-031",
+        "XH-D-29",
+        "XH-E-049",
+        "XH-E-054",
+        "CC-003",
+        "CC-012"
+      ]
+    },
+    "new20": {
+      "total": 20,
+      "passed": 16,
+      "failed": 4,
+      "errors": 0,
+      "failed_ids": [
+        "NQ-002",
+        "NQ-004",
+        "NQ-014",
+        "NQ-015"
+      ]
+    }
+  },
+  "failure_review_categories": {
+    "XH-031": "严格事实标注遗漏",
+    "XH-027": "实质答案遗漏",
+    "XH-D-29": "否定同义表达的评分误判",
+    "XH-E-049": "生成引用结构错误导致最终拒答",
+    "XH-E-054": "严格解释要点遗漏兼措辞代理差异",
+    "CC-012": "严格事实标注遗漏",
+    "CC-003": "题意与实体误解导致误拒答",
+    "NQ-002": "正确草稿被覆盖记录错误拦截",
+    "NQ-004": "计算协议错误与受支持运算边界",
+    "NQ-014": "派生数字校验失败兼比较结论错误",
+    "NQ-015": "时刻差计算与来源绑定错误导致拒答"
+  },
+  "infrastructure_retry_ids": [],
+  "model_usage": {
+    "observed": true,
+    "calls": 335,
+    "reported_total_tokens": 1148793,
+    "unknown_usage_calls": 3,
+    "unknown_usage_rate": 0.008955223880597015,
+    "unpriced_calls": 335,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 3,
+    "observed_requests": 100,
+    "unobserved_requests": 0,
+    "limitation": "Known usage subtotal only; unknown usage is not zero. Historical replay is not new spend."
+  },
+  "local_report_directory": "evals/reports/system/current-100-20261016T063107Z",
+  "report_sha256": "488d9251c9f0304d1322e1f73ef156b8b837a7257091b2362a6e266c6931bbf2",
+  "trace_sha256": "af14d779a46b202a22b5ad74a7fc6ebf2c7d74aea7d0034a7456c16b94d3894e",
+  "limitations": [
+    "Strict automatic phrase/source/evidence proxy, not an independent semantic accuracy measurement.",
+    "Failure reviews do not alter the original score or constitute a full manual review of all100 answers.",
+    "Evidence recall covers annotated evidence only; synthetic regression data is not a held-out enterprise benchmark.",
+    "Previous80 ran before expansion: no like-for-like causal comparison.",
+    "Local backend execution does not measure HTTP gateway, governance, deployed multi-user security or load capacity.",
+    "Known token subtotal only; missing usage and unconfigured pricing are not zero cost."
+  ]
+}

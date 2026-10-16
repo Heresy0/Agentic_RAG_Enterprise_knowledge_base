@@ -1,0 +1,150 @@
+{
+  "company": "星海科技有限公司",
+  "fictional": true,
+  "edition": "xinghai-nanqi-12-v1",
+  "as_of": "2026-10-16",
+  "total_documents": 12,
+  "counts": {
+    "md": 12
+  },
+  "group_counts": {
+    "公司公共": 3,
+    "人力资源部": 3,
+    "技术部": 3,
+    "平台研发部": 3
+  },
+  "documents": [
+    {
+      "file": "documents/01_公司公共/57_南栖项目范围与资料路由.md",
+      "group": "公司公共",
+      "format": "md",
+      "document_code": "XH-NQ-SCOPE",
+      "business_version": "1.0",
+      "effective_from": "2026-10-01",
+      "effective_to": null,
+      "characters": 588,
+      "sha256": "bc20f4346ea11e522845ec0a4d8ee7bc5595cc8f2202dfcd12471021a0665462"
+    },
+    {
+      "file": "documents/01_公司公共/58_南栖验收申请与交接流程.md",
+      "group": "公司公共",
+      "format": "md",
+      "document_code": "XH-NQ-HANDOVER",
+      "business_version": "1.0",
+      "effective_from": "2026-10-01",
+      "effective_to": null,
+      "characters": 524,
+      "sha256": "f5ca463a5fc2ee3233cd6293124dbda0ab1fa5b7df3f2f3df4fbcbe91fb529ff"
+    },
+    {
+      "file": "documents/01_公司公共/59_南栖支持服务订购与计费边界.md",
+      "group": "公司公共",
+      "format": "md",
+      "document_code": "XH-NQ-SERVICE",
+      "business_version": "1.0",
+      "effective_from": "2026-10-01",
+      "effective_to": null,
+      "characters": 476,
+      "sha256": "9194e9b7c97fd379dd9e663afea6597eb7f015730b98a41c84ea04b7d305f258"
+    },
+    {
+      "file": "documents/02_人力资源部/60_南栖异地值守补休标准_历史版.md",
+      "group": "人力资源部",
+      "format": "md",
+      "document_code": "XH-NQ-REST",
+      "business_version": "1.0",
+      "effective_from": "2026-07-01",
+      "effective_to": "2026-09-30",
+      "characters": 547,
+      "sha256": "13b4f3610275cd5f1ce8204e0fd88c7e3d7362472fd50d05bc1867a382c28c46"
+    },
+    {
+      "file": "documents/02_人力资源部/61_南栖异地值守补休标准_现行版.md",
+      "group": "人力资源部",
+      "format": "md",
+      "document_code": "XH-NQ-REST",
+      "business_version": "1.1",
+      "effective_from": "2026-10-01",
+      "effective_to": null,
+      "characters": 513,
+      "sha256": "6c283ed262c873c26a61aa5bca5c67031c4fbbdc42c158546e8fa720178de38e"
+    },
+    {
+      "file": "documents/02_人力资源部/62_南栖值守登记与复核记录.md",
+      "group": "人力资源部",
+      "format": "md",
+      "document_code": "XH-NQ-ROSTER",
+      "business_version": "1.0",
+      "effective_from": "2026-10-13",
+      "effective_to": null,
+      "characters": 508,
+      "sha256": "27732633e3c0986310fbcdf100a2e6c580fe860c0166588c15e11e3b4161a273"
+    },
+    {
+      "file": "documents/03_技术部/63_南栖验收规则与证据口径.md",
+      "group": "技术部",
+      "format": "md",
+      "document_code": "XH-NQ-ACCEPT",
+      "business_version": "2.0",
+      "effective_from": "2026-10-10",
+      "effective_to": null,
+      "characters": 488,
+      "sha256": "bfddcdb7518a5318a93fd634216bf338dbaa17acb66276570ac996ccb748a172"
+    },
+    {
+      "file": "documents/03_技术部/64_南栖校验结果与签署台账.md",
+      "group": "技术部",
+      "format": "md",
+      "document_code": "XH-NQ-RESULT",
+      "business_version": "1.0",
+      "effective_from": "2026-10-16",
+      "effective_to": null,
+      "characters": 542,
+      "sha256": "96b18e6effafab958ee1b0dc577a83cc81c8c342d67776ca4b75721a2bad2cbd"
+    },
+    {
+      "file": "documents/03_技术部/65_南栖通知投递与幂等规范.md",
+      "group": "技术部",
+      "format": "md",
+      "document_code": "XH-NQ-NOTIFY",
+      "business_version": "1.0",
+      "effective_from": "2026-10-01",
+      "effective_to": null,
+      "characters": 552,
+      "sha256": "1b3e3d51680d6097c7bf701270858ccd1940f54bbc0182299caaa70bffaf7a81"
+    },
+    {
+      "file": "documents/04_平台研发部/66_南栖连接器配置与服务等级映射.md",
+      "group": "平台研发部",
+      "format": "md",
+      "document_code": "XH-NQ-CONFIG",
+      "business_version": "1.1",
+      "effective_from": "2026-10-13",
+      "effective_to": null,
+      "characters": 499,
+      "sha256": "13d0a59760793d8627ca498a97cb089f55abc254537a0f2b3d3d15ca1a5bc8b6"
+    },
+    {
+      "file": "documents/04_平台研发部/67_南栖服务时限与计时约定.md",
+      "group": "平台研发部",
+      "format": "md",
+      "document_code": "XH-NQ-SLA",
+      "business_version": "1.0",
+      "effective_from": "2026-10-01",
+      "effective_to": null,
+      "characters": 469,
+      "sha256": "da54a76dbc81a41910e46a4866718e8f63dfcdb722ab3e03c33ecfd5bdb8f38a"
+    },
+    {
+      "file": "documents/04_平台研发部/68_南栖运行事件与整改记录.md",
+      "group": "平台研发部",
+      "format": "md",
+      "document_code": "XH-NQ-INCIDENT",
+      "business_version": "1.0",
+      "effective_from": "2026-10-16",
+      "effective_to": null,
+      "characters": 555,
+      "sha256": "2bc6bb227f428ed1e1df0dc706be6b3ed4e8840106b87905f1ce0314d292d3e8"
+    }
+  ]
+}

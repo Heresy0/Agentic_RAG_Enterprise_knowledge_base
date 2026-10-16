@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-16",
+  "source_type": "synthetic_business_regression_corpus",
+  "status": "sources_ingested_and_dataset_expanded",
+  "dataset": {
+    "directory": "evals/xinghai_v4",
+    "single_turn_cases": 100,
+    "answerable": 87,
+    "unanswerable": 13,
+    "original_cases": 80,
+    "new_cases": 20,
+    "original80_preserved_byte_for_byte": true,
+    "inherited_conversations": 8,
+    "inherited_conversation_turns": 24,
+    "inherited_security_cases": 12,
+    "single_turn_jsonl_sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a",
+    "original80_sha256": "705e9606622e2ecbb13ea0363da61269b2c25b566b3c183e6b0d568703148982"
+  },
+  "new_corpus": {
+    "directory": "sample_docs/xinghai_nanqi",
+    "documents": 12,
+    "group_counts": {
+      "公司公共": 3,
+      "人力资源部": 3,
+      "技术部": 3,
+      "平台研发部": 3
+    },
+    "manifest_sha256": "2e60c7a77fab8ab186ea623a67854032fcfff133ad1ba0f2305ce268f3b20144",
+    "new_chunks": 84
+  },
+  "prepared_corpus": {
+    "directory": "output/knowledge-corpus-100",
+    "specified_documents": 68,
+    "positive_evidence_source_documents": 62,
+    "manifest_sha256": "f3a3f93465fb6aff3d4d06668868a45388966e03614d2890f93518e731f5b511"
+  },
+  "live_ingestion": {
+    "transport": "OIDC-protected HTTP upload API",
+    "documents_before": 60,
+    "documents_after": 72,
+    "new_documents_ready": 12,
+    "successful_indexing_jobs": 12,
+    "preexisting_documents_unchanged": true,
+    "index_audit": {
+      "total": 72,
+      "passed": 72,
+      "failed": 0,
+      "error": 0,
+      "skipped": 0,
+      "partial": 0,
+      "not_applicable": 0,
+      "pass_rate": 1.0
+    },
+    "total_chunks": 600,
+    "upload_receipt_sha256": "bf1d1ed6d815f652344b9b7489864792a695956a6c6edb85307a2d93907059b4",
+    "index_audit_sha256": "6c27d2ef76fae800806ad93784b160e10b720f1d5241444b1fd91c6cecab3d61",
+    "credentials_included": false,
+    "authorization_changes": false
+  },
+  "validation": {
+    "new_source_parsing": {
+      "total": 29,
+      "passed": 29,
+      "failed": 0,
+      "error": 0,
+      "skipped": 0,
+      "partial": 0,
+      "not_applicable": 0,
+      "pass_rate": 1.0
+    },
+    "regression_tests": {
+      "tests": 120,
+      "passed": 120,
+      "failed": 0,
+      "errors": 0
+    },
+    "regression_receipt_sha256": "c7c04e2f6739e66bf4ee3bf83ee8e29fa8513682dc748c13150269625e2e5179",
+    "generator_check": "passed",
+    "original80_equal_to_git_head": true,
+    "metadata_followup": {
+      "passed": 3,
+      "failed": 0,
+      "receipt_sha256": "8fba006345456a42655124b1a3e7d6dc71639d9003ad262334dbf4338004eb2a"
+    }
+  },
+  "full_100_question_live_evaluation": "not_run",
+  "limitations": [
+    "Synthetic source/label expansion is not an independent blind benchmark.",
+    "No 100-case answer accuracy, evidence recall or refusal quality measured in this expansion task.",
+    "Previous 80-case scores predate the new documents and cannot serve as a fresh expanded-corpus score.",
+    "Index audit checks DB metadata hashes and vector counts, not independent stored-file byte restoration.",
+    "Only business sources were ingested; questions, references and labels remain outside the knowledge base."
+  ]
+}

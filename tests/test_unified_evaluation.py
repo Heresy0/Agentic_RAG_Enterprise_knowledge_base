@@ -9,8 +9,8 @@ from scripts.evaluate_system import parse_args
 from scripts.merge_xinghai_evaluation import BASE_CORPUS, COMBINED_CORPUS, MAIN, merge, prepare_corpus
 
 
-def test_default_entry_uses_one_80_case_pack_and_50_document_corpus():
-    args = parse_args([])
+def test_explicit_legacy_entry_keeps_80_case_pack_and_50_document_corpus():
+    args = parse_args(['--dataset-dir', str(MAIN), '--corpus', str(COMBINED_CORPUS)])
     assert args.dataset_dir == MAIN
     assert args.corpus == COMBINED_CORPUS
     cases = load_dataset(MAIN / "single_turn.jsonl")

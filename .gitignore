@@ -64,3 +64,6 @@ output/knowledge-corpus-unified/
 
 # Reproducible local corpus copy for the six-document multihop increment.
 output/knowledge-corpus-multihop/
+
+# Reproducible 68-document corpus for the versioned 100-case pack.
+output/knowledge-corpus-100/

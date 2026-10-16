@@ -114,6 +114,8 @@ jobs:
           sudo apt-get install --no-install-recommends -y poppler-utils tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-eng
           python scripts/merge_xinghai_evaluation.py --prepare-corpus
           python scripts/build_knowledge_expansion.py --check
+          python scripts/build_100_evaluation.py --prepare-corpus
+          python scripts/build_100_evaluation.py --check
           python scripts/evaluate_system.py --mode offline --layers parsing --ocr --strict
 
       - name: Run migrations
