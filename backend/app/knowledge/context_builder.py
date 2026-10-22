@@ -76,12 +76,22 @@ class ContextBuilder:
         if not documents:
             return BuiltContext.empty()
 
+        supplied = documents
         documents = prioritize_content(self._deduplicate(documents), question=question)
+        def address(document):
+            return str(document.id or document.metadata.get("chunk_id") or "")
+        retained_objects = {id(document) for document in documents}
+        exclusions = [dict(chunk_id=address(document), reason="duplicate_or_empty")
+                      for document in supplied if id(document) not in retained_objects]
         documents = [select_parent_context(document, question) for document in documents]
         candidate_count = len(documents)
+        before_source_limit = documents
         documents, reservations = select_context_chunks(
             documents, question=question, max_per_source=self.max_chunks_per_source,
         )
+        retained_objects = {id(document) for document in documents}
+        exclusions.extend(dict(chunk_id=address(document), reason="per_source_limit")
+                          for document in before_source_limit if id(document) not in retained_objects)
         items: list[ContextItem] = []
         rendered_blocks: list[str] = []
         source_counts: dict[str, int] = {}
@@ -137,11 +147,13 @@ class ContextBuilder:
             )
 
             if available_content_size < 1:
+                exclusions.append(dict(chunk_id=address(document), reason="character_budget_exhausted"))
                 continue
 
             if len(content) > available_content_size:
                 # 后续长块不能挤掉排名更高的已选内容。
                 if rendered_blocks:
+                    exclusions.append(dict(chunk_id=address(document), reason="whole_block_exceeds_remaining_budget"))
                     continue
 
                 content = self._truncate_content(
@@ -201,6 +213,7 @@ class ContextBuilder:
         record_context_selection(dict(
             candidate_count=candidate_count, source_limited_count=len(documents),
             selected_count=len(items), selected_characters=used_characters,
+            exclusions=exclusions,
             max_characters=self.max_characters, max_chunks_per_source=self.max_chunks_per_source,
             reservations=[dict(row, included=any(item.chunk_id == row["chunk_id"] for item in items))
                           for row in reservations],

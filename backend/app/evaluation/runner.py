@@ -13,6 +13,8 @@ from uuid import UUID
 
 from .metrics import evidence_metrics, score_answer, score_generation, summarize_records, summarize_stages
 from .trace import capture_trace, record_context
+from .ranking import OBSERVED_STAGES, citation_rows, graded_ranking, rank_diagnostics
+from .semantics import score_semantics
 from ..model_usage import summarize_usage, usage_context
 
 
@@ -20,7 +22,16 @@ def score_trace(case, trace, *, include_answer=False):
     stages = trace.get("stages", {})
     metrics = {stage: evidence_metrics(case["expected_evidence"], rows,
                                      alternative_sets=case.get("accepted_evidence_sets", []))
-               for stage, rows in stages.items() if stage in ("vector", "keyword", "fusion", "rerank", "context")}
+               for stage, rows in stages.items() if stage in OBSERVED_STAGES}
+    if "response" in trace and "context" in stages:
+        metrics["citations"] = evidence_metrics(case["expected_evidence"], citation_rows(trace["response"], stages["context"]),
+                                               alternative_sets=case.get("accepted_evidence_sets", []))
+    for stage in OBSERVED_STAGES:
+        if stage in metrics:
+            rows = citation_rows(trace["response"], stages["context"]) if stage == "citations" else stages[stage]
+            metrics[stage]["graded_ranking"] = graded_ranking(case.get("relevance_judgments"), rows)
+    metrics["ranking_requirements"] = case.get("ranking_checks", {"max_first_relevant_rank": 1})
+    metrics["rank_diagnostics"] = rank_diagnostics(metrics)
     metrics["model_usage"] = summarize_usage(stages.get("model_usage", []), observed="model_usage" in stages)
     metrics["model_usage"]["events"] = stages.get("model_usage", [])
     violations = sum(bool(row.get("scope_violation")) for rows in stages.values() for row in rows)
@@ -34,6 +45,7 @@ def score_trace(case, trace, *, include_answer=False):
             return dict(id=case["id"], status="skipped", reason="no_final_response_in_trace", metrics=metrics)
         metrics["answer"] = score_answer(case, trace["response"], stages.get("context"))
         metrics["generation"] = score_generation(case, trace)
+        metrics["semantics"] = score_semantics(case, trace["response"], stages.get("context"))
         status = "passed" if metrics["answer"]["automatic_proxy_pass"] else "failed"
     if violations:
         status = "failed"

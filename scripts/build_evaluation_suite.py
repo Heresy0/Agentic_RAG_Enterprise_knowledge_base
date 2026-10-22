@@ -62,6 +62,10 @@ def build_artifacts(root=ROOT,output=CURRENT):
     rules=(root/'evals/scoring_rules.json').read_bytes()
     artifacts[output/'scoring_rules.json']=rules
     artifacts[output/'groups/main/scoring_rules.json']=rules
+    quality_policy=(root/'evals/quality_policy.json').read_bytes()
+    if json.loads(quality_policy)['dataset_sha256']!=sha(combined):
+        raise ValueError('Quality policy must bind the unchanged120-case dataset')
+    artifacts[output/'quality_policy.json']=quality_policy
     # Preserve reference prose while rebinding the active scoring annotations.
     active_rules=json.loads(rules)
     references=json.loads((main/'ragas_references_v1.json').read_bytes())
@@ -84,6 +88,7 @@ def build_artifacts(root=ROOT,output=CURRENT):
     permissions=json.loads(artifacts[output/'permissions.json'])
     suite=dict(version=1,kind='synthetic_regression_not_independent_blind_test',
         dataset_sha256=sha(combined),scoring_rules_sha256=sha(artifacts[output/'scoring_rules.json']),
+        quality_policy_sha256=sha(quality_policy),
         groups=groups,single_turn_cases=120,answerable=104,unanswerable=16,
         conversations=dict(groups=len(conversations),turns=sum(len(r['turns']) for r in conversations),
                            sha256=sha(artifacts[output/'conversations.json'])),

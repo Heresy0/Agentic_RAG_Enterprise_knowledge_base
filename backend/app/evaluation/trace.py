@@ -4,6 +4,7 @@ from contextvars import ContextVar
 from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import PurePosixPath
+from math import isfinite
 from prometheus_client import Counter
 
 RAG_ROUTES = Counter("enterprise_rag_routes", "RAG strategy selections by phase", ["phase", "strategy"])
@@ -93,6 +94,10 @@ def record_documents(stage, documents):
                          section_path=metadata.get("section_path")))
         if metadata.get('parent_id'):
             rows[-1]['parent_id'] = metadata['parent_id']
+        for key in ("rrf_rank", "rrf_score", "rerank_score", "model_rank", "final_rank"):
+            value = metadata.get(key)
+            if type(value) in (int, float) and isfinite(value):
+                rows[-1][key] = value
     trace.stages[stage] = rows
 
 

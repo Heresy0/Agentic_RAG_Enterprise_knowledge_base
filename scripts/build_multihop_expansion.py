@@ -181,7 +181,12 @@ def artifacts(corpus=CORPUS, dataset=DATASET):
             metrics = evidence_metrics(c['expected_evidence'],chunks)
             if not metrics['all_evidence_present']:
                 raise ValueError('Evidence missing after Markdown parsing: '+c['id'])
-            evidence_checks.append(dict(id=c['id'], **metrics))
+            # The archived coverage schema is frozen. New runtime ranking fields
+            # belong in new reports, not in a regenerated historical artifact.
+            legacy_fields = ('scored', 'hit', 'first_relevant_rank', 'reciprocal_rank',
+                             'evidence_recall', 'all_evidence_present',
+                             'expected_evidence_count', 'matched_evidence_count')
+            evidence_checks.append(dict(id=c['id'], **{key: metrics[key] for key in legacy_fields}))
     manifest=dict(company='星海科技有限公司', fictional=True, edition=EDITION, as_of=AS_OF,
         total_documents=6, counts={'md':6}, group_counts=dict(Counter(d['group'] for d in docs)), documents=docs)
     coverage=dict(edition=EDITION, single_turn_cases=12, answerable=9, unanswerable=3,

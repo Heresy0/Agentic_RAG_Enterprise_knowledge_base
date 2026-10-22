@@ -37,18 +37,23 @@ def evidence_metrics(evidence, rows, *, alternative_sets=()):
             return dict(result, matched_evidence_set=results.index(result))
     if not evidence:
         return dict(scored=False, reason="no_positive_evidence_labels")
-    matched, first_rank = set(), None
+    matched, first_rank, evidence_ranks = set(), None, {}
     for rank, row in enumerate(rows, 1):
         for index, item in enumerate(evidence):
             if (document_key(row.get("document_name", "")) == document_key(item["document"])
                     and contains_fact(row.get("content", ""), item["text"])):
                 matched.add(index)
+                evidence_ranks.setdefault(str(index), rank)
                 if first_rank is None:
                     first_rank = rank
     return dict(scored=True, hit=bool(matched), first_relevant_rank=first_rank,
                 reciprocal_rank=1 / first_rank if first_rank else 0,
                 evidence_recall=len(matched) / len(evidence),
                 all_evidence_present=len(matched) == len(evidence),
+                 hit_at_1=first_rank == 1,
+                 hit_at_3=first_rank is not None and first_rank <= 3,
+                 hit_at_5=first_rank is not None and first_rank <= 5,
+                 evidence_ranks=evidence_ranks,
                 expected_evidence_count=len(evidence), matched_evidence_count=len(matched))
 
 
@@ -168,6 +173,9 @@ def summarize_stages(records):
         scored = [row["metrics"][stage] for row in records if row.get("metrics", {}).get(stage, {}).get("scored")]
         result[stage] = dict(scored_cases=len(scored),
                             hit_rate=sum(row["hit"] for row in scored) / len(scored) if scored else None,
+                            **{f"hit_at_{k}": sum(row.get("first_relevant_rank") is not None and
+                                row["first_relevant_rank"] <= k for row in scored) / len(scored)
+                                if scored else None for k in (1, 3, 5)},
                             mrr=sum(row["reciprocal_rank"] for row in scored) / len(scored) if scored else None,
                             mean_evidence_recall=sum(row["evidence_recall"] for row in scored) / len(scored) if scored else None,
                             all_evidence_rate=sum(row["all_evidence_present"] for row in scored) / len(scored) if scored else None)

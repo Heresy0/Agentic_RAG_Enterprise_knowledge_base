@@ -768,6 +768,8 @@ P95、5xx 数量以及治理场景是否真的出现 429。任一门槛不通过
 
 统一入口为`python scripts/evaluate.py`，默认使用[当前120题套件](evals/current/README.md)。主回归100题、多跳12题和完整性8题分别评分；多轮8组24轮、权限12项与压测负载单独统计。旧题集已移至[冻结归档](evals/archive/README.md)，历史报告保留原样。
 
+新增 `ranking` 首位排序门禁、Hit@1/3/5、模型原始排名与规则干预诊断，以及 `semantics` 条件/否定/来源断言和绑定实际上下文的独立复核。原 r10 自动代理分继续单独报告；未复核不能当成语义正确。用法与回归范围见[排序与语义评估说明](docs/EVALUATION_QUALITY.md)。
+
 ```powershell
 python scripts/evaluate.py check
 python scripts/evaluate.py system --mode offline --layers parsing --ocr --strict

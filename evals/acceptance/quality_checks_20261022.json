@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-22",
+  "change": "新增首位排序门槛、分阶段排名诊断、有限语义断言与指纹绑定独立复核",
+  "branch": "codex/evaluation-ranking-semantics",
+  "evaluator_version": "2026-10-21-quality-v1",
+  "dataset_sha256": "c1ef8bef5a0b5f717d716d40bf00755c42e5f4850ae869958efdb83208ada19d",
+  "scoring_rules_sha256": "41445f2dc30229f21f8b94cf76008f32cea2f5640ce2efac8e8faded9c7db9d7",
+  "quality_policy_sha256": "159f626b832731b88849240bae15fc8bffc6e0912c79851b578d5f38dac9033d",
+  "suite_sha256": "26068ab89eebf768b0421001aa651512a30006f29d4cb86a79c5f8ba8219f354",
+  "validation": {
+    "pytest_command": "python -X utf8 -m pytest -m 'not integration' -p no:locust -o addopts= -q",
+    "passed": 1140,
+    "deselected_integration": 48,
+    "suite_check": "verified",
+    "single_turn_cases": 120,
+    "compileall": "passed",
+    "diff_check": "passed",
+    "original_gold_and_prior_acceptance_files": "unchanged"
+  },
+  "historical_replay": {
+    "evaluation_type": "historical_trace_replay_not_new_live_acceptance",
+    "source_trace": "evals/reports/system/current-120-20261016T104935Z/traces.jsonl",
+    "source_trace_sha256": "c623dc0b577345dfb3a623ab3e1c97b7886004ea9138761765ba8c3b5ded7eb8",
+    "report": "evals/reports/system/quality-ranking-semantics-20261021/report.json",
+    "cases": 120,
+    "new_model_calls": 0,
+    "overall_status": "failed",
+    "ranking": {
+      "passed": 87,
+      "failed": 17,
+      "not_applicable": 16,
+      "rerank_hit_at_1": 0.8365384615384616,
+      "context_hit_at_1": 0.9423076923076923,
+      "ndcg_scored_cases": 0
+    },
+    "semantics": {
+      "observed_cases": 120,
+      "assertion_covered_cases": 11,
+      "reviewed_cases": 0,
+      "passed": 0,
+      "failed": 2,
+      "partial": 9,
+      "skipped": 109,
+      "failed_case_ids": ["NQ-014", "MH-009"]
+    }
+  },
+  "limitations": [
+    "回归通过验证评估器能发现所覆盖的问题，不代表已修复业务排序策略。",
+    "当前完整题集没有新增分级相关性金标，NDCG 为空；Hit@1 表示支持证据首位命中。",
+    "有限语义断言只覆盖已标注问题；未独立复核的答案不会被记为语义正确。",
+    "原始回放报告按仓库规则仅保存在本地，以上只保留可审计的哈希和汇总。"
+  ]
+}

@@ -2,10 +2,12 @@
 import json
 from datetime import datetime, timezone
 from .metrics import summarize_generation
+from .ranking import ranking_layer
+from .semantics import semantics_layer
 from ..model_usage import summarize_usage
 
 
-LAYERS = ("parsing", "index", "retrieval", "rerank", "context", "answer", "conversations", "security", "performance")
+LAYERS = ("parsing", "index", "retrieval", "rerank", "context", "answer", "ranking", "semantics", "conversations", "security", "performance")
 
 
 def skipped(reason):
@@ -44,6 +46,7 @@ def quality_layers(quality):
         retrieval=dict(status="completed", stages={key: quality.get("stages", {}).get(key) for key in ("vector", "keyword", "fusion")},
                        **{key: value for key, value in stage_report(quality, "fusion").items() if key != "status"}),
         rerank=stage_report(quality, "rerank"), context=stage_report(quality, "context"),
+        ranking=ranking_layer(quality), semantics=semantics_layer(quality),
         answer=dict(status="completed", summary=summarize_records(answer_records), records=answer_records,
                     generation_metrics=summarize_generation(quality.get("records", [])),
                     limitation="Phrase/source proxies; semantic correctness and faithfulness require human review."))
@@ -65,7 +68,7 @@ def outcome(report):
 
 def compare_baseline(report, baseline):
     """Only compare like-for-like runs; never turn historical Chroma numbers into current gates."""
-    keys = ("schema_version", "scorer_version", "scoring_rules_sha256", "mode", "dataset_sha256", "selected_case_ids", "requested_conversation_ids",
+    keys = ("schema_version", "scorer_version", "scoring_rules_sha256", "evaluator_version", "quality_policy_sha256", "mode", "dataset_sha256", "selected_case_ids", "requested_conversation_ids",
             "conversation_backend", "conversations_sha256", "corpus_manifest_sha256", "scope_config_sha256",
             "suite_sha256", "selected_groups")
     mismatches = [key for key in keys if report.get(key) != baseline.get(key)]
@@ -77,7 +80,7 @@ def compare_baseline(report, baseline):
     for name, layer in report["layers"].items():
         previous = baseline["layers"][name]
         metrics = layer.get("metrics", {}) or {}
-        for metric in ("hit_rate", "mrr", "mean_evidence_recall", "all_evidence_rate"):
+        for metric in ("hit_rate", "hit_at_1", "hit_at_3", "hit_at_5", "mrr", "mean_evidence_recall", "all_evidence_rate"):
             current, old = metrics.get(metric), (previous.get("metrics", {}) or {}).get(metric)
             if isinstance(current, (int, float)) and isinstance(old, (int, float)):
                 changes.append(dict(layer=name, metric=metric, baseline=old, current=current, delta=current - old))
@@ -93,7 +96,7 @@ def write_report(report, directory):
     report["overall_status"] = outcome(report)
     # Quality layers share the SAME call trace. Aggregate answer records only once.
     quality_records = next((report["layers"][name].get("records", [])
-                            for name in ("answer", "retrieval", "rerank", "context")
+                            for name in ("answer", "retrieval", "rerank", "context", "ranking", "semantics")
                             if report["layers"].get(name, {}).get("records")), [])
     usage_rows = [row.get("model_usage") for row in quality_records]
     usage_rows.extend(turn.get("metrics", {}).get("model_usage")
@@ -113,12 +116,12 @@ def write_report(report, directory):
     if report.get('group_scores'):
         lines.extend(['','## 单轮分组评分','',
             '各组使用原事实标准；历史100题成绩只属于main组，缺失观察不计为通过。','',
-            '| 分组 | 层 | 已选题数 | 通过 | 失败 | 错误 | 未观察/部分 | 不适用 | Hit Rate | MRR | 全证据完整率 |',
-            '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|'])
+            '| 分组 | 层 | 已选题数 | 通过 | 失败 | 错误 | 未观察/部分 | 不适用 | Hit Rate | Hit@1 | Hit@3 | MRR | 全证据完整率 |',
+            '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|'])
         for group in report['group_scores'].values():
             for name,layer in group['layers'].items():
                 s=layer['summary'];m=layer.get('metrics') or {}
-                lines.append(f"| {group['name']} | {name} | {group['selected_cases']} | {s['passed']} | {s['failed']} | {s['error']} | {s['skipped']+s['partial']} | {s['not_applicable']} | {m.get('hit_rate','—')} | {m.get('mrr','—')} | {m.get('all_evidence_rate','—')} |")
+                lines.append(f"| {group['name']} | {name} | {group['selected_cases']} | {s['passed']} | {s['failed']} | {s['error']} | {s['skipped']+s['partial']} | {s['not_applicable']} | {m.get('hit_rate','—')} | {m.get('hit_at_1','—')} | {m.get('hit_at_3','—')} | {m.get('mrr','—')} | {m.get('all_evidence_rate','—')} |")
     for name, layer in report["layers"].items():
         lines.extend(["", "## " + name, ""])
         for key in ("reason", "limitation", "evaluation_type"):
