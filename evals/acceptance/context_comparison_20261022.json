@@ -1,0 +1,624 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-22",
+  "application_head": "a1002eb85371b5b6ef39274decb39c2d57261c2f",
+  "live_started_at": "2026-10-22T13:13:56.400859+00:00",
+  "live_finished_at": "2026-10-22T13:39:49.918287+00:00",
+  "kind": "authenticated_paired_live_single_pass",
+  "repetitions": 1,
+  "case_count": 120,
+  "question_scope_authorized": true,
+  "frozen_criteria_sha256": "e9d798aa332f654a324d1b80f33999b4d64a6a7f48fcceb4f85061f19949e2d6",
+  "dataset_sha256": "c1ef8bef5a0b5f717d716d40bf00755c42e5f4850ae869958efdb83208ada19d",
+  "corpus_sha256": "d8f25fb92cd10c06fda820e02dfab38bbcefaf3ab48fe74a67983fe3c6e1ff80",
+  "corpus_counts": {
+    "documents": 72,
+    "chunks": 600,
+    "parents": 158
+  },
+  "same_corpus": true,
+  "same_permissions": true,
+  "variants": {
+    "full_parent": {
+      "agentic_rag_mode": "auto",
+      "rag_planner_mode": "auto",
+      "rag_repair_enabled": true,
+      "rag_feedback_enabled": true,
+      "rag_parent_context_enabled": true,
+      "rag_rerank_top_k": 12,
+      "chat_model": "qwen3.7-flash",
+      "embedding_model": "text-embedding-v4",
+      "rerank_model": "qwen3-rerank",
+      "rag_max_optional_calls": 4,
+      "rag_max_optional_tokens": 32000,
+      "rag_max_optional_seconds": 35.0,
+      "rag_max_searches": 3,
+      "temperature": 0,
+      "reasoning_effort": "none",
+      "max_retries": 0,
+      "context_max_characters": 12000,
+      "context_max_chunks_per_source": 4,
+      "model_destinations": {
+        "chat_base_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+        "rerank_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-api/v1/reranks"
+      },
+      "rag_context_selection_enabled": false,
+      "rag_context_selection_output_tokens": 512,
+      "rag_context_selection_prompt_bytes": 16000,
+      "rag_context_selection_timeout_seconds": 6.0
+    },
+    "model_sections": {
+      "agentic_rag_mode": "auto",
+      "rag_planner_mode": "auto",
+      "rag_repair_enabled": true,
+      "rag_feedback_enabled": true,
+      "rag_parent_context_enabled": true,
+      "rag_rerank_top_k": 12,
+      "chat_model": "qwen3.7-flash",
+      "embedding_model": "text-embedding-v4",
+      "rerank_model": "qwen3-rerank",
+      "rag_max_optional_calls": 4,
+      "rag_max_optional_tokens": 32000,
+      "rag_max_optional_seconds": 35.0,
+      "rag_max_searches": 3,
+      "temperature": 0,
+      "reasoning_effort": "none",
+      "max_retries": 0,
+      "context_max_characters": 12000,
+      "context_max_chunks_per_source": 4,
+      "model_destinations": {
+        "chat_base_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+        "rerank_url": "https://ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com/compatible-api/v1/reranks"
+      },
+      "rag_context_selection_enabled": true,
+      "rag_context_selection_output_tokens": 512,
+      "rag_context_selection_prompt_bytes": 16000,
+      "rag_context_selection_timeout_seconds": 6.0
+    }
+  },
+  "primary_metrics": {
+    "protocol": {
+      "kind": "authenticated_paired_live_single_pass",
+      "case_count": 120,
+      "budget": 12000,
+      "same_corpus": true,
+      "same_permissions": true
+    },
+    "variants": {
+      "full_parent": {
+        "completed": 120,
+        "responses": 120,
+        "errors": 0,
+        "answered": 95,
+        "refused": 25,
+        "refusal_rate": 0.20833333333333334,
+        "answerable_cases": 104,
+        "false_refusals": 9,
+        "correct_refusals": 16,
+        "unsupported_answers": 0,
+        "negative_cases": 16,
+        "latency_ms": {
+          "mean": 6528.19025,
+          "median": 4805.985000000001,
+          "p95": 14773.05
+        },
+        "model_calls": 425,
+        "selection_cases": 0,
+        "calls_by_stage": {
+          "query_embedding": 123,
+          "rerank": 123,
+          "answer_generation": 119,
+          "query_planning": 37,
+          "answer_repair": 8,
+          "agent_decision": 15
+        },
+        "tokens_by_stage": {
+          "query_embedding": 2732,
+          "rerank": 640380,
+          "answer_generation": 734515,
+          "query_planning": 12477,
+          "answer_repair": 24692,
+          "agent_decision": 34564
+        },
+        "total_tokens": 1449360,
+        "unknown_usage_calls": 5,
+        "estimated_cny": 0.48722948,
+        "cost_by_stage": {
+          "query_embedding": 0.0013659999999999998,
+          "rerank": 0.32019000000000003,
+          "answer_generation": 0.14808679999999996,
+          "query_planning": 0.005363400000000001,
+          "answer_repair": 0.007167639999999999,
+          "agent_decision": 0.00505564
+        },
+        "unpriced_calls": 5,
+        "cost_complete": false,
+        "max_chat_input_tokens": 9374,
+        "parent_selection_reasons": {
+          "full_parent_default": 626
+        },
+        "incomplete_context_cases": 0,
+        "final_parent_items": {
+          "intact": 626,
+          "changed": 0,
+          "unverified": 0
+        },
+        "legacy_proxy": {
+          "total": 120,
+          "passed": 109,
+          "failed": 11,
+          "error": 0,
+          "skipped": 0,
+          "partial": 0,
+          "not_applicable": 0,
+          "pass_rate": 0.9083333333333333
+        },
+        "bounded_semantics": {
+          "total": 120,
+          "passed": 0,
+          "failed": 3,
+          "error": 0,
+          "skipped": 109,
+          "partial": 8,
+          "not_applicable": 0,
+          "pass_rate": 0.0
+        }
+      },
+      "model_sections": {
+        "completed": 120,
+        "responses": 120,
+        "errors": 0,
+        "answered": 95,
+        "refused": 25,
+        "refusal_rate": 0.20833333333333334,
+        "answerable_cases": 104,
+        "false_refusals": 9,
+        "correct_refusals": 16,
+        "unsupported_answers": 0,
+        "negative_cases": 16,
+        "latency_ms": {
+          "mean": 6264.818,
+          "median": 4753.32,
+          "p95": 13440.47
+        },
+        "model_calls": 429,
+        "selection_cases": 0,
+        "calls_by_stage": {
+          "query_embedding": 122,
+          "rerank": 122,
+          "answer_generation": 119,
+          "query_planning": 37,
+          "answer_repair": 10,
+          "agent_decision": 19
+        },
+        "tokens_by_stage": {
+          "query_embedding": 2713,
+          "rerank": 634874,
+          "answer_generation": 733469,
+          "query_planning": 13146,
+          "answer_repair": 27836,
+          "agent_decision": 42648
+        },
+        "total_tokens": 1454686,
+        "unknown_usage_calls": 4,
+        "estimated_cny": 0.49442758000000003,
+        "cost_by_stage": {
+          "query_embedding": 0.0013564999999999996,
+          "rerank": 0.3174370000000001,
+          "answer_generation": 0.15397699999999997,
+          "query_planning": 0.005756999999999999,
+          "answer_repair": 0.0088918,
+          "agent_decision": 0.00700828
+        },
+        "unpriced_calls": 4,
+        "cost_complete": false,
+        "max_chat_input_tokens": 9374,
+        "parent_selection_reasons": {
+          "full_parent_default": 625
+        },
+        "incomplete_context_cases": 0,
+        "final_parent_items": {
+          "intact": 625,
+          "changed": 0,
+          "unverified": 0
+        },
+        "legacy_proxy": {
+          "total": 120,
+          "passed": 108,
+          "failed": 12,
+          "error": 0,
+          "skipped": 0,
+          "partial": 0,
+          "not_applicable": 0,
+          "pass_rate": 0.9
+        },
+        "bounded_semantics": {
+          "total": 120,
+          "passed": 0,
+          "failed": 2,
+          "error": 0,
+          "skipped": 109,
+          "partial": 9,
+          "not_applicable": 0,
+          "pass_rate": 0.0
+        }
+      }
+    },
+    "pairs": {
+      "completed": 120,
+      "initial_evidence_observed_pairs": 120,
+      "final_context_observed_pairs": 120,
+      "same_initial_evidence": 120,
+      "same_final_context": 118,
+      "same_answerability": 114,
+      "changed_context_ids": [
+        "FP-003",
+        "FP-005"
+      ],
+      "changed_answerability_ids": [
+        "XH-031",
+        "NQ-010",
+        "NQ-014",
+        "MH-007",
+        "MH-009",
+        "FP-003"
+      ]
+    }
+  },
+  "assistant_review": {
+    "reviewer": "Codex assistant review of Qwen business outputs; not human review",
+    "rubric": "核对问题、冻结参考答案与实际引用原文。完整正确要求核心结论正确，且不省略影响适用范围、执行条件或例外的条款；题目已给出的前提可不重复，无关附属信息不要求逐字复述。拒答对正例计失败，对负例按证据边界判断。与关键词代理分数分开。",
+    "variants": {
+      "full_parent": {
+        "reviewed": 120,
+        "passed": 95,
+        "failed": 25,
+        "complete_semantic_accuracy": 0.7916666666666666,
+        "categories": {
+          "condition_omission": 13,
+          "complete_answer": 79,
+          "incomplete_answer": 1,
+          "correct_refusal": 16,
+          "false_refusal": 9,
+          "semantic_error": 2
+        },
+        "failed_ids": [
+          "XH-001",
+          "XH-002",
+          "XH-006",
+          "XH-009",
+          "XH-013",
+          "XH-024",
+          "XH-025",
+          "XH-027",
+          "XH-030",
+          "XH-D-23",
+          "XH-D-24",
+          "XH-E-048",
+          "XH-E-049",
+          "XH-E-056",
+          "CC-003",
+          "NQ-002",
+          "NQ-004",
+          "NQ-008",
+          "NQ-014",
+          "NQ-015",
+          "MH-007",
+          "MH-009",
+          "FP-001",
+          "FP-002",
+          "FP-003"
+        ],
+        "condition_focus": {
+          "cases": 31,
+          "categories": {
+            "condition_omission": 10,
+            "complete_answer": 18,
+            "semantic_error": 2,
+            "false_refusal": 1
+          },
+          "failed_ids": [
+            "XH-001",
+            "XH-002",
+            "XH-006",
+            "XH-009",
+            "XH-013",
+            "XH-025",
+            "XH-030",
+            "XH-D-23",
+            "XH-D-24",
+            "MH-007",
+            "FP-001",
+            "FP-002",
+            "FP-003"
+          ]
+        }
+      },
+      "model_sections": {
+        "reviewed": 120,
+        "passed": 95,
+        "failed": 25,
+        "complete_semantic_accuracy": 0.7916666666666666,
+        "categories": {
+          "condition_omission": 14,
+          "complete_answer": 79,
+          "incomplete_answer": 1,
+          "false_refusal": 9,
+          "correct_refusal": 16,
+          "semantic_error": 1
+        },
+        "failed_ids": [
+          "XH-001",
+          "XH-002",
+          "XH-006",
+          "XH-009",
+          "XH-024",
+          "XH-025",
+          "XH-026",
+          "XH-027",
+          "XH-030",
+          "XH-031",
+          "XH-D-23",
+          "XH-D-24",
+          "XH-E-048",
+          "XH-E-049",
+          "XH-E-056",
+          "CC-003",
+          "NQ-002",
+          "NQ-004",
+          "NQ-008",
+          "NQ-010",
+          "NQ-014",
+          "NQ-015",
+          "MH-007",
+          "FP-001",
+          "FP-005"
+        ],
+        "condition_focus": {
+          "cases": 31,
+          "categories": {
+            "condition_omission": 10,
+            "complete_answer": 20,
+            "false_refusal": 1
+          },
+          "failed_ids": [
+            "XH-001",
+            "XH-002",
+            "XH-006",
+            "XH-009",
+            "XH-025",
+            "XH-030",
+            "XH-D-23",
+            "XH-D-24",
+            "MH-007",
+            "FP-001",
+            "FP-005"
+          ]
+        }
+      }
+    },
+    "limitation": "Assistant judgments after observing outputs; not blinded human review or a held-out accuracy estimate."
+  },
+  "formal_semantics": {
+    "full_parent": {
+      "total": 120,
+      "passed": 94,
+      "failed": 26,
+      "error": 0,
+      "skipped": 0,
+      "partial": 0,
+      "not_applicable": 0,
+      "pass_rate": 0.7833333333333333
+    },
+    "model_sections": {
+      "total": 120,
+      "passed": 94,
+      "failed": 26,
+      "error": 0,
+      "skipped": 0,
+      "partial": 0,
+      "not_applicable": 0,
+      "pass_rate": 0.7833333333333333
+    }
+  },
+  "pressure": {
+    "protocol": {
+      "kind": "controlled_frozen_evidence_pressure_not_end_to_end",
+      "case_count": 4,
+      "budget": null,
+      "same_corpus": true,
+      "same_permissions": true
+    },
+    "variants": {
+      "full_parent": {
+        "completed": 4,
+        "responses": 4,
+        "errors": 0,
+        "answered": 0,
+        "refused": 4,
+        "refusal_rate": 1.0,
+        "answerable_cases": 4,
+        "false_refusals": 4,
+        "correct_refusals": 0,
+        "unsupported_answers": 0,
+        "negative_cases": 0,
+        "latency_ms": {
+          "mean": 146.9625,
+          "median": 147.925,
+          "p95": 160.9
+        },
+        "model_calls": 0,
+        "selection_cases": 0,
+        "calls_by_stage": {},
+        "tokens_by_stage": {},
+        "total_tokens": 0,
+        "unknown_usage_calls": 0,
+        "estimated_cny": 0,
+        "cost_by_stage": {},
+        "unpriced_calls": 0,
+        "cost_complete": true,
+        "max_chat_input_tokens": 0,
+        "parent_selection_reasons": {
+          "model_selection_disabled": 4
+        },
+        "incomplete_context_cases": 4,
+        "final_parent_items": {
+          "intact": 0,
+          "changed": 0,
+          "unverified": 0
+        }
+      },
+      "model_sections": {
+        "completed": 4,
+        "responses": 4,
+        "errors": 0,
+        "answered": 0,
+        "refused": 4,
+        "refusal_rate": 1.0,
+        "answerable_cases": 4,
+        "false_refusals": 4,
+        "correct_refusals": 0,
+        "unsupported_answers": 0,
+        "negative_cases": 0,
+        "latency_ms": {
+          "mean": 1589.3825,
+          "median": 565.515,
+          "p95": 5091.79
+        },
+        "model_calls": 2,
+        "selection_cases": 2,
+        "calls_by_stage": {
+          "context_selection": 2
+        },
+        "tokens_by_stage": {
+          "context_selection": 1273
+        },
+        "total_tokens": 1273,
+        "unknown_usage_calls": 0,
+        "estimated_cny": 0.0002894,
+        "cost_by_stage": {
+          "context_selection": 0.0002894
+        },
+        "unpriced_calls": 0,
+        "cost_complete": true,
+        "max_chat_input_tokens": 612,
+        "parent_selection_reasons": {
+          "model_requested_full_parent": 2,
+          "insufficient_section_structure": 1,
+          "all_sections_protected": 1
+        },
+        "incomplete_context_cases": 4,
+        "final_parent_items": {
+          "intact": 0,
+          "changed": 0,
+          "unverified": 0
+        }
+      }
+    },
+    "pairs": {
+      "completed": 4,
+      "initial_evidence_observed_pairs": 4,
+      "final_context_observed_pairs": 4,
+      "same_initial_evidence": 4,
+      "same_final_context": 4,
+      "same_answerability": 4,
+      "changed_context_ids": [],
+      "changed_answerability_ids": []
+    }
+  },
+  "pressure_probes": [
+    {
+      "id": "XH-021",
+      "chunk_id": "2c81e7f9afbd23d83c5cf9bb27cbb016f4b29447159471b324878523e5728b64",
+      "parent_id": "5769f4d4bdd03c845349395ca105959608ab29e8a4d4a25c1cae66ed0dc953ed",
+      "original_characters": 486,
+      "full_rendered_characters": 606,
+      "budget": 566
+    },
+    {
+      "id": "XH-D-26",
+      "chunk_id": "41b88492b04c252e4d09bb999dc0d1070c5a09600d39d47dd1333d40e14f52d2",
+      "parent_id": "5769f4d4bdd03c845349395ca105959608ab29e8a4d4a25c1cae66ed0dc953ed",
+      "original_characters": 486,
+      "full_rendered_characters": 606,
+      "budget": 566
+    },
+    {
+      "id": "XH-011",
+      "chunk_id": "f51300c3fa4224ab95284d2a0545d4704167026f0040335c3f809148631e7cd1",
+      "parent_id": "2faf6269a947a71dfac55eedaf96cfe92d68fe4131a01fd69027d82f4bff2953",
+      "original_characters": 116,
+      "full_rendered_characters": 271,
+      "budget": 231
+    },
+    {
+      "id": "XH-019",
+      "chunk_id": "fae953c0fc705b3dc9e54b044377da7f3706189073e51312610980a6cb280546",
+      "parent_id": "6b7ce0c2ab3cf49c9d40efa9deb43f12d3988ca82c705083e3a036a9b52d6f54",
+      "original_characters": 622,
+      "full_rendered_characters": 773,
+      "budget": 733
+    }
+  ],
+  "prices": {
+    "dashscope:qwen3.7-flash": {
+      "version": "aliyun-public-20261022",
+      "currency": "CNY",
+      "input_per_million": "0.2",
+      "output_per_million": "0.8",
+      "cached_input_per_million": "0.04"
+    },
+    "dashscope:text-embedding-v4": {
+      "version": "aliyun-public-20261022",
+      "currency": "CNY",
+      "total_per_million": "0.5"
+    },
+    "dashscope:qwen3-rerank": {
+      "version": "aliyun-public-20261022",
+      "currency": "CNY",
+      "total_per_million": "0.5"
+    }
+  },
+  "price_source": "https://help.aliyun.com/zh/model-studio/model-pricing",
+  "known_cost_total_cny": 0.9819464600000001,
+  "cost_is_complete": false,
+  "unknown_usage_calls": 9,
+  "executed_main_script_sha256": "bf3cfd5eb6e1a669eb0df9f61f26cad92ca932147cf12bee6fabf315e96212d5",
+  "artifact_sha256": {
+    "main_protocol": "7503256f100c25241af1bca863546e3cf0b7f0d522a30c7bdcef9641cef03a4b",
+    "pressure_protocol": "d51afd41e1e00d2ea5c035c755c62a3774cf3f92202ff39e893737fe5b7ce0fa",
+    "judgments": "741ac063c52d9732899d1c80287f760eb88c3f9b7bacdcc0b263c47699a27380",
+    "full_parent_trace": "43df21deff8777c820ddf2a7a88fdb79574aa0ba83c67a9a2cbda4f1208c7013",
+    "model_sections_trace": "49b353409fdf4f9b6e1ce9bddb8bee343629d8f7e3a296bda5e883e470fa0e43",
+    "full_parent_review": "eb6534b4e51785f05336e80ae75141905be68ec41628c501db7534ea38cee5d3",
+    "model_sections_review": "52b69b41816c4102c2f0eb797400790a7643d1c12b6d4e8da86d5a0cd666a213"
+  },
+  "local_artifact_paths": {
+    "primary": "evals/reports/system/context-paired-20261022T131346Z",
+    "pressure": "evals/reports/system/context-pressure-20261022",
+    "reviews": "evals/reports/system/context-paired-20261022T131346Z/review-v2"
+  },
+  "limitations": [
+    "No selection occurred in the primary run; no causal improvement can be attributed to the flag.",
+    "Pressure calls requested full parents; successful model compression was not observed.",
+    "Assistant review is not blinded human review or held-out generalization accuracy.",
+    "Known costs omit nine calls lacking provider usage and exclude discounts/free quota.",
+    "Single-pass local backend timings include usage accounting, exclude HTTP/auth startup; pressure probes briefly overlapped.",
+    "Application code unchanged; main script received unused-import cleanup and a model-price-table guard after execution."
+  ],
+  "evaluation_findings": [
+    "Generation can omit necessary conditions despite intact context.",
+    "Unmentioned prohibition must not be generalized to unrestricted permission.",
+    "Citation/number/coverage validation can falsely refuse answerable cases and miss a semantic clock error.",
+    "Frozen bounded checks had two review disagreements; original failures were retained.",
+    "Structured-output parser errors can lose provider usage accounting."
+  ],
+  "validation": {
+    "targeted_offline_regressions": 68,
+    "passed": 68,
+    "new_checks": 4,
+    "compileall": "passed",
+    "live_pair_errors": 0,
+    "replay_quality_gate": "failed_as_expected_for_documented_bad_cases"
+  }
+}
