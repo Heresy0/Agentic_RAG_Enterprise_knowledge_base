@@ -25,6 +25,7 @@ from .context_builder import (
     BuiltContext,
     ContextBuilder,
 )
+from .parent_context_selection import BudgetedParentSelector, parent_selection_scope
 from .prompts import ANSWER_SYSTEM_PROMPT
 from .answer_constraints import complete_cited_table_conditions, generation_constraints, temporal_evidence_context
 from .answer_completion import complete_answer
@@ -74,7 +75,7 @@ class AnswerService:
         self._query_planner = query_planner or QueryPlanner(settings)
         self._answer_repair = answer_repair or AnswerRepair(settings)
         self._context_builder = (
-            context_builder or ContextBuilder()
+            context_builder or ContextBuilder(parent_selector=BudgetedParentSelector(settings))
         )
         self._validator = (
             validator or AnswerValidator()
@@ -110,7 +111,8 @@ class AnswerService:
         if not question:
             raise ValueError("问题不能为空")
         total_started = time.perf_counter()
-        with rag_budget_scope(RagBudget.from_settings(self._settings)) as budget:
+        with rag_budget_scope(RagBudget.from_settings(self._settings)) as budget, \
+                parent_selection_scope(scope=scope, session=session):
             try:
                 planning_started = time.perf_counter()
                 plan = self._query_planner.plan(question, scope=scope, session=session)
@@ -176,14 +178,16 @@ class AnswerService:
         )
 
         future_gap = bool(context.items) and future_certainty_gap(question, context.items)
-        if not context.items or future_gap:
+        if not context.items or future_gap or context.incomplete_reason:
             render_started = time.perf_counter()
             result = self._refusal(
+                "上下文预算不足以完整保留相关条款及限制条件，请缩小问题范围后重试。"
+                if context.incomplete_reason else
                 "缺少已确定覆盖该未来期间的正式制度，不能把现行规则说成未来承诺。"
                 if future_gap else "没有检索到相关知识库资料。"
             )
             record_answer_decision(stage="pre_generation", answerable=False,
-                                   reason="future_policy_gap" if future_gap else "empty_context")
+                                   reason=context.incomplete_reason or ("future_policy_gap" if future_gap else "empty_context"))
             timings["render_ms"] = _elapsed_ms(
                 render_started
             )
@@ -196,7 +200,7 @@ class AnswerService:
         def refresh_context():
             current = self._retrieval_service.refresh_evidence(documents, scope=scope, session=session)
             refreshed = self._context_builder.build(current, question=question)
-            return [(item.chunk_id, item.content, item.policy) for item in refreshed.items] == [
+            return not refreshed.incomplete_reason and [(item.chunk_id, item.content, item.policy) for item in refreshed.items] == [
                 (item.chunk_id, item.content, item.policy) for item in context.items]
 
         generation_started = time.perf_counter()

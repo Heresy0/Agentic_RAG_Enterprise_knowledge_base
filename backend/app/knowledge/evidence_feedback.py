@@ -151,6 +151,9 @@ class EvidenceFeedback:
             merged = self.retrieval.refresh_evidence(merged, scope=scope, session=session)
             merged = select_evidence(question, merged)
             enlarged = self.builder.build(merged, question=question)
+            if enlarged.incomplete_reason:
+                record_rag_event(dict(kind="feedback", outcome="context_budget_incomplete"))
+                return result
             if not all(item in context_signature(enlarged) for item in context_signature(context)):
                 record_rag_event(dict(kind="feedback", outcome="required_evidence_lost"))
                 return result

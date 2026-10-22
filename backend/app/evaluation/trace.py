@@ -122,6 +122,7 @@ def record_context(context, *, stage="context"):
             if item.parent_id:
                 rows[-1]['parent_id'] = item.parent_id
     trace.stages[stage] = rows
+    trace.stages[stage + "_status"] = [dict(incomplete_reason=context.incomplete_reason)]
 
 
 def record_calculations(records):

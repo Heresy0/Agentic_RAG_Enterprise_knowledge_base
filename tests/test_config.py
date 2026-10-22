@@ -51,6 +51,16 @@ def test_parent_configuration_is_explicit_and_reproducible(application_environme
     assert settings.rag_rerank_top_k==12 and settings.rag_parent_context_enabled
 
 
+@pytest.mark.parametrize("name,value", [
+    ("RAG_CONTEXT_SELECTION_ENABLED", "yes"), ("RAG_CONTEXT_SELECTION_OUTPUT_TOKENS", "0"),
+    ("RAG_CONTEXT_SELECTION_PROMPT_BYTES", "999999"), ("RAG_CONTEXT_SELECTION_TIMEOUT_SECONDS", "nan"),
+])
+def test_context_selection_configuration_is_bounded(application_environment, monkeypatch, name, value):
+    monkeypatch.setenv(name, value)
+    with pytest.raises(RuntimeError, match=name):
+        Settings()
+
+
 def test_active_credentials_are_still_required(application_environment, monkeypatch):
     monkeypatch.delenv("DASHSCOPE_API_KEY")
     with pytest.raises(RuntimeError, match="DASHSCOPE_API_KEY"):

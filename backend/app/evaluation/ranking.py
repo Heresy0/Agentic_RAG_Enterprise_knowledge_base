@@ -111,7 +111,7 @@ def ranking_layer(quality):
                 state = "skipped"
             else:
                 rank = metric.get("first_relevant_rank")
-                state = "passed" if rank is not None and rank <= maximum else "failed"
+                state = "passed" if rank is not None and rank <= maximum and not metric.get("incomplete_reason") else "failed"
             graded = metric.get("graded_ranking", {})
             if state == "passed" and graded.get("best_at_1") is False:
                 state = "failed"

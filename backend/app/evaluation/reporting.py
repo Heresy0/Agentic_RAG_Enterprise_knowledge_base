@@ -25,7 +25,8 @@ def stage_report(quality, stage):
         elif metric is None or not metric.get("scored"):
             records.append(dict(id=record["id"], status="skipped", reason="no_observation_or_positive_labels"))
         else:
-            records.append(dict(id=record["id"], status="passed" if metric["all_evidence_present"] else "failed", metrics=metric))
+            records.append(dict(id=record["id"], status="passed" if metric["all_evidence_present"]
+                                and not metric.get("incomplete_reason") else "failed", metrics=metric))
         records[-1]["model_usage"] = record.get("metrics", {}).get("model_usage")
     from .metrics import summarize_records
     return dict(status="completed", summary=summarize_records(records), records=records,

@@ -80,6 +80,10 @@ class Settings:
         if parent_enabled not in {"true", "false"}:
             raise RuntimeError("RAG_PARENT_CONTEXT_ENABLED 必须为 true 或 false")
         self.rag_parent_context_enabled = parent_enabled == "true"
+        context_selection = os.getenv("RAG_CONTEXT_SELECTION_ENABLED", "true").strip().lower()
+        if context_selection not in {"true", "false"}:
+            raise RuntimeError("RAG_CONTEXT_SELECTION_ENABLED 必须为 true 或 false")
+        self.rag_context_selection_enabled = context_selection == "true"
         try:
             self.rag_rerank_top_k = int(os.getenv("RAG_RERANK_TOP_K", "12"))
         except ValueError:
@@ -94,6 +98,8 @@ class Settings:
             "rag_repair_prompt_bytes": ("RAG_REPAIR_PROMPT_BYTES", 24000, 4000, 48000),
             "rag_max_searches": ("RAG_MAX_SEARCHES", 3, 1, 4),
             "rag_regeneration_output_tokens": ("RAG_REGENERATION_OUTPUT_TOKENS", 2048, 512, 4096),
+            "rag_context_selection_output_tokens": ("RAG_CONTEXT_SELECTION_OUTPUT_TOKENS", 512, 128, 2048),
+            "rag_context_selection_prompt_bytes": ("RAG_CONTEXT_SELECTION_PROMPT_BYTES", 16000, 2000, 64000),
         }
         for attribute, (variable, default, minimum, maximum) in rag_limits.items():
             try:
@@ -108,6 +114,7 @@ class Settings:
             ("rag_planner_timeout_seconds", "RAG_PLANNER_TIMEOUT_SECONDS", 8),
             ("rag_repair_timeout_seconds", "RAG_REPAIR_TIMEOUT_SECONDS", 8),
             ("rag_regeneration_timeout_seconds", "RAG_REGENERATION_TIMEOUT_SECONDS", 15),
+            ("rag_context_selection_timeout_seconds", "RAG_CONTEXT_SELECTION_TIMEOUT_SECONDS", 6),
         ):
             try:
                 value = float(os.getenv(variable, str(default)))

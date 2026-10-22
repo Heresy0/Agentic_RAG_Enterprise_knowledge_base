@@ -32,6 +32,9 @@ def score_trace(case, trace, *, include_answer=False):
             metrics[stage]["graded_ranking"] = graded_ranking(case.get("relevance_judgments"), rows)
     metrics["ranking_requirements"] = case.get("ranking_checks", {"max_first_relevant_rank": 1})
     metrics["rank_diagnostics"] = rank_diagnostics(metrics)
+    if "context" in metrics:
+        metrics["context"]["incomplete_reason"] = next((row.get("incomplete_reason")
+            for row in stages.get("context_status", []) if row.get("incomplete_reason")), None)
     metrics["model_usage"] = summarize_usage(stages.get("model_usage", []), observed="model_usage" in stages)
     metrics["model_usage"]["events"] = stages.get("model_usage", [])
     violations = sum(bool(row.get("scope_violation")) for rows in stages.values() for row in rows)
@@ -39,7 +42,7 @@ def score_trace(case, trace, *, include_answer=False):
         return dict(id=case["id"], status="error", error_type=trace["error_type"], metrics=metrics)
     status = "partial"
     if case["answerable"] and metrics.get("context", {}).get("scored"):
-        status = "passed" if metrics["context"]["all_evidence_present"] else "failed"
+        status = "passed" if metrics["context"]["all_evidence_present"] and not metrics["context"].get("incomplete_reason") else "failed"
     if include_answer:
         if "response" not in trace:
             return dict(id=case["id"], status="skipped", reason="no_final_response_in_trace", metrics=metrics)
@@ -166,7 +169,9 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
             if cases:
                 retrieval = RetrievalService(settings)
                 answer = AnswerService(settings=settings, retrieval_service=retrieval) if include_answer else None
-                builder = ContextBuilder()
+                from ..knowledge.parent_context_selection import BudgetedParentSelector, parent_selection_scope
+                from ..knowledge.rag_budget import RagBudget, rag_budget_scope
+                builder = ContextBuilder(parent_selector=BudgetedParentSelector(settings))
                 for case in cases:
                     started = time.perf_counter()
                     trace = None
@@ -186,7 +191,9 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
                                 documents = retrieval.search(case["question"], scope=scope, session=session)
                                 documents = [doc for doc in documents if scope.contains(
                                     doc.metadata.get("tenant_id"), doc.metadata.get("knowledge_base_id"))]
-                                record_context(builder.build(documents, question=case["question"]))
+                                with rag_budget_scope(RagBudget.from_settings(settings)), \
+                                        parent_selection_scope(scope=scope, session=session):
+                                    record_context(builder.build(documents, question=case["question"]))
                                 response = None
                         snapshot = dict(trace.to_dict(), id=case["id"], schema_version=1,
                                         origin="jwt_verified_local_backend_services",
