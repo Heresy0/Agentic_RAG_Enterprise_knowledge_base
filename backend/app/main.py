@@ -17,6 +17,7 @@ from .api.frontend import router as frontend_router
 from .api.model_usage import router as model_usage_router
 from .api.feedback import router as feedback_router
 from .api.quality import router as quality_router
+from .api.verification import router as verification_router
 from .db.session import (
     create_database_engine,
     create_session_factory,
@@ -147,3 +148,4 @@ app.include_router(frontend_router)
 app.include_router(model_usage_router)
 app.include_router(feedback_router)
 app.include_router(quality_router)
+app.include_router(verification_router)

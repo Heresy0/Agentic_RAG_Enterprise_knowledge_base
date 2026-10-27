@@ -8,7 +8,7 @@ from fastapi.responses import FileResponse, JSONResponse
 
 
 STATIC_DIR = Path(__file__).resolve().parents[1] / "static"
-ASSETS = {"app.js", "auth.js", "quality.js", "styles.css"}
+ASSETS = {"app.js", "auth.js", "quality.js", "verification.js", "styles.css"}
 router = APIRouter(include_in_schema=False)
 
 

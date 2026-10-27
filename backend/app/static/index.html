@@ -17,6 +17,7 @@
       <button class="nav-item" data-tab="documents"><span class="nav-symbol">▤</span>文档管理</button>
       <button class="nav-item" data-tab="feedback"><span class="nav-symbol">☷</span>问答反馈</button>
       <button id="quality-nav" class="nav-item" data-tab="quality" disabled><span class="nav-symbol">✓</span>质量工作台</button>
+      <button id="verification-nav" class="nav-item" data-tab="verification" disabled><span class="nav-symbol">↗</span>评测与改进</button>
     </nav>
     <div class="sidebar-heading">我的知识库 <span id="kb-count">—</span></div>
     <div id="kb-list" class="kb-list"><p class="sidebar-empty">登录后查看可访问的知识库</p></div>
@@ -57,6 +58,19 @@
         <div class="feedback-filters"><label for="quality-name">版本名称</label><input id="quality-name" maxlength="100" value="反馈回归集"><button id="quality-export" class="primary" disabled>用已选样本创建版本</button></div>
         <div id="quality-versions" class="feedback-list"></div>
       </section>
+      <section id="verification-panel" aria-label="评测与改进" hidden>
+        <div class="document-toolbar"><div><h2>评测任务与问题改进</h2><p>展示有权访问的完整任务；每题按其原样本范围检索。固定集与反馈集不得包含同组问题。</p></div><button id="verification-refresh" class="secondary">↻ 刷新</button></div>
+        <form id="evaluation-form" class="quality-form evaluation-form">
+          <label class="quality-field">固定基线集版本<select id="evaluation-fixed" required></select></label>
+          <label class="quality-field">反馈回归集版本<select id="evaluation-feedback" required></select></label>
+          <div class="evaluation-limits"><label>最大题数<input id="evaluation-max-cases" type="number" min="2" max="200" value="40" required></label><label>最大模型调用次数<input id="evaluation-max-calls" type="number" min="1" max="2000" value="200" required></label><label>Token 预算<input id="evaluation-max-tokens" type="number" min="16000" max="10000000" value="1000000" required></label><label>最长执行秒数<input id="evaluation-max-seconds" type="number" min="10" max="3600" value="600" required></label></div>
+          <label class="feedback-consent"><input id="evaluation-consent" type="checkbox">允许本次任务调用模型并产生用量。Token 使用含保守预留，实际费用以供应商账单为准。</label>
+          <button id="evaluation-submit" class="primary" type="submit" disabled>创建评测任务</button>
+          <p class="answer-meta">任务由独立评测 Worker 执行。取消会阻止后续调用，已发送的请求仍可能完成并产生用量。</p>
+        </form>
+        <div class="section-title"><h3>最近评测任务</h3><span>执行完成表示已取得结果，仍需核对自动评分和人工复核</span></div><div id="verification-jobs" class="feedback-list"></div>
+        <div class="section-title"><h3>改进记录</h3><span>在质量审核中确认问题后，点击“记录修复并进入验证”</span></div><div id="improvement-list" class="feedback-list"></div>
+      </section>
     </div>
   </main>
   <dialog id="login-dialog" aria-labelledby="login-title"><form method="dialog"><button class="dialog-close" aria-label="关闭登录窗口">×</button></form><div class="dialog-logo">知</div><div class="eyebrow">WELCOME TO YOUR WORKSPACE</div><h2 id="login-title">连接你的团队知识</h2><p>使用企业账号登录，访问属于你的知识库。</p><button id="oidc-login" class="primary login-primary">使用企业账号登录 ↗</button><p id="login-help" class="login-help">通过 Keycloak 安全登录</p><details><summary>已有访问令牌？临时登录</summary><form id="token-form"><label for="token">访问令牌</label><textarea id="token" rows="3" spellcheck="false" autocomplete="off" placeholder="粘贴 Access Token（不含 Bearer 前缀）"></textarea><p class="login-help">令牌仅保存在当前页面内存中，刷新后需要重新登录。</p><button class="secondary" type="submit">连接工作空间</button></form></details></dialog>
@@ -64,5 +78,6 @@
   <dialog id="citation-dialog" aria-labelledby="citation-title"><form method="dialog"><button class="dialog-close" aria-label="关闭原文预览">×</button></form><h2 id="citation-title">引用原文</h2><p id="citation-meta" role="status"></p><pre id="citation-content"></pre></dialog>
   <dialog id="snapshot-dialog" aria-labelledby="snapshot-title"><form method="dialog"><button class="dialog-close" aria-label="关闭问答快照">×</button></form><h2 id="snapshot-title">问答快照</h2><p id="snapshot-meta" role="status"></p><div id="snapshot-content"></div></dialog>
   <dialog id="quality-dialog" aria-labelledby="quality-title"><form method="dialog"><button class="dialog-close" aria-label="关闭质量审核">×</button></form><h2 id="quality-title">反馈审核与样本标注</h2><p id="quality-dialog-status" role="status"></p><div id="quality-detail"></div></dialog>
+  <dialog id="verification-dialog" aria-labelledby="verification-title"><form method="dialog"><button class="dialog-close" aria-label="关闭验证详情">×</button></form><h2 id="verification-title">评测与改进详情</h2><div id="verification-detail"></div></dialog>
 </body>
 </html>

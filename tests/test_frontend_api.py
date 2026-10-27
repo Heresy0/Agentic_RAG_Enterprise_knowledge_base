@@ -42,7 +42,7 @@ def test_config_only_exposes_public_browser_settings(client):
     assert "must-not-be-exposed" not in response.text
 
 
-@pytest.mark.parametrize("asset", ["app.js", "auth.js", "quality.js", "styles.css"])
+@pytest.mark.parametrize("asset", ["app.js", "auth.js", "quality.js", "verification.js", "styles.css"])
 def test_browser_assets_are_served(client, asset):
     response = client.get(f"/ui/assets/{asset}")
     assert response.status_code == 200

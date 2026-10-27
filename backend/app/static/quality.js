@@ -1,5 +1,5 @@
 // Human review UI. All business content is inserted as text.
-export function createQualityWorkspace({ $, element, api, state, sameContext, errorNotice }) {
+export function createQualityWorkspace({ $, element, api, state, sameContext, errorNotice, onImprovement = () => {} }) {
   const labels = { pending: "待审核", confirmed: "问题成立", dismissed: "反馈不成立", needs_evidence: "需补证据" };
   const feedbackLabels = { incorrect: "答案错误", incomplete: "遗漏条件或要点", citation: "引用不正确", false_refusal: "不该拒答", outdated: "资料过期", other: "其他问题" };
   const causes = { knowledge_missing: "知识缺失", outdated: "资料过期", parsing: "解析或切分", retrieval: "召回不足", rerank: "重排错误", context: "上下文遗漏", generation: "生成错误或漏答", citation: "引用错误", false_refusal: "误拒答", ambiguous: "问题含糊", access_policy: "权限规则", other: "其他" };
@@ -37,7 +37,9 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
     source.append(element("h3", "当次问题与回答"), element("p", data.source.question), element("p", `检索问题：${data.source.retrieval_question}`),
       element("pre", data.source.response.answer), element("h3", "用户反馈"), element("p", data.source.feedback.comment || "未填写说明"));
     source.append(element("p", `${data.source.feedback.rating === "up" ? "有帮助" : "待改进"} · ${feedbackLabels[data.source.feedback.reason] || "未分类"}`, "answer-meta"));
+    source.append(element("p", `审核记录ID：${data.case.id}`, "answer-meta"));
     source.append(element("p", data.source.feedback.allow_dataset_export ? "用户允许内部回归导出" : "用户未允许内部回归导出", "answer-meta"));
+    if (data.case.review_status === "confirmed") source.append(button("记录修复并进入验证", () => onImprovement(data.case.id)));
     if (data.case.source_changed) source.append(element("p", "反馈内容已变化，请依据当前反馈重新审核。", "quality-warning"));
     if (data.case.export_blocked_reason) source.append(element("p", blocked[data.case.export_blocked_reason], "answer-meta"));
     for (const item of data.source.snapshot.history || []) source.append(element("h3", "必要历史"), element("p", item.question), element("pre", item.answer));

@@ -1,12 +1,14 @@
 import { AuthSession } from "./auth.js";
 import { createQualityWorkspace } from "./quality.js";
+import { createVerificationWorkspace } from "./verification.js";
 
 const $ = id => document.getElementById(id);
 const statuses = { ready: "已就绪", pending: "等待索引", queued: "排队中", running: "索引中", succeeded: "已完成", failed: "失败", cancelled: "已取消" };
 const permissions = { viewer: "只读", editor: "可编辑", admin: "管理员" };
 const state = { auth: null, config: null, bases: [], kb: null, documents: [], jobs: [], conversations: [], conversationId: null, revision: 0, tab: "qa", asking: false, uploading: false, loading: false, polling: null, deleting: null, feedbackCursor: null, feedbackEpoch: 0, snapshotEpoch: 0 };
 const feedbackReasons = { incorrect: "答案错误", incomplete: "遗漏条件或要点", citation: "引用不正确", false_refusal: "不该拒答", outdated: "资料过期", other: "其他问题" };
-const qualityWorkspace = createQualityWorkspace({ $, element, api, state, sameContext, errorNotice });
+const qualityWorkspace = createQualityWorkspace({ $, element, api, state, sameContext, errorNotice, onImprovement: id => verificationWorkspace.createForCase(id) });
+const verificationWorkspace = createVerificationWorkspace({ $, element, api, state, sameContext, errorNotice });
 
 function element(tag, text, className) {
   const node = document.createElement(tag);
@@ -28,6 +30,7 @@ function errorNotice(error) {
 }
 function updateControls() {
   qualityWorkspace.updateControls();
+  verificationWorkspace.updateControls();
   $("question").disabled = !canAsk() || state.asking || state.loading;
   $("ask-button").disabled = !canAsk() || state.asking || state.loading;
   $("ask-button").firstChild.textContent = state.asking ? "生成中… " : "发送问题 ";
@@ -138,7 +141,7 @@ async function selectBase(kb) {
   $("upload-form").reset();
   $("selected-file").textContent = !kb ? "上传或管理文档，请先选择左侧的具体知识库。" : (editable() ? "尚未选择文件" : "你拥有只读权限，可查看文档和提问。");
   clearConversation(); renderBases(); renderDocuments(); renderJobs(); notice(); updateControls();
-  try { await Promise.all([refreshDocuments(), refreshConversations()]); if (sameContext(revision)) { if (state.tab === "feedback") await refreshFeedback(); if (state.tab === "quality") await qualityWorkspace.refresh(); } }
+  try { await Promise.all([refreshDocuments(), refreshConversations()]); if (sameContext(revision)) { if (state.tab === "feedback") await refreshFeedback(); if (state.tab === "quality") await qualityWorkspace.refresh(); if (state.tab === "verification") await verificationWorkspace.refresh(); } }
   finally { if (revision === state.revision) { state.loading = false; updateControls(); } }
 }
 function conversationPath() { return state.kb ? `/api/knowledge-bases/${state.kb.id}/conversations` : "/api/conversations"; }
@@ -180,6 +183,7 @@ function renderAnswer(container, data, requestId) {
 
 function resetFeedback() {
   qualityWorkspace.reset();
+  verificationWorkspace.reset();
   state.feedbackEpoch += 1; state.snapshotEpoch += 1; state.feedbackCursor = null;
   $("feedback-list").replaceChildren(element("p", "选择范围后查看反馈。", "empty-row"));
   $("feedback-more").hidden = true;
@@ -419,11 +423,13 @@ function setTab(tab) {
   $("qa-panel").hidden = tab !== "qa"; $("documents-panel").hidden = tab !== "documents";
   $("feedback-panel").hidden = tab !== "feedback";
   $("quality-panel").hidden = tab !== "quality";
-  $("page-name").textContent = { qa: "知识问答", documents: "文档管理", feedback: "问答反馈", quality: "质量工作台" }[tab];
-  $("heading").textContent = { qa: "把团队知识，变成可靠答案。", documents: "让团队的经验，有序沉淀。", feedback: "让每一次反馈，都有据可查。", quality: "把发现的问题，变成改进的依据。" }[tab];
-  $("subheading").textContent = { qa: "从内部文档中查找答案，每一个结论都有据可循。", documents: "管理知识库资料，追踪索引进度，让新知识随时可用。", feedback: "关联当次答案与证据，为持续改进留下可靠线索。", quality: "审核反馈、核对标准，逐步积累可追溯的回归样本。" }[tab];
+  $("verification-panel").hidden = tab !== "verification";
+  $("page-name").textContent = { qa: "知识问答", documents: "文档管理", feedback: "问答反馈", quality: "质量工作台", verification:"评测与改进" }[tab];
+  $("heading").textContent = { qa: "把团队知识，变成可靠答案。", documents: "让团队的经验，有序沉淀。", feedback: "让每一次反馈，都有据可查。", quality: "把发现的问题，变成改进的依据。", verification:"让改进经过验证，再关闭问题。" }[tab];
+  $("subheading").textContent = { qa: "从内部文档中查找答案，每一个结论都有据可循。", documents: "管理知识库资料，追踪索引进度，让新知识随时可用。", feedback: "关联当次答案与证据，为持续改进留下可靠线索。", quality: "审核反馈、核对标准，逐步积累可追溯的回归样本。", verification:"对比固定集与反馈集，核对答案、耗时和用量，保留验证依据。" }[tab];
   if (tab === "feedback") refreshFeedback();
   if (tab === "quality") qualityWorkspace.refresh();
+  if (tab === "verification") verificationWorkspace.refresh(); else verificationWorkspace.pause();
 }
 function message(role, text) {
   $("welcome").hidden = true;

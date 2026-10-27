@@ -12,7 +12,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from sqlalchemy.pool import StaticPool
 
-from backend.app.api import feedback, qa, conversations, quality
+from backend.app.api import feedback, qa, conversations, quality, verification
 from backend.app.db.base import Base
 from backend.app.db.dependencies import get_database_session
 from backend.app.db.models import AuditEvent, KnowledgeBase, KnowledgeBaseUserGrant, KnowledgeDocument, Tenant, User
@@ -75,6 +75,7 @@ def data():
 
         app = FastAPI()
         app.include_router(qa.router); app.include_router(feedback.router); app.include_router(conversations.router); app.include_router(quality.router)
+        app.include_router(verification.router)
         app.state.settings = SimpleNamespace(qa_snapshots_enabled=True, chat_model="test-model", chat_api_key="secret-api-key",
             qa_rate_limit_requests=60, qa_rate_limit_window_seconds=60,
             qa_max_concurrent_requests_per_tenant=3, qa_concurrency_lease_seconds=180)

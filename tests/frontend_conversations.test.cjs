@@ -60,7 +60,8 @@ function setup() {
   };
   vm.createContext(sandbox);
   const qualitySource = fs.readFileSync(path.join(__dirname, "../backend/app/static/quality.js"), "utf8").replace("export function", "function");
-  const source = qualitySource + "\n" + fs.readFileSync(path.join(__dirname, "../backend/app/static/app.js"), "utf8")
+  const verificationSource = fs.readFileSync(path.join(__dirname, "../backend/app/static/verification.js"), "utf8").replace("export function", "function");
+  const source = qualitySource + "\n" + verificationSource + "\n" + fs.readFileSync(path.join(__dirname, "../backend/app/static/app.js"), "utf8")
     .replace(/^import .*;\r?\n/gm, "").replace(/init\(\);\s*$/, "");
   vm.runInContext(source, sandbox);
   vm.runInContext('state.auth = { authenticated: true, epoch: 0, name: "Alice", token: async () => "test" }; state.kb = { id: "kb1", permission: "viewer" };', sandbox);
@@ -402,4 +403,72 @@ test("approved sample selection creates a version and downloads JSONL as text", 
   await download.click();
   assert.equal(await sandbox.downloadedBlob.text(), '{"id":"sample1"}\n');
   assert.equal(sandbox.document.body.children.at(-1).download, "feedback-regression-version1.jsonl");
+});
+
+test("evaluation submission needs explicit consent and sends numeric budgets", async () => {
+  const { $, run, sandbox } = setup(); admin(run);
+  let submitted = null;
+  sandbox.fetch = async (url, options = {}) => {
+    if (options.method === "POST") { submitted = JSON.parse(options.body); return jsonResponse({id:"job1"}); }
+    return jsonResponse({items:[]});
+  };
+  $("evaluation-fixed").value = "fixed"; $("evaluation-feedback").value = "feedback";
+  for (const [id,value] of [["evaluation-max-cases","40"],["evaluation-max-calls","200"],["evaluation-max-tokens","1000000"],["evaluation-max-seconds","600"]]) $(id).value=value;
+  await $("evaluation-form").listeners.submit({preventDefault(){}}); assert.equal(submitted,null);
+  $("evaluation-consent").checked=true;$("evaluation-consent").listeners.change();
+  await $("evaluation-form").listeners.submit({preventDefault(){}});
+  assert.equal(submitted.allow_model_calls,true);assert.equal(submitted.max_model_calls,200);assert.equal(submitted.max_tokens,1000000);
+  assert.equal($("evaluation-consent").checked,false);
+});
+
+test("evaluation answer review binds the exact returned response and renders as text", async () => {
+  const { $,run,sandbox }=setup();admin(run);let review;
+  const record={sample:{id:"FB-case1",role:"feedback",question:"<script>问题</script>",reference_answer:"参考条件"},response:{answer:"<img onerror=bad()>"},context:[],proxy_pass:true,response_binding:"f".repeat(64)};
+  const job={id:"job1",status:"succeeded",current:true,completed_cases:1,expected_cases:1,summary:{},records:[record]};
+  sandbox.fetch=async(url,options={})=>{
+    if(options.method==="POST"){review=JSON.parse(options.body);return jsonResponse(job);}
+    if(url==="/api/quality/evaluations/job1")return jsonResponse(job);
+    return jsonResponse({items:url==="/api/quality/evaluations"?[job]:[]});
+  };
+  await run("verificationWorkspace.refresh()");
+  await $("verification-jobs").children[0].children.find(node=>node.textContent==="查看结果与复核").click();
+  const card=$("verification-detail").querySelector(".feedback-card");
+  assert.match(card.children[0].textContent,/<script>/);
+  const form=card.querySelector(".quality-form");form.children[0].children[1].value="passed";form.children[1].children[1].value="核对条件与引用";
+  await form.listeners.submit({preventDefault(){}});
+  assert.equal(review.response_binding,"f".repeat(64));assert.equal(review.verdict,"passed");
+});
+
+test("improvement creation, verification and closure carry current revisions", async () => {
+  const {$,run,sandbox}=setup();admin(run);const actions=[];
+  let row={id:"improvement1",case_id:"case1",revision:1,status:"open",description:"修复遗漏",change_ref:"commit:abc",policy:{max_latency_ratio:1.5,max_token_ratio:1.3}};
+  sandbox.fetch=async(url,options={})=>{
+    if(options.method==="POST"){
+      const body=JSON.parse(options.body);actions.push({url,body});
+      if(url.endsWith("/verify"))row={...row,revision:2,status:"verified",verification:{baseline_job_id:"baseline",candidate_job_id:"candidate"}};
+      if(url.endsWith("/close"))row={...row,revision:3,status:"closed"};
+      return jsonResponse(row);
+    }
+    return jsonResponse({items:[{id:"baseline",status:"succeeded",current:true,created_at:"2026-10-28T00:00:00Z"},{id:"candidate",status:"succeeded",current:true,created_at:"2026-10-28T01:00:00Z"}]});
+  };
+  await run('verificationWorkspace.createForCase("case1")');
+  let form=$("verification-detail").querySelector(".quality-form");
+  form.children[0].children[1].value="修复遗漏";form.children[1].children[1].value="commit:abc";
+  await form.listeners.submit({preventDefault(){}});
+  let controls=$("verification-detail").children.find(node=>node.className==="quality-form"&&node.tag==="section");
+  controls.children[0].children[1].value="baseline";controls.children[1].children[1].value="candidate";controls.children[2].children[1].value="已核对两组结果";
+  await controls.children.find(node=>node.textContent==="执行发布检查并标记已验证").click();
+  controls=$("verification-detail").children.find(node=>node.className==="quality-form"&&node.tag==="section");
+  controls.children[2].children[1].value="依据仍有效，关闭问题";
+  await controls.children.find(node=>node.textContent==="重新检查依据并关闭问题").click();
+  assert.equal(actions[0].body.case_id,"case1");assert.equal(actions[1].body.expected_revision,1);assert.equal(actions[2].body.expected_revision,2);
+  assert.match($("verification-detail").children[0].textContent,/已关闭/);
+});
+
+test("late improvement dialog response after logout cannot restore private content", async () => {
+  const {$,run,sandbox}=setup();admin(run);let finish;
+  sandbox.fetch=async()=>new Promise(resolve=>{finish=resolve;});
+  const pending=run('verificationWorkspace.createForCase("case1")');await new Promise(resolve=>setImmediate(resolve));
+  run("resetWorkspace()");finish(jsonResponse({items:[]}));await pending;
+  assert.equal($("verification-dialog").open,false);assert.equal($("verification-detail").children.length,0);
 });

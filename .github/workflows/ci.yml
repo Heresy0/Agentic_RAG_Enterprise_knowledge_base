@@ -105,6 +105,7 @@ jobs:
           node --check backend/app/static/app.js
           node --check backend/app/static/auth.js
           node --check backend/app/static/quality.js
+          node --check backend/app/static/verification.js
           node --test tests/frontend/auth.test.mjs tests/frontend_conversations.test.cjs
 
       - name: Compile
