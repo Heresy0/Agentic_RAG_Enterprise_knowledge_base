@@ -39,7 +39,7 @@ function setup() {
   const answer = { answer: "令牌过期后重新获取。<script>bad()</script>", answerable: true, citations: [] };
   const sandbox = {
     document: { getElementById: $, createElement: tag => new Node(tag), querySelectorAll: () => [] },
-    window: { confirm: () => true }, Headers, FormData, AbortSignal, Intl,
+    window: { confirm: () => true }, Headers, FormData, AbortSignal, Intl, URLSearchParams,
     clearTimeout, setTimeout,
     fetch: async (url, options = {}) => {
       const body = options.body ? JSON.parse(options.body) : null;
@@ -192,4 +192,107 @@ test("late citation response after scope switch is discarded", async () => {
   finish({ status: 200, ok: true, headers: new Headers(), json: async () => ({ content: "旧库内容" }) });
   await pending;
   assert.equal($("citation-content").textContent, "");
+});
+
+function jsonResponse(data, status = 200) {
+  return { status, ok: status < 400, headers: new Headers(), json: async () => data };
+}
+
+test("answer feedback collects a reason and explicit sharing consent", async () => {
+  const { $, run, sandbox } = setup();
+  let submitted;
+  sandbox.fetch = async (url, options = {}) => {
+    if (options.method === "PUT") { submitted = JSON.parse(options.body); return jsonResponse({}); }
+    return jsonResponse({ feedback: null });
+  };
+  run('renderAnswer(message("assistant", ""), { answer: "答案", citations: [], run_id: "run1" })');
+  const controls = $("answer-area").children.at(-1).querySelector(".answer-feedback");
+  await controls.children[1].listeners.click();
+  const form = controls.children[0];
+  assert.equal(form.className, "feedback-form");
+  assert.equal(form.children[3].children[0].checked, false);
+  form.children[1].value = "incomplete";
+  form.children[2].value = "遗漏了例外";
+  form.children[3].children[0].checked = true;
+  await form.listeners.submit({ preventDefault() {} });
+  assert.deepEqual(submitted, { rating: "down", reason: "incomplete", comment: "遗漏了例外", share_with_admins: true });
+  assert.equal(controls.children.at(-1).textContent, "已记录：待改进");
+});
+
+test("feedback save error retains the form and enables retry", async () => {
+  const { $, run, sandbox } = setup();
+  sandbox.fetch = async (url, options = {}) => options.method === "PUT" ? jsonResponse({ detail: "暂时无法保存" }, 503) : jsonResponse({ feedback: null });
+  run('renderAnswer(message("assistant", ""), { answer: "答案", run_id: "run1" })');
+  const controls = $("answer-area").children.at(-1).querySelector(".answer-feedback");
+  await controls.children[0].listeners.click();
+  const form = controls.children[0];
+  await form.listeners.submit({ preventDefault() {} });
+  assert.equal(controls.children[0], form);
+  assert.equal(form.children[4].disabled, false);
+  assert.match(form.children.at(-1).textContent, /暂时无法保存/);
+});
+
+test("restored conversation keeps the snapshot feedback link", async () => {
+  const { $, run, sandbox } = setup();
+  sandbox.fetch = async () => jsonResponse({ turns: [{ question: "q", run_id: "saved-run", result: { answer: "a", citations: [] } }] });
+  await run('restoreConversation("c1")');
+  assert.equal($("answer-area").children.at(-1).querySelector(".answer-feedback").children.length, 3);
+});
+
+test("snapshot preview renders frozen evidence as text and logout erases it", async () => {
+  const { $, run, sandbox } = setup();
+  sandbox.fetch = async () => jsonResponse({ request_id: "r1", created_at: "2026-10-27T01:00:00Z", snapshot_status: "captured",
+    question: "<script>问题</script>", retrieval_question: "检索问题", response: { answer: "<img onerror=bad()>" },
+    snapshot: { context: { items: [{ citation_id: "1", document_name: "制度", section_path: "范围", content: "<script>证据</script>", document_version: 3 }] } } });
+  await run('previewSnapshot("r1")');
+  assert.equal($("snapshot-dialog").open, true);
+  assert.equal($("snapshot-content").children.at(-1).textContent, "<script>证据</script>");
+  assert.match($("snapshot-meta").textContent, /上下文已保存/);
+  run("resetWorkspace()");
+  assert.equal($("snapshot-dialog").open, false);
+  assert.equal($("snapshot-content").children.length, 0);
+});
+
+test("late snapshot after a scope change cannot refill the dialog", async () => {
+  const { $, run, sandbox } = setup();
+  let finish;
+  sandbox.fetch = async () => new Promise(resolve => { finish = resolve; });
+  const pending = run('previewSnapshot("r1")');
+  await new Promise(resolve => setImmediate(resolve));
+  run("resetWorkspace()");
+  finish(jsonResponse({ question: "旧资料" }));
+  await pending;
+  assert.equal($("snapshot-content").children.length, 0);
+  assert.equal($("snapshot-dialog").open, false);
+});
+
+test("feedback list passes KB and rating filters and follows its cursor", async () => {
+  const { $, run, sandbox } = setup();
+  const requested = [];
+  $("feedback-view").value = "mine"; $("feedback-rating").value = "down";
+  sandbox.fetch = async url => {
+    requested.push(url);
+    return jsonResponse({ items: [{ id: "f1", run_id: "r1", question: "<script>问题</script>", rating: "down", reason: "incomplete", comment: "说明", answer_preview: "旧回答" }], next_cursor: requested.length === 1 ? { before: "2026-10-27T01:00:00Z", before_id: "f1" } : null });
+  };
+  await run("refreshFeedback()");
+  assert.match(requested[0], /knowledge_base_id=kb1/);
+  assert.match(requested[0], /rating=down/);
+  assert.equal($("feedback-list").children[0].children[0].textContent, "<script>问题</script>");
+  assert.equal($("feedback-more").hidden, false);
+  await run("refreshFeedback(true)");
+  assert.match(requested[1], /before_id=f1/);
+  assert.equal($("feedback-more").hidden, true);
+  assert.equal($("feedback-list").children.length, 2);
+});
+
+test("a later filter response wins over an earlier feedback request", async () => {
+  const { $, run, sandbox } = setup();
+  let finish, count = 0;
+  sandbox.fetch = async () => ++count === 1 ? new Promise(resolve => { finish = resolve; }) : jsonResponse({ items: [], next_cursor: null });
+  const pending = run("refreshFeedback()");
+  await new Promise(resolve => setImmediate(resolve));
+  await run("refreshFeedback()");
+  finish(jsonResponse({ items: [{ question: "旧筛选的私有问题", rating: "up" }], next_cursor: null }));
+  await pending;
+  assert.equal($("feedback-list").children[0].textContent, "当前范围暂无可访问的反馈。");
 });

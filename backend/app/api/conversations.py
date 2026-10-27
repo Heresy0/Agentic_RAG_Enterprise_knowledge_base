@@ -5,6 +5,8 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException, Query, Response
 from pydantic import BaseModel, ConfigDict
 from sqlalchemy.orm import Session
+from sqlalchemy import select
+from ..db.quality_models import QARun
 
 from ..audit_service import AuditService
 from ..db.dependencies import get_database_session
@@ -34,6 +36,7 @@ class ConversationList(BaseModel):
 
 
 class TurnSummary(BaseModel):
+    run_id: UUID | None = None
     turn_index: int
     question: str
     retrieval_question: str
@@ -97,9 +100,13 @@ def get_conversation(conversation_id: UUID, limit: int = Query(100, ge=1, le=100
         turns = store.turns(conversation_id, limit=limit, before=before)
     except ConversationNotFound as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+    run_ids = dict(store.session.execute(select(QARun.turn_index, QARun.id).where(
+        QARun.tenant_id == store.scope.tenant_id, QARun.user_id == store.principal.user_id,
+        QARun.conversation_id == conversation_id, QARun.turn_index.in_([t.turn_index for t in turns]),
+    )).all())
     return ConversationDetail(
         **summary(store, row).model_dump(),
-        turns=[TurnSummary(turn_index=t.turn_index, question=t.question,
+        turns=[TurnSummary(run_id=run_ids.get(t.turn_index), turn_index=t.turn_index, question=t.question,
                            retrieval_question=t.retrieval_question, result=AnswerResult.model_validate(t.result_json),
                            created_at=t.created_at) for t in turns],
         next_before=turns[0].turn_index if turns and turns[0].turn_index > 1 else None,

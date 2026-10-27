@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from pathlib import PurePosixPath
 from math import isfinite
 from prometheus_client import Counter
+from ..quality import capture as observation
 
 RAG_ROUTES = Counter("enterprise_rag_routes", "RAG strategy selections by phase", ["phase", "strategy"])
 RAG_REPAIRS = Counter("enterprise_rag_repairs", "Bounded answer repair outcomes", ["outcome"])
@@ -52,6 +53,7 @@ def start_model_usage():
 
 
 def record_scope(query, scope):
+    observation.observe_resolution(query)
     trace = _current.get()
     if trace is not None:
         trace.query = query
@@ -65,6 +67,8 @@ def _in_scope(trace, metadata):
 
 
 def record_documents(stage, documents):
+    if stage in {"authorized_final", "feedback_evidence"}:
+        observation.observe_documents(documents)
     trace = _current.get()
     if trace is None:
         return
@@ -102,6 +106,8 @@ def record_documents(stage, documents):
 
 
 def record_context(context, *, stage="context"):
+    if stage == "context":
+        observation.observe_context(context)
     trace = _current.get()
     if trace is None:
         return
