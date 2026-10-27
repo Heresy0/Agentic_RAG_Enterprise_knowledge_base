@@ -12,7 +12,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from sqlalchemy.pool import StaticPool
 
-from backend.app.api import feedback, qa, conversations
+from backend.app.api import feedback, qa, conversations, quality
 from backend.app.db.base import Base
 from backend.app.db.dependencies import get_database_session
 from backend.app.db.models import AuditEvent, KnowledgeBase, KnowledgeBaseUserGrant, KnowledgeDocument, Tenant, User
@@ -74,7 +74,7 @@ def data():
                 return "独立的追问" if turns else question
 
         app = FastAPI()
-        app.include_router(qa.router); app.include_router(feedback.router); app.include_router(conversations.router)
+        app.include_router(qa.router); app.include_router(feedback.router); app.include_router(conversations.router); app.include_router(quality.router)
         app.state.settings = SimpleNamespace(qa_snapshots_enabled=True, chat_model="test-model", chat_api_key="secret-api-key",
             qa_rate_limit_requests=60, qa_rate_limit_window_seconds=60,
             qa_max_concurrent_requests_per_tenant=3, qa_concurrency_lease_seconds=180)
@@ -139,7 +139,7 @@ def test_feedback_upsert_is_unique_validated_and_audited(data):
 
 
 @pytest.mark.parametrize("change", [dict(rating="down"), dict(reason="incorrect"), dict(rating="sideways"),
-                                   dict(comment="x" * 2001), dict(user_id=str(uuid4()))])
+                                   dict(comment="x" * 2001), dict(user_id=str(uuid4())), dict(allow_dataset_export=True, share_with_admins=False)])
 def test_feedback_rejects_invalid_and_forged_fields(data, change):
     assert put(data, ask(data), **change).status_code == 422
     assert data.session.scalar(select(func.count()).select_from(QAFeedback)) == 0

@@ -30,6 +30,7 @@ class FeedbackInput(BaseModel):
     reason: Reason | None = None
     comment: str | None = Field(default=None, max_length=2000)
     share_with_admins: bool = False
+    allow_dataset_export: bool = False
 
     @field_validator("comment")
     @classmethod
@@ -40,6 +41,8 @@ class FeedbackInput(BaseModel):
     def valid_reason(self):
         if (self.rating == "down") != (self.reason is not None):
             raise ValueError("点踩时必须选择原因；点赞时不填写错误原因。")
+        if self.allow_dataset_export and not self.share_with_admins:
+            raise ValueError("允许回归样本导出前，必须先共享给管理员。")
         return self
 
 
@@ -62,7 +65,8 @@ def feedback_data(row):
     if row is None:
         return None
     return dict(id=row.id, run_id=row.run_id, rating=row.rating, reason=row.reason, comment=row.comment,
-                share_with_admins=row.share_with_admins, created_at=utc(row.created_at), updated_at=utc(row.updated_at))
+                share_with_admins=row.share_with_admins, allow_dataset_export=row.allow_dataset_export,
+                created_at=utc(row.created_at), updated_at=utc(row.updated_at))
 
 
 @router.get("/runs/{run_id}")

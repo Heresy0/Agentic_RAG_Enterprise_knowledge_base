@@ -16,6 +16,7 @@
       <button class="nav-item active" data-tab="qa"><span class="nav-symbol">✧</span>知识问答<span class="nav-arrow">↗</span></button>
       <button class="nav-item" data-tab="documents"><span class="nav-symbol">▤</span>文档管理</button>
       <button class="nav-item" data-tab="feedback"><span class="nav-symbol">☷</span>问答反馈</button>
+      <button id="quality-nav" class="nav-item" data-tab="quality" disabled><span class="nav-symbol">✓</span>质量工作台</button>
     </nav>
     <div class="sidebar-heading">我的知识库 <span id="kb-count">—</span></div>
     <div id="kb-list" class="kb-list"><p class="sidebar-empty">登录后查看可访问的知识库</p></div>
@@ -48,11 +49,20 @@
         <div id="feedback-list" class="feedback-list" aria-live="polite"><p class="empty-row">登录后查看反馈。</p></div>
         <button id="feedback-more" class="secondary" hidden>加载更多</button>
       </section>
+      <section id="quality-panel" aria-label="质量工作台" hidden>
+        <div class="document-toolbar"><div><h2>反馈审核与回归样本</h2><p>仅显示用户主动共享、且你有权管理的反馈。</p></div><button id="quality-refresh" class="secondary">↻ 刷新</button></div>
+        <div class="feedback-filters"><label>审核状态 <select id="quality-status"><option value="">全部状态</option><option value="pending">待审核</option><option value="confirmed">问题成立</option><option value="needs_evidence">需补证据</option><option value="dismissed">反馈不成立</option></select></label><span class="answer-meta">跟随左侧知识库筛选；跨库记录须拥有全部相关库的管理员权限。</span></div>
+        <div id="quality-list" class="feedback-list" aria-live="polite"></div><button id="quality-more" class="secondary" hidden>加载更多</button>
+        <div class="section-title"><h3>内部回归样本版本</h3><span>仅导出已审核、获授权且标准仍有效的样本</span></div>
+        <div class="feedback-filters"><label for="quality-name">版本名称</label><input id="quality-name" maxlength="100" value="反馈回归集"><button id="quality-export" class="primary" disabled>用已选样本创建版本</button></div>
+        <div id="quality-versions" class="feedback-list"></div>
+      </section>
     </div>
   </main>
   <dialog id="login-dialog" aria-labelledby="login-title"><form method="dialog"><button class="dialog-close" aria-label="关闭登录窗口">×</button></form><div class="dialog-logo">知</div><div class="eyebrow">WELCOME TO YOUR WORKSPACE</div><h2 id="login-title">连接你的团队知识</h2><p>使用企业账号登录，访问属于你的知识库。</p><button id="oidc-login" class="primary login-primary">使用企业账号登录 ↗</button><p id="login-help" class="login-help">通过 Keycloak 安全登录</p><details><summary>已有访问令牌？临时登录</summary><form id="token-form"><label for="token">访问令牌</label><textarea id="token" rows="3" spellcheck="false" autocomplete="off" placeholder="粘贴 Access Token（不含 Bearer 前缀）"></textarea><p class="login-help">令牌仅保存在当前页面内存中，刷新后需要重新登录。</p><button class="secondary" type="submit">连接工作空间</button></form></details></dialog>
   <dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">删除这份文档？</h2><p id="delete-description"></p><p>删除后将无法从这份文档检索答案。此操作无法撤销。</p><div class="dialog-actions"><button id="delete-cancel" class="secondary">取消</button><button id="delete-confirm" class="danger">确认删除</button></div></dialog>
   <dialog id="citation-dialog" aria-labelledby="citation-title"><form method="dialog"><button class="dialog-close" aria-label="关闭原文预览">×</button></form><h2 id="citation-title">引用原文</h2><p id="citation-meta" role="status"></p><pre id="citation-content"></pre></dialog>
   <dialog id="snapshot-dialog" aria-labelledby="snapshot-title"><form method="dialog"><button class="dialog-close" aria-label="关闭问答快照">×</button></form><h2 id="snapshot-title">问答快照</h2><p id="snapshot-meta" role="status"></p><div id="snapshot-content"></div></dialog>
+  <dialog id="quality-dialog" aria-labelledby="quality-title"><form method="dialog"><button class="dialog-close" aria-label="关闭质量审核">×</button></form><h2 id="quality-title">反馈审核与样本标注</h2><p id="quality-dialog-status" role="status"></p><div id="quality-detail"></div></dialog>
 </body>
 </html>

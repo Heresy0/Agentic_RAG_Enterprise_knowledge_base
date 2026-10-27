@@ -2,7 +2,7 @@
 from datetime import datetime
 from uuid import UUID, uuid4
 
-from sqlalchemy import Boolean, CheckConstraint, DateTime, ForeignKeyConstraint, Index, Integer, JSON, String, Text, UniqueConstraint, Uuid, func
+from sqlalchemy import Boolean, CheckConstraint, DateTime, ForeignKeyConstraint, Index, Integer, JSON, String, Text, UniqueConstraint, Uuid, func, false
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .base import Base
@@ -57,6 +57,7 @@ class QAFeedback(Base):
     reason: Mapped[str | None] = mapped_column(String(32))
     comment: Mapped[str | None] = mapped_column(Text)
     share_with_admins: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    allow_dataset_export: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False, server_default=false())
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     __table_args__ = (
@@ -64,6 +65,7 @@ class QAFeedback(Base):
         ForeignKeyConstraint(["tenant_id", "user_id"], ["users.tenant_id", "users.id"], ondelete="CASCADE"),
         UniqueConstraint("tenant_id", "run_id", "user_id", name="uq_qa_feedback_owner_run"),
         CheckConstraint("rating IN ('up', 'down')", name="ck_qa_feedback_rating"),
+        CheckConstraint("NOT allow_dataset_export OR share_with_admins", name="ck_qa_feedback_export_consent"),
         CheckConstraint("(rating = 'up' AND reason IS NULL) OR (rating = 'down' AND reason IS NOT NULL AND reason IN ('incorrect', 'incomplete', 'citation', 'false_refusal', 'outdated', 'other'))", name="ck_qa_feedback_reason"),
         Index("ix_qa_feedback_tenant_updated", "tenant_id", "updated_at", "id"),
     )

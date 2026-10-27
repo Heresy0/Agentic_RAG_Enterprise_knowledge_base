@@ -11,6 +11,7 @@ import backend.app.db.models  # noqa: F401
 import backend.app.db.conversation_models  # noqa: F401
 import backend.app.db.model_usage_models  # noqa: F401
 import backend.app.db.quality_models  # noqa: F401
+import backend.app.db.review_models  # noqa: F401
 
 
 config = context.config

@@ -32,6 +32,7 @@ def test_postgres_migration_concurrent_upsert_constraints_and_cascade():
     control = create_engine(required_env("DATABASE_URL"))
     engine = create_engine(required_env("DATABASE_URL"), connect_args={"options": f"-csearch_path={schema}"})
     migration = importlib.import_module("migrations.versions.f4b6d8e0a215_qa_snapshots_feedback")
+    review_migration = importlib.import_module("migrations.versions.a5c7e9f10236_quality_reviews")
     created = False
     try:
         with control.begin() as connection:
@@ -42,6 +43,7 @@ def test_postgres_migration_concurrent_upsert_constraints_and_cascade():
                 table.create(connection)
             with Operations.context(MigrationContext.configure(connection)):
                 migration.upgrade()
+                review_migration.upgrade()
             inspector = inspect(connection)
             for model in (QARun, QARunScope, QAFeedback):
                 assert {column["name"] for column in inspector.get_columns(model.__tablename__)} == set(model.__table__.columns.keys())
@@ -86,8 +88,10 @@ def test_postgres_migration_concurrent_upsert_constraints_and_cascade():
                 assert session.scalar(select(func.count()).select_from(model)) == 0
         with engine.begin() as connection:
             with Operations.context(MigrationContext.configure(connection)):
+                review_migration.downgrade()
                 migration.downgrade()
                 migration.upgrade()
+                review_migration.upgrade()
     finally:
         engine.dispose()
         if created:
