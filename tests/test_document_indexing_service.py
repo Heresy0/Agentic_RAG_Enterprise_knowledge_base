@@ -319,7 +319,7 @@ def test_old_chunking_version_is_rebuilt_only_on_explicit_indexing(session, scop
     assert service.index_file(file_path=path, scope=scope, created_by_user_id=scope_data.user_id) > 0
     assert embeddings.document_calls == 2
     document = session.scalar(select(KnowledgeDocument))
-    assert document.metadata_json["chunking_version"] == CHUNKING_VERSION == "structured-v4"
+    assert document.metadata_json["chunking_version"] == CHUNKING_VERSION == "structured-v5"
     assert service.index_file(file_path=path, scope=scope, created_by_user_id=scope_data.user_id) == 0
     assert embeddings.document_calls == 2
 

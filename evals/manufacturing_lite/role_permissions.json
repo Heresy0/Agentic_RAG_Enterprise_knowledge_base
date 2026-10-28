@@ -1,0 +1,27 @@
+{
+  "kind": "offline_role_fixture_not_live_grants",
+  "roles": {
+    "操作员": {
+      "公共参考": "viewer",
+      "生产工艺": "viewer"
+    },
+    "工艺工程师": {
+      "公共参考": "viewer",
+      "生产工艺": "editor",
+      "质量检验": "viewer"
+    },
+    "质量工程师": {
+      "公共参考": "viewer",
+      "生产工艺": "viewer",
+      "质量检验": "editor"
+    },
+    "知识管理员": {
+      "公共参考": "admin",
+      "生产工艺": "admin",
+      "质量检验": "admin"
+    },
+    "仅参考资料用户": {
+      "公共参考": "viewer"
+    }
+  }
+}

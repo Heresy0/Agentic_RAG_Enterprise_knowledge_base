@@ -1,4 +1,12 @@
 {
+  "e0e49d1e9886154beea20798183020d7ad5b1c661cde2e30293fcf746e1343e3": {
+    "reviewed_by": "codex_visual_check",
+    "reviewed_at": "2026-10-28",
+    "source_note": "对照制造业合成扫描件04_定位治具更换通知扫描件.pdf第1页渲染图及真实Tesseract输出，只核查工单WO-017、产品HC-A17、工序OP-20三个标识。不是人工批准，也不是整页OCR验收；原始OCR为3/6个关键字段匹配，待复核标记保留。",
+    "corrections": [
+      {"page": 1, "before": "工单W 0 -017,产品HCAA17,工序0P-20。", "after": "工单WO-017，产品HC-A17，工序OP-20。"}
+    ]
+  },
   "76c053e7d68534aec868a8721a6b6a88ffd4f5660b272f62ebfddd1049916b53": {
     "reviewed_by": "codex_visual_check",
     "reviewed_at": "2026-10-05",

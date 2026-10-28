@@ -660,6 +660,10 @@ def _heading_level(line: str) -> int | None:
         line = marker_match.group(2).strip()
     if len(line) > 60:
         return None
+    # A numbered requirement ending a sentence is body content, not a heading.
+    # Explicit typography markers still take precedence over this text heuristic.
+    if marker_level is None and _LIST_PATTERN.match(line) and line.endswith(("。", "；", ";", "！", "!", "？", "?")):
+        return None
     if not _HEADING_PATTERN.match(line):
         return marker_level
     if line.startswith("第"):

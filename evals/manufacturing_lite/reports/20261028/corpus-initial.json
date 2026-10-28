@@ -1,0 +1,435 @@
+{
+  "edition": "manufacturing-lite-v1",
+  "evaluation_type": "offline_actual_splitters_not_answer_accuracy",
+  "status": "failed",
+  "chunking_version": "structured-v5",
+  "corpus_manifest_sha256": "55c17c74325f80371c6f86b48d231052f36b81fa625e0deb711d67ac1932b641",
+  "dataset_sha256": "a3d3ad48381fa65158e00eed5149136d69f6debccdb8dd1d051165cc43dee253",
+  "document_count": 17,
+  "question_count": 20,
+  "formats": {
+    "pdf": 5,
+    "docx": 4,
+    "md": 4,
+    "txt": 4
+  },
+  "summary": {
+    "passed": 52,
+    "failed": 4
+  },
+  "documents": [
+    {
+      "id": "MFG-01",
+      "status": "passed",
+      "format": "pdf",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-02",
+      "status": "passed",
+      "format": "pdf",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph",
+        "rule_group"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-03",
+      "status": "passed",
+      "format": "pdf",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-04",
+      "status": "passed",
+      "format": "pdf",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "review_required": true
+    },
+    {
+      "id": "MFG-05",
+      "status": "passed",
+      "format": "pdf",
+      "chunks": 1495,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-06",
+      "status": "passed",
+      "format": "docx",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-07",
+      "status": "passed",
+      "format": "docx",
+      "chunks": 5,
+      "chunk_types": [
+        "paragraph",
+        "rule_group"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-08",
+      "status": "passed",
+      "format": "docx",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-09",
+      "status": "passed",
+      "format": "docx",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-10",
+      "status": "passed",
+      "format": "md",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-11",
+      "status": "passed",
+      "format": "md",
+      "chunks": 5,
+      "chunk_types": [
+        "code",
+        "paragraph"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-12",
+      "status": "passed",
+      "format": "md",
+      "chunks": 5,
+      "chunk_types": [
+        "paragraph",
+        "rule_group",
+        "table"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-13",
+      "status": "passed",
+      "format": "md",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-14",
+      "status": "passed",
+      "format": "txt",
+      "chunks": 6,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-15",
+      "status": "passed",
+      "format": "txt",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-16",
+      "status": "passed",
+      "format": "txt",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "review_required": false
+    },
+    {
+      "id": "MFG-17",
+      "status": "passed",
+      "format": "txt",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "review_required": false
+    }
+  ],
+  "checks": [
+    {
+      "id": "MFG-Q01",
+      "kind": "evidence_anchor",
+      "document": "07_HC-A17_OP20作业指导书现行版.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q02",
+      "kind": "evidence_anchor",
+      "document": "06_HC-A17_OP20作业指导书历史版.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q03",
+      "kind": "evidence_anchor",
+      "document": "14_工单WO-017班次交接记录.txt",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q03",
+      "kind": "evidence_anchor",
+      "document": "09_工艺变更通知ECN-2026-018.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q04",
+      "kind": "evidence_anchor",
+      "document": "15_工单WO-018班次交接记录.txt",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q04",
+      "kind": "evidence_anchor",
+      "document": "09_工艺变更通知ECN-2026-018.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q05",
+      "kind": "evidence_anchor",
+      "document": "05_NIST量块手册公开参考.pdf",
+      "status": "failed"
+    },
+    {
+      "id": "MFG-Q06",
+      "kind": "evidence_anchor",
+      "document": "17_量具点检与隔离交接记录.txt",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q07",
+      "kind": "evidence_anchor",
+      "document": "01_量具使用与测量准备手册.pdf",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q07",
+      "kind": "evidence_anchor",
+      "document": "01_量具使用与测量准备手册.pdf",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q08",
+      "kind": "evidence_anchor",
+      "document": "08_HC-A17首件检验规范.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q08",
+      "kind": "evidence_anchor",
+      "document": "08_HC-A17首件检验规范.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q08",
+      "kind": "evidence_anchor",
+      "document": "08_HC-A17首件检验规范.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q09",
+      "kind": "evidence_anchor",
+      "document": "14_工单WO-017班次交接记录.txt",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q09",
+      "kind": "evidence_anchor",
+      "document": "07_HC-A17_OP20作业指导书现行版.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q10",
+      "kind": "evidence_anchor",
+      "document": "07_HC-A17_OP20作业指导书现行版.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q11",
+      "kind": "evidence_anchor",
+      "document": "12_检验记录填写与追溯规则.md",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q11",
+      "kind": "evidence_anchor",
+      "document": "12_检验记录填写与追溯规则.md",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q12",
+      "kind": "evidence_anchor",
+      "document": "02_首件确认与工序交接流程.pdf",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q12",
+      "kind": "evidence_anchor",
+      "document": "02_首件确认与工序交接流程.pdf",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q12",
+      "kind": "evidence_anchor",
+      "document": "02_首件确认与工序交接流程.pdf",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q13",
+      "kind": "evidence_anchor",
+      "document": "09_工艺变更通知ECN-2026-018.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q14",
+      "kind": "evidence_anchor",
+      "document": "06_HC-A17_OP20作业指导书历史版.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q14",
+      "kind": "evidence_anchor",
+      "document": "07_HC-A17_OP20作业指导书现行版.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q15",
+      "kind": "evidence_anchor",
+      "document": "13_历史文件查询与变更说明.md",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q15",
+      "kind": "evidence_anchor",
+      "document": "06_HC-A17_OP20作业指导书历史版.docx",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-Q16",
+      "kind": "evidence_anchor",
+      "document": "13_历史文件查询与变更说明.md",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-01",
+      "kind": "parameter_row_binding",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-03",
+      "kind": "parameter_row_binding",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-08",
+      "kind": "parameter_row_binding",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-02",
+      "kind": "cross_page_conditions",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-03",
+      "kind": "long_table_headers",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-11",
+      "kind": "code_fence_preserved",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-04",
+      "kind": "real_ocr_field",
+      "field": "WO-017",
+      "status": "failed"
+    },
+    {
+      "id": "MFG-04",
+      "kind": "real_ocr_field",
+      "field": "HC-A17",
+      "status": "failed"
+    },
+    {
+      "id": "MFG-04",
+      "kind": "real_ocr_field",
+      "field": "OP-20",
+      "status": "failed"
+    },
+    {
+      "id": "MFG-04",
+      "kind": "real_ocr_field",
+      "field": "2026年10月26日14:10",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-04",
+      "kind": "real_ocr_field",
+      "field": "3件",
+      "status": "passed"
+    },
+    {
+      "id": "MFG-04",
+      "kind": "real_ocr_field",
+      "field": "质量人员签署",
+      "status": "passed"
+    }
+  ],
+  "external_model_calls": 0,
+  "limitation": "仅验证已标注内容，不代表未标注版面、OCR全文或真实问答准确率。"
+}
