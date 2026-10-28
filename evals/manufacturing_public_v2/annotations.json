@@ -1,0 +1,2102 @@
+[
+  {
+    "id": "MFG-Q01",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q01",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q02",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q02",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q03",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q03",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q04",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q04",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q05",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q05",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q06",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q06",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q07",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q07",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q08",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q08",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q09",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q09",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q10",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q10",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q11",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q11",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q12",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q12",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q13",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q13",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q14",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q14",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q15",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q15",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q16",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q16",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q17",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q17",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q18",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q18",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q19",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q19",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG-Q20",
+    "split": "development",
+    "baseline": true,
+    "concept_id": "baseline:MFG-Q20",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-Q001",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "comparator-preparation",
+    "source_family": "NBSIR74-523",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P03",
+        "document": "documents/公共参考/MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir74-523.pdf",
+        "physical_page": 8,
+        "anchor": "The gaging pressure, magnification and linearity",
+        "source_sha256": "dc3bc9eb2b88daf15674e4e82b5f8014e752f66b342ab9d2ed35d369ed5f8446"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q002",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "weight-linearity-hysteresis",
+    "source_family": "NBSIR74-523",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P03",
+        "document": "documents/公共参考/MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir74-523.pdf",
+        "physical_page": 9,
+        "anchor": "will indicate any hysteresis",
+        "source_sha256": "dc3bc9eb2b88daf15674e4e82b5f8014e752f66b342ab9d2ed35d369ed5f8446"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q003",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "four-one-comparison",
+    "source_family": "NBSIR76-979",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P04",
+        "document": "documents/公共参考/MFG-P04_Intercomparison_Procedures_for_Gage_Blocks_Using_Electromechanical_Comparators.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir76-979.pdf",
+        "physical_page": 7,
+        "anchor": "are unknowns and two are standards",
+        "source_sha256": "30b4d3bbf9367c47787479bfc73388028bc264bff5d24e6f09576b445cff9fde"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q004",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "gage-environment-limits",
+    "source_family": "NBSIR76-979",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P04",
+        "document": "documents/公共参考/MFG-P04_Intercomparison_Procedures_for_Gage_Blocks_Using_Electromechanical_Comparators.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir76-979.pdf",
+        "physical_page": 9,
+        "anchor": "Relative humidity is held below 50%",
+        "source_sha256": "30b4d3bbf9367c47787479bfc73388028bc264bff5d24e6f09576b445cff9fde"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q005",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "dimensional-budget-inputs",
+    "source_family": "NISTJResNov-Dec97-102-6",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P05",
+        "document": "documents/公共参考/MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/jres/102/6/j26doi.pdf",
+        "physical_page": 2,
+        "anchor": "thermal expansion coefficients of customer",
+        "source_sha256": "965b620effe2216edb9e8da0f6bc7c290b21c4e00b8b727ef576bb940b564990"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q006",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "worst-case-validation",
+    "source_family": "NISTJResNov-Dec97-102-6",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P05",
+        "document": "documents/公共参考/MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/jres/102/6/j26doi.pdf",
+        "physical_page": 2,
+        "anchor": "calibration histories or auxiliary experiments",
+        "source_sha256": "965b620effe2216edb9e8da0f6bc7c290b21c4e00b8b727ef576bb940b564990"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q007",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "repeatability-reproducibility",
+    "source_family": "NISTJResNov-Dec97-102-6",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P05",
+        "document": "documents/公共参考/MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/jres/102/6/j26doi.pdf",
+        "physical_page": 3,
+        "anchor": "Repeatability is a measure",
+        "source_sha256": "965b620effe2216edb9e8da0f6bc7c290b21c4e00b8b727ef576bb940b564990"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q008",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "standard-uncertainty-definition",
+    "source_family": "NISTTechnicalNote1297s",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P06",
+        "document": "documents/公共参考/MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/legacy/tn/nbstechnicalnote1297.pdf",
+        "physical_page": 7,
+        "anchor": "positive square root of the estimated",
+        "source_sha256": "f2c8e6026d5589a63d492f192b72cd905f554b477a6049532256170aec477e92"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q009",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "quoted-multiplier-conversion",
+    "source_family": "NISTTechnicalNote1297s",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P06",
+        "document": "documents/公共参考/MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/legacy/tn/nbstechnicalnote1297.pdf",
+        "physical_page": 8,
+        "anchor": "dividing the quoted uncertainty by the multiplier",
+        "source_sha256": "f2c8e6026d5589a63d492f192b72cd905f554b477a6049532256170aec477e92"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q010",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "error-versus-uncertainty",
+    "source_family": "NISTTechnicalNote1297s",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P06",
+        "document": "documents/公共参考/MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/legacy/tn/nbstechnicalnote1297.pdf",
+        "physical_page": 7,
+        "anchor": "though it may have a large uncertainty",
+        "source_sha256": "f2c8e6026d5589a63d492f192b72cd905f554b477a6049532256170aec477e92"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q011",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "characterization-metrics",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W01",
+        "document": "documents/公共参考/MFG-W01_What_are_the_issues_for_characterization.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section1/mpc11.htm",
+        "physical_page": null,
+        "anchor": "short-term variability",
+        "source_sha256": "12175e447b1b0cc9d4233fab8e1c6b83a545f61075cc231decd751349cb56668"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q012",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "ongoing-control-timescales",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W01",
+        "document": "documents/公共参考/MFG-W01_What_are_the_issues_for_characterization.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section1/mpc11.htm",
+        "physical_page": null,
+        "anchor": "statistical control program that controls both",
+        "source_sha256": "12175e447b1b0cc9d4233fab8e1c6b83a545f61075cc231decd751349cb56668"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q013",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "characterization-limits",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W01",
+        "document": "documents/公共参考/MFG-W01_What_are_the_issues_for_characterization.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section1/mpc11.htm",
+        "physical_page": null,
+        "anchor": "destructive tests",
+        "source_sha256": "12175e447b1b0cc9d4233fab8e1c6b83a545f61075cc231decd751349cb56668"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q014",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "check-standard-purpose",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W02",
+        "document": "documents/公共参考/MFG-W02_What_is_a_check_standard.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section1/mpc12.htm",
+        "physical_page": null,
+        "anchor": "Time-dependent sources of error",
+        "source_sha256": "d59927d85046a60558a0f70186d7265077cdc58454667de680aaf1b26138b6d2"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q015",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "check-standard-selection",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W02",
+        "document": "documents/公共参考/MFG-W02_What_is_a_check_standard.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section1/mpc12.htm",
+        "physical_page": null,
+        "anchor": "close in material content and geometry",
+        "source_sha256": "d59927d85046a60558a0f70186d7265077cdc58454667de680aaf1b26138b6d2"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q016",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "check-standard-value",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W02",
+        "document": "documents/公共参考/MFG-W02_What_is_a_check_standard.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section1/mpc12.htm",
+        "physical_page": null,
+        "anchor": "characteristic of the measurement process",
+        "source_sha256": "d59927d85046a60558a0f70186d7265077cdc58454667de680aaf1b26138b6d2"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q017",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "control-not-correct-calibration",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W03",
+        "document": "documents/公共参考/MFG-W03_Issues_in_controlling_the_measurement_process.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section2/mpc21.htm",
+        "physical_page": null,
+        "anchor": "comparability",
+        "source_sha256": "836f86261259b1e8bb7a0d84f61858822e16bc6dbaf7cc6e7d5ce3feca01c453"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q018",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "measurement-control-objective",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W03",
+        "document": "documents/公共参考/MFG-W03_Issues_in_controlling_the_measurement_process.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section2/mpc21.htm",
+        "physical_page": null,
+        "anchor": "validate the statement of uncertainty",
+        "source_sha256": "836f86261259b1e8bb7a0d84f61858822e16bc6dbaf7cc6e7d5ce3feca01c453"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q019",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "normality-robustness",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W03",
+        "document": "documents/公共参考/MFG-W03_Issues_in_controlling_the_measurement_process.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section2/mpc21.htm",
+        "physical_page": null,
+        "anchor": "bell-shaped and symmetric",
+        "source_sha256": "836f86261259b1e8bb7a0d84f61858822e16bc6dbaf7cc6e7d5ce3feca01c453"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q020",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "bias-shift-causes",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W04",
+        "document": "documents/公共参考/MFG-W04_How_are_bias_and_variability_controlled.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section2/mpc22.htm",
+        "physical_page": null,
+        "anchor": "procedural change",
+        "source_sha256": "9f9bf6491aad1b2f4aa3436997564eb0a3e08e7962bdf2a0a1e9919ecd92a221"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q021",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "shewhart-versus-ewma",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W04",
+        "document": "documents/公共参考/MFG-W04_How_are_bias_and_variability_controlled.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section2/mpc22.htm",
+        "physical_page": null,
+        "anchor": "small changes",
+        "source_sha256": "9f9bf6491aad1b2f4aa3436997564eb0a3e08e7962bdf2a0a1e9919ecd92a221"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q022",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "variability-change-causes",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W04",
+        "document": "documents/公共参考/MFG-W04_How_are_bias_and_variability_controlled.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section2/mpc22.htm",
+        "physical_page": null,
+        "anchor": "degradation",
+        "source_sha256": "9f9bf6491aad1b2f4aa3436997564eb0a3e08e7962bdf2a0a1e9919ecd92a221"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q023",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "short-term-statistic",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W05",
+        "document": "documents/公共参考/MFG-W05_How_is_short-term_variability_controlled.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section2/mpc23.htm",
+        "physical_page": null,
+        "anchor": "standard deviations",
+        "source_sha256": "04cadbd38f35394b2ecb312e6ac2a52e30d041811a8e9b962718870114828403"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q024",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "short-term-artifact-set",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W05",
+        "document": "documents/公共参考/MFG-W05_How_is_short-term_variability_controlled.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section2/mpc23.htm",
+        "physical_page": null,
+        "anchor": "collection",
+        "source_sha256": "04cadbd38f35394b2ecb312e6ac2a52e30d041811a8e9b962718870114828403"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q025",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "calibration-purpose",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W06",
+        "document": "documents/公共参考/MFG-W06_Issues_in_calibration.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section3/mpc31.htm",
+        "physical_page": null,
+        "anchor": "eliminate or reduce bias",
+        "source_sha256": "b1b24fe74e06b376d47ad9e9d3ca4d68a3317c163eab63cec9a58ff9a254dff4"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q026",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "calibration-two-types",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W06",
+        "document": "documents/公共参考/MFG-W06_Issues_in_calibration.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section3/mpc31.htm",
+        "physical_page": null,
+        "anchor": "single point",
+        "source_sha256": "b1b24fe74e06b376d47ad9e9d3ca4d68a3317c163eab63cec9a58ff9a254dff4"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q027",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "type-a-method",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W07",
+        "document": "documents/公共参考/MFG-W07_Type_A_evaluations.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section5/mpc53.htm",
+        "physical_page": null,
+        "anchor": "statistical analysis",
+        "source_sha256": "4745c5fc9177bb58b88965f8dba0242901a7b1188c5d5ff72144ca9cac12639c"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q028",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "instrument-population-effect",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W07",
+        "document": "documents/公共参考/MFG-W07_Type_A_evaluations.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section5/mpc53.htm",
+        "physical_page": null,
+        "anchor": "specific instrument",
+        "source_sha256": "4745c5fc9177bb58b88965f8dba0242901a7b1188c5d5ff72144ca9cac12639c"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q029",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "type-b-inputs",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W08",
+        "document": "documents/公共参考/MFG-W08_Type_B_evaluations.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section5/mpc54.htm",
+        "physical_page": null,
+        "anchor": "resolution",
+        "source_sha256": "84991deb065296592fcce1ad9ad37f26312262b5e6bc2e40918eec9536fbf091"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q030",
+    "split": "development",
+    "baseline": false,
+    "concept_id": "type-b-worst-case-model",
+    "source_family": "NIST-eHandbook-mpc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W08",
+        "document": "documents/公共参考/MFG-W08_Type_B_evaluations.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/mpc/section5/mpc54.htm",
+        "physical_page": null,
+        "anchor": "triangular",
+        "source_sha256": "84991deb065296592fcce1ad9ad37f26312262b5e6bc2e40918eec9536fbf091"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q031",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "contact-material-error",
+    "source_family": "NBSTechnicalNote962",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P02",
+        "document": "documents/公共参考/MFG-P02_Contact_Deformation_in_Gage_Block_Comparisons.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/TN/nbstechnicalnote962.pdf",
+        "physical_page": 7,
+        "anchor": "different materials",
+        "source_sha256": "892713b49363f1d4b15fea9ec532b1a77f587a2b8c8dae6c7f62d9a4e65ba7b5"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q032",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "spherical-tip-precondition",
+    "source_family": "NBSTechnicalNote962",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P02",
+        "document": "documents/公共参考/MFG-P02_Contact_Deformation_in_Gage_Block_Comparisons.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/TN/nbstechnicalnote962.pdf",
+        "physical_page": 7,
+        "anchor": "spherical",
+        "source_sha256": "892713b49363f1d4b15fea9ec532b1a77f587a2b8c8dae6c7f62d9a4e65ba7b5"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q033",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "laser-total-traceability",
+    "source_family": "NBSTechnicalNote1248",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P07",
+        "document": "documents/公共参考/MFG-P07_Traceability_of_Laser_Interferometric_Length_Measurements.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/TN/nbstechnicalnote1248.pdf",
+        "physical_page": 6,
+        "anchor": "not with laser calibration alone",
+        "source_sha256": "df46514f11692d7b1af06f9e9aa0f6cc7bdf9e0cea9f133027782292e4602d49"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q034",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "laser-calibration-portability",
+    "source_family": "NBSTechnicalNote1248",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P07",
+        "document": "documents/公共参考/MFG-P07_Traceability_of_Laser_Interferometric_Length_Measurements.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/TN/nbstechnicalnote1248.pdf",
+        "physical_page": 6,
+        "anchor": "especially when the systems are transported",
+        "source_sha256": "df46514f11692d7b1af06f9e9aa0f6cc7bdf9e0cea9f133027782292e4602d49"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q035",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "involute-coordinate-system",
+    "source_family": "NBSIR73-272",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P08",
+        "document": "documents/公共参考/MFG-P08_On_Characterizing_Master_Involute_Profiles.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir73-272.pdf",
+        "physical_page": 9,
+        "anchor": "two coordinate axis",
+        "source_sha256": "e57ec6c8eade96f9fc2568eda8d6aaf56bb9335824d8ce5a0ed8a9a149facf4f"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q036",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "involute-generation",
+    "source_family": "NBSIR73-272",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P08",
+        "document": "documents/公共参考/MFG-P08_On_Characterizing_Master_Involute_Profiles.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir73-272.pdf",
+        "physical_page": 9,
+        "anchor": "unwound",
+        "source_sha256": "e57ec6c8eade96f9fc2568eda8d6aaf56bb9335824d8ce5a0ed8a9a149facf4f"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q037",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "thread-wire-measurand",
+    "source_family": "NBSIR73-136",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P09",
+        "document": "documents/公共参考/MFG-P09_Measurements_of_Cylindrical_Standards.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir73-136.pdf",
+        "physical_page": 5,
+        "anchor": "deformed diameter",
+        "source_sha256": "8d0834b0d741b8e36a1ead69207dd6f8423468e520813cb588359451f96bdc4d"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q038",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "cylinder-length-transfer",
+    "source_family": "NBSIR73-136",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P09",
+        "document": "documents/公共参考/MFG-P09_Measurements_of_Cylindrical_Standards.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir73-136.pdf",
+        "physical_page": 27,
+        "anchor": "mechanical transfer",
+        "source_sha256": "8d0834b0d741b8e36a1ead69207dd6f8423468e520813cb588359451f96bdc4d"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q039",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "flatness-optical-principle",
+    "source_family": "NBSIR73-239",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P10",
+        "document": "documents/公共参考/MFG-P10_Gage_Block_Flatness_and_Parallelism_Measurement.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir73-239.pdf",
+        "physical_page": 5,
+        "anchor": "monochromatic",
+        "source_sha256": "5540ff52116f5f4cde10572a330c0df9be42d54d23c017ac20c85622a91dbcec"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q040",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "thin-gage-support",
+    "source_family": "NBSIR73-239",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P10",
+        "document": "documents/公共参考/MFG-P10_Gage_Block_Flatness_and_Parallelism_Measurement.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir73-239.pdf",
+        "physical_page": 5,
+        "anchor": "generally flexible",
+        "source_sha256": "5540ff52116f5f4cde10572a330c0df9be42d54d23c017ac20c85622a91dbcec"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q041",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "finite-force-deformation",
+    "source_family": "NBSIR73-243",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P11",
+        "document": "documents/公共参考/MFG-P11_On_the_Compression_of_a_Cylinder_in_Contact_with_a_Plane_Surface.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir73-243.pdf",
+        "physical_page": 8,
+        "anchor": "finite measuring force",
+        "source_sha256": "981264a30d2e863c4d94d973b5ea0a312de0f8addb467c42aa83978198f5cece"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q042",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "hertz-elastic-friction",
+    "source_family": "NBSIR73-243",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P11",
+        "document": "documents/公共参考/MFG-P11_On_the_Compression_of_a_Cylinder_in_Contact_with_a_Plane_Surface.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir73-243.pdf",
+        "physical_page": 9,
+        "anchor": "elastic limit",
+        "source_sha256": "981264a30d2e863c4d94d973b5ea0a312de0f8addb467c42aa83978198f5cece"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q043",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "reference-plate-statistics",
+    "source_family": "NBSIR74-532",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P12",
+        "document": "documents/公共参考/MFG-P12_A_Method_of_Calibrating_Two-dimensional_Reference_Plates.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir74-532.pdf",
+        "physical_page": 7,
+        "anchor": "nonlinear",
+        "source_sha256": "a442542739607920bc2feba4708b743dbffe8b73c321b5792d1d1076b0dafc10"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q044",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "reference-plate-systematics",
+    "source_family": "NBSIR74-532",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P12",
+        "document": "documents/公共参考/MFG-P12_A_Method_of_Calibrating_Two-dimensional_Reference_Plates.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir74-532.pdf",
+        "physical_page": 7,
+        "anchor": "temperature",
+        "source_sha256": "a442542739607920bc2feba4708b743dbffe8b73c321b5792d1d1076b0dafc10"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q045",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "roundness-error-separation",
+    "source_family": "NBSIR79-1758",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P13",
+        "document": "documents/公共参考/MFG-P13_The_Calibration_of_a_Roundness_Standard.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir79-1758.pdf",
+        "physical_page": 7,
+        "anchor": "noncircularity in the spindle",
+        "source_sha256": "3935d69b339207b1a9578d695963c62ad3f9e4ad3ccd7c9b4704cfd74d35dc09"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q046",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "roundness-polar-trace",
+    "source_family": "NBSIR79-1758",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P13",
+        "document": "documents/公共参考/MFG-P13_The_Calibration_of_a_Roundness_Standard.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir79-1758.pdf",
+        "physical_page": 8,
+        "anchor": "Included in the trace",
+        "source_sha256": "3935d69b339207b1a9578d695963c62ad3f9e4ad3ccd7c9b4704cfd74d35dc09"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q047",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "index-table-precalibration",
+    "source_family": "NBSIR75-750",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P14",
+        "document": "documents/公共参考/MFG-P14_The_Calibration_of_Indexing_Tables_by_Subdivision.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir75-750.pdf",
+        "physical_page": 7,
+        "anchor": "preliminary calibration",
+        "source_sha256": "37846d8a831435c23acef740687f09470fc5c1dd9e3c041e591a3a71685ab3de"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q048",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "subdivision-common-increment",
+    "source_family": "NBSIR75-750",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P14",
+        "document": "documents/公共参考/MFG-P14_The_Calibration_of_Indexing_Tables_by_Subdivision.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir75-750.pdf",
+        "physical_page": 8,
+        "anchor": "only those increments",
+        "source_sha256": "37846d8a831435c23acef740687f09470fc5c1dd9e3c041e591a3a71685ab3de"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q049",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "pentaprism-geometry",
+    "source_family": "NBSIR76-993",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P15",
+        "document": "documents/公共参考/MFG-P15_The_Calibration_of_a_Pentaprism.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir76-993.pdf",
+        "physical_page": 9,
+        "anchor": "Faces 3 and 4",
+        "source_sha256": "1bcbccd47e6cf926747e95c4c13b113498852fcac812b650764a2018afc463e8"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q050",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "optical-square-ghost",
+    "source_family": "NBSIR76-993",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P15",
+        "document": "documents/公共参考/MFG-P15_The_Calibration_of_a_Pentaprism.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir76-993.pdf",
+        "physical_page": 9,
+        "anchor": "avoid ghost reflections",
+        "source_sha256": "1bcbccd47e6cf926747e95c4c13b113498852fcac812b650764a2018afc463e8"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q051",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "angle-reference-check",
+    "source_family": "NBSIR80-1967",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P16",
+        "document": "documents/公共参考/MFG-P16_The_Calibration_of_Angle_Blocks_by_Intercomparison.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir80-1967.pdf",
+        "physical_page": 4,
+        "anchor": "treated as unknowns",
+        "source_sha256": "a3f0bacaa88d81cb26d63cff47c4082cd4faf1a0c3e98952f3a0d56351ee2551"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q052",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "angle-face-inspection",
+    "source_family": "NBSIR80-1967",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P16",
+        "document": "documents/公共参考/MFG-P16_The_Calibration_of_Angle_Blocks_by_Intercomparison.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir80-1967.pdf",
+        "physical_page": 4,
+        "anchor": "measured for flatness and for squareness",
+        "source_sha256": "a3f0bacaa88d81cb26d63cff47c4082cd4faf1a0c3e98952f3a0d56351ee2551"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q053",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "two-three-flat-difference",
+    "source_family": "NBSIR75-975",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P17",
+        "document": "documents/公共参考/MFG-P17_The_Calibration_of_an_Optical_Flat_by_Interferometric_Comparison_to_a_Master_Optical_Flat.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir75-975.pdf",
+        "physical_page": 7,
+        "anchor": "3-flat method",
+        "source_sha256": "9b87524b1ee01037fd5575f6d88762f856baf19622016aa83a1666ddb27ed273"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q054",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "two-flat-effort",
+    "source_family": "NBSIR75-975",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P17",
+        "document": "documents/公共参考/MFG-P17_The_Calibration_of_an_Optical_Flat_by_Interferometric_Comparison_to_a_Master_Optical_Flat.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir75-975.pdf",
+        "physical_page": 7,
+        "anchor": "fewer measurements",
+        "source_sha256": "9b87524b1ee01037fd5575f6d88762f856baf19622016aa83a1666ddb27ed273"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q055",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "long-gage-program-range",
+    "source_family": "NBSMonograph149",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P18",
+        "document": "documents/公共参考/MFG-P18_Measurement_Assurance_Program_A_Case_Study_Length_Measurements.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/MONO/nbsmonograph149.pdf",
+        "physical_page": 7,
+        "anchor": "5 to 20",
+        "source_sha256": "b8d27714753cea64bbe7e5f76a06dd4b719c5071209abc39ba7ca30c419805d1"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q056",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "long-gage-initial-standard",
+    "source_family": "NBSMonograph149",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P18",
+        "document": "documents/公共参考/MFG-P18_Measurement_Assurance_Program_A_Case_Study_Length_Measurements.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/MONO/nbsmonograph149.pdf",
+        "physical_page": 7,
+        "anchor": "interferometr",
+        "source_sha256": "b8d27714753cea64bbe7e5f76a06dd4b719c5071209abc39ba7ca30c419805d1"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q057",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "measurement-fitness-objective",
+    "source_family": "NBSMonograph163",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P19",
+        "document": "documents/公共参考/MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/MONO/nbsmonograph163.pdf",
+        "physical_page": 14,
+        "anchor": "uncertainty of each measurement",
+        "source_sha256": "817de0fd84545ec86d4393bbeb2adeb0f053d7ca945e1e00a56f0ce3d40be31b"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q058",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "measurement-quality-framework",
+    "source_family": "NBSMonograph163",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P19",
+        "document": "documents/公共参考/MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/MONO/nbsmonograph163.pdf",
+        "physical_page": 14,
+        "anchor": "allowable limits of measurement error",
+        "source_sha256": "817de0fd84545ec86d4393bbeb2adeb0f053d7ca945e1e00a56f0ce3d40be31b"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q059",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "assurance-verifiable-evidence",
+    "source_family": "NBSIR74-545",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P20",
+        "document": "documents/公共参考/MFG-P20_Notes_on_the_Fundamentals_of_Measurement_and_Measurement_as_a_Production_Process.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir74-545.pdf",
+        "physical_page": 64,
+        "anchor": "some form of redundancy",
+        "source_sha256": "aa3055cd9a152e8b1bc2407a35aa5004b3a6b9c83def5a53fc12c619d5c238e6"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q060",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "measurement-consistency-dimensions",
+    "source_family": "NBSIR74-545",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-P20",
+        "document": "documents/公共参考/MFG-P20_Notes_on_the_Fundamentals_of_Measurement_and_Measurement_as_a_Production_Process.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nbsir74-545.pdf",
+        "physical_page": 64,
+        "anchor": "both with itself and with other",
+        "source_sha256": "aa3055cd9a152e8b1bc2407a35aa5004b3a6b9c83def5a53fc12c619d5c238e6"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q061",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "ppc-input-output-model",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W09",
+        "document": "documents/公共参考/MFG-W09_What_is_Production_Process_Characterization.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc11.htm",
+        "physical_page": null,
+        "anchor": "inputs and outputs",
+        "source_sha256": "fb73276495565be090dcb58bad8627d369ad0c8992dc325c1854600059df2f8f"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q062",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "ppc-three-stages",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W09",
+        "document": "documents/公共参考/MFG-W09_What_is_Production_Process_Characterization.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc11.htm",
+        "physical_page": null,
+        "anchor": "Screening",
+        "source_sha256": "fb73276495565be090dcb58bad8627d369ad0c8992dc325c1854600059df2f8f"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q063",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "ppc-change-scale",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W09",
+        "document": "documents/公共参考/MFG-W09_What_is_Production_Process_Characterization.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc11.htm",
+        "physical_page": null,
+        "anchor": "maintenance",
+        "source_sha256": "fb73276495565be090dcb58bad8627d369ad0c8992dc325c1854600059df2f8f"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q064",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "ppc-use-events",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W10",
+        "document": "documents/公共参考/MFG-W10_What_are_PPC_studies_used_for.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc12.htm",
+        "physical_page": null,
+        "anchor": "maintenance",
+        "source_sha256": "f3aab92ed72400743ca9bbc964778f840bdc39e07ca98148ed91b4b9ba6505c0"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q065",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "ppc-cross-applications",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W10",
+        "document": "documents/公共参考/MFG-W10_What_are_PPC_studies_used_for.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc12.htm",
+        "physical_page": null,
+        "anchor": "reliability",
+        "source_sha256": "f3aab92ed72400743ca9bbc964778f840bdc39e07ca98148ed91b4b9ba6505c0"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q066",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "ppc-troubleshooting",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W10",
+        "document": "documents/公共参考/MFG-W10_What_are_PPC_studies_used_for.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc12.htm",
+        "physical_page": null,
+        "anchor": "troubleshoot",
+        "source_sha256": "f3aab92ed72400743ca9bbc964778f840bdc39e07ca98148ed91b4b9ba6505c0"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q067",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "sampling-five-w",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W11",
+        "document": "documents/公共参考/MFG-W11_Define_Sampling_Plan.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section3/ppc33.htm",
+        "physical_page": null,
+        "anchor": "by whom",
+        "source_sha256": "c4ffb06e621d59bbf41a87466d35aa325039386254b126067958474b724dcca3"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q068",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "sampling-design-steps",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W11",
+        "document": "documents/公共参考/MFG-W11_Define_Sampling_Plan.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section3/ppc33.htm",
+        "physical_page": null,
+        "anchor": "sample size",
+        "source_sha256": "c4ffb06e621d59bbf41a87466d35aa325039386254b126067958474b724dcca3"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q069",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "sampling-representativeness",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W11",
+        "document": "documents/公共参考/MFG-W11_Define_Sampling_Plan.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section3/ppc33.htm",
+        "physical_page": null,
+        "anchor": "representative",
+        "source_sha256": "c4ffb06e621d59bbf41a87466d35aa325039386254b126067958474b724dcca3"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q070",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "capability-definition",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W12",
+        "document": "documents/公共参考/MFG-W12_Assessing_Process_Capability.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section4/ppc46.htm",
+        "physical_page": null,
+        "anchor": "histogram",
+        "source_sha256": "d9999185537967e588965f6807b79dce06987d2a5f73161244180db2e46b12a6"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q071",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "cp-centering-blindness",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W12",
+        "document": "documents/公共参考/MFG-W12_Assessing_Process_Capability.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section4/ppc46.htm",
+        "physical_page": null,
+        "anchor": "off-center",
+        "source_sha256": "d9999185537967e588965f6807b79dce06987d2a5f73161244180db2e46b12a6"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q072",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "six-sigma-spread",
+    "source_family": "NIST-eHandbook-ppc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W12",
+        "document": "documents/公共参考/MFG-W12_Assessing_Process_Capability.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/ppc/section4/ppc46.htm",
+        "physical_page": null,
+        "anchor": "6 standard deviations",
+        "source_sha256": "d9999185537967e588965f6807b79dce06987d2a5f73161244180db2e46b12a6"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q073",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "spc-seven-tools",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W13",
+        "document": "documents/公共参考/MFG-W13_What_are_Process_Control_Techniques.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc12.htm",
+        "physical_page": null,
+        "anchor": "Pareto",
+        "source_sha256": "c42e460d253310765cee18b94c2570de71acb8d1fbbd4acfded85d5714847d03"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q074",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "spc-phase-boundary",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W13",
+        "document": "documents/公共参考/MFG-W13_What_are_Process_Control_Techniques.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc12.htm",
+        "physical_page": null,
+        "anchor": "Phase I",
+        "source_sha256": "c42e460d253310765cee18b94c2570de71acb8d1fbbd4acfded85d5714847d03"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q075",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "control-chart-families",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W13",
+        "document": "documents/公共参考/MFG-W13_What_are_Process_Control_Techniques.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc12.htm",
+        "physical_page": null,
+        "anchor": "CUSUM",
+        "source_sha256": "c42e460d253310765cee18b94c2570de71acb8d1fbbd4acfded85d5714847d03"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q076",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "process-control-action",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W14",
+        "document": "documents/公共参考/MFG-W14_What_is_Process_Control.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc13.htm",
+        "physical_page": null,
+        "anchor": "active changing",
+        "source_sha256": "224c29eeb4b77167ed65e11802386b62a034e619d8fada879ca3651d267fab61"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q077",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "ocap-process-specific",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W14",
+        "document": "documents/公共参考/MFG-W14_What_is_Process_Control.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc13.htm",
+        "physical_page": null,
+        "anchor": "OCAP",
+        "source_sha256": "224c29eeb4b77167ed65e11802386b62a034e619d8fada879ca3651d267fab61"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q078",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "automatic-process-control",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W14",
+        "document": "documents/公共参考/MFG-W14_What_is_Process_Control.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc13.htm",
+        "physical_page": null,
+        "anchor": "programmed to correct for the size",
+        "source_sha256": "224c29eeb4b77167ed65e11802386b62a034e619d8fada879ca3651d267fab61"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q079",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "out-control-response",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W15",
+        "document": "documents/公共参考/MFG-W15_What_to_do_if_the_process_is_Out_of_Control.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc14.htm",
+        "physical_page": null,
+        "anchor": "assignable cause",
+        "source_sha256": "d5976606f0a5fe3fa01ef2a3879d7df87205e05963442b152a1b20866cdd071e"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q080",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "out-control-population",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W15",
+        "document": "documents/公共参考/MFG-W15_What_to_do_if_the_process_is_Out_of_Control.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc14.htm",
+        "physical_page": null,
+        "anchor": "population",
+        "source_sha256": "d5976606f0a5fe3fa01ef2a3879d7df87205e05963442b152a1b20866cdd071e"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q081",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "out-control-rules",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W15",
+        "document": "documents/公共参考/MFG-W15_What_to_do_if_the_process_is_Out_of_Control.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc14.htm",
+        "physical_page": null,
+        "anchor": "WECO",
+        "source_sha256": "d5976606f0a5fe3fa01ef2a3879d7df87205e05963442b152a1b20866cdd071e"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q082",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "control-versus-acceptability",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W16",
+        "document": "documents/公共参考/MFG-W16_What_to_do_if_In_Control_but_Unacceptable.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc15.htm",
+        "physical_page": null,
+        "anchor": "predictable",
+        "source_sha256": "2ffdc557ac78fec2c9ba5053e517482715fd854ee5ed154581496c399e5a72e5"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q083",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "stable-improvement-prerequisite",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W16",
+        "document": "documents/公共参考/MFG-W16_What_to_do_if_In_Control_but_Unacceptable.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc15.htm",
+        "physical_page": null,
+        "anchor": "stable",
+        "source_sha256": "2ffdc557ac78fec2c9ba5053e517482715fd854ee5ed154581496c399e5a72e5"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q084",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "unacceptable-improvement-methods",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W16",
+        "document": "documents/公共参考/MFG-W16_What_to_do_if_In_Control_but_Unacceptable.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc15.htm",
+        "physical_page": null,
+        "anchor": "calibration",
+        "source_sha256": "2ffdc557ac78fec2c9ba5053e517482715fd854ee5ed154581496c399e5a72e5"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q085",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "capability-sample-assumptions",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W17",
+        "document": "documents/公共参考/MFG-W17_What_is_Process_Capability.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc16.htm",
+        "physical_page": null,
+        "anchor": "50 independent",
+        "source_sha256": "a493b3277e5b9a69025ff6d08e5505437365100087dabbf030421e2a40ade1b7"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q086",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "nonnormal-capability-options",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W17",
+        "document": "documents/公共参考/MFG-W17_What_is_Process_Capability.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc16.htm",
+        "physical_page": null,
+        "anchor": "Box-Cox",
+        "source_sha256": "a493b3277e5b9a69025ff6d08e5505437365100087dabbf030421e2a40ade1b7"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q087",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "stable-before-capability",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W17",
+        "document": "documents/公共参考/MFG-W17_What_is_Process_Capability.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section1/pmc16.htm",
+        "physical_page": null,
+        "anchor": "stable",
+        "source_sha256": "a493b3277e5b9a69025ff6d08e5505437365100087dabbf030421e2a40ade1b7"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q088",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "acceptance-lot-purpose",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W18",
+        "document": "documents/公共参考/MFG-W18_What_is_Acceptance_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc21.htm",
+        "physical_page": null,
+        "anchor": "not to estimate",
+        "source_sha256": "9aca3bf1a4abee023e702f7cb8cd93854af66c4dc814ec18590784d3d2e60a96"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q089",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "acceptance-when-use",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W18",
+        "document": "documents/公共参考/MFG-W18_What_is_Acceptance_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc21.htm",
+        "physical_page": null,
+        "anchor": "destructive",
+        "source_sha256": "9aca3bf1a4abee023e702f7cb8cd93854af66c4dc814ec18590784d3d2e60a96"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q090",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "acceptance-data-types",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W18",
+        "document": "documents/公共参考/MFG-W18_What_is_Acceptance_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc21.htm",
+        "physical_page": null,
+        "anchor": "attributes",
+        "source_sha256": "9aca3bf1a4abee023e702f7cb8cd93854af66c4dc814ec18590784d3d2e60a96"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q091",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "sampling-producer-consumer-risk",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W19",
+        "document": "documents/公共参考/MFG-W19_Kinds_of_Lot_Acceptance_Sampling_Plans.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc22.htm",
+        "physical_page": null,
+        "anchor": "Producer's Risk",
+        "source_sha256": "399ce46f22007d4fc99075a294dbda8469c2097c666f16ba8b5e038fb3d922ba"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q092",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "sampling-oc-axes",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W19",
+        "document": "documents/公共参考/MFG-W19_Kinds_of_Lot_Acceptance_Sampling_Plans.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc22.htm",
+        "physical_page": null,
+        "anchor": "Operating Characteristic",
+        "source_sha256": "399ce46f22007d4fc99075a294dbda8469c2097c666f16ba8b5e038fb3d922ba"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q093",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "sampling-plan-tradeoff",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W19",
+        "document": "documents/公共参考/MFG-W19_Kinds_of_Lot_Acceptance_Sampling_Plans.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc22.htm",
+        "physical_page": null,
+        "anchor": "additional complexity",
+        "source_sha256": "399ce46f22007d4fc99075a294dbda8469c2097c666f16ba8b5e038fb3d922ba"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q094",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "double-first-decision",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W20",
+        "document": "documents/公共参考/MFG-W20_What_is_Double_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc24.htm",
+        "physical_page": null,
+        "anchor": "a_1 < d_1 < r_1",
+        "source_sha256": "f5fb2051d840130680f6ff8b657f7e1a680973d60aeed63e9b6d12cc245e4e24"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q095",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "double-cumulative-count",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W20",
+        "document": "documents/公共参考/MFG-W20_What_is_Double_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc24.htm",
+        "physical_page": null,
+        "anchor": "D_2 = d_1 + d_2",
+        "source_sha256": "f5fb2051d840130680f6ff8b657f7e1a680973d60aeed63e9b6d12cc245e4e24"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q096",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "double-final-boundary",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W20",
+        "document": "documents/公共参考/MFG-W20_What_is_Double_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc24.htm",
+        "physical_page": null,
+        "anchor": "r_2 = a_2 + 1",
+        "source_sha256": "f5fb2051d840130680f6ff8b657f7e1a680973d60aeed63e9b6d12cc245e4e24"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q097",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "multiple-stage-count",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W21",
+        "document": "documents/公共参考/MFG-W21_What_is_Multiple_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc25.htm",
+        "physical_page": null,
+        "anchor": "total number of defectives found at any stage",
+        "source_sha256": "7c6409a80a8a072f24519c5d780d3014adea5a37d3fe15fde5993c1a36cea4d8"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q098",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "multiple-early-acceptance",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W21",
+        "document": "documents/公共参考/MFG-W21_What_is_Multiple_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc25.htm",
+        "physical_page": null,
+        "anchor": "acceptance is not allowed",
+        "source_sha256": "7c6409a80a8a072f24519c5d780d3014adea5a37d3fe15fde5993c1a36cea4d8"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q099",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "asn-definition",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W21",
+        "document": "documents/公共参考/MFG-W21_What_is_Multiple_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc25.htm",
+        "physical_page": null,
+        "anchor": "average sample number",
+        "source_sha256": "7c6409a80a8a072f24519c5d780d3014adea5a37d3fe15fde5993c1a36cea4d8"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q100",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "sequential-inspection-units",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W22",
+        "document": "documents/公共参考/MFG-W22_What_is_a_Sequential_Sampling_Plan.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc26.htm",
+        "physical_page": null,
+        "anchor": "group sequential sampling",
+        "source_sha256": "b11e0c728e78132aad63389c1ee0297eaf4911d82f902f6be0a29785e3de177c"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q101",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "sequential-boundary-action",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W22",
+        "document": "documents/公共参考/MFG-W22_What_is_a_Sequential_Sampling_Plan.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc26.htm",
+        "physical_page": null,
+        "anchor": "rejection",
+        "source_sha256": "b11e0c728e78132aad63389c1ee0297eaf4911d82f902f6be0a29785e3de177c"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q102",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "skip-lot-qualification",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W23",
+        "document": "documents/公共参考/MFG-W23_What_is_Skip_Lot_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc27.htm",
+        "physical_page": null,
+        "anchor": "very good",
+        "source_sha256": "8831c9a082200ab6fdc0f434c47196293d1f8b8c5f31c664a19ab9810517a15b"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q103",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "skip-lot-return",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W23",
+        "document": "documents/公共参考/MFG-W23_What_is_Skip_Lot_Sampling.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section2/pmc27.htm",
+        "physical_page": null,
+        "anchor": "normal inspection",
+        "source_sha256": "8831c9a082200ab6fdc0f434c47196293d1f8b8c5f31c664a19ab9810517a15b"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q104",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "control-chart-dimensions",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W24",
+        "document": "documents/公共参考/MFG-W24_What_are_Control_Charts.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section3/pmc31.htm",
+        "physical_page": null,
+        "anchor": "multivariate",
+        "source_sha256": "0b754daa47182b4c5dd4f0b015e2ea958cc7cc21291e70b079af3aa3bc509885"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-Q105",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "inside-limits-randomness",
+    "source_family": "NIST-eHandbook-pmc",
+    "evidence_locators": [
+      {
+        "source_id": "MFG-W24",
+        "document": "documents/公共参考/MFG-W24_What_are_Control_Charts.md",
+        "source_url": "https://www.itl.nist.gov/div898/handbook/pmc/section3/pmc31.htm",
+        "physical_page": null,
+        "anchor": "random pattern",
+        "source_sha256": "0b754daa47182b4c5dd4f0b015e2ea958cc7cc21291e70b079af3aa3bc509885"
+      }
+    ]
+  },
+  {
+    "id": "MFG2-N01",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "mes-live-order",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N02",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "erp-live-inventory",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N03",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "latest-supplier-approval",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N04",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "unseen-ncr-root-cause",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N05",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "cnc-live-alarm",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N06",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "customer-latest-waiver",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N07",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "current-factory-cpk",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N08",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "calibration-certificate-unseen",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N09",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "internal-spec-by-publication",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N10",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "iso-current-clause",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N11",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "competitor-private-yield",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N12",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "erp-write-action",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N13",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "mes-schedule-write",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N14",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "gauge-serial-trace",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N15",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "unpublished-drawing",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N16",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "which-procedure-version",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N17",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "which-batch-disposition",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N18",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "sampling-plan-parameters",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N19",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "cpk-incomplete-data",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N20",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "uncertainty-k-missing",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N21",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "which-gauge-calibration",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N22",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "outlier-without-chart",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N23",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "temperature-unknown-length",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N24",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "risk-alpha-beta-ambiguous",
+    "evidence_locators": []
+  },
+  {
+    "id": "MFG2-N25",
+    "split": "test",
+    "baseline": false,
+    "concept_id": "roundness-trace-attribution",
+    "evidence_locators": []
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "edition": "manufacturing-public-v2",
+  "status": "frozen_before_first_v2_model_run",
+  "corpus_manifest_sha256": "8cdb80bbab4ac3c113f61a58ccefe1c488e721e84fcd03f7cbbdb0c50c99a792",
+  "source_lock_sha256": "53875a98872f35a039315b7a7153614687c68dc8dd2f4bb94649f449dd03e5f1",
+  "baseline_dataset_sha256": "650f7c26da5428080a35181f4b3126256a8fc9846f3b98d794e53120887e4ab5",
+  "annotations_sha256": "1b9a58801c16109834b5fc0ab0e02d6319ef48f7abae0402d854ea9e821f0e77",
+  "counts": {
+    "development": 50,
+    "test": 100
+  },
+  "dataset_sha256": {
+    "development": "ac069c928b67bcd7701fb70301efda8f8672e20dfef450983cf2d9675b371be4",
+    "test": "8e497fe8edfb9a9c69be2855788fa303b80705aabf26df54a207d9794050f0f0"
+  },
+  "roles": {
+    "development": "May guide tuning; includes the previously observed 20 cases.",
+    "test": "Held out from model-driven tuning; labels remain visible for audit, not a secret benchmark."
+  },
+  "negative_scoring": "Refusal/clarification needs semantic review; answerable=false alone cannot distinguish them.",
+  "provenance": "Human-directed editorial labels grounded in locked source text; not independent expert certification."
+}

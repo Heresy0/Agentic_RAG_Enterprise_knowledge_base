@@ -1,0 +1,668 @@
+{
+  "evaluation_type": "offline_actual_project_splitters",
+  "external_model_calls": 0,
+  "corpus_manifest_sha256": "8cdb80bbab4ac3c113f61a58ccefe1c488e721e84fcd03f7cbbdb0c50c99a792",
+  "parser_sha256": "35caac6381b20ae18a38701c7860dae5685c71ce3bbbceb96424ba9a9f359e16",
+  "chunking_version": "structured-v5",
+  "summary": {
+    "passed": 60
+  },
+  "records": [
+    {
+      "id": "MFG-01",
+      "status": "passed",
+      "chunks": 6,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-02",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph",
+        "rule_group"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-03",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-04",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "ocr_chunks": 4,
+      "review_required": true
+    },
+    {
+      "id": "MFG-05",
+      "status": "passed",
+      "chunks": 1495,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-06",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-07",
+      "status": "passed",
+      "chunks": 5,
+      "chunk_types": [
+        "paragraph",
+        "rule_group"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-08",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-09",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-10",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-11",
+      "status": "passed",
+      "chunks": 5,
+      "chunk_types": [
+        "code",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-12",
+      "status": "passed",
+      "chunks": 5,
+      "chunk_types": [
+        "paragraph",
+        "rule_group",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-13",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-14",
+      "status": "passed",
+      "chunks": 6,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-15",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-16",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-17",
+      "status": "passed",
+      "chunks": 4,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P02",
+      "status": "passed",
+      "chunks": 592,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 1,
+      "review_required": true
+    },
+    {
+      "id": "MFG-P03",
+      "status": "passed",
+      "chunks": 78,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 10,
+      "review_required": true
+    },
+    {
+      "id": "MFG-P04",
+      "status": "passed",
+      "chunks": 135,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 23,
+      "review_required": true
+    },
+    {
+      "id": "MFG-P05",
+      "status": "passed",
+      "chunks": 385,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P06",
+      "status": "passed",
+      "chunks": 278,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P07",
+      "status": "passed",
+      "chunks": 85,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P08",
+      "status": "passed",
+      "chunks": 90,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 5,
+      "review_required": true
+    },
+    {
+      "id": "MFG-P09",
+      "status": "passed",
+      "chunks": 87,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P10",
+      "status": "passed",
+      "chunks": 59,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 3,
+      "review_required": true
+    },
+    {
+      "id": "MFG-P11",
+      "status": "passed",
+      "chunks": 512,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 5,
+      "review_required": true
+    },
+    {
+      "id": "MFG-P12",
+      "status": "passed",
+      "chunks": 203,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P13",
+      "status": "passed",
+      "chunks": 152,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P14",
+      "status": "passed",
+      "chunks": 378,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P15",
+      "status": "passed",
+      "chunks": 206,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 10,
+      "review_required": true
+    },
+    {
+      "id": "MFG-P16",
+      "status": "passed",
+      "chunks": 216,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P17",
+      "status": "passed",
+      "chunks": 239,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 1,
+      "review_required": true
+    },
+    {
+      "id": "MFG-P18",
+      "status": "passed",
+      "chunks": 1305,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-P19",
+      "status": "passed",
+      "chunks": 570,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 1,
+      "review_required": true
+    },
+    {
+      "id": "MFG-P20",
+      "status": "passed",
+      "chunks": 489,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W01",
+      "status": "passed",
+      "chunks": 26,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W02",
+      "status": "passed",
+      "chunks": 19,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W03",
+      "status": "passed",
+      "chunks": 18,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W04",
+      "status": "passed",
+      "chunks": 38,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W05",
+      "status": "passed",
+      "chunks": 19,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W06",
+      "status": "passed",
+      "chunks": 14,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W07",
+      "status": "passed",
+      "chunks": 19,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W08",
+      "status": "passed",
+      "chunks": 28,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W09",
+      "status": "passed",
+      "chunks": 18,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W10",
+      "status": "passed",
+      "chunks": 21,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W11",
+      "status": "passed",
+      "chunks": 17,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W12",
+      "status": "passed",
+      "chunks": 24,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W13",
+      "status": "passed",
+      "chunks": 34,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W14",
+      "status": "passed",
+      "chunks": 10,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W15",
+      "status": "passed",
+      "chunks": 9,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W16",
+      "status": "passed",
+      "chunks": 16,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W17",
+      "status": "passed",
+      "chunks": 102,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W18",
+      "status": "passed",
+      "chunks": 33,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W19",
+      "status": "passed",
+      "chunks": 33,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W20",
+      "status": "passed",
+      "chunks": 38,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W21",
+      "status": "passed",
+      "chunks": 16,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W22",
+      "status": "passed",
+      "chunks": 133,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W23",
+      "status": "passed",
+      "chunks": 25,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-W24",
+      "status": "passed",
+      "chunks": 31,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    }
+  ]
+}

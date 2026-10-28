@@ -1,0 +1,10 @@
+{
+  "result": "passed",
+  "corpus_files_compared": 85,
+  "corpus_manifest_sha256": "8cdb80bbab4ac3c113f61a58ccefe1c488e721e84fcd03f7cbbdb0c50c99a792",
+  "evaluation_files_compared": 4,
+  "freeze_sha256": "81b193b714abca3cea683b00619a6cc8b683ead3f57981d851fc05ffe3f38918",
+  "baseline_files_preserved": 17,
+  "baseline_cases_preserved": 20,
+  "external_model_calls": 0
+}

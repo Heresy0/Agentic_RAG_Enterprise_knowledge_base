@@ -1,0 +1,177 @@
+{
+  "reviewer": "assistant_editorial_review_not_independent_expert",
+  "render_engine": "Poppler pdftoppm, 100 DPI; full pages in four-page contact sheets",
+  "pages": [
+    {
+      "source_id": "MFG-P02",
+      "physical_page": 7,
+      "document": "documents/公共参考/MFG-P02_Contact_Deformation_in_Gage_Block_Comparisons.pdf",
+      "source_sha256": "892713b49363f1d4b15fea9ec532b1a77f587a2b8c8dae6c7f62d9a4e65ba7b5"
+    },
+    {
+      "source_id": "MFG-P03",
+      "physical_page": 8,
+      "document": "documents/公共参考/MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+      "source_sha256": "dc3bc9eb2b88daf15674e4e82b5f8014e752f66b342ab9d2ed35d369ed5f8446"
+    },
+    {
+      "source_id": "MFG-P03",
+      "physical_page": 9,
+      "document": "documents/公共参考/MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+      "source_sha256": "dc3bc9eb2b88daf15674e4e82b5f8014e752f66b342ab9d2ed35d369ed5f8446"
+    },
+    {
+      "source_id": "MFG-P04",
+      "physical_page": 7,
+      "document": "documents/公共参考/MFG-P04_Intercomparison_Procedures_for_Gage_Blocks_Using_Electromechanical_Comparators.pdf",
+      "source_sha256": "30b4d3bbf9367c47787479bfc73388028bc264bff5d24e6f09576b445cff9fde"
+    },
+    {
+      "source_id": "MFG-P04",
+      "physical_page": 9,
+      "document": "documents/公共参考/MFG-P04_Intercomparison_Procedures_for_Gage_Blocks_Using_Electromechanical_Comparators.pdf",
+      "source_sha256": "30b4d3bbf9367c47787479bfc73388028bc264bff5d24e6f09576b445cff9fde"
+    },
+    {
+      "source_id": "MFG-P05",
+      "physical_page": 2,
+      "document": "documents/公共参考/MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+      "source_sha256": "965b620effe2216edb9e8da0f6bc7c290b21c4e00b8b727ef576bb940b564990"
+    },
+    {
+      "source_id": "MFG-P05",
+      "physical_page": 3,
+      "document": "documents/公共参考/MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+      "source_sha256": "965b620effe2216edb9e8da0f6bc7c290b21c4e00b8b727ef576bb940b564990"
+    },
+    {
+      "source_id": "MFG-P06",
+      "physical_page": 7,
+      "document": "documents/公共参考/MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+      "source_sha256": "f2c8e6026d5589a63d492f192b72cd905f554b477a6049532256170aec477e92"
+    },
+    {
+      "source_id": "MFG-P06",
+      "physical_page": 8,
+      "document": "documents/公共参考/MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+      "source_sha256": "f2c8e6026d5589a63d492f192b72cd905f554b477a6049532256170aec477e92"
+    },
+    {
+      "source_id": "MFG-P07",
+      "physical_page": 6,
+      "document": "documents/公共参考/MFG-P07_Traceability_of_Laser_Interferometric_Length_Measurements.pdf",
+      "source_sha256": "df46514f11692d7b1af06f9e9aa0f6cc7bdf9e0cea9f133027782292e4602d49"
+    },
+    {
+      "source_id": "MFG-P08",
+      "physical_page": 9,
+      "document": "documents/公共参考/MFG-P08_On_Characterizing_Master_Involute_Profiles.pdf",
+      "source_sha256": "e57ec6c8eade96f9fc2568eda8d6aaf56bb9335824d8ce5a0ed8a9a149facf4f"
+    },
+    {
+      "source_id": "MFG-P09",
+      "physical_page": 5,
+      "document": "documents/公共参考/MFG-P09_Measurements_of_Cylindrical_Standards.pdf",
+      "source_sha256": "8d0834b0d741b8e36a1ead69207dd6f8423468e520813cb588359451f96bdc4d"
+    },
+    {
+      "source_id": "MFG-P09",
+      "physical_page": 27,
+      "document": "documents/公共参考/MFG-P09_Measurements_of_Cylindrical_Standards.pdf",
+      "source_sha256": "8d0834b0d741b8e36a1ead69207dd6f8423468e520813cb588359451f96bdc4d"
+    },
+    {
+      "source_id": "MFG-P10",
+      "physical_page": 5,
+      "document": "documents/公共参考/MFG-P10_Gage_Block_Flatness_and_Parallelism_Measurement.pdf",
+      "source_sha256": "5540ff52116f5f4cde10572a330c0df9be42d54d23c017ac20c85622a91dbcec"
+    },
+    {
+      "source_id": "MFG-P11",
+      "physical_page": 8,
+      "document": "documents/公共参考/MFG-P11_On_the_Compression_of_a_Cylinder_in_Contact_with_a_Plane_Surface.pdf",
+      "source_sha256": "981264a30d2e863c4d94d973b5ea0a312de0f8addb467c42aa83978198f5cece"
+    },
+    {
+      "source_id": "MFG-P11",
+      "physical_page": 9,
+      "document": "documents/公共参考/MFG-P11_On_the_Compression_of_a_Cylinder_in_Contact_with_a_Plane_Surface.pdf",
+      "source_sha256": "981264a30d2e863c4d94d973b5ea0a312de0f8addb467c42aa83978198f5cece"
+    },
+    {
+      "source_id": "MFG-P12",
+      "physical_page": 7,
+      "document": "documents/公共参考/MFG-P12_A_Method_of_Calibrating_Two-dimensional_Reference_Plates.pdf",
+      "source_sha256": "a442542739607920bc2feba4708b743dbffe8b73c321b5792d1d1076b0dafc10"
+    },
+    {
+      "source_id": "MFG-P13",
+      "physical_page": 7,
+      "document": "documents/公共参考/MFG-P13_The_Calibration_of_a_Roundness_Standard.pdf",
+      "source_sha256": "3935d69b339207b1a9578d695963c62ad3f9e4ad3ccd7c9b4704cfd74d35dc09"
+    },
+    {
+      "source_id": "MFG-P13",
+      "physical_page": 8,
+      "document": "documents/公共参考/MFG-P13_The_Calibration_of_a_Roundness_Standard.pdf",
+      "source_sha256": "3935d69b339207b1a9578d695963c62ad3f9e4ad3ccd7c9b4704cfd74d35dc09"
+    },
+    {
+      "source_id": "MFG-P14",
+      "physical_page": 7,
+      "document": "documents/公共参考/MFG-P14_The_Calibration_of_Indexing_Tables_by_Subdivision.pdf",
+      "source_sha256": "37846d8a831435c23acef740687f09470fc5c1dd9e3c041e591a3a71685ab3de"
+    },
+    {
+      "source_id": "MFG-P14",
+      "physical_page": 8,
+      "document": "documents/公共参考/MFG-P14_The_Calibration_of_Indexing_Tables_by_Subdivision.pdf",
+      "source_sha256": "37846d8a831435c23acef740687f09470fc5c1dd9e3c041e591a3a71685ab3de"
+    },
+    {
+      "source_id": "MFG-P15",
+      "physical_page": 9,
+      "document": "documents/公共参考/MFG-P15_The_Calibration_of_a_Pentaprism.pdf",
+      "source_sha256": "1bcbccd47e6cf926747e95c4c13b113498852fcac812b650764a2018afc463e8"
+    },
+    {
+      "source_id": "MFG-P16",
+      "physical_page": 4,
+      "document": "documents/公共参考/MFG-P16_The_Calibration_of_Angle_Blocks_by_Intercomparison.pdf",
+      "source_sha256": "a3f0bacaa88d81cb26d63cff47c4082cd4faf1a0c3e98952f3a0d56351ee2551"
+    },
+    {
+      "source_id": "MFG-P17",
+      "physical_page": 7,
+      "document": "documents/公共参考/MFG-P17_The_Calibration_of_an_Optical_Flat_by_Interferometric_Comparison_to_a_Master_Optical_Flat.pdf",
+      "source_sha256": "9b87524b1ee01037fd5575f6d88762f856baf19622016aa83a1666ddb27ed273"
+    },
+    {
+      "source_id": "MFG-P18",
+      "physical_page": 7,
+      "document": "documents/公共参考/MFG-P18_Measurement_Assurance_Program_A_Case_Study_Length_Measurements.pdf",
+      "source_sha256": "b8d27714753cea64bbe7e5f76a06dd4b719c5071209abc39ba7ca30c419805d1"
+    },
+    {
+      "source_id": "MFG-P19",
+      "physical_page": 14,
+      "document": "documents/公共参考/MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf",
+      "source_sha256": "817de0fd84545ec86d4393bbeb2adeb0f053d7ca945e1e00a56f0ce3d40be31b"
+    },
+    {
+      "source_id": "MFG-P20",
+      "physical_page": 64,
+      "document": "documents/公共参考/MFG-P20_Notes_on_the_Fundamentals_of_Measurement_and_Measurement_as_a_Production_Process.pdf",
+      "source_sha256": "aa3055cd9a152e8b1bc2407a35aa5004b3a6b9c83def5a53fc12c619d5c238e6"
+    }
+  ],
+  "pages_reviewed": 27,
+  "scope": "All 27 distinct PDF evidence pages supporting the 40 new PDF cases; not every page of every PDF.",
+  "findings": [
+    "P04 physical page 9: visual check confirms plus/minus 0.05 degree and humidity below 50%; text extraction loses plus/minus.",
+    "P05 physical pages 2-3 and P06 page 7: two-column originals are readable but actual splitter interleaves columns; P05 also joins English words.",
+    "P10 page 5: original confirms thin block boundary 0.1 inch despite OCR spelling/punctuation errors.",
+    "P09 page 27: historical NTIS distribution-channel mark preserved and disclosed in NOTICE.md."
+  ],
+  "images_retained_locally": "tmp/manufacturing-public-v2/visual/"
+}

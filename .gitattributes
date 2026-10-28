@@ -11,3 +11,11 @@ evals/quality_policy.json -text
 sample_docs/manufacturing_lite/** -text whitespace=cr-at-eol
 evals/manufacturing_lite/** -text whitespace=cr-at-eol
 scripts/manufacturing_corpus_data.py text eol=lf
+sample_docs/manufacturing_public_v2/** -text whitespace=cr-at-eol
+# Original/source asset whitespace is frozen by SHA256, including HTML tails.
+sample_docs/manufacturing_public_v2/documents/** -text -whitespace
+sample_docs/manufacturing_public_v2/originals/** -text -whitespace
+sample_docs/manufacturing_public_v2.sources.json -text
+evals/manufacturing_public_v2/** -text whitespace=cr-at-eol
+scripts/manufacturing_public_sources.py text eol=lf
+scripts/manufacturing_public_questions.py text eol=lf

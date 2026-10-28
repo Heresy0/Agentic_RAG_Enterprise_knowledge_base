@@ -1,4 +1,4 @@
-"""Run the 20 manufacturing questions through real authenticated HTTP endpoints.
+"""Run a selected frozen manufacturing split through authenticated HTTP endpoints.
 
 Snapshots are read through the same owner's API. No QA-request retries, account
 creation or source/criteria edits. Raw authorized context stays in local output.
@@ -17,6 +17,49 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.evaluate_answers import load_dataset
+
+
+def select_cases(dataset_dir, *, split=None, limit=None, case_ids=None, max_questions=None):
+    """Resolve and bound the paid workload before reading tokens or using HTTP."""
+    if (dataset_dir / "splits.json").exists():
+        from scripts.validate_manufacturing_public import validate_freeze
+        if split not in ("development", "test") or max_questions is None:
+            raise ValueError("V2 requires an explicit --split and --max-questions budget")
+        frozen, splits, _ = validate_freeze(dataset_dir, ROOT / "sample_docs/manufacturing_public_v2")
+        cases = splits[split]
+        dataset = dataset_dir / split / "single_turn.jsonl"
+    else:
+        if split is not None:
+            raise ValueError("The baseline does not have development/test split directories")
+        dataset = dataset_dir / "single_turn.jsonl"
+        cases = load_dataset(dataset)
+        if len(cases) != 20 or {row["id"] for row in cases} != {f"MFG-Q{i:02}" for i in range(1, 21)}:
+            raise ValueError("Expected the frozen 20-question manufacturing baseline")
+        frozen = None
+    if case_ids:
+        if len(set(case_ids)) != len(case_ids) or not set(case_ids) <= {row["id"] for row in cases}:
+            raise ValueError("Case IDs must be unique and belong to the selected split")
+        cases = [row for row in cases if row["id"] in set(case_ids)]
+    if limit is not None:
+        if limit < 1:
+            raise ValueError("Question limit must be positive")
+        cases = cases[:limit]
+    if max_questions is not None and (not 1 <= max_questions <= 150 or len(cases) > max_questions):
+        raise ValueError("Selected workload exceeds the explicit question budget")
+    return dataset, cases, frozen
+
+
+def check_v2_inventory(http, base, kb_map, frozen, config):
+    if config.get("corpus_manifest_sha256") != frozen["corpus_manifest_sha256"]:
+        raise ValueError("Runtime config is not bound to the frozen V2 corpus")
+    manifest = json.loads((ROOT / "sample_docs/manufacturing_public_v2/manifest.json").read_text(encoding="utf-8"))
+    for group, kb in kb_map.items():
+        response = http.get(base + "/api/knowledge-bases/" + kb + "/documents", timeout=20)
+        response.raise_for_status()
+        rows = response.json()["items"]
+        expected = {Path(row["file"]).name for row in manifest["documents"] if row["group"] == group}
+        if len(rows) != len(expected) or {r["file_name"] for r in rows} != expected or any(r["status"] != "ready" for r in rows):
+            raise ValueError("V2 corpus is not fully ready; refuse paid requests against a partial library")
 
 
 def snapshot_trace(case, response, snapshot, *, tenant_id, knowledge_base_ids, latency_ms):
@@ -63,6 +106,10 @@ def main(argv=None):
     parser.add_argument("--dataset-dir", type=Path, default=ROOT / "evals/manufacturing_lite")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--allow-model-calls", action="store_true")
+    parser.add_argument("--split", choices=("development", "test"))
+    parser.add_argument("--limit", type=int)
+    parser.add_argument("--case-ids", nargs="+")
+    parser.add_argument("--max-questions", type=int, help="Required V2 question ceiling; not a token or monetary cost cap")
     args = parser.parse_args(argv)
     if not args.allow_model_calls:
         parser.error("Real model calls require --allow-model-calls")
@@ -70,10 +117,8 @@ def main(argv=None):
     base = config["base_url"].rstrip("/")
     if base != "http://127.0.0.1:8000":
         raise ValueError("This runner only targets the existing local demo API")
-    dataset = args.dataset_dir / "single_turn.jsonl"
-    cases = load_dataset(dataset)
-    if len(cases) != 20 or {row["id"] for row in cases} != {f"MFG-Q{i:02}" for i in range(1, 21)}:
-        raise ValueError("Expected the frozen 20-question manufacturing acceptance set")
+    dataset, cases, frozen = select_cases(args.dataset_dir, split=args.split, limit=args.limit,
+                                          case_ids=args.case_ids, max_questions=args.max_questions)
     if args.output_dir.exists() and any(args.output_dir.iterdir()):
         raise ValueError("Choose an empty output directory; previous runs are never overwritten")
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -85,6 +130,10 @@ def main(argv=None):
     check.raise_for_status()
     if {row["id"] for row in check.json()["items"]} != set(kb_map.values()):
         raise ValueError("Authenticated scope does not exactly match the isolated three libraries")
+    if set(kb_map) != {"公共参考", "生产工艺", "质量检验"}:
+        raise ValueError("Expected exactly the three isolated manufacturing groups")
+    if frozen:
+        check_v2_inventory(http, base, kb_map, frozen, config)
     attempts, errors = [], 0
     with (args.output_dir / "traces.jsonl").open("x", encoding="utf-8") as stream:
         for case in cases:
@@ -118,6 +167,8 @@ def main(argv=None):
             print(json.dumps(attempts[-1]), flush=True)
     summary = dict(evaluation_type="real_http_acceptance_with_owner_context_snapshots", questions=len(cases),
                    completed=len(cases) - errors, errors=errors, dataset_sha256=hashlib.sha256(dataset.read_bytes()).hexdigest(),
+                   split=args.split or "baseline", selected_ids=[row["id"] for row in cases], max_questions=args.max_questions,
+                   corpus_manifest_sha256=frozen["corpus_manifest_sha256"] if frozen else None,
                    qa_request_retries=0, unobserved_stages=["vector", "keyword", "fusion", "rerank"], attempts=attempts)
     (args.output_dir / "http-summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return int(bool(errors))
