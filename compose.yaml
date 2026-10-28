@@ -255,6 +255,29 @@ services:
       retries: 3
     restart: unless-stopped
 
+  quality-worker:
+    build:
+      context: .
+    profiles: ["quality"]
+    env_file:
+      - .env
+    environment:
+      MILVUS_URI: http://milvus:19530
+      MILVUS_TOKEN: ""
+      MILVUS_TOKEN_FILE: /run/milvus-credential/token
+      MILVUS_WORKER_TOKEN_FILE: ""
+      REDIS_URL: redis://redis:6379/0
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    command: ["python", "scripts/run_quality_worker.py", "--allow-model-calls"]
+    volumes:
+      - enterprise_milvus_api_credential:/run/milvus-credential:ro
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      disable: true
+    restart: unless-stopped
+
   prometheus:
     image: prom/prometheus:v3.14.0
     container_name: enterprise-knowledge-prometheus

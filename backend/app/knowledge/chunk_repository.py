@@ -66,6 +66,7 @@ class ChunkRepository:
                 chunk.knowledge_base_id
             ),
             "document_id": str(document.id),
+            "document_version": document.version,
             "source_id": document.source_id,
             "chunk_id": chunk.id,
             "chunk_index": chunk.chunk_index,

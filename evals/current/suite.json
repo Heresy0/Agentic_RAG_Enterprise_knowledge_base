@@ -3,6 +3,7 @@
   "kind": "synthetic_regression_not_independent_blind_test",
   "dataset_sha256": "c1ef8bef5a0b5f717d716d40bf00755c42e5f4850ae869958efdb83208ada19d",
   "scoring_rules_sha256": "41445f2dc30229f21f8b94cf76008f32cea2f5640ce2efac8e8faded9c7db9d7",
+  "quality_policy_sha256": "159f626b832731b88849240bae15fc8bffc6e0912c79851b578d5f38dac9033d",
   "groups": [
     {
       "id": "main",

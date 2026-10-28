@@ -20,7 +20,7 @@ from .db.model_usage_models import ModelUsageEvent, ModelUsageScope
 logger = logging.getLogger(__name__)
 _current = ContextVar("model_usage_context", default=None)
 STAGES = {"answer_generation", "conversation_rewrite", "query_embedding", "document_embedding", "rerank", "agent_decision",
-          "query_planning", "answer_repair", "answer_regeneration"}
+          "query_planning", "answer_repair", "answer_regeneration", "context_selection"}
 CALLS = Counter("enterprise_model_calls", "Physical model attempts", ["stage", "provider", "model", "status"])
 TOKENS = Counter("enterprise_model_tokens", "Reported total tokens (not estimates)", ["stage", "provider", "model"])
 UNKNOWN = Counter("enterprise_model_usage_unknown", "Calls without trustworthy total usage", ["stage", "provider", "model"])
@@ -213,6 +213,10 @@ class ModelCall:
             return False
 
     def __enter__(self):
+        from .quality.eval_budget import current_budget
+        budget = current_budget()
+        if budget is not None:
+            budget.before_call()
         self.started = perf_counter()
         context = self.context
         if context is not None and context.sink is not None:
@@ -250,6 +254,10 @@ class ModelCall:
                    **{**values, "estimated_cost": str(cost) if cost is not None else None}, persisted=stored)
         if self.context is not None:
             self.context.events.append(row)
+        from .quality.eval_budget import current_budget
+        budget = current_budget()
+        if budget is not None:
+            budget.after_call(self.usage["total_tokens"])
         from .evaluation.trace import record_model_usage
         record_model_usage(row)
         labels = (self.stage, self.provider, self.model)

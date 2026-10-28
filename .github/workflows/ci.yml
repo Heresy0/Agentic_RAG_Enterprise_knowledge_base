@@ -37,6 +37,7 @@ jobs:
       RUN_MILVUS_SECURITY_TESTS: "1"
       RUN_POSTGRES_INTEGRATION_TESTS: "1"
       RUN_MODEL_USAGE_INTEGRATION_TESTS: "1"
+      RUN_QA_FEEDBACK_INTEGRATION_TESTS: "1"
       BM25_TEST_DATABASE_URL: >-
         postgresql+psycopg://enterprise_app:enterprise_test@127.0.0.1:5432/enterprise_knowledge_test
       RUN_BM25_INTEGRATION_TESTS: "1"
@@ -103,6 +104,8 @@ jobs:
         run: |
           node --check backend/app/static/app.js
           node --check backend/app/static/auth.js
+          node --check backend/app/static/quality.js
+          node --check backend/app/static/verification.js
           node --test tests/frontend/auth.test.mjs tests/frontend_conversations.test.cjs
 
       - name: Compile

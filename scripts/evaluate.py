@@ -12,6 +12,7 @@ COMMANDS={
     'ragas':'evaluate_saved_ragas.py',
     'ragas-compare':'compare_saved_ragas.py',
     'multihop-compare':'evaluate_multihop_comparison.py',
+    'review-pack':'prepare_semantic_reviews.py',
     'check':'build_evaluation_suite.py',
 }
 

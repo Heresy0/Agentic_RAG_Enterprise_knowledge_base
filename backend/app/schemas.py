@@ -16,6 +16,8 @@ class KnowledgeQuestionRequest(BaseModel):
 
 
 class KnowledgeQuestionResponse(AnswerResult):
+    run_id: UUID | None = None
+    snapshot_status: str | None = None
     conversation_id: UUID | None = None
     conversation_context_ms: float | None = None
 

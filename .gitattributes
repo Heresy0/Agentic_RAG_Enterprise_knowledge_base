@@ -7,3 +7,4 @@ sample_docs/xinghai_expansion/** -text
 sample_docs/xinghai_nanqi/** -text
 evals/archive/** -text whitespace=cr-at-eol
 evals/current/** -text whitespace=cr-at-eol
+evals/quality_policy.json -text

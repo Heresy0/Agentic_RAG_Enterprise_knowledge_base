@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field, field_validator
 from .conversations import ConversationStore, HISTORY_TURNS
 from .temporal import clean_followup_time
 from ..evaluation.trace import record_conversation_resolution
+from ..quality.capture import observe_history, observe_resolution
 from ..model_usage import audited_scope, invoke_structured
 
 logger = logging.getLogger(__name__)
@@ -77,9 +78,11 @@ class ConversationAnswerService:
         try:
             started = perf_counter()
             history = store.turns(conversation_id, limit=HISTORY_TURNS, for_context=True)
+            observe_history(history)
             retrieval_question = self.resolver.resolve(question, history)
             # Bound model output even when an injected/test resolver is used.
             retrieval_question = ResolvedQuestion(question=retrieval_question).question
+            observe_resolution(retrieval_question)
             record_conversation_resolution(question, retrieval_question, len(history))
             context_ms = round((perf_counter() - started) * 1000, 2)
             result = self.answer_service.answer(retrieval_question, scope=scope, session=session)

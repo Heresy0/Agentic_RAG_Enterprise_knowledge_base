@@ -11,6 +11,7 @@ from pydantic import Field
 
 from .reranker import BaseReranker, RerankError
 from .evidence_selection import render_for_rerank
+from ..evaluation.trace import record_documents
 
 
 logger = logging.getLogger(__name__)
@@ -126,12 +127,14 @@ class RerankRetriever(BaseRetriever):
                         rerank_result.relevance_score
                     ),
                     final_rank=final_rank,
+                    model_rank=final_rank,
                     retrieval_latency_ms=retrieval_latency_ms,
                     rerank_latency_ms=rerank_latency_ms,
                     rerank_candidate_count=len(candidates),
                 )
             )
 
+        record_documents("rerank_model", results)
         if self.result_processor:
             results = self.result_processor(query, results)[:self.top_n]
             for rank, document in enumerate(results, 1):

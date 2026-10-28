@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-22",
+  "branch": "codex/budget-aware-parent-context",
+  "base_evaluation_commit": "0931816",
+  "policy_version": "budgeted-parent-sections-v1",
+  "change": "默认完整父块；预算不足时有限模型选段；保护条件和例外，无法完整入选时拒答",
+  "validation": {
+    "command": "python -X utf8 -m pytest -m 'not integration' -p no:locust -o addopts= -q",
+    "passed": 1182,
+    "deselected_integration": 48,
+    "new_regression_instances": 42,
+    "new_parent_context_instances": 38,
+    "new_configuration_instances": 4,
+    "suite_check": "verified",
+    "single_turn_cases": 120,
+    "original_gold_and_historical_acceptance_files": "unchanged",
+    "compileall": "passed",
+    "diff_check": "passed",
+    "real_model_calls": 0,
+    "model_behavior_validation": "injected deterministic models; not a new live RAG acceptance"
+  },
+  "covered_behaviors": [
+    "预算充足及刚好容纳完整父块时，无选段调用",
+    "预算不足才选段；按已有编号拼接原文，保留原始顺序与引用身份",
+    "强制保留命中原文及已识别的必要条件、例外、完整列表与表格",
+    "模型漏选保护章节时补回，保护内容无法放入时不截断父块",
+    "复杂问题、未解析引用或无法核验锚点时使用完整父块",
+    "超时、非法编号、重复编号、额外改写字段及无效类型回退",
+    "共享调用、Token、时间、提示词预算及每请求一次尝试",
+    "授权范围与权限撤销校验",
+    "相同证据刷新复用，原文变化不复用，不跨请求缓存",
+    "实际生成收到受保护原文，缺口在生成前拒答",
+    "纯上下文和排序评估不会将预算缺口误计为通过"
+  ],
+  "limitations": [
+    "条件与例外保护依赖已识别表达，不能证明任意自然语言依赖都完整。",
+    "沿用资料字符预算，不代表整个模型输入的 Token 上限。",
+    "每来源限额、父块以外的依赖仍需检索与评估覆盖。",
+    "每请求最多一次选段尝试，不重新压缩前部已选父块；预算紧张时可能增加拒答。",
+    "未运行真实模型和部署环境验收，没有声称线上正确率、成本或延迟改善。"
+  ]
+}
