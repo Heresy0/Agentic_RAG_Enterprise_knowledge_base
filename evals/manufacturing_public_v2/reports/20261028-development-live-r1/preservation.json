@@ -1,0 +1,71 @@
+{
+  "all_checks_passed": true,
+  "checks": [
+    {
+      "table": "tenants",
+      "original_count": 4,
+      "final_count": 4,
+      "unchanged": true
+    },
+    {
+      "table": "users",
+      "original_count": 10,
+      "final_count": 10,
+      "unchanged": true
+    },
+    {
+      "table": "knowledge_bases",
+      "original_count": 9,
+      "final_count": 9,
+      "unchanged": true
+    },
+    {
+      "table": "knowledge_base_user_grants",
+      "original_count": 20,
+      "final_count": 20,
+      "unchanged": true
+    },
+    {
+      "table": "knowledge_base_department_grants",
+      "original_count": 4,
+      "final_count": 4,
+      "unchanged": true
+    },
+    {
+      "table": "conversations",
+      "original_count": 13,
+      "final_count": 13,
+      "unchanged": true
+    },
+    {
+      "table": "migration",
+      "original_count": 1,
+      "final_count": 1,
+      "unchanged": true
+    },
+    {
+      "table": "documents",
+      "original_count": 90,
+      "final_count": 133,
+      "unchanged": true,
+      "added_only_in_demo_tenant": true
+    },
+    {
+      "table": "document_chunks",
+      "original_count": 2169,
+      "final_count": 8969,
+      "unchanged": true,
+      "added_only_in_demo_tenant": true
+    },
+    {
+      "table": "document_parents",
+      "original_count": 1269,
+      "final_count": 4987,
+      "unchanged": true,
+      "added_only_in_demo_tenant": true
+    }
+  ],
+  "before_sha256": "50cb45e6148ca61bc516b68b6a5e79636afc1643786444acb026558f784c5d30",
+  "after_sha256": "791efe2c7a314fef9874adc2d94f768ffd61fc8ed84620a2482b00fda42aac46",
+  "active_jobs_after": 0
+}

@@ -8,7 +8,7 @@
 
 制造业小规模改造见[实施与验收说明](docs/MANUFACTURING_LITE.md)：提供 17 份四格式资料、20 道独立回归题、制造业示例问题和角色配置工具。[真实 HTTP 首轮验收](evals/manufacturing_lite/reports/20261028-live-r1/README.md)已完成隔离租户、全部入库及 20 题运行，自动评分 14/20、助手非独立复核 18/20，保留 2 题失败与 33 项 HTTP 权限检查。本轮未接 MES/ERP；[完整实施方案](docs/MANUFACTURING_IMPLEMENTATION_PLAN.md)保留后续工单集成设计。
 
-新增[公开资料扩容v2](docs/MANUFACTURING_PUBLIC_V2.md)：60份资料包含20份NIST/NBS原始PDF、24个官方网页条目和16份合成业务资料，配套50道开发题与100道冻结验收题。已完成实际四格式解析、OCR及原文锚点核验；新增资料尚未入库，尚无150题真实问答成绩。
+新增[公开资料扩容v2](docs/MANUFACTURING_PUBLIC_V2.md)：60份资料包含20份NIST/NBS原始PDF、24个官方网页条目和16份合成业务资料，配套50道开发题与100道冻结验收题。已全部隔离入库，并完成[50题开发集真实首轮](evals/manufacturing_public_v2/reports/20261028-development-live-r1/README.md)：自动23/50，助手非独立复核32通过、13失败、1待确认、4上下文不完整；100题冻结验收集未运行。
 
 ## 核心能力
 

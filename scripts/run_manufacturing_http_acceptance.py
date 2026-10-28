@@ -6,17 +6,59 @@ creation or source/criteria edits. Raw authorized context stays in local output.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 from pathlib import Path
 import sys
 from time import perf_counter
+import time
 
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.evaluate_answers import load_dataset
+
+
+class LocalKeycloakSession(requests.Session):
+    """Renew a short local demo token before requests; never retry paid QA."""
+    def __init__(self, tokens_path):
+        super().__init__()
+        self.tokens_path = tokens_path
+        self.auth_refreshes = 0
+        self._load()
+
+    def _load(self):
+        self.private_tokens = json.loads(self.tokens_path.read_text(encoding="utf-8-sig"))
+        self.admin_tokens = self.private_tokens["知识管理员"]
+        token = self.admin_tokens["access_token"]
+        # Unverified exp is used only for renewal scheduling. The API still
+        # verifies the token's signature, issuer, audience and authorization.
+        self.expires_at = json.loads(base64.urlsafe_b64decode(token.split(".")[1] + "=="))["exp"]
+        self.headers["Authorization"] = "Bearer " + token
+
+    def request(self, method, url, **kwargs):
+        if self.expires_at - time.time() < 240:
+            refresh = self.admin_tokens.get("refresh_token")
+            if not refresh:
+                raise ValueError("Local token renewal requires an existing refresh token")
+            response = requests.post("http://127.0.0.1:8080/realms/enterprise-knowledge/protocol/openid-connect/token",
+                                     data=dict(grant_type="refresh_token", client_id="enterprise-knowledge-cli", refresh_token=refresh), timeout=20)
+            response.raise_for_status()
+            payload = response.json()
+            if not payload.get("access_token"):
+                raise ValueError("Keycloak did not return an access token")
+            self.private_tokens["知识管理员"].update({key: payload[key] for key in
+                ("access_token", "refresh_token", "expires_in", "refresh_expires_in") if key in payload})
+            pending = self.tokens_path.with_suffix(self.tokens_path.suffix + ".pending")
+            pending.write_text(json.dumps(self.private_tokens, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            pending.replace(self.tokens_path)
+            self._load()
+            if self.expires_at - time.time() < 240:
+                raise ValueError("Renewed local token lifetime is too short for the bounded request")
+            self.auth_refreshes += 1
+        return super().request(method, url, **kwargs)
 
 
 def select_cases(dataset_dir, *, split=None, limit=None, case_ids=None, max_questions=None):
@@ -110,6 +152,7 @@ def main(argv=None):
     parser.add_argument("--limit", type=int)
     parser.add_argument("--case-ids", nargs="+")
     parser.add_argument("--max-questions", type=int, help="Required V2 question ceiling; not a token or monetary cost cap")
+    parser.add_argument("--refresh-local-keycloak-token", action="store_true", help="Renew the existing local demo refresh token before expiry; never retry QA")
     args = parser.parse_args(argv)
     if not args.allow_model_calls:
         parser.error("Real model calls require --allow-model-calls")
@@ -122,9 +165,12 @@ def main(argv=None):
     if args.output_dir.exists() and any(args.output_dir.iterdir()):
         raise ValueError("Choose an empty output directory; previous runs are never overwritten")
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    token = json.loads(args.tokens.read_text(encoding="utf-8-sig"))["知识管理员"]["access_token"]
-    http = requests.Session()
-    http.headers["Authorization"] = "Bearer " + token
+    if args.refresh_local_keycloak_token:
+        http = LocalKeycloakSession(args.tokens)
+    else:
+        token = json.loads(args.tokens.read_text(encoding="utf-8-sig"))["知识管理员"]["access_token"]
+        http = requests.Session()
+        http.headers["Authorization"] = "Bearer " + token
     kb_map = config["knowledge_bases"]
     check = http.get(base + "/api/knowledge-bases", timeout=20)
     check.raise_for_status()
@@ -169,6 +215,7 @@ def main(argv=None):
                    completed=len(cases) - errors, errors=errors, dataset_sha256=hashlib.sha256(dataset.read_bytes()).hexdigest(),
                    split=args.split or "baseline", selected_ids=[row["id"] for row in cases], max_questions=args.max_questions,
                    corpus_manifest_sha256=frozen["corpus_manifest_sha256"] if frozen else None,
+                   auth_refreshes=getattr(http, "auth_refreshes", 0),
                    qa_request_retries=0, unobserved_stages=["vector", "keyword", "fusion", "rerank"], attempts=attempts)
     (args.output_dir / "http-summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return int(bool(errors))

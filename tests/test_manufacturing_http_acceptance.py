@@ -1,9 +1,12 @@
 from copy import deepcopy
+import base64
 import hashlib
+import json
 
 import pytest
 
-from scripts.run_manufacturing_http_acceptance import main, snapshot_trace, usage_observation
+from scripts.run_manufacturing_http_acceptance import LocalKeycloakSession, main, snapshot_trace, usage_observation
+from scripts import run_manufacturing_http_acceptance as runner
 
 
 def observation():
@@ -86,3 +89,52 @@ def test_only_actual_ledger_ids_are_used_for_cost_deduplication():
 def test_incomplete_or_unrelated_usage_cannot_be_reported_as_complete(payload):
     with pytest.raises(ValueError):
         usage_observation(LedgerClient(payload), "http://127.0.0.1:8000", "kb-1", "request-1")
+
+
+def jwt(exp):
+    return "header." + base64.urlsafe_b64encode(json.dumps(dict(exp=exp)).encode()).decode().rstrip("=") + ".signature"
+
+
+def test_local_token_refresh_precedes_qa_and_preserves_other_private_roles(tmp_path, monkeypatch):
+    path = tmp_path / "tokens.json"
+    path.write_text(json.dumps({"知识管理员": dict(access_token=jwt(1100), refresh_token="old-refresh"),
+                                "操作员": dict(access_token="preserved")}, ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setattr(runner.time, "time", lambda: 1000)
+    requests_seen = []
+    class TokenReply:
+        def raise_for_status(self):
+            pass
+        def json(self):
+            return dict(access_token=jwt(1300), refresh_token="new-refresh", expires_in=300)
+    def renew(url, *, data, timeout):
+        assert url == "http://127.0.0.1:8080/realms/enterprise-knowledge/protocol/openid-connect/token"
+        assert data["grant_type"] == "refresh_token" and data["refresh_token"] == "old-refresh"
+        requests_seen.append("refresh")
+        return TokenReply()
+    def paid(session, method, url, **kwargs):
+        requests_seen.append("qa")
+        assert session.headers["Authorization"] == "Bearer " + jwt(1300)
+        return "observed-response"
+    monkeypatch.setattr(runner.requests, "post", renew)
+    monkeypatch.setattr(runner.requests.Session, "request", paid)
+    client = LocalKeycloakSession(path)
+    assert client.post("http://127.0.0.1:8000/api/qa", json={}) == "observed-response"
+    assert requests_seen == ["refresh", "qa"] and client.auth_refreshes == 1
+    saved = json.loads(path.read_text(encoding="utf-8"))
+    assert saved["操作员"] == dict(access_token="preserved")
+    assert saved["知识管理员"]["refresh_token"] == "new-refresh"
+
+
+def test_failed_refresh_does_not_send_or_retry_qa(tmp_path, monkeypatch):
+    path = tmp_path / "tokens.json"
+    path.write_text(json.dumps({"知识管理员": dict(access_token=jwt(1100), refresh_token="old")}, ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setattr(runner.time, "time", lambda: 1000)
+    calls = []
+    def fail(*args, **kwargs):
+        calls.append("refresh")
+        raise runner.requests.HTTPError("renewal failed")
+    monkeypatch.setattr(runner.requests, "post", fail)
+    monkeypatch.setattr(runner.requests.Session, "request", lambda *args, **kwargs: calls.append("qa"))
+    with pytest.raises(runner.requests.HTTPError):
+        LocalKeycloakSession(path).post("http://127.0.0.1:8000/api/qa", json={})
+    assert calls == ["refresh"]

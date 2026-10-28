@@ -9,6 +9,6 @@
 
 资料按文档分集，同一e-Handbook按整章分集，原20道已见题只用于开发。相关概念仍可能在不同技术资料出现，因此不称为完全独立的主题盲测。题目文字、ID和概念标识均无重复；不同句式并不自动等于不同业务能力。
 
-当前仅完成[离线解析、来源锚点及PDF证据页复核](reports/20261028-offline-r1/README.md)，未运行本版150题真实问答。`answerable=false`不能区分拒答与澄清，需依据`expected_behavior`、`missing_information`和参考行为做语义复核。词面代理评分不作独立准确率。
+已完成[离线核验](reports/20261028-offline-r1/README.md)及[50题开发集真实HTTP首轮](reports/20261028-development-live-r1/README.md)：自动23/50，助手非独立复核32通过、13失败、1待确认、4上下文不完整。100题冻结验收集未运行。`answerable=false`不能区分拒答与澄清，需依据`expected_behavior`、`missing_information`和参考行为做语义复核。词面代理评分不作独立准确率。
 
 只把语料包`documents/`内文件入库。本目录所有问题、答案、标签和报告都必须留在评估侧。实际入库与分批执行命令见[使用说明](../../docs/MANUFACTURING_PUBLIC_V2.md)。

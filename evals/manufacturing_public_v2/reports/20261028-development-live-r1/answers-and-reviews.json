@@ -1,0 +1,2788 @@
+{
+  "records": [
+    {
+      "id": "MFG-Q01",
+      "question": "2026年10月新开工的HC-A17 OP-20，首件须检查几件，何时才能恢复后续作业？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "2026年10月新开工的HC-A17 OP-20工单，首件须连续检查3件。[资料1][资料3]\n首件确认必须所有必检项目全部合格。[资料1]\n必须由质量人员完成签署。[资料1][资料4]\n生产班长需确认记录齐全。[资料4]\n检验记录必须写明工单、批次和量具编号。[资料4]\n只有同时满足上述所有条件后，才能恢复后续作业。[资料1][资料4]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "02_首件确认与工序交接流程.pdf",
+        "07_HC-A17_OP20作业指导书现行版.docx",
+        "09_工艺变更通知ECN-2026-018.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "section_path": "07_HC-A17_OP20作业指导书现行版.docx"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "09_工艺变更通知ECN-2026-018.docx",
+          "section_path": "09_工艺变更通知ECN-2026-018.docx"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "02_首件确认与工序交接流程.pdf",
+          "section_path": "02_首件确认与工序交接流程.pdf"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "质量人员签署"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.6666666666666666,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q01",
+        "binding": {
+          "question_sha256": "6f13aef31beb14577126766eb147612f9ba62e3d4a9c483718d4c29f80770508",
+          "response_sha256": "e6cc16d0e7ba3368e00be9b67832e8f2b7e6335a972c0a6cfdf6362c1e6e5c07",
+          "context_sha256": "42e95aefed5a7ac2046107dd50d20516abe577eba4b4df83a195a0842ac1300f",
+          "criteria_sha256": "703e9fb1d992b7c45499653980091e067a2346fe50f6c3dcfe439876124c257b",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "完整覆盖连续3件、必检项目全合格和质量签署后恢复；“质量人员完成签署”与冻结词面不同，但原文及引用支持，不改变代理失败。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 9898.36,
+      "actual_model_calls": 3,
+      "run_id": "4e2e97a4-bb3f-411f-a6d8-292880ac3430",
+      "request_id": "4e2e97a4bb3f411fa6d8292880ac3430",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q02",
+      "question": "2026年9月新开工的HC-A17 OP-20，首件数量和签署要求是什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "每次开工连续检查2件。[资料1]\n全部项目合格后由质量人员签署。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "06_HC-A17_OP20作业指导书历史版.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "06_HC-A17_OP20作业指导书历史版.docx",
+          "section_path": "06_HC-A17_OP20作业指导书历史版.docx"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q02",
+        "binding": {
+          "question_sha256": "7e64250c16039a5ad893cab9850cc9cab50fa7f9cca3246db8d569ad2c2c0d2f",
+          "response_sha256": "af998a8edea5b2636aab93ed127d3527306ab05d54db339c10b2b523ddc7e203",
+          "context_sha256": "db6a45802309109a4f14b9522d9f3b3d2b019d015d289ee455c3002463b337b0",
+          "criteria_sha256": "96f91140a06e7edcbd090399f95cc57d413e882bc6761e632ae4a29463493a1d",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "2件、全部项目合格、质量人员签署与9月有效的1.0版一致，引用历史版支持。"
+      },
+      "context_evidence_count": 3,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3459.53,
+      "actual_model_calls": 3,
+      "run_id": "87a42a8c-b441-432a-a233-2ea26eb77512",
+      "request_id": "87a42a8cb441432aa2332ea26eb77512",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q03",
+      "question": "根据WO-017交接记录，该工单应参考哪版指导书，判断依据是什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "工单WO-017应参考2.0版指导书。[资料1]\n判断依据是：该工单实际开工时间为2026年10月26日，晚于工艺变更通知规定的2026年10月1日切换日期，因此适用2.0版指导书。[资料3][资料2]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "04_定位治具更换通知扫描件.pdf",
+        "09_工艺变更通知ECN-2026-018.docx",
+        "14_工单WO-017班次交接记录.txt"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "04_定位治具更换通知扫描件.pdf",
+          "section_path": "未标注章节"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "09_工艺变更通知ECN-2026-018.docx",
+          "section_path": "09_工艺变更通知ECN-2026-018.docx"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "14_工单WO-017班次交接记录.txt",
+          "section_path": "14_工单WO-017班次交接记录.txt"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q03",
+        "binding": {
+          "question_sha256": "40b2de1de125b31690b851b79c4e89da4f65976425fbe8702d1f28b927fc370f",
+          "response_sha256": "86a2c862fb1dd855e84b8bd7e9a6a0e214fd824d071b6bb1e51e2035abb66e95",
+          "context_sha256": "1879d755cb0539ceee422b215790fddca6d7b174a55af88a886c40ec0953323f",
+          "criteria_sha256": "a8bd8be3341ed50b7eb2db46b0e0b37e37852b676ec84bc62241c30867e84626",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "正确关联10月26日实际开工与10月1日起新开工的变更边界，选择2.0版，引用工单与ECN支持。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 6626.18,
+      "actual_model_calls": 4,
+      "run_id": "9f3158ee-7f5d-4d65-9818-061487d653cb",
+      "request_id": "9f3158ee7f5d4d659818061487d653cb",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q04",
+      "question": "WO-018在10月报工，是否就自动切换2.0版？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "WO-018在10月报工不会自动切换为2.0版。[资料1]\n判断依据是工单实际开工日期，WO-018的实际开工日期为2026年9月28日，属于2026年9月30日及以前已经开工的工单，因此继续沿用1.0版。[资料1][资料2]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "09_工艺变更通知ECN-2026-018.docx",
+        "15_工单WO-018班次交接记录.txt"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "09_工艺变更通知ECN-2026-018.docx",
+          "section_path": "09_工艺变更通知ECN-2026-018.docx"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "15_工单WO-018班次交接记录.txt",
+          "section_path": "15_工单WO-018班次交接记录.txt"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "书面"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.6666666666666666,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q04",
+        "binding": {
+          "question_sha256": "0bcdb6347c3517c1637046140347fc8e325c41f9989a7dfcb1fbb12f0015678f",
+          "response_sha256": "ab533494b61f0fb64b5335807ecb7ac2d54ea43ef6d838658638c475c48fbb5a",
+          "context_sha256": "812133d8e30f423ac4867de2a319913aef258bf948bb21b2d044c48f09434846",
+          "criteria_sha256": "5d0d26c0e7dbc8c10258d8934d0dfc30e5550403240b13f39a82cb223673a806",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "不再误拒答，且“不自动切换”、9月28日开工和继续1.0版正确；但遗漏冻结要求中的“没有具体工单书面切换通知”及书面例外，不能将正确主结论当完整通过。"
+      },
+      "context_evidence_count": 5,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3488.59,
+      "actual_model_calls": 3,
+      "run_id": "e32731bd-3fa9-4636-b665-4e106ecb1476",
+      "request_id": "e32731bd3fa94636b6654e106ecb1476",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q05",
+      "question": "按NIST量块手册，1英寸等于多少毫米？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "根据NIST量块手册，1英寸等于25.4毫米。[资料1]\n该定义是1950年代和1959年英美等国国家计量实验室主任会议达成的协议，规定1英寸精确等于25.4毫米。[资料2]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "05_NIST量块手册公开参考.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "05_NIST量块手册公开参考.pdf",
+          "section_path": "dimensions square and cross-sections. Gage blocks have"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "05_NIST量块手册公开参考.pdf",
+          "section_path": "years problems during World War showed the various inches"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q05",
+        "binding": {
+          "question_sha256": "9c47d3c52be76c3461e8f59e7d1ea3fe523529ffbb5bd055d51b9453590b2997",
+          "response_sha256": "f63fd7d2ab24256b18f5fe8938d5c3fcddfd8fe98ac67dd2542ff979b58a802a",
+          "context_sha256": "276a05e524abb7a27da8ec4129913346b48c057c6e81215847f0d8c29f0846ee",
+          "criteria_sha256": "a17c85147dd272d6a4deed55b98b1ac0781ecc482afa1fbe3d7b76f09b009055",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "25.4毫米正确；实际引用的量块手册段落同时支持定义和1950年代会议、1959年协议补充，未替代企业批准要求。"
+      },
+      "context_evidence_count": 4,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3499.19,
+      "actual_model_calls": 3,
+      "run_id": "742c34dc-d2c6-44dc-879a-e75e547aabc0",
+      "request_id": "742c34dcd2c644dc879ae75e547aabc0",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q06",
+      "question": "截至2026年10月28日10:00，CAL-018能否用于正式检验？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "截至2026年10月28日10:00，CAL-018不能用于正式检验。[资料1]\nCAL-018的校准有效期已于2026年9月30日结束，目前已处于隔离状态，且待重新校准确认。[资料1]\n根据记录规定，CAL-018在重新校准确认前不得用于正式检验。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "17_量具点检与隔离交接记录.txt"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "17_量具点检与隔离交接记录.txt",
+          "section_path": "17_量具点检与隔离交接记录.txt"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q06",
+        "binding": {
+          "question_sha256": "6306d4806d234f86a97e5ff07775a98b4405776934626de021216133099e97c1",
+          "response_sha256": "7ac3f349bf5eb372335c76365e6cd5a046f757c4ba95ce0f3f2c1a6933eef810",
+          "context_sha256": "05b8b1b341b733dbced497f8742571726bffcb543a98dd5aa61a038b4086a0da",
+          "criteria_sha256": "bde2f6e6e9541302f3d8140ed8b8ec6f12c6f9a9d7fc50e25c2114873091f006",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确不能正式检验，9月30日校准到期、已隔离和待重新校准条件完整，引用量具记录。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3670.83,
+      "actual_model_calls": 3,
+      "run_id": "a7cecc23-cc57-4e02-b874-50ddb8d17498",
+      "request_id": "a7cecc23cc574e02b87450ddb8d17498",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q07",
+      "question": "CAL-150与MIC-025的分辨力和最大允许误差分别是什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "CAL-150的分辨力为0.01 mm。[资料1]\nCAL-150的最大允许误差为±0.02 mm。[资料1]\nMIC-025的分辨力为0.001 mm。[资料1]\nMIC-025的最大允许误差为±0.003 mm。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "01_量具使用与测量准备手册.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "01_量具使用与测量准备手册.pdf",
+          "section_path": "01_量具使用与测量准备手册.pdf"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q07",
+        "binding": {
+          "question_sha256": "f15f0517ead0f981ba96dfded8db750d8d9d47cb7821029110261ffe7d86dbb5",
+          "response_sha256": "9c841da6d7d6fa8958b16171fc75a1d12026798f2539490ed5f78aab7de4712c",
+          "context_sha256": "81d881a879909d76c185f106f1db1b501dd0358ec52638e229bf8ee16914ebbe",
+          "criteria_sha256": "fec597db52ce60eef8078b4120d32b8d590480edfee826f2a4a73c166f3c8308",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "两个型号的四项数值与单位对应正确，未把分辨力和允许误差混淆。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 6202.05,
+      "actual_model_calls": 4,
+      "run_id": "dfb550a8-12a9-4a0d-917b-7f63c78e8c9d",
+      "request_id": "dfb550a812a94a0d917b7f63c78e8c9d",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q08",
+      "question": "HC-A17 OP-20首件的外径、孔深和外观要求分别是什么，还有哪些记录条件？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "HC-A17 OP-20首件的外径标准为19.95至20.05 mm，包含上下限。[资料1]\nHC-A17 OP-20首件的孔深标准为12.00至12.10 mm，包含上下限。[资料1]\nHC-A17 OP-20首件的外观要求为无可见毛刺和碰伤。[资料1]\n外径和孔深的原始读数必须逐件记录，零读数也必须记录。[资料1]\n外观检查需全部首件逐件检查。[资料1]\n测量孔深前需清洁孔内切屑。[资料1]\n检验记录必须填写工单号、批次号、指导书版本、量具编号、检验人、检验时间、逐项结果和质量签署。[资料3]\n若记录缺项时不得确认首件通过。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "08_HC-A17首件检验规范.docx",
+        "12_检验记录填写与追溯规则.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "08_HC-A17首件检验规范.docx",
+          "section_path": "08_HC-A17首件检验规范.docx"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "12_检验记录填写与追溯规则.md",
+          "section_path": "12_检验记录填写与追溯规则.md"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "质量人员签署"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.8571428571428571,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q08",
+        "binding": {
+          "question_sha256": "5e0220df5fa7334225a06015ec60072270fd2f5301410f9f368dfbd3f6a47c90",
+          "response_sha256": "006739008f6cff08b9659f8c64a1fc78d94939dc83973415572a0c1358dc20c9",
+          "context_sha256": "50103d4b6a980d52ac86eb2649849681f8202a50c324ec7149eade48248e37c4",
+          "criteria_sha256": "ec765363176613debd1c6851335c8290e7d0d8e15d18ed8a6973284781e6b9d3",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "尺寸两端、包含边界、外观及工单/批次/量具/质量签署记录均完整，额外逐件记录条件有规范支持；“质量签署”并非缺失条件。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 9541.9,
+      "actual_model_calls": 5,
+      "run_id": "8e228c23-2e95-4a4b-a5eb-27ba36e804a3",
+      "request_id": "8e228c232e954a4ba5eb27ba36e804a3",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q09",
+      "question": "WO-017更换定位治具后应完成哪些确认，才能恢复后续作业？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "必须按现行指导书（2.0版）重新进行首件确认。[资料1][资料5]\n首件确认须连续检查3件，且所有必检项目全部合格。[资料1][资料5]\n必须由质量人员完成签署。[资料1][资料5][资料6]\n生产班长需确认记录齐全，且检验记录中写明工单、批次和量具编号。[资料6]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "02_首件确认与工序交接流程.pdf",
+        "04_定位治具更换通知扫描件.pdf",
+        "07_HC-A17_OP20作业指导书现行版.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "04_定位治具更换通知扫描件.pdf",
+          "section_path": "未标注章节"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "section_path": "07_HC-A17_OP20作业指导书现行版.docx"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "02_首件确认与工序交接流程.pdf",
+          "section_path": "02_首件确认与工序交接流程.pdf"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "质量人员签署"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.5,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.5,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.5,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q09",
+        "binding": {
+          "question_sha256": "43b578353a4cde95b5c6a1c1a89383c1e366d10e3924c944bb0ab472e5865477",
+          "response_sha256": "dd228e16838a98cbfaa6c923336cdf84a9b17f4bf33f5a7b89c07e8561cb9df8",
+          "context_sha256": "64bf601fadd87be53a8075988f7386cb92928d74e98801241389bcf3b0023c90",
+          "criteria_sha256": "c7647b4a43d54fcc2899600e831a76ef1abad7a4d23026c5931d6d2205857b2c",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "2.0版、连续3件、必检合格与质量签署完整。扫描通知直接提供WO-017事件，属于有依据的等价事件来源；未引用标注的14号记录仍保留原代理失败。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 4102.76,
+      "actual_model_calls": 3,
+      "run_id": "0ea34ff9-2c45-4372-b073-b84f63dcb15a",
+      "request_id": "0ea34ff92c454372b073b84f63dcb15a",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q10",
+      "question": "2.0版指导书规定，哪些情况需要重新进行首件确认？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "新工单开工时需要重新进行首件确认。[资料1]\n更换定位治具时需要重新进行首件确认。[资料1]\n连续停机超过4小时后重新开工时需要重新进行首件确认。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "07_HC-A17_OP20作业指导书现行版.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "section_path": "07_HC-A17_OP20作业指导书现行版.docx"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q10",
+        "binding": {
+          "question_sha256": "f0007df17696b6937e8679cbbae8496ca8faf5ff63c0b7a041ef675c6ba7088b",
+          "response_sha256": "3a08893431cbf38f070d86fe54bca5c9b75ab03df0715d855eb99919e80324a6",
+          "context_sha256": "d2758aae3da2f5faa70a9bdee0b7c871f544ac3ea1fce1d100b1abb6664a8287",
+          "criteria_sha256": "ad40f9e73cfd0b2dc2293d6aaf0eec45d5a23cb38f74a45c6658fa5424656999",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "新工单、更换定位治具、停机超过4小时后开工三项触发情形完整，引用现行指导书。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3214.16,
+      "actual_model_calls": 3,
+      "run_id": "9130d50c-4d4a-41b2-9761-ee619e0d93da",
+      "request_id": "9130d50c4d4a41b29761ee619e0d93da",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q11",
+      "question": "借用量具需要同时满足哪些条件？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "借用量具必须核对校准在有效期内，且点检及零位确认正常。[资料1]\n借用量具必须登记借出方、借入方、量具编号和归还时间。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "12_检验记录填写与追溯规则.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "12_检验记录填写与追溯规则.md",
+          "section_path": "12_检验记录填写与追溯规则.md"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "隔离"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.8571428571428571,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q11",
+        "binding": {
+          "question_sha256": "a87d59962b82cfc8cb6abc1f0c62080deb8e9c528b20dc5542a8ad8ef3a17234",
+          "response_sha256": "7d125c03d86c51eebb65303b4570fd7a2887c89e7b78d49cc57fbf81d90920bb",
+          "context_sha256": "1f8dd71cc760c241c0b192ed5cefec9207e5f9d715a6902c1b6d3eac47acd72f",
+          "criteria_sha256": "8a889389b0c6f5cfded17c8aa5a62a5277bc25c3e2421b6c0fc87fbde9f34694",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "与旧基线相同，只有校准、点检、零位及借用登记，遗漏归还前清洁、复核和异常隔离；完整原文已在上下文，属于条件覆盖不足。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 2997.78,
+      "actual_model_calls": 3,
+      "run_id": "0d99f068-d059-4149-a31d-16f8bf8def39",
+      "request_id": "0d99f068d0594149a31d16f8bf8def39",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q12",
+      "question": "首件检查都合格就能直接交接吗，流程还要求什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "首件检查都合格不能直接交接，工序交接必须同时满足四项必要条件。[资料1]\n除首件检查全部合格外，流程还要求检验记录写明工单、批次和量具编号。[资料1]\n流程要求质量人员完成签署，且生产班长确认记录齐全。[资料1]\n若存在未关闭的暂停要求，须按书面批准的恢复条件执行；仅有口头同意、报工记录或计划签署时间均不能证明条件已满足。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "02_首件确认与工序交接流程.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "02_首件确认与工序交接流程.pdf",
+          "section_path": "02_首件确认与工序交接流程.pdf"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q12",
+        "binding": {
+          "question_sha256": "794d7186436507c1f13f206b75a7f6d3b0f865ba29809360f65def25197c2be9",
+          "response_sha256": "a613c5efede7dbe2401053ade4fb9388e59b30762d13c097c30907e73b81d685",
+          "context_sha256": "4a8266091153f8be78594c1a9dd448b48381699a63ffaca8091e1453d88c7d08",
+          "criteria_sha256": "23e185086127ff68a391983874125f2404ab82ba3c8b0be386d4f9ad967b7394",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确不能只凭合格直接交接；编号、质量签署、班长确认及未关闭暂停要求的书面批准条件齐全。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 4068.23,
+      "actual_model_calls": 3,
+      "run_id": "371f6603-0413-4333-a283-78d2187aa01a",
+      "request_id": "371f660304134333a28378d2187aa01a",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q13",
+      "question": "ECN-2026-018是否也适用于HC-A18？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "ECN-2026-018不适用于HC-A18。[资料1]\n根据工艺变更通知ECN-2026-018的规定，HC-A18不属于本次变更范围，应查询其独立的指导书，不能套用HC-A17要求。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "09_工艺变更通知ECN-2026-018.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "09_工艺变更通知ECN-2026-018.docx",
+          "section_path": "09_工艺变更通知ECN-2026-018.docx"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q13",
+        "binding": {
+          "question_sha256": "feeb2ddd9f8ce9c1271640e50eccebc9be91dcdf286040401d700aa60acfef66",
+          "response_sha256": "08d36cc8faac72c88ec160822cb682bdde7ae4d900b8954362b6f18b0efca176",
+          "context_sha256": "48bffaaeb87930f0e2c63e5af15b6d218deed89d90450ec3c45814830c49e9d7",
+          "criteria_sha256": "c75b3738339f4166e630050cf38c575372ed2b4acfc2e955185f52a6d78f3e54",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "正确排除HC-A18，并要求查询独立指导书，没有跨产品套用。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3301.55,
+      "actual_model_calls": 3,
+      "run_id": "e9b6f263-ad74-4d7c-ac97-76880aba5ebb",
+      "request_id": "e9b6f263ad744d7cac9776880aba5ebb",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q14",
+      "question": "HC-A17 OP-20两版指导书的首件数量有什么差异？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "HC-A17 OP-20指导书1.0版的首件数量为连续检查2件。[资料2]\nHC-A17 OP-20指导书2.0版的首件数量为连续检查3件。[资料3]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "06_HC-A17_OP20作业指导书历史版.docx",
+        "07_HC-A17_OP20作业指导书现行版.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料2",
+          "document_name": "06_HC-A17_OP20作业指导书历史版.docx",
+          "section_path": "06_HC-A17_OP20作业指导书历史版.docx"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "section_path": "07_HC-A17_OP20作业指导书现行版.docx"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q14",
+        "binding": {
+          "question_sha256": "4269cf2a4b58a941e1220f636dfd6c4616b432b2fb3792e289c4952434e1e395",
+          "response_sha256": "3f052fabad24565b8fb81c8f76888fba4c0b79c99118621a4b8f04602c561a2e",
+          "context_sha256": "77e1afa88b3a65d763395b72e75bc41d9e7ceebcb3b9be964efcee49c2e05eb2",
+          "criteria_sha256": "99054a13049a14cdfd92dd85d02f77a87b6ab6ae715ca8caa5c417f81462d611",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "两版分别2件和3件对应正确，引用对应历史和现行版本支持。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 4541.86,
+      "actual_model_calls": 4,
+      "run_id": "2254689a-c0bb-410b-828c-8638cef0bee7",
+      "request_id": "2254689ac0bb410b828c8638cef0bee7",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q15",
+      "question": "归档的1.0版是否还能用于回答2026年9月的作业要求？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "归档的1.0版作业指导书（HC-WI-A17-020）在2026年9月期间仍然有效，可以用于回答该时期的作业要求。[资料1]\n根据历史查询规则，已归档的文件不等同于不能用于回答历史问题；针对特定业务时间段的查询，应使用当时有效的版本。[资料2]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "06_HC-A17_OP20作业指导书历史版.docx",
+        "13_历史文件查询与变更说明.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "06_HC-A17_OP20作业指导书历史版.docx",
+          "section_path": "06_HC-A17_OP20作业指导书历史版.docx"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "13_历史文件查询与变更说明.md",
+          "section_path": "13_历史文件查询与变更说明.md"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "适用"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.5,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q15",
+        "binding": {
+          "question_sha256": "5bce263ce5a1b5f4c8928b807eebb1e632c4770155fa64cca4bb300f6559c0f1",
+          "response_sha256": "7f74ecfd6b217e75f6092ad19bb6f964812d9266bb1f2a2a2ec03f8fb1c5b337",
+          "context_sha256": "b9c5d50ba34470a34a394eb110968c4366cc55af6ce09c4690b86b0c4fc1258c",
+          "criteria_sha256": "bd3a3395aa35d3fd4fc6425b8372d993acf3d058aa4404d2c249b9dfa2082b93",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "说明9月期间1.0版有效且归档不排除历史查询，引用历史版及历史查询规则支持；缺少字面“适用”不构成语义错误。"
+      },
+      "context_evidence_count": 5,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3353.24,
+      "actual_model_calls": 3,
+      "run_id": "4039eaed-c0b3-4e86-8524-2a655dbc083a",
+      "request_id": "4039eaedc0b34e8685242a655dbc083a",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q16",
+      "question": "是否可以只按上传时间或检索排名判断哪份工艺文件现行？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "不可以只按上传时间或检索排名判断哪份工艺文件现行。[资料1]\n判断工艺文件现行应结合生效时间、适用产品、工序及明确替代关系进行综合判断。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "13_历史文件查询与变更说明.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "13_历史文件查询与变更说明.md",
+          "section_path": "13_历史文件查询与变更说明.md"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q16",
+        "binding": {
+          "question_sha256": "3a5af9485842d630dc469b2513c4a9a1e411b48186ee35fd3aebdc2c20ae4efa",
+          "response_sha256": "e16c235ef8958ee01fc420a4d24fdd47fbb026552971f88024732dbb08621c74",
+          "context_sha256": "ce980fd0f943a0f1d1e2343525092b25fa058f6d847541dea2def252d124574e",
+          "criteria_sha256": "040693c06b0a8be47b01262c8593ce44431ba71802815573072b004d0d04dbcc",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确不能按上传时间或排名选版本，完整给出生效时间、产品、工序和替代关系。"
+      },
+      "context_evidence_count": 10,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3294.78,
+      "actual_model_calls": 3,
+      "run_id": "75d7aa0e-57d3-4196-bcef-b35d60dfa00b",
+      "request_id": "75d7aa0e57d34196bcefb35d60dfa00b",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q17",
+      "question": "HC-A17 OP-20的批准主轴转速是多少？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料（包括作业指导书、检验规范及工单记录）均未载明HC-A17 OP-20工序的批准主轴转速具体数值，无法回答该问题。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q17",
+        "binding": {
+          "question_sha256": "ede5571595560b4fe3bdb85ea846487c2d058539977710408233037cfcdab32a",
+          "response_sha256": "f092deaebfd39e35513b49f9702fb08c04e78edcc3242107553f6ea90c4ad126",
+          "context_sha256": "1a4d11fd54096827a85fc79216fab3503c0d4cc12657c6ea7d892f7c54a738c4",
+          "criteria_sha256": "b95f2f5c581b9dc51e77e028e5994229d9cc148276cb4706ae75ca3912ef62be",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "正确说明缺少批准转速，不用公开计量资料或通用参数代替批准工艺。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3050.95,
+      "actual_model_calls": 3,
+      "run_id": "9d0ee168-23ce-46e3-a070-91984e8486a9",
+      "request_id": "9d0ee16823ce46e3a07091984e8486a9",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q18",
+      "question": "WO-017更换定位治具后的首件复检实际几点完成？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库中仅有工单交接记录显示在2026年10月26日14:20时首件复检尚未完成，且明确说明“现有记录未载明后续实际完成时间”，缺乏回答该问题所需的最终完成时间证据。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q18",
+        "binding": {
+          "question_sha256": "fc07c7d89a4c9f8a4c3559a7efd5fa6f5e273c89ff3e2ef971d12462e29c3597",
+          "response_sha256": "9d5db8bfd67570fd7e166c6d8f348074314d6e91c0441b854e05d8b41eb85a7a",
+          "context_sha256": "4b77c2aae820e69d7a78f605e6db183ac0eb23b1494e0d27d0b2e2cb0694e6e3",
+          "criteria_sha256": "6a6339d92ed65eff75be3d2b209ecbed23437fd4a1513b2086ccdf4b5c5694b5",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "正确区分14:20尚未完成与其后完成时间未知，没有把交接时刻当实际完成时刻。"
+      },
+      "context_evidence_count": 9,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3394.99,
+      "actual_model_calls": 3,
+      "run_id": "5bbd00f2-dbe5-4ca5-bff9-5cfec76cd93d",
+      "request_id": "5bbd00f2dbe54ca5bff95cfec76cd93d",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q19",
+      "question": "现在HC-A17成品库存有多少件？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料主要涉及生产工艺、工单交接、工艺变更及检验规范，未包含实时库存、采购或MES接口数据（如资料5所述），无法回答HC-A17成品库存的具体数量。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q19",
+        "binding": {
+          "question_sha256": "dbabb5a077ef5bb9ca83217f4a0ff777cdcba137696d924e550c13ea6dcbcc9d",
+          "response_sha256": "42fc8af7356a0e712cf1a7acb6ad1f0123f1ecd53f6b7b7c5732e1c283750fa6",
+          "context_sha256": "050b309961c4ab3d1a182ce44fb0cae5b7a126fd97bc22533e418b36f00d2cb0",
+          "criteria_sha256": "395a6df3633b2a6a3d611f29ebae4d630c82a26ffa653fd0c46975ea82b7f3bd",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "正确拒绝编造实时库存；没有把静态公开资料当ERP/MES实时记录。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 2720.59,
+      "actual_model_calls": 3,
+      "run_id": "1bb8d66e-8a78-46ac-86b9-d6909bc464b6",
+      "request_id": "1bb8d66e8a7846ac86b9d6909bc464b6",
+      "error_type": null
+    },
+    {
+      "id": "MFG-Q20",
+      "question": "HC-B99的OP-30首件检验上下限是多少？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库中缺乏针对“HC-B99”产品“OP-30”工序的具体检验标准或上下限数值。资料2和资料9仅提供了通用的辅助尺寸检查点（IP-01至IP-12）及量具对照表，并明确说明“具体产品公差以对应检验规范为准”，但未提供该特定产品的检验规范内容；其余资料均为公共参考文档或与HC-A17产品相关的工单记录，无法回答本题。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q20",
+        "binding": {
+          "question_sha256": "77401b69f98ccff2e9ac90fa6fadd4c1f0a8288b2ae52a97d9b22dc9f989da84",
+          "response_sha256": "c5053bffd0a27b27b451c3a3dd2e0a43edb4c61c6469cb6903d2b0cd77121364",
+          "context_sha256": "50fae40b0db8d8e8f7d5aa528d541569b7373b49ce285bb29f59a33d85b3b3c9",
+          "criteria_sha256": "578598d86da2d859776bba92e253c4091b0760afa50120219dc4d561136c0ea8",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "正确说明没有HC-B99 OP-30适用公差，未套用HC-A17或辅助检查点。"
+      },
+      "context_evidence_count": 10,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3808.8,
+      "actual_model_calls": 3,
+      "run_id": "66335e9d-e5fc-4aec-b023-cd362063ceb3",
+      "request_id": "66335e9de5fc4aecb023cd362063ceb3",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q001",
+      "question": "按NBSIR74-523的仪器准备说明，量块比较仪在有效比较前需检查哪些项目？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "根据NBSIR74-523（《Preparations for Gage Block Comparison Measurements》）的仪器准备说明，量块比较仪在有效比较前需检查并调整线性可变差动变压器（LVDT）的测力、放大倍数和线性度。[资料3]\n具体而言，必须对仪器的测量平台（anvil）进行去毛刺和清洁处理。[资料5]\n必须检查比较仪传感器的压力、放大倍数和对齐情况（alignment）。[资料6]\n在进行长量块互校的比较运行之前，在调整比较仪以接受特定尺寸的量块后，需将系列中的全部四个量块插入探针之间，以确保所有读数在该放大倍数下均在量程范围内。[资料5]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+        "MFG-P04_Intercomparison_Procedures_for_Gage_Blocks_Using_Electromechanical_Comparators.pdf",
+        "MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料3",
+          "document_name": "MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+          "section_path": "5. Cleaning Gage Block Stones"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "MFG-P04_Intercomparison_Procedures_for_Gage_Blocks_Using_Electromechanical_Comparators.pdf",
+          "section_path": "2. Comparator Preparation"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf",
+          "section_path": "56 > 4.2 Measurement Techniques > 4.2.2 Comparator Preparation"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "测量压力",
+          "放大倍率"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.3333333333333333,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q001",
+        "binding": {
+          "question_sha256": "5c8c3699ac458f5d8b422947d4d9c835b592715cccbb169df8b47bfe8107a5e4",
+          "response_sha256": "2cf4cd6662e63db17c077704d7dfb813ee24f6a97aa9ac909ca7a54187b363e2",
+          "context_sha256": "04373185e4e6b4a68445143e78cf75d5621a96a5785e8da6948454e2b7e82752",
+          "criteria_sha256": "28e0323df5ef22898580682223a36c2a38092fc29aa4ee99705088c96365fc4b",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "核心的测力、放大倍数、线性度与原文测量压力/倍率/线性同义；引用P03支持，其他准备步骤分别有P04/P19出处。词面失败不改标注。"
+      },
+      "context_evidence_count": 10,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 6574.02,
+      "actual_model_calls": 4,
+      "run_id": "5e5304f1-1cab-45ec-81e1-3ec69f97eebd",
+      "request_id": "5e5304f11cab45ec81e13ec69f97eebd",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q002",
+      "question": "NBSIR74-523的砝码线性测试中，加载与卸载的读数差异用来识别什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "在NBSIR74-523描述的砝码线性测试（weight method）中，加载与卸载的读数差异用来识别传感器（transducer）中存在的滞后现象（hysteresis）。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+          "section_path": "1. The weight method"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "迟滞"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.6666666666666666,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q002",
+        "binding": {
+          "question_sha256": "f4673345474b65eb28584a634c3e2d36e10e599c56116a46d281cb34d06bdb9f",
+          "response_sha256": "0da508c9e2042bc355625574a33a9ad90eb0d67d3242a5f2cce21b88d0e88c17",
+          "context_sha256": "1d6b8b445902ad60717b3eeb5c4b2bc069bef84ab84e4c35de56b124ed2d20a6",
+          "criteria_sha256": "86c97fc61ffd6b9be181a5a9d2c54f85486282f6c2f9dd068f665b2b5d2c1a0d",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "识别hysteresis正确；“滞后”与冻结词“迟滞”是同一效应，题目询问识别对象，引用砝码测试原文支持。"
+      },
+      "context_evidence_count": 10,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 4935.91,
+      "actual_model_calls": 4,
+      "run_id": "bc7785ff-4a50-4b11-8419-ce565bb29671",
+      "request_id": "bc7785ff4a504b118419ce565bb29671",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q003",
+      "question": "NBSIR76-979所述4-1量块比较组由哪些块组成，为什么引入冗余？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料（资料1、2、3、4、5）虽然提及了NBSIR 76-979以及相关的量块校准设计（如4块12次比较的设计），但并未包含关于“4-1量块比较组”具体由哪些块组成的详细信息，也没有直接阐述引入该冗余设计的根本原因。资料2主要描述的是NIST在1989年针对4块量块设计的12次比较方案，而非NBSIR 76-979中的4-1方案细节。因此，无法依据现有资料回答用户问题。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "两块未知",
+          "两块标准",
+          "统计分析"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q003",
+        "binding": {
+          "question_sha256": "7a15a7bfcda0cd8dbcd82a9b9ed295fc21fe24ad26e4f91f7583f8ea7734af4c",
+          "response_sha256": "b05456830654acfd84527e781efb2f87391f89297d17a51fec6b93587b8a1c7f",
+          "context_sha256": "a7fa91a288ce207cc2e576e885922c84abd7f6c2dba9650494e4ab6ed4025759",
+          "criteria_sha256": "da4a1d49b52e9b4a18fd9a05de2487f6ddcfde14f6e04e8b2ad08f596ad9387b",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "4-1组成及冗余统计用途在已入库P04中存在，但最终上下文未命中标注证据，模型拒答。另观察到本请求规划及Agent的两次结构化ValidationError，不据此推断唯一根因。"
+      },
+      "context_evidence_count": 5,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 8252.29,
+      "actual_model_calls": 6,
+      "run_id": "7998eb9f-1153-4ebc-954c-7815f52cf983",
+      "request_id": "7998eb9f11534ebc954c7815f52cf983",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q004",
+      "question": "只按NBSIR76-979记录的当时实验条件，4英寸以上量块的温度控制和湿度要求是什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "4英寸以上量块的温度控制在20°C ± 0.05°C。[资料2]\n相对湿度应保持在50%以下，以防止量块和仪器腐蚀。[资料2]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf",
+          "section_path": "56 > 4.1.3 Environment"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "历史"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.6666666666666666,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q004",
+        "binding": {
+          "question_sha256": "fcc7d5b5aa58dc93ea6ef9537afefad2538eeca1da52d33f9e78ec437f4a9472",
+          "response_sha256": "da08bcd7502b5a4980b745c048fc4adfd02bd5ac9b2e3e69bf2ea18148ca5fe1",
+          "context_sha256": "282fc7011bb33220cf04c193006492a10fa18970cf8c17112d24809827877be7",
+          "criteria_sha256": "bedd8a4701b041139baaac3945836aae4dcfacb8b405fb69a8ec5c1bffc82ac3",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "数值20±0.05℃与湿度低于50%正确，但题目指定NBSIR76-979，实际只引用另一报告P19，未说明同源关系及历史适用边界；指定来源追溯不完整，不能只凭相同数值通过。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 6418.81,
+      "actual_model_calls": 4,
+      "run_id": "803cf505-0f85-4867-a3fe-134d100596a7",
+      "request_id": "803cf5050f854867a3fe134d100596a7",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q005",
+      "question": "《Uncertainty and Dimensional Calibrations》列出哪些尺寸校准中特有的B类不确定度来源？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "温度计校准（thermometer calibrations）是尺寸校准中特有的B类不确定度来源之一。[资料1]\n客户量规的热膨胀系数（thermal expansion coefficients of customer gages）是尺寸校准中特有的B类不确定度来源之一。[资料1]\n量规变形（deformation gages）是尺寸校准中特有的B类不确定度来源之一。[资料1]\n变形修正（deformation corrections）是尺寸校准中特有的B类不确定度来源之一。[资料1]\n折射率修正（index of refraction corrections）是尺寸校准中特有的B类不确定度来源之一。[资料1]\n特定设备相关的源（apparatus-specific sources）是尺寸校准中特有的B类不确定度来源之一。[资料1]\n除了上述主要来源外，文档还列出了其他与尺寸校准相关的B类不确定度来源，包括：标准件的不确定度（Uncertaintyofartifactstandards）、线性度（linearity）、拟合程序（fit routine）、阿贝误差及仪器几何误差（Abbe offset and instrument geometry errors）、刻度与量规对准（cosine errors, obliquity, ...）、量规支撑几何（anvil flatness, block flatness, ...）以及平面度、平行度、圆度、反射相位修正等（Flatness, parallelism, roundness, phase corrections on reflection）。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+          "section_path": "5. ScaleCalibration"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q005",
+        "binding": {
+          "question_sha256": "8f727ef0127854fb410c979db3eda9aa2e6569614f43efdb56f54d61661d582b",
+          "response_sha256": "3afc22e0ebbdddab0fb95dbe0696d7eacf53ba5e83a1d65c98067a6dd69673fc",
+          "context_sha256": "3f1a332dc3a85672615372e0720be04d187b9865d6771b396d3ef052a8d76cca",
+          "criteria_sha256": "727fdad7660259c4e7c42f46ea39d3d8b6a544cc4a97aa985974a0becf40361c",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "uncertain",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "主文列出的五类来源已覆盖；但跨栏混排形成“deformation gages”等英文拼接，并将表格中额外项目统称B类。额外分类是否充分成立尚需领域复核，不能只凭关键词给通过。"
+      },
+      "context_evidence_count": 4,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 7165.59,
+      "actual_model_calls": 3,
+      "run_id": "12a8472d-cc94-4635-a2dd-1c5aff994c74",
+      "request_id": "12a8472dcc944635a2dd1c5aff994c74",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q006",
+      "question": "尺寸校准预算中，如果最坏情况估计成为很大的不确定度来源，该论文建议如何增强可信度？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "如果“最坏情况”估计成为很大的不确定度来源，论文建议使用校准历史或辅助实验来获取更可靠且统计上有效的评估。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+          "section_path": "5. ScaleCalibration > 3.1 Master Gage Calibration"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q006",
+        "binding": {
+          "question_sha256": "eccfb84a2562f4d8fdd1cfed2c3f421fa81d36496ff287790c8b0c143146980f",
+          "response_sha256": "56de5596297c0470bb996b62a1b2b7358210fb0d3bebc0bd35f981e0de036a35",
+          "context_sha256": "8f930c41813dc638c3419699dc648d4c0329676f6707717f8f5c0e316c78338a",
+          "criteria_sha256": "954f4a03cada08c9ca50031df339d9acb663c3a59b317d2374961d839166ad6e",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "按原文建议使用校准历史或辅助实验获得更可靠、统计有效的评估，引用明确支持。"
+      },
+      "context_evidence_count": 4,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 2820.11,
+      "actual_model_calls": 3,
+      "run_id": "59aa2eac-4127-4668-aed2-f1a95d3218b6",
+      "request_id": "59aa2eac41274668aed2f1a95d3218b6",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q007",
+      "question": "尺寸校准论文中，短期重复性与长期复现性用于不确定度预算时有什么区别？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "短期重复性是指在短时间内、相同条件下对同一量进行多次测量时，测量结果的变异程度。[资料4]\n长期复现性（Long Term Reproducibility）是指测量历史必须跨越足够长的时间（如数年），以采样由环境传感器重新校准等引起的变异性，从而反映更长期的测量数据变异。[资料2]\n在不确定度预算中，短期重复性是测量变异的一个组成部分，但在许多情况下是一个相对较小的组成部分；而长期复现性则用于吸收和采样环境因素（如压力、温度、湿度传感器误差）随时间变化带来的系统误差影响。[资料5]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "05_NIST量块手册公开参考.pdf",
+        "MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料4",
+          "document_name": "MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+          "section_path": "3. The Generic Uncertainty Budget"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+          "section_path": "3. The Generic Uncertainty Budget"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "05_NIST量块手册公开参考.pdf",
+          "section_path": "As Cameron random calibration schemes using incomplete"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "条件变化"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.6666666666666666,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q007",
+        "binding": {
+          "question_sha256": "112dc7270d93875ff128433ae273afd13778e1cd09e9aa6db012667fa90a6250",
+          "response_sha256": "46d33dd159fbfc4001e4d18071430d76151bc81542a061b24ecf036b93f6d6fd",
+          "context_sha256": "a6143ff3920bb6ca23868c42e8386e6ec99755b945722cbc5ee698dcce8dba46",
+          "criteria_sha256": "f14b04099c033cbb37247e6f9da6d6ad633a403dc4fd1df77fd454e05b2e132b",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "已区分短期同条件变动与跨期变化，并以环境传感器重校说明长期变动进入预算；表述偏重实例，但核心区别和来源支持成立。"
+      },
+      "context_evidence_count": 5,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 4546.15,
+      "actual_model_calls": 3,
+      "run_id": "964084b5-9fc9-4e4f-a3df-a4df93677107",
+      "request_id": "964084b59fc94e4fa3dfa4df93677107",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q008",
+      "question": "TN1297中标准不确定度如何与方差和标准差对应？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "在TN1297中，标准不确定度的平方（u²）被视为方差的近似值。[资料4]\n标准不确定度（u）本身被视为标准差的近似值。[资料4]\n这种对应关系并非总是简单的：当某个量在数学模型中以不同方式使用时，原本被分类为“随机”的不确定度分量可能表现为“系统”性质，反之亦然，因此不能简单地将所有情况都对应为标准的随机或系统分类。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料4",
+          "document_name": "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+          "section_path": "2 4. Type B Evaluation of Standard Uncertainty > 2.6 In a similar manner, an uncertainty component in"
+        },
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+          "section_path": "2. Classification of Components of Uncertainty > 2.3 There is not always a simple correspondence between"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "正平方根"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.5,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q008",
+        "binding": {
+          "question_sha256": "4f43fb3a1bbba1c67e17dc277459043cce43d833d741ae0e6ffdb15284e04eec",
+          "response_sha256": "44dfaf07d296549e6558f5ac3ce591de0e5f8cfeed9faa7240066152fad81d08",
+          "context_sha256": "7c590ec9bbb7c04bd0ac453e9bc3a2383ede3f86a53cd309f2bff43910b65e5c",
+          "criteria_sha256": "e71d02ec564f2f2e42b29d9e612958215bae9b1d4ef3e7ed2549bd2c47aff47b",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "u²作为方差近似、u作为标准差近似与正平方根关系等价，实际引用TN1297第2.6段支持；分类补充与问题关联较弱，不把未命中单一锚点当错误。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 4433.96,
+      "actual_model_calls": 3,
+      "run_id": "d16fa752-596b-425a-9b70-a3ce2eb7e05a",
+      "request_id": "d16fa752596b425a9b70a3ce2eb7e05a",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q009",
+      "question": "按TN1297第4.2节，证书给出的不确定度已明确是估计标准差的某个倍数时，怎样换成标准不确定度？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "将证书中给出的不确定度（即估计标准差的倍数）除以该倍数（multiplier），即可得到标准不确定度。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+          "section_path": "where a = (a a ) / 2. > 4.2 Convert a quoted uncertainty that is a stated multiple"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q009",
+        "binding": {
+          "question_sha256": "a42602914a97abd6f42fc38f767cda434397412763dacb5bca11201cca087f4a",
+          "response_sha256": "7b8c14b3f00c286421511f3e02a0648b39cc72ecfa03e1c7f4076e40b9f35177",
+          "context_sha256": "faad999bc9099887dbbaa3b705e39be19636e0ccf9a0aa39927a6e65206f907d",
+          "criteria_sha256": "f6253ec44bf8244cfc2f2d915020c1428ab8744dc923f613f37d3b825b62d6e3",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "除以已知倍数的换算正确，引用TN1297第4.2节原文支持，没有猜测未知倍数。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 2546.23,
+      "actual_model_calls": 3,
+      "run_id": "2fe0413c-166c-44bf-a546-c89b4a3ec204",
+      "request_id": "2fe0413c166c44bfa546c89b4a3ec204",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q010",
+      "question": "TN1297是否认为修正后误差很小就代表不确定度也一定很小？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料（资料1-7）主要涉及TN1297的修订背景、术语定义（如随机误差、系统误差、修正因子）以及量块测量中的相关性分析，但未找到TN1297对“修正后误差大小”与“不确定度大小”之间直接关系的明确论断或评价。因此无法回答该问题。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "不一定",
+          "较大不确定度"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q010",
+        "binding": {
+          "question_sha256": "337c7c6cbfd549c7b71671b9497f0e6715a6d4d5a6954127c16937e56dd503f9",
+          "response_sha256": "4e3323d238e2d736d90a93ebfb64c1a518e5222793d8a7f4befde53f58dc9ffd",
+          "context_sha256": "ebed4fc7818735ca48374aeaf06cf2b6b084cc7b1b816d8f635a7a67074b17eb",
+          "criteria_sha256": "91d0f73a07416dfb170afc33d3e2de3d06308b7d940fc3a17b79a2d4a6972780",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "语料中有误差小仍可有较大不确定度的明确说明，但最终上下文未命中指定证据，模型错误拒答。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3059.23,
+      "actual_model_calls": 3,
+      "run_id": "eb53ef60-8e11-4a75-9aed-ac8c0cab549a",
+      "request_id": "eb53ef608e114a759aedac8c0cab549a",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q011",
+      "question": "NIST手册用哪些指标表征持续测量过程的好坏？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料未能提供NIST手册中用于表征持续测量过程好坏的完整指标列表。资料1提到通过比较观测标准偏差与历史平均值来监控精度，资料2提到提供短期重复性、长期变异性和主标准件恒常性的检查，但未形成明确的“指标”清单或定义。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "偏倚",
+          "短期",
+          "长期",
+          "不确定度"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q011",
+        "binding": {
+          "question_sha256": "df1d46ec74da976075c6438394928e2d38c529ad17ff6c442207090202e3e06f",
+          "response_sha256": "53a54039289d4cc34eb1435894cf3d8077ff031d6b50b3618e09e5cb1539de52",
+          "context_sha256": "51650fea1706e896cc9a3e4e6ab43507c5f3ba28a6f86e55f81d29fab6912b38",
+          "criteria_sha256": "80967684e27cf25ba99023e87f6420a0aed903be46a1bc8661f69c2e6c6d3531",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "偏倚、短期、长期和不确定度列表在W01存在，最终上下文未命中该证据而拒答，未完成可回答任务。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3515.72,
+      "actual_model_calls": 3,
+      "run_id": "24661d8a-6e59-4cfc-a28a-27e35d13c1e8",
+      "request_id": "24661d8a6e594cfca28a27e35d13c1e8",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q012",
+      "question": "测量过程已有一次精度检查后，持续统计控制还应覆盖哪些时间尺度？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "上下文预算不足以完整保留相关条款及限制条件，请缩小问题范围后重试。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "短期",
+          "长期"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": null,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": null,
+      "context_evidence_count": null,
+      "captured_partial_context_items": 9,
+      "snapshot_status": "incomplete",
+      "snapshot_incomplete_reason": "parent_context_budget_incomplete",
+      "latency_ms": 830.98,
+      "actual_model_calls": 2,
+      "run_id": "b1890606-2f86-4332-883f-989800ace611",
+      "request_id": "b18906062f864332883f989800ace611",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q013",
+      "question": "NIST测量过程表征方法对一次性、特殊试验或破坏性试验有什么适用限制？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料主要涉及NIST测量不确定度的评估指南、背景及一般控制问题，未包含关于“一次性、特殊试验或破坏性试验”适用限制的具体信息。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "难以",
+          "重复"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q013",
+        "binding": {
+          "question_sha256": "95796f696e4e0503700ed89eadf15ac1a928bb69fd2c6a941c0d309298689fb7",
+          "response_sha256": "155206d83daa3fae9ffdfd319abfc938658b3c422134a92d6e5db04f6794b8ea",
+          "context_sha256": "8352fe53c0e63369650d283295adab64098598afc57ab7da7dee692002d42a58",
+          "criteria_sha256": "6cb9374dd2319ffcea1a50e560d981e48957def7d79966c1b510c4e03d183338",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "W01明确说一次性、特殊及破坏性试验难表征，最终上下文未含指定证据而拒答。"
+      },
+      "context_evidence_count": 8,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 2763.22,
+      "actual_model_calls": 3,
+      "run_id": "c1c406dd-df8e-4abc-b060-9d7fb66dd328",
+      "request_id": "c1c406dddf8e4abcb0609d7fb66dd328",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q014",
+      "question": "为什么要长期保存核查标准的重复测量数据库？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "上下文预算不足以完整保留相关条款及限制条件，请缩小问题范围后重试。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "时间",
+          "偏倚",
+          "长期"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": null,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": null,
+      "context_evidence_count": null,
+      "captured_partial_context_items": 9,
+      "snapshot_status": "incomplete",
+      "snapshot_incomplete_reason": "parent_context_budget_incomplete",
+      "latency_ms": 1354.99,
+      "actual_model_calls": 2,
+      "run_id": "884a26b6-b41d-45cf-b9d4-6543b619a315",
+      "request_id": "884a26b6b41d45cfb9d46543b619a315",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q015",
+      "question": "为常规工件选择实体核查标准时，应满足什么条件？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料主要涉及量块、线规和圆柱等特定工件的校准方法、不确定度评估及误差来源，但未包含关于“为常规工件选择实体核查标准时应满足什么条件”的规定或说明。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "材料",
+          "几何",
+          "稳定",
+          "可用"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q015",
+        "binding": {
+          "question_sha256": "97b1205ef2ffa97b656d11de4aecf763876406435d4f23dc12925e26a349a8f3",
+          "response_sha256": "d255aa6516c98bcbb55ae7102da6f0859f9c676f72e6676c9f46445828ee07ba",
+          "context_sha256": "a9fe82fa66713d9de31171f17d49a320338ff4c6da493a1e5cda1899299a76a7",
+          "criteria_sha256": "c8d481c6c5a9bd88526d664916e2c11feb890144f6098ff44c62355210db39ac",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "W02给出了材料、几何、稳定及随时可用的选择条件，最终上下文未含指定证据，模型错误拒答。"
+      },
+      "context_evidence_count": 8,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 2955.36,
+      "actual_model_calls": 3,
+      "run_id": "7a43d193-eb30-4732-980f-e04468142b09",
+      "request_id": "7a43d193eb304732980fe04468142b09",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q016",
+      "question": "核查标准必须是一件实体标准器吗？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "核查标准不一定是一件实体标准器，它可以是一个实物（artifact），也可以是测量过程的一个特征量。[资料1]\n作为非实体的测量过程特征量，其具体例子包括：通过校准实验估算的两个参考标准值之间的差异，以及从参考标准和/或测试物品的测量中估算出的偏差项等过程特性值。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-W02_What_is_a_check_standard.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-W02_What_is_a_check_standard.md",
+          "section_path": "What is a check standard > 2.1.2. What is a check standard?"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "不必",
+          "特征值"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q016",
+        "binding": {
+          "question_sha256": "08fb69cabe4e73f7f1e8615e066697952d2cabc823616d2729dfbfe6f1bccff1",
+          "response_sha256": "5ab9f676ff7e62f4b5f13a15d36f06151d5cc8444b0a8db78fe576acd4d8b42c",
+          "context_sha256": "cdd772cb2c700630971bbfa239f0994aeed98a3d0201d3136f9714d9d754ef31",
+          "criteria_sha256": "d1c46ac57a33d6b3aafb31b9168b8d619c84b632a939ac0989c62a535890760f",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "“不一定”和“特征量”准确表达可非实体，例举标准差值和偏差项均有W02原文支持；代理同义词未命中。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3636.76,
+      "actual_model_calls": 3,
+      "run_id": "6f147e10-3857-4ede-8e1e-5d910ff20608",
+      "request_id": "6f147e1038574ede8e1e5d910ff20608",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q017",
+      "question": "一个校准或规格设定不正确的测量过程即使实施统计控制，能保证结果正确吗？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "不能。如果测量过程校准或规格设定不正确，实施统计控制无法保证结果正确。[资料1]\n在测量过程存在错误（如校准错误）的情况下，统计控制仅能保证测量结果之间具有可比性，或者保证过程持续产生错误的结果，而不能保证结果的准确性。[资料1][资料2]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "05_NIST量块手册公开参考.pdf",
+        "MFG-W03_Issues_in_controlling_the_measurement_process.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-W03_Issues_in_controlling_the_measurement_process.md",
+          "section_path": "Issues in controlling the measurement process > 2.2.1. What are the issues in controlling the measurement process?"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "05_NIST量块手册公开参考.pdf",
+          "section_path": "A number approaches measurement assurance system design"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q017",
+        "binding": {
+          "question_sha256": "c4886854278680544d36b4fd2b6aee7ea5132c1f6e417b6c326b16ead58850e6",
+          "response_sha256": "f3ad3dfa2f5068259710821964b237e46d07897cc3191e69e459e16dcea07b42",
+          "context_sha256": "1be0f91e03c1dfb4c841d7d2ddf68746879cdf1ae2131b1726824b05cfd31d04",
+          "criteria_sha256": "ebd48baa16bf647398a20a5b2b25a0fffed871c969a166c20f0f601634215fa4",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确不能保证准确性，只能保证可比性，符合校准不正确的适用前提及引用原文。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3975.44,
+      "actual_model_calls": 3,
+      "run_id": "eed3810a-7be0-4e77-b1ec-3fa1925d8b0d",
+      "request_id": "eed3810a7be04e77b1ec3fa1925d8b0d",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q018",
+      "question": "测量过程控制与不确定度声明有什么关系？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "上下文预算不足以完整保留相关条款及限制条件，请缩小问题范围后重试。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "可预测",
+          "不确定度"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": null,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": null,
+      "context_evidence_count": null,
+      "captured_partial_context_items": 7,
+      "snapshot_status": "incomplete",
+      "snapshot_incomplete_reason": "parent_context_budget_incomplete",
+      "latency_ms": 620.46,
+      "actual_model_calls": 2,
+      "run_id": "aed0cb53-6923-4f3b-a7b1-54c579714a2e",
+      "request_id": "aed0cb5369234f3ba7b154c579714a2e",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q019",
+      "question": "测量控制手册是否要求观测数据丝毫不能偏离正态分布？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "测量控制手册不要求观测数据丝毫不能偏离正态分布，而是明确指出正态性假设并不严格（not stringent），且检验程序对轻微的正态性偏离具有稳健性。[资料1]\n手册中实际要求的条件是测量数据的分布呈钟形（bell-shaped）且对称（symmetric）。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-W03_Issues_in_controlling_the_measurement_process.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-W03_Issues_in_controlling_the_measurement_process.md",
+          "section_path": "Issues in controlling the measurement process > 2.2.1. What are the issues in controlling the measurement process?"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q019",
+        "binding": {
+          "question_sha256": "5c9c6272b613ac0638ba5781876d389a4a7ba15947f8ef68e6835990d0de2700",
+          "response_sha256": "a0e4093007fa7076006da0228bddb426d33cb7c7410d88addb15488959f8e593",
+          "context_sha256": "6a487301206e2a5d8e432c1e91ef754f0ef200f3761acd1b2f340e504c3627ba",
+          "criteria_sha256": "c9346bac72ed655e4300de0d293569353199c67496d50a92be54f9cc38e98232",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "不要求绝对正态、轻微偏离稳健、钟形对称三点完整，引用W03支持。"
+      },
+      "context_evidence_count": 10,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3754.58,
+      "actual_model_calls": 3,
+      "run_id": "1923544b-7865-4b5c-992e-383bd34500e7",
+      "request_id": "1923544b78654b5c992e383bd34500e7",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q020",
+      "question": "核查标准连续多组读数整体发生固定偏移时，NIST手册建议排查什么？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料主要涉及消除设计的漂移测量原理和标题，但未包含针对“核查标准连续多组读数整体发生固定偏移”这一具体场景的排查建议或操作指南。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "参考标准",
+          "核查标准",
+          "程序"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q020",
+        "binding": {
+          "question_sha256": "8c8edfefc23a74117e4666e6c752b22ded5d6e98999842defc4ae6f9ddaf7b42",
+          "response_sha256": "9d3356bef3e8e6db5a10cc35c43018ba27d20afdf2eb607f14558558b84538c2",
+          "context_sha256": "bedae82d9794b4a70b2b85b31b74da831192f28dcf99ade7d3cb94ca1f643457",
+          "criteria_sha256": "98bca3412fc0e2424fc933af316035e0fd59a062f0ff7673bd6ee83d6d47ce45",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "W04有参考或核查标准改变/损坏及程序改变的排查说明，但最终上下文未命中，模型错误拒答。"
+      },
+      "context_evidence_count": 4,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 2579.99,
+      "actual_model_calls": 3,
+      "run_id": "eebb9b60-6062-4012-9cc2-fdc079b7cff9",
+      "request_id": "eebb9b60606240129cc2fdc079b7cff9",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q021",
+      "question": "要较快发现测量过程小幅漂移，Shewhart和EWMA如何选择？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "生成结果未通过证据与引用校验：第2个结论中的数字或日期缺少证据支持：['0.5', '1']",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "Shewhart",
+          "EWMA",
+          "历史"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q021",
+        "binding": {
+          "question_sha256": "95e36b784661480b33a4d3a76bbc833444daf8b3c3168a5eb6d32f19fadc44ef",
+          "response_sha256": "d12e509d25e6fd1fbf5d48452508554b114d62d2d2e3b1af6c3e3400cef0384a",
+          "context_sha256": "c5c48281265d50d4dc47b75484a9d237866a4c860dc29a97d42840939c9395ed",
+          "criteria_sha256": "28c5af7d7a1242cdc23b3fe3c69667eaacdfb59ea65273450a8922acc41da3cf",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "可回答问题最终因数字0.5和1的证据校验被拒绝，最终上下文含指定W04证据；只凭最终快照不能区分生成引用绑定错误与数字校验误报。"
+      },
+      "context_evidence_count": 8,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3196.87,
+      "actual_model_calls": 3,
+      "run_id": "d703f82d-f114-4048-80a8-30b8457ec2d0",
+      "request_id": "d703f82df114404880a830b8457ec2d0",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q022",
+      "question": "测量过程的变异突然增大，除了工件本身还可以调查哪些因素？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "上下文预算不足以完整保留相关条款及限制条件，请缩小问题范围后重试。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "环境",
+          "操作",
+          "仪器"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": null,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": null,
+      "context_evidence_count": null,
+      "captured_partial_context_items": 9,
+      "snapshot_status": "incomplete",
+      "snapshot_incomplete_reason": "parent_context_budget_incomplete",
+      "latency_ms": 699.53,
+      "actual_model_calls": 2,
+      "run_id": "f494a42d-cfae-4fbf-8508-58a7e2c0a3ac",
+      "request_id": "f494a42dcfae4fbf850858a7e2c0a3ac",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q023",
+      "question": "监控短期测量变异应跟踪哪个统计量，而不是只看均值？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "监控短期测量变异应跟踪标准差（standard deviation），而不是只看均值。[资料2]\n短期变异或仪器精度是通过监测对感兴趣仪器的重复测量所得的标准差来进行控制的。[资料2]\n每次测量的标准差是过程短期可重复性的度量，可作为统计过程控制（SPC）参数。[资料3]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "05_NIST量块手册公开参考.pdf",
+        "MFG-W05_How_is_short-term_variability_controlled.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-W05_How_is_short-term_variability_controlled.md",
+          "section_path": "MFG-W05_How_is_short-term_variability_controlled.md"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "05_NIST量块手册公开参考.pdf",
+          "section_path": "measurements measures make much sense. At point"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q023",
+        "binding": {
+          "question_sha256": "0d007cd13884f091dd2cd7a99ca439b0a7487c1b5c7d6f270f1644f005e018da",
+          "response_sha256": "659cc326006689bb351ff63fe41fe11b4d053c02e89e6515bf81256a8330bc45",
+          "context_sha256": "06acbce2fc7da33d3cf0af8a85421cfdb82d88b51f804ed52bfaba5d0ef8ea24",
+          "criteria_sha256": "6df0e479bf28cbf17ff95bb92c4d129705144e84214ff9b510b9d9041be939d9",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "重复测量的标准差正确，W05及量块手册均提供支持，没有只答均值。"
+      },
+      "context_evidence_count": 8,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3415.02,
+      "actual_model_calls": 3,
+      "run_id": "1303df7f-5a11-45ff-801a-ee29cccbfbd1",
+      "request_id": "1303df7f5a1145ff801aee29cccbfbd1",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q024",
+      "question": "短期变异控制是否只能使用一件专门核查件？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的资料仅描述了短期变异控制的统计方法（如监控标准差）和核查件的类型选择（可以是单一核查件、一组核查件等），但未明确回答“是否只能使用一件”这一排他性条件。缺少关于核查件数量限制的明确规定。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "一组",
+          "代表性"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q024",
+        "binding": {
+          "question_sha256": "1f55d1e8ee9d6b4a4d901bf4758276795dfb3e2ca39f1caae1b98bfd971b52df",
+          "response_sha256": "f97264a6d899cf7298117e978fa58307ab8ae5da15887a711283b6b31e0c143d",
+          "context_sha256": "be815e73545f65794a46865132ed0c80ceccfd323f3f83e5205f16d4ebda882a",
+          "criteria_sha256": "2710f2bc8c2aed831e60a9286a72d047335fdcde04e56adda337995fcdd588a9",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "实际上下文已经给出可用一件或一组核查件；拒答理由自身也承认一组，却仍称无法判断是否只能一件，属于证据存在时的逻辑误拒答。"
+      },
+      "context_evidence_count": 1,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 5234.1,
+      "actual_model_calls": 3,
+      "run_id": "8cab148c-ec73-4dee-a7e5-2981900fb01f",
+      "request_id": "8cab148cec734deea7e52981900fb01f",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q025",
+      "question": "手册中校准的目标是什么，主要针对哪类误差？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "手册中校准的目标是消除或减少用户测量系统相对于参考基准的偏差（bias）。[资料2]\n校准主要针对的是系统性误差（systematic error），因为系统性误差即表现为偏差（bias）。[资料5]\n在评估校准准确度时，需将系统性误差与已知的随机误差（random error）结合考虑。[资料6]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "05_NIST量块手册公开参考.pdf",
+        "MFG-W06_Issues_in_calibration.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-W06_Issues_in_calibration.md",
+          "section_path": "MFG-W06_Issues_in_calibration.md"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "05_NIST量块手册公开参考.pdf",
+          "section_path": "correction was a source of systematic error"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "05_NIST量块手册公开参考.pdf",
+          "section_path": "measured by the SPC scheme."
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "参考标准",
+          "偏倚"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q025",
+        "binding": {
+          "question_sha256": "1d4c66c2d2d102e5092a97d30f62284d183036826a57491c50dfc64fe4b7a916",
+          "response_sha256": "7a440b355960119aeb1d558143b10694711576fe0c76ef76922b0ab1d9442937",
+          "context_sha256": "80ce44717ddd3cd8ae48ef79508e8cc70cd19dec083f9bab5ce8a2806b36b369",
+          "criteria_sha256": "5fc544ef6a73e1265d937cb0f5de84d85b3c73a98ffb38fb502125b36072b499",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "相对参考基准减少bias的目标正确，“偏差”与此处偏倚同义；额外说明有量块手册来源，保留代理字串失败。"
+      },
+      "context_evidence_count": 6,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 4309.8,
+      "actual_model_calls": 3,
+      "run_id": "7e19e862-b94a-4f04-8af8-4604a2263eb1",
+      "request_id": "7e19e862b94a4f048af84604a2263eb1",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q026",
+      "question": "NIST手册区分的实体标准器校准与仪器校准有何不同？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料仅包含文档标题、章节名及少量页码信息（如“traditional vs assurance programs”、“Measurement assurance: building a measurement process model”等），未提供关于“实体标准器校准”与“仪器校准”定义或区别的具体文本内容，无法回答用户问题。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "单点",
+          "范围"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q026",
+        "binding": {
+          "question_sha256": "579149dc70dbd6f19f0f989f77a1b56fb4f266467359db748bb9b31e67d72546",
+          "response_sha256": "9cdf8e54d65e8739c14246ef2c190c2c33f2c289d919723f23c677df06abf00f",
+          "context_sha256": "de035dc19d840937e3ee34f3627f7360b248a6700a7807438e1e681d7b240a0f",
+          "criteria_sha256": "61a3b44294213ee6eb7378aa85e4018bcffaac0475cf57156b50f9cee937adaa",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "单点实体标准与工作范围内仪器校准的区别在W06存在，但最终上下文未命中该证据，模型错误拒答。"
+      },
+      "context_evidence_count": 4,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 2910.16,
+      "actual_model_calls": 3,
+      "run_id": "052d93c6-31ee-4216-a32b-7354073c8f0b",
+      "request_id": "052d93c631ee4216a32b7354073c8f0b",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q027",
+      "question": "A类不确定度评价的分类依据是什么，是否只对应随机误差？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "A类不确定度评价的分类依据是：该不确定度分量的计算必须基于对数据的统计分析。[资料1]\nA类不确定度评价可以采用任何有效的统计方法来处理数据，例如计算一系列独立观测值平均值的标准偏差或使用最小二乘法拟合曲线等。[资料2]\nA类不确定度评价不仅对应随机误差，也适用于系统误差（偏倚/bias）。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+        "MFG-W07_Type_A_evaluations.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-W07_Type_A_evaluations.md",
+          "section_path": "Type A evaluations > 2.5.3. Type A evaluations"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+          "section_path": "2. Classification of Components of Uncertainty > 2.7 Correlations between components (of either category)"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q027",
+        "binding": {
+          "question_sha256": "e3e299b152486bee9fd4c3cdaf11109cdc1d6b3933b98e5b0c6b111169910b0f",
+          "response_sha256": "301f822564caae9caad67a62ab1912baf90f58f52f4b56a1ebc216d4ff640b0e",
+          "context_sha256": "3a4a1173001f9cec35cf883835d41195021443df9fed2a60ce94b5b9693f18e1",
+          "criteria_sha256": "6130c18e7f3a6cc0a830cc0069fa4a8bc243f92614db3d5c256c3869528f2d20",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "统计方法分类依据及也适用偏倚分量均正确，引用W07和TN1297支持，不混同A类与随机误差。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3933.83,
+      "actual_model_calls": 3,
+      "run_id": "96417934-8cee-43bb-9bb3-1ac9c861d0a8",
+      "request_id": "964179348cee43bb9bb31ac9c861d0a8",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q028",
+      "question": "按A类评价页面，从仪器群体中随机选一台和指定某台仪器时，仪器间差异怎样归类？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "当从仪器群体中随机选一台时，仪器间的差异被视为随机效应（random effect）。[资料1]\n当指定某台特定仪器时，该仪器相对于群体的偏差（bias）是关注的成分。[资料2]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-W07_Type_A_evaluations.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-W07_Type_A_evaluations.md",
+          "section_path": "Type A evaluations > 2.5.3. Type A evaluations"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-W07_Type_A_evaluations.md",
+          "section_path": "Type A evaluations > 2.5.3. Type A evaluations"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "偏倚"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.6666666666666666,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q028",
+        "binding": {
+          "question_sha256": "b2080f1b0486634ec158cba9a690f80a48f3bf56ada949e472737a9bfcdc52b2",
+          "response_sha256": "7a75f280536abadd7b3c0d74ab9abec78f5f2a602d2dd13850c40ed8aae3d9e6",
+          "context_sha256": "08d5e7bc0a9b4a42df9f343d90a2dd85c86a3cc7e25b99d62c275a698af848f7",
+          "criteria_sha256": "ca79d22fe5470672339452b0bcf367a7c1b92407763ca25ed09f0de69063f7f8",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "随机选择对应随机效应，特定仪器对应相对群体的bias，引用支持；“偏差”未命中字面“偏倚”不影响核心语义。"
+      },
+      "context_evidence_count": 5,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 7214.48,
+      "actual_model_calls": 6,
+      "run_id": "a57adbb6-9c00-470a-8fc3-91e458357d9f",
+      "request_id": "a57adbb69c00470a8fc391e458357d9f",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q029",
+      "question": "不能直接统计采样的B类不确定度可参考哪些信息来源？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "对于不能直接统计采样的B类不确定度，可参考的信息来源包括：经验、科学判断以及有限数据。[资料1]\n可参考制造商的规格说明（作为标准差的近似值）。[资料2]\n可参考校准报告和其他报告中提供的数据。[资料2]\n可参考从概率手册中获取并基于所有可用信息假设的概率分布得出的参考数据的不确定度。[资料2]\n可参考由其他实验室校准的参考标准。[资料3]\n可参考计算报告值时使用的物理常数。[资料3]\n可参考无法采样的环境影响。[资料3]\n可参考仪器中可能的配置/几何不对准。[资料3]\n可参考仪器的分辨率不足。[资料3]\n可参考来自其他过程的已记录不确定度来源，例如参考标准的校准报告或物理常数不确定度的已发布报告。[资料3]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+        "MFG-W08_Type_B_evaluations.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-W08_Type_B_evaluations.md",
+          "section_path": "Type B evaluations > 2.5.4. Type B evaluations"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+          "section_path": "2 4. Type B Evaluation of Standard Uncertainty > 2.6 In a similar manner, an uncertainty component in"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "MFG-W08_Type_B_evaluations.md",
+          "section_path": "Type B evaluations > 2.5.4. Type B evaluations"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q029",
+        "binding": {
+          "question_sha256": "ae9b9580a0eb08031b6f98f91e1be4b5faed592087e1cedf22a4348017be3a4e",
+          "response_sha256": "3ca2bec6ecdcd0029693ee2b65faa1f72f8324b56b6784ce1f77c98b052d0d1b",
+          "context_sha256": "1b8e9b8e887893ff8fde2d14d3c94fc27ef2ad83d72761b0fd5f9899dcbaacd0",
+          "criteria_sha256": "ecd5461902121d1a4132a7424933df5f361bce9684d0b899d9a3ac12b9e1e0a8",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "所需五类来源都覆盖，但额外把“制造商规格说明”直接括注为标准差近似值，并拼接出“概率手册”。TN1297原文该标准差描述指评价后的u_j，不是规格本身；实际双栏上下文交错导致未经支持的解释，关键词通过不足以判正确。"
+      },
+      "context_evidence_count": 9,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 6082.7,
+      "actual_model_calls": 3,
+      "run_id": "64f22e77-06c6-44f6-82d5-d4f88044bebd",
+      "request_id": "64f22e7706c644f682d5d4f88044bebd",
+      "error_type": null
+    },
+    {
+      "id": "MFG2-Q030",
+      "question": "只有经验和少量数据来估计误差边界时，B类评价页面列出哪些概率分布模型？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "当只有经验和少量数据来估计误差边界时，B类评价页面列出的概率分布模型包括均匀分布（uniform distribution）、三角分布（triangular distribution）和正态分布（normal distribution）。[资料1]\n这些分布用于计算假设效应为双向时的标准差。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "MFG-W08_Type_B_evaluations.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-W08_Type_B_evaluations.md",
+          "section_path": "Type B evaluations > 2.5.4. Type B evaluations"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG2-Q030",
+        "binding": {
+          "question_sha256": "e388d47855d74bf45cee4b34d42e26ab2c501f87efc9fe438d5f6c4ed7e5ebae",
+          "response_sha256": "93f610d9ab3a68bb2415e876472f9f146ab546138b67ad3cb2c1d3e714c12b41",
+          "context_sha256": "a4e1737fc2d5cd4b90dd781d1698c45df92b53d3e32999f6c9e5df5a85c4971c",
+          "criteria_sha256": "8d149aa82d9f73e466983f92acbbbaf0090fecb80e47932b698c6f8ec9cfd550",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "均匀、三角和正态分布三类完整，双侧效应下用于估计标准差的补充也有W08原文支持。"
+      },
+      "context_evidence_count": 7,
+      "captured_partial_context_items": null,
+      "snapshot_status": "captured",
+      "snapshot_incomplete_reason": null,
+      "latency_ms": 3191.26,
+      "actual_model_calls": 3,
+      "run_id": "93d13e1d-8ae9-489a-a544-4271034c3a07",
+      "request_id": "93d13e1d8ae9489aa5444271034c3a07",
+      "error_type": null
+    }
+  ],
+  "independent_semantic_review": false
+}

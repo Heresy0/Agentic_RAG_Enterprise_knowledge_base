@@ -1,0 +1,348 @@
+{
+  "before": [
+    {
+      "role": "操作员",
+      "check": "effective_groups_and_permissions",
+      "passed": true
+    },
+    {
+      "role": "操作员",
+      "check": "read_group_公共参考",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "操作员",
+      "check": "read_group_生产工艺",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "操作员",
+      "check": "read_group_质量检验",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "role": "工艺工程师",
+      "check": "effective_groups_and_permissions",
+      "passed": true
+    },
+    {
+      "role": "工艺工程师",
+      "check": "read_group_公共参考",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "工艺工程师",
+      "check": "read_group_生产工艺",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "工艺工程师",
+      "check": "read_group_质量检验",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "质量工程师",
+      "check": "effective_groups_and_permissions",
+      "passed": true
+    },
+    {
+      "role": "质量工程师",
+      "check": "read_group_公共参考",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "质量工程师",
+      "check": "read_group_生产工艺",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "质量工程师",
+      "check": "read_group_质量检验",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "知识管理员",
+      "check": "effective_groups_and_permissions",
+      "passed": true
+    },
+    {
+      "role": "知识管理员",
+      "check": "read_group_公共参考",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "知识管理员",
+      "check": "read_group_生产工艺",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "知识管理员",
+      "check": "read_group_质量检验",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "仅参考资料用户",
+      "check": "effective_groups_and_permissions",
+      "passed": true
+    },
+    {
+      "role": "仅参考资料用户",
+      "check": "read_group_公共参考",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true
+    },
+    {
+      "role": "仅参考资料用户",
+      "check": "read_group_生产工艺",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    },
+    {
+      "role": "仅参考资料用户",
+      "check": "read_group_质量检验",
+      "expected_status": 403,
+      "actual_status": 403,
+      "passed": true
+    }
+  ],
+  "after": {
+    "evaluation_type": "actual_authenticated_http",
+    "total": 31,
+    "passed": 31,
+    "checks": [
+      {
+        "role": "操作员",
+        "check": "effective_groups_and_permissions",
+        "passed": true
+      },
+      {
+        "role": "操作员",
+        "check": "read_公共参考",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "操作员",
+        "check": "read_生产工艺",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "操作员",
+        "check": "read_质量检验",
+        "actual_status": 403,
+        "expected_status": 403,
+        "passed": true
+      },
+      {
+        "role": "操作员",
+        "check": "cross_tenant_direct_access",
+        "actual_status": 403,
+        "expected_status": 403,
+        "passed": true
+      },
+      {
+        "role": "操作员",
+        "check": "new_public_source_citation_preview",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "工艺工程师",
+        "check": "effective_groups_and_permissions",
+        "passed": true
+      },
+      {
+        "role": "工艺工程师",
+        "check": "read_公共参考",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "工艺工程师",
+        "check": "read_生产工艺",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "工艺工程师",
+        "check": "read_质量检验",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "工艺工程师",
+        "check": "cross_tenant_direct_access",
+        "actual_status": 403,
+        "expected_status": 403,
+        "passed": true
+      },
+      {
+        "role": "工艺工程师",
+        "check": "new_public_source_citation_preview",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "质量工程师",
+        "check": "effective_groups_and_permissions",
+        "passed": true
+      },
+      {
+        "role": "质量工程师",
+        "check": "read_公共参考",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "质量工程师",
+        "check": "read_生产工艺",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "质量工程师",
+        "check": "read_质量检验",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "质量工程师",
+        "check": "cross_tenant_direct_access",
+        "actual_status": 403,
+        "expected_status": 403,
+        "passed": true
+      },
+      {
+        "role": "质量工程师",
+        "check": "new_public_source_citation_preview",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "知识管理员",
+        "check": "effective_groups_and_permissions",
+        "passed": true
+      },
+      {
+        "role": "知识管理员",
+        "check": "read_公共参考",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "知识管理员",
+        "check": "read_生产工艺",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "知识管理员",
+        "check": "read_质量检验",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "知识管理员",
+        "check": "cross_tenant_direct_access",
+        "actual_status": 403,
+        "expected_status": 403,
+        "passed": true
+      },
+      {
+        "role": "知识管理员",
+        "check": "new_public_source_citation_preview",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "仅参考资料用户",
+        "check": "effective_groups_and_permissions",
+        "passed": true
+      },
+      {
+        "role": "仅参考资料用户",
+        "check": "read_公共参考",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "仅参考资料用户",
+        "check": "read_生产工艺",
+        "actual_status": 403,
+        "expected_status": 403,
+        "passed": true
+      },
+      {
+        "role": "仅参考资料用户",
+        "check": "read_质量检验",
+        "actual_status": 403,
+        "expected_status": 403,
+        "passed": true
+      },
+      {
+        "role": "仅参考资料用户",
+        "check": "cross_tenant_direct_access",
+        "actual_status": 403,
+        "expected_status": 403,
+        "passed": true
+      },
+      {
+        "role": "仅参考资料用户",
+        "check": "new_public_source_citation_preview",
+        "actual_status": 200,
+        "expected_status": 200,
+        "passed": true
+      },
+      {
+        "role": "操作员",
+        "check": "upload_forbidden_before_staging",
+        "actual_status": 403,
+        "expected_status": 403,
+        "passed": true
+      }
+    ]
+  }
+}
