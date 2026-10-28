@@ -179,6 +179,13 @@ def record_conversation_resolution(question, resolved, history_count):
         )]
 
 
+def record_memory_event(outcome, item_count, conflict_count):
+    """Counts only: never copy summary values, quotes or model reasoning to diagnostics."""
+    trace = _current.get()
+    if trace is not None:
+        trace.stages['conversation_memory'] = [dict(outcome=outcome, item_count=item_count, conflict_count=conflict_count)]
+
+
 def record_agent_event(event):
     """Visible actions/limits only; no hidden reasoning or credentials."""
     trace = _current.get()

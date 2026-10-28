@@ -13,7 +13,7 @@ from fastapi import (
 from sqlalchemy.orm import Session
 
 from ..knowledge.answer_service import AnswerService
-from ..knowledge.conversations import ConversationBusy, ConversationNotFound
+from ..knowledge.conversations import ConversationBusy, ConversationNotFound, invalidate_owned_context
 from ..audit_service import AuditService
 from ..model_usage import usage_context
 from ..quality.capture import capture_snapshot, QA_SNAPSHOTS
@@ -421,6 +421,8 @@ def answer_question(
         ) from exc
 
     except AuthorizationDenied as exc:
+        if payload.conversation_id is not None:
+            invalidate_owned_context(session, principal, payload.knowledge_base_id, payload.conversation_id)
         commit_audit(outcome="denied")
         record_qa_request(
             outcome="denied",

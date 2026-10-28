@@ -88,6 +88,10 @@ class Settings:
         if context_selection not in {"true", "false"}:
             raise RuntimeError("RAG_CONTEXT_SELECTION_ENABLED 必须为 true 或 false")
         self.rag_context_selection_enabled = context_selection == "true"
+        memory_enabled = os.getenv("CONVERSATION_MEMORY_ENABLED", "false").strip().lower()
+        if memory_enabled not in {"true", "false"}:
+            raise RuntimeError("CONVERSATION_MEMORY_ENABLED 必须为 true 或 false")
+        self.conversation_memory_enabled = memory_enabled == "true"
         try:
             self.rag_rerank_top_k = int(os.getenv("RAG_RERANK_TOP_K", "12"))
         except ValueError:

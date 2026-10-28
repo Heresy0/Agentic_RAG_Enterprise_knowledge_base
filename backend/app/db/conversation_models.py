@@ -20,6 +20,7 @@ class Conversation(TimestampMixin, Base):
     turn_count: Mapped[int] = mapped_column(Integer, default=0, server_default=text("0"), nullable=False)
     lease_token: Mapped[str | None] = mapped_column(String(32))
     lease_expires_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    memory_json: Mapped[dict | None] = mapped_column(JSON, nullable=True)
 
     __table_args__ = (
         ForeignKeyConstraint(["tenant_id", "user_id"], ["users.tenant_id", "users.id"], name="fk_conversations_user", ondelete="CASCADE"),

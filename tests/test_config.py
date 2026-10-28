@@ -45,6 +45,18 @@ def test_qa_snapshots_can_be_disabled_and_reject_invalid_configuration(applicati
         Settings()
 
 
+def test_memory_switch_is_explicit_and_rejects_invalid_values(application_environment, monkeypatch):
+    monkeypatch.delenv('CONVERSATION_MEMORY_ENABLED', raising=False)
+    assert not Settings().conversation_memory_enabled
+    monkeypatch.setenv('CONVERSATION_MEMORY_ENABLED', 'true')
+    assert Settings().conversation_memory_enabled
+    monkeypatch.setenv('CONVERSATION_MEMORY_ENABLED', 'false')
+    assert not Settings().conversation_memory_enabled
+    monkeypatch.setenv('CONVERSATION_MEMORY_ENABLED', 'yes')
+    with pytest.raises(RuntimeError, match='CONVERSATION_MEMORY_ENABLED'):
+        Settings()
+
+
 @pytest.mark.parametrize('name,value', [('RAG_RERANK_TOP_K','0'),('RAG_RERANK_TOP_K','25'),
     ('RAG_RERANK_TOP_K','bad'),('RAG_PARENT_CONTEXT_ENABLED','yes')])
 def test_parent_configuration_rejects_invalid_values(application_environment,monkeypatch,name,value):

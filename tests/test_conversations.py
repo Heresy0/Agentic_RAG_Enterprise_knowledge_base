@@ -325,6 +325,7 @@ def test_migration_upgrade_and_downgrade_match_orm(data):
     from sqlalchemy import inspect
     migration = importlib.import_module("migrations.versions.f3a5b7c9d204_add_conversations")
     all_scope_migration = importlib.import_module("migrations.versions.b8d0f2a4c607_all_accessible_conversations")
+    memory_migration = importlib.import_module("migrations.versions.f2b4d6e8a013_conversation_memory")
     data.session.close()
     with data.engine.begin() as connection:
         ConversationTurn.__table__.drop(connection)
@@ -332,6 +333,7 @@ def test_migration_upgrade_and_downgrade_match_orm(data):
         with Operations.context(MigrationContext.configure(connection)):
             migration.upgrade()
             all_scope_migration.upgrade()
+            memory_migration.upgrade()
         schema = inspect(connection)
         for model in (Conversation, ConversationTurn):
             assert {c["name"] for c in schema.get_columns(model.__tablename__)} == set(model.__table__.columns.keys())
@@ -339,6 +341,7 @@ def test_migration_upgrade_and_downgrade_match_orm(data):
                 c.name for c in model.__table__.foreign_key_constraints
             }
         with Operations.context(MigrationContext.configure(connection)):
+            memory_migration.downgrade()
             all_scope_migration.downgrade()
             migration.downgrade()
         assert "conversations" not in inspect(connection).get_table_names()
