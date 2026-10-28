@@ -1,0 +1,43 @@
+{
+  "all": {
+    "observed": true,
+    "calls": 230,
+    "reported_total_tokens": 305233,
+    "unknown_usage_calls": 0,
+    "unknown_usage_rate": 0.0,
+    "unpriced_calls": 230,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 0
+  },
+  "indexing": {
+    "observed": true,
+    "calls": 166,
+    "reported_total_tokens": 112018,
+    "unknown_usage_calls": 0,
+    "unknown_usage_rate": 0.0,
+    "unpriced_calls": 166,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 0
+  },
+  "qa": {
+    "observed": true,
+    "calls": 64,
+    "reported_total_tokens": 193215,
+    "unknown_usage_calls": 0,
+    "unknown_usage_rate": 0.0,
+    "unpriced_calls": 64,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 0
+  },
+  "stages": {
+    "rerank": 20,
+    "agent_decision": 1,
+    "document_embedding": 166,
+    "answer_generation": 20,
+    "query_embedding": 20,
+    "query_planning": 3
+  }
+}

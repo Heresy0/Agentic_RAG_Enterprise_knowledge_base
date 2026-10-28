@@ -1,0 +1,1063 @@
+{
+  "records": [
+    {
+      "id": "MFG-Q01",
+      "question": "2026年10月新开工的HC-A17 OP-20，首件须检查几件，何时才能恢复后续作业？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "2026年10月新开工的HC-A17 OP-20工单，首件须连续检查3件。[资料1][资料3]\n所有必检项目必须全部合格。[资料1][资料4]\n必须由质量人员完成签署。[资料1][资料4]\n生产班长需确认记录齐全（检验记录写明工单、批次和量具编号）。[资料4]\n只有满足上述所有条件后，才能恢复后续作业。[资料1][资料4]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "02_首件确认与工序交接流程.pdf",
+        "07_HC-A17_OP20作业指导书现行版.docx",
+        "09_工艺变更通知ECN-2026-018.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "section_path": "07_HC-A17_OP20作业指导书现行版.docx"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "09_工艺变更通知ECN-2026-018.docx",
+          "section_path": "09_工艺变更通知ECN-2026-018.docx"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "02_首件确认与工序交接流程.pdf",
+          "section_path": "02_首件确认与工序交接流程.pdf"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "质量人员签署"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.6666666666666666,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q01",
+        "binding": {
+          "question_sha256": "6f13aef31beb14577126766eb147612f9ba62e3d4a9c483718d4c29f80770508",
+          "response_sha256": "4d9940ae1dbe5f5f4e4fb74196e54236538cf13ef41d364e310b5770c3446cfd",
+          "context_sha256": "42e95aefed5a7ac2046107dd50d20516abe577eba4b4df83a195a0842ac1300f",
+          "criteria_sha256": "703e9fb1d992b7c45499653980091e067a2346fe50f6c3dcfe439876124c257b",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "满足冻结题的连续3件、全部必检项目合格及质量人员签署要求；“质量人员完成签署”被连续字符串代理误判，引用现行指导书与交接流程支持结论。"
+      },
+      "context_evidence_count": 6,
+      "latency_ms": 7259.6,
+      "actual_model_calls": 3,
+      "run_id": "b5bcf4a1-31ba-42e9-a95c-f7195b333aba",
+      "request_id": "b5bcf4a131ba42e9a95cf7195b333aba"
+    },
+    {
+      "id": "MFG-Q02",
+      "question": "2026年9月新开工的HC-A17 OP-20，首件数量和签署要求是什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "每次开工连续检查2件。[资料1]\n全部项目合格后由质量人员签署。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "06_HC-A17_OP20作业指导书历史版.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "06_HC-A17_OP20作业指导书历史版.docx",
+          "section_path": "06_HC-A17_OP20作业指导书历史版.docx"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q02",
+        "binding": {
+          "question_sha256": "7e64250c16039a5ad893cab9850cc9cab50fa7f9cca3246db8d569ad2c2c0d2f",
+          "response_sha256": "a623dfd6487cad975f41179f462af9f0bf8b0065a0a93c8c8ee094dbe5d36635",
+          "context_sha256": "db6a45802309109a4f14b9522d9f3b3d2b019d015d289ee455c3002463b337b0",
+          "criteria_sha256": "96f91140a06e7edcbd090399f95cc57d413e882bc6761e632ae4a29463493a1d",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "连续2件、全部项目合格及质量人员签署与1.0版当时的要求一致，引用历史版原文。"
+      },
+      "context_evidence_count": 3,
+      "latency_ms": 3006.38,
+      "actual_model_calls": 3,
+      "run_id": "3a5c60f9-8f18-4dc1-9487-183ae1c6ef08",
+      "request_id": "3a5c60f98f184dc19487183ae1c6ef08"
+    },
+    {
+      "id": "MFG-Q03",
+      "question": "根据WO-017交接记录，该工单应参考哪版指导书，判断依据是什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "该工单WO-017应参考2.0版指导书。[资料1]\n判断依据是：根据工艺变更通知ECN-2026-018，2026年10月1日起新开工的HC-A17产品OP-20工序工单由1.0版切换为2.0版，而工单WO-017的实际开工时间为2026年10月26日，属于新开工工单；此外，定位治具更换通知也明确要求按2.0版指导书重新进行首件确认。[资料3][资料2][资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "04_定位治具更换通知扫描件.pdf",
+        "09_工艺变更通知ECN-2026-018.docx",
+        "14_工单WO-017班次交接记录.txt"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "04_定位治具更换通知扫描件.pdf",
+          "section_path": "未标注章节"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "09_工艺变更通知ECN-2026-018.docx",
+          "section_path": "09_工艺变更通知ECN-2026-018.docx"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "14_工单WO-017班次交接记录.txt",
+          "section_path": "14_工单WO-017班次交接记录.txt"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q03",
+        "binding": {
+          "question_sha256": "40b2de1de125b31690b851b79c4e89da4f65976425fbe8702d1f28b927fc370f",
+          "response_sha256": "991c4104c33c51a1bb3de5955016489a8980fc58ebecaf795344293c84afc9e2",
+          "context_sha256": "1879d755cb0539ceee422b215790fddca6d7b174a55af88a886c40ec0953323f",
+          "criteria_sha256": "a8bd8be3341ed50b7eb2db46b0e0b37e37852b676ec84bc62241c30867e84626",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "正确按WO-017实际10月26日开工结合ECN的10月1日新开工边界选择2.0版，并引用工单记录及变更通知。"
+      },
+      "context_evidence_count": 6,
+      "latency_ms": 3946.5,
+      "actual_model_calls": 3,
+      "run_id": "739eae6f-e72d-403b-97e4-9da56a28fb56",
+      "request_id": "739eae6fe72d403b97e49da56a28fb56"
+    },
+    {
+      "id": "MFG-Q04",
+      "question": "WO-018在10月报工，是否就自动切换2.0版？",
+      "expected_answerable": true,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "生成结果未通过证据与引用校验：第2个结论中的数字或日期缺少证据支持：['30', '9']",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "1.0版",
+          "9月28日",
+          "书面"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q04",
+        "binding": {
+          "question_sha256": "0bcdb6347c3517c1637046140347fc8e325c41f9989a7dfcb1fbb12f0015678f",
+          "response_sha256": "367d03eeac24d527d13b6c69c76328295af4c06deb4cf26fd9b4f8946610f2c0",
+          "context_sha256": "812133d8e30f423ac4867de2a319913aef258bf948bb21b2d044c48f09434846",
+          "criteria_sha256": "5d0d26c0e7dbc8c10258d8934d0dfc30e5550403240b13f39a82cb223673a806",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "应回答不自动切换并说明9月28日开工、没有书面切换通知及继续1.0版；最终却误拒答。最终上下文已含ECN和WO-018记录，拒答理由是数字/日期引用校验失败，非缺少资料。"
+      },
+      "context_evidence_count": 5,
+      "latency_ms": 3719.62,
+      "actual_model_calls": 3,
+      "run_id": "77fcba58-adc4-4051-b573-6d8a18191e40",
+      "request_id": "77fcba58adc44051b5736d8a18191e40"
+    },
+    {
+      "id": "MFG-Q05",
+      "question": "按NIST量块手册，1英寸等于多少毫米？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "根据NIST量块手册，1英寸等于25.4毫米。[资料1]\n该定义是1950年代至1959年间由美国、加拿大、英国、澳大利亚和南非的国家计量实验室主任共同商定的，规定1英寸精确等于25.4毫米。[资料2]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "05_NIST量块手册公开参考.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "05_NIST量块手册公开参考.pdf",
+          "section_path": "dimensions square and cross-sections. Gage blocks have"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "05_NIST量块手册公开参考.pdf",
+          "section_path": "years problems during World War showed the various inches"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q05",
+        "binding": {
+          "question_sha256": "9c47d3c52be76c3461e8f59e7d1ea3fe523529ffbb5bd055d51b9453590b2997",
+          "response_sha256": "696acb7adb689bffad66ac0e8cd952d69c85c46609128d575c1ddb64284f7959",
+          "context_sha256": "276a05e524abb7a27da8ec4129913346b48c057c6e81215847f0d8c29f0846ee",
+          "criteria_sha256": "a17c85147dd272d6a4deed55b98b1ac0781ecc482afa1fbe3d7b76f09b009055",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "换算关系25.4毫米正确；两处NIST引用均支持换算，补充的商定历史也与所引英文段落一致。未将它当作企业工艺要求。"
+      },
+      "context_evidence_count": 4,
+      "latency_ms": 3870.32,
+      "actual_model_calls": 3,
+      "run_id": "d3c6a7f7-6725-4470-88c8-48a6704ac5e6",
+      "request_id": "d3c6a7f76725447088c848a6704ac5e6"
+    },
+    {
+      "id": "MFG-Q06",
+      "question": "截至2026年10月28日10:00，CAL-018能否用于正式检验？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "截至2026年10月28日10:00，CAL-018不能用于正式检验。[资料1]\n依据：CAL-018的校准有效期已于2026年9月30日结束，且目前已处于隔离状态，待重新校准确认。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "17_量具点检与隔离交接记录.txt"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "17_量具点检与隔离交接记录.txt",
+          "section_path": "17_量具点检与隔离交接记录.txt"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q06",
+        "binding": {
+          "question_sha256": "6306d4806d234f86a97e5ff07775a98b4405776934626de021216133099e97c1",
+          "response_sha256": "949a83c3436e74b7b1846e332ecf3aadd89e2b7e73d707d7cfed97f508c224b7",
+          "context_sha256": "05b8b1b341b733dbced497f8742571726bffcb543a98dd5aa61a038b4086a0da",
+          "criteria_sha256": "bde2f6e6e9541302f3d8140ed8b8ec6f12c6f9a9d7fc50e25c2114873091f006",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "明确不能用于正式检验，给出9月30日期满、隔离及待重新校准，与量具交接记录一致。"
+      },
+      "context_evidence_count": 7,
+      "latency_ms": 3588.62,
+      "actual_model_calls": 3,
+      "run_id": "2886d233-16fc-42de-8be4-b97ceaa64d75",
+      "request_id": "2886d23316fc42de8be4b97ceaa64d75"
+    },
+    {
+      "id": "MFG-Q07",
+      "question": "CAL-150与MIC-025的分辨力和最大允许误差分别是什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "CAL-150的分辨力为0.01 mm。[资料1]\nCAL-150的最大允许误差为±0.02 mm。[资料1]\nMIC-025的分辨力为0.001 mm。[资料1]\nMIC-025的最大允许误差为±0.003 mm。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "01_量具使用与测量准备手册.pdf"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "01_量具使用与测量准备手册.pdf",
+          "section_path": "01_量具使用与测量准备手册.pdf"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q07",
+        "binding": {
+          "question_sha256": "f15f0517ead0f981ba96dfded8db750d8d9d47cb7821029110261ffe7d86dbb5",
+          "response_sha256": "51da6a41805ce622ccd06ce91e54f8dd64d805c4d4a0ed10e3a9b33f4ed3fd87",
+          "context_sha256": "f9635c57847fe463622b2db2672269b9351a84c3a8b9ad1e47046464aa16ab1f",
+          "criteria_sha256": "fec597db52ce60eef8078b4120d32b8d590480edfee826f2a4a73c166f3c8308",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "两种量具的分辨力和误差、型号及单位对应正确，未混用四个参数。"
+      },
+      "context_evidence_count": 5,
+      "latency_ms": 6555.74,
+      "actual_model_calls": 4,
+      "run_id": "50f43212-48a7-4227-9ccf-fc6f852c740e",
+      "request_id": "50f4321248a742279ccffc6f852c740e"
+    },
+    {
+      "id": "MFG-Q08",
+      "question": "HC-A17 OP-20首件的外径、孔深和外观要求分别是什么，还有哪些记录条件？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "HC-A17 OP-20首件的外径标准为19.95至20.05 mm，包含上下限。[资料1]\nHC-A17 OP-20首件的孔深标准为12.00至12.10 mm，包含上下限。[资料1]\nHC-A17 OP-20首件的外观要求为无可见毛刺和碰伤。[资料1]\n外径和孔深的原始读数必须逐件记录，零读数也必须记录。[资料1]\n测量孔深前需清洁孔内切屑。[资料1]\n首件检验记录必须填写工单号、批次号、指导书版本、量具编号、检验人、检验时间、逐项结果和质量签署。[资料3]\n若存在缺项，不得确认首件通过。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "08_HC-A17首件检验规范.docx",
+        "12_检验记录填写与追溯规则.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "08_HC-A17首件检验规范.docx",
+          "section_path": "08_HC-A17首件检验规范.docx"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "12_检验记录填写与追溯规则.md",
+          "section_path": "12_检验记录填写与追溯规则.md"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "质量人员签署"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.8571428571428571,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q08",
+        "binding": {
+          "question_sha256": "5e0220df5fa7334225a06015ec60072270fd2f5301410f9f368dfbd3f6a47c90",
+          "response_sha256": "8c98bc9b630d49f5f60412249e121aaa3f480f6c9e3bf255933a22df96cd7c92",
+          "context_sha256": "50103d4b6a980d52ac86eb2649849681f8202a50c324ec7149eade48248e37c4",
+          "criteria_sha256": "ec765363176613debd1c6851335c8290e7d0d8e15d18ed8a6973284781e6b9d3",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "外径、孔深上下限及包含边界、毛刺/碰伤要求和记录签署齐全均已覆盖；“质量签署”在所引检验表和记录规则中有依据，代理要求的连续字串未命中。"
+      },
+      "context_evidence_count": 6,
+      "latency_ms": 9190.09,
+      "actual_model_calls": 5,
+      "run_id": "ec732585-b75b-48f8-b598-e9ef17171f76",
+      "request_id": "ec732585b75b48f8b598e9ef17171f76"
+    },
+    {
+      "id": "MFG-Q09",
+      "question": "WO-017更换定位治具后应完成哪些确认，才能恢复后续作业？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "工单WO-017在更换定位治具后，必须按照现行有效的2.0版作业指导书重新进行首件确认。[资料1][资料5]\n首件确认的具体标准为连续检查3件产品，且所有必检项目全部合格。[资料1][资料5]\n必须由质量人员完成签署，以证明首件确认及检验记录（含工单、批次和量具编号）齐全。[资料1][资料6]\n只有在上述首件确认合格且质量人员签署完成后，方可恢复后续作业；仅凭报工登记或口头同意不能视为满足条件。[资料1][资料6]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "02_首件确认与工序交接流程.pdf",
+        "04_定位治具更换通知扫描件.pdf",
+        "07_HC-A17_OP20作业指导书现行版.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "04_定位治具更换通知扫描件.pdf",
+          "section_path": "未标注章节"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "section_path": "07_HC-A17_OP20作业指导书现行版.docx"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "02_首件确认与工序交接流程.pdf",
+          "section_path": "02_首件确认与工序交接流程.pdf"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.5,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.5,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q09",
+        "binding": {
+          "question_sha256": "43b578353a4cde95b5c6a1c1a89383c1e366d10e3924c944bb0ab472e5865477",
+          "response_sha256": "ea6acb7a9e8852bfb53a2f28e2e7d380a8edbff51e4fbdd453775f8639c0dd43",
+          "context_sha256": "64bf601fadd87be53a8075988f7386cb92928d74e98801241389bcf3b0023c90",
+          "criteria_sha256": "c7647b4a43d54fcc2899600e831a76ef1abad7a4d23026c5931d6d2205857b2c",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "按冻结要求覆盖WO-017更换治具后的2.0版、连续3件、全部必检项目合格及质量人员签署；所引扫描通知直接指明WO-017事件，与现行指导书共同支持结论。代理指定14号交接记录未被引用，但04号通知提供等价事件证据，保留代理失败，不改标注。"
+      },
+      "context_evidence_count": 6,
+      "latency_ms": 4772.88,
+      "actual_model_calls": 3,
+      "run_id": "14782397-511e-49fe-8b5f-f6656554cb78",
+      "request_id": "14782397511e49fe8b5ff6656554cb78"
+    },
+    {
+      "id": "MFG-Q10",
+      "question": "2.0版指导书规定，哪些情况需要重新进行首件确认？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "新工单开工时需要重新进行首件确认。[资料1]\n更换定位治具时需要重新进行首件确认。[资料1]\n连续停机超过4小时后重新开工时需要重新进行首件确认。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "07_HC-A17_OP20作业指导书现行版.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "section_path": "07_HC-A17_OP20作业指导书现行版.docx"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q10",
+        "binding": {
+          "question_sha256": "f0007df17696b6937e8679cbbae8496ca8faf5ff63c0b7a041ef675c6ba7088b",
+          "response_sha256": "dc2c5087bf013e4b06acd7d8a3020d46f65b77ab01718aa9c934110d36eef44f",
+          "context_sha256": "d2758aae3da2f5faa70a9bdee0b7c871f544ac3ea1fce1d100b1abb6664a8287",
+          "criteria_sha256": "ad40f9e73cfd0b2dc2293d6aaf0eec45d5a23cb38f74a45c6658fa5424656999",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "完整列出新工单、更换定位治具、连续停机超过4小时后三种触发情形。"
+      },
+      "context_evidence_count": 6,
+      "latency_ms": 4649.87,
+      "actual_model_calls": 3,
+      "run_id": "0838d417-cb8b-47a9-a10c-b36f5466b475",
+      "request_id": "0838d417cb8b47a9a10cb36f5466b475"
+    },
+    {
+      "id": "MFG-Q11",
+      "question": "借用量具需要同时满足哪些条件？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "借用量具必须核对校准在有效期内，且点检及零位确认正常。[资料1]\n借用量具必须登记借出方、借入方、量具编号和归还时间。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "12_检验记录填写与追溯规则.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "12_检验记录填写与追溯规则.md",
+          "section_path": "12_检验记录填写与追溯规则.md"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "隔离"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.8571428571428571,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q11",
+        "binding": {
+          "question_sha256": "a87d59962b82cfc8cb6abc1f0c62080deb8e9c528b20dc5542a8ad8ef3a17234",
+          "response_sha256": "d3d1a3ea4792c8cd46a51f0a3daa0246276b8d4fa137d940305676dd70149b93",
+          "context_sha256": "1f8dd71cc760c241c0b192ed5cefec9207e5f9d715a6902c1b6d3eac47acd72f",
+          "criteria_sha256": "8a889389b0c6f5cfded17c8aa5a62a5277bc25c3e2421b6c0fc87fbde9f34694",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "最终只列校准/点检/零位和借用登记，遗漏冻结参考答案中的归还前清洁、复核状态及异常隔离。最终上下文已完整提供这一段，因此属于生成条件遗漏。"
+      },
+      "context_evidence_count": 7,
+      "latency_ms": 3098.27,
+      "actual_model_calls": 3,
+      "run_id": "946b2400-cb5f-447d-8971-a4af3cec7274",
+      "request_id": "946b2400cb5f447d8971a4af3cec7274"
+    },
+    {
+      "id": "MFG-Q12",
+      "question": "首件检查都合格就能直接交接吗，流程还要求什么？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "首件检查全部合格不能直接交接，仅有合格结果不满足工序交接的必要条件。[资料1]\n工序交接前必须同时满足以下四个必要条件：适用指导书要求的首件检查全部合格；检验记录写明工单、批次和量具编号；质量人员完成签署且生产班长确认记录齐全；若存在未关闭的暂停要求，须按书面批准的恢复条件执行。[资料1]\n仅有口头同意、报工记录或计划签署时间，均不能证明上述交接条件已经满足。[资料1]\n对于HC-A17产品的OP-20工序，首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。[资料2]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "02_首件确认与工序交接流程.pdf",
+        "07_HC-A17_OP20作业指导书现行版.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "02_首件确认与工序交接流程.pdf",
+          "section_path": "02_首件确认与工序交接流程.pdf"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "section_path": "07_HC-A17_OP20作业指导书现行版.docx"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q12",
+        "binding": {
+          "question_sha256": "794d7186436507c1f13f206b75a7f6d3b0f865ba29809360f65def25197c2be9",
+          "response_sha256": "272cb56ea2f92889f440c249b79249d4caf9380859ed0f825d15129a4cf6e1b2",
+          "context_sha256": "4a8266091153f8be78594c1a9dd448b48381699a63ffaca8091e1453d88c7d08",
+          "criteria_sha256": "23e185086127ff68a391983874125f2404ab82ba3c8b0be386d4f9ad967b7394",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "明确不能仅凭首件合格直接交接，覆盖工单/批次/量具编号、质量签署、班长确认及暂停要求的书面批准条件；跨页四项条件完整。"
+      },
+      "context_evidence_count": 6,
+      "latency_ms": 4375.82,
+      "actual_model_calls": 3,
+      "run_id": "3eb16be3-6345-4646-83aa-279776db5816",
+      "request_id": "3eb16be36345464683aa279776db5816"
+    },
+    {
+      "id": "MFG-Q13",
+      "question": "ECN-2026-018是否也适用于HC-A18？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "ECN-2026-018不适用于HC-A18。[资料1]\nHC-A18不属于本次变更范围，应查询其独立的指导书，不能套用HC-A17要求。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "09_工艺变更通知ECN-2026-018.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "09_工艺变更通知ECN-2026-018.docx",
+          "section_path": "09_工艺变更通知ECN-2026-018.docx"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q13",
+        "binding": {
+          "question_sha256": "feeb2ddd9f8ce9c1271640e50eccebc9be91dcdf286040401d700aa60acfef66",
+          "response_sha256": "7da4b213c6f244ff36cd1aa1ea080f28b92410c88a6f9ba76c236f0d61e2fbac",
+          "context_sha256": "48bffaaeb87930f0e2c63e5af15b6d218deed89d90450ec3c45814830c49e9d7",
+          "criteria_sha256": "c75b3738339f4166e630050cf38c575372ed2b4acfc2e955185f52a6d78f3e54",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "明确HC-A18不适用并须独立指导书，不套用HC-A17要求，与ECN排除条款一致。"
+      },
+      "context_evidence_count": 6,
+      "latency_ms": 3280.89,
+      "actual_model_calls": 3,
+      "run_id": "d98ecdcd-6b10-4297-9cfc-ef7b5dfd3e82",
+      "request_id": "d98ecdcd6b1042979cfcef7b5dfd3e82"
+    },
+    {
+      "id": "MFG-Q14",
+      "question": "HC-A17 OP-20两版指导书的首件数量有什么差异？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "HC-A17 OP-20指导书1.0版的首件数量为连续检查2件。[资料2]\nHC-A17 OP-20指导书2.0版的首件数量为连续检查3件。[资料3]\n两版指导书的首件数量差异为：2.0版比1.0版增加了1件（由2件改为3件）。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "06_HC-A17_OP20作业指导书历史版.docx",
+        "07_HC-A17_OP20作业指导书现行版.docx",
+        "09_工艺变更通知ECN-2026-018.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料2",
+          "document_name": "06_HC-A17_OP20作业指导书历史版.docx",
+          "section_path": "06_HC-A17_OP20作业指导书历史版.docx"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "section_path": "07_HC-A17_OP20作业指导书现行版.docx"
+        },
+        {
+          "citation_id": "资料1",
+          "document_name": "09_工艺变更通知ECN-2026-018.docx",
+          "section_path": "09_工艺变更通知ECN-2026-018.docx"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q14",
+        "binding": {
+          "question_sha256": "4269cf2a4b58a941e1220f636dfd6c4616b432b2fb3792e289c4952434e1e395",
+          "response_sha256": "7a819fa454ada14340043473410e7d4c32085c7e1405a08b41d42d43fbd6d5d3",
+          "context_sha256": "77e1afa88b3a65d763395b72e75bc41d9e7ceebcb3b9be964efcee49c2e05eb2",
+          "criteria_sha256": "99054a13049a14cdfd92dd85d02f77a87b6ab6ae715ca8caa5c417f81462d611",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "旧版2件与新版3件对应正确，并给出增加1件；所引两版指导书及ECN支持比较。"
+      },
+      "context_evidence_count": 6,
+      "latency_ms": 5719.77,
+      "actual_model_calls": 4,
+      "run_id": "835fe00a-8ac4-4af6-97c0-60678a554c52",
+      "request_id": "835fe00a8ac44af697c060678a554c52"
+    },
+    {
+      "id": "MFG-Q15",
+      "question": "归档的1.0版是否还能用于回答2026年9月的作业要求？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "归档的1.0版可以用于回答2026年9月30日及以前已开工的工单作业要求。[资料1]\n对于2026年9月30日及以前已开工的工单，如有书面变更则按书面变更执行；若无书面变更，则沿用该1.0版指导书。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "06_HC-A17_OP20作业指导书历史版.docx"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "06_HC-A17_OP20作业指导书历史版.docx",
+          "section_path": "06_HC-A17_OP20作业指导书历史版.docx"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "历史",
+          "适用"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.5,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.5,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q15",
+        "binding": {
+          "question_sha256": "5bce263ce5a1b5f4c8928b807eebb1e632c4770155fa64cca4bb300f6559c0f1",
+          "response_sha256": "40da82a8225aa952fd37f6d5b233c1b3aee40a03ac87ca1218961ec3df2f71f9",
+          "context_sha256": "b9c5d50ba34470a34a394eb110968c4366cc55af6ce09c4690b86b0c4fc1258c",
+          "criteria_sha256": "bd3a3395aa35d3fd4fc6425b8372d993acf3d058aa4404d2c249b9dfa2082b93",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "明确归档1.0版仍能回答2026年9月当时适用的工单要求，并保留书面变更例外。所引历史版自身写明归档后仍用于有效期间历史查询，足以支持结论；代理因“历史/适用”字串和指定13号资料未引用而失败，保留原分数。"
+      },
+      "context_evidence_count": 5,
+      "latency_ms": 4257.35,
+      "actual_model_calls": 3,
+      "run_id": "1f3dd153-29d9-4395-b4c9-aed1b8526202",
+      "request_id": "1f3dd15329d94395b4c9aed1b8526202"
+    },
+    {
+      "id": "MFG-Q16",
+      "question": "是否可以只按上传时间或检索排名判断哪份工艺文件现行？",
+      "expected_answerable": true,
+      "predicted_answerable": true,
+      "answer": "不可以只按上传时间或检索排名判断哪份工艺文件现行。[资料1]\n应结合生效时间、适用产品、工序及明确替代关系进行综合判断。[资料1]",
+      "refusal_reason": null,
+      "cited_documents": [
+        "13_历史文件查询与变更说明.md"
+      ],
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "13_历史文件查询与变更说明.md",
+          "section_path": "13_历史文件查询与变更说明.md"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q16",
+        "binding": {
+          "question_sha256": "3a5af9485842d630dc469b2513c4a9a1e411b48186ee35fd3aebdc2c20ae4efa",
+          "response_sha256": "4eae80b2c41f1508d0795c9376c81289b9f29bfb480b96bb57aaff9bb21968ce",
+          "context_sha256": "9e21af846538443d4488f1d1726eaed9ef148727875bf9e79666bcaabefae513",
+          "criteria_sha256": "040693c06b0a8be47b01262c8593ce44431ba71802815573072b004d0d04dbcc",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "明确不能只按上传时间或排名判断现行，并完整说明生效时间、产品、工序和替代关系。"
+      },
+      "context_evidence_count": 7,
+      "latency_ms": 3649.86,
+      "actual_model_calls": 3,
+      "run_id": "e6729353-a3ad-476c-9e26-021f7b235214",
+      "request_id": "e6729353a3ad476c9e26021f7b235214"
+    },
+    {
+      "id": "MFG-Q17",
+      "question": "HC-A17 OP-20的批准主轴转速是多少？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库中所有关于HC-A17 OP-20的资料（包括作业指导书、检验规范及工单记录）均未载明具体的批准主轴转速数值。资料4明确指出操作前必须取得适用的批准工艺文件，但提供的资料中不包含该文件的具体参数。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q17",
+        "binding": {
+          "question_sha256": "ede5571595560b4fe3bdb85ea846487c2d058539977710408233037cfcdab32a",
+          "response_sha256": "b72a8d03d2cebf592fef2a638a2c14466afbf8e15048ccacd576973362dfe5c8",
+          "context_sha256": "1a4d11fd54096827a85fc79216fab3503c0d4cc12657c6ea7d892f7c54a738c4",
+          "criteria_sha256": "b95f2f5c581b9dc51e77e028e5994229d9cc148276cb4706ae75ca3912ef62be",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "正确拒绝猜测未提供的批准主轴转速，并说明缺少具体参数来源，没有用公开资料代替批准工艺。"
+      },
+      "context_evidence_count": 7,
+      "latency_ms": 2986.93,
+      "actual_model_calls": 3,
+      "run_id": "f380c00c-6b29-476a-a1ea-1dacc2f282d8",
+      "request_id": "f380c00c6b29476aa1ea1dacc2f282d8"
+    },
+    {
+      "id": "MFG-Q18",
+      "question": "WO-017更换定位治具后的首件复检实际几点完成？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料仅记录了2026年10月26日14:20交接时首件复检尚未完成，且明确说明现有记录未载明后续实际完成时间，无法回答该问题。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q18",
+        "binding": {
+          "question_sha256": "fc07c7d89a4c9f8a4c3559a7efd5fa6f5e273c89ff3e2ef971d12462e29c3597",
+          "response_sha256": "0236fd23fb2087400166957733cb0358052dd9ae8a12b5f55972e64b45ca496e",
+          "context_sha256": "4b77c2aae820e69d7a78f605e6db183ac0eb23b1494e0d27d0b2e2cb0694e6e3",
+          "criteria_sha256": "6a6339d92ed65eff75be3d2b209ecbed23437fd4a1513b2086ccdf4b5c5694b5",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "正确区分14:20交接时尚未完成与之后的未知完成时间，没有把更换前记录或计划当实际复检完成。"
+      },
+      "context_evidence_count": 9,
+      "latency_ms": 3377.6,
+      "actual_model_calls": 3,
+      "run_id": "73fbfb6f-a923-4852-8a8c-f0f465438fc4",
+      "request_id": "73fbfb6fa92348528a8cf0f465438fc4"
+    },
+    {
+      "id": "MFG-Q19",
+      "question": "现在HC-A17成品库存有多少件？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料主要涉及生产工艺、工单交接、治具更换及检验规范，未包含实时库存、采购或MES接口数据，无法回答HC-A17成品库存数量。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q19",
+        "binding": {
+          "question_sha256": "dbabb5a077ef5bb9ca83217f4a0ff777cdcba137696d924e550c13ea6dcbcc9d",
+          "response_sha256": "9469a05b8859b78dbf810bb5504d6435f5485f9f8a5aa4e1f0f965d1a7a7ab16",
+          "context_sha256": "050b309961c4ab3d1a182ce44fb0cae5b7a126fd97bc22533e418b36f00d2cb0",
+          "criteria_sha256": "395a6df3633b2a6a3d611f29ebae4d630c82a26ffa653fd0c46975ea82b7f3bd",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "正确说明没有实时库存资料，未编造库存数或声称已接MES/ERP。"
+      },
+      "context_evidence_count": 7,
+      "latency_ms": 3060.68,
+      "actual_model_calls": 3,
+      "run_id": "512394e5-5bd3-434b-baed-e4f502cd47bb",
+      "request_id": "512394e55bd3434bbaede4f502cd47bb"
+    },
+    {
+      "id": "MFG-Q20",
+      "question": "HC-B99的OP-30首件检验上下限是多少？",
+      "expected_answerable": false,
+      "predicted_answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库中缺少关于HC-B99产品OP-30工序首件检验上下限的具体规定或实测数据。资料5仅提供了辅助尺寸检查点（IP-01至IP-12）的量具对照表，未包含HC-B99 OP-30的公差标准；其他资料为无关文档或工单记录，无法回答该问题。",
+      "cited_documents": [],
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFG-Q20",
+        "binding": {
+          "question_sha256": "77401b69f98ccff2e9ac90fa6fadd4c1f0a8288b2ae52a97d9b22dc9f989da84",
+          "response_sha256": "76ef23898272e18165fae10ef0e62ea6ef005ed3308f4f36d8bd9a99107f2476",
+          "context_sha256": "09521904cd7e59687524fab922d4b978ffc551639de87738f83d6b32ab0ae2fb",
+          "criteria_sha256": "578598d86da2d859776bba92e253c4091b0760afa50120219dc4d561136c0ea8",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_review",
+        "reason": "正确说明HC-B99 OP-30没有适用公差，不套用HC-A17或辅助量具检查点范围。"
+      },
+      "context_evidence_count": 7,
+      "latency_ms": 3036.64,
+      "actual_model_calls": 3,
+      "run_id": "dda9d567-e729-41a9-a4c6-1b822ab6424b",
+      "request_id": "dda9d567e72941a9a4c61b822ab6424b"
+    }
+  ],
+  "independent_semantic_review": false
+}

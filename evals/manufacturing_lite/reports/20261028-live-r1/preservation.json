@@ -1,0 +1,57 @@
+{
+  "all_original_rows_unchanged": true,
+  "tables": {
+    "tenants": {
+      "before": 3,
+      "after": 4,
+      "original_rows_unchanged": true
+    },
+    "users": {
+      "before": 5,
+      "after": 10,
+      "original_rows_unchanged": true
+    },
+    "knowledge_bases": {
+      "before": 6,
+      "after": 9,
+      "original_rows_unchanged": true
+    },
+    "knowledge_base_user_grants": {
+      "before": 8,
+      "after": 20,
+      "original_rows_unchanged": true
+    },
+    "knowledge_base_department_grants": {
+      "before": 4,
+      "after": 4,
+      "original_rows_unchanged": true
+    },
+    "documents": {
+      "before": 73,
+      "after": 90,
+      "original_rows_unchanged": true
+    },
+    "document_chunks": {
+      "before": 603,
+      "after": 2169,
+      "original_rows_unchanged": true
+    },
+    "document_parents": {
+      "before": 159,
+      "after": 1269,
+      "original_rows_unchanged": true
+    },
+    "conversations": {
+      "before": 13,
+      "after": 13,
+      "original_rows_unchanged": true
+    },
+    "migration": {
+      "before": 1,
+      "after": 1,
+      "original_rows_unchanged": true
+    }
+  },
+  "backup_sha256": "07ef1f1ef56f065b627c6f01fee3076c47828f67f766e1f778d0b7e5e21d4324",
+  "backup_bytes": 1031598
+}

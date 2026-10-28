@@ -6,7 +6,7 @@
 
 系统已经覆盖文档上传、幂等索引、混合检索、重排、答案生成、引用校验、结构化观测日志和离线评估等核心链路，重点解决企业知识库中“用户是谁、能够查询哪些资料、回答依据来自哪里”的问题。
 
-制造业小规模改造见[实施与验收说明](docs/MANUFACTURING_LITE.md)：提供 17 份四格式资料、20 道独立回归题、制造业示例问题和角色配置工具，已验证实际解析及离线授权。本轮未接 MES/ERP、未执行制造业模型问答评测；[完整实施方案](docs/MANUFACTURING_IMPLEMENTATION_PLAN.md)保留后续工单集成设计。
+制造业小规模改造见[实施与验收说明](docs/MANUFACTURING_LITE.md)：提供 17 份四格式资料、20 道独立回归题、制造业示例问题和角色配置工具。[真实 HTTP 首轮验收](evals/manufacturing_lite/reports/20261028-live-r1/README.md)已完成隔离租户、全部入库及 20 题运行，自动评分 14/20、助手非独立复核 18/20，保留 2 题失败与 33 项 HTTP 权限检查。本轮未接 MES/ERP；[完整实施方案](docs/MANUFACTURING_IMPLEMENTATION_PLAN.md)保留后续工单集成设计。
 
 ## 核心能力
 
