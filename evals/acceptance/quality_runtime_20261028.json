@@ -1,0 +1,536 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "started_at": "2026-10-28T08:35:29.535946+00:00",
+  "finished_at": "2026-10-28T08:48:16.686325+00:00",
+  "purpose": "Isolated runtime acceptance using synthetic documents and real provider calls; same-version comparison, no claimed quality improvement.",
+  "source_branch": "codex/rag-feedback-snapshots",
+  "application_source_base_commit": "258975e",
+  "review_kind": "Assistant-assisted workflow fixtures, explicitly labelled; not real user feedback or business-owner approval.",
+  "migration": {
+    "before": "f2b4d6e8a013",
+    "after": "c7e9a1b32458",
+    "original_documents": 72,
+    "original_child_chunks": 600,
+    "original_parent_chunks": 158,
+    "preserved_conversations": 11,
+    "memory_digest_unchanged": true,
+    "original_document_metadata_unchanged": true,
+    "backup_format": "PostgreSQL custom archive",
+    "backup_verified_with": "pg_restore --list",
+    "backup_sha256": "e84653a7f3c0e4de1c803de354afdb4929f38f7fa9e75854c4472ce946edc4fd"
+  },
+  "build": {
+    "kind": "Current source over existing local dependency image after clean source replacement",
+    "reason": "Docker Hub TLS and PyPI download timeouts blocked clean standard build",
+    "original_image": "sha256:919d9ee2b08dd5c707b735483742e5b157fa8992703eb0f46dd392aefd15b2bf",
+    "deployed_image": "sha256:890215bbead0764256bdb5d74f8aede6638bbaf18f5454b6f3112c8a56e2b32d",
+    "requirements_sha256": "b90390fccff5d3b01dc4157a4665930c372f87b1371a3b51ee70869004b5d904",
+    "requirements_match_existing_image": true,
+    "clean_external_dependency_build_verified": false
+  },
+  "runtime": {
+    "values": {
+      "chat_model": "qwen3.7-flash",
+      "embedding_model": "text-embedding-v4",
+      "rerank_model": "qwen3-rerank",
+      "agentic_rag_mode": "auto",
+      "rag_planner_mode": "auto",
+      "rag_feedback_enabled": true,
+      "rag_repair_enabled": true,
+      "rag_rerank_top_k": 12,
+      "rag_parent_context_enabled": true,
+      "rag_context_selection_enabled": true,
+      "rag_max_searches": 3,
+      "agent_max_decisions": 2,
+      "agent_max_searches": 2,
+      "agent_max_reads": 1,
+      "agent_max_evidence": 24,
+      "agent_max_prompt_bytes": 12000,
+      "agent_max_output_tokens": 384,
+      "agent_max_decision_tokens": 16000,
+      "agent_max_seconds": 20.0,
+      "agent_decision_timeout_seconds": 8.0,
+      "rag_max_optional_calls": 4,
+      "rag_max_optional_tokens": 32000,
+      "rag_max_optional_seconds": 35.0,
+      "rag_planner_output_tokens": 768,
+      "rag_repair_output_tokens": 1536,
+      "rag_repair_prompt_bytes": 24000,
+      "rag_regeneration_output_tokens": 2048,
+      "rag_context_selection_output_tokens": 512,
+      "rag_context_selection_prompt_bytes": 16000,
+      "rag_planner_timeout_seconds": 8.0,
+      "rag_repair_timeout_seconds": 8.0,
+      "rag_regeneration_timeout_seconds": 15.0,
+      "rag_context_selection_timeout_seconds": 6.0,
+      "endpoint_hashes": {
+        "chat_base_url": "6c34e60046af0d45d53375c662f7190dbbcf1398017261156114acedd2b152d6",
+        "rerank_url": "6d2565df39a0c727ae82b1fcd562d46b8d90597231cf15d8db468e2504d336aa"
+      },
+      "pricing_hash": "c89a148be40e6752261e3038609a4b68de22fa3bfdaf32f884edffb8480b9bbe",
+      "pipeline": {
+        "code_sha256": "0437b7f80cb010f79b72f2b1e890565b5dd3889487fe638e13766b544ae50602",
+        "prompts_sha256": "5e902522e7f985560e4f805f1a9bc66cca77f1d31fc61beb6a6573eaca2c14fe"
+      },
+      "scorer": "2026-10-16-r10:quality-verification-v1",
+      "dependencies": {
+        "python": "3.12.15",
+        "langchain-core": "1.6.2",
+        "langchain-openai": "1.2.2",
+        "openai": "2.54.0",
+        "pydantic": "2.13.5",
+        "SQLAlchemy": "2.0.54",
+        "requests": "2.34.2"
+      }
+    },
+    "fingerprint": "e45f8e90af6210606caa89028663024dd01005d0cb437eb18389f597537ff28d"
+  },
+  "scope": {
+    "isolated_tenant_id": "ccae006a-889e-4b29-a98e-ccf4c0adf1a3",
+    "synthetic_documents": 1,
+    "synthetic_chunks": 3,
+    "distinct_questions": 2,
+    "normal_qa_runs": 2
+  },
+  "evaluation_runs": [
+    {
+      "label": "baseline",
+      "id": "f9514da2-31df-4ed2-819f-88acdfc047c0",
+      "status": "succeeded",
+      "completed_cases": 2,
+      "budget": {
+        "allow_model_calls": true,
+        "max_cases": 2,
+        "max_model_calls": 30,
+        "max_tokens": 200000,
+        "reservation_tokens": 16000,
+        "max_seconds": 180
+      },
+      "summary": {
+        "partitions": {
+          "fixed": {
+            "total": 1,
+            "proxy_passed": 1,
+            "false_refusals": 0,
+            "wrong_accepts": 0
+          },
+          "feedback": {
+            "total": 1,
+            "proxy_passed": 1,
+            "false_refusals": 0,
+            "wrong_accepts": 0
+          }
+        },
+        "p95_ms": 5714.46,
+        "usage": {
+          "observed": true,
+          "calls": 6,
+          "reported_total_tokens": 7101,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 6,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "budget": {
+          "calls": 6,
+          "charged_tokens": 7101,
+          "unknown_calls": 0,
+          "elapsed_seconds": 9.287,
+          "limited_by": null
+        },
+        "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+      }
+    },
+    {
+      "label": "same_version_candidate",
+      "id": "71194f93-ae70-4462-a4ba-d90c0b4ccb20",
+      "status": "succeeded",
+      "completed_cases": 2,
+      "budget": {
+        "allow_model_calls": true,
+        "max_cases": 2,
+        "max_model_calls": 30,
+        "max_tokens": 200000,
+        "reservation_tokens": 16000,
+        "max_seconds": 180
+      },
+      "summary": {
+        "partitions": {
+          "fixed": {
+            "total": 1,
+            "proxy_passed": 1,
+            "false_refusals": 0,
+            "wrong_accepts": 0
+          },
+          "feedback": {
+            "total": 1,
+            "proxy_passed": 1,
+            "false_refusals": 0,
+            "wrong_accepts": 0
+          }
+        },
+        "p95_ms": 3612.44,
+        "usage": {
+          "observed": true,
+          "calls": 6,
+          "reported_total_tokens": 7101,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 6,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "budget": {
+          "calls": 6,
+          "charged_tokens": 7101,
+          "unknown_calls": 0,
+          "elapsed_seconds": 7.449,
+          "limited_by": null
+        },
+        "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+      }
+    }
+  ],
+  "budget_stop": {
+    "job_id": "4414d6f9-b480-46c7-a298-0493b73c1a41",
+    "status": "failed",
+    "expected_failure": true,
+    "error_type": "EvaluationStopped",
+    "budget": {
+      "calls": 1,
+      "charged_tokens": 16,
+      "unknown_calls": 0,
+      "elapsed_seconds": 0.709,
+      "limited_by": "calls"
+    },
+    "independent_ledger": {
+      "calls": 1,
+      "tokens": 16
+    }
+  },
+  "comparison": {
+    "same_version": true,
+    "passed": true,
+    "default_unknown_price_gate_blocked": true,
+    "unknown_price_acknowledged_for_isolated_workflow_only": true,
+    "improvement_id": "1efc63b7-8df9-44af-8d7d-3d2af1eea04d",
+    "final_state": "closed"
+  },
+  "script_checks": {
+    "total": 58,
+    "passed": 58,
+    "items": [
+      {
+        "name": "isolated_fixtures_created",
+        "passed": true
+      },
+      {
+        "name": "preflight_oidc_owner",
+        "passed": true
+      },
+      {
+        "name": "preflight_oidc_peer",
+        "passed": true
+      },
+      {
+        "name": "preflight_oidc_outsider",
+        "passed": true
+      },
+      {
+        "name": "/health/ready",
+        "passed": true
+      },
+      {
+        "name": "/health/indexing",
+        "passed": true
+      },
+      {
+        "name": "unauthenticated_quality_denied",
+        "passed": true
+      },
+      {
+        "name": "oidc_login_and_tenant_scope",
+        "passed": true
+      },
+      {
+        "name": "upload_and_real_indexing_ready",
+        "passed": true
+      },
+      {
+        "name": "qa_fixed",
+        "passed": true
+      },
+      {
+        "name": "snapshot_fixed",
+        "passed": true
+      },
+      {
+        "name": "conversation_run_restored_fixed",
+        "passed": true
+      },
+      {
+        "name": "private_snapshot_denied_fixed_peer",
+        "passed": true
+      },
+      {
+        "name": "private_snapshot_denied_fixed_outsider",
+        "passed": true
+      },
+      {
+        "name": "feedback_upsert_fixed",
+        "passed": true
+      },
+      {
+        "name": "qa_feedback",
+        "passed": true
+      },
+      {
+        "name": "snapshot_feedback",
+        "passed": true
+      },
+      {
+        "name": "conversation_run_restored_feedback",
+        "passed": true
+      },
+      {
+        "name": "private_snapshot_denied_feedback_peer",
+        "passed": true
+      },
+      {
+        "name": "private_snapshot_denied_feedback_outsider",
+        "passed": true
+      },
+      {
+        "name": "feedback_upsert_feedback",
+        "passed": true
+      },
+      {
+        "name": "admin_cannot_read_private_fixed",
+        "passed": true
+      },
+      {
+        "name": "shared_snapshot_authorized_admin_fixed",
+        "passed": true
+      },
+      {
+        "name": "admin_cannot_read_private_feedback",
+        "passed": true
+      },
+      {
+        "name": "shared_snapshot_authorized_admin_feedback",
+        "passed": true
+      },
+      {
+        "name": "feedback_list",
+        "passed": true
+      },
+      {
+        "name": "unapproved_export_denied_fixed",
+        "passed": true
+      },
+      {
+        "name": "review_optimistic_lock_fixed",
+        "passed": true
+      },
+      {
+        "name": "versioned_jsonl_fixed",
+        "passed": true
+      },
+      {
+        "name": "cross_tenant_review_and_export_denied_fixed",
+        "passed": true
+      },
+      {
+        "name": "unapproved_export_denied_feedback",
+        "passed": true
+      },
+      {
+        "name": "review_optimistic_lock_feedback",
+        "passed": true
+      },
+      {
+        "name": "versioned_jsonl_feedback",
+        "passed": true
+      },
+      {
+        "name": "cross_tenant_review_and_export_denied_feedback",
+        "passed": true
+      },
+      {
+        "name": "explicit_model_call_consent_required",
+        "passed": true
+      },
+      {
+        "name": "fixed_and_feedback_must_differ",
+        "passed": true
+      },
+      {
+        "name": "enqueue_cancel-test",
+        "passed": true
+      },
+      {
+        "name": "one_active_job_per_tenant",
+        "passed": true
+      },
+      {
+        "name": "queued_cancel_no_spending",
+        "passed": true
+      },
+      {
+        "name": "enqueue_baseline",
+        "passed": true
+      },
+      {
+        "name": "enqueue_candidate",
+        "passed": true
+      },
+      {
+        "name": "real_worker_baseline",
+        "passed": true
+      },
+      {
+        "name": "real_worker_candidate",
+        "passed": true
+      },
+      {
+        "name": "unreviewed_candidate_blocks_verification",
+        "passed": true
+      },
+      {
+        "name": "wrong_response_binding_denied_fixed",
+        "passed": true
+      },
+      {
+        "name": "wrong_response_binding_denied_feedback",
+        "passed": true
+      },
+      {
+        "name": "unknown_price_blocks_default_verification",
+        "passed": true
+      },
+      {
+        "name": "same_version_comparison_gate",
+        "passed": true
+      },
+      {
+        "name": "verification_record",
+        "passed": true
+      },
+      {
+        "name": "close_rechecks_current_evidence",
+        "passed": true
+      },
+      {
+        "name": "cross_tenant_evaluation_and_improvement_denied",
+        "passed": true
+      },
+      {
+        "name": "enqueue_budget-stop",
+        "passed": true
+      },
+      {
+        "name": "real_call_budget_stops_after_one",
+        "passed": true
+      },
+      {
+        "name": "original_documents_unchanged",
+        "passed": true
+      },
+      {
+        "name": "no_remaining_active_evaluation",
+        "passed": true
+      },
+      {
+        "name": "runtime_usage_ledger_persisted",
+        "passed": true
+      },
+      {
+        "name": "audit_trail_present",
+        "passed": true
+      },
+      {
+        "name": "test_accounts_disabled_sessions_revoked_credentials_removed",
+        "passed": true
+      }
+    ]
+  },
+  "postgres_tests": {
+    "tests": 6,
+    "failures": 0,
+    "errors": 0
+  },
+  "browser_observations": {
+    "pkce_login": true,
+    "history_and_snapshot": true,
+    "review_workspace": true,
+    "completed_jobs_and_closed_record": true,
+    "console_errors_observed": 0,
+    "logout_cleared_private_views": true,
+    "local_screenshots": [
+      "tmp/quality-runtime-20261028/snapshot.png",
+      "tmp/quality-runtime-20261028/verified-closure.png"
+    ]
+  },
+  "model_ledger": {
+    "records": 21,
+    "known_reported_tokens": 21452,
+    "unknown_usage_records": 1,
+    "unpriced_records": 21,
+    "stages": [
+      {
+        "stage": "answer_generation",
+        "model": "qwen3.7-flash",
+        "calls": 6,
+        "tokens": 19882,
+        "unknown_usage_calls": 0,
+        "unpriced_calls": 6
+      },
+      {
+        "stage": "document_embedding",
+        "model": "text-embedding-v4",
+        "calls": 2,
+        "tokens": 132,
+        "unknown_usage_calls": 1,
+        "unpriced_calls": 2
+      },
+      {
+        "stage": "query_embedding",
+        "model": "text-embedding-v4",
+        "calls": 7,
+        "tokens": 106,
+        "unknown_usage_calls": 0,
+        "unpriced_calls": 7
+      },
+      {
+        "stage": "rerank",
+        "model": "qwen3-rerank",
+        "calls": 6,
+        "tokens": 1332,
+        "unknown_usage_calls": 0,
+        "unpriced_calls": 6
+      }
+    ]
+  },
+  "final_state": {
+    "api_healthy": true,
+    "indexing_worker_healthy": true,
+    "quality_worker_running": true,
+    "active_evaluation_jobs": 0,
+    "test_accounts_disabled": 3,
+    "test_sessions_revoked": true,
+    "temporary_password_file_removed": true,
+    "remote_push": false,
+    "merged_to_main": false
+  },
+  "limitations": [
+    "隔离租户、合成资料、真实供应商模型、同版本两次运行；审核为助手辅助流程测试，不证明业务准确率或修复收益。",
+    "Unpriced calls have unknown monetary cost; reported token sum excludes one unknown usage record.",
+    "Two-question single runs do not establish accuracy, performance improvements, throughput, or production SLA.",
+    "Legacy conversation memory column is retained; experimental memory implementation is not enabled."
+  ]
+}

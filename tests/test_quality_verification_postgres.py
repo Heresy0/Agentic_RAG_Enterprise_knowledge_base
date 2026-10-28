@@ -9,8 +9,10 @@ from types import SimpleNamespace
 from uuid import uuid4
 
 import pytest
+from alembic.config import Config
 from alembic.migration import MigrationContext
 from alembic.operations import Operations
+from alembic.script import ScriptDirectory
 from sqlalchemy import create_engine, inspect, select, text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session, sessionmaker
@@ -23,6 +25,60 @@ from backend.app.quality.eval_budget import EvaluationStopped, EvaluationBudget
 from backend.app.quality.evaluation_worker import QualityEvaluationWorker
 
 pytestmark = pytest.mark.integration
+
+
+@pytest.mark.parametrize('starting_revision', ['e1a3c5f7b902', 'f2b4d6e8a013', 'b6d8f0a21347'])
+def test_runtime_upgrade_joins_legacy_memory_and_quality_without_data_loss(starting_revision):
+    if os.getenv('RUN_QA_FEEDBACK_INTEGRATION_TESTS') != '1':
+        pytest.skip('Quality PostgreSQL checks not enabled')
+    schema = 'quality_runtime_upgrade_' + uuid4().hex
+    assert re.fullmatch(r'quality_runtime_upgrade_[0-9a-f]{32}', schema)
+    control = create_engine(required_env('DATABASE_URL'))
+    engine = create_engine(required_env('DATABASE_URL'), connect_args={'options': f'-csearch_path={schema}'})
+    script = ScriptDirectory.from_config(Config('alembic.ini'))
+    assert script.get_current_head() == 'c7e9a1b32458'
+    created = False
+    try:
+        with control.begin() as connection:
+            connection.execute(text(f'CREATE SCHEMA "{schema}"'))
+        created = True
+        with engine.begin() as connection:
+            for model in (Tenant, User, KnowledgeBase, Conversation):
+                model.__table__.create(connection)
+            context = MigrationContext.configure(connection, opts={
+                'fn': lambda revisions, _: script._upgrade_revs('head', revisions)})
+            with Operations.context(context):
+                if starting_revision == 'f2b4d6e8a013':
+                    script.get_revision(starting_revision).module.upgrade()
+                elif starting_revision == 'b6d8f0a21347':
+                    for revision in ('f4b6d8e0a215', 'a5c7e9f10236', 'b6d8f0a21347'):
+                        script.get_revision(revision).module.upgrade()
+                context.stamp(script, starting_revision)
+                tenant_id, user_id, conversation_id = uuid4(), uuid4(), uuid4()
+                connection.execute(Tenant.__table__.insert().values(id=tenant_id, name='runtime-preserved'))
+                connection.execute(User.__table__.insert().values(id=user_id, tenant_id=tenant_id,
+                                   external_subject=uuid4().hex, name='runtime-owner'))
+                connection.execute(Conversation.__table__.insert().values(
+                    id=conversation_id, tenant_id=tenant_id, user_id=user_id, title='existing conversation'))
+                if starting_revision == 'f2b4d6e8a013':
+                    connection.execute(text("UPDATE conversations SET memory_json = :value"),
+                                       {'value': '{"summary":"preserve existing memory"}'})
+                context.run_migrations()
+                # A second upgrade is idempotent and follows the actual Alembic graph.
+                context.run_migrations()
+            assert connection.scalar(text('SELECT version_num FROM alembic_version')) == 'c7e9a1b32458'
+            row = connection.execute(text('SELECT title, memory_json FROM conversations')).one()
+            assert row.title == 'existing conversation'
+            assert row.memory_json == ({'summary': 'preserve existing memory'}
+                                       if starting_revision == 'f2b4d6e8a013' else None)
+            assert inspect(connection).has_table('quality_evaluation_jobs')
+            assert inspect(connection).has_table('quality_improvements')
+    finally:
+        engine.dispose()
+        if created:
+            with control.begin() as connection:
+                connection.execute(text(f'DROP SCHEMA "{schema}" CASCADE'))
+        control.dispose()
 
 
 def test_postgres_verification_migration_unique_active_job_and_fencing():
