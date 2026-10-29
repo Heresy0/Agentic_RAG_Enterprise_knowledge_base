@@ -22,7 +22,7 @@ def test_schema_recovery_real_permission_and_document_boundaries(scenario,monkey
     session,scope,actor,retrieval,chunks=scenario
     counters={'calls':0}
     def invalid(messages):
-        return GenerationAnswerDraft.model_validate({'answerable':True,'coverage':[]})
+        return GenerationAnswerDraft.model_validate({'answerable':True,'response_type':'answer','coverage':[]})
     monkeypatch.setattr('backend.app.knowledge.answer_service.ChatOpenAI',lambda **kwargs:
         SimpleNamespace(with_structured_output=lambda *args,**kwargs:SimpleNamespace(invoke=invalid)))
     def recover(messages):
@@ -33,7 +33,7 @@ def test_schema_recovery_real_permission_and_document_boundaries(scenario,monkey
         if phase=='delete':
             session.execute(delete(KnowledgeDocument).where(KnowledgeDocument.id==chunks[0].document_id))
             session.commit()
-        return GenerationAnswerDraft.model_validate(dict(answerable=True,claims=[dict(
+        return GenerationAnswerDraft.model_validate(dict(answerable=True,response_type='answer',claims=[dict(
             text='alpha workflow approved evidence',citations=['资料1'])],coverage=[dict(
             requirement_id='Q1',aspect='workflow',status='answered',claim_indices=[1],missing_information=None)]))
     settings=SimpleNamespace(rag_repair_enabled=True,rag_planner_mode='off',agentic_rag_mode='off',

@@ -58,7 +58,7 @@ def test_missing_or_unverifiable_anchor_never_guesses_a_slice():
 
 def test_selected_context_still_rejects_unsupported_numbers_and_missing_coverage():
     context = ContextBuilder().build([parent()], question='每个完整支援日的登记标准是多少？')
-    draft = GenerationAnswerDraft.model_validate(dict(answerable=True,
+    draft = GenerationAnswerDraft.model_validate(dict(answerable=True, response_type='answer',
         claims=[dict(text='每个支援日登记999小时', citations=['资料1'])],
         coverage=[dict(requirement_id='Q1', aspect='标准', status='answered',
                        claim_indices=[1], missing_information=None)]))

@@ -129,7 +129,7 @@ def test_new_model_phases_cannot_continue_after_real_grant_revocation(scenario, 
                                chat_base_url='https://fake.invalid', chat_api_key='fake')
     question = '比较 alpha 与 beta workflow' if phase == 'planner' else 'alpha workflow是什么？'
     context = ContextBuilder().build(retrieval.search(question, scope=scope, session=session), question=question)
-    draft = GenerationAnswerDraft.model_validate(dict(answerable=True, claims=[
+    draft = GenerationAnswerDraft.model_validate(dict(answerable=True, response_type='answer', claims=[
         dict(text='alpha workflow approved evidence', citations=['资料1'])], coverage=[
         dict(requirement_id='Q1', aspect='workflow', status='answered', claim_indices=[2], missing_information=None)],
         refusal_reason=None))

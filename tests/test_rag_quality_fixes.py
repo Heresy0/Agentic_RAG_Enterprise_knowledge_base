@@ -19,7 +19,7 @@ def context(text):
 
 
 def calc_draft(*, quote='2分钟', value='120', unit='秒'):
-    return GenerationAnswerDraft.model_validate(dict(answerable=True, claims=[dict(
+    return GenerationAnswerDraft.model_validate(dict(answerable=True, response_type='answer', claims=[dict(
         text='待程序计算', citations=['资料1'], calculation=dict(operation='time_add', inputs=[
             dict(source='问题', quote='08:00:00', value='08:00:00', unit='时刻'),
             dict(source='资料1', quote=quote, value=value, unit=unit)], result=None))],
@@ -64,7 +64,7 @@ def schema_service(monkeypatch, *, candidate=None, hook=None):
     service._settings.rag_repair_enabled = True
     retrieval.refresh_evidence = lambda docs, **kwargs: docs
     def invalid(messages):
-        return GenerationAnswerDraft.model_validate({'answerable':True, 'coverage':[]})
+        return GenerationAnswerDraft.model_validate({'answerable':True, 'response_type':'answer', 'coverage':[]})
     service._structured_llm.invoke = invalid
     service._answer_repair, calls, guard = repair_service(candidate or draft(indices=(1,)), hook=hook)
     return service, calls, guard

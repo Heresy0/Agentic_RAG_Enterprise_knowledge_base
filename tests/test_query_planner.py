@@ -164,7 +164,7 @@ def test_original_coverage_cannot_silently_omit_split_requirements(monkeypatch):
     coverage = [dict(requirement_id=identifier, aspect="标准", status="answered", claim_indices=[1], missing_information=None)
                 for identifier in ("Q1", "Q2")]
     service, retrieval, generation, *_ = build_service(monkeypatch, model_result=GenerationAnswerDraft.model_validate(
-        dict(answerable=True, claims=[dict(text="依照服务标准办理", citations=["资料1"])], coverage=coverage, refusal_reason=None)))
+        dict(answerable=True, response_type='answer', claims=[dict(text="依照服务标准办理", citations=["资料1"])], coverage=coverage, refusal_reason=None)))
     service._settings.rag_planner_mode = "auto"
     result = answer(service, "费用标准是什么？办理条件是什么？")
     assert not result.answerable and "P1" in result.refusal_reason and "P2" in result.refusal_reason

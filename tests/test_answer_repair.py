@@ -23,7 +23,7 @@ class Guard:
 
 
 def draft(*, text="温度是80摄氏度", citation="资料1", indices=(2,), status="answered", answerable=True):
-    return GenerationAnswerDraft.model_validate(dict(answerable=answerable,
+    return GenerationAnswerDraft.model_validate(dict(answerable=answerable, response_type='answer' if answerable else 'refuse',
         claims=[dict(text=text, citations=[citation])], refusal_reason=None,
         coverage=[dict(requirement_id="Q1", aspect="温度", status=status, claim_indices=list(indices),
                        missing_information=None if status == "answered" else "缺少温度证据")]))
@@ -74,7 +74,7 @@ def test_unambiguous_citation_format_is_repaired_locally():
 @pytest.mark.parametrize("original", [
     draft(text="温度是90摄氏度", indices=(1,)),
     draft(status="insufficient", indices=()),
-    GenerationAnswerDraft.model_validate(dict(answerable=False, claims=[], refusal_reason="缺证据",
+    GenerationAnswerDraft.model_validate(dict(answerable=False, response_type='refuse', claims=[], refusal_reason="缺证据",
         coverage=[dict(requirement_id="Q1", aspect="温度", status="insufficient", claim_indices=[], missing_information="缺证据")])),
 ])
 def test_missing_truth_and_unsupported_numbers_never_trigger_repair(original):

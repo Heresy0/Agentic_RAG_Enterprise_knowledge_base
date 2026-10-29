@@ -9,7 +9,7 @@ from backend.app.knowledge.answer_models import AnswerClaim, GenerationAnswerDra
 
 
 def draft(coverage, *, answerable=True, claims=None):
-    return GenerationAnswerDraft(answerable=answerable,
+    return GenerationAnswerDraft(answerable=answerable, response_type='answer' if answerable else 'refuse',
                                  claims=claims if claims is not None else [AnswerClaim(text="答案", citations=["资料1"])],
                                  coverage=coverage)
 
@@ -72,7 +72,7 @@ def test_generation_requires_coverage_and_strict_positive_claim_indices():
     # planning within the same call, not merely describing an already written answer.
     assert next(iter(GenerationAnswerDraft.model_json_schema()['properties'])) == 'coverage'
     with pytest.raises(ValidationError):
-        GenerationAnswerDraft(answerable=True, claims=[])
+        GenerationAnswerDraft(answerable=True, response_type='answer', claims=[])
     for index in (0, -1, True, "1"):
         with pytest.raises(ValidationError):
             draft([row(claim_indices=[index])])

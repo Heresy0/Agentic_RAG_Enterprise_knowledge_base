@@ -89,8 +89,8 @@ class GenerationAnswerDraft(BaseModel):
     refusal_reason: str | None = None
     evidence_gap: EvidenceGap | None = Field(default=None,
         description="仅response_type=refuse且明确缺证据时请求一次定向补查；clarify或完整可回答必须为null，用户条件不能靠检索补齐。")
-    response_type: Literal["answer", "clarify", "refuse"] | None = Field(default=None,
-        description="明确区分有依据回答、需用户补充条件、资料缺失或超出能力拒答。")
+    response_type: Literal["answer", "clarify", "refuse"] = Field(
+        description="必填，不得为null；明确区分有依据回答、需用户补充条件、资料缺失或超出能力拒答。")
     missing_fields: list[Annotated[str, Field(min_length=1, max_length=80)]] = Field(default_factory=list, max_length=5)
     clarification_questions: list[Annotated[str, Field(min_length=1, max_length=300)]] = Field(default_factory=list, max_length=3,
         description="clarify时填写直接向用户提出的简短追问；不含未经证实的业务结论或执行承诺。")
