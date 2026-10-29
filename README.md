@@ -10,6 +10,8 @@
 
 新增[公开资料扩容v2](docs/MANUFACTURING_PUBLIC_V2.md)：60份资料包含20份NIST/NBS原始PDF、24个官方网页条目和16份合成业务资料，配套50道开发题与100道冻结验收题。已全部隔离入库，并完成[50题开发集真实首轮](evals/manufacturing_public_v2/reports/20261028-development-live-r1/README.md)：自动23/50，助手非独立复核32通过、13失败、1待确认、4上下文不完整；100题冻结验收集未运行。
 
+新增[中文公开原文v3](docs/MANUFACTURING_ZH_V3.md)：18份官方中文原文（16份原始PDF、2份网页正文转换），配套120题中文评测集，开发40题、测试80题。[离线检查](evals/manufacturing_zh_v3/reports/20261029-offline-r1/README.md)得到1,290个实际分块，但150处证据锚点仍有44处未连续匹配，1份扫描件正文严重缺失；尚未入库或运行模型问答，既有基线保留原样。
+
 ## 核心能力
 
 - Keycloak OIDC 登录、JWT 签名及 issuer、audience 校验

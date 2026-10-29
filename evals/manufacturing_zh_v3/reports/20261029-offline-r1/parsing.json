@@ -1,0 +1,219 @@
+{
+  "evaluation_type": "offline_actual_project_splitters",
+  "external_model_calls": 0,
+  "corpus_manifest_sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6",
+  "parser_sha256": "35caac6381b20ae18a38701c7860dae5685c71ce3bbbceb96424ba9a9f359e16",
+  "chunking_version": "structured-v5",
+  "summary": {
+    "passed": 18
+  },
+  "records": [
+    {
+      "id": "MFG-ZH01",
+      "status": "passed",
+      "chunks": 52,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "rule_group"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH02",
+      "status": "passed",
+      "chunks": 83,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH03",
+      "status": "passed",
+      "chunks": 115,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH04",
+      "status": "passed",
+      "chunks": 50,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH05",
+      "status": "passed",
+      "chunks": 116,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH06",
+      "status": "passed",
+      "chunks": 55,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH07",
+      "status": "passed",
+      "chunks": 280,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH08",
+      "status": "passed",
+      "chunks": 70,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH09",
+      "status": "passed",
+      "chunks": 83,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH10",
+      "status": "passed",
+      "chunks": 89,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH11",
+      "status": "passed",
+      "chunks": 1,
+      "chunk_types": [
+        "paragraph"
+      ],
+      "ocr_chunks": 1,
+      "review_required": true
+    },
+    {
+      "id": "MFG-ZH12",
+      "status": "passed",
+      "chunks": 36,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 36,
+      "review_required": true
+    },
+    {
+      "id": "MFG-ZH13",
+      "status": "passed",
+      "chunks": 55,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 55,
+      "review_required": true
+    },
+    {
+      "id": "MFG-ZH14",
+      "status": "passed",
+      "chunks": 25,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 25,
+      "review_required": true
+    },
+    {
+      "id": "MFG-ZH15",
+      "status": "passed",
+      "chunks": 34,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 34,
+      "review_required": true
+    },
+    {
+      "id": "MFG-ZH16",
+      "status": "passed",
+      "chunks": 31,
+      "chunk_types": [
+        "list",
+        "paragraph"
+      ],
+      "ocr_chunks": 31,
+      "review_required": true
+    },
+    {
+      "id": "MFG-ZH17",
+      "status": "passed",
+      "chunks": 55,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    },
+    {
+      "id": "MFG-ZH18",
+      "status": "passed",
+      "chunks": 60,
+      "chunk_types": [
+        "list",
+        "paragraph",
+        "table"
+      ],
+      "ocr_chunks": 0,
+      "review_required": false
+    }
+  ],
+  "harness_sha256": "53b69ce3a920e1d43ca388da29ccdf6bf9191525effcac6e1f2031162fd743ba"
+}

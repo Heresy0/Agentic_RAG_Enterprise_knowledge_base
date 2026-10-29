@@ -1,0 +1,636 @@
+{
+  "reviewer": "same_assistant_editorial_visual_review_not_independent_expert",
+  "reviewed_at": "2026-10-29T05:35:08.234207+00:00",
+  "pages": [
+    {
+      "source_id": "MFG-ZH01",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "physical_page": 3,
+      "render_sha256": "4a876fe76e61e244b59afafb035333e378b86f0ab03f9643a2243af764a7736d",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "应当提出停止相应产品生产、销售等否决建议",
+        "经确认存在缺陷的，应当按照国家有关规定进行召回"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH01",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "physical_page": 6,
+      "render_sha256": "3d24f80b7d4548ae02582ca2838da85e0fcbb0511867fc1b597cdd7e0c1ec3f5",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "未发现问题的，也应当予以记录，实行零风险报告",
+        "质量安全总监每周至少组织一次风险隐患排查",
+        "形成《每周工业产品质量安全排查治理报告》",
+        "单位主要负责人每月至少听取一次质量安全总监管理工作",
+        "形成《每月工业产品质量安全调度会议纪要》"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH01",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "physical_page": 7,
+      "render_sha256": "d6ccf62575a308f9e7c4ac01c972c9e14403ee8f703f257acd9a4751b683778f",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "未通过考核的人员不得担任相应岗位的质量安全管理人员",
+        "抽查考核不合格的，生产单位应当立即采取整改措施"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH04",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "physical_page": 5,
+      "render_sha256": "c163b06a37025eda2b296f59253b5e4f87e7285af3a613db851eca13ee9b8232",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "流程优化、装备升级、信息系统集成、数据资源利用、操作规程更新",
+        "强化质量目标和质量活动的闭环管控",
+        "应定期评估数字化能力的提升效果，并向最高管理者报告"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH04",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "physical_page": 6,
+      "render_sha256": "5d301d16a612eff0512b74f2635f0c44bf9f8f81b05326e2c30401bd1e974ca4",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "共享采购产品质量、批次、交期等信息",
+        "有条件的企业应对关键物料实施一物一码管理",
+        "在采购、生产、仓储、物流、交付及售后服务全过程提高物料数字化追溯管理水平"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH04",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "physical_page": 7,
+      "render_sha256": "c565b0235c5aaf0d425cda577ad1bc7ea02f1ff3f36e5c75992acb220e467e92",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "企业应将质量数据纳入数据资产管理范畴",
+        "明确各环节的职责和权限，强化跨部门及部门内数据管理机制建设"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH05",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "physical_page": 7,
+      "render_sha256": "adfdfeb5223c4862a863177b7796fa2fae7d938b624ce128e6bb326fc7b1064b",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "温度偏差、温度波动度、温度均匀度及盐雾沉降率"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH05",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "physical_page": 9,
+      "render_sha256": "ba3b1f97f9d48d2d9a8052e4ab45119a92daa13ae2a4d79f99f35458c0394590",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "环境温度：(15～35）℃",
+        "相对湿度：(30～85）％",
+        "大气压：（80～106）kPa",
+        "一般在空载条件下校准，根据用户需要可以在负载条件下进行校准，但应说明负载情况",
+        "以上指标不是用于合格性判别，仅供参考"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH05",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "physical_page": 10,
+      "render_sha256": "10aefa6b51b226b784205e46315b30e8499f9ca6cd2d079014eca783e5a2c5c7",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "一般选择35℃作为盐雾箱校准试验温度，也可根据客户需要选择校准温度"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH06",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "physical_page": 7,
+      "render_sha256": "5d454603cb87cc5067b66a66ff3608cc338b3f764cbfa8f897266020cb2026b8",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "环境温度：（15～35）℃",
+        "环境相对湿度：不大于85%",
+        "对计量特性另有要求的砂尘试验设备，按有关技术文件规定的要求进行校准",
+        "不用于合格性判断，仅供参考"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH06",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "physical_page": 8,
+      "render_sha256": "a1071d85c36ced30882172c158d75c0f3893c074879f65069cd476e4e340043a",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "砂尘试验设备容积小于或等于2m3，温度测量点为9个，相对湿度测量点为3个"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH06",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "physical_page": 9,
+      "render_sha256": "69a3ee0e99a47843348eac4e75078a8eb3bf3818049a3c694babb2de74348820",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "稳定30min（稳定时间最长不超过2h）",
+        "每隔2min记录一次，在30min内共记录16次"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH06",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "physical_page": 10,
+      "render_sha256": "e267a6a8634d1026cd996454dbf5981b72216391831ad01396ad8f5129b8fd05",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "风速测量在未注入砂尘时及在常温下进行",
+        "每隔10min记录一次，在30min内共记录3次，读取风速计各测量点示值的最大值"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH07",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "physical_page": 7,
+      "render_sha256": "2f39f4cace80e7e158a1f72a8f2bac948b8e6b71a599312e4ed1722bff4b32fd",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "也适用于具有部分以上测量和输出功能的过程仪表校验仪的校准"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH07",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "physical_page": 9,
+      "render_sha256": "d10928b6ef0799c9c563603361f2292f3e2024089acb37156d49daeb82d83fce",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "温度：（20±2）℃湿度：（60±15）%RH",
+        "整个校准装置的扩展不确定度（k=2）应小于校验仪对应各功能和量程最大允许误差的1/3",
+        "整个校准装置各功能和量程的分辨力应小于校验仪对应功能和量程最大允许误差的1/5"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH07",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "physical_page": 10,
+      "render_sha256": "0b715e8ad46a47cf2317a6ff8dffdde0a932a2e33a954a94417079ceba27aff7",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "校验仪应按说明书中规定的时间预热，室内外温差较大时应在恒温实验室中放置4小时以上再通电",
+        "基本量程选择不少于5个校准点，包括上限值、下限值和量程50%附近",
+        "有零位的可以适当增加零点。对于委托者有要求的可按委托者要求选择校准点"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH08",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "physical_page": 7,
+      "render_sha256": "9f182c45f6928484c048d66cd121f0438432c47b8164f2c82625f83828de5a81",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "温度：（10～35）℃",
+        "相对湿度：不大于80%",
+        "使其受力轴线与压合机工作轴线相重合",
+        "固定压合机主体，使其可以在该位置稳定工作，不产生影响校准结果的位移和振动",
+        "一般取上限的20%，40%，60%，80%，100%等5个点",
+        "该过程校准进行3次。每次校准都要调零，每次校准过程结束后，隔30秒"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH08",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "physical_page": 8,
+      "render_sha256": "20df2b4b53ab2019a6c5c539ace3ff6e8ba73dd3f7a176bbd7327aa851d6d7cd",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "在测量范围内至少选取均匀分布的5点作为校准点",
+        "上述过程重复测量3次，取平均值作为测量结果，测量结果中取其最大值"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH08",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "physical_page": 9,
+      "render_sha256": "800d8c4768d4aba5687497611981ac9ead742f25eac2e0c7a182eb245ed66fcb",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "建议最长复校时间间隔不超过1年",
+        "送校单位可根据实际使用情况决定复校时间间隔"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH09",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "physical_page": 6,
+      "render_sha256": "acb7744467368fecd94acf5fdf30ad9d694c9aaeb0873c67217c5afe4a143d86",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "压向≤5000kN，拉向≤500kN",
+        "大力值作动器也可参考本规范",
+        "校准方向：压向为正"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH09",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "physical_page": 7,
+      "render_sha256": "7ab61a916c61fbef270e65fa5ca7f2bb485e5969e7a557e888eb61e36d431883",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "需要有与作动器相匹配的链接螺栓、拉环、千斤顶及拉向力校准装置"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH09",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "physical_page": 8,
+      "render_sha256": "f5e25530fe31640912d81b34be8f79144c6af31172ae94f38ba79d855e66397a",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "以数显千分表为标准器测量作动器测量范围（0~150）mm",
+        "以跟踪仪为标准器测量作动器测量范围（150~3000）mm",
+        "要保持数显千分表与移动方向平行",
+        "上述过程重复测量3次，取平均值作为测量结果"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH09",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "physical_page": 9,
+      "render_sha256": "051e240fa18d525732f2ef37809ef26637d47cf7fde440aeade26785c3c3bcd7",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "校准结果仅对被校对象有效的声明",
+        "未经实验室书面批准，不得部分复制证书的声明"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH10",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "physical_page": 6,
+      "render_sha256": "17179bb62a0911d28ea98f5b664c113be3d5d8acd8b308ab3488325ef21c099d",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "测量范围不超过（-2500~2500）Pa"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH10",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "physical_page": 8,
+      "render_sha256": "10a6e29b6cbfed9f9715c562467098d098a10ee15cad21d801c77ff5c6eb749f",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "温度：（20±5）℃，温度波动不超过±0.5℃/10min",
+        "相对湿度：不大于85%",
+        "所需标准器的测量范围应不小于压差计的测量范围",
+        "标准器的最大允许误差绝对值应不大于被校准压差计最大允许误差绝对值的1/3"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH10",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "physical_page": 9,
+      "render_sha256": "8a32caa7dc1cd09dbb706289a145b07be572b054a565435e7b0099567b1e3dc0",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "标准器、压差计、气源应在校准环境条件下至少放置2h",
+        "通电预热时间应满足制造厂商提供的信息，一般不少于30min"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH10",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "physical_page": 10,
+      "render_sha256": "95859f55e93595c79fcb13fd799431f79cb8d2391f4ba50dfdb5b9c67b2b2c2a",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "具有正压、负压量程压差计的校准点不少于9个点（含零点），应包含测量上限和下限",
+        "仅有正压量程压差计的校准点不少于5个点（含零点），应包含测量上限"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH11",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "physical_page": 6,
+      "render_sha256": "d3c37dafb2b3ea2f3fc91005242eca822aca3977ed5f97fe86aaa416a232934a",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "本规范适用于纤维内窥镜、电子内窥镜及光学内窥镜等工业内窥镜的校准",
+        "通过光导纤维传像束来传送图像",
+        "通过一组光学透镜来传送图像，工作部件通常不能弯曲"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH11",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "physical_page": 7,
+      "render_sha256": "01028514416945c01ba8650261d8ae03b39ea2c59c66f4b5d101f630a35c87ab",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "以顶点位于工业内窥镜头端部的锥角值（度）表示",
+        "纤维/电子内窥镜：大于1500lx",
+        "光学内窥镜：不小于仪器使用说明书标称值的90%",
+        "工作长度：仪器使用说明书的标称值×（1±1.2%）",
+        "工作外径：不大于仪器使用说明书（标称值+0.2）mm"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH12",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "physical_page": 5,
+      "render_sha256": "5afa33f89eacdab7815c76378a553c1c3001f3b73b60c67b2f156eb917cd7d40",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "本规范适用于触针式表面轮廓测量仪的校准"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH12",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "physical_page": 6,
+      "render_sha256": "a5d90ddf92e0de2b8777c1d13186009f9aedf4b2f2f8c8ebb3f59b93a945d6b3",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "室内温度应在（20±3）℃范围内",
+        "室温变化不超过1℃/h",
+        "室内湿度不超过75%RH",
+        "在室内平衡温度的时间不少于2h",
+        "被校仪器连续通电预热时间不少于30min",
+        "作为校准，不判定合格与否，上述计量特性的指标仅供参考",
+        "轮廓坐标测量系统误差",
+        "校准球"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH13",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "physical_page": 6,
+      "render_sha256": "ad15cd15e091335c49897756aeaa1d9f54edb6edd765e650298eb61ba1c001ab",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "测量面的表面粗糙度Ra值不大于0.8μm",
+        "圆锥螺纹塞规基面的中径误差不大于0.009mm",
+        "圆锥螺纹环规基面的中径误差不大于0.015mm"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH13",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "physical_page": 7,
+      "render_sha256": "afad8cf3189c4f0f418c7badba06c74fd152672431223d1f96e554a601456736",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "上述计量特性的指标仅供参考",
+        "室内温度应在（20±5）℃",
+        "室内湿度不超过75%RH",
+        "应在室内放置不少于1个小时",
+        "螺纹量规代号和尺寸代号、制造厂商标、出厂年月",
+        "不应有裂纹、毛刺、铁屑",
+        "允许有不影响使用的划痕"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH14",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "physical_page": 5,
+      "render_sha256": "6e42e41e6db18f4407b880d9f07f80ad5d1889254a2c42b9906889ae49d33b72",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "分度值为0.001mm，测量范围（0-300）mm",
+        "以量块作为标准器",
+        "指示表的读数与量块实际值相比较"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH14",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "physical_page": 6,
+      "render_sha256": "10ec1ad3e1513f132042c817f0c5e9742b1abb6a21260f790f172cd2dc5a06e2",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "室内温度应在（20±2）℃范围内",
+        "室温变化不超过1℃/h",
+        "湿度不超过65%RH",
+        "在室内连续平衡温度的时间不少于2h",
+        "示值变动性",
+        "量块",
+        "4等"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH15",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "physical_page": 5,
+      "render_sha256": "e60444981c3d3f2684b2f5642c46be84cf750f4947039829448a2ad70143b12b",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "检具重复精度能力系数",
+        "检具准确精度能力系数",
+        "检具一般由定位装置、夹紧装置、测量装置和辅助（传动和导向）装置组成",
+        "工作面的表面粗糙度Ra值不大于0.2μm",
+        "作为校准，不判断合格与否，上述计量特性的指标仅供参考"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH15",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "physical_page": 6,
+      "render_sha256": "c8284d3e97dc0d5352f85d1ac62c9f585d5b57ecfdf16e88002abbe98ef30223",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "室内温度为（20±5）℃",
+        "室内湿度不超过75%RH",
+        "平衡温度时间不少于2h",
+        "各组成部件应完好无缺，连接应紧固可靠",
+        "定位装置、夹紧装置应准确牢固，传动装置操作应灵活无卡滞"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH16",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "physical_page": 5,
+      "render_sha256": "9d7ea56e15912e858599d240ecaf715f1861c686ca428ff86efda942ff9b147a",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "深度量规、角度量规、形状、位置量规"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH16",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "physical_page": 6,
+      "render_sha256": "2e9ee7966ac5985757b2866fe1ef6b317dfe0ff984c6cce5f0c2191d0169bceb",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "产品名称、型号/规格、主要技术参数、出厂编号、制造厂名或商标及生产日期",
+        "室内温度为（20±5）℃",
+        "室内湿度不超过75%RH",
+        "平衡温度时间不少于2h",
+        "工作面的表面粗糙度Ra值不大于0.2μm",
+        "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+        "周围应无影响校准结果的振动、冲击、电磁场或其它干扰源"
+      ],
+      "source_text_kind": "scan"
+    },
+    {
+      "source_id": "MFG-ZH17",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "physical_page": 7,
+      "render_sha256": "cf711615abe73c11e5295fdb7d0c2fefd07d8a89a06d5dafa36221cf4f4e5085",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "l0为引伸计的夹持位置，此项不需校准",
+        "对应于双侧引伸计的标距"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH17",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "physical_page": 8,
+      "render_sha256": "8ebdc69ac87ee7f6bfb681bd347a7bbe5f17ce844810fdfb5f09e0667506c128",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "引伸计标距误差在不拔下双侧引伸计定位针的情况下测量",
+        "取两侧引伸计标距误差绝对值最大者",
+        "应在测量环境中稳定不少于30min，待温度平衡后进行校准",
+        "均匀选取至少5个校准点，校准点包括满量程点但不包括零点"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH17",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "physical_page": 9,
+      "render_sha256": "dc739749ad41d575b2e711ee060fabaebfa438c06c8758586c639e0f875bc4ee",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "测量范围1/3处、2/3处校准点分别进行校准，每处校准点只做一次测量"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH18",
+      "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "physical_page": 7,
+      "render_sha256": "4b287e0672ee367e1b5d002ec040bd9251a7c9796efc60d75f240be83af88428",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "测量温度（20±1）℃；相对湿度：≤85%",
+        "国家一级或国家二级有证标准黏度液",
+        "将选用的一种标准黏度液放入恒温槽内，保持在测量温度±0.1℃内并恒温30min左右",
+        "放开堵住的手指，同时启动秒表开始记时"
+      ],
+      "source_text_kind": "native_pdf_text"
+    },
+    {
+      "source_id": "MFG-ZH18",
+      "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "physical_page": 8,
+      "render_sha256": "4f3ac09fd7829a86c1aa670b716793a40694f4eb0c5ea2f8ff73dfe2154a6a32",
+      "render_method": "Poppler pdftoppm 125dpi, complete page",
+      "verification": "complete_original_page_visually_inspected",
+      "verified_anchors": [
+        "在出现断流瞬间停止记时",
+        "修正系数小数点后保留两位数字"
+      ],
+      "source_text_kind": "native_pdf_text"
+    }
+  ],
+  "source_editions": {
+    "MFG-ZH11": "JJF（吉）69-2014",
+    "MFG-ZH12": "JJF（吉）25-2009",
+    "MFG-ZH13": "JJF（吉）21-2009",
+    "MFG-ZH14": "JJF（吉）20-2009",
+    "MFG-ZH15": "JJF（吉）19-2009",
+    "MFG-ZH16": "JJF（吉）15-2009"
+  },
+  "limitation": "只复核题目依赖的完整页面和证据，不认证其他页、全文OCR或最新适用性。扫描真值没有替换或输入OCR。"
+}

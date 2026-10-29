@@ -19,3 +19,9 @@ sample_docs/manufacturing_public_v2.sources.json -text
 evals/manufacturing_public_v2/** -text whitespace=cr-at-eol
 scripts/manufacturing_public_sources.py text eol=lf
 scripts/manufacturing_public_questions.py text eol=lf
+sample_docs/manufacturing_zh_v3/** -text whitespace=cr-at-eol
+sample_docs/manufacturing_zh_v3/documents/** -text -whitespace
+sample_docs/manufacturing_zh_v3/originals/** -text -whitespace
+sample_docs/manufacturing_zh_v3.sources.json -text
+evals/manufacturing_zh_v3/** -text whitespace=cr-at-eol
+scripts/*manufacturing_zh*.py text eol=lf
