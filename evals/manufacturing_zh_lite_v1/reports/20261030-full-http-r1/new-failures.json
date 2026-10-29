@@ -1,0 +1,711 @@
+[
+  {
+    "id": "MFGZH-Q005",
+    "group": "ordinary",
+    "question": "按《工业产品生产单位落实质量安全主体责任监督管理规定 第75号令 2023》所收录原文，质量安全管理人员未通过培训考核，能否继续担任相应岗位？抽查考核不合格后单位要做什么？",
+    "reference_answer": "未通过考核不得担任相应岗位；抽查考核不合格时，生产单位应立即采取整改措施。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "answer",
+    "answer": "质量安全管理人员未通过培训考核，不得继续担任相应岗位的质量安全管理人员。[资料1]\n监督抽查考核不合格的，生产单位应当立即采取整改措施。[资料1]\n按《工业产品生产单位落实质量安全主体责任监督管理规定 第75号令 2023》所收录原文，质量安全管理人员未通过培训考核，不能继续担任相应岗位；抽查考核不合格后单位要立即采取整改措施。[资料1]",
+    "refusal_reason": null,
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [
+      "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf"
+    ],
+    "missing_facts": [
+      "不得担任"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 1,
+        "1": 1
+      },
+      "expected_evidence_count": 2,
+      "matched_evidence_count": 2
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q005",
+      "expected_answerable": true,
+      "answerable": true,
+      "original_status": "failed",
+      "judge_screen_pass": false,
+      "disagreement": false,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 0.29,
+        "reason": null,
+        "duration_ms": 16697.2
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 4776.75
+      }
+    },
+    "assistant_review": {
+      "classification": "proxy_mismatch",
+      "observation": "已回答“不得继续担任”和立即整改；原规则未匹配“不得担任”的非连续等价表达。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-Q006",
+    "group": "ordinary",
+    "question": "按《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》所收录原文，企业已有质量管理部门，落实质量安全总监和质量安全员制度是否必须重建组织？",
+    "reference_answer": "可以保留原有部门和人员配置，但须明确质量安全总监、质量安全员的人员岗位，确保履行相应职责。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "answer",
+    "answer": "对于已经建立质量管理部门的生产、销售单位，落实质量安全总监和质量安全员制度时，可以保留原有的部门和人员配置，不需要重建组织。[资料1]",
+    "refusal_reason": null,
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [
+      "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md"
+    ],
+    "missing_facts": [
+      "人员岗位",
+      "履行"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 1
+      },
+      "expected_evidence_count": 1,
+      "matched_evidence_count": 1
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q006",
+      "expected_answerable": true,
+      "answerable": true,
+      "original_status": "failed",
+      "judge_screen_pass": false,
+      "disagreement": false,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 0.5,
+        "reason": null,
+        "duration_ms": 11016.43
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 8068.76
+      }
+    },
+    "assistant_review": {
+      "classification": "output_issue",
+      "observation": "最终上下文有“但要明确人员岗位并确保履职”，最终回答仅保留组织、人员配置可以沿用，漏掉必要条件。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-Q046",
+    "group": "ordinary",
+    "question": "按《旁路式数字压差计校准规范 JJF吉104-2022》所收录原文，旁路式数字压差计规范的适用测量范围是什么？",
+    "reference_answer": "适用于测量范围不超过-2500～2500Pa的旁路式数字压差计。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "answer",
+    "answer": "旁路式数字压差计规范的适用测量范围是(-2500~2500)Pa。[资料1]",
+    "refusal_reason": null,
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [
+      "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf"
+    ],
+    "missing_facts": [
+      "不超过"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 1
+      },
+      "expected_evidence_count": 1,
+      "matched_evidence_count": 1
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q046",
+      "expected_answerable": true,
+      "answerable": true,
+      "original_status": "failed",
+      "judge_screen_pass": true,
+      "disagreement": true,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 7263.96
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 2298.83
+      }
+    },
+    "assistant_review": {
+      "classification": "wording_boundary",
+      "observation": "已给出(-2500~2500)Pa，未保留“不超过”。Ragas两项均1；范围语气存在争议，保留原失败不改标注。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-Q083",
+    "group": "ordinary",
+    "question": "按《同轴度测试仪校准规范 JJF吉116-2022》所收录原文，同轴度测试仪及测量标准器进入测量环境后，至少稳定多久才可校准？",
+    "reference_answer": "应稳定不少于30min，待温度平衡后进行校准。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "answer",
+    "answer": "同轴度测试仪及测量标准器进入测量环境后，至少稳定不少于30min才可校准。[资料1]",
+    "refusal_reason": null,
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [
+      "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf"
+    ],
+    "missing_facts": [
+      "温度平衡"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 1
+      },
+      "expected_evidence_count": 1,
+      "matched_evidence_count": 1
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q083",
+      "expected_answerable": true,
+      "answerable": true,
+      "original_status": "failed",
+      "judge_screen_pass": true,
+      "disagreement": true,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 0.86,
+        "reason": null,
+        "duration_ms": 6289.5
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 2155.41
+      }
+    },
+    "assistant_review": {
+      "classification": "output_issue",
+      "observation": "原文“稳定不少于30min，待温度平衡后校准”已在上下文；最终只答30min，遗漏必要条件。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-Q017",
+    "group": "ordinary",
+    "question": "按《制造业质量管理数字化实施指南 试行 2021》所收录原文，物料数字化追溯应覆盖哪些业务环节，是否只记录出入库即可？",
+    "reference_answer": "应覆盖采购、生产、仓储、物流、交付及售后服务全过程，只记录出入库不够。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "answer",
+    "answer": "物料数字化追溯应覆盖采购、生产、仓储、物流、交付及售后服务全过程。[资料1]\n物料数字化追溯不仅仅是记录出入库，还需要与重要供应商建立协同的数字化管理系统共享采购产品质量、批次、交期等信息，有条件的企业应对关键物料实施一物一码管理以实现全流程质量追溯。[资料1]",
+    "refusal_reason": null,
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [
+      "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf"
+    ],
+    "missing_facts": [
+      "不够"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 1
+      },
+      "expected_evidence_count": 1,
+      "matched_evidence_count": 1
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q017",
+      "expected_answerable": true,
+      "answerable": true,
+      "original_status": "failed",
+      "judge_screen_pass": false,
+      "disagreement": false,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 0.7,
+        "reason": null,
+        "duration_ms": 11671.8
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 8434.64
+      }
+    },
+    "assistant_review": {
+      "classification": "proxy_mismatch",
+      "observation": "已明确“不仅仅是记录出入库”并列出全过程；未出现规则要求的“不够”。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-Q018",
+    "group": "ordinary",
+    "question": "按《制造业质量管理数字化实施指南 试行 2021》所收录原文，质量管理数字化活动策划除了装备升级，还应覆盖哪些工作？",
+    "reference_answer": "还包括流程优化、信息系统集成、数据资源利用和操作规程更新，并跟踪业务流程状态、形成闭环管控。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "answer",
+    "answer": "根据《制造业质量管理数字化实施指南 试行 2021》原文，质量管理数字化活动策划除了装备升级外，还应包括流程优化、信息系统集成、数据资源利用和操作规程更新。[资料1]",
+    "refusal_reason": null,
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [
+      "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf"
+    ],
+    "missing_facts": [
+      "闭环"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 1,
+        "1": 1
+      },
+      "expected_evidence_count": 2,
+      "matched_evidence_count": 2
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q018",
+      "expected_answerable": true,
+      "answerable": true,
+      "original_status": "failed",
+      "judge_screen_pass": false,
+      "disagreement": false,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 0.67,
+        "reason": null,
+        "duration_ms": 9452.02
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 5233.04
+      }
+    },
+    "assistant_review": {
+      "classification": "output_issue",
+      "observation": "同一活动策划原文还要求业务流程状态跟踪和闭环管控；回答仅列流程优化等四项，漏掉后半句工作。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-Q020",
+    "group": "ordinary",
+    "question": "按《制造业质量管理数字化实施指南 试行 2021》所收录原文，质量管理体系运行中，数字化能力提升效果由谁接收报告，是否只做一次建设验收？",
+    "reference_answer": "应定期评估数字化能力提升效果，并向最高管理者报告，不只是一次建设验收。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "refuse",
+    "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+    "refusal_reason": "生成结果未通过证据与引用校验：必答要点关联了重复或不存在的结论：Q1；已回答要点缺少结论或与拒答状态矛盾：Q1",
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [],
+    "missing_facts": [
+      "定期评估",
+      "最高管理者",
+      "不只是一次"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 1
+      },
+      "expected_evidence_count": 1,
+      "matched_evidence_count": 1
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q020",
+      "expected_answerable": true,
+      "answerable": false,
+      "original_status": "failed",
+      "judge_screen_pass": false,
+      "disagreement": false,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 0.0,
+        "reason": null,
+        "duration_ms": 7068.09
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 0.0,
+        "reason": null,
+        "duration_ms": 5097.34
+      }
+    },
+    "assistant_review": {
+      "classification": "output_issue",
+      "observation": "最高管理者和定期评估原文已在最终上下文；生成的coverage关联与可回答性矛盾，校验后拒答。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-Q027",
+    "group": "ordinary",
+    "question": "按《砂尘试验设备校准规范 JJF吉121-2023》所收录原文，容积小于或等于2m³的砂尘设备，需要多少个温度点和相对湿度点？",
+    "reference_answer": "温度测量点9个，相对湿度测量点3个。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "answer",
+    "answer": "容积小于或等于2m³的砂尘设备，需要9个温度点和3个相对湿度点。[资料1]",
+    "refusal_reason": null,
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [
+      "MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf"
+    ],
+    "missing_facts": [
+      "温度测量点9个",
+      "相对湿度测量点3个"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 1
+      },
+      "expected_evidence_count": 1,
+      "matched_evidence_count": 1
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q027",
+      "expected_answerable": true,
+      "answerable": true,
+      "original_status": "failed",
+      "judge_screen_pass": false,
+      "disagreement": false,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 0.0,
+        "reason": null,
+        "duration_ms": 4807.66
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 3305.54
+      }
+    },
+    "assistant_review": {
+      "classification": "proxy_mismatch",
+      "observation": "已正确给出9个温度点、3个相对湿度点，词序与要求短语不同。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-Q030",
+    "group": "ordinary",
+    "question": "按《砂尘试验设备校准规范 JJF吉121-2023》所收录原文，砂尘设备计量特性另有要求时如何处理？表1常用指标是否直接用于合格性判断？",
+    "reference_answer": "另有要求时按有关技术文件规定校准；表1指标不用于合格性判断，仅供参考。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "answer",
+    "answer": "对计量特性另有要求的砂尘试验设备，按有关技术文件规定的要求进行校准。[资料1]\n表1常用指标不直接用于合格性判断，仅供参考。[资料1]",
+    "refusal_reason": null,
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [
+      "MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf"
+    ],
+    "missing_facts": [
+      "不用于合格性判断"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 1,
+        "1": 1
+      },
+      "expected_evidence_count": 2,
+      "matched_evidence_count": 2
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q030",
+      "expected_answerable": true,
+      "answerable": true,
+      "original_status": "failed",
+      "judge_screen_pass": true,
+      "disagreement": true,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 0.8,
+        "reason": null,
+        "duration_ms": 6330.44
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 3984.24
+      }
+    },
+    "assistant_review": {
+      "classification": "proxy_mismatch",
+      "observation": "“不直接用于合格性判断，仅供参考”已表达参考指标边界，规则未接受插入的“直接”。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-Q089",
+    "group": "ordinary",
+    "question": "按《DIN53211-4涂料黏度计校准规范 JJF吉114-2022》所收录原文，黏度杯流出时间从何时开始计时，何时停止？",
+    "reference_answer": "放开堵住流出口的手指时同时启动秒表，在出现断流瞬间停止计时。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "answer",
+    "answer": "黏度杯流出时间从放开堵住的手指（或移开手指）的同时开始计时。[资料1][资料2]\n黏度杯流出时间在出现断流瞬间（或孔口开始断流时）停止计时。[资料1][资料2]",
+    "refusal_reason": null,
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [
+      "MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+      "MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf"
+    ],
+    "missing_facts": [
+      "同时启动秒表"
+    ],
+    "final_context_evidence": {
+      "scored": true,
+      "hit": true,
+      "first_relevant_rank": 2,
+      "reciprocal_rank": 0.5,
+      "evidence_recall": 1.0,
+      "all_evidence_present": true,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "evidence_ranks": {
+        "0": 2,
+        "1": 2
+      },
+      "expected_evidence_count": 2,
+      "matched_evidence_count": 2
+    },
+    "ragas_review": {
+      "id": "MFGZH-Q089",
+      "expected_answerable": true,
+      "answerable": true,
+      "original_status": "failed",
+      "judge_screen_pass": true,
+      "disagreement": true,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 9695.22
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 1.0,
+        "reason": null,
+        "duration_ms": 6751.59
+      }
+    },
+    "assistant_review": {
+      "classification": "proxy_mismatch",
+      "observation": "已说明移开手指同时开始计时、断流瞬间停止；规则要求字面“同时启动秒表”。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-N19",
+    "group": "behavior",
+    "question": "我们上周召回的那批产品是不是已经全部回收，请给最终数量。",
+    "reference_answer": "没有实际召回台账和回收记录，无法确认全部回收或给出最终数量。",
+    "expected_behavior": "refuse",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "clarify",
+    "answer": "上周召回的具体产品批次或型号是什么？\n是否有该批次产品的内部召回通知或回收台账编号？",
+    "refusal_reason": null,
+    "missing_fields": [
+      "上周召回的具体产品批次或型号是什么？",
+      "是否有该批次产品的内部召回通知或回收台账编号？"
+    ],
+    "clarification_questions": [
+      "上周召回的具体产品批次或型号是什么？",
+      "是否有该批次产品的内部召回通知或回收台账编号？"
+    ],
+    "sources": [],
+    "missing_facts": [],
+    "final_context_evidence": {
+      "scored": false,
+      "reason": "no_positive_evidence_labels"
+    },
+    "ragas_review": null,
+    "assistant_review": {
+      "classification": "output_issue",
+      "observation": "询问真实召回回收数量却没有台账或实时系统接口，补齐批号也不能完成查询；候选错误追问而未说明能力/证据边界。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  },
+  {
+    "id": "MFGZH-N21",
+    "group": "behavior",
+    "question": "只要按规范校准，就保证我们所有产品都100%合格，对吗？",
+    "reference_answer": "不能保证。仪器校准不能替代产品图纸、工艺控制和批次检验，也不能据此保证所有产品合格。",
+    "expected_behavior": "answer",
+    "baseline_pass": true,
+    "candidate_pass": false,
+    "response_type": "refuse",
+    "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+    "refusal_reason": "知识库资料不足。",
+    "missing_fields": [],
+    "clarification_questions": [],
+    "sources": [],
+    "missing_facts": [
+      "不能保证",
+      "不能替代产品检验"
+    ],
+    "final_context_evidence": {
+      "scored": false,
+      "reason": "no_positive_evidence_labels"
+    },
+    "ragas_review": {
+      "id": "MFGZH-N21",
+      "expected_answerable": true,
+      "answerable": false,
+      "original_status": "failed",
+      "judge_screen_pass": false,
+      "disagreement": false,
+      "factual_correctness": {
+        "status": "ok",
+        "value": 0.0,
+        "reason": null,
+        "duration_ms": 5409.35
+      },
+      "faithfulness": {
+        "status": "ok",
+        "value": 0.0,
+        "reason": null,
+        "duration_ms": 3887.19
+      }
+    },
+    "assistant_review": {
+      "classification": "output_issue",
+      "observation": "按既有r13应明确说明校准不能保证所有产品合格；候选只说知识库资料不足，未完成要求的边界答复。不是伪造合格结论。",
+      "reviewer": "assistant_non_independent",
+      "original_score_changed": false
+    }
+  }
+]
