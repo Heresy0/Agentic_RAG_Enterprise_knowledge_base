@@ -1,0 +1,31 @@
+{
+  "edition": "ocr-small-experiment-v1",
+  "frozen_at": "2026-10-29T07:21:51.754221+00:00",
+  "baseline_commit": "271ffc4",
+  "profiles": {
+    "baseline": {
+      "dpi": 220,
+      "retry_empty": false
+    },
+    "candidate": {
+      "dpi": 300,
+      "retry_empty": true
+    }
+  },
+  "language": "chi_sim+eng",
+  "annotations_sha256": "8bbc0add085bc8f4beda4f5f0effa93463aeb5c6fe7fd5e17cfe0ddfbb48bf2d",
+  "source_manifest_sha256": "dfface70ea9484dd98b6c425e3428acaf144a3f7e978958d100917cddaaa5315",
+  "original_v3_annotations_sha256": "eda661f0beb4b0aade9e62db2d24c11793ac64521ce9e6573094e7315f650cde",
+  "sample_pages": 21,
+  "independent_sample_pages": 9,
+  "legacy_sample_pages": 12,
+  "independent_checks": 27,
+  "legacy_checks": 55,
+  "protocol": "Two fixed profiles, no per-document tuning. PSM6 is tried once only for whitespace-empty first output. No rotation, denoising, binarization, answer repair or model calls.",
+  "decision": "Offline experiment only; application defaults remain 220DPI/no retry regardless of results. Numeric and table correctness require review; do not promote by text length.",
+  "limitations": [
+    "Only sampled pages, not full-document accuracy.",
+    "All are public scanner PDFs; three documents do not establish broad generalization.",
+    "Existing 150-anchor chunk baseline remains untouched; this measures OCR page text only."
+  ]
+}

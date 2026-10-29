@@ -14,6 +14,8 @@
 
 已补充[PDF明确缺陷修复与回归对照](evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/README.md)：`structured-v6`修正误分栏、下标错行和数量开头正文误作标题，并阻断空OCR页的静默入库。原文、题集与首轮报告保留，困难扫描件识别仍需后续处理。
 
+已完成[小规模离线OCR实验](evals/ocr_small_experiment_v1/reports/20261029-offline-r1/README.md)：增加3份独立扫描件，以固定300DPI＋空结果单次PSM6回退对照现有配置。独立检查10/27→11/27，旧扫描证据仍为25/55且有3处退化；收益不足，应用默认保持220DPI、不开启回退。原有语料、题集及报告不变。
+
 ## 核心能力
 
 - Keycloak OIDC 登录、JWT 签名及 issuer、audience 校验

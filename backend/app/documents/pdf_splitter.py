@@ -670,11 +670,18 @@ def _run_ocr(
     if tesseract_command:
         pytesseract.pytesseract.tesseract_cmd = tesseract_command
     poppler_path = os.getenv("POPPLER_PATH", "").strip() or None
+    raw_dpi = os.getenv("PDF_OCR_DPI", "220")
+    try:
+        dpi = int(raw_dpi)
+    except ValueError as exc:
+        raise ValueError("PDF_OCR_DPI 必须为150到400之间的整数") from exc
+    if not 150 <= dpi <= 400:
+        raise ValueError("PDF_OCR_DPI 必须为150到400之间的整数")
 
     try:
         images = convert_from_path(
             str(path),
-            dpi=220,
+            dpi=dpi,
             first_page=page_number,
             last_page=page_number,
             poppler_path=poppler_path,
@@ -683,10 +690,18 @@ def _run_ocr(
         )
         if not images:
             return ""
-        return pytesseract.image_to_string(
+        text = pytesseract.image_to_string(
             images[0],
             lang=os.getenv("PDF_OCR_LANGUAGE", "chi_sim+eng"),
         )
+        # Opt-in offline candidate: one retry only for truly empty results.
+        # Nonempty output and OCR review markers are never certified here.
+        if not text.strip() and _env_enabled("PDF_OCR_RETRY_EMPTY", default=False):
+            text = pytesseract.image_to_string(
+                images[0], lang=os.getenv("PDF_OCR_LANGUAGE", "chi_sim+eng"),
+                config="--psm 6",
+            )
+        return text
     except Exception as exc:
         raise PdfOcrUnavailableError(
             f"PDF 第 {page_number} 页 OCR 失败：{exc}"

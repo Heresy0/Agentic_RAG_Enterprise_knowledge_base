@@ -25,3 +25,7 @@ sample_docs/manufacturing_zh_v3/originals/** -text -whitespace
 sample_docs/manufacturing_zh_v3.sources.json -text
 evals/manufacturing_zh_v3/** -text whitespace=cr-at-eol
 scripts/*manufacturing_zh*.py text eol=lf
+sample_docs/ocr_independent_v1/** -text whitespace=cr-at-eol
+sample_docs/ocr_independent_v1/documents/** -text -whitespace
+evals/ocr_small_experiment_v1/** -text whitespace=cr-at-eol
+scripts/run_ocr_small_experiment.py text eol=lf

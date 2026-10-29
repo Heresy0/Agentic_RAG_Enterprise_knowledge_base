@@ -1,0 +1,8 @@
+{
+  "run_harness_sha256": "25b7f26f9f2a7d9ba561b3efb02c99d19a1d8efabe9a1dde373fd7ed37613b7f",
+  "final_scorer_sha256": "69abc05635775350db4183b4eb231d78daf1e40dac5d5515bd57955515bfcee0",
+  "run_function_ast_unchanged": true,
+  "note": "OCR结束后仅修正评分中跨页局部编号的复合键。冻结文件不变，实际OCR调用run函数AST相同；评分使用样本页+局部编号，保留全部82项。",
+  "parser_sha256": "43cbada02f5f325ab9b3badf9e929a292adb1e5ef01699f906df230f4fa86ec4",
+  "plan_sha256": "6b00070d8af34e2052476faa452915771d1ed3f3c160fd8fdd769073e9847f0f"
+}
