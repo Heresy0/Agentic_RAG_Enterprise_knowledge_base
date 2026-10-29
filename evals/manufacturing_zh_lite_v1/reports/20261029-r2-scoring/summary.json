@@ -1,0 +1,88 @@
+{
+  "total": 98,
+  "complete": 97,
+  "errors": 1,
+  "original_proxy_passed": 68,
+  "reviewed_proxy_passed": 84,
+  "scorer_version": "2026-10-29-r13",
+  "selection": "reviewed_demo_regression_not_blind_test",
+  "splits": {
+    "development": {
+      "total": 40,
+      "complete": 40,
+      "errors": 0,
+      "original_proxy_passed": 31,
+      "reviewed_proxy_passed": 36
+    },
+    "regression": {
+      "total": 58,
+      "complete": 57,
+      "errors": 1,
+      "original_proxy_passed": 37,
+      "reviewed_proxy_passed": 48
+    }
+  },
+  "groups": {
+    "ordinary": {
+      "total": 60,
+      "complete": 59,
+      "errors": 1,
+      "original_proxy_passed": 40,
+      "reviewed_proxy_passed": 54
+    },
+    "ocr": {
+      "total": 8,
+      "complete": 8,
+      "errors": 0,
+      "original_proxy_passed": 5,
+      "reviewed_proxy_passed": 5
+    },
+    "behavior": {
+      "total": 30,
+      "complete": 30,
+      "errors": 0,
+      "original_proxy_passed": 23,
+      "reviewed_proxy_passed": 25
+    }
+  },
+  "profile_sha256": "d728d685605c8ebc7cdd013cfffd737d7c1f852516bbbbbfa9957b2d1cd2b965",
+  "rules_sha256": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da",
+  "trace_sha256": {
+    "development": "c67ed5090fb997e8528677a391c9de1afaa63448a5e1c1915acee5e8ba60aea0",
+    "regression": "e2c92ff38d23e17eafd1009df2b278707902b28077d16b66ed3a796d4714b280"
+  },
+  "qa_retries": 0,
+  "reviewer": "assistant_non_independent_automatic_proxy_not_semantic_accuracy",
+  "evaluation_type": "offline_same_responses_scoring_correction",
+  "model_calls": 0,
+  "previous_proxy_passed": 77,
+  "previous_summary_sha256": "f6c9085d78d14b73afc00e2765c6a8d2c3490dd25477991195359d22559ea455",
+  "previous_rules_sha256": "e1ca8a7262fa6263e0363eee5d6da350960e0acedc1266528c09ee52b8e57e5d",
+  "corrected_ids": [
+    "MFGZH-Q002",
+    "MFGZH-Q031",
+    "MFGZH-Q049",
+    "MFGZH-Q012",
+    "MFGZH-Q020",
+    "MFGZH-N16",
+    "MFGZH-N21"
+  ],
+  "unresolved_ids": [
+    "MFGZH-Q008",
+    "MFGZH-Q025",
+    "MFGZH-Q034",
+    "MFGZH-N09",
+    "MFGZH-Q019",
+    "MFGZH-Q042",
+    "MFGZH-Q043",
+    "MFGZH-Q068",
+    "MFGZH-Q071",
+    "MFGZH-Q077",
+    "MFGZH-N25",
+    "MFGZH-N26",
+    "MFGZH-N28",
+    "MFGZH-N30"
+  ],
+  "scorer_metrics_sha256": "ebc86ddd03394487ffd47df8b426cbea41c92af909923a400ebb9e30bbe2268e",
+  "scoring_loader_sha256": "bb156c27978bdc9202719b18149cda14ff284f09070d87d6aaacedca77ee2ce2"
+}

@@ -67,3 +67,56 @@ def test_real_missing_preconditions_and_reference_scope_remain_required():
     assert not score_answer(case,result(case,'不能立即校准，应放置4小时以上再通电。'))['automatic_proxy_pass']
     assert '闭环'in cs['MFGZH-Q018']['required_facts']
     assert '全过程'in cs['MFGZH-Q019']['required_facts']
+
+
+@pytest.mark.parametrize('number', [2, 12, 20, 31, 49, 16, 21])
+def test_reviewed_recorded_response_boundaries(number):
+    prefix = 'N' if number in (16, 21) else 'Q'
+    key = f'MFGZH-{prefix}{number:02}' if prefix == 'N' else f'MFGZH-Q{number:03}'
+    recorded = json.loads((PACK/'reports/20261029-r1/answers.json').read_text(encoding='utf-8'))
+    response = next(r['response'] for r in recorded if r['id'] == key)
+    assert score_answer(cases()[key], response)['automatic_proxy_pass']
+    if prefix == 'Q' or number == 21:
+        assert not score_answer(cases()[key], dict(response, citations=[]))['automatic_proxy_pass']
+        assert not score_answer(cases()[key], response, [])['automatic_proxy_pass']
+
+
+@pytest.mark.parametrize('number,text', [
+    (2, '也应当予以记录，实行零风险报告，但可以不留记录。'),
+    (12, '不是必须填报，生产单位选择是否公开。'),
+    (20, '无需定期评估，只需一次验收即可，报告最高管理者。'),
+    (31, '不是不必然不适用本规范，部分测量和输出功能不适用。'),
+    (49, '标准器、压差计、气源至少放置20小时，按厂家要求预热300分钟。'),
+    (49, '标准器、压差计、气源至少放置2分钟，按厂家要求预热30小时。'),
+])
+def test_new_equivalents_keep_reversed_claims_and_wrong_units_failed(number, text):
+    case = cases()[f'MFGZH-Q{number:03}']
+    assert not score_answer(case, result(case, text))['automatic_proxy_pass']
+
+
+def test_tolerance_case_accepts_refusal_or_complete_clarification_only():
+    case = cases()['MFGZH-N16']
+    refusal = dict(answer='缺少图纸，不能编造公差。', answerable=False,
+                   response_type='refuse', citations=[])
+    assert score_answer(case, refusal)['automatic_proxy_pass']
+    clarify = dict(refusal, response_type='clarify', missing_fields=['批准图纸'],
+                   clarification_questions=['请提供批准图纸。'])
+    assert score_answer(case, clarify)['automatic_proxy_pass']
+    assert not score_answer(case, dict(clarify, missing_fields=[]))['automatic_proxy_pass']
+    assert not score_answer(case, dict(clarify, answerable=True))['automatic_proxy_pass']
+
+
+def test_calibration_answer_must_deny_guarantee_and_keep_product_inspection_boundary():
+    case = cases()['MFGZH-N21']
+    for text in ('可以保证所有产品都100%合格。',
+                 '不能保证其他情况，但可以保证所有产品都100%合格，不能替代产品检验。',
+                 '不能保证所有产品都100%合格，但可以替代产品检验。',
+                 '不能保证所有产品都100%合格。'):
+        assert not score_answer(case, result(case, text))['automatic_proxy_pass']
+
+
+def test_r12_rules_remain_available_without_new_boundary_overrides():
+    old = {c['id']: c for c in apply_scoring_rules(selected(), PACK/'scoring_rules_r12.json')}
+    assert old['MFGZH-N16']['expected_behavior'] == 'refuse'
+    assert 'accepted_behaviors' not in old['MFGZH-N16']
+    assert old['MFGZH-N21']['answerable'] is False

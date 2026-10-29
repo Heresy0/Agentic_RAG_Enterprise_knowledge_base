@@ -6,7 +6,7 @@ from urllib.parse import unquote
 from .assertions import fact_assertion_match
 
 
-SCORER_VERSION = "2026-10-29-r12"
+SCORER_VERSION = "2026-10-29-r13"
 
 
 def normalize(value):
@@ -111,14 +111,15 @@ def score_answer(case, response, context=None):
     behavior_correct = None
     if expected_behavior in {"answer", "clarify", "refuse"}:
         actual = response.get("response_type") or ("answer" if response["answerable"] else "refuse")
-        behavior_correct = actual == expected_behavior
-        if expected_behavior == "clarify":
+        behavior_correct = actual in case.get('accepted_behaviors', [expected_behavior])
+        if actual == "clarify":
             questions, fields = response.get("clarification_questions", []), response.get("missing_fields", [])
             behavior_correct = (behavior_correct and not response["answerable"] and not response["citations"]
                 and 1 <= len(questions) <= 3 and 1 <= len(fields) <= 5
                 and all(isinstance(s, str) and s.strip() for s in questions + fields))
     if case["answerable"]:
         proxy_pass = (answerability_correct and not missing and expected.issubset(cited)
+                      and (case.get('citation_requirement') != 'all_supporting_sources' or bool(cited))
                       and integrity is not False and (supported is None or supported == 1))
     else:
         proxy_pass = answerability_correct and not response["citations"]
