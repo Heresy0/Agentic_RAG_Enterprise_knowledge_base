@@ -49,6 +49,38 @@ def version(data, ids):
     return response.json()
 
 
+def test_scoring_annotations_survive_review_revision_and_dataset_export(data):
+    case = opened(data)
+    body = review_body(required_facts=['例外要求'],
+        fact_alternatives={'例外要求': ['例外条件']},
+        fact_assertions={'例外要求': {'polarity': 'positive', 'contradictions': ['无需例外条件']}},
+        expected_behavior='answer', accepted_behaviors=['answer'], citation_requirement='all_supporting_sources')
+    reviewed = data.client.put(f"/api/quality/cases/{case['case']['id']}", json=body)
+    assert reviewed.status_code == 200, reviewed.text
+    dataset = version(data, [case['case']['id']])
+    content = data.client.get(f"/api/quality/datasets/{dataset['id']}/samples")
+    sample = json.loads(content.text.strip())
+    assert sample['fact_alternatives'] == body['fact_alternatives']
+    assert sample['accepted_behaviors'] == ['answer']
+    assert sample['fact_assertions']['例外要求']['contradictions'] == ['无需例外条件']
+    from backend.app.evaluation.metrics import score_answer
+    response = dict(answerable=True, response_type='answer', answer='存在旧版例外条件。',
+                    citations=[dict(document_name=sample['expected_evidence'][0]['document'])])
+    assert score_answer(sample, response)['automatic_proxy_pass']
+    assert not score_answer(sample, dict(response, answer='无需例外条件。'))['automatic_proxy_pass']
+
+
+@pytest.mark.parametrize('extra', [
+    {'fact_alternatives': {'不存在的事实': ['别名']}},
+    {'fact_assertions': {'例外条件': {'polarity': 'unknown'}}},
+    {'expected_behavior': 'answer', 'accepted_behaviors': ['answer', 'refuse']},
+])
+def test_invalid_scoring_annotations_are_rejected(data, extra):
+    case = opened(data)
+    response = data.client.put(f"/api/quality/cases/{case['case']['id']}", json=review_body(**extra))
+    assert response.status_code == 422
+
+
 def test_shared_inbox_includes_unopened_cases_and_creation_is_idempotent(data):
     run_id = shared(data)
     inbox = data.client.get("/api/quality/cases?review_status=pending")

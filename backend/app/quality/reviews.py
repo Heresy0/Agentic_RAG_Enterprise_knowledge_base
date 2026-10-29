@@ -178,6 +178,8 @@ class ReviewStore:
             answerable=payload["expected_answerable"], reference_answer=payload["reference_answer"],
             **({"expected_behavior": payload["expected_behavior"]} if payload.get("expected_behavior") else {}),
             required_facts=payload["required_facts"], forbidden_claims=payload["forbidden_claims"],
+            **{key: payload[key] for key in ('fact_alternatives', 'fact_assertions', 'accepted_behaviors', 'citation_requirement')
+               if payload.get(key)},
             expected_evidence=[dict(item, text=item["quote"]) for item in payload["evidence"]],
             category=case.root_cause, split="regression", source_groups=self.scopes(run),
             group_key=digest([str(run.tenant_id), group]), annotation_version="feedback-review-v1",

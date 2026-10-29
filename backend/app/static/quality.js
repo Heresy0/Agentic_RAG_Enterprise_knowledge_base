@@ -45,6 +45,12 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
     for (const item of data.source.snapshot.history || []) source.append(element("h3", "必要历史"), element("p", item.question), element("pre", item.answer));
     const form = element("form", undefined, "quality-form");
     const review = data.review;
+    for (const [fact, aliases] of Object.entries(review.fact_alternatives || {}))
+      source.append(element("p", `已审核等价表达：${fact} → ${aliases.join("、")}`, "answer-meta"));
+    for (const [fact, rule] of Object.entries(review.fact_assertions || {}))
+      source.append(element("p", `已审核判断约束：${fact}；不接受：${(rule.contradictions || []).join("、") || "无额外字面约束"}`, "answer-meta"));
+    if (review.accepted_behaviors?.length)
+      source.append(element("p", `允许响应：${review.accepted_behaviors.map(value => ({answer:"回答",clarify:"澄清",refuse:"拒答"})[value]).join("、")}`, "answer-meta"));
     const status = options(labels, review.review_status), cause = options({ "": "请选择根因", ...causes }, review.root_cause || "");
     const sample = options({ draft: "样本草稿", approved: "样本审核通过" }, review.sample_status);
     const answerable = options({ "": "尚未确定", true: "有资料可回答", false: "资料不足，应拒答", clarify: "必要条件缺失，应澄清" }, review.expected_behavior === "clarify" ? "clarify" : review.expected_answerable == null ? "" : String(review.expected_answerable));
@@ -76,6 +82,7 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
       event.preventDefault(); submit.disabled = true;
       const lines = node => node.value.split("\n").map(value => value.trim()).filter(Boolean);
       const payload = { expected_revision: data.case.revision, review_status: status.value, sample_status: sample.value, root_cause: cause.value || null,
+        ...Object.fromEntries(["fact_alternatives", "fact_assertions", "accepted_behaviors", "citation_requirement"].filter(key => review[key] != null).map(key => [key, review[key]])),
         review_reason: reason.value, expected_answerable: answerable.value === "" ? null : answerable.value === "true", reference_answer: reference.value.trim() || null,
         ...(answerable.value ? { expected_behavior: answerable.value === "clarify" ? "clarify" : answerable.value === "true" ? "answer" : "refuse" } : {}),
         evaluation_question: evaluationQuestion.value.trim() || null,

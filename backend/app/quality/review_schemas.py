@@ -1,5 +1,5 @@
 """Explicit human decisions; an issue confirmation alone does not approve a sample."""
-from typing import Literal
+from typing import Annotated, Literal
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -7,6 +7,15 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 ReviewStatus = Literal["pending", "confirmed", "dismissed", "needs_evidence"]
 RootCause = Literal["knowledge_missing", "outdated", "parsing", "retrieval", "rerank", "context",
                     "generation", "citation", "false_refusal", "ambiguous", "access_policy", "other"]
+ScoringText = Annotated[str, Field(min_length=1, max_length=500)]
+
+
+class FactAssertionInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    polarity: Literal["positive", "negative"]
+    contradictions: list[ScoringText] = Field(default_factory=list, max_length=32)
+    use_literal: bool = True
+    ignore_remediation_conditionals: bool = False
 
 
 class EvidenceInput(BaseModel):
@@ -34,6 +43,10 @@ class ReviewInput(BaseModel):
     reference_answer: str | None = Field(default=None, max_length=8000)
     evaluation_question: str | None = Field(default=None, min_length=1, max_length=1000)
     required_facts: list[str] = Field(default_factory=list, max_length=32)
+    fact_alternatives: dict[ScoringText, Annotated[list[ScoringText], Field(max_length=16)]] = Field(default_factory=dict, max_length=32)
+    fact_assertions: dict[ScoringText, FactAssertionInput] = Field(default_factory=dict, max_length=32)
+    accepted_behaviors: list[Literal["answer", "clarify", "refuse"]] = Field(default_factory=list, max_length=3)
+    citation_requirement: Literal["none", "all_supporting_sources"] | None = None
     forbidden_claims: list[str] = Field(default_factory=list, max_length=32)
     evidence: list[EvidenceInput] = Field(default_factory=list, max_length=32)
 
@@ -57,6 +70,12 @@ class ReviewInput(BaseModel):
 
     @model_validator(mode="after")
     def approval_contract(self):
+        if (set(self.fact_alternatives) | set(self.fact_assertions)) - set(self.required_facts):
+            raise ValueError("评分修订须对应当前必答事实。")
+        if self.accepted_behaviors and (self.expected_behavior not in self.accepted_behaviors
+                or len(set(self.accepted_behaviors)) != len(self.accepted_behaviors)
+                or any((behavior == "answer") != self.expected_answerable for behavior in self.accepted_behaviors)):
+            raise ValueError("允许的响应类型须与可回答性及预期行为一致。")
         if self.expected_behavior is not None and (self.expected_answerable is None or
                 (self.expected_behavior == "answer") != self.expected_answerable):
             raise ValueError("预期行为与可回答性不一致；澄清和拒答均不可直接作答。")
