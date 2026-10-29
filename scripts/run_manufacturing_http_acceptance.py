@@ -66,9 +66,15 @@ def select_cases(dataset_dir, *, split=None, limit=None, case_ids=None, max_ques
     if (dataset_dir / "splits.json").exists():
         from scripts.validate_manufacturing_public import validate_freeze
         if split not in ("development", "test") or max_questions is None:
-            raise ValueError("V2 requires an explicit --split and --max-questions budget")
-        frozen, splits, _ = validate_freeze(dataset_dir, ROOT / "sample_docs/manufacturing_public_v2")
-        cases = splits[split]
+            raise ValueError("Frozen corpora require an explicit --split and --max-questions budget")
+        edition = json.loads((dataset_dir / "splits.json").read_text(encoding="utf-8")).get("edition")
+        if edition == "manufacturing-zh-v3":
+            from scripts.validate_manufacturing_zh import validate_freeze as validate_zh
+            frozen, _, _ = validate_zh(dataset_dir, ROOT / "sample_docs/manufacturing_zh_v3")
+            cases = load_dataset(dataset_dir / split / "single_turn.jsonl")
+        else:
+            frozen, splits, _ = validate_freeze(dataset_dir, ROOT / "sample_docs/manufacturing_public_v2")
+            cases = splits[split]
         dataset = dataset_dir / split / "single_turn.jsonl"
     else:
         if split is not None:
@@ -102,6 +108,49 @@ def check_v2_inventory(http, base, kb_map, frozen, config):
         expected = {Path(row["file"]).name for row in manifest["documents"] if row["group"] == group}
         if len(rows) != len(expected) or {r["file_name"] for r in rows} != expected or any(r["status"] != "ready" for r in rows):
             raise ValueError("V2 corpus is not fully ready; refuse paid requests against a partial library")
+
+
+def check_zh_inventory(http, base, kb_map, frozen, config, cases):
+    """Require every selected case's source; keep unrelated failed scans visible.
+
+    The bounded development run may proceed with a failed test-only source.
+    A missing/failed source required by any selected case always blocks QA.
+    SQL/hash/vector/version verification is separately bound by an audit file.
+    """
+    if config.get("corpus_manifest_sha256") != frozen["corpus_manifest_sha256"]:
+        raise ValueError("Runtime config is not bound to the frozen Chinese corpus")
+    from backend.app.knowledge.rag import CHUNKING_VERSION
+    from scripts.validate_manufacturing_public import parser_fingerprint
+    audit_path = Path(config["index_audit_file"])
+    if hashlib.sha256(audit_path.read_bytes()).hexdigest() != config.get("index_audit_sha256"):
+        raise ValueError("Index audit fingerprint differs")
+    audit = json.loads(audit_path.read_text(encoding="utf-8"))
+    if (audit["tenant_id"] != config["tenant_id"] or audit["chunking_version"] != CHUNKING_VERSION
+            or audit["parser_sha256"] != parser_fingerprint() or not audit["all_checks_passed"]):
+        raise ValueError("Chinese index audit scope, parser or verification differs")
+    manifest = json.loads((ROOT / "sample_docs/manufacturing_zh_v3/manifest.json").read_text(encoding="utf-8"))
+    expected = {Path(r["file"]).name:r for r in manifest["documents"]}
+    actual = {}
+    for group, kb in kb_map.items():
+        response = http.get(base + "/api/knowledge-bases/" + kb + "/documents", timeout=20)
+        response.raise_for_status()
+        rows = response.json()["items"]
+        names = {Path(r["file"]).name for r in manifest["documents"] if r["group"] == group}
+        if len(rows) != len(names) or {r["file_name"] for r in rows} != names:
+            raise ValueError("Chinese corpus inventory differs")
+        actual.update({r["file_name"]:r for r in rows})
+    audited = {r["file_name"]:r for r in audit["records"]}
+    if set(audited) != set(expected):
+        raise ValueError("Index audit does not cover the frozen corpus")
+    for name, source in expected.items():
+        row, proof = actual[name], audited[name]
+        if (row["id"] != proof["document_id"] or row["status"] != proof["status"]
+                or proof["sha256"] != source["sha256"]
+                or proof["knowledge_base_id"] != kb_map[source["group"]]):
+            raise ValueError("Live inventory changed since the index audit")
+    required = {name for case in cases for name in case["required_source_documents"]}
+    if not required <= actual.keys() or any(actual[name]["status"] != "ready" for name in required):
+        raise ValueError("A selected question requires an unavailable source")
 
 
 def snapshot_trace(case, response, snapshot, *, tenant_id, knowledge_base_ids, latency_ms):
@@ -179,7 +228,10 @@ def main(argv=None):
     if set(kb_map) != {"公共参考", "生产工艺", "质量检验"}:
         raise ValueError("Expected exactly the three isolated manufacturing groups")
     if frozen:
-        check_v2_inventory(http, base, kb_map, frozen, config)
+        if frozen.get("edition") == "manufacturing-zh-v3":
+            check_zh_inventory(http, base, kb_map, frozen, config, cases)
+        else:
+            check_v2_inventory(http, base, kb_map, frozen, config)
     attempts, errors = [], 0
     with (args.output_dir / "traces.jsonl").open("x", encoding="utf-8") as stream:
         for case in cases:
