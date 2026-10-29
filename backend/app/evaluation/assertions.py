@@ -19,7 +19,12 @@ _REMEDIATION_CONDITION = re.compile(
 def _occurrences(text, phrase):
     start = 0
     while phrase and (index := text.find(phrase, start)) >= 0:
-        yield index
+        end = index + len(phrase)
+        # Numeric aliases must not accept 5 as 50 or 9个点 inside 19个点.
+        left_ok = not (phrase[0].isdigit() and index and (text[index-1].isdigit() or text[index-1] == '.'))
+        right_ok = not (phrase[-1].isdigit() and end < len(text) and (text[end].isdigit() or text[end] == '.'))
+        if left_ok and right_ok:
+            yield index
         start = index + len(phrase)
 
 

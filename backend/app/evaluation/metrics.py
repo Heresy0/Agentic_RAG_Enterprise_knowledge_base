@@ -6,7 +6,7 @@ from urllib.parse import unquote
 from .assertions import fact_assertion_match
 
 
-SCORER_VERSION = "2026-10-29-r11"
+SCORER_VERSION = "2026-10-29-r12"
 
 
 def normalize(value):
@@ -69,6 +69,10 @@ def score_answer(case, response, context=None):
         options = [fact, *alternatives.get(fact, [])]
         rule = case.get('fact_assertions', {}).get(fact)
         if rule:
+            if rule.get('use_literal') is False:
+                # Labels such as "不是" are too broad on their own. A reviewed
+                # rule can require complete, scoped assertions instead.
+                options = alternatives.get(fact, [])
             options = [normalize(option) for option in options]
             rule = dict(rule, contradictions=[normalize(value) for value in rule.get('contradictions', [])])
             matched, conflicting = fact_assertion_match(normalize(response['answer']), options, rule)

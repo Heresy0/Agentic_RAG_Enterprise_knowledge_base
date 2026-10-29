@@ -1,0 +1,234 @@
+{
+  "version": "manufacturing-zh-lite-v1",
+  "purpose": "面试演示及已知结果的精简回归，非独立留出或盲测",
+  "baseline_ref": "caf26ea",
+  "source_corpus": "sample_docs/manufacturing_zh_v3",
+  "source_evaluation": "evals/manufacturing_zh_v3",
+  "corpus_manifest_sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6",
+  "documents": [
+    {
+      "id": "MFG-ZH01",
+      "file": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+      "sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH02",
+      "file": "documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+      "sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH03",
+      "file": "documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+      "sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH04",
+      "file": "documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+      "sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH05",
+      "file": "documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+      "sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH06",
+      "file": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+      "sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH07",
+      "file": "documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+      "sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH08",
+      "file": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+      "sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH09",
+      "file": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH10",
+      "file": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+      "sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH12",
+      "file": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+      "sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH14",
+      "file": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+      "sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH15",
+      "file": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+      "sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH16",
+      "file": "documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+      "sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH17",
+      "file": "documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+      "sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "group": "公共参考"
+    },
+    {
+      "id": "MFG-ZH18",
+      "file": "documents/公共参考/MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+      "sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "group": "公共参考"
+    }
+  ],
+  "ocr_passed": [
+    "MFGZH-Q056",
+    "MFGZH-Q058",
+    "MFGZH-Q067",
+    "MFGZH-Q074",
+    "MFGZH-Q076"
+  ],
+  "ocr_known_failures": {
+    "MFGZH-Q068": "关键温度和变化率识别损坏",
+    "MFGZH-Q071": "库内有证据但最终上下文未覆盖",
+    "MFGZH-Q077": "原文标识字段未完整解析入库"
+  },
+  "splits": {
+    "development": {
+      "source_split": "development",
+      "source_sha256": "c8146eface39d50c3f8f5832c062f8f80855a3641bb6b1ef4dddc8b6e83a014e",
+      "sha256": "2d540db80ca6ed1fe8a25890f3282b3487003fe1bc5b541844226a259be5c75e",
+      "ids": [
+        "MFGZH-Q001",
+        "MFGZH-Q002",
+        "MFGZH-Q003",
+        "MFGZH-Q004",
+        "MFGZH-Q005",
+        "MFGZH-Q006",
+        "MFGZH-Q007",
+        "MFGZH-Q008",
+        "MFGZH-Q009",
+        "MFGZH-Q010",
+        "MFGZH-Q021",
+        "MFGZH-Q022",
+        "MFGZH-Q023",
+        "MFGZH-Q024",
+        "MFGZH-Q025",
+        "MFGZH-Q031",
+        "MFGZH-Q032",
+        "MFGZH-Q033",
+        "MFGZH-Q034",
+        "MFGZH-Q035",
+        "MFGZH-Q046",
+        "MFGZH-Q047",
+        "MFGZH-Q048",
+        "MFGZH-Q049",
+        "MFGZH-Q050",
+        "MFGZH-Q081",
+        "MFGZH-Q082",
+        "MFGZH-Q083",
+        "MFGZH-Q084",
+        "MFGZH-Q085",
+        "MFGZH-N01",
+        "MFGZH-N02",
+        "MFGZH-N03",
+        "MFGZH-N04",
+        "MFGZH-N05",
+        "MFGZH-N06",
+        "MFGZH-N07",
+        "MFGZH-N08",
+        "MFGZH-N09",
+        "MFGZH-N10"
+      ],
+      "count": 40
+    },
+    "regression": {
+      "source_split": "test",
+      "source_sha256": "7a7d49ba60f518d99a715c3e843a6777113e407953e8584d92338a35fa0f7f6a",
+      "sha256": "588d27c03af8c8dd010b63fd19e9bd1475bb1ac9d158f96b31b664888fdb964a",
+      "ids": [
+        "MFGZH-Q011",
+        "MFGZH-Q012",
+        "MFGZH-Q013",
+        "MFGZH-Q014",
+        "MFGZH-Q015",
+        "MFGZH-Q016",
+        "MFGZH-Q017",
+        "MFGZH-Q018",
+        "MFGZH-Q019",
+        "MFGZH-Q020",
+        "MFGZH-Q026",
+        "MFGZH-Q027",
+        "MFGZH-Q028",
+        "MFGZH-Q029",
+        "MFGZH-Q030",
+        "MFGZH-Q036",
+        "MFGZH-Q037",
+        "MFGZH-Q038",
+        "MFGZH-Q039",
+        "MFGZH-Q040",
+        "MFGZH-Q041",
+        "MFGZH-Q042",
+        "MFGZH-Q043",
+        "MFGZH-Q044",
+        "MFGZH-Q045",
+        "MFGZH-Q056",
+        "MFGZH-Q058",
+        "MFGZH-Q067",
+        "MFGZH-Q068",
+        "MFGZH-Q071",
+        "MFGZH-Q074",
+        "MFGZH-Q076",
+        "MFGZH-Q077",
+        "MFGZH-Q086",
+        "MFGZH-Q087",
+        "MFGZH-Q088",
+        "MFGZH-Q089",
+        "MFGZH-Q090",
+        "MFGZH-N11",
+        "MFGZH-N12",
+        "MFGZH-N13",
+        "MFGZH-N14",
+        "MFGZH-N15",
+        "MFGZH-N16",
+        "MFGZH-N17",
+        "MFGZH-N18",
+        "MFGZH-N19",
+        "MFGZH-N20",
+        "MFGZH-N21",
+        "MFGZH-N22",
+        "MFGZH-N23",
+        "MFGZH-N24",
+        "MFGZH-N25",
+        "MFGZH-N26",
+        "MFGZH-N27",
+        "MFGZH-N28",
+        "MFGZH-N29",
+        "MFGZH-N30"
+      ],
+      "count": 58
+    }
+  }
+}

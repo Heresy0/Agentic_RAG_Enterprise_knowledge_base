@@ -115,7 +115,7 @@ def check_v2_inventory(http, base, kb_map, frozen, config):
             raise ValueError("V2 corpus is not fully ready; refuse paid requests against a partial library")
 
 
-def check_zh_inventory(http, base, kb_map, frozen, config, cases, *, record_unavailable=False):
+def check_zh_inventory(http, base, kb_map, frozen, config, cases, *, record_unavailable=False, profile=None):
     """Require every selected case's source; keep unrelated failed scans visible.
 
     The bounded development run may proceed with a failed test-only source.
@@ -135,6 +135,9 @@ def check_zh_inventory(http, base, kb_map, frozen, config, cases, *, record_unav
             or audit["parser_sha256"] != parser_fingerprint() or not audit["all_checks_passed"]):
         raise ValueError("Chinese index audit scope, parser or verification differs")
     manifest = json.loads((ROOT / "sample_docs/manufacturing_zh_v3/manifest.json").read_text(encoding="utf-8"))
+    if profile:
+        allowed={d['id']for d in profile['documents']}
+        manifest['documents']=[d for d in manifest['documents']if d['id']in allowed]
     expected = {Path(r["file"]).name:r for r in manifest["documents"]}
     actual = {}
     for group, kb in kb_map.items():
@@ -210,7 +213,8 @@ def main(argv=None):
     parser.add_argument("--dataset-dir", type=Path, default=ROOT / "evals/manufacturing_lite")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--allow-model-calls", action="store_true")
-    parser.add_argument("--split", choices=("development", "test"))
+    parser.add_argument("--split", choices=("development", "test", "regression"))
+    parser.add_argument("--profile",type=Path,help="Explicit validated demonstration/regression subset")
     parser.add_argument("--limit", type=int)
     parser.add_argument("--case-ids", nargs="+")
     parser.add_argument("--max-questions", type=int, help="Required V2 question ceiling; not a token or monetary cost cap")
@@ -223,8 +227,22 @@ def main(argv=None):
     base = config["base_url"].rstrip("/")
     if base != "http://127.0.0.1:8000":
         raise ValueError("This runner only targets the existing local demo API")
-    dataset, cases, frozen = select_cases(args.dataset_dir, split=args.split, limit=args.limit,
-                                          case_ids=args.case_ids, max_questions=args.max_questions)
+    profile=None
+    if args.profile:
+        from scripts.build_manufacturing_demo_profile import load_profile
+        profile=load_profile(args.profile)
+        if args.split not in profile['splits']:raise ValueError('精简集仅支持development和regression，不称独立留出集')
+        if config.get('profile_sha256')!=hashlib.sha256(args.profile.read_bytes()).hexdigest():raise ValueError('运行环境与精简配置不一致')
+        definition=profile['splits'][args.split];ids=definition['ids']
+        if args.case_ids:
+            if not set(args.case_ids)<=set(ids):raise ValueError('题目不在精简集内')
+            ids=args.case_ids
+        _,cases,frozen=select_cases(ROOT/profile['source_evaluation'],split=definition['source_split'],
+            limit=args.limit,case_ids=ids,max_questions=args.max_questions)
+        dataset=args.profile.parent/args.split/'single_turn.jsonl'
+    else:
+        dataset, cases, frozen = select_cases(args.dataset_dir, split=args.split, limit=args.limit,
+                                              case_ids=args.case_ids, max_questions=args.max_questions)
     if args.output_dir.exists() and any(args.output_dir.iterdir()):
         raise ValueError("Choose an empty output directory; previous runs are never overwritten")
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -246,7 +264,8 @@ def main(argv=None):
         parser.error("Source-blocked accounting is only supported for the frozen Chinese corpus")
     if frozen:
         if frozen.get("edition") == "manufacturing-zh-v3":
-            unavailable = check_zh_inventory(http, base, kb_map, frozen, config, cases, record_unavailable=args.record_unavailable_sources)
+            unavailable = check_zh_inventory(http, base, kb_map, frozen, config, cases,
+                record_unavailable=args.record_unavailable_sources,profile=profile)
         else:
             check_v2_inventory(http, base, kb_map, frozen, config)
     attempts, errors = [], 0
@@ -296,6 +315,9 @@ def main(argv=None):
                    qa_request_retries=0, unobserved_stages=["vector", "keyword", "fusion", "rerank"], attempts=attempts)
     summary.update(qa_requests_sent=sum(r["request_sent"] for r in attempts),
         source_unavailable=sum(r["error"] == "SourceUnavailable" for r in attempts), record_unavailable_sources=args.record_unavailable_sources)
+    if profile:
+        summary.update(profile_version=profile['version'],profile_sha256=hashlib.sha256(args.profile.read_bytes()).hexdigest(),
+            selection_purpose=profile['purpose'])
     (args.output_dir / "http-summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return int(bool(errors))
 

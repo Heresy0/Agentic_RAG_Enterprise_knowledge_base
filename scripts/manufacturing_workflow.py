@@ -44,6 +44,7 @@ def provision():
     from scripts.provision_manufacturing_demo import create_demo
     from scripts.manufacturing_corpus_data import ROLE_PERMISSIONS
     assert not (RUN/'state.json').exists() and not (RUN/'credentials.json').exists()
+    if not (RUN/'files-before.json').exists():raise ValueError('须先完成数据库与文件基线检查')
     assert read(RUN/'before.json')['active_jobs']==0
     r=requests.post('http://127.0.0.1:8080/realms/master/protocol/openid-connect/token',data={
         'grant_type':'password','client_id':'admin-cli','username':ENV['KEYCLOAK_ADMIN_USERNAME'],
@@ -94,6 +95,10 @@ def upload():
     from scripts.validate_manufacturing_zh import validate_freeze
     from scripts.validate_manufacturing_public import inventory
     frozen,_,_=validate_freeze(ROOT/'evals/manufacturing_zh_v3',CORPUS);manifest=inventory(CORPUS)
+    profile = selected_profile()
+    if profile:
+        allowed={row['id']for row in profile['documents']}
+        manifest['documents']=[row for row in manifest['documents']if row['id']in allowed]
     cfg=state();s=client();assert not (RUN/'uploads.json').exists()
     for kb in cfg['knowledge_bases'].values():
         r=s.get(BASE+'/api/knowledge-bases/'+kb+'/documents',timeout=20);r.raise_for_status();assert not r.json()['items']
@@ -108,7 +113,8 @@ def upload():
             document_id=result['document']['id'],job_id=result['indexing_job']['id'],http_status=r.status_code,
             request_id=r.headers.get('X-Request-ID')));dump('uploads.json',rows)
         print(json.dumps(dict(uploaded=source['id'],count=len(rows),status=r.status_code)),flush=True)
-    dump('system_config.json',dict(base_url=BASE,**cfg,corpus_manifest_sha256=frozen['corpus_manifest_sha256']))
+    dump('system_config.json',dict(base_url=BASE,**cfg,corpus_manifest_sha256=frozen['corpus_manifest_sha256'],
+        **({'profile_file':str(ARGS.profile.resolve()),'profile_sha256':sha(ARGS.profile.read_bytes())}if profile else {})))
 def status():
     s=client();docs=[];jobs=[]
     for kb in state()['knowledge_bases'].values():
@@ -129,15 +135,28 @@ def preserve():
 def file_snapshot(name):
     import subprocess
     # The initial Git base, not the current mutable filesystem, defines the lock.
-    entries=subprocess.run(['git','ls-tree','-rz','--full-tree','8b6ed0c'],cwd=ROOT,check=True,capture_output=True).stdout
+    reference_path=RUN/'baseline-ref.json'
+    if name=='before':
+        if reference_path.exists():
+            if (RUN/'files-before.json').exists()or read(reference_path)['ref']!=ARGS.baseline_ref:raise ValueError('基线引用记录已存在')
+        else:dump(reference_path.name,dict(ref=ARGS.baseline_ref))
+    reference=read(reference_path)['ref']if reference_path.exists()else '8b6ed0c'
+    entries=subprocess.run(['git','ls-tree','-rz','--full-tree',reference],cwd=ROOT,check=True,capture_output=True).stdout
+    locked={row['path']for row in read(RUN/'files-before.json')}if name=='after'and (RUN/'files-before.json').exists()else None
     rows=[]
     for entry in entries.split(b'\0'):
         if not entry:continue
         head,path=entry.split(b'\t',1)
-        if not path.startswith((b'sample_docs/manufacturing',b'sample_docs/ocr_independent',b'evals/manufacturing')):continue
+        if not path.startswith((b'sample_docs/',b'evals/')):continue
+        if locked is not None and path.decode()not in locked:continue
         raw=(ROOT/path.decode()).read_bytes()
         actual=hashlib.sha1(('blob '+str(len(raw))+'\0').encode()+raw).hexdigest()
-        if actual != head.split()[2].decode():raise ValueError('冻结资料已变化：'+path.decode())
+        if actual != head.split()[2].decode():
+            # Respect repository clean filters (notably Windows CRLF). Raw byte
+            # hashes below still compare the actual before/after file contents.
+            actual=subprocess.run(['git','hash-object','--path='+path.decode(),path.decode()],cwd=ROOT,
+                capture_output=True,check=True,text=True).stdout.strip()
+            if actual!=head.split()[2].decode():raise ValueError('冻结资料已变化：'+path.decode())
         rows.append(dict(path=path.decode(),sha256=sha(raw)))
     dump('files-'+name+'.json',rows)
 
@@ -163,7 +182,10 @@ def audit():
     import subprocess
     from scripts.validate_manufacturing_public import parser_fingerprint
     cfg=state()
-    result=subprocess.run(['docker','exec','-i','enterprise-knowledge-api','python','-',cfg['tenant_id']],
+    profile=selected_profile()
+    expected=[row['id']for row in profile['documents']]if profile else None
+    result=subprocess.run(['docker','exec','-i','enterprise-knowledge-api','python','-',cfg['tenant_id']]+([json.dumps(expected)]if expected is not None else []),
+        # Explicit manifest selection is passed as an argument; no arbitrary SQL or shell input.
         input=(ROOT/'scripts/audit_manufacturing_index.py').read_bytes(),capture_output=True,check=True)
     data=json.loads(result.stdout)
     if data['parser_sha256']!=parser_fingerprint():raise ValueError('容器解析代码与工作区不一致')
@@ -172,6 +194,7 @@ def audit():
         source=sources[row['source_id']]
         if row['sha256']!=source['sha256'] or row['knowledge_base_id']!=cfg['knowledge_bases'][source['group']]:
             raise ValueError('索引来源指纹或权限分组变化')
+    if expected is not None and {r['source_id']for r in data['records']}!=set(expected):raise ValueError('演示资料范围不符')
     runtime=[]
     for service in ('api','worker','quality-worker'):
         container=subprocess.run(['docker','compose','-f','compose.yaml','-f','compose.manufacturing.yaml','ps','-q',service],
@@ -189,6 +212,18 @@ def audit():
     dump('system_config.json',config)
     print(json.dumps(dict(documents=data['documents'],ready=data['ready_documents'],chunks=data['chunks'],runtime_consistent=True)))
 
+def selected_profile():
+    if ARGS.profile:
+        from scripts.build_manufacturing_demo_profile import load_profile
+        return load_profile(ARGS.profile)
+    config=RUN/'system_config.json'
+    if config.exists() and read(config).get('profile_file'):
+        from scripts.build_manufacturing_demo_profile import load_profile
+        path=Path(read(config)['profile_file'])
+        if sha(path.read_bytes())!=read(config)['profile_sha256']:raise ValueError('演示配置指纹变化')
+        return load_profile(path)
+    return None
+
 def main(argv=None):
     global RUN,ENV,ARGS
     p=argparse.ArgumentParser(description=__doc__)
@@ -199,6 +234,8 @@ def main(argv=None):
     p.add_argument('--review-note',default='')
     p.add_argument('--acknowledge-ocr',action='store_true')
     p.add_argument('--audit-name',default='index-audit.json',help='Use a new name to retain previous audit evidence')
+    p.add_argument('--profile',type=Path,help='Validated interview/regression subset; original baseline unchanged')
+    p.add_argument('--baseline-ref',default='8b6ed0c',help='Immutable Git base for original data/report preservation')
     ARGS=p.parse_args(argv);RUN=ARGS.run_dir.resolve()
     RUN.relative_to((ROOT/'tmp').resolve())
     if ARGS.command in ('provision','tokens','upload','publish') and not ARGS.apply:

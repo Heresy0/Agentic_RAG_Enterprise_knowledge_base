@@ -12,13 +12,15 @@ from backend.app.documents.chunk_quality import CLEANING_VERSION
 from backend.app.documents.publication import is_published
 from backend.app.knowledge.milvus_store import MilvusVectorStore
 from scripts.validate_manufacturing_public import parser_fingerprint
-tid=UUID(sys.argv[1]);settings=Settings();db=create_database_engine(settings.database_url);store=MilvusVectorStore(settings)
+tid=UUID(sys.argv[1]);expected=set(json.loads(sys.argv[2]))if len(sys.argv)>2 else None
+settings=Settings();db=create_database_engine(settings.database_url);store=MilvusVectorStore(settings)
 records=[]
 with Session(db) as session:
     docs=session.scalars(select(KnowledgeDocument).where(KnowledgeDocument.tenant_id==tid, KnowledgeDocument.status!='deleted')).all()
     jobs=session.scalars(select(DocumentIndexingJob).where(DocumentIndexingJob.tenant_id==tid,
         DocumentIndexingJob.document_id.in_([doc.id for doc in docs]))).all()
-    assert len(docs)==18 and len(jobs)>=18
+    assert len(docs)==(len(expected)if expected is not None else 18) and len(jobs)>=len(docs)
+    if expected is not None:assert {d.file_name.split('_')[0]for d in docs}==expected
     assert all(j.status in ('succeeded','failed') for j in jobs)
     for d in docs:
         chunks=session.scalars(select(DocumentChunk).where(DocumentChunk.document_id==d.id)).all()

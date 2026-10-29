@@ -1,0 +1,352 @@
+{
+  "version": "2026-10-29-r12",
+  "reviewer": "assistant_non_independent",
+  "purpose": "修正词面误判与两个明确超出题意的必答项；不是模型能力提升或独立人工评测。",
+  "source_question_sha256": {
+    "MFGZH-Q031": "9c413e156cc0ac0099cc5395d915b7c17ca51ec207864ea1e27f760a770d80c5",
+    "MFGZH-Q035": "362a4c91c9411c8344f4c1b6dcce0ae5b8178348792181a7c39cd3d055d98c7a",
+    "MFGZH-Q046": "94ae9ea8ab530055529f7566b6d091196bd70fbd97ac2e446a758c9c9a101f5f",
+    "MFGZH-Q049": "855c8b0de54879939de68641b5bdc846f42facb0e265545c44f97ff4e1086a7b",
+    "MFGZH-Q050": "ecf71e502ecd96bd33baea94e6350f36b4a5368b678af81c4aec5d397af39179",
+    "MFGZH-Q081": "7e80b08204b666777f4345be638fb25b10c4acb22b17d1848c58e1c565b3056e",
+    "MFGZH-Q012": "6e9abb1f43082577dcc48c5b8ca01e8681bd65eeb7a5272328189412521d175f",
+    "MFGZH-Q014": "035c9755b27f0395b594252d122e143b492102c2d89700b37aa1dc6e2a5d8428",
+    "MFGZH-Q017": "56610345d218b369820aae899cb0c71d847c1cf47836a1e95e3349931adb9d53",
+    "MFGZH-Q027": "91b7b11c5febac49e57f802650bb61341f4689f28896e4a70848290d3b532ae5",
+    "MFGZH-Q028": "82fdb8f6f55dedb84f84e60185e4ee77de002fea8df97a76f78428263528e64c",
+    "MFGZH-Q029": "b477df1b5c10aad817e98650bdbe3cf8c986a271701f61d645855720cd3efb9b",
+    "MFGZH-Q038": "96797eaad41c517f36c7748470909a272d4b2cc327382c5daece2770ec07f1f1",
+    "MFGZH-Q040": "1839834d75f40d6afd958b2b075d6b44fabf870666ac0d279213bedc19c80b7a",
+    "MFGZH-Q044": "97f86348c7b921fc34e33bc89aa376cf11b3fdfb44594ea9cf55180b508b3876",
+    "MFGZH-Q084": "bc621f43ab80ef8c5ea903d67fc537adba957d8cae1b9b398bcc17d587c6ecef"
+  },
+  "review_notes": {
+    "MFGZH-Q031": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q035": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q046": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q049": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q050": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q081": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q012": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q014": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q017": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q027": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q028": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q029": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q038": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q040": "仅补充经问题和原文核对的等价表述；数字、单位、来源、其他必答事实与矛盾检查保留。",
+    "MFGZH-Q044": "问题只询问安装方式与重复次数。取平均值改为选答，3次及平行仍为必答。",
+    "MFGZH-Q084": "问题只询问是否包含零点。5点和满量程改为选答，排除零点仍为必答并保留否定与矛盾校验。"
+  },
+  "unchanged_cases": [
+    "MFGZH-Q008",
+    "MFGZH-Q018",
+    "MFGZH-Q019",
+    "MFGZH-Q025",
+    "MFGZH-Q034",
+    "MFGZH-Q043"
+  ],
+  "cases": {
+    "MFGZH-Q031": {
+      "fact_alternatives": {
+        "不是": [
+          "并非必然不适用本规范",
+          "也适用于具有部分上述测量和输出功能",
+          "也适用于具有部分以上测量和输出功能"
+        ]
+      },
+      "fact_assertions": {
+        "不是": {
+          "polarity": "negative",
+          "contradictions": [
+            "部分功能不适用本规范",
+            "只有全部功能才适用",
+            "部分功能必然不适用"
+          ],
+          "use_literal": false
+        }
+      }
+    },
+    "MFGZH-Q035": {
+      "fact_alternatives": {
+        "不少于5": [
+          "不小于5",
+          "至少5"
+        ]
+      },
+      "fact_assertions": {
+        "不少于5": {
+          "polarity": "positive",
+          "contradictions": [
+            "少于5",
+            "至多5",
+            "最多5"
+          ]
+        }
+      }
+    },
+    "MFGZH-Q046": {
+      "fact_alternatives": {
+        "-2500～2500Pa": [
+          "(-2500~2500)Pa",
+          "-2500~2500Pa"
+        ]
+      },
+      "fact_assertions": {
+        "-2500～2500Pa": {
+          "polarity": "positive",
+          "contradictions": [
+            "(-2500~2500)kPa",
+            "-2500~2500kPa"
+          ]
+        }
+      }
+    },
+    "MFGZH-Q049": {
+      "fact_alternatives": {
+        "厂家": [
+          "制造厂商",
+          "制造厂家",
+          "生产厂家"
+        ]
+      },
+      "fact_assertions": {
+        "厂家": {
+          "polarity": "positive",
+          "contradictions": []
+        }
+      }
+    },
+    "MFGZH-Q050": {
+      "fact_alternatives": {
+        "9点": [
+          "9个点"
+        ],
+        "5点": [
+          "5个点"
+        ],
+        "上、下限": [
+          "上限和下限",
+          "上限值和下限值",
+          "上限及下限"
+        ]
+      },
+      "fact_assertions": {
+        "9点": {
+          "polarity": "positive",
+          "contradictions": []
+        },
+        "5点": {
+          "polarity": "positive",
+          "contradictions": []
+        },
+        "上、下限": {
+          "polarity": "positive",
+          "contradictions": []
+        }
+      }
+    },
+    "MFGZH-Q081": {
+      "fact_alternatives": {
+        "不拔": [
+          "不需要拔掉",
+          "不需要拔下",
+          "无需拔掉",
+          "无需拔下"
+        ]
+      },
+      "fact_assertions": {
+        "不拔": {
+          "polarity": "negative",
+          "contradictions": [
+            "需要拔掉双侧引伸计定位针",
+            "必须拔掉定位针"
+          ]
+        }
+      }
+    },
+    "MFGZH-Q012": {
+      "fact_alternatives": {
+        "生产单位选择": [
+          "生产单位自主选择",
+          "生产单位自行选择",
+          "生产单位决定"
+        ]
+      },
+      "fact_assertions": {
+        "生产单位选择": {
+          "polarity": "positive",
+          "contradictions": []
+        }
+      }
+    },
+    "MFGZH-Q014": {
+      "fact_alternatives": {
+        "不是": [
+          "并非只能一物一码",
+          "不局限于一物一码",
+          "不是只能一物一码"
+        ]
+      },
+      "fact_assertions": {
+        "不是": {
+          "polarity": "negative",
+          "contradictions": [
+            "只能一物一码",
+            "仅允许一物一码"
+          ],
+          "use_literal": false
+        }
+      }
+    },
+    "MFGZH-Q017": {
+      "fact_alternatives": {
+        "不够": [
+          "不能只记录出入库",
+          "只记录出入库不足",
+          "仅记录出入库不能满足要求"
+        ]
+      },
+      "fact_assertions": {
+        "不够": {
+          "polarity": "negative",
+          "contradictions": [
+            "只记录出入库即可",
+            "只记录出入库就足够"
+          ],
+          "use_literal": false
+        }
+      }
+    },
+    "MFGZH-Q027": {
+      "fact_alternatives": {
+        "温度测量点9个": [
+          "9个温度测量点",
+          "温度测量点为9个"
+        ],
+        "相对湿度测量点3个": [
+          "3个相对湿度测量点",
+          "相对湿度测量点为3个"
+        ]
+      },
+      "fact_assertions": {
+        "温度测量点9个": {
+          "polarity": "positive",
+          "contradictions": []
+        },
+        "相对湿度测量点3个": {
+          "polarity": "positive",
+          "contradictions": []
+        }
+      }
+    },
+    "MFGZH-Q028": {
+      "fact_alternatives": {
+        "稳定30min": [
+          "稳定时间为30min",
+          "稳定时间30min",
+          "稳定至少30min"
+        ]
+      },
+      "fact_assertions": {
+        "稳定30min": {
+          "polarity": "positive",
+          "contradictions": []
+        }
+      }
+    },
+    "MFGZH-Q029": {
+      "fact_alternatives": {
+        "未注入砂尘": [
+          "不注入砂尘",
+          "未加入砂尘",
+          "不加入砂尘"
+        ]
+      },
+      "fact_assertions": {
+        "未注入砂尘": {
+          "polarity": "negative",
+          "contradictions": [
+            "先注入砂尘再测量",
+            "必须注入砂尘"
+          ]
+        }
+      }
+    },
+    "MFGZH-Q038": {
+      "fact_alternatives": {
+        "至少5点": [
+          "不少于5个点",
+          "至少5个点",
+          "不少于5点"
+        ]
+      },
+      "fact_assertions": {
+        "至少5点": {
+          "polarity": "positive",
+          "contradictions": [
+            "最多5个点",
+            "至多5个点",
+            "少于5个点"
+          ]
+        }
+      }
+    },
+    "MFGZH-Q040": {
+      "fact_alternatives": {
+        "不是": [
+          "并非无条件固定为一年一次",
+          "并非无条件固定一年一次",
+          "并非强制一年一次",
+          "不是无条件固定一年一次",
+          "而非强制固定周期"
+        ]
+      },
+      "fact_assertions": {
+        "不是": {
+          "polarity": "negative",
+          "contradictions": [
+            "无条件固定一年一次",
+            "无条件固定为一年一次",
+            "必须固定一年一次"
+          ],
+          "use_literal": false
+        }
+      }
+    },
+    "MFGZH-Q044": {
+      "required_facts": [
+        "平行",
+        "3次"
+      ],
+      "optional_facts": [
+        "平均值"
+      ]
+    },
+    "MFGZH-Q084": {
+      "required_facts": [
+        "不包含零点"
+      ],
+      "optional_facts": [
+        "至少5",
+        "满量程"
+      ],
+      "fact_alternatives": {
+        "不包含零点": [
+          "不包括零点",
+          "不含零点"
+        ]
+      },
+      "fact_assertions": {
+        "不包含零点": {
+          "polarity": "negative",
+          "contradictions": [
+            "包含零点",
+            "包括零点",
+            "零点必须包含"
+          ]
+        }
+      }
+    }
+  }
+}
