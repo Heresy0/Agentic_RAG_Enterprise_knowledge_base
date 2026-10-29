@@ -280,6 +280,7 @@ def main(argv=None):
                              latency_ms=round((perf_counter() - started) * 1000, 2))
                 if isinstance(exc, requests.HTTPError) and exc.response is not None:
                     trace["http_status"] = exc.response.status_code
+                    trace["request_id"] = exc.response.headers.get("X-Request-ID")
                 if isinstance(exc, SourceUnavailable):
                     trace["blocked_sources"] = sorted(unavailable.intersection(case["required_source_documents"]))
             trace["request_sent"] = request_sent

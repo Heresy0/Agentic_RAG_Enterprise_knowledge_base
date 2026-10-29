@@ -77,7 +77,7 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
       const lines = node => node.value.split("\n").map(value => value.trim()).filter(Boolean);
       const payload = { expected_revision: data.case.revision, review_status: status.value, sample_status: sample.value, root_cause: cause.value || null,
         review_reason: reason.value, expected_answerable: answerable.value === "" ? null : answerable.value === "true", reference_answer: reference.value.trim() || null,
-        ...(answerable.value === "clarify" ? { expected_behavior: "clarify" } : {}),
+        ...(answerable.value ? { expected_behavior: answerable.value === "clarify" ? "clarify" : answerable.value === "true" ? "answer" : "refuse" } : {}),
         evaluation_question: evaluationQuestion.value.trim() || null,
         required_facts: lines(facts), forbidden_claims: lines(forbidden), evidence: evidenceInputs.filter(item => item.choose.checked).map(item => ({ citation_id: item.citationId, quote: item.quote.value })) };
       try {

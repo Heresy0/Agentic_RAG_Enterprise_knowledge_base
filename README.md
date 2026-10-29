@@ -1,5 +1,7 @@
 # Multi-tenant Long-context RAG Engine
 
+制造业演示的最新进展见[完整问答闭环与运行说明](docs/MANUFACTURING_CLOSED_LOOP.md)：普通解析与OCR已接入复核发布、澄清续答、原件追溯、反馈评测和验证关闭；40题开发集与80题留出集按原题保留全部结果。视觉解析待模型配置后单独实测。
+
 [![CI](https://github.com/Heresy0/Multi-tenant-long-context-rag-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/Heresy0/Multi-tenant-long-context-rag-engine/actions/workflows/ci.yml)
 
 面向企业内部知识库的多租户 RAG 问答系统。项目使用 Keycloak 完成 OIDC 身份认证，在 PostgreSQL 中维护租户、部门、用户、知识库和授权关系，并通过 Milvus 实现带强制权限范围与当前索引版本过滤的向量检索。

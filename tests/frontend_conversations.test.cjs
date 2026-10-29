@@ -96,6 +96,38 @@ test("manufacturing conditions are user input and changing them starts a new con
   run("resetWorkspace()"); assert.equal($("work-model").value, "");
 });
 
+test("document review publishes the exact version and explicit OCR acknowledgement", async () => {
+  const { $, run, sandbox } = setup(); const original = sandbox.fetch; let submitted;
+  const doc = { id: "doc-review", file_name: "扫描.pdf", version: 2, status: "ready", mime_type: "application/pdf",
+    publication: { state: "draft", revision: 4 }, quality: { review_required: true } };
+  sandbox.fetch = async (url, options = {}) => {
+    if (url.endsWith("/review")) return { ok: true, status: 200, headers: new Headers(), json: async () => ({ document: doc,
+      items: [{ content: "<script>不可作为HTML执行</script>", metadata: { parser: "tesseract", page_start: 2, page_end: 2 } }], next_after: null }) };
+    if (url.endsWith("/publication")) { submitted = JSON.parse(options.body); return { ok: true, status: 200, headers: new Headers(), json: async () => doc }; }
+    return original(url, options);
+  };
+  run('state.kb.permission = "editor"'); await run('reviewDocument({ id: "doc-review", version: 2 })');
+  const all = root => [root, ...root.children.flatMap(all)]; const nodes = all($("document-review-content"));
+  assert(nodes.some(n => n.tag === "pre" && n.textContent.includes("<script>")));
+  const publish = nodes.find(n => n.textContent === "确认发布");
+  await publish.listeners.click(); assert.equal(submitted, undefined);
+  nodes.find(n => n.tag === "textarea").value = "已核对原件，保留识别限制";
+  nodes.find(n => n.tag === "input").checked = true; await publish.listeners.click();
+  assert.deepEqual(submitted, { expected_version: 2, expected_revision: 4, state: "published", review_note: "已核对原件，保留识别限制", acknowledge_ocr: true });
+});
+
+test("late document preview after scope switch cannot restore private text", async () => {
+  const { $, run, sandbox } = setup(); let finish, start;
+  const started = new Promise(resolve => { start = resolve; });
+  sandbox.fetch = async () => { start(); return new Promise(resolve => { finish = resolve; }); };
+  const pending = run('reviewDocument({ id: "private", version: 1 })');
+  await started;
+  run('clearConversation(); state.revision += 1');
+  finish({ ok: true, status: 200, headers: new Headers(), json: async () => ({ document: { file_name: "私密资料", publication: {}, quality: {} }, items: [] }) });
+  await pending; assert.equal($("document-review-dialog").open, false);
+  assert.equal($("document-review-content").children.length, 0);
+});
+
 test("restore renders stored text safely and continues the selected conversation", async () => {
   const { $, run, ask, requests } = setup();
   await run('restoreConversation("existing")');

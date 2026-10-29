@@ -180,9 +180,10 @@ def audit():
         image=subprocess.run(['docker','inspect','--format','{{.Image}}',container],capture_output=True,check=True,text=True).stdout.strip()
         runtime.append(dict(service=service,image_id=image))
     if len({r['image_id'] for r in runtime})!=1:raise ValueError('API与两类Worker镜像不一致')
-    target=RUN/'index-audit.json'
+    target=RUN/ARGS.audit_name
+    if target.parent!=RUN or target.suffix!='.json':raise ValueError('审计文件名必须是当前运行目录下的JSON文件')
     if target.exists():raise ValueError('审计已存在，请使用新的运行目录，避免覆盖证据')
-    dump(target.name,data);dump('runtime-versions.json',runtime)
+    dump(target.name,data);dump(target.stem+'-runtime.json',runtime)
     config=read(RUN/'system_config.json')
     config.update(index_audit_file=str(target),index_audit_sha256=sha(target.read_bytes()))
     dump('system_config.json',config)
@@ -197,6 +198,7 @@ def main(argv=None):
     p.add_argument('--allow-model-calls',action='store_true')
     p.add_argument('--review-note',default='')
     p.add_argument('--acknowledge-ocr',action='store_true')
+    p.add_argument('--audit-name',default='index-audit.json',help='Use a new name to retain previous audit evidence')
     ARGS=p.parse_args(argv);RUN=ARGS.run_dir.resolve()
     RUN.relative_to((ROOT/'tmp').resolve())
     if ARGS.command in ('provision','tokens','upload','publish') and not ARGS.apply:

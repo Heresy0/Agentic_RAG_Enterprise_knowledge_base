@@ -35,7 +35,7 @@ with Session(db) as session:
         records.append(dict(source_id=d.file_name.split('_')[0],document_id=str(d.id),knowledge_base_id=str(d.knowledge_base_id),
             file_name=d.file_name,status=d.status,sha256=d.content_hash,version=d.version,chunk_count=len(chunks),vector_count=count,
             parent_count=parents,parser_counts=dict(Counter(c.metadata_json.get('parser') for c in chunks)),metadata=d.metadata_json))
-    usage_model_config={k:v for k,v in settings.__dict__.items() if k in ('embedding_model','embedding_dimension','rerank_model','llm_model','model_name','conversation_memory_enabled','pdf_ocr_enabled','qa_snapshots_enabled')}
+    usage_model_config={k:v for k,v in settings.__dict__.items() if k in ('chat_model','embedding_model','embedding_dimension','rerank_model','llm_model','model_name','conversation_memory_enabled','pdf_ocr_enabled','qa_snapshots_enabled')}
 db.dispose()
 print(json.dumps(dict(tenant_id=str(tid),chunking_version=CHUNKING_VERSION,cleaning_version=CLEANING_VERSION,parser_sha256=parser_fingerprint(),
     all_checks_passed=True,documents=len(records),ready_documents=sum(r['status']=='ready' for r in records),
