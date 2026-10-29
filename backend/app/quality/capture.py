@@ -3,12 +3,16 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from dataclasses import dataclass, field
 from hashlib import sha256
+import json
+from math import isfinite
 from prometheus_client import Counter
 
 
 _current = ContextVar("qa_snapshot", default=None)
 MAX_CONTEXT_CHARACTERS = 100_000
 MAX_CONTEXT_ITEMS = 100
+PIPELINE_STAGES = frozenset({"vector", "keyword", "fusion", "rerank_model", "rerank", "expanded_candidates",
+    "policy_candidates_raw", "policy_candidates", "parent_context", "authorized_final", "initial_authorized", "agent_evidence", "feedback_evidence"})
 QA_SNAPSHOTS = Counter("enterprise_qa_snapshots", "QA snapshot persistence outcomes", ["outcome"])
 
 
@@ -20,6 +24,41 @@ class SnapshotCapture:
     documents: dict = field(default_factory=dict)
     context: dict | None = None
     incomplete: bool = False
+    pipeline: dict = field(default_factory=dict)
+    pipeline_rows: int = 0
+    pipeline_bytes: int = 0
+    pipeline_limited: bool = False
+
+    def observe_stage(self, stage, documents):
+        if stage not in PIPELINE_STAGES:
+            return
+        attempts = self.pipeline.setdefault(stage, [])
+        if len(attempts) >= 3:
+            self.pipeline_limited = True
+            return
+        rows = []
+        limited = len(documents) > 40
+        for rank, doc in enumerate(documents[:40], 1):
+            meta = doc.metadata
+            if not self.scope.contains(meta.get("tenant_id"), meta.get("knowledge_base_id")):
+                self.incomplete = True
+                continue
+            row = dict(rank=rank, document_id=str(meta.get("document_id") or "")[:64],
+                knowledge_base_id=str(meta.get("knowledge_base_id") or "")[:64],
+                chunk_id=str(meta.get("chunk_id") or getattr(doc, "id", "") or "")[:128],
+                vector_generation=str(meta.get("vector_generation") or "")[:64],
+                content_sha256=sha256(doc.page_content.encode()).hexdigest())
+            for key in ("vector_distance", "bm25_score", "rrf_rank", "rrf_score", "rerank_score", "model_rank", "final_rank"):
+                value = meta.get(key)
+                if type(value) in (int, float) and isfinite(value):
+                    row[key] = value
+            size = len(json.dumps(row).encode())
+            if self.pipeline_rows >= 500 or self.pipeline_bytes + size > 200_000:
+                limited = True
+                break
+            rows.append(row); self.pipeline_rows += 1; self.pipeline_bytes += size
+        attempts.append(dict(attempt=len(attempts)+1, items=rows, truncated=limited))
+        self.pipeline_limited |= limited
 
     def observe_documents(self, documents):
         for doc in documents[:MAX_CONTEXT_ITEMS]:
@@ -53,7 +92,9 @@ class SnapshotCapture:
 
     def freeze(self):
         status = "incomplete" if self.incomplete else "captured" if self.context is not None else "not_observed"
-        return status, dict(schema_version=1, context=self.context, history=self.history)
+        return status, dict(schema_version=2, context=self.context, history=self.history,
+            pipeline=dict(stages=self.pipeline, complete=not self.pipeline_limited,
+                          limitation="仅记录有权限候选的ID、名次、分数和正文指纹；不记录候选正文、提示词或隐藏推理。"))
 
 
 @contextmanager
@@ -70,6 +111,12 @@ def observe_documents(documents):
     capture = _current.get()
     if capture is not None:
         capture.observe_documents(documents)
+
+
+def observe_stage(stage, documents):
+    capture = _current.get()
+    if capture is not None:
+        capture.observe_stage(stage, documents)
 
 
 def observe_context(context):

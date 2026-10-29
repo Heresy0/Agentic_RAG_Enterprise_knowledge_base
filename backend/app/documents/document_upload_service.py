@@ -27,6 +27,7 @@ from .document_staging_service import (
     UploadTooLarge,
 )
 from ..knowledge.rag import calculate_source_id
+from .publication import pending_publication
 from ..monitoring.metrics import (
     record_tenant_upload_quota_rejection,
 )
@@ -138,7 +139,7 @@ class DocumentUploadService:
                     ),
                     status="pending",
                     version=1,
-                    metadata_json={},
+                    metadata_json={"publication": pending_publication()},
                 )
                 self._session.add(document)
                 self._session.flush()

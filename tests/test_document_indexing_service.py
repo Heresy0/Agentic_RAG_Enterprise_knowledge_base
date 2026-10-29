@@ -186,7 +186,7 @@ def test_policy_persistence_legacy_read_and_scope_guards(session, scope_data, tm
     assert own.metadata_json["policy"]["effective_from"] == "2026-07-01"
     for chunk in session.scalars(select(DocumentChunk)):
         assert chunk.metadata_json["policy"]["business_version"] == "1.4"
-    own.metadata_json = {k: v for k, v in own.metadata_json.items() if k != "policy"}
+    own.metadata_json = {k: v for k, v in own.metadata_json.items() if k not in ("policy", "publication")}
     session.commit()  # Emulate a ready legacy index without document policy metadata.
     before = deepcopy(own.metadata_json)
     repository = ChunkRepository(session)

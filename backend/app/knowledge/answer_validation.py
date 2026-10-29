@@ -52,6 +52,22 @@ class ValidationResult:
     )
 
 
+def interaction_errors(draft):
+    errors = []
+    if not isinstance(draft, GenerationAnswerDraft):
+        return errors
+    if draft.response_type == "clarify":
+        if draft.answerable or draft.claims or draft.evidence_gap or not draft.missing_fields or not draft.clarification_questions:
+            errors.append("澄清须说明缺失条件并直接追问，且不能包含已回答结论或补查动作")
+        elif any(not value.strip() for value in draft.missing_fields + draft.clarification_questions):
+            errors.append("澄清条件及问题不能为空白")
+    elif draft.missing_fields or draft.clarification_questions:
+        errors.append("非澄清结果不应携带待补条件或追问")
+    if draft.response_type == "answer" and not draft.answerable or draft.response_type == "refuse" and draft.answerable:
+        errors.append("回答类型与可回答性矛盾")
+    return errors
+
+
 class AnswerValidator:
     def validate(
         self,
@@ -60,7 +76,7 @@ class AnswerValidator:
         context: BuiltContext,
         question: str = "",
     ) -> ValidationResult:
-        errors: list[str] = []
+        errors = interaction_errors(draft)
         if isinstance(draft, GenerationAnswerDraft):
             errors.extend(coverage_errors(draft, question, context))
 

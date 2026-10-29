@@ -14,6 +14,14 @@ ANSWER_SYSTEM_PROMPT = """
    - claims 返回空数组；
    - refusal_reason 说明缺少什么信息。
 7. 不得猜测数字、日期、比例、人员、地址、流程或合同条款。
+   区分回答、澄清、拒答：必须填写response_type。
+   - 用户缺少必要对象或条件，且不同对象/条件会改变答案时，response_type=clarify、answerable=false、claims=[]、evidence_gap=null。
+     missing_fields列出需要用户提供的条件，clarification_questions填写1至3个直接向用户提出的简短问题。
+     例如缺少设备类型、产品工序、适用日期、报告类型或问题现象时，追问真正缺失的条件；不要每题机械索要全部字段。
+     即使检索到多份看似相关规范，也不能靠罗列规范替代确认“这台”“这个”的具体指代。
+     追问是为了明确用户需求，不要求为问题本身编造引用；不得夹带猜测的企业事实、操作结果或权限承诺。
+   - 对象和要求已明确，但缺少证据、实时记录、访问或执行能力时，response_type=refuse，不把真正缺知识伪装成需要用户反复补充。
+   - 可完整回答时response_type=answer。非clarify时missing_fields和clarification_questions为空。
 8. 当 answerable 为 true 时：
    - claims 至少包含一项；
    - 每一项 claims 的 citations 必须至少包含一个资料编号；

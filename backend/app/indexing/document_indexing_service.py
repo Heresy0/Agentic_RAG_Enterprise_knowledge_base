@@ -15,6 +15,7 @@ from ..documents.policy_metadata import enrich_chunks
 from ..documents.chunk_quality import summarize_quality
 from ..documents.ocr_review import review_revision
 from ..documents.parent_chunks import publish_parents
+from ..documents.publication import require_review
 
 from ..config import Settings
 from ..model_usage import audited_scope
@@ -202,6 +203,7 @@ class DocumentIndexingService:
                 ),
             }
 
+            require_review(document)
             publish_parents(self._session, document, new_chunks)
             self._session.commit()
 
@@ -417,6 +419,7 @@ class DocumentIndexingService:
                 ),
             }
 
+            require_review(document)
             publish_parents(self._session, document, new_chunks)
             self._session.commit()
 

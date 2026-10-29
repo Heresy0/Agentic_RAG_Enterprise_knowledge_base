@@ -6,7 +6,7 @@ from urllib.parse import unquote
 from .assertions import fact_assertion_match
 
 
-SCORER_VERSION = "2026-10-16-r10"
+SCORER_VERSION = "2026-10-29-r11"
 
 
 def normalize(value):
@@ -103,12 +103,25 @@ def score_answer(case, response, context=None):
             supported = evidence_metrics(case["expected_evidence"], matched_context,
                                          alternative_sets=case.get("accepted_evidence_sets", []))["evidence_recall"]
     answerability_correct = response["answerable"] == case["answerable"]
+    expected_behavior = case.get("expected_behavior")
+    behavior_correct = None
+    if expected_behavior in {"answer", "clarify", "refuse"}:
+        actual = response.get("response_type") or ("answer" if response["answerable"] else "refuse")
+        behavior_correct = actual == expected_behavior
+        if expected_behavior == "clarify":
+            questions, fields = response.get("clarification_questions", []), response.get("missing_fields", [])
+            behavior_correct = (behavior_correct and not response["answerable"] and not response["citations"]
+                and 1 <= len(questions) <= 3 and 1 <= len(fields) <= 5
+                and all(isinstance(s, str) and s.strip() for s in questions + fields))
     if case["answerable"]:
         proxy_pass = (answerability_correct and not missing and expected.issubset(cited)
                       and integrity is not False and (supported is None or supported == 1))
     else:
         proxy_pass = answerability_correct and not response["citations"]
+    if behavior_correct is not None:
+        proxy_pass = proxy_pass and behavior_correct
     return dict(answerability_correct=answerability_correct, missing_facts=missing,
+                behavior_contract_version="response-type-v1", behavior_correct=behavior_correct,
                 contradictory_facts=contradictions,
                 fact_coverage=(len(facts) - len(missing)) / len(facts) if facts else None,
                 all_required_sources_cited=expected.issubset(cited) if expected else None,

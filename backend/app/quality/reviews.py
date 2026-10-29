@@ -67,10 +67,11 @@ class ReviewStore:
     def corpus_binding(self, run):
         ids = [UUID(value) for value in self.scopes(run)]
         rows = self.session.execute(select(KnowledgeDocument.id, KnowledgeDocument.version,
-            KnowledgeDocument.content_hash, KnowledgeDocument.status).where(
+            KnowledgeDocument.content_hash, KnowledgeDocument.status, KnowledgeDocument.metadata_json).where(
                 KnowledgeDocument.tenant_id == run.tenant_id, KnowledgeDocument.knowledge_base_id.in_(ids))
             .order_by(KnowledgeDocument.id)).all()
-        return digest([[str(row.id), row.version, row.content_hash, row.status] for row in rows])
+        return digest([[str(row.id), row.version, row.content_hash, row.status] +
+            ([row.metadata_json["publication"]] if (row.metadata_json or {}).get("publication") is not None else []) for row in rows])
 
     def audit(self, action, resource_id):
         AuditService(self.session).add(tenant_id=self.principal.tenant_id,
@@ -175,6 +176,7 @@ class ReviewStore:
         group = str(run.conversation_id) if run.conversation_id else " ".join(payload["evaluation_question"].split())
         return dict(id="FB-" + str(case.id), question=payload["evaluation_question"], original_question=run.question,
             answerable=payload["expected_answerable"], reference_answer=payload["reference_answer"],
+            **({"expected_behavior": payload["expected_behavior"]} if payload.get("expected_behavior") else {}),
             required_facts=payload["required_facts"], forbidden_claims=payload["forbidden_claims"],
             expected_evidence=[dict(item, text=item["quote"]) for item in payload["evidence"]],
             category=case.root_cause, split="regression", source_groups=self.scopes(run),

@@ -15,6 +15,7 @@ from ..db.models import (
 from ..security.retrieval_scope import RetrievalScope
 from ..documents.policy_metadata import extract_policy
 from ..documents.parent_chunks import body_text
+from ..documents.publication import published_predicate
 
 
 @dataclass(frozen=True, slots=True)
@@ -93,7 +94,7 @@ class ChunkRepository:
                 KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id),
         ).where(KnowledgeDocument.id.in_(document_ids), KnowledgeDocument.tenant_id == scope.tenant_id,
                 scope.knowledge_base_filter(KnowledgeDocument.knowledge_base_id),
-                KnowledgeDocument.status == "ready", DocumentChunk.chunk_index < 8
+                KnowledgeDocument.status == "ready", published_predicate(), DocumentChunk.chunk_index < 8
                 ).order_by(KnowledgeDocument.id, DocumentChunk.chunk_index)).all()
         grouped = {}
         for document, chunk in rows:
@@ -109,7 +110,7 @@ class ChunkRepository:
             KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id,
         )).where(DocumentChunk.tenant_id == scope.tenant_id,
                  scope.knowledge_base_filter(DocumentChunk.knowledge_base_id),
-                 KnowledgeDocument.status == "ready").execution_options(populate_existing=True)
+                 KnowledgeDocument.status == "ready", published_predicate()).execution_options(populate_existing=True)
 
     def current_chunks(self, *, scope, expected):
         """Rehydrate a bounded evidence pool; retired versions cannot re-enter."""
@@ -209,7 +210,7 @@ class ChunkRepository:
                 KnowledgeDocument.tenant_id == DocumentChunk.tenant_id,
                 KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id),
         ).where(DocumentChunk.document_id.in_(ids), DocumentChunk.tenant_id == scope.tenant_id,
-                scope.knowledge_base_filter(DocumentChunk.knowledge_base_id), KnowledgeDocument.status == 'ready',
+                scope.knowledge_base_filter(DocumentChunk.knowledge_base_id), KnowledgeDocument.status == 'ready', published_predicate(),
                 DocumentChunk.chunk_index >= 0, DocumentChunk.chunk_index < 8,
         ).order_by(KnowledgeDocument.id, DocumentChunk.chunk_index).limit(16)).all()
         return [StoredChunk(chunk_id=chunk.id, document_id=document.id, tenant_id=chunk.tenant_id,
@@ -242,7 +243,7 @@ class ChunkRepository:
             KnowledgeDocument.id == DocumentChunk.document_id,
         )).where(DocumentChunk.tenant_id == scope.tenant_id,
                  scope.knowledge_base_filter(DocumentChunk.knowledge_base_id),
-                 KnowledgeDocument.status == "ready")
+                 KnowledgeDocument.status == "ready", published_predicate())
         generations = self._session.scalars(base.with_only_columns(DocumentChunk.vector_generation).distinct()).all()
         if not generations:
             return []
@@ -286,6 +287,7 @@ class ChunkRepository:
             DocumentChunk.tenant_id == scope.tenant_id,
             scope.knowledge_base_filter(DocumentChunk.knowledge_base_id),
             KnowledgeDocument.status == "ready",
+            published_predicate(),
         ).limit(1)
         return self._session.scalar(statement) is not None
 
@@ -319,6 +321,7 @@ class ChunkRepository:
                 == scope.tenant_id,
                 scope.knowledge_base_filter(KnowledgeDocument.knowledge_base_id),
                 KnowledgeDocument.status == "ready",
+                published_predicate(),
             )
             .order_by(
                 KnowledgeDocument.id,

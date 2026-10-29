@@ -169,7 +169,7 @@ def test_upload_creates_pending_document_and_queued_job(
     assert staged_files[0].read_bytes() == content
     assert result.document.status == "pending"
     assert result.document.version == 1
-    assert result.document.metadata_json == {}
+    assert result.document.metadata_json == {"publication": {"state": "draft", "revision": 1}}
     assert result.document.source_id == (
         calculate_source_id(target_path)
     )

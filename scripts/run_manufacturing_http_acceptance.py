@@ -174,6 +174,7 @@ def snapshot_trace(case, response, snapshot, *, tenant_id, knowledge_base_ids, l
                 response=response, run_id=response["run_id"], request_id=snapshot["request_id"],
                 pipeline=snapshot["config"].get("pipeline"),
                 snapshot_model_usage=snapshot["snapshot"].get("model_usage", []),
+                pipeline_observation=snapshot["snapshot"].get("pipeline"),
                 stages=dict(context=rows))
 
 

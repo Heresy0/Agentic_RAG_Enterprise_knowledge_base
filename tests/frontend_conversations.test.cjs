@@ -83,6 +83,19 @@ test("first question creates a conversation, followup reuses it, new conversatio
   assert.equal(requests.filter(r => r.url === "/api/qa").at(-1).body.conversation_id, "c2");
 });
 
+test("manufacturing conditions are user input and changing them starts a new conversation", async () => {
+  const { $, requests, run, ask } = setup();
+  $("work-model").value = "机型A"; $("work-process").value = "OP20";
+  await ask("首件如何确认？");
+  assert.match(requests.filter(r => r.url === "/api/qa").at(-1).body.question, /产品／设备型号：机型A；工序：OP20/);
+  $("work-model").value = "机型B"; $("work-model").listeners.change();
+  assert.equal(run("state.conversationId"), null);
+  assert.equal($("work-model").value, "机型B");
+  await ask("检查哪些项目？");
+  assert.equal(requests.filter(r => r.url === "/api/qa").at(-1).body.conversation_id, "c2");
+  run("resetWorkspace()"); assert.equal($("work-model").value, "");
+});
+
 test("restore renders stored text safely and continues the selected conversation", async () => {
   const { $, run, ask, requests } = setup();
   await run('restoreConversation("existing")');

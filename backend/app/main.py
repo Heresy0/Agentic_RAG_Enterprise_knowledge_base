@@ -23,6 +23,7 @@ from .db.session import (
     create_session_factory,
     verify_database_connection,
 )
+from .api.document_review import router as document_review_router
 from .api.knowledge_bases import (
     router as knowledge_base_router,
 )
@@ -143,6 +144,7 @@ app.middleware("http")(observe_http_request)
 app.include_router(qa_router)
 app.include_router(conversations_router)
 app.include_router(knowledge_base_router)
+app.include_router(document_review_router)
 app.include_router(system_router)
 app.include_router(frontend_router)
 app.include_router(model_usage_router)

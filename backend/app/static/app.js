@@ -32,6 +32,7 @@ function updateControls() {
   qualityWorkspace.updateControls();
   verificationWorkspace.updateControls();
   $("question").disabled = !canAsk() || state.asking || state.loading;
+  for (const id of ["work-model", "work-process", "work-date", "work-order"]) $(id).disabled = !canAsk() || state.asking || state.loading;
   $("ask-button").disabled = !canAsk() || state.asking || state.loading;
   $("ask-button").firstChild.textContent = state.asking ? "生成中… " : "发送问题 ";
   for (const id of ["new-conversation", "conversation-list"]) $(id).disabled = !canAsk() || state.asking || state.loading;
@@ -57,7 +58,7 @@ async function api(path, options = {}) {
   if (epoch !== state.auth.epoch) throw new Error("登录状态已改变，请重试。");
   let data = null;
   if (response.status !== 204) {
-    try { data = responseType === "text" && response.ok ? await response.text() : await response.json(); } catch { throw new Error(`服务返回了无法解析的响应（HTTP ${response.status}），请检查 API 日志。`); }
+    try { data = responseType === "blob" && response.ok ? await response.blob() : responseType === "text" && response.ok ? await response.text() : await response.json(); } catch { throw new Error(`服务返回了无法解析的响应（HTTP ${response.status}），请检查 API 日志。`); }
   }
   if (!response.ok) {
     if (response.status === 401) state.auth.clear();
@@ -86,8 +87,9 @@ function resetWorkspace() {
   $("selected-file").textContent = "尚未选择文件";
   clearConversation(); renderDocuments(); renderJobs(); updateControls();
 }
-function clearConversation() {
+function clearConversation({ preserveWorkContext = false } = {}) {
   clearCitationPreview();
+  clearDocumentReview();
   state.snapshotEpoch += 1; $("snapshot-dialog").close(); $("snapshot-content").replaceChildren();
   state.conversationId = null;
   $("conversation-list").value = "";
@@ -95,6 +97,7 @@ function clearConversation() {
   $("answer-area").replaceChildren(welcome);
   welcome.hidden = false;
   $("question").value = "";
+  if (!preserveWorkContext) for (const id of ["work-model", "work-process", "work-date", "work-order"]) $(id).value = "";
 }
 function renderBases() {
   $("kb-count").textContent = state.bases.length;
@@ -165,6 +168,7 @@ async function refreshConversations() {
 }
 function renderAnswer(container, data, requestId) {
   const answer = container.querySelector(".message-text"); answer.classList.remove("loading"); answer.textContent = data.answer;
+  if (data.response_type === "clarify") container.append(element("p", `请补充：${(data.missing_fields || []).join("、")}。回复后会继续当前问题。`, "answer-meta"));
   if (!data.answerable && data.refusal_reason) container.append(element("p", data.refusal_reason, "answer-meta"));
   const citations = element("div", undefined, "citation-list");
   for (const citation of data.citations || []) {
@@ -292,6 +296,10 @@ async function previewSnapshot(runId) {
       target.append(element("h3", `[${evidence.citation_id}] ${evidence.document_name} · ${evidence.section_path}`), element("p", `文档版本 ${evidence.document_version ?? "未记录"} · 索引 ${evidence.vector_generation ?? "未记录"}`, "answer-meta"), element("pre", evidence.content));
     }
     if (!data.snapshot.context?.items?.length) target.append(element("p", "本次没有可展示的上下文证据。", "answer-meta"));
+    if (data.snapshot.pipeline) {
+      const stages = element("details"); stages.append(element("summary", "检索阶段记录（候选ID、名次与分数）"),
+        element("pre", JSON.stringify(data.snapshot.pipeline, null, 2))); target.append(stages);
+    }
   } catch (error) { if (sameContext(revision) && epoch === state.snapshotEpoch) { $("snapshot-content").replaceChildren(); $("snapshot-meta").textContent = error.message; errorNotice(error); } }
 }
 let previewRevision = 0;
@@ -301,6 +309,9 @@ function clearCitationPreview() {
   $("citation-title").textContent = "引用原文";
   $("citation-meta").textContent = "";
   $("citation-content").textContent = "";
+  for (const node of $("citation-dialog").querySelectorAll?.(".citation-source") || []) node.remove();
+  if (sourceBlobUrl) URL.revokeObjectURL(sourceBlobUrl);
+  sourceBlobUrl = null;
 }
 async function previewCitation(citation) {
   const revision = state.revision, preview = ++previewRevision;
@@ -316,6 +327,12 @@ async function previewCitation(citation) {
     $("citation-title").textContent = data.document_name;
     $("citation-meta").textContent = `版本 ${data.document_version} · ${data.section_path}`;
     $("citation-content").textContent = data.content;
+    $("citation-meta").textContent += data.page_start ? ` · 物理页 ${data.page_start}–${data.page_end}` : "";
+    if (data.quality?.review_required) $("citation-meta").textContent += " · OCR识别结果仍需核对原件";
+    const source = element("div"); $("citation-content").after ? $("citation-content").after(source) : $("citation-dialog").append(source);
+    source.className = "citation-source";
+    sourceLink(source, citation.knowledge_base_id, { id: data.document_id, file_name: data.document_name, mime_type: data.mime_type, version: data.document_version }, data.page_start,
+      () => sameContext(revision) && preview === previewRevision && $("citation-dialog").open);
   } catch (error) {
     if (revision === state.revision && preview === previewRevision) {
       if (!state.auth.authenticated) { errorNotice(error); return; }
@@ -367,6 +384,80 @@ async function refreshDocuments(automatic = false) {
 }
 function statusNode(status) { return element("span", statuses[status] || status, `status ${status}`); }
 function formatDate(date) { return new Intl.DateTimeFormat("zh-CN", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(new Date(date)); }
+const publicationLabels = { draft: "待复核发布", published: "已发布", legacy_published: "历史已发布", withdrawn: "已撤回" };
+let documentReviewEpoch = 0, sourceBlobUrl = null;
+function clearDocumentReview() {
+  documentReviewEpoch += 1;
+  $("document-review-dialog").close(); $("document-review-content").replaceChildren();
+  if (sourceBlobUrl) URL.revokeObjectURL(sourceBlobUrl);
+  sourceBlobUrl = null;
+}
+async function sourceLink(target, kbId, doc, page, valid) {
+  const button = element("button", doc.mime_type === "application/pdf" ? "查看原始PDF" : "下载原件", "secondary");
+  target.append(button);
+  button.addEventListener("click", async () => {
+    button.disabled = true;
+    try {
+      const { data } = await api(`/api/knowledge-bases/${encodeURIComponent(kbId)}/documents/${encodeURIComponent(doc.id)}/source?version=${doc.version}`, { responseType: "blob" });
+      if (!valid()) return;
+      if (sourceBlobUrl) URL.revokeObjectURL(sourceBlobUrl);
+      sourceBlobUrl = URL.createObjectURL(data);
+      const link = element("a", "打开原件"); link.href = sourceBlobUrl + (page ? `#page=${page}` : "");
+      link.target = "_blank"; link.rel = "noopener";
+      if (doc.mime_type !== "application/pdf") link.download = doc.file_name;
+      target.append(link);
+    } catch (error) { if (valid()) errorNotice(error); }
+    finally { button.disabled = false; }
+  });
+}
+async function reviewDocument(doc) {
+  clearDocumentReview();
+  const revision = state.revision, epoch = documentReviewEpoch, kbId = state.kb.id;
+  const valid = () => sameContext(revision) && epoch === documentReviewEpoch && $("document-review-dialog").open;
+  const target = $("document-review-content"); $("document-review-dialog").showModal();
+  $("document-review-status").textContent = "正在加载…";
+  try {
+    const { data } = await api(`/api/knowledge-bases/${kbId}/documents/${doc.id}/review`);
+    if (!valid()) return;
+    const current = data.document;
+    $("document-review-status").textContent = `${current.file_name} · v${current.version} · ${publicationLabels[current.publication.state] || "待复核"}`;
+    target.append(element("p", current.quality.review_required ? "存在待复核OCR，请逐页核对原件；发布不会清除识别限制。" : "请核对正文、表格、适用范围及版本后发布。"));
+    sourceLink(target, kbId, current, null, valid);
+    const note = element("textarea"); note.maxLength = 2000; note.placeholder = "填写复核、撤回或退回说明";
+    const acknowledged = element("input"); acknowledged.type = "checkbox";
+    const label = element("label", "我已核对OCR原件并知悉剩余识别限制"); label.prepend ? label.prepend(acknowledged) : label.append(acknowledged);
+    target.append(note); if (current.quality.review_required) target.append(label);
+    for (const [value, title] of [["published", "确认发布"], ["withdrawn", "撤回问答使用"], ["draft", "退回待复核"]]) {
+      const button = element("button", title, "secondary"); button.disabled = value === "published" && current.status !== "ready";
+      button.addEventListener("click", async () => {
+        if (!note.value.trim()) { notice("请先填写复核说明。", true); return; }
+        button.disabled = true;
+        try {
+          await api(`/api/knowledge-bases/${kbId}/documents/${doc.id}/publication`, { method: "PUT", body: JSON.stringify({
+            expected_version: current.version, expected_revision: current.publication.revision, state: value,
+            review_note: note.value, acknowledge_ocr: acknowledged.checked }) });
+          if (valid()) { clearDocumentReview(); await refreshDocuments(); notice("文档发布状态已更新。"); }
+        } catch (error) { if (valid()) errorNotice(error); }
+        finally { button.disabled = false; }
+      }); target.append(button);
+    }
+    let after = null;
+    const blocks = element("div"), more = element("button", "加载更多分块", "secondary");
+    const append = batch => {
+      for (const item of batch.items) {
+        const m = item.metadata; blocks.append(element("h3", `分块${item.index + 1} · ${m.section_path || "文档说明"}`),
+          element("p", `${m.parser || "原生解析"} · ${m.page_start ? `物理页 ${m.page_start}–${m.page_end}` : "非分页资料"}`, "answer-meta"), element("pre", item.content));
+        const audit = element("details"); audit.append(element("summary", "清洗与质量记录"), element("pre", JSON.stringify({ cleaning: m.cleaning, quality: m.quality }, null, 2))); blocks.append(audit);
+      }
+      after = batch.next_after; more.hidden = after === null;
+    };
+    more.addEventListener("click", async () => { more.disabled = true; try {
+      const { data: batch } = await api(`/api/knowledge-bases/${kbId}/documents/${doc.id}/review?after_index=${after}&expected_version=${doc.version}`);
+      if (valid()) append(batch);
+    } catch (error) { if (valid()) errorNotice(error); } finally { more.disabled = false; } });
+    target.append(blocks, more); append(data);
+  } catch (error) { if (valid()) $("document-review-status").textContent = error.message; }
+}
 function renderDocuments() {
   const body = $("documents-body"); body.replaceChildren();
   $("document-count").textContent = state.documents.length;
@@ -378,8 +469,11 @@ function renderDocuments() {
     const row = element("tr");
     const name = element("td"); name.append(element("span", "▤  "), element("span", doc.file_name));
     const status = element("td"); status.append(statusNode(doc.status));
+    status.append(element("p", publicationLabels[doc.publication?.state] || "历史已发布", "answer-meta"));
+    if (doc.quality?.review_required) status.append(element("p", "OCR待复核", "answer-meta"));
     const action = element("td");
     if (editable()) {
+      const review = element("button", "预览／复核", "secondary"); review.addEventListener("click", () => reviewDocument(doc)); action.append(review);
       const button = element("button", "删除", "delete-button");
       button.addEventListener("click", () => {
         state.deleting = { document: doc, kbId: state.kb.id, revision: state.revision };
@@ -497,7 +591,7 @@ $("upload-form").addEventListener("submit", async event => {
   try {
     const { data } = await api(`/api/knowledge-bases/${state.kb.id}/documents`, { method: "POST", body: form });
     if (!sameContext(revision)) return;
-    notice(`已接收「${data.document.file_name}」，正在等待后台索引。完成后可用于问答。`);
+    notice(`已接收「${data.document.file_name}」，正在等待后台索引。完成后请预览复核并发布。`);
     $("upload-form").reset(); $("selected-file").textContent = "尚未选择文件";
     await refreshDocuments();
   } catch (error) { if (revision === state.revision) errorNotice(error); }
@@ -517,8 +611,12 @@ $("delete-confirm").addEventListener("click", async () => {
 });
 $("question-form").addEventListener("submit", async event => {
   event.preventDefault();
-  const question = $("question").value.trim();
+  let question = $("question").value.trim();
   if (!question || !canAsk() || state.asking || state.loading) return;
+  const conditions = [["work-model", "产品／设备型号"], ["work-process", "工序"], ["work-date", "业务日期"], ["work-order", "工单编号"]]
+    .filter(([id]) => $(id).value.trim()).map(([id, label]) => `${label}：${$(id).value.trim()}`);
+  if (conditions.length) question += `\n用户补充条件（若与问题冲突请先澄清）：${conditions.join("；")}`;
+  if (question.length > 1000) { notice("问题与补充条件合计不能超过1000字，请适当缩短。", true); return; }
   const revision = state.revision;
   state.asking = true; updateControls(); notice();
   message("user", question); $("question").value = "";
@@ -541,6 +639,13 @@ $("question-form").addEventListener("submit", async event => {
       else { pending.classList.add("error"); const text = pending.querySelector(".message-text"); text.classList.remove("loading"); text.textContent = error.name === "TimeoutError" ? "请求超时，请稍后重新提问。" : error.message; }
     }
   } finally { state.asking = false; updateControls(); }
+});
+for (const id of ["work-model", "work-process", "work-date", "work-order"]) $(id).addEventListener("change", () => {
+  if (state.conversationId && !state.asking) {
+    const question = $("question").value;
+    clearConversation({ preserveWorkContext: true }); $("question").value = question;
+    updateControls(); notice("作业条件已变化，已开始新对话。");
+  }
 });
 $("question").addEventListener("keydown", event => {
   if (event.key === "Enter" && !event.shiftKey && !event.isComposing) { event.preventDefault(); $("question-form").requestSubmit(); }

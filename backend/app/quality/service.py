@@ -84,6 +84,8 @@ class FeedbackStore:
         context = run.snapshot_json.get("context") or {}
         values = [item.get("document_id") for item in context.get("items", [])]
         values += [item.get("document_id") for item in run.response_json.get("citations", [])]
+        values += [item.get("document_id") for attempts in run.snapshot_json.get("pipeline", {}).get("stages", {}).values()
+                   for attempt in attempts for item in attempt.get("items", [])]
         values += [value for turn in run.snapshot_json.get("history", []) for value in turn.get("source_document_ids", [])]
         try:
             ids = {UUID(str(value)) for value in values if value}

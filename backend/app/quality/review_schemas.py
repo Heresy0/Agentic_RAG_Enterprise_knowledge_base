@@ -30,6 +30,7 @@ class ReviewInput(BaseModel):
     root_cause: RootCause | None = None
     review_reason: str = Field(min_length=1, max_length=2000)
     expected_answerable: bool | None = None
+    expected_behavior: Literal["answer", "clarify", "refuse"] | None = None
     reference_answer: str | None = Field(default=None, max_length=8000)
     evaluation_question: str | None = Field(default=None, min_length=1, max_length=1000)
     required_facts: list[str] = Field(default_factory=list, max_length=32)
@@ -56,6 +57,9 @@ class ReviewInput(BaseModel):
 
     @model_validator(mode="after")
     def approval_contract(self):
+        if self.expected_behavior is not None and (self.expected_answerable is None or
+                (self.expected_behavior == "answer") != self.expected_answerable):
+            raise ValueError("预期行为与可回答性不一致；澄清和拒答均不可直接作答。")
         if self.review_status == "confirmed" and self.root_cause is None:
             raise ValueError("确认问题时必须选择根因。")
         if self.sample_status == "approved":

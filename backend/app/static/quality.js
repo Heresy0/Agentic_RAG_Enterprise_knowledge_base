@@ -47,7 +47,7 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
     const review = data.review;
     const status = options(labels, review.review_status), cause = options({ "": "请选择根因", ...causes }, review.root_cause || "");
     const sample = options({ draft: "样本草稿", approved: "样本审核通过" }, review.sample_status);
-    const answerable = options({ "": "尚未确定", true: "有资料可回答", false: "资料不足，应拒答" }, review.expected_answerable == null ? "" : String(review.expected_answerable));
+    const answerable = options({ "": "尚未确定", true: "有资料可回答", false: "资料不足，应拒答", clarify: "必要条件缺失，应澄清" }, review.expected_behavior === "clarify" ? "clarify" : review.expected_answerable == null ? "" : String(review.expected_answerable));
     const reason = textarea(review.review_reason, 2000), reference = textarea(review.reference_answer, 8000, 4);
     const evaluationQuestion = textarea(review.evaluation_question || data.source.retrieval_question, 1000, 2);
     const facts = textarea((review.required_facts || []).join("\n"), 16032), forbidden = textarea((review.forbidden_claims || []).join("\n"), 16032);
@@ -77,6 +77,7 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
       const lines = node => node.value.split("\n").map(value => value.trim()).filter(Boolean);
       const payload = { expected_revision: data.case.revision, review_status: status.value, sample_status: sample.value, root_cause: cause.value || null,
         review_reason: reason.value, expected_answerable: answerable.value === "" ? null : answerable.value === "true", reference_answer: reference.value.trim() || null,
+        ...(answerable.value === "clarify" ? { expected_behavior: "clarify" } : {}),
         evaluation_question: evaluationQuestion.value.trim() || null,
         required_facts: lines(facts), forbidden_claims: lines(forbidden), evidence: evidenceInputs.filter(item => item.choose.checked).map(item => ({ citation_id: item.citationId, quote: item.quote.value })) };
       try {

@@ -1,6 +1,7 @@
 import time
 import json
 from pydantic import ValidationError
+from .answer_validation import interaction_errors
 from langchain_core.exceptions import OutputParserException
 
 from langchain_core.messages import (
@@ -286,7 +287,8 @@ class AnswerService:
         first_contract_errors = direct_answer_errors(question, draft)
         first_response = (self._render_result(draft=draft, context=context)
                           if first_validation.valid and draft.answerable and not coverage_failures and not first_contract_errors
-                          else self._refusal(draft.refusal_reason or "首次生成未通过证据与必答项校验。"))
+                          else (self._unanswerable(draft) if first_validation.valid and not draft.answerable
+                                else self._refusal(draft.refusal_reason or "首次生成未通过证据与必答项校验。")))
         first_claims = [claim.model_dump() for claim in draft.claims]
         first_answerable = draft.answerable
         first_coverage = coverage_snapshot(draft, question, context)
@@ -326,6 +328,7 @@ class AnswerService:
             validation.valid = False
             validation.errors.extend(coverage_failures)
         contract_failures = direct_answer_errors(question, draft)
+        contract_failures.extend(interaction_errors(draft))
         if contract_failures:
             validation.valid = False
             validation.errors.extend(contract_failures)
@@ -353,10 +356,7 @@ class AnswerService:
 
         if not draft.answerable:
             render_started = time.perf_counter()
-            result = self._refusal(
-                draft.refusal_reason
-                or "知识库资料不足。"
-            )
+            result = self._unanswerable(draft)
             record_answer_decision(stage="final", answerable=False, reason=draft.refusal_reason)
             if regenerated:
                 record_rag_event(dict(kind='feedback_final', answerable=False))
@@ -531,7 +531,16 @@ class AnswerService:
             answer="\n".join(answer_parts),
             answerable=True,
             citations=citations,
+            response_type="answer",
         )
+
+    @staticmethod
+    def _unanswerable(draft) -> AnswerResult:
+        if getattr(draft, "response_type", None) == "clarify":
+            return AnswerResult(answer="\n".join(draft.clarification_questions), answerable=False, citations=[],
+                response_type="clarify", missing_fields=draft.missing_fields,
+                clarification_questions=draft.clarification_questions)
+        return AnswerService._refusal(draft.refusal_reason or "知识库资料不足。")
 
     @staticmethod
     def _refusal(reason: str) -> AnswerResult:
@@ -540,4 +549,5 @@ class AnswerService:
             answerable=False,
             citations=[],
             refusal_reason=reason,
+            response_type="refuse",
         )

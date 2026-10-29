@@ -89,6 +89,11 @@ class GenerationAnswerDraft(BaseModel):
     refusal_reason: str | None = None
     evidence_gap: EvidenceGap | None = Field(default=None,
         description="仅明确缺证据时请求一次定向补查；冲突/超出能力按原因区分，完整可回答为null。")
+    response_type: Literal["answer", "clarify", "refuse"] | None = Field(default=None,
+        description="明确区分有依据回答、需用户补充条件、资料缺失或超出能力拒答。")
+    missing_fields: list[Annotated[str, Field(min_length=1, max_length=80)]] = Field(default_factory=list, max_length=5)
+    clarification_questions: list[Annotated[str, Field(min_length=1, max_length=300)]] = Field(default_factory=list, max_length=3,
+        description="clarify时填写直接向用户提出的简短追问；不含未经证实的业务结论或执行承诺。")
 
 
 class Citation(BaseModel):
@@ -125,3 +130,6 @@ class AnswerResult(BaseModel):
     citations: list[Citation]
     refusal_reason: str | None = None
     timings: AnswerTimings | None = None
+    response_type: Literal["answer", "clarify", "refuse"] | None = Field(default=None, exclude_if=lambda v: v is None)
+    missing_fields: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
+    clarification_questions: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)

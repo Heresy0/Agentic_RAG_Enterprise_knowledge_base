@@ -67,6 +67,7 @@ def _in_scope(trace, metadata):
 
 
 def record_documents(stage, documents):
+    observation.observe_stage(stage, documents)
     if stage in {"authorized_final", "feedback_evidence"}:
         observation.observe_documents(documents)
     trace = _current.get()

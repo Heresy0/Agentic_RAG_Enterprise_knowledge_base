@@ -1,0 +1,7 @@
+services:
+  api:
+    image: ${MANUFACTURING_IMAGE:-enterprise-knowledge-manufacturing:closed-loop}
+  worker:
+    image: ${MANUFACTURING_IMAGE:-enterprise-knowledge-manufacturing:closed-loop}
+  quality-worker:
+    image: ${MANUFACTURING_IMAGE:-enterprise-knowledge-manufacturing:closed-loop}

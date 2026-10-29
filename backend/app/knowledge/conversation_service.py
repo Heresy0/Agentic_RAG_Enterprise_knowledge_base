@@ -50,6 +50,9 @@ class ConversationResolver:
             "retrieval_question": turn.retrieval_question[:1000],
             "answer": str(turn.result_json.get("answer", ""))[:1200],
             "answerable": turn.result_json.get("answerable", False),
+            "response_type": turn.result_json.get("response_type"),
+            "clarification_questions": turn.result_json.get("clarification_questions", []),
+            "missing_fields": turn.result_json.get("missing_fields", []),
         } for turn in turns[-HISTORY_TURNS:]]
         draft = invoke_structured(self.model, [
             SystemMessage(content=(
@@ -61,6 +64,8 @@ class ConversationResolver:
                 "例如上一问截至2026年查询现行标准，追问2025年呢，应改写为2025年该对象的历史标准，"
                 "不要沿用截至2026年的筛选条件。不要把上一轮拒答理由当成已确认事实。"
                 "含糊且无法确定指代时保留含糊，不猜测。返回 question，最多1000字符。"
+                "若上一轮是clarify且用户当前补充了所问条件，将补充条件与上一轮原问题合并，回答原任务；"
+                "用户切换对象或新话题时只保留仍相关且没有被覆盖的用户条件，不把旧对象要求带入新对象。"
             )),
             HumanMessage(content=json.dumps({"history": history, "current_question": question}, ensure_ascii=False)),
         ], stage="conversation_rewrite", model_name=self._settings.chat_model)
