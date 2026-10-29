@@ -7,7 +7,7 @@
 在项目根目录复用已构建的最终镜像，不重建索引、不重放整套问答：
 
 ```powershell
-$env:MANUFACTURING_IMAGE='enterprise-knowledge-manufacturing:finalize-r13-candidate2'
+$env:MANUFACTURING_IMAGE='enterprise-knowledge-manufacturing:response-type-33e13b5'
 docker compose -f compose.yaml -f compose.manufacturing.yaml up -d --no-deps --no-build api worker quality-worker
 .venv/Scripts/python.exe scripts/manufacturing_workflow.py tokens --run-dir tmp/manufacturing-finalize-r1 --apply
 .venv/Scripts/python.exe scripts/manufacturing_workflow.py status --run-dir tmp/manufacturing-finalize-r1
