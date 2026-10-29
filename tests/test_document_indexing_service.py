@@ -272,7 +272,10 @@ def test_indexes_file_and_skips_unchanged_file(
     assert document is not None
     assert document.status == "ready"
     assert document.metadata_json["quality"]["review_required"] is False
-    assert all(chunk.metadata_json["cleaning_version"] == "conservative-v1"
+    assert document.metadata_json["quality"]["cleaning"]["trace_count"] > 0
+    assert all(chunk.metadata_json["cleaning_version"] == "conservative-v2"
+               and chunk.metadata_json["cleaning"]["version"] == "conservative-v2"
+               and chunk.metadata_json["cleaning"]["traces"]
                and chunk.metadata_json["evidence_role"] in {"content", "front_matter"}
                for chunk in session.scalars(select(DocumentChunk)))
     assert document.file_size_bytes == file_path.stat().st_size
@@ -319,7 +322,7 @@ def test_old_chunking_version_is_rebuilt_only_on_explicit_indexing(session, scop
     assert service.index_file(file_path=path, scope=scope, created_by_user_id=scope_data.user_id) > 0
     assert embeddings.document_calls == 2
     document = session.scalar(select(KnowledgeDocument))
-    assert document.metadata_json["chunking_version"] == CHUNKING_VERSION == "structured-v6"
+    assert document.metadata_json["chunking_version"] == CHUNKING_VERSION == "structured-v7"
     assert service.index_file(file_path=path, scope=scope, created_by_user_id=scope_data.user_id) == 0
     assert embeddings.document_calls == 2
 

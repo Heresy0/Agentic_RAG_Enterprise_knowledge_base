@@ -9,7 +9,7 @@ import unicodedata
 from langchain_core.documents import Document
 
 
-CLEANING_VERSION = "conservative-v1"
+CLEANING_VERSION = "conservative-v2"
 _FIELDS = {
     "文档编号", "版本", "版本号", "生效日期", "失效日期", "复审日期", "状态",
     "适用范围", "密级", "归口部门", "入库范围", "可见范围", "编制部门",
@@ -88,6 +88,7 @@ def annotate_chunks(chunks: list[Document]) -> list[Document]:
 
 
 def summarize_quality(chunks: list[Document]) -> dict:
+    from .document_cleaning import summarize_cleaning
     ocr_count = sum(
         "ocr_unverified" in chunk.metadata.get("quality", {}).get("review_reasons", [])
         for chunk in chunks
@@ -98,4 +99,5 @@ def summarize_quality(chunks: list[Document]) -> dict:
         "ocr_chunks": ocr_count,
         "review_required": bool(ocr_count),
         "review_reasons": ["ocr_unverified"] if ocr_count else [],
+        "cleaning": summarize_cleaning(chunks),
     }

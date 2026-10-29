@@ -1,0 +1,55 @@
+{
+  "base_commit": "8ea8e99fa11c533deb1165afe7ca1013d7b6423c",
+  "chunking_version": "structured-v7",
+  "cleaning_version": "conservative-v2",
+  "parser_sha256": "7c8909bf9ea048eedad8532e7d4cc1f21bcc1ddba7454fc025713351450a4fbc",
+  "snapshot_capture_script_sha256": "93c3001897a6926e0228654f1da403ff369f9c2f99d1da79dcbe3df7fef38f8a",
+  "before_snapshot_sha256": "181223804357d42d80a7458ebad1346ed37708c039531b5e03e627c994262e57",
+  "after_snapshot_sha256": "f4281f36628797a1146136dda7d6363e0125493528ef982250dfa40a23167175",
+  "capture_script": "tmp/capture_cleaning_regression.py",
+  "snapshots": "tmp/unified-cleaning-v1/{before,after}.json",
+  "local_artifacts_tracked": false,
+  "ocr_page_replay_inputs": [
+    {
+      "path": "tmp/manufacturing-zh-fix-r2/pages/MFG-ZH11.json",
+      "sha256": "0f794e823d56f2da902db65eca1bfcfefff6c799b2708f1088f6374b07d7f401",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "recorded_parser_sha256": "fc199760920294077744c5ee0b1219f3143e8e8467bdd2c39d69b72e1b3719cc"
+    },
+    {
+      "path": "tmp/manufacturing-zh-fix-r2/pages/MFG-ZH12.json",
+      "sha256": "4a92b9f9c44e20977601736d865da50beeb28945c6e9784e2e6ab0a39298748f",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "recorded_parser_sha256": "fc199760920294077744c5ee0b1219f3143e8e8467bdd2c39d69b72e1b3719cc"
+    },
+    {
+      "path": "tmp/manufacturing-zh-fix-r2/pages/MFG-ZH13.json",
+      "sha256": "b95da38f93f0813290e311827ac58b9b832f0b5bfbe26903aace66ab1c172fe1",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "recorded_parser_sha256": "fc199760920294077744c5ee0b1219f3143e8e8467bdd2c39d69b72e1b3719cc"
+    },
+    {
+      "path": "tmp/manufacturing-zh-fix-r2/pages/MFG-ZH14.json",
+      "sha256": "8db1a5296288aee4ecd933c35e0d7a1b6a9f52f232c4e648f9c3a4ba9806383c",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "recorded_parser_sha256": "fc199760920294077744c5ee0b1219f3143e8e8467bdd2c39d69b72e1b3719cc"
+    },
+    {
+      "path": "tmp/manufacturing-zh-fix-r2/pages/MFG-ZH15.json",
+      "sha256": "c047e78455b0f8073818d6611bcb7b418d308244456e6e7041685c6af75b4262",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "recorded_parser_sha256": "fc199760920294077744c5ee0b1219f3143e8e8467bdd2c39d69b72e1b3719cc"
+    },
+    {
+      "path": "tmp/manufacturing-zh-fix-r2/pages/MFG-ZH16.json",
+      "sha256": "303ae765dfda1aaddf4151657af6e66fd38479b77370f7fe3a15619ae41222f9",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "recorded_parser_sha256": "fc199760920294077744c5ee0b1219f3143e8e8467bdd2c39d69b72e1b3719cc"
+    }
+  ],
+  "limitations": [
+    "OCR replay is source-hash-checked old observed text, not a new current-parser cache or a new OCR run.",
+    "Local snapshots and full OCR observations remain untracked; compact report contains fingerprints only.",
+    "No live retrieval/QA, model call, corpus replacement or existing database/index rebuild."
+  ]
+}

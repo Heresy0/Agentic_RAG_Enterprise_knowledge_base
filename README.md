@@ -18,6 +18,8 @@
 
 ## 核心能力
 
+文档入库前已接入[统一保守清洗](docs/DOCUMENT_CLEANING.md)：四种格式共用清洗模块并保留结构、来源页码、规则与前后指纹。清洗版本为 `conservative-v2`，索引解析版本为 `structured-v7`；旧报告保留原版本和原成绩，现有索引不会自动重建。
+
 - Keycloak OIDC 登录、JWT 签名及 issuer、audience 校验
 - 租户、部门、用户和知识库四层权限模型
 - 用户授权与部门授权，支持 `viewer`、`editor` 和 `admin` 权限

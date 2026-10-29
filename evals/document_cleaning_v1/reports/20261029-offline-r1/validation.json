@@ -1,0 +1,35 @@
+{
+  "full_suite": {
+    "command": ".venv/Scripts/python.exe -m pytest -q",
+    "exit_code": 0,
+    "passed": 1449,
+    "skipped": 55,
+    "failed": 0,
+    "collected": 1504,
+    "new_test_cases": 14
+  },
+  "parity": {
+    "documents": 33,
+    "statuses": {
+      "parsed": 32,
+      "blocked": 1
+    },
+    "chunks": 1102,
+    "chunks_with_cleaning": 1102,
+    "changed_documents": 0,
+    "metadata_excluded": [
+      "cleaning",
+      "cleaning_version"
+    ],
+    "fingerprint_source_paths": "repository-relative; all other pre-existing chunk fields included",
+    "replayed_real_ocr_documents": 6,
+    "skipped_old_lite_scanned_documents": 2,
+    "external_model_calls": 0,
+    "new_ocr_calls": 0
+  },
+  "frozen_files_unchanged": 210,
+  "warnings": [
+    "Existing langchain-community deprecation",
+    "Existing anyio BlockingPortal deprecation"
+  ]
+}

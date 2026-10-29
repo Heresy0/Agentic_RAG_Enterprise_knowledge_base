@@ -22,7 +22,7 @@ def main() -> int:
     rows = []
     for index, chunk in enumerate(chunks):
         keys = ("section_path", "chunk_type", "evidence_role", "parser", "parent_key",
-                "page_start", "page_end", "cleaning_version", "quality", "ocr_corrections")
+                "page_start", "page_end", "cleaning_version", "cleaning", "quality", "ocr_corrections")
         row = {key: chunk.metadata.get(key) for key in keys}
         row.update(index=index, characters=len(chunk.page_content))
         if args.show_content:

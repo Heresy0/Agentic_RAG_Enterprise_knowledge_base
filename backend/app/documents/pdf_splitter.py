@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-import math
 import hashlib
 import os
 import re
-import unicodedata
-from collections import Counter
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -23,6 +20,7 @@ from .document_splitter import (
 )
 from .chunk_quality import annotate_chunks, classify_chunk
 from .ocr_review import apply_reviewed_ocr
+from .document_cleaning import (clean_document, clean_text, clean_table, cleaning_trace, remove_repeated_marginalia)
 
 
 OcrPage = Callable[[Path, int], str]
@@ -35,11 +33,6 @@ _HEADING_PATTERN = re.compile(
 )
 _LIST_PATTERN = re.compile(
     r"^(?:[-•·]|\(?[0-9一二三四五六七八九十]+(?:[、)）]|\.(?!\d)))"
-)
-_PAGE_NUMBER_PATTERN = re.compile(
-    r"^(?:第\s*\d+\s*页|[-—–]\s*\d+\s*[-—–]|"
-    r"page\s+\d+(?:\s+of\s+\d+)?|虚构测试资料\s+第\s*\d+\s*页)$",
-    flags=re.IGNORECASE,
 )
 _TERMINAL_PUNCTUATION = tuple("。！？!?；;：:")
 _HEADING_MARKER_PATTERN = re.compile(
@@ -68,6 +61,7 @@ class ExtractedPage:
     text: str
     parser: str
     tables: list[list[str]] = field(default_factory=list)
+    cleaning_traces: list[dict] = field(default_factory=list)
 
 
 @dataclass
@@ -79,6 +73,7 @@ class PdfUnit:
     page_end: int
     parsers: tuple[str, ...]
     rule_intro: str = ""
+    metadata: dict = field(default_factory=dict)
 
 
 def split_pdf(
@@ -100,9 +95,15 @@ def split_pdf(
         file_hash = hashlib.sha256(path.read_bytes()).hexdigest()
         for page in pages:
             if page.parser == 'ocr':
+                before = page.text
                 page.text, corrections[page.number] = apply_reviewed_ocr(page.text, file_hash=file_hash, page=page.number)
+                if corrections[page.number]:
+                    page.cleaning_traces.append(cleaning_trace(before, page.text, profile="reviewed_ocr",
+                        rules=["hash_bound_reviewed_ocr"], scope={"format":"pdf", "page":page.number},
+                        counts={"corrections":len(corrections[page.number])}))
     pages = remove_repeated_marginalia(pages, document_name=resolved_document_name)
-    units = collect_pdf_units(pages)
+    units = clean_document(collect_pdf_units(pages), source_format="pdf",
+        upstream_traces=[trace for page in pages for trace in page.cleaning_traces])
 
     normal_splitter = RecursiveCharacterTextSplitter(
         separators=[
@@ -170,6 +171,7 @@ def split_pdf(
                         "page_start": unit.page_start,
                         "page_end": unit.page_end,
                         "parser": parser,
+                        **unit.metadata,
                         **({"rule_intro": unit.rule_intro} if unit.rule_intro else {}),
                     },
                 )
@@ -226,7 +228,7 @@ def extract_pdf_pages(
             )
             parser = "ocr"
 
-        text = normalize_pdf_text(text)
+        text, trace = clean_text(text, profile="pdf_text", scope={"format":"pdf", "page":page_number})
         # Keep failed OCR observations; never silently publish a partial PDF.
         # A genuinely blank native page without images still needs no OCR.
         if text or tables or parser == "ocr":
@@ -236,6 +238,7 @@ def extract_pdf_pages(
                     text=text,
                     parser=parser,
                     tables=tables,
+                    cleaning_traces=[*(layout_page.cleaning_traces if layout_page else []), trace],
                 )
             )
 
@@ -243,73 +246,8 @@ def extract_pdf_pages(
 
 
 def normalize_pdf_text(text: str) -> str:
-    text = unicodedata.normalize("NFKC", text)
-    text = text.replace("\x00", "").replace("\u00ad", "")
-    text = re.sub(r"(?<=[A-Za-z])-\s*\n\s*(?=[A-Za-z])", "", text)
-    lines: list[str] = []
-
-    for raw_line in text.replace("\r\n", "\n").split("\n"):
-        line = re.sub(r"[\t \u3000]+", " ", raw_line).strip()
-        lines.append(line)
-
-    return "\n".join(lines).strip()
-
-
-def remove_repeated_marginalia(
-    pages: list[ExtractedPage],
-    *,
-    document_name: str = "",
-) -> list[ExtractedPage]:
-    normalized_page_edges: list[set[str]] = []
-    for page in pages:
-        lines = [line for line in page.text.splitlines() if line]
-        normalized_page_edges.append({
-            _normalize_marginal_line(line)
-            for line in lines[:2] + lines[-2:]
-            if _safe_repeated_margin(line, document_name)
-        })
-
-    normalized_counts = Counter(
-        line
-        for page_edges in normalized_page_edges
-        for line in page_edges
-        if line
-    )
-    required = max(2, math.ceil(len(pages) * 0.6))
-    repeated = {
-        line
-        for line, count in normalized_counts.items()
-        if count >= required
-    }
-    cleaned: list[ExtractedPage] = []
-    for page in pages:
-        lines = page.text.splitlines()
-        nonempty_indexes = [
-            index for index, line in enumerate(lines) if line
-        ]
-        edge_indexes = set(nonempty_indexes[:2]) | set(
-            nonempty_indexes[-2:]
-        )
-        footer_indexes = set(nonempty_indexes[-2:])
-        kept = [
-            line
-            for index, line in enumerate(lines)
-            if not (
-                (index in edge_indexes and _safe_repeated_margin(line, document_name)
-                 and _normalize_marginal_line(line) in repeated)
-                or (index in footer_indexes and _PAGE_NUMBER_PATTERN.fullmatch(line.strip())
-                    and int(re.search(r"\d+", line).group()) == page.number)
-            )
-        ]
-        cleaned.append(
-            ExtractedPage(
-                number=page.number,
-                text="\n".join(kept).strip(),
-                parser=page.parser,
-                tables=page.tables,
-            )
-        )
-    return cleaned
+    """Compatibility wrapper for the shared PDF text-cleaning policy."""
+    return clean_text(text, profile="pdf_text")[0]
 
 
 def collect_pdf_units(
@@ -481,10 +419,13 @@ def _extract_layout_pages(path: Path) -> dict[int, ExtractedPage]:
                 except Exception:
                     found_tables = []
 
-                for table in found_tables:
-                    rows = _normalize_table_rows(table.extract())
+                table_traces = []
+                for table_index, table in enumerate(found_tables):
+                    rows, table_trace = clean_table(table.extract(),
+                        scope={"format":"pdf", "page":page_number, "table":table_index})
                     if len(rows) >= 2:
                         tables.append(rows)
+                        table_traces.append(table_trace)
                         table_boxes.append(table.bbox)
 
                 text_page = page
@@ -506,6 +447,7 @@ def _extract_layout_pages(path: Path) -> dict[int, ExtractedPage]:
                         else "pdfplumber"
                     ),
                     tables=tables,
+                    cleaning_traces=table_traces,
                 )
     except Exception:
         # Layout extraction is enrichment. Malformed layout data should
@@ -625,15 +567,7 @@ def _looks_multicolumn(page) -> bool:
 
 
 def _normalize_table_rows(rows: list[list[str | None]]) -> list[str]:
-    normalized: list[str] = []
-    for row in rows:
-        cells = [
-            re.sub(r"\s+", " ", cell or "").strip()
-            for cell in row
-        ]
-        if any(cells):
-            normalized.append("|".join(cells))
-    return normalized
+    return clean_table(rows)[0]
 
 
 def _object_inside_box(
@@ -752,30 +686,6 @@ def _join_wrapped_lines(lines: list[str]) -> str:
         separator = " " if result[-1:].isascii() and line[:1].isascii() else ""
         result = f"{result}{separator}{line}"
     return result
-
-
-def _normalize_marginal_line(line: str) -> str:
-    return re.sub(r"\s+", "", line.strip().lower())
-
-
-def _safe_repeated_margin(line: str, document_name: str = "") -> bool:
-    # Repetition alone cannot prove a rule is a header/footer. Do not collapse
-    # changing amounts/versions into the same line or remove repeated obligations.
-    if len(line) > 80 or re.search(
-        r"\d|[|。！？；;:：]|必须|应当|不得|禁止|限额|上限|触发|应在|需要|条件|例外|"
-        r"生效|失效|有效期|版本|审批人|负责人|签署|验收结果|不应|不能|不可|不自动|"
-        r"仅|只有|如果|若|允许|可以|须|要求|不代表|不证明|确认|认定|已|重试|幂等", line,
-    ):
-        return False
-    if classify_chunk(line, {"document_name": document_name, "section_path": ""}) == "front_matter":
-        return True
-    # A repeated title may have a short company prefix absent from the filename.
-    # Unknown short business lines are not headers just because they repeat.
-    title = re.sub(r"\.(?:pdf|docx?|md|txt)$", "", document_name, flags=re.I)
-    title = _normalize_marginal_line(re.sub(r"^\d+[_、.\s-]+", "", title))
-    normalized = _normalize_marginal_line(line)
-    prefix = normalized[:-len(title)] if title and normalized.endswith(title) else ""
-    return bool(prefix and re.fullmatch(r"[\w·&-]+(?:科技|公司|有限公司)", prefix))
 
 
 def _meaningful_character_count(text: str) -> int:

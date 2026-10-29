@@ -6,6 +6,7 @@ from pathlib import Path
 from langchain_core.documents import Document
 
 from .document_splitter import ContentUnit, split_content_units
+from .document_cleaning import clean_text
 
 
 _TXT_HEADING = re.compile(
@@ -22,7 +23,8 @@ def split_txt(
     file_path: str | Path, *, document_name: str | None = None,
 ) -> list[Document]:
     path = Path(file_path).resolve()
-    text = _read_text(path)
+    trace = {}
+    text = _read_text(path, trace=trace)
     units: list[ContentUnit] = []
     headings: dict[int, str] = {}
     lines: list[str] = []
@@ -75,6 +77,7 @@ def split_txt(
     return split_content_units(
         units, path=path, document_name=document_name or path.stem,
         chunk_size=500, chunk_overlap=50,
+        cleaning_traces=[trace],
     )
 
 
@@ -82,9 +85,12 @@ def split_markdown(
     file_path: str | Path, *, document_name: str | None = None,
 ) -> list[Document]:
     path = Path(file_path).resolve()
+    trace = {}
+    text = _read_text(path, trace=trace)
     return split_content_units(
-        collect_markdown_units(_read_text(path)), path=path,
+        collect_markdown_units(text), path=path,
         document_name=document_name or path.stem,
+        cleaning_traces=[trace],
     )
 
 
@@ -184,10 +190,13 @@ def collect_markdown_units(text: str) -> list[ContentUnit]:
     return units
 
 
-def _read_text(path: Path) -> str:
-    # utf-8-sig 同时兼容有 BOM 和无 BOM 的 UTF-8 文件；不改代码缩进。
-    text = path.read_text(encoding="utf-8-sig")
-    return text.replace("\r\n", "\n").replace("\r", "\n").replace("\x00", "")
+def _read_text(path: Path, *, trace: dict | None = None) -> str:
+    # Decode before normalization so BOM/newline changes can be audited.
+    text, audit = clean_text(path.read_bytes().decode('utf-8'), profile='text_file',
+                             scope={"format":path.suffix.lower().lstrip('.'), "file":True})
+    if trace is not None:
+        trace.update(audit)
+    return text
 
 
 def _set_heading(headings: dict[int, str], level: int, title: str) -> None:
