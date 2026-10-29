@@ -103,8 +103,14 @@ class EvidenceCoverage(AnswerCoverage):
                         description="A required answer point, not reasoning.")
     status: Literal["answered", "insufficient", "withheld"] = Field(
         description="Answered, missing evidence/user input, or withheld by overall refusal.")
-    source_quote: str | None = Field(max_length=600,
-        description="Verbatim evidence before aspect/claims; required for answered points, null for other statuses.")
+    source_quote: str | None = Field(default=None, max_length=600,
+        description="Optional verbatim evidence before aspect/claims; null if unavailable. Diagnostic only.")
+
+    @field_validator('source_quote', mode='before')
+    @classmethod
+    def normalize_auxiliary_quote(cls, value):
+        # Malformed auxiliary metadata must not invalidate an otherwise valid answer.
+        return value if isinstance(value, str) and value.strip() and len(value) <= 600 else None
 
 
 class EvidenceFirstAnswerDraft(GenerationAnswerDraft):

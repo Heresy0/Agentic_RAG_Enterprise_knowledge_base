@@ -82,25 +82,34 @@ def coverage_errors(draft: GenerationAnswerDraft, question: str, context=None) -
                 errors.append("条件要点缺少对应原文引用：" + row.requirement_id)
         elif indices or not (row.missing_information or "").strip():
             errors.append("未回答要点必须说明缺口且不能关联结论：" + row.requirement_id)
-        if isinstance(row, EvidenceCoverage):
-            quote = re.sub(r'\s+', '', row.source_quote or '')
-            if row.status == 'answered' and not quote:
-                errors.append('已回答要点缺少原文摘录：' + row.requirement_id)
-            elif quote and context is not None:
-                cited = {citation for index in indices if 1 <= index <= len(draft.claims)
-                         for citation in draft.claims[index - 1].citations}
-                candidates = [item for item in context.items
-                              if row.status != 'answered' or item.citation_id in cited]
-                if not any(quote in re.sub(r'\s+', '', item.content) for item in candidates):
-                    errors.append('原文摘录不在对应引用资料中：' + row.requirement_id)
         if draft.answerable and row.status != "answered":
             errors.append("仍有未回答必答要点，不能标为完整可回答：" + row.requirement_id)
     return errors
+
+
+def _quote_warnings(draft: GenerationAnswerDraft, context=None) -> list[str]:
+    """Diagnostic metadata only; never reject claims or trigger model repair."""
+    warnings = []
+    for row in draft.coverage:
+        if not isinstance(row, EvidenceCoverage):
+            continue
+        quote = re.sub(r'\s+', '', row.source_quote or '')
+        if row.status == 'answered' and not quote:
+            warnings.append('已回答要点缺少原文摘录：' + row.requirement_id)
+        elif quote and context is not None:
+            cited = {citation for index in row.claim_indices if 1 <= index <= len(draft.claims)
+                     for citation in draft.claims[index - 1].citations}
+            candidates = [item for item in context.items
+                          if row.status != 'answered' or item.citation_id in cited]
+            if not any(quote in re.sub(r'\s+', '', item.content) for item in candidates):
+                warnings.append('原文摘录不在对应引用资料中：' + row.requirement_id)
+    return warnings
 
 
 def coverage_snapshot(draft: GenerationAnswerDraft, question: str, context=None) -> dict:
     errors = coverage_errors(draft, question, context)
     return dict(requirements=json.loads(requirement_prompt(question, context)),
                 coverage=[row.model_dump() for row in draft.coverage], errors=errors,
+                quote_warnings=_quote_warnings(draft, context),
                 structurally_complete=draft.answerable and not errors,
-                limitation="Evidence quotes are checked against cited context; required-point selection and semantic completeness still need independent review.")
+                limitation="Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review.")
