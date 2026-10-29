@@ -9,6 +9,19 @@ from scripts.run_manufacturing_http_acceptance import LocalKeycloakSession, main
 from scripts import run_manufacturing_http_acceptance as runner
 
 
+@pytest.mark.parametrize('port', [8000, 8001, 65535])
+def test_local_candidate_port_is_allowed(port):
+    assert runner.local_api_base(f'http://127.0.0.1:{port}/') == f'http://127.0.0.1:{port}'
+
+
+@pytest.mark.parametrize('url', ['https://example.com:8000', 'http://0.0.0.0:8000',
+    'http://user:password@127.0.0.1:8000', 'http://127.0.0.1:8000/path',
+    'http://127.0.0.1:0', 'http://127.0.0.1:65536'])
+def test_candidate_target_stays_on_explicit_loopback(url):
+    with pytest.raises(ValueError):
+        runner.local_api_base(url)
+
+
 def observation():
     case = dict(id="MFG-Q01", question="首件检查要求是什么？")
     response = dict(answer="检查后签署。", run_id="run-1")

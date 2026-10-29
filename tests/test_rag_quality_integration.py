@@ -8,7 +8,7 @@ from test_agentic_rag_integration import scenario
 from test_milvus_integration import postgres_session, vector_store
 from backend.app.db.models import KnowledgeBaseUserGrant, KnowledgeDocument
 from backend.app.evaluation.trace import capture_trace
-from backend.app.knowledge.answer_models import GenerationAnswerDraft
+from backend.app.knowledge.answer_models import EvidenceFirstAnswerDraft, GenerationAnswerDraft
 from backend.app.knowledge.answer_service import AnswerService
 from backend.app.knowledge.answer_repair import AnswerRepair
 from backend.app.model_usage import usage_context
@@ -33,9 +33,10 @@ def test_schema_recovery_real_permission_and_document_boundaries(scenario,monkey
         if phase=='delete':
             session.execute(delete(KnowledgeDocument).where(KnowledgeDocument.id==chunks[0].document_id))
             session.commit()
-        return GenerationAnswerDraft.model_validate(dict(answerable=True,response_type='answer',claims=[dict(
+        return EvidenceFirstAnswerDraft.model_validate(dict(answerable=True,response_type='answer',claims=[dict(
             text='alpha workflow approved evidence',citations=['资料1'])],coverage=[dict(
-            requirement_id='Q1',aspect='workflow',status='answered',claim_indices=[1],missing_information=None)]))
+            requirement_id='Q1',aspect='workflow',status='answered',claim_indices=[1],missing_information=None,
+            source_quote='alpha workflow approved evidence')]))
     settings=SimpleNamespace(rag_repair_enabled=True,rag_planner_mode='off',agentic_rag_mode='off',
         chat_model='fake',chat_base_url='https://fake.invalid',chat_api_key='fake')
     service=AnswerService(settings=settings,retrieval_service=retrieval)

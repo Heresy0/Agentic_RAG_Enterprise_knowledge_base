@@ -64,7 +64,8 @@ def build(feedback_scenario, monkeypatch, *, phase=None):
     def first_invoke(messages):
         if phase == 'first_generation':
             revoke()
-        return first
+        from test_answer_service import FakeStructuredLLM
+        return FakeStructuredLLM(first).invoke(messages)
     first_factory = lambda **kwargs: SimpleNamespace(with_structured_output=lambda *args, **kwargs:
         SimpleNamespace(invoke=first_invoke))
     monkeypatch.setattr('backend.app.knowledge.answer_service.ChatOpenAI', first_factory)
@@ -81,8 +82,9 @@ def build(feedback_scenario, monkeypatch, *, phase=None):
             claims=[dict(text='alpha workflow approved evidence', citations=['资料1']),
                     dict(text='beta workflow approved evidence', citations=['资料2'])],
             coverage=[dict(requirement_id='Q1', aspect='双方workflow', status='answered', claim_indices=[1, 2], missing_information=None)]))
+        from test_answer_service import FakeStructuredLLM
         return dict(raw=AIMessage(content='', usage_metadata=dict(input_tokens=100, output_tokens=20, total_tokens=120)),
-                    parsed=result, parsing_error=None)
+                    parsed=FakeStructuredLLM(result).invoke(messages), parsing_error=None)
     factory = lambda **kwargs: SimpleNamespace(with_structured_output=lambda *args, **kwargs:
         SimpleNamespace(invoke=regenerate))
     settings = SimpleNamespace(rag_feedback_enabled=True, agentic_rag_mode='off', rag_planner_mode='off',

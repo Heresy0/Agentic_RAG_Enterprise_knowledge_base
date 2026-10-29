@@ -51,6 +51,7 @@ class AnswerDraft(BaseModel):
 
 class AnswerCoverage(BaseModel):
     requirement_id: str = Field(min_length=1, max_length=20, description="必须使用问题清单中的编号，如Q1")
+    source_quote: str | None = Field(default=None, exclude_if=lambda value: value is None)
     aspect: str = Field(min_length=1, max_length=200,
                         description="该问题实际要求回答的一个要点；同一问题可有多个要点，不是思维过程")
     status: Literal["answered", "insufficient", "withheld"] = Field(
@@ -94,6 +95,22 @@ class GenerationAnswerDraft(BaseModel):
     missing_fields: list[Annotated[str, Field(min_length=1, max_length=80)]] = Field(default_factory=list, max_length=5)
     clarification_questions: list[Annotated[str, Field(min_length=1, max_length=300)]] = Field(default_factory=list, max_length=3,
         description="clarify时填写直接向用户提出的简短追问；不含未经证实的业务结论或执行承诺。")
+
+
+class EvidenceCoverage(AnswerCoverage):
+    """Live evidence plan; historical coverage records retain their old schema."""
+    aspect: str = Field(min_length=1, max_length=200,
+                        description="A required answer point, not reasoning.")
+    status: Literal["answered", "insufficient", "withheld"] = Field(
+        description="Answered, missing evidence/user input, or withheld by overall refusal.")
+    source_quote: str | None = Field(max_length=600,
+        description="Verbatim evidence before aspect/claims; required for answered points, null for other statuses.")
+
+
+class EvidenceFirstAnswerDraft(GenerationAnswerDraft):
+    """Select evidence and its obligations within the existing generation call."""
+    coverage: list[EvidenceCoverage] = Field(min_length=1, max_length=32,
+        description="Quote relevant evidence, identify required points, then write claims. Cover every requirement.")
 
 
 class Citation(BaseModel):

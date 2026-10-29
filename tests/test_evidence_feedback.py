@@ -4,7 +4,7 @@ import pytest
 from langchain_core.messages import AIMessage
 from sqlalchemy.exc import SQLAlchemyError
 
-from test_answer_service import TEST_SCOPE, make_document, build_service, answer
+from test_answer_service import TEST_SCOPE, make_document, build_service, answer, FakeStructuredLLM
 from backend.app.evaluation.trace import capture_trace, record_documents, record_scope
 from backend.app.knowledge.answer_models import GenerationAnswerDraft
 from backend.app.knowledge.evidence_feedback import EvidenceFeedback
@@ -64,7 +64,7 @@ def setup(monkeypatch, *, initial=None, candidate=None, extra=None, search_hook=
             if isinstance(candidate, Exception):
                 raise candidate
             return dict(raw=AIMessage(content="", usage_metadata=dict(input_tokens=100, output_tokens=20, total_tokens=120)),
-                        parsed=candidate, parsing_error=None)
+                        parsed=FakeStructuredLLM(candidate).invoke(messages), parsing_error=None)
         return SimpleNamespace(with_structured_output=lambda *args, **kwargs: SimpleNamespace(invoke=invoke))
     service._regeneration_model_factory = factory
     service._evidence_feedback = EvidenceFeedback(service._settings, retrieval, service._evidence_coordinator,

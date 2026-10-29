@@ -13,6 +13,7 @@ from backend.app.knowledge.answer_models import (
     AnswerClaim,
     AnswerDraft,
     GenerationAnswerDraft,
+    EvidenceFirstAnswerDraft,
 )
 from backend.app.knowledge.answer_service import (
     REFUSAL_TEXT,
@@ -132,9 +133,9 @@ class FakeStructuredLLM:
         self.calls.append(messages)
         # Legacy typed fixtures predate the live response-type/coverage contract.
         # Enrich only test output; raw response types are never inferred.
-        if isinstance(self.result, GenerationAnswerDraft):
+        if isinstance(self.result, EvidenceFirstAnswerDraft):
             return self.result
-        payload = self.result.model_dump() if isinstance(self.result, AnswerDraft) else dict(self.result)
+        payload = self.result.model_dump() if isinstance(self.result, (AnswerDraft, GenerationAnswerDraft)) else dict(self.result)
         if isinstance(self.result, AnswerDraft):
             payload['response_type'] = 'answer' if self.result.answerable else 'refuse'
         if 'coverage' not in payload:
@@ -145,6 +146,19 @@ class FakeStructuredLLM:
                 claim_indices=list(range(1, len(payload.get('claims', [])) + 1)) if payload['answerable'] else [],
                 missing_information=None if payload['answerable'] else '模拟资料不足',
             ) for row in requirements]
+        # Legacy mock drafts receive real snippets from the current mock context.
+        # Production generation never infers or fabricates omitted evidence.
+        import re
+        parts = re.split(r'(?m)^\[(资料\d+)\]\n', messages[1].content.split('知识库资料：\n', 1)[1])
+        sources = {parts[i]: parts[i + 1].split('内容：', 1)[1] for i in range(1, len(parts), 2)}
+        for row in payload['coverage']:
+            if 'source_quote' in row:
+                continue
+            cited = [c.strip().strip('[]【】') for index in row['claim_indices']
+                     if 1 <= index <= len(payload.get('claims', []))
+                     for c in payload['claims'][index - 1]['citations']]
+            body = next((sources[c] for c in cited if c in sources), next(iter(sources.values()), ''))
+            row['source_quote'] = body[:600] if row['status'] == 'answered' else None
         return payload
 
 
@@ -269,7 +283,7 @@ def test_initializes_structured_model_with_expected_settings(
         "timeout": 60,
         "max_retries": 0,
     }]
-    assert chat_model.schemas == [GenerationAnswerDraft]
+    assert chat_model.schemas == [EvidenceFirstAnswerDraft]
 
 
 def test_blank_question_is_rejected_before_retrieval(

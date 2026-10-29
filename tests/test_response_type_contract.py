@@ -11,7 +11,7 @@ from test_rag_quality_fixes import schema_service
 def payload(**changes):
     return dict(answerable=False, claims=[], coverage=[dict(
         requirement_id='Q1', aspect='设备条件', status='insufficient', claim_indices=[],
-        missing_information='缺少设备型号')], **changes)
+        missing_information='缺少设备型号', source_quote=None)], **changes)
 
 
 def test_generation_schema_requires_non_nullable_response_type():

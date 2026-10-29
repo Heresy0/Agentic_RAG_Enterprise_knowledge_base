@@ -9,6 +9,7 @@ import argparse
 import base64
 import hashlib
 import json
+import re
 from pathlib import Path
 import sys
 from time import perf_counter
@@ -23,6 +24,15 @@ from scripts.evaluate_answers import load_dataset
 
 class SourceUnavailable(ValueError):
     """A frozen case remains in the denominator but sends no paid QA request."""
+
+
+def local_api_base(value):
+    """Allow an isolated candidate port while retaining a literal loopback target."""
+    base = value.rstrip('/')
+    match = re.fullmatch(r'http://127\.0\.0\.1:([1-9]\d{0,4})', base)
+    if not match or int(match[1]) > 65535:
+        raise ValueError('This runner only targets an explicitly configured local demo API')
+    return base
 
 
 
@@ -224,9 +234,7 @@ def main(argv=None):
     if not args.allow_model_calls:
         parser.error("Real model calls require --allow-model-calls")
     config = json.loads(args.config.read_text(encoding="utf-8-sig"))
-    base = config["base_url"].rstrip("/")
-    if base != "http://127.0.0.1:8000":
-        raise ValueError("This runner only targets the existing local demo API")
+    base = local_api_base(config["base_url"])
     profile=None
     if args.profile:
         from scripts.build_manufacturing_demo_profile import load_profile

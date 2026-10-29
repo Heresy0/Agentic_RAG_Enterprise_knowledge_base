@@ -3,9 +3,9 @@ from types import SimpleNamespace
 import pytest
 from langchain_core.messages import AIMessage
 
-from test_answer_service import TEST_SCOPE, make_document, build_service, answer
+from test_answer_service import TEST_SCOPE, make_document, build_service, answer, FakeStructuredLLM
 from backend.app.evaluation.trace import capture_trace
-from backend.app.knowledge.answer_models import GenerationAnswerDraft
+from backend.app.knowledge.answer_models import EvidenceFirstAnswerDraft, GenerationAnswerDraft
 from backend.app.knowledge.answer_repair import AnswerRepair
 from backend.app.knowledge.answer_validation import AnswerValidator
 from backend.app.knowledge.context_builder import ContextBuilder
@@ -33,14 +33,29 @@ def repair_service(result, *, hook=None):
     calls, guard = [], Guard()
     def factory(**kwargs):
         calls.append(kwargs)
+        selected_schema = None
         def invoke(messages):
             if hook:
                 hook(guard)
             if isinstance(result, Exception):
                 raise result
+            parsed = result
+            if selected_schema is EvidenceFirstAnswerDraft and isinstance(result, GenerationAnswerDraft):
+                if '知识库资料：\n' in messages[1].content:
+                    parsed = FakeStructuredLLM(result).invoke(messages)
+                else:
+                    import json
+                    data = json.loads(messages[1].content)
+                    parsed = result.model_dump()
+                    for row in parsed['coverage']:
+                        row.setdefault('source_quote', data['evidence'][0]['content'][:600] if row['status']=='answered' else None)
             return dict(raw=AIMessage(content="", usage_metadata=dict(input_tokens=100, output_tokens=20, total_tokens=120)),
-                        parsed=result, parsing_error=None)
-        return SimpleNamespace(with_structured_output=lambda *args, **kwargs: SimpleNamespace(invoke=invoke))
+                        parsed=parsed, parsing_error=None)
+        def structured(schema, **kwargs):
+            nonlocal selected_schema
+            selected_schema = schema
+            return SimpleNamespace(invoke=invoke)
+        return SimpleNamespace(with_structured_output=structured)
     settings = SimpleNamespace(rag_repair_enabled=True, chat_model="fake", chat_base_url="https://fake.invalid", chat_api_key="fake")
     return AnswerRepair(settings, model_factory=factory, guard_factory=lambda *args: guard), calls, guard
 

@@ -7,7 +7,7 @@ import json
 import re
 from dataclasses import dataclass
 
-from .answer_models import GenerationAnswerDraft
+from .answer_models import EvidenceCoverage, GenerationAnswerDraft
 from .condition_requirements import condition_requirements
 
 
@@ -82,6 +82,17 @@ def coverage_errors(draft: GenerationAnswerDraft, question: str, context=None) -
                 errors.append("条件要点缺少对应原文引用：" + row.requirement_id)
         elif indices or not (row.missing_information or "").strip():
             errors.append("未回答要点必须说明缺口且不能关联结论：" + row.requirement_id)
+        if isinstance(row, EvidenceCoverage):
+            quote = re.sub(r'\s+', '', row.source_quote or '')
+            if row.status == 'answered' and not quote:
+                errors.append('已回答要点缺少原文摘录：' + row.requirement_id)
+            elif quote and context is not None:
+                cited = {citation for index in indices if 1 <= index <= len(draft.claims)
+                         for citation in draft.claims[index - 1].citations}
+                candidates = [item for item in context.items
+                              if row.status != 'answered' or item.citation_id in cited]
+                if not any(quote in re.sub(r'\s+', '', item.content) for item in candidates):
+                    errors.append('原文摘录不在对应引用资料中：' + row.requirement_id)
         if draft.answerable and row.status != "answered":
             errors.append("仍有未回答必答要点，不能标为完整可回答：" + row.requirement_id)
     return errors
@@ -92,4 +103,4 @@ def coverage_snapshot(draft: GenerationAnswerDraft, question: str, context=None)
     return dict(requirements=json.loads(requirement_prompt(question, context)),
                 coverage=[row.model_dump() for row in draft.coverage], errors=errors,
                 structurally_complete=draft.answerable and not errors,
-                limitation="Syntactic anchors and bounded table facets with model-declared coverage; not semantic completeness or faithfulness.")
+                limitation="Evidence quotes are checked against cited context; required-point selection and semantic completeness still need independent review.")

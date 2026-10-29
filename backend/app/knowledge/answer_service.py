@@ -14,6 +14,7 @@ from sqlalchemy.orm import Session
 from .answer_models import (
     AnswerDraft,
     GenerationAnswerDraft,
+    EvidenceFirstAnswerDraft,
     AnswerResult,
     AnswerTimings,
     Citation,
@@ -96,7 +97,7 @@ class AnswerService:
         )
 
         self._structured_llm = (
-            llm.with_structured_output(GenerationAnswerDraft, include_raw=True)
+            llm.with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
         )
 
     @audited_scope
@@ -455,7 +456,7 @@ class AnswerService:
     def _regeneration_preflight(self, question, context):
         messages = self._generation_messages(question, context)
         prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
-        prompt_bytes += len(json.dumps(GenerationAnswerDraft.model_json_schema()).encode("utf-8")) + 256
+        prompt_bytes += len(json.dumps(EvidenceFirstAnswerDraft.model_json_schema()).encode("utf-8")) + 256
         output = getattr(self._settings, "rag_regeneration_output_tokens", 2048)
         current_rag_budget().check_model(prompt_bytes=prompt_bytes, output_tokens=output)
         return messages, prompt_bytes, output
@@ -468,16 +469,23 @@ class AnswerService:
                 base_url=self._settings.chat_base_url, api_key=self._settings.chat_api_key, temperature=0,
                 reasoning_effort="none", max_retries=0, max_tokens=output,
                 timeout=min(getattr(self._settings, "rag_regeneration_timeout_seconds", 15), remaining)
-            ).with_structured_output(GenerationAnswerDraft, include_raw=True)
+            ).with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
             result = invoke_structured(model, messages, stage="answer_regeneration", model_name=self._settings.chat_model)
             return self._as_generation_draft(result)
 
     @staticmethod
     def _as_generation_draft(result):
-        if not isinstance(result, GenerationAnswerDraft):
-            if isinstance(result, AnswerDraft):
+        if not isinstance(result, EvidenceFirstAnswerDraft):
+            if isinstance(result, (AnswerDraft, GenerationAnswerDraft)):
                 result = result.model_dump()
-            result = GenerationAnswerDraft.model_validate(result)
+            result = EvidenceFirstAnswerDraft.model_validate(result)
+        # An unanswered item makes no cited assertion. Like the redundant
+        # retrieval request below, its unused quote must not turn clarification
+        # into refusal. Keep the original model object untouched for callers.
+        if any(row.status != 'answered' and row.source_quote is not None for row in result.coverage):
+            result = result.model_copy(update={'coverage': [
+                row.model_copy(update={'source_quote': None}) if row.status != 'answered' else row
+                for row in result.coverage]})
         # A user condition cannot be supplied by another search. A declared
         # clarification takes precedence over a redundant retrieval request;
         # claims, answerability and the actual questions still undergo validation.
