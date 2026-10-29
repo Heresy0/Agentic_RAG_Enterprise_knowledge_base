@@ -30,20 +30,25 @@ def main(argv=None):
     p.add_argument('phase',choices=['ask','samples','evaluate','verify'])
     p.add_argument('--run-dir',type=Path,required=True);p.add_argument('--apply',action='store_true')
     p.add_argument('--allow-model-calls',action='store_true');p.add_argument('--reviews',type=Path)
+    p.add_argument('--evidence-dir',type=Path,help='New private evidence directory for a new app version; never reuse a paid run')
+    p.add_argument('--ocr-issue-run-id',help='Optional existing bad OCR answer to retain as needs_evidence, never auto approve')
+    p.add_argument('--acknowledge-unpriced-usage',action='store_true')
     p.add_argument('--review-note',default='助手执行的非独立流程验收，不代表真实用户反馈、独立人工复核或质量提升。')
     a=p.parse_args(argv);run=a.run_dir.resolve();run.relative_to(ROOT/'tmp')
     if not a.apply:p.error('执行需要--apply')
     if a.phase in ('ask','evaluate') and not a.allow_model_calls:p.error('问答或评测需要--allow-model-calls')
     cfg=json.loads((run/'state.json').read_text(encoding='utf-8'));kb=cfg['knowledge_bases']['公共参考']
     s=LocalKeycloakSession(run/'tokens.json');base='http://127.0.0.1:8000'
-    def read(name):return json.loads((run/name).read_text(encoding='utf-8'))
+    evidence_root=a.evidence_dir.resolve() if a.evidence_dir else run
+    evidence_root.relative_to(ROOT/'tmp');evidence_root.mkdir(parents=True,exist_ok=True)
+    def read(name):return json.loads((evidence_root/name).read_text(encoding='utf-8'))
     def write(name,data):
-        with (run/name).open('x',encoding='utf-8') as stream:json.dump(data,stream,ensure_ascii=False,indent=2)
+        with (evidence_root/name).open('x',encoding='utf-8') as stream:json.dump(data,stream,ensure_ascii=False,indent=2)
     def request(method,path,**kwargs):
         r=s.request(method,base+path,timeout=180,**kwargs);r.raise_for_status()
         return None if r.status_code==204 else r.json()
     if a.phase=='ask':
-        if (run/'workflow-answers.json').exists() or any((run/('workflow-'+name+'.json')).exists() for name in QUESTIONS):
+        if (evidence_root/'workflow-answers.json').exists() or any((evidence_root/('workflow-'+name+'.json')).exists() for name in QUESTIONS):
             raise ValueError('已有完整或部分请求证据，请先检查，不得自动重复付费问答')
         conversation=request('POST',f'/api/knowledge-bases/{kb}/conversations',json={})['id']
         results={}
@@ -58,7 +63,7 @@ def main(argv=None):
             print(json.dumps(dict(case=name,response_type=response.get('response_type'),run_id=response['run_id']),ensure_ascii=False),flush=True)
         write('workflow-answers.json',results)
     elif a.phase=='samples':
-        if (run/'workflow-datasets.json').exists():raise ValueError('样本版本已存在')
+        if (evidence_root/'workflow-datasets.json').exists():raise ValueError('样本版本已存在')
         answers=read('workflow-answers.json');datasets={};cases={}
         for role,name in (('fixed','native'),('feedback','clarify')):
             row=answers[name];response=row['response'];run_id=response['run_id']
@@ -85,9 +90,19 @@ def main(argv=None):
             description='澄清交互与反馈回归闭环流程验收；两次同配置运行仅检查流程与一致性，不声称质量提升。',change_ref='5bcf642',
             max_latency_ratio=1.5,max_token_ratio=1.3))
         write('workflow-datasets.json',dict(datasets=datasets,cases=cases,improvement=improvement,reviewer='assistant_non_independent'))
+        if a.ocr_issue_run_id:
+            issue_id=a.ocr_issue_run_id
+            request('PUT',f'/api/qa/runs/{issue_id}/feedback',json=dict(rating='down',reason='incorrect',
+                comment='助手实测发现OCR温度字符损坏且答案复述乱码；保留失败，需核对原件，不猜测修正数值。',share_with_admins=True,allow_dataset_export=False))
+            case=request('POST','/api/quality/cases',json=dict(run_id=issue_id))
+            issue=request('PUT','/api/quality/cases/'+case['case']['id'],json=dict(expected_revision=case['case']['revision'],
+                review_status='needs_evidence',sample_status='draft',root_cause='parsing',
+                review_reason='关键温度原文仍有OCR乱码，待人工核对或视觉模型单独实测；不批准回归参考答案。'))
+            write('workflow-ocr-open-issue.json',issue)
         print(json.dumps(dict(datasets=datasets,cases=cases),ensure_ascii=False))
     elif a.phase=='evaluate':
-        if (run/'workflow-evaluations.json').exists():raise ValueError('不得覆盖或自动重复付费评测')
+        if (evidence_root/'workflow-evaluations.json').exists() or (evidence_root/'workflow-baseline-submitted.json').exists():
+            raise ValueError('已有完整或部分评测证据，请先检查，不得自动重复付费评测')
         data=read('workflow-datasets.json');jobs={}
         for name in ('baseline','candidate'):
             job=request('POST','/api/quality/evaluations',json=dict(fixed_dataset_id=data['datasets']['fixed'],
@@ -110,14 +125,14 @@ def main(argv=None):
             request('POST',f"/api/quality/evaluations/{jobs['candidate']['id']}/reviews/{row['sample_id']}",
                 json=dict(response_binding=row['response_binding'],verdict=row['verdict'],reason=row['reason']))
         comparison=request('GET','/api/quality/comparison',params=dict(baseline_job_id=jobs['baseline']['id'],
-            candidate_job_id=jobs['candidate']['id'],target_case_id=setup['cases']['feedback'],acknowledge_unknown_usage=True))
+            candidate_job_id=jobs['candidate']['id'],target_case_id=setup['cases']['feedback'],acknowledge_unknown_usage=a.acknowledge_unpriced_usage))
         write('workflow-comparison.json',comparison)
         if not comparison['passed']:
             print(json.dumps(dict(closed=False,failures=comparison['failures']),ensure_ascii=False));return 1
         improvement=setup['improvement'];path='/api/quality/improvements/'+improvement['id']
         verified=request('POST',path+'/verify',json=dict(expected_revision=improvement['revision'],
             baseline_job_id=jobs['baseline']['id'],candidate_job_id=jobs['candidate']['id'],
-            note=a.review_note,acknowledge_unknown_usage=True))
+            note=a.review_note,acknowledge_unknown_usage=a.acknowledge_unpriced_usage))
         closed=request('POST',path+'/close',json=dict(expected_revision=verified['revision'],note=a.review_note))
         write('workflow-closure.json',dict(improvement=closed,reviewer='assistant_non_independent',quality_improvement_claim=False))
         print(json.dumps(dict(closed=closed['status']=='closed',quality_improvement_claim=False)))

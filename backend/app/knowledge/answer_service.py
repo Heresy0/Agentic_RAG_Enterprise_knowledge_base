@@ -478,7 +478,11 @@ class AnswerService:
             if isinstance(result, AnswerDraft):
                 result = result.model_dump()
             result = GenerationAnswerDraft.model_validate(result)
-
+        # A user condition cannot be supplied by another search. A declared
+        # clarification takes precedence over a redundant retrieval request;
+        # claims, answerability and the actual questions still undergo validation.
+        if result.response_type == "clarify" and result.evidence_gap is not None:
+            result = result.model_copy(update={"evidence_gap": None})
         return result
 
     def _render_result(

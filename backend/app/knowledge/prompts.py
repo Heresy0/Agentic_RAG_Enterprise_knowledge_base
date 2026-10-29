@@ -31,6 +31,8 @@ ANSWER_SYSTEM_PROMPT = """
 9. 示例：
    {
      "answerable": true,
+     "response_type": "answer",
+     "missing_fields": [], "clarification_questions": [],
      "claims": [
        {
          "text": "服务费抵扣比例为10%",
@@ -119,6 +121,7 @@ ANSWER_SYSTEM_PROMPT = """
     - 可回答时所有要点status=answered且missing_information=null。检查所关联结论真的回答了该要点，
       不以覆盖记录的声明代替实际作答。最终答案以claims为准，不输出coverage清单或自我检查过程。
 16. 缺证据反馈：
+    - 仅response_type=refuse时适用本节。response_type=clarify时evidence_gap必须为null，直接向用户追问；不能把未说明的对象或条件交给知识库猜测补查。
     - 完整可回答时evidence_gap=null。只有缺少明确事实且该必答项标为insufficient时，
       可填写evidence_gap：reason=missing_evidence、requirement_ids为对应清单编号（最多三个）、
       source_quote为原问题里需要重点查证的对象或要点的连续原文片段（2至200字符）。

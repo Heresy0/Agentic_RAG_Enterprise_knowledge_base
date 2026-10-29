@@ -25,6 +25,22 @@ def test_clarification_survives_validation_and_rendering(monkeypatch):
     assert result.refusal_reason is None
 
 
+def test_declared_clarification_drops_only_redundant_retrieval_request(monkeypatch):
+    model=draft(evidence_gap=dict(reason='missing_evidence',requirement_ids=['Q1'],source_quote='校准对象'))
+    service,*_=build_service(monkeypatch,documents=[make_document('不同设备有不同校准要求。')],model_result=model)
+    result=answer(service,'这台设备怎样校准？')
+    assert result.response_type=='clarify' and result.clarification_questions==model.clarification_questions
+    assert model.evidence_gap is not None  # Never mutate the original model output.
+
+
+def test_declared_clarification_never_hides_factual_claims(monkeypatch):
+    model=draft(claims=[dict(text='应当在20度校准',citations=['资料1'])],
+                evidence_gap=dict(reason='missing_evidence',requirement_ids=['Q1'],source_quote='校准对象'))
+    service,*_=build_service(monkeypatch,documents=[make_document('设备名称尚不明确。')],model_result=model)
+    result=answer(service,'这台设备怎样校准？')
+    assert result.response_type=='refuse' and not result.citations
+
+
 @pytest.mark.parametrize('changes',[
     dict(missing_fields=[]),dict(clarification_questions=[]),dict(clarification_questions=['   ']),
     dict(response_type='refuse'),dict(response_type='answer'),
