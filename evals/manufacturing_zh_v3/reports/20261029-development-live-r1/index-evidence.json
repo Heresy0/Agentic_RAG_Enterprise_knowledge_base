@@ -1,0 +1,1763 @@
+{
+  "evaluation_type": "stored_child_page_bound_anchor_validation",
+  "external_model_calls": 0,
+  "new_qa_requests": 0,
+  "groups": {
+    "ordinary": {
+      "anchors": 95,
+      "matched": 95
+    },
+    "ocr": {
+      "anchors": 55,
+      "matched": 25
+    }
+  },
+  "records": [
+    {
+      "id": "MFGZH-Q001",
+      "source_id": "MFG-ZH01",
+      "physical_page": 3,
+      "anchor": "应当提出停止相应产品生产、销售等否决建议",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "e07b23aa40e2f167149257d1c66c62c6e692bb08ce52be3bbc609297ff0ec9ff"
+      ]
+    },
+    {
+      "id": "MFGZH-Q001",
+      "source_id": "MFG-ZH01",
+      "physical_page": 3,
+      "anchor": "经确认存在缺陷的，应当按照国家有关规定进行召回",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "e07b23aa40e2f167149257d1c66c62c6e692bb08ce52be3bbc609297ff0ec9ff"
+      ]
+    },
+    {
+      "id": "MFGZH-Q002",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "未发现问题的，也应当予以记录，实行零风险报告",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "87c91b3747b7696de4f99a897698b34fd2a9b4798341c757045c7b23bafd25f5"
+      ]
+    },
+    {
+      "id": "MFGZH-Q003",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "质量安全总监每周至少组织一次风险隐患排查",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "87c91b3747b7696de4f99a897698b34fd2a9b4798341c757045c7b23bafd25f5"
+      ]
+    },
+    {
+      "id": "MFGZH-Q003",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "形成《每周工业产品质量安全排查治理报告》",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "87c91b3747b7696de4f99a897698b34fd2a9b4798341c757045c7b23bafd25f5"
+      ]
+    },
+    {
+      "id": "MFGZH-Q004",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "单位主要负责人每月至少听取一次质量安全总监管理工作",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "0ee2eaf08651022082d2ae0cebae3a8c9f451ff9cab4cbb41bf092b5610ccc3a"
+      ]
+    },
+    {
+      "id": "MFGZH-Q004",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "形成《每月工业产品质量安全调度会议纪要》",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "0ee2eaf08651022082d2ae0cebae3a8c9f451ff9cab4cbb41bf092b5610ccc3a"
+      ]
+    },
+    {
+      "id": "MFGZH-Q005",
+      "source_id": "MFG-ZH01",
+      "physical_page": 7,
+      "anchor": "未通过考核的人员不得担任相应岗位的质量安全管理人员",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "8d2baf28daabfa3b70fda771f69524be1d440118e70ee9398475e6fe28c2933c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q005",
+      "source_id": "MFG-ZH01",
+      "physical_page": 7,
+      "anchor": "抽查考核不合格的，生产单位应当立即采取整改措施",
+      "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "8d2baf28daabfa3b70fda771f69524be1d440118e70ee9398475e6fe28c2933c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q006",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "可以保留单位原有的部门和人员配置，但要明确质量安全总监、质量安全员的人员岗位",
+      "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "36ba14e4e814e4001d38e8b32b504d4b5220579e9a71ba7c602143d282d038ba"
+      ]
+    },
+    {
+      "id": "MFGZH-Q007",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "风险类型、风险名称、风险等级、控制措施、检查防范以及责任人",
+      "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "440caa0e413d41d0d7fe3cf764093eb7b61d53ca9214656b0fa73fe91a7365f1"
+      ]
+    },
+    {
+      "id": "MFGZH-Q008",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "应明确责任部门及责任人",
+      "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "5f628b84c6bbc31d18b65114e3f0a604a650a887847fc42dbaa36413d367369c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q008",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "对不能现场立即整改的，应明确整改期限，在后续日管控检查中跟踪验证整改情况",
+      "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "5f628b84c6bbc31d18b65114e3f0a604a650a887847fc42dbaa36413d367369c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q009",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "频繁发生或存在较高工业产品质量安全风险的问题，应制定相应的纠正或预防措施，并跟踪验证整改结果",
+      "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "a65b09bfbb2a912448c3c6e291f044c0d792a8e03ef9ad5edfe3a35427e4ee76"
+      ]
+    },
+    {
+      "id": "MFGZH-Q010",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "单位停工、停产后可暂不执行日管控、周排查、月调度，相关情况应存档备查",
+      "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "70b854822ed13a0ba674325fa148989d977d0d52394272b2aac54745991f8ace"
+      ]
+    },
+    {
+      "id": "MFGZH-Q011",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "生产方和使用方应通过记录台账或签订合同等方式实现产品质量安全追溯，有关记录或台账至少保留3年",
+      "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "954111f8856a2b5d9543241f560532ead5a630f470d46d89f45f8c441de25613"
+      ]
+    },
+    {
+      "id": "MFGZH-Q012",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "出厂检验报告或型式检验报告（必填，生产单位选择是否公开）",
+      "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "2b474719d0d6c0efd4dfe5c6c744496c9ecc3d17d6b905f09127542562eac167"
+      ]
+    },
+    {
+      "id": "MFGZH-Q013",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "销售时间（必填，生产单位选择是否公开）",
+      "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "5a03aae3c39aa81a21cdfdf6d3537a3b84161750e6ed05b16680f1a379ca407a"
+      ]
+    },
+    {
+      "id": "MFGZH-Q013",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "购方名称（必填，生产单位选择是否公开）",
+      "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "c8a25a518de1f9deeb013818e053ddc1ce8bfae901631b4b6756e4faa7adb9d6"
+      ]
+    },
+    {
+      "id": "MFGZH-Q014",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "根据自身业务情况，选择一品一码、一批一码、一物一码进行追溯",
+      "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "47701373ad312e398cdd8ca109cea1561b678d5d44ebc4e9770f87adf62464de"
+      ]
+    },
+    {
+      "id": "MFGZH-Q015",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "与CCC认证证书编码或标志编号相关联",
+      "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "ce7634ad45fb9fd9cbac0e1fafb46a9c1e10a64135944aa42e3761d40c8d73f0"
+      ]
+    },
+    {
+      "id": "MFGZH-Q015",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "经全国认证认可信息公共服务平台比对查验后录入至全国重点工业产品质量安全追溯平台",
+      "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "ce7634ad45fb9fd9cbac0e1fafb46a9c1e10a64135944aa42e3761d40c8d73f0"
+      ]
+    },
+    {
+      "id": "MFGZH-Q016",
+      "source_id": "MFG-ZH04",
+      "physical_page": 6,
+      "anchor": "共享采购产品质量、批次、交期等信息",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "45c1f695a14587eae8a2402ed34bd65560bf37f8c2a2ce49cc4971175c78f6b7"
+      ]
+    },
+    {
+      "id": "MFGZH-Q016",
+      "source_id": "MFG-ZH04",
+      "physical_page": 6,
+      "anchor": "有条件的企业应对关键物料实施一物一码管理",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "45c1f695a14587eae8a2402ed34bd65560bf37f8c2a2ce49cc4971175c78f6b7"
+      ]
+    },
+    {
+      "id": "MFGZH-Q017",
+      "source_id": "MFG-ZH04",
+      "physical_page": 6,
+      "anchor": "在采购、生产、仓储、物流、交付及售后服务全过程提高物料数字化追溯管理水平",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "5ece15609f679aff2c6b65ce4b79351cee40a3f0daa5519f1991dda4b295e6da"
+      ]
+    },
+    {
+      "id": "MFGZH-Q018",
+      "source_id": "MFG-ZH04",
+      "physical_page": 5,
+      "anchor": "流程优化、装备升级、信息系统集成、数据资源利用、操作规程更新",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "6f706af7bb5db048abccf24b90096b2672496da85c518156de2eb502c3befb8d"
+      ]
+    },
+    {
+      "id": "MFGZH-Q018",
+      "source_id": "MFG-ZH04",
+      "physical_page": 5,
+      "anchor": "强化质量目标和质量活动的闭环管控",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "6f706af7bb5db048abccf24b90096b2672496da85c518156de2eb502c3befb8d"
+      ]
+    },
+    {
+      "id": "MFGZH-Q019",
+      "source_id": "MFG-ZH04",
+      "physical_page": 7,
+      "anchor": "企业应将质量数据纳入数据资产管理范畴",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "5165eb37c3043b0e7f5d6b196608d14aa1da49b8d7ffab26576bb14f08caf055"
+      ]
+    },
+    {
+      "id": "MFGZH-Q019",
+      "source_id": "MFG-ZH04",
+      "physical_page": 7,
+      "anchor": "明确各环节的职责和权限，强化跨部门及部门内数据管理机制建设",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "5165eb37c3043b0e7f5d6b196608d14aa1da49b8d7ffab26576bb14f08caf055"
+      ]
+    },
+    {
+      "id": "MFGZH-Q020",
+      "source_id": "MFG-ZH04",
+      "physical_page": 5,
+      "anchor": "应定期评估数字化能力的提升效果，并向最高管理者报告",
+      "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "6f706af7bb5db048abccf24b90096b2672496da85c518156de2eb502c3befb8d"
+      ]
+    },
+    {
+      "id": "MFGZH-Q021",
+      "source_id": "MFG-ZH05",
+      "physical_page": 7,
+      "anchor": "温度偏差、温度波动度、温度均匀度及盐雾沉降率",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "0604417d8d12ceb892e027043fb2539ffa76ca1dcb1450fc30c8c49ae668022a"
+      ]
+    },
+    {
+      "id": "MFGZH-Q022",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "环境温度：(15～35）℃",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "885306aeee2f3b4a404e2eddc00dfecfa1ce87e10c54d3e4bbf2af23b7f5cf9f"
+      ]
+    },
+    {
+      "id": "MFGZH-Q022",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "相对湿度：(30～85）％",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "885306aeee2f3b4a404e2eddc00dfecfa1ce87e10c54d3e4bbf2af23b7f5cf9f"
+      ]
+    },
+    {
+      "id": "MFGZH-Q022",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "大气压：（80～106）kPa",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "885306aeee2f3b4a404e2eddc00dfecfa1ce87e10c54d3e4bbf2af23b7f5cf9f"
+      ]
+    },
+    {
+      "id": "MFGZH-Q023",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "一般在空载条件下校准，根据用户需要可以在负载条件下进行校准，但应说明负载情况",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "8ebca207fd96332f0eb8935f3a4406ccdd3ad716b1de2bd4fc553f23c29d68c0"
+      ]
+    },
+    {
+      "id": "MFGZH-Q024",
+      "source_id": "MFG-ZH05",
+      "physical_page": 10,
+      "anchor": "一般选择35℃作为盐雾箱校准试验温度，也可根据客户需要选择校准温度",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "61861f9a5726f4b3ec9fbec1f0cc8a0ddd5406f1f223d8b289f980f2f0553ec9"
+      ]
+    },
+    {
+      "id": "MFGZH-Q025",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "以上指标不是用于合格性判别，仅供参考",
+      "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "17a969c25969c5e2c8892476a49f4c91b2d79dc6b591b19aded9b17631452110"
+      ]
+    },
+    {
+      "id": "MFGZH-Q026",
+      "source_id": "MFG-ZH06",
+      "physical_page": 7,
+      "anchor": "环境温度：（15～35）℃",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "64b055f7494d1a6a8cbee2c342626c745d9fd136ce29f3887e03d9986ee7eff5"
+      ]
+    },
+    {
+      "id": "MFGZH-Q026",
+      "source_id": "MFG-ZH06",
+      "physical_page": 7,
+      "anchor": "环境相对湿度：不大于85%",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "64b055f7494d1a6a8cbee2c342626c745d9fd136ce29f3887e03d9986ee7eff5"
+      ]
+    },
+    {
+      "id": "MFGZH-Q027",
+      "source_id": "MFG-ZH06",
+      "physical_page": 8,
+      "anchor": "砂尘试验设备容积小于或等于2m3，温度测量点为9个，相对湿度测量点为3个",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "647e75afc5091bde12ef5a9d016b68b6126490596c94d82c4ac29568ab4b1cb7"
+      ]
+    },
+    {
+      "id": "MFGZH-Q028",
+      "source_id": "MFG-ZH06",
+      "physical_page": 9,
+      "anchor": "稳定30min（稳定时间最长不超过2h）",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "9f936e276f45407256bf18c36dbde0da6395931add24195c41932f70520d134d",
+        "188791f6f50d8f4b8ab703a87450c704348d600c88a460bab06aba2b89164c5d"
+      ]
+    },
+    {
+      "id": "MFGZH-Q028",
+      "source_id": "MFG-ZH06",
+      "physical_page": 9,
+      "anchor": "每隔2min记录一次，在30min内共记录16次",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "9f936e276f45407256bf18c36dbde0da6395931add24195c41932f70520d134d",
+        "188791f6f50d8f4b8ab703a87450c704348d600c88a460bab06aba2b89164c5d"
+      ]
+    },
+    {
+      "id": "MFGZH-Q029",
+      "source_id": "MFG-ZH06",
+      "physical_page": 10,
+      "anchor": "风速测量在未注入砂尘时及在常温下进行",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "a1f6762657ba0270d82cf991a7e6912838152d07c7064ebf0150c332c106cc15"
+      ]
+    },
+    {
+      "id": "MFGZH-Q029",
+      "source_id": "MFG-ZH06",
+      "physical_page": 10,
+      "anchor": "每隔10min记录一次，在30min内共记录3次，读取风速计各测量点示值的最大值",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "a1f6762657ba0270d82cf991a7e6912838152d07c7064ebf0150c332c106cc15"
+      ]
+    },
+    {
+      "id": "MFGZH-Q030",
+      "source_id": "MFG-ZH06",
+      "physical_page": 7,
+      "anchor": "对计量特性另有要求的砂尘试验设备，按有关技术文件规定的要求进行校准",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "72a4eb318b59f182e6537205c1a2f61682098b8987887ddd4c137ffe43032f3c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q030",
+      "source_id": "MFG-ZH06",
+      "physical_page": 7,
+      "anchor": "不用于合格性判断，仅供参考",
+      "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "72a4eb318b59f182e6537205c1a2f61682098b8987887ddd4c137ffe43032f3c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q031",
+      "source_id": "MFG-ZH07",
+      "physical_page": 7,
+      "anchor": "也适用于具有部分以上测量和输出功能的过程仪表校验仪的校准",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "d6a631b2c263810d9d188de6a8548982e7ca7b377f6a41b8b95bd44f1e5c8aaf"
+      ]
+    },
+    {
+      "id": "MFGZH-Q032",
+      "source_id": "MFG-ZH07",
+      "physical_page": 9,
+      "anchor": "温度：（20±2）℃湿度：（60±15）%RH",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "fb91e459369fe56bb4e49dae7a99bb9f63ce12bae7f9c76a1d049662ed7f852c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q033",
+      "source_id": "MFG-ZH07",
+      "physical_page": 9,
+      "anchor": "整个校准装置的扩展不确定度（k=2）应小于校验仪对应各功能和量程最大允许误差的1/3",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "e788380e9ab68452e723d957bbf61793dba6208fe34c2332d0706afb47d32ccf"
+      ]
+    },
+    {
+      "id": "MFGZH-Q033",
+      "source_id": "MFG-ZH07",
+      "physical_page": 9,
+      "anchor": "整个校准装置各功能和量程的分辨力应小于校验仪对应功能和量程最大允许误差的1/5",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "e788380e9ab68452e723d957bbf61793dba6208fe34c2332d0706afb47d32ccf"
+      ]
+    },
+    {
+      "id": "MFGZH-Q034",
+      "source_id": "MFG-ZH07",
+      "physical_page": 10,
+      "anchor": "校验仪应按说明书中规定的时间预热，室内外温差较大时应在恒温实验室中放置4小时以上再通电",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "c6c39609afd5d502b5932d4c87495f3e52e344d6981f2c3b31197dd34f59eac6"
+      ]
+    },
+    {
+      "id": "MFGZH-Q035",
+      "source_id": "MFG-ZH07",
+      "physical_page": 10,
+      "anchor": "基本量程选择不少于5个校准点，包括上限值、下限值和量程50%附近",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "850744637e5a6b36106ee868558548fa169c565d5cb34edad4fb7942809949c8"
+      ]
+    },
+    {
+      "id": "MFGZH-Q035",
+      "source_id": "MFG-ZH07",
+      "physical_page": 10,
+      "anchor": "有零位的可以适当增加零点。对于委托者有要求的可按委托者要求选择校准点",
+      "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "850744637e5a6b36106ee868558548fa169c565d5cb34edad4fb7942809949c8"
+      ]
+    },
+    {
+      "id": "MFGZH-Q036",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "温度：（10～35）℃",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "47d2c4129646fc0b532ae7142d7e9313642ca067a0bc7afa6bc80c6a64ed2295"
+      ]
+    },
+    {
+      "id": "MFGZH-Q036",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "相对湿度：不大于80%",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "47d2c4129646fc0b532ae7142d7e9313642ca067a0bc7afa6bc80c6a64ed2295"
+      ]
+    },
+    {
+      "id": "MFGZH-Q037",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "使其受力轴线与压合机工作轴线相重合",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "1a7c3e3c6bf7c300ffb3176259d0f91649d9eb6469c94f3ca0caf27fd02495a3"
+      ]
+    },
+    {
+      "id": "MFGZH-Q037",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "固定压合机主体，使其可以在该位置稳定工作，不产生影响校准结果的位移和振动",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "1a7c3e3c6bf7c300ffb3176259d0f91649d9eb6469c94f3ca0caf27fd02495a3"
+      ]
+    },
+    {
+      "id": "MFGZH-Q038",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "一般取上限的20%，40%，60%，80%，100%等5个点",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "1a7c3e3c6bf7c300ffb3176259d0f91649d9eb6469c94f3ca0caf27fd02495a3"
+      ]
+    },
+    {
+      "id": "MFGZH-Q038",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "该过程校准进行3次。每次校准都要调零，每次校准过程结束后，隔30秒",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "1a7c3e3c6bf7c300ffb3176259d0f91649d9eb6469c94f3ca0caf27fd02495a3"
+      ]
+    },
+    {
+      "id": "MFGZH-Q039",
+      "source_id": "MFG-ZH08",
+      "physical_page": 8,
+      "anchor": "在测量范围内至少选取均匀分布的5点作为校准点",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "25487d150e0d68b92ff4bc8cd80a90a7b67d0441ce584d84b3cc4ed3c13b3776"
+      ]
+    },
+    {
+      "id": "MFGZH-Q039",
+      "source_id": "MFG-ZH08",
+      "physical_page": 8,
+      "anchor": "上述过程重复测量3次，取平均值作为测量结果，测量结果中取其最大值",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "25487d150e0d68b92ff4bc8cd80a90a7b67d0441ce584d84b3cc4ed3c13b3776"
+      ]
+    },
+    {
+      "id": "MFGZH-Q040",
+      "source_id": "MFG-ZH08",
+      "physical_page": 9,
+      "anchor": "建议最长复校时间间隔不超过1年",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "c50a1f15e1c5cfe89abcd3a4f203306592dc0dea54e34260b4255f508865cbba"
+      ]
+    },
+    {
+      "id": "MFGZH-Q040",
+      "source_id": "MFG-ZH08",
+      "physical_page": 9,
+      "anchor": "送校单位可根据实际使用情况决定复校时间间隔",
+      "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "c50a1f15e1c5cfe89abcd3a4f203306592dc0dea54e34260b4255f508865cbba"
+      ]
+    },
+    {
+      "id": "MFGZH-Q041",
+      "source_id": "MFG-ZH09",
+      "physical_page": 6,
+      "anchor": "压向≤5000kN，拉向≤500kN",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "b6efb6767208bf3493b545dce1e319e58b1de853541031da222604376d0a7889"
+      ]
+    },
+    {
+      "id": "MFGZH-Q041",
+      "source_id": "MFG-ZH09",
+      "physical_page": 6,
+      "anchor": "大力值作动器也可参考本规范",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "b6efb6767208bf3493b545dce1e319e58b1de853541031da222604376d0a7889"
+      ]
+    },
+    {
+      "id": "MFGZH-Q041",
+      "source_id": "MFG-ZH09",
+      "physical_page": 6,
+      "anchor": "校准方向：压向为正",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "b6efb6767208bf3493b545dce1e319e58b1de853541031da222604376d0a7889"
+      ]
+    },
+    {
+      "id": "MFGZH-Q042",
+      "source_id": "MFG-ZH09",
+      "physical_page": 7,
+      "anchor": "需要有与作动器相匹配的链接螺栓、拉环、千斤顶及拉向力校准装置",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "294863e7f6cb27c5756efdeb078a65db190779da2cdd7b3a5b8c5ad51af960ab"
+      ]
+    },
+    {
+      "id": "MFGZH-Q043",
+      "source_id": "MFG-ZH09",
+      "physical_page": 8,
+      "anchor": "以数显千分表为标准器测量作动器测量范围（0~150）mm",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "81757941283c18443a8bc499b0ca5073ccd6b41dec71ebed440f836a83d08fa3"
+      ]
+    },
+    {
+      "id": "MFGZH-Q043",
+      "source_id": "MFG-ZH09",
+      "physical_page": 8,
+      "anchor": "以跟踪仪为标准器测量作动器测量范围（150~3000）mm",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "4068ce7f1256409b071171ac176a26df7655bfafe22d49fec0fdc3faaa5e36fd"
+      ]
+    },
+    {
+      "id": "MFGZH-Q044",
+      "source_id": "MFG-ZH09",
+      "physical_page": 8,
+      "anchor": "要保持数显千分表与移动方向平行",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "81757941283c18443a8bc499b0ca5073ccd6b41dec71ebed440f836a83d08fa3"
+      ]
+    },
+    {
+      "id": "MFGZH-Q044",
+      "source_id": "MFG-ZH09",
+      "physical_page": 8,
+      "anchor": "上述过程重复测量3次，取平均值作为测量结果",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "81757941283c18443a8bc499b0ca5073ccd6b41dec71ebed440f836a83d08fa3",
+        "4068ce7f1256409b071171ac176a26df7655bfafe22d49fec0fdc3faaa5e36fd"
+      ]
+    },
+    {
+      "id": "MFGZH-Q045",
+      "source_id": "MFG-ZH09",
+      "physical_page": 9,
+      "anchor": "校准结果仅对被校对象有效的声明",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "3d61995777705b914d1fa7d0e2970b4277d1aeabfdceff50d12759d149b422df"
+      ]
+    },
+    {
+      "id": "MFGZH-Q045",
+      "source_id": "MFG-ZH09",
+      "physical_page": 9,
+      "anchor": "未经实验室书面批准，不得部分复制证书的声明",
+      "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "3d61995777705b914d1fa7d0e2970b4277d1aeabfdceff50d12759d149b422df"
+      ]
+    },
+    {
+      "id": "MFGZH-Q046",
+      "source_id": "MFG-ZH10",
+      "physical_page": 6,
+      "anchor": "测量范围不超过（-2500~2500）Pa",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "e587eb82da632e39e3fef738f51941eb57e85e35e94d5fb99ab8ec79f5edf231"
+      ]
+    },
+    {
+      "id": "MFGZH-Q047",
+      "source_id": "MFG-ZH10",
+      "physical_page": 8,
+      "anchor": "温度：（20±5）℃，温度波动不超过±0.5℃/10min",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "3b3125724b3a7f6144892bd104da668132facc380164bf6beeca7e5fdbd4fbd0"
+      ]
+    },
+    {
+      "id": "MFGZH-Q047",
+      "source_id": "MFG-ZH10",
+      "physical_page": 8,
+      "anchor": "相对湿度：不大于85%",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "3b3125724b3a7f6144892bd104da668132facc380164bf6beeca7e5fdbd4fbd0"
+      ]
+    },
+    {
+      "id": "MFGZH-Q048",
+      "source_id": "MFG-ZH10",
+      "physical_page": 8,
+      "anchor": "所需标准器的测量范围应不小于压差计的测量范围",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "830ed7a8f2fd63acdbfa4942bce4fc633fc95bb8bc96c6161d333ebb6baa52be"
+      ]
+    },
+    {
+      "id": "MFGZH-Q048",
+      "source_id": "MFG-ZH10",
+      "physical_page": 8,
+      "anchor": "标准器的最大允许误差绝对值应不大于被校准压差计最大允许误差绝对值的1/3",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "830ed7a8f2fd63acdbfa4942bce4fc633fc95bb8bc96c6161d333ebb6baa52be"
+      ]
+    },
+    {
+      "id": "MFGZH-Q049",
+      "source_id": "MFG-ZH10",
+      "physical_page": 9,
+      "anchor": "标准器、压差计、气源应在校准环境条件下至少放置2h",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "c5c327f8a6f04cdd21261a5fa119494182c7bd36a90c7a81bade49ead11e8cca"
+      ]
+    },
+    {
+      "id": "MFGZH-Q049",
+      "source_id": "MFG-ZH10",
+      "physical_page": 9,
+      "anchor": "通电预热时间应满足制造厂商提供的信息，一般不少于30min",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "d616f35ecf2edb9a1b2cf7800cde55ed92ad2a8f4f92fa80ca4d6b4da7885464"
+      ]
+    },
+    {
+      "id": "MFGZH-Q050",
+      "source_id": "MFG-ZH10",
+      "physical_page": 10,
+      "anchor": "具有正压、负压量程压差计的校准点不少于9个点（含零点），应包含测量上限和下限",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "55fb24004df852801c10f251e5088cf824bdbba0b8a834072fe453a7932c14d4"
+      ]
+    },
+    {
+      "id": "MFGZH-Q050",
+      "source_id": "MFG-ZH10",
+      "physical_page": 10,
+      "anchor": "仅有正压量程压差计的校准点不少于5个点（含零点），应包含测量上限",
+      "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "55fb24004df852801c10f251e5088cf824bdbba0b8a834072fe453a7932c14d4"
+      ]
+    },
+    {
+      "id": "MFGZH-Q051",
+      "source_id": "MFG-ZH11",
+      "physical_page": 6,
+      "anchor": "本规范适用于纤维内窥镜、电子内窥镜及光学内窥镜等工业内窥镜的校准",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q052",
+      "source_id": "MFG-ZH11",
+      "physical_page": 6,
+      "anchor": "通过光导纤维传像束来传送图像",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q052",
+      "source_id": "MFG-ZH11",
+      "physical_page": 6,
+      "anchor": "通过一组光学透镜来传送图像，工作部件通常不能弯曲",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q053",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "以顶点位于工业内窥镜头端部的锥角值（度）表示",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q054",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "纤维/电子内窥镜：大于1500lx",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q054",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "光学内窥镜：不小于仪器使用说明书标称值的90%",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q055",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "工作长度：仪器使用说明书的标称值×（1±1.2%）",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q055",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "工作外径：不大于仪器使用说明书（标称值+0.2）mm",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q056",
+      "source_id": "MFG-ZH12",
+      "physical_page": 5,
+      "anchor": "本规范适用于触针式表面轮廓测量仪的校准",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "3c7429d14bbed07e8fc796b6e68f6f8d863414b96d55f17b5cd63e450e22df54"
+      ]
+    },
+    {
+      "id": "MFGZH-Q057",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "室内温度应在（20±3）℃范围内",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q057",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "室温变化不超过1℃/h",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q057",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "室内湿度不超过75%RH",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "ca1bde669dec161f69d5a9e37d01f6832f4882b944e290a1fd646d3c9d9a9903"
+      ]
+    },
+    {
+      "id": "MFGZH-Q058",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "在室内平衡温度的时间不少于2h",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "ca1bde669dec161f69d5a9e37d01f6832f4882b944e290a1fd646d3c9d9a9903"
+      ]
+    },
+    {
+      "id": "MFGZH-Q058",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "被校仪器连续通电预热时间不少于30min",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "ca1bde669dec161f69d5a9e37d01f6832f4882b944e290a1fd646d3c9d9a9903"
+      ]
+    },
+    {
+      "id": "MFGZH-Q059",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "作为校准，不判定合格与否，上述计量特性的指标仅供参考",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "d96be1714373a42c13d0a0c6ca4c363f4180c017896f09fc3fa09147d5535987"
+      ]
+    },
+    {
+      "id": "MFGZH-Q060",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "轮廓坐标测量系统误差",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q060",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "校准球",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q061",
+      "source_id": "MFG-ZH13",
+      "physical_page": 6,
+      "anchor": "测量面的表面粗糙度Ra值不大于0.8μm",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q061",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "上述计量特性的指标仅供参考",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "a2163e96684755cb9b633ece0d16d8b8e6182fd094a820dccac3e58c7052b08f"
+      ]
+    },
+    {
+      "id": "MFGZH-Q062",
+      "source_id": "MFG-ZH13",
+      "physical_page": 6,
+      "anchor": "圆锥螺纹塞规基面的中径误差不大于0.009mm",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "bc70137629a53c06bbad0735de655c0e9794e457f213ba6d761c9e6cc174e18e"
+      ]
+    },
+    {
+      "id": "MFGZH-Q062",
+      "source_id": "MFG-ZH13",
+      "physical_page": 6,
+      "anchor": "圆锥螺纹环规基面的中径误差不大于0.015mm",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "bc70137629a53c06bbad0735de655c0e9794e457f213ba6d761c9e6cc174e18e"
+      ]
+    },
+    {
+      "id": "MFGZH-Q063",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "室内温度应在（20±5）℃",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q063",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "室内湿度不超过75%RH",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q063",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "应在室内放置不少于1个小时",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "88c30d425ad3f1d8fb99d56cdba24e68dd5efc00fde64725797212ee1d2378c1"
+      ]
+    },
+    {
+      "id": "MFGZH-Q064",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "螺纹量规代号和尺寸代号、制造厂商标、出厂年月",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q065",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "不应有裂纹、毛刺、铁屑",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q065",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "允许有不影响使用的划痕",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "48fdf9f605f6af26ffe707472a1f633c3a595759362b0acdf053fa3ffb6028af"
+      ]
+    },
+    {
+      "id": "MFGZH-Q066",
+      "source_id": "MFG-ZH14",
+      "physical_page": 5,
+      "anchor": "分度值为0.001mm，测量范围（0-300）mm",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "0c9098080f91ad2226208465e5c422e479803bab5e8f3f06727abd879b9ae1e2"
+      ]
+    },
+    {
+      "id": "MFGZH-Q067",
+      "source_id": "MFG-ZH14",
+      "physical_page": 5,
+      "anchor": "以量块作为标准器",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "b95b531b716e005b3f5b41eda91d5ce05770040b86ee846f62a8eaca85025a6f"
+      ]
+    },
+    {
+      "id": "MFGZH-Q067",
+      "source_id": "MFG-ZH14",
+      "physical_page": 5,
+      "anchor": "指示表的读数与量块实际值相比较",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "b95b531b716e005b3f5b41eda91d5ce05770040b86ee846f62a8eaca85025a6f"
+      ]
+    },
+    {
+      "id": "MFGZH-Q068",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "室内温度应在（20±2）℃范围内",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q068",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "室温变化不超过1℃/h",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q068",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "湿度不超过65%RH",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "966e04cfdae60c91a082bc1ad845b7b8243565687ed464b2861cd376d4af55c1"
+      ]
+    },
+    {
+      "id": "MFGZH-Q069",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "在室内连续平衡温度的时间不少于2h",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q070",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "示值变动性",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "08e685bd9741ab1846e221de3db4909feab2090c4ea5fb617db5f305cfa143a1"
+      ]
+    },
+    {
+      "id": "MFGZH-Q070",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "量块",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q070",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "4等",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q071",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "检具重复精度能力系数",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "4e5f3186c8c98a165f1066fe9393618b959267b47349afc6a587e5eae14e4411"
+      ]
+    },
+    {
+      "id": "MFGZH-Q071",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "检具准确精度能力系数",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "4e5f3186c8c98a165f1066fe9393618b959267b47349afc6a587e5eae14e4411"
+      ]
+    },
+    {
+      "id": "MFGZH-Q072",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "检具一般由定位装置、夹紧装置、测量装置和辅助（传动和导向）装置组成",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q073",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "室内温度为（20±5）℃",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q073",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "室内湿度不超过75%RH",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "479289b18eea9b241f55c89d66b409d4d63240cd7924f3d7c4ea0c21dd5a3c75"
+      ]
+    },
+    {
+      "id": "MFGZH-Q073",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "平衡温度时间不少于2h",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q074",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "各组成部件应完好无缺，连接应紧固可靠",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "c184575dd79a166a5eb8c4e4143d62d5a69a27b4e68046d70304445475d582c8"
+      ]
+    },
+    {
+      "id": "MFGZH-Q074",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "定位装置、夹紧装置应准确牢固，传动装置操作应灵活无卡滞",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "c184575dd79a166a5eb8c4e4143d62d5a69a27b4e68046d70304445475d582c8"
+      ]
+    },
+    {
+      "id": "MFGZH-Q075",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "工作面的表面粗糙度Ra值不大于0.2μm",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q075",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "c308ac7535f47fcc517d9decad713bba890f7437028dcf9b7ba54eff72967bf5"
+      ]
+    },
+    {
+      "id": "MFGZH-Q076",
+      "source_id": "MFG-ZH16",
+      "physical_page": 5,
+      "anchor": "深度量规、角度量规、形状、位置量规",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "bf8e400e680875e2198aec2b0d2e7355e2d86b370ca75811563f0f6ba47e7938"
+      ]
+    },
+    {
+      "id": "MFGZH-Q077",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "产品名称、型号/规格、主要技术参数、出厂编号、制造厂名或商标及生产日期",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q078",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "室内温度为（20±5）℃",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q078",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "室内湿度不超过75%RH",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "e3243a08c05ee716fba1edf61a9d17041e1c59e6a3c97971876aac0e6311a71c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q078",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "平衡温度时间不少于2h",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q079",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "工作面的表面粗糙度Ra值不大于0.2μm",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": []
+    },
+    {
+      "id": "MFGZH-Q079",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "e5a693f563b6c0c6ce75609d358b1278fe8db9dd9a443d25479c623aaa5e8b8f"
+      ]
+    },
+    {
+      "id": "MFGZH-Q080",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "周围应无影响校准结果的振动、冲击、电磁场或其它干扰源",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "original_match": true,
+      "group": "ocr",
+      "child_hits": [
+        "e3243a08c05ee716fba1edf61a9d17041e1c59e6a3c97971876aac0e6311a71c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q081",
+      "source_id": "MFG-ZH17",
+      "physical_page": 8,
+      "anchor": "引伸计标距误差在不拔下双侧引伸计定位针的情况下测量",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "3382d945c5db283910da250cf2c4ff0df8e5ef02032ed9f1b9786f3e8e534657"
+      ]
+    },
+    {
+      "id": "MFGZH-Q081",
+      "source_id": "MFG-ZH17",
+      "physical_page": 8,
+      "anchor": "取两侧引伸计标距误差绝对值最大者",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "3382d945c5db283910da250cf2c4ff0df8e5ef02032ed9f1b9786f3e8e534657"
+      ]
+    },
+    {
+      "id": "MFGZH-Q082",
+      "source_id": "MFG-ZH17",
+      "physical_page": 7,
+      "anchor": "l0为引伸计的夹持位置，此项不需校准",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "ce35f00cd46aec41f0892a8f8ce9bcc0bc1333296da78d2cba5da6ec08d995b0"
+      ]
+    },
+    {
+      "id": "MFGZH-Q082",
+      "source_id": "MFG-ZH17",
+      "physical_page": 7,
+      "anchor": "对应于双侧引伸计的标距",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "ce35f00cd46aec41f0892a8f8ce9bcc0bc1333296da78d2cba5da6ec08d995b0"
+      ]
+    },
+    {
+      "id": "MFGZH-Q083",
+      "source_id": "MFG-ZH17",
+      "physical_page": 8,
+      "anchor": "应在测量环境中稳定不少于30min，待温度平衡后进行校准",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "7d45221a9836079ed7da68cfd0750c7fbf6712ab5417e2e5e77b0a3e1a783366"
+      ]
+    },
+    {
+      "id": "MFGZH-Q084",
+      "source_id": "MFG-ZH17",
+      "physical_page": 8,
+      "anchor": "均匀选取至少5个校准点，校准点包括满量程点但不包括零点",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "3ed710d5503c31f727058d27fb97584af043519a98b7140f1dee9c52a9ed69a5"
+      ]
+    },
+    {
+      "id": "MFGZH-Q085",
+      "source_id": "MFG-ZH17",
+      "physical_page": 9,
+      "anchor": "测量范围1/3处、2/3处校准点分别进行校准，每处校准点只做一次测量",
+      "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "6363d6648c2ddc3846eebbad80f703a3ad75d2a8bb0e65a552dd930db0efbb32"
+      ]
+    },
+    {
+      "id": "MFGZH-Q086",
+      "source_id": "MFG-ZH18",
+      "physical_page": 7,
+      "anchor": "测量温度（20±1）℃；相对湿度：≤85%",
+      "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "4b9ad1553ff2390a19d602da18a044226ac588c3750873dc392a23e09c8a932b"
+      ]
+    },
+    {
+      "id": "MFGZH-Q087",
+      "source_id": "MFG-ZH18",
+      "physical_page": 7,
+      "anchor": "国家一级或国家二级有证标准黏度液",
+      "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "08fd7bf9b273df50c66c4b6b8923c20a17a30b9836c777f999f1af97a4e604b3"
+      ]
+    },
+    {
+      "id": "MFGZH-Q088",
+      "source_id": "MFG-ZH18",
+      "physical_page": 7,
+      "anchor": "将选用的一种标准黏度液放入恒温槽内，保持在测量温度±0.1℃内并恒温30min左右",
+      "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "085eae092f2b63279097d93bb942f5fa38f3f8230c074406c5381a138b24fafe"
+      ]
+    },
+    {
+      "id": "MFGZH-Q089",
+      "source_id": "MFG-ZH18",
+      "physical_page": 7,
+      "anchor": "放开堵住的手指，同时启动秒表开始记时",
+      "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "3b9c4a402500924c90bdd398fe8885245ae32fa6c3c8b0e4485c73a348a4194a"
+      ]
+    },
+    {
+      "id": "MFGZH-Q089",
+      "source_id": "MFG-ZH18",
+      "physical_page": 8,
+      "anchor": "在出现断流瞬间停止记时",
+      "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "358d2d43b0844cc141e042cfe23a55f7f36e64d4095a2570766177daaed44ba7"
+      ]
+    },
+    {
+      "id": "MFGZH-Q090",
+      "source_id": "MFG-ZH18",
+      "physical_page": 8,
+      "anchor": "修正系数小数点后保留两位数字",
+      "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "original_match": true,
+      "group": "ordinary",
+      "child_hits": [
+        "286d5e498ad4c0e077edcdab7adb031a654aa1d902041d494cfbd7b3923fa589"
+      ]
+    }
+  ],
+  "source_verification": "Frozen original/visual page verification and source SHA rechecked; existing public development/test anchors, not QA.",
+  "parent_scoring": "Not included: stored parents do not carry an independent physical-page range.",
+  "limitation": "仅入库存储子块的锚点保留，不是全文、表格关系、检索或问答准确率。"
+}

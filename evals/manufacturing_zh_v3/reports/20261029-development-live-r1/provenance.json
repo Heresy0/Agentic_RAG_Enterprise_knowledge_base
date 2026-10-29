@@ -1,0 +1,387 @@
+{
+  "runtime_image": "enterprise-knowledge-manufacturing:20261029-55e825e",
+  "runtime_image_id": "sha256:f4abc2609eea474eab4922fdc85602ae6fdc2f414424d5f0f127fb9dd7ee3f05",
+  "acceptance_runner_commit": "2286510cbff7a96e17b3105ca57810c435aeb748",
+  "acceptance_runner_sha256": "2b4ab5eb3ed7f90dfcaa4f7bd58145c7648148b0765ec15b730225a5162857dc",
+  "private_runtime_artifacts": [
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/plan.json",
+      "sha256": "db398f83f982d872cee2cb05108c44e7cba889b331851a134f965e96ac2f363d"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/index-audit.json",
+      "sha256": "1687bcaeabae5a41b144d78628b9973dad2e9e1f6ed615b75b43f9edf044afc8"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/full-tests.xml",
+      "sha256": "7e07d73d446aea660fd0067fca836e4d6d6e086c048da3b3e1e4737e13778722"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/traces.jsonl",
+      "sha256": "ee884ff28b785c63ceddfda722825209e8520f3046d0bea76d4d12b18b6e8038"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/review-pack-r1.jsonl",
+      "sha256": "65d8e2324501e7336683d554b5d17a0fb606545c12a29aa95114561c1e1d3585"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/semantic-reviews-r1.jsonl",
+      "sha256": "33197113a3e88abd5376184a93b577bd783a2264ec82cc23da74128173332473"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N01-response.json",
+      "sha256": "699c7885deeb06b0492c471f797fdc377e3eb3bf2690872c3a443f7242061884"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N02-response.json",
+      "sha256": "b13f6436fca965b8b46b8f40cef8259feb33a99b78ed554832fd5f4150393f16"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N03-response.json",
+      "sha256": "295abbbcee002d229acdd73041d5d120271d46a143768f697799db1abbcb8e7e"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N04-response.json",
+      "sha256": "f02c4f758f467dfda725a216e5bce3a102f9369c7d2b2572a3537831e39ae24f"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N05-response.json",
+      "sha256": "1d7d36da41d4717f994be3739350074a2aa94677ce3d5cdcdbafa17cd005ed27"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N06-response.json",
+      "sha256": "d236137659b1580e0c866b950b4e19d751d6f74ead1ccc9786c0b957c8ca6585"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N07-response.json",
+      "sha256": "d8862cd08bf60bdbd4f0bdb45b67c408d02faf7c3f87046e13619c010a471e5c"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N08-response.json",
+      "sha256": "c62f8091ccdbe77792c5b3b8383a757ceaf7a6e43ce73d831db174a31f0b8b9d"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N09-response.json",
+      "sha256": "6fed0a22c6d6d666db611c6c5f2e75ab12fe2f97f17b80c10a227ab18dad0f2f"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N10-response.json",
+      "sha256": "8a989cbe39233264f244429bf6e76b5cc9587b3adb27ea80fda8acf70fbc3f03"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q001-response.json",
+      "sha256": "16a7b3d4b0271f0c3809317641a20788a9954002a2caa3a124a9d6129f2b43df"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q002-response.json",
+      "sha256": "69c9db927fe016413b3fde2d1cb4a4c4874bc3c5a9a5e98a47f6586202fb9d6d"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q003-response.json",
+      "sha256": "318776d6d00cda2b824942ec4590240f5ee42414a6c750787c1b02fe72c8b2a8"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q004-response.json",
+      "sha256": "5d7d92fd8977b08cc9a8d86ecd030458953a9194b695ac238a3215447d8f64af"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q005-response.json",
+      "sha256": "887fb3c6436458c52c12989a79954d54a720e784b3d687d660b7a0e76a269f44"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q006-response.json",
+      "sha256": "26bcef3878cfd198c190c4019906cccc1cb63d253db5755877cd129c594634af"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q007-response.json",
+      "sha256": "6bac786c795e77e11d8750d92533d971c2e40803d547b307aa8ac0df2e852a09"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q008-response.json",
+      "sha256": "b69e454fcaa115618b505beef798e71148a128f06b85595930b757601111f6d8"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q009-response.json",
+      "sha256": "681594229dd4c185c2dc15301e57217472c25459fe08481157c0d5bd6bcfda6e"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q010-response.json",
+      "sha256": "6c68ef3ab3dba0101be143e4bfcc264d578bb026ada2baa907d8c293abcc4733"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q021-response.json",
+      "sha256": "b42e5ac4b00243c77e7533981deff1d9c6205127fa971d8764534d22ee738469"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q022-response.json",
+      "sha256": "3b0d99eb9b295b9eb946d417afc5b991895489eadc13f5e8637abed6dfe50ec7"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q023-response.json",
+      "sha256": "702f11056a780e0f285b3f4845ab9463df5e98d35ce9dcffc5c63ae27b887cd9"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q024-response.json",
+      "sha256": "c66076c7a28b6c0c46ec15bd0a401b86f14ebd0d0f857362b6026106ba23fd07"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q025-response.json",
+      "sha256": "539e0ed566a2dbd9d21a24eafeaece71e1f10dad358b059695ef44174be69c1f"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q031-response.json",
+      "sha256": "f53396e6df3fe046442940107de67a5b7bacc177637e8bffb6c95e869664ab6d"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q032-response.json",
+      "sha256": "e66890be4cd4359a52b1c8896c6cb0b9db854f5b2f4c5d13e543df61d58d1e6d"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q033-response.json",
+      "sha256": "c5cedf95b71942e82b622c0900a6f394f2c44ad9a34cd0ed20d1e98dc75c7ef1"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q034-response.json",
+      "sha256": "ccedf1b3488d50590b4f58dcd2b574946bdf8a90fa5e3ab18ec93f87a7f6208e"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q035-response.json",
+      "sha256": "5e8c6f90828f78f4cfe9a92a96a7d0e0b7336f610b6ac407e4f54f4f7211d06e"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q046-response.json",
+      "sha256": "c8b717ee05a1dd7ca44bbf2e95b83623a9bb2205bca5685fe31f0dd583c7a9b0"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q047-response.json",
+      "sha256": "7f10efdf000492f17c328ef3ae8b72e60a769820b1130e7dcc8c72384dce7368"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q048-response.json",
+      "sha256": "ba3a3be91830b27a46e4bf1916c21123cf855d14880364af86f9d46d82cfe839"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q049-response.json",
+      "sha256": "629f91389a2cec64f91429e3470c6b3324086cd97912637dfd4750b4a67172c9"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q050-response.json",
+      "sha256": "87b72934627b8465069be52b998e1fba36be513b8625014ad6c00a097cf24d1b"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q081-response.json",
+      "sha256": "46d91d288239975ed2d7727571df3478871f6f637eea3300c2ca61109c7a2361"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q082-response.json",
+      "sha256": "844e4f752c0110ad00c06fbb8053712ff138b9675047eac0a1ea5bb1a233bf99"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q083-response.json",
+      "sha256": "f1d153b6063766c30ad7bc1b99b5e8ab015c0dd7eb7ed448967eba7f43ad80d0"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q084-response.json",
+      "sha256": "1136c382e68a0d74003cfb541cea1d380a60392b765d1290ccc0fb237676dc9d"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q085-response.json",
+      "sha256": "247bc31eb850e99301f93b02686edfe25ed4b1f69c89c26308337b149cccfece"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N01-snapshot.json",
+      "sha256": "c0b3a3ac39d26b4da40f0d7f5f4cf3515f19fdd18bcb813ed237eb6dc2e87cff"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N02-snapshot.json",
+      "sha256": "8b7a290f61733fc547afbfc1a2892b4cf2fd057b568d17a93c0b23d82c9b4b74"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N03-snapshot.json",
+      "sha256": "bb8027504fc88f8dc11688c51f7df4b9c98c80461e121250aa7c11c51f2b33c5"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N04-snapshot.json",
+      "sha256": "eb77299ede92ea5a669333b32bd588c54abccbbbf27ca93b220d662b99713b8e"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N05-snapshot.json",
+      "sha256": "cde9874ea845e6f5812315e13f80dda51246b27c2b5a102aeadbe3140a8678b0"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N06-snapshot.json",
+      "sha256": "f151bf05b7d5ca8df6242861fdaf0bd0543ec849328e63a92185f05a4f8a3076"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N07-snapshot.json",
+      "sha256": "870bb777927a360f820a84671fa031ebeeeea0bbe26abb56b1636781577d2f50"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N08-snapshot.json",
+      "sha256": "2d1f4f7591197f139dc520608e204ee5a1990f9b60a0865cb219258df79bb124"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N09-snapshot.json",
+      "sha256": "382c41c9fab450e758ba04e5f1f64dbaa5e448fc3fa5b9a75d38e4e5dfc64d3f"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-N10-snapshot.json",
+      "sha256": "2e306301f19fb5d86e75fbf412f9ea2b21293352c77fc01a9e7110a5625ab147"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q001-snapshot.json",
+      "sha256": "1169750983bb724ebd118a45d1618784257ff4bd1626e0d468cda923e78921d6"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q002-snapshot.json",
+      "sha256": "720c61bc89a8b809d85dc2c2d23e1ca3abbcfdee0ba4e9741ff24980f7a21011"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q003-snapshot.json",
+      "sha256": "2e3b23080ebf9b7b42d85b62314a4439368f19084b9ca9b3ad150fca922e9b08"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q004-snapshot.json",
+      "sha256": "e79b33f7b4ec7e5c2fd39f2be7e091905b2b2bda1b250f80246141a43469849b"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q005-snapshot.json",
+      "sha256": "6cabce62dfa1f4974b3cce5ad9d4c03d17bb00cf24720670a1424b2ea4a8c5f9"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q006-snapshot.json",
+      "sha256": "07b09f2d190bbd1afb21dfd987fddb4aaf168cd24d30247d56b60dc71541e601"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q007-snapshot.json",
+      "sha256": "34009409c5af394c729f449c770dc6dbbb05f4992017878384248ea9c7c30159"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q008-snapshot.json",
+      "sha256": "5d471d15254ea9fb87d7ab0076ebe66310a69b6fb211dd156f5cbf8251ef5034"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q009-snapshot.json",
+      "sha256": "5c871aa8b03e82b25e0aee020154fc196893f3b887f0cbb158b2387ca35ba37e"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q010-snapshot.json",
+      "sha256": "cf78e04072110e6ef91a5592dee11b3454338172070aff0fba31b241fd62ade9"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q021-snapshot.json",
+      "sha256": "a1043b98b62023e8ee2d7ca2a5c509d1c930730badb08311277333f2c3059cfa"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q022-snapshot.json",
+      "sha256": "4313100059ed5ece6c0342f85fabd3f5d3adbeff0f3a707e9a64cc353ad0a11b"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q023-snapshot.json",
+      "sha256": "9d110febd48948e549b2838f03e5145965bd42c613655a2f83b693cffc0252fb"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q024-snapshot.json",
+      "sha256": "09ce7ab4c5f20183ca1fabd16bdc4e053e532ed506b4f89e44f15ff0241a6dff"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q025-snapshot.json",
+      "sha256": "7178234e52701bae2d13e0140f44039a06241115e518e68a8c60d7b1a311dd21"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q031-snapshot.json",
+      "sha256": "5c57f2a1a08b8b200dc45f3c996350557eb6b094b1ffc6300d2e16f1f8acee0a"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q032-snapshot.json",
+      "sha256": "229d4f796baa162d7cfb38e428615e458b4fc2f80a4f93e56c5b80007371d2d2"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q033-snapshot.json",
+      "sha256": "b30f2b8437537cb4870bc1f06991e8b7f417378ca7130dd2d39715693f0548c0"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q034-snapshot.json",
+      "sha256": "44311d9c0b34d4b54716a2ddce97960952d9d9f307eb2c26f46d9a9e1a5f111b"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q035-snapshot.json",
+      "sha256": "e262aa3dc4b453beb87ce691658cb50ac94c82e68c2354fe3220d241824f3a7e"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q046-snapshot.json",
+      "sha256": "406dec946c5502432ae546609d4a96b60e6b19211fbe47b9a9cbf32beafeaea5"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q047-snapshot.json",
+      "sha256": "937769c23f0306639f046a70840177e30332098660205fd19fd31f22d95b4175"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q048-snapshot.json",
+      "sha256": "e3a3b0bf06ed70ebb015a72b6e94bdd5c1f13453714f1f850966eee2e2cc9133"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q049-snapshot.json",
+      "sha256": "0a3167a85f106733867346f905bb3be503df83fa321f6969a855e95722046340"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q050-snapshot.json",
+      "sha256": "ab87e9022a30c866bc23ffad35c05a62d50f24e74ba7d8a5f0cda7e68319ceb5"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q081-snapshot.json",
+      "sha256": "fe0adcc1a26be5213032c70bce1ee06fa5d8bc7614280eff388b12a48f945384"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q082-snapshot.json",
+      "sha256": "cadcb97495421e05f8e07bacb89bae2da39111d5bd8fdaa2e5fcaf6a582b5652"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q083-snapshot.json",
+      "sha256": "d6e72cfe05a96150a15d0c31832fc99c5a32031fba58261fa969fb588953efe8"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q084-snapshot.json",
+      "sha256": "e23c106a794658c6033d3a4b9530df89491dc73917ff4cd4c9aa886d3dbb7ecd"
+    },
+    {
+      "path": "tmp/manufacturing-zh-v3-live-20261029-dev-r1/http-r1/MFGZH-Q085-snapshot.json",
+      "sha256": "5a7f6b498d51704d388b03c8a6243ce26579621697f3cc55f984093f1d10387c"
+    }
+  ],
+  "credential_material_published": false,
+  "full_context_published": false,
+  "helper_scripts": [
+    {
+      "path": "tmp/mfg_zh_live_ops.py",
+      "sha256": "97e77df13f07a3ecd73caf9870d6e74c4ab0beb43fb8c5da29698731229c8580"
+    },
+    {
+      "path": "tmp/audit_mfg_zh_index.py",
+      "sha256": "65565f383ef8ddf06992f0112f16664f877243bf4d91c847cfe4cd31bf1aa451"
+    },
+    {
+      "path": "tmp/run_mfg_zh_audit.py",
+      "sha256": "e85198962fa0af60d25245b5011e579b49a3284e153a4374ed7303f11b3e9ff5"
+    },
+    {
+      "path": "tmp/mfg_zh_index_evidence.py",
+      "sha256": "205201f92b9ba235b0b5719b0b8dfb191b625c6e9351f7c33070ef14c0ed66e8"
+    },
+    {
+      "path": "tmp/mfg_zh_ledger.py",
+      "sha256": "126c84941faf2a27f7c795df1b05cb78f0d47c6d3aaa56968ff429391d1e9bb6"
+    },
+    {
+      "path": "tmp/mfg_zh_semantic_review.py",
+      "sha256": "b729b2a8fb182822e03bbda358103afa99e0e7b2eb118f590e7ef0fef95e5477"
+    },
+    {
+      "path": "tmp/publish_mfg_zh_live.py",
+      "sha256": "1ac30b33ea2af542aa7251fa500f0119d660399a673443c8c67a84201618d3b8"
+    }
+  ],
+  "helper_scripts_tracked": false,
+  "models_called_after_scoring": false,
+  "paid_qa_retries": 0
+}

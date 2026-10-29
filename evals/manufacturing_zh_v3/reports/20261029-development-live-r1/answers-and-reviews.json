@@ -1,0 +1,3047 @@
+{
+  "records": [
+    {
+      "id": "MFGZH-Q001",
+      "question": "按《工业产品生产单位落实质量安全主体责任监督管理规定 第75号令 2023》所收录原文，发现产品存在危及安全的缺陷，或生产许可证、CCC证书失效后，谁应提出什么建议，主要负责人如何处置？",
+      "reference_answer": "质量安全总监、质量安全员应提出停止相应产品生产、销售等否决建议；主要负责人立即组织分析研判、采取处置措施。确认存在缺陷的，按规定召回。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "质量安全总监和质量安全员发现产品存在危及安全的缺陷，或者生产许可证、强制性产品认证证书失效时，应当提出停止相应产品生产、销售等否决建议。[资料1]\n生产单位主要负责人在收到上述建议后，应当立即组织分析研判。[资料1]\n生产单位主要负责人应当采取处置措施，消除风险隐患。[资料1]\n经确认存在缺陷的，应当按照国家有关规定进行召回。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+          "section_path": "主体责任监督管理规定",
+          "chunk_id": "e07b23aa40e2f167149257d1c66c62c6e692bb08ce52be3bbc609297ff0ec9ff",
+          "parent_id": "09b7476e2fbca91ab36b04349c6b9c0499bbac544f394a15484104d4b9be03fa",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q001",
+        "binding": {
+          "question_sha256": "c4bae088974e071eef377576c3c8dcc5e7002d391bd9f2bc79c223b4ec9636e8",
+          "response_sha256": "45de2387da9c7188205bc321c5dd51aa4cee1a3074cb8b6a69bf3acfec12e3de",
+          "context_sha256": "a3b6e0947ec039b04b9255e312e6be89e0b35c9ad1b1b330e78a985f0bf29255",
+          "criteria_sha256": "8488141ab120527f93517ee7684cad54dc04eaf390424df401f052a299af9051",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "质量安全总监及质量安全员、停止生产销售建议、负责人研判处置及确认缺陷后的召回均完整；引用覆盖两处标注证据。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 5,
+      "run_id": "750d1c9c-bf41-45f5-8632-5f095c5d4d69",
+      "request_id": "750d1c9cbf4145f586325f095c5d4d69",
+      "latency_ms": 7564.47,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "39977c62-cca6-46ab-ba34-d43a1642b60f",
+        "eede6810-01cc-4d8e-acaa-b68e53b07d98",
+        "352803d8-3312-4b3a-8a27-a699cbc44e3e"
+      ]
+    },
+    {
+      "id": "MFGZH-Q002",
+      "question": "按《工业产品生产单位落实质量安全主体责任监督管理规定 第75号令 2023》所收录原文，每日检查没有发现质量安全问题，能否不留记录？",
+      "reference_answer": "不能。未发现问题也应予以记录，实行零风险报告。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "按《工业产品生产单位落实质量安全主体责任监督管理规定 第75号令 2023》所收录原文，每日检查没有发现质量安全问题，不能不留记录。[资料1]\n根据该规定第十条，未发现问题的，也应当予以记录，实行零风险报告。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+          "section_path": "主体责任监督管理规定",
+          "chunk_id": "87c91b3747b7696de4f99a897698b34fd2a9b4798341c757045c7b23bafd25f5",
+          "parent_id": "bd437522884c1220eaf2d47a0d75681597eebec8b780104dd3d14cb3d36b26a9",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q002",
+        "binding": {
+          "question_sha256": "cc5f73d33582033a7dd759dda2c0d155702d28f22a65a6007b2a54fd21c60bd7",
+          "response_sha256": "c51d0e206b8460e6842570d7ac6fd2a18c6088d6562279422bb6afe85b11d67a",
+          "context_sha256": "281db9c879e906b4b99452b974f4f57b18a2330bd542376e80bf22722f221aa3",
+          "criteria_sha256": "3c79dab1a49e46c89c68ce92011b213ffb625b79c175dba89ccb1d0d5bbcebf4",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确不能省略记录，零风险报告要求及引用完整。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 6,
+      "run_id": "232f2ec3-568d-4078-8fc9-6a7fe3794052",
+      "request_id": "232f2ec3568d40788fc96a7fe3794052",
+      "latency_ms": 3858.74,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "f1c5b456-f130-48b9-a703-3a0f5146d80e",
+        "6de42c22-3a90-4cf1-b61c-1142383c8918",
+        "4fa8846a-ddfa-4fc1-97bc-75de82a17e65"
+      ]
+    },
+    {
+      "id": "MFGZH-Q003",
+      "question": "按《工业产品生产单位落实质量安全主体责任监督管理规定 第75号令 2023》所收录原文，生产单位的周排查由谁组织，最低频次及形成的记录是什么？",
+      "reference_answer": "质量安全总监每周至少组织一次风险隐患排查，形成《每周工业产品质量安全排查治理报告》。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "生产单位的周排查由质量安全总监组织。[资料1]\n周排查的最低频次为每周至少一次。[资料1]\n周排查形成的记录是《每周工业产品质量安全排查治理报告》。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+          "section_path": "主体责任监督管理规定",
+          "chunk_id": "87c91b3747b7696de4f99a897698b34fd2a9b4798341c757045c7b23bafd25f5",
+          "parent_id": "bd437522884c1220eaf2d47a0d75681597eebec8b780104dd3d14cb3d36b26a9",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q003",
+        "binding": {
+          "question_sha256": "5caa5dc25378454653ef47074af40f6f5d358053ca7bfc889b93b2ed4ed1b0ff",
+          "response_sha256": "eb2d673e7cba22b313009ec66c7e22e473839d6606c033cfc6cb071b668c373a",
+          "context_sha256": "4f04fd2cda55b9fa1f6f2f5ab65d1314d85cb0521abbcd83ee7b312d91b1b846",
+          "criteria_sha256": "e0a761e7a6de5e98eb692224c0f3e2c3ee7c91c203dffa0fc33962c83c848ff7",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "质量安全总监、每周至少一次及报告名称完整。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 5,
+      "run_id": "a1d9a94b-ce62-4350-ad7d-c8ae2e5deff6",
+      "request_id": "a1d9a94bce624350ad7dc8ae2e5deff6",
+      "latency_ms": 4090.28,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "50111368-253e-49e3-9e98-efac6484f085",
+        "c09507b3-660f-454b-bdf2-7d6111b6bc26",
+        "a2e8b5bd-08c2-4e28-9867-dda999cfd4a3"
+      ]
+    },
+    {
+      "id": "MFGZH-Q004",
+      "question": "按《工业产品生产单位落实质量安全主体责任监督管理规定 第75号令 2023》所收录原文，月调度由谁至少多久听取一次汇报，需形成什么文件？",
+      "reference_answer": "单位主要负责人每月至少听取一次质量安全总监管理工作情况汇报，形成《每月工业产品质量安全调度会议纪要》。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "月调度由单位主要负责人至少每月听取一次质量安全总监管理工作情况汇报。[资料1]\n需形成的文件是《每月工业产品质量安全调度会议纪要》。[资料1]\n该规定要求对当月工业产品质量安全日常管理、风险隐患排查治理等情况进行总结，并对下个月重点工作作出调度安排。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+          "section_path": "主体责任监督管理规定",
+          "chunk_id": "0ee2eaf08651022082d2ae0cebae3a8c9f451ff9cab4cbb41bf092b5610ccc3a",
+          "parent_id": "bd437522884c1220eaf2d47a0d75681597eebec8b780104dd3d14cb3d36b26a9",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "每月至少"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.75,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q004",
+        "binding": {
+          "question_sha256": "f16a85ce45de962d38ee98191e8e9ddbc825a8ac002a03e71d5ea74dd135b766",
+          "response_sha256": "4e2a6680523f1949dc4a4cf0de7882a1270b2d6486d253f951ff9f8e9213cec9",
+          "context_sha256": "08e7bc97a87c19c96dce341a17f7b479323c05ef4e47120aa049d9656313cfe3",
+          "criteria_sha256": "bb744288152889bd74cdb01832a2d107809b09aab1a4c05c475212cbdd04d3f1",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "“至少每月听取一次”与“每月至少听取一次”等价，会议纪要及补充职责有实际上下文支持；保留自动词面失败。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 5,
+      "run_id": "bb6c8b48-087a-40e0-a820-dd4456612b16",
+      "request_id": "bb6c8b48087a40e0a820dd4456612b16",
+      "latency_ms": 4020.43,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "82f6299a-c138-4865-a703-83991ba1d756",
+        "5985bd50-9c32-427c-90f5-cb5a8c47c5f7",
+        "381d6b39-f3da-4bfa-9186-b35219536c0b"
+      ]
+    },
+    {
+      "id": "MFGZH-Q005",
+      "question": "按《工业产品生产单位落实质量安全主体责任监督管理规定 第75号令 2023》所收录原文，质量安全管理人员未通过培训考核，能否继续担任相应岗位？抽查考核不合格后单位要做什么？",
+      "reference_answer": "未通过考核不得担任相应岗位；抽查考核不合格时，生产单位应立即采取整改措施。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "根据《工业产品生产单位落实质量安全主体责任监督管理规定》第十五条，未通过考核的人员不得担任相应岗位的质量安全管理人员。[资料1]\n根据《工业产品生产单位落实质量安全主体责任监督管理规定》第十五条，监督抽查考核不合格的，生产单位应当立即采取整改措施。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+          "section_path": "主体责任监督管理规定",
+          "chunk_id": "8d2baf28daabfa3b70fda771f69524be1d440118e70ee9398475e6fe28c2933c",
+          "parent_id": "a1b411e2787f5821870aa5c9c20fa37f5426c009d66dbde75529e1430b174c9e",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q005",
+        "binding": {
+          "question_sha256": "8dd53d3dca20a9e83d1ac7509f63d29b2abce0cd48d5c21618a86ebf30fb5f72",
+          "response_sha256": "92570511ab1e191f4a41c961375820c9b587a1e70c71c341b48fc1ee0c9d47b4",
+          "context_sha256": "95ef383cfd11143c702ae1bc34525d1cf869b19e716d46c8473323dcd04d063e",
+          "criteria_sha256": "89865f4604701cec9889b8a60e686b812e085a1d92b92fa5a88e86d4f91f1eff",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "未通过考核不得任职、抽查不合格立即整改完整，引用第十五条支持。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 3,
+      "run_id": "2eab374d-1bcb-43d4-a5e9-2511b39d11c6",
+      "request_id": "2eab374d1bcb43d4a5e92511b39d11c6",
+      "latency_ms": 7950.2,
+      "actual_model_calls": 4,
+      "usage_event_ids": [
+        "ca273577-e4d4-4fb4-be84-778ba0609775",
+        "e9377716-b220-49c8-915b-2b3cfe32ef4a",
+        "0233f06c-2c14-4f0e-b334-9691bd7a4a8d",
+        "25cc1b99-1936-4be4-a116-9e55dbafb628"
+      ]
+    },
+    {
+      "id": "MFGZH-Q006",
+      "question": "按《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》所收录原文，企业已有质量管理部门，落实质量安全总监和质量安全员制度是否必须重建组织？",
+      "reference_answer": "可以保留原有部门和人员配置，但须明确质量安全总监、质量安全员的人员岗位，确保履行相应职责。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "企业已有质量管理部门的，不需要重建组织。根据《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》规定，对于已经建立质量管理体系或者质量管理部门的生产、销售单位，可以保留单位原有的部门和人员配置。[资料1]\n在保留原有部门配置的基础上，只需明确质量安全总监和质量安全员的人员岗位，确保其能够按照相关规定要求履行相应职责即可。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+          "section_path": "辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023",
+          "chunk_id": "36ba14e4e814e4001d38e8b32b504d4b5220579e9a71ba7c602143d282d038ba",
+          "parent_id": "d096b84323924cf1e02004c8d34ecf9b30542c1d44293909d321abaf369017a0",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q006",
+        "binding": {
+          "question_sha256": "6845f4308ebc488fba06a09294f60f953dae468d8a19b0256115f5221ca98af4",
+          "response_sha256": "ffe085e7aa3faa034f53d783a45afb1113a1bd43a0d0c41be3e111215728f8fd",
+          "context_sha256": "4981305668bffb854579dccc10d09807a33307bc5659a7d8494fb1734320614d",
+          "criteria_sha256": "101264ffba00deee087142711bdb6a850a0d677fad4e37612c890134e262d848",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "允许保留原有部门人员，同时明确两类岗位并履责，未无条件免除制度要求。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 3,
+      "run_id": "bc660054-5db8-42bf-84d0-6d1e3cb14fca",
+      "request_id": "bc6600545db842bf84d06d1e3cb14fca",
+      "latency_ms": 3970.23,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "f69497c5-2215-4358-8b4a-5d3573c510c5",
+        "d3b2c76b-b624-4cff-9759-7194b1a0abef",
+        "30e63db4-318e-4152-8bf9-db46a9b7dfc4"
+      ]
+    },
+    {
+      "id": "MFGZH-Q007",
+      "question": "按《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》所收录原文，编制企业质量安全风险管控清单时，风险点应至少明确哪些类型的信息？",
+      "reference_answer": "应包括但不限于风险类型、风险名称、风险等级、控制措施、检查防范以及责任人。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "编制企业质量安全风险管控清单时，风险点应至少明确以下类型的信息：风险类型、风险名称、风险等级、控制措施、检查防范以及责任人。[资料1]\n上述要求依据《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》的规定。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+          "section_path": "辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023",
+          "chunk_id": "440caa0e413d41d0d7fe3cf764093eb7b61d53ca9214656b0fa73fe91a7365f1",
+          "parent_id": "9c1cd8cc27f5049a32e18a5aa32c413eae439be6bd57e6c2f10a360100a243f3",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q007",
+        "binding": {
+          "question_sha256": "f106b883318f28369291f77623019efb7aa914c870dc770b60523100228347ce",
+          "response_sha256": "8027e71cb49d023176e06ee815b57eb5efd35725c5be311ba2e36ee94b3605ab",
+          "context_sha256": "777ee0e39c7400c81d1e432e9e564819e1494b65c44a58d364cf5a06a6bf221b",
+          "criteria_sha256": "a53ce23c39a5e1b3285a088fc97f7cf9370fefb089dad0a5175adf48fddcdb97",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "风险类型、名称、等级、控制措施、检查防范和责任人六项完整，来源支持。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "39bdf9c6-2de5-48e7-ba53-0fce3a77990b",
+      "request_id": "39bdf9c62de548e7ba530fce3a77990b",
+      "latency_ms": 3346.13,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "449aa723-4d3b-4ce2-8ac5-686d3f65dd90",
+        "a350a61c-aa58-4945-ac19-fb117616ba29",
+        "2903f831-0b56-4ab3-9607-31a0e359b463"
+      ]
+    },
+    {
+      "id": "MFGZH-Q008",
+      "question": "按《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》所收录原文，日管控发现的问题不能当场整改完成，后续如何处理？",
+      "reference_answer": "先明确责任部门及责任人；不能现场立即整改的，应明确整改期限，并在后续日管控检查中跟踪验证整改情况。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "对不能现场立即整改的，应明确整改期限，在后续日管控检查中跟踪验证整改情况。[资料1]\n每日检查形成的《每日工业产品安全检查记录》，应当记录检查时间、范围、项目、发现的问题及处理情况，提出整改意见建议，重大问题报告等情况。[资料1]\n日管控检查中发现的工业产品质量安全风险隐患，应明确责任部门及责任人。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+          "section_path": "辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023",
+          "chunk_id": "5f628b84c6bbc31d18b65114e3f0a604a650a887847fc42dbaa36413d367369c",
+          "parent_id": "9c1cd8cc27f5049a32e18a5aa32c413eae439be6bd57e6c2f10a360100a243f3",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q008",
+        "binding": {
+          "question_sha256": "d07941912b3329670c1e9639c97cdc3a1935c9354e041eff3f8e37abf55bf952",
+          "response_sha256": "4b378b75d830b8a3b8aed4480beee990a1f67c286f46dcf04f2eb7d2f6aae84e",
+          "context_sha256": "678259a140db411bb21c290e502446562a8fdc38e37ccdb64de45316b8154294",
+          "criteria_sha256": "ff390896535d0a1b19a28ed57f33061f130490dbba6c7aca97fcc1fa7443e4d2",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "责任部门和人员、整改期限、后续跟踪验证完整；额外记录要求见所引原文。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "2e41607b-deaa-427b-90b2-7447753ac884",
+      "request_id": "2e41607bdeaa427b90b27447753ac884",
+      "latency_ms": 4188.0,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "b0326782-f3af-48a5-9bb3-07b3cc465cce",
+        "e655dbce-5e25-4019-963c-4f1136987d35",
+        "4be0b33d-458a-4bff-93c7-3f5ef67c2b14"
+      ]
+    },
+    {
+      "id": "MFGZH-Q009",
+      "question": "按《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》所收录原文，周排查发现频繁发生或较高质量安全风险的问题，只完成当次整改是否足够？",
+      "reference_answer": "不够。对频繁发生或较高风险的问题还应制定纠正或预防措施，并跟踪验证整改结果。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "只完成当次整改是不够的。根据《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》原文，对于周排查中发现的频繁发生或存在较高工业产品质量安全风险的问题，应制定相应的纠正或预防措施，并跟踪验证整改结果。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+          "section_path": "辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023",
+          "chunk_id": "22b7e663653b579926673be3d292f8973a64f77066091aa1f63795e004239c79",
+          "parent_id": "9c1cd8cc27f5049a32e18a5aa32c413eae439be6bd57e6c2f10a360100a243f3",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q009",
+        "binding": {
+          "question_sha256": "aa752c19fb36e7f33d7ffa011864ee9c121fff9cbb37bb271afc3d1ab1d183d4",
+          "response_sha256": "3c14675a455203585ddfa661f3ad9d0af3d5700575152e39c6a9febb30fde7a1",
+          "context_sha256": "d10aa6f39cc0f7aca4813cce8f010000890a8a9f39f6021cfb18592a91e1c955",
+          "criteria_sha256": "ec1f07329c2de707cf3f5572c61f29bdc6ecf920d05122624ffd7b10a2b56edb",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确当次整改不足，还需纠正或预防及跟踪验证，引用支持。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "5af23e9b-2283-4343-88ea-cac97db59faf",
+      "request_id": "5af23e9b2283434388eacac97db59faf",
+      "latency_ms": 3309.91,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "0d6de6ee-00a7-47b0-922f-9b7628b91f22",
+        "9ccc4d6e-198a-4dc4-9146-2c18d2215221",
+        "4d368f3f-e478-4bbc-845c-122c017ac868"
+      ]
+    },
+    {
+      "id": "MFGZH-Q010",
+      "question": "按《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》所收录原文，停工停产后是否仍必须按日、周、月频次执行管控？相关情况如何留存？",
+      "reference_answer": "单位停工、停产后可暂不执行日管控、周排查、月调度，相关情况应存档备查。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "单位停工、停产后可暂不执行日管控、周排查、月调度。[资料1]\n停工停产期间暂不执行相关管控的情况，应当存档备查。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+          "section_path": "辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023",
+          "chunk_id": "70b854822ed13a0ba674325fa148989d977d0d52394272b2aac54745991f8ace",
+          "parent_id": "9c1cd8cc27f5049a32e18a5aa32c413eae439be6bd57e6c2f10a360100a243f3",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q010",
+        "binding": {
+          "question_sha256": "36b6157b63da241a7a3e07354e99f55150ad74ec002d3408307243d708202d3f",
+          "response_sha256": "ffdcef11f39dc1dd059903175a6e01d22e4776b3093d9a063546686f3e76aff1",
+          "context_sha256": "c1995e4ca5c02168a4fd88880cccfe2ffd283d97d069eba0d9707409eedfe73a",
+          "criteria_sha256": "767e9d208847f3dec690bc7e3ae95fc9c63571538fd4e09a51f32db2deaa064e",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "停工停产可暂缓日周月管控且存档备查，未解释为永久免除。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "03f93c37-d5ef-41ef-8f52-6fd4e7df8c5e",
+      "request_id": "03f93c37d5ef41ef8f526fd4e7df8c5e",
+      "latency_ms": 6329.64,
+      "actual_model_calls": 4,
+      "usage_event_ids": [
+        "e928f6ed-5718-48f3-b3b0-01205cf64734",
+        "1f1500c7-30c2-4579-bc19-c5120f77a930",
+        "f4353b78-78f9-48a9-9957-f5fd7562181d",
+        "0f35ffc1-16a9-4215-9333-9385e5462e46"
+      ]
+    },
+    {
+      "id": "MFGZH-Q021",
+      "question": "按《盐雾试验设备校准规范 JJF吉92-2021》所收录原文，该盐雾试验设备规范校准的主要技术参数有哪些？",
+      "reference_answer": "包括温度偏差、温度波动度、温度均匀度及盐雾沉降率。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "盐雾试验设备规范校准的主要技术参数包括温度偏差、温度波动度、温度均匀度及盐雾沉降率。[资料1]\n上述参数的技术指标要求分别为：温度偏差±2.0℃，温度波动度±0.5℃，温度均匀度2.0℃，盐雾沉降率（1.0～2.0）ml/(h·80cm2）。[资料2][资料3]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "section_path": "1 范围",
+          "chunk_id": "0604417d8d12ceb892e027043fb2539ffa76ca1dcb1450fc30c8c49ae668022a",
+          "parent_id": "65353718685b5d2922d908de0ebddb3af2d72863ff2f87323938258d35849688",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "section_path": "5 计量特性 > 5.3 校准参数",
+          "chunk_id": "32d03eda8576fca6c1c77b0474a40f9efcfcfd4abc20f2968aa097e5940ef93f",
+          "parent_id": "c8ce194d17a95f70513ba493cd5dba361a488f5bf1d9ae2a21d8f6c05709b515",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "section_path": "6 校准条件 > 6.4 测量标准及其他设备 > 6.4.3 其他设备",
+          "chunk_id": "17a969c25969c5e2c8892476a49f4c91b2d79dc6b591b19aded9b17631452110",
+          "parent_id": "6d195d925f486816802a4444759fc4078dba3dfd2b7dab7e4602f95368116a94",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q021",
+        "binding": {
+          "question_sha256": "cbac9b32fc4109f6b2037a2af8229c1329b46f5fceeef88afcd5169a0e91d2ca",
+          "response_sha256": "0168b2c77a233fdd767f0abcce467454b11862fa8de5f1fca00b27b7783e491e",
+          "context_sha256": "01cf75ec482a48b4f6ba1d8992109ca71e440897479ad13e6c749bbc16b4efc5",
+          "criteria_sha256": "946e3e04571707e0d4a8ae627ff9198c5210e846c2fff6210159b3bd9d5f6b8a",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "四项参数完整；额外技术指标数值分别有三个实际引用支持。表格尾部和注释被放在其他设备章节下，属于另记的结构风险，不据锚点匹配宣称章节全正确。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "ed5e0156-8a49-424e-a055-b05a65b65ec6",
+      "request_id": "ed5e01568a49424ea055b05a65b65ec6",
+      "latency_ms": 6703.13,
+      "actual_model_calls": 4,
+      "usage_event_ids": [
+        "73454239-ace1-43a2-8a70-995a36c4ce01",
+        "11040400-042e-4f5f-9541-1b0a0ba2a4fb",
+        "276459af-0831-4bd1-91f0-c4fb03894457",
+        "66c090bc-21ff-4af9-ac6d-768028e34579"
+      ]
+    },
+    {
+      "id": "MFGZH-Q022",
+      "question": "按《盐雾试验设备校准规范 JJF吉92-2021》所收录原文，盐雾箱校准的环境温度、相对湿度和大气压范围分别是多少？",
+      "reference_answer": "环境温度15～35℃，相对湿度30～85%，大气压80～106kPa。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "根据《盐雾试验设备校准规范 JJF吉92-2021》第6.1节，盐雾箱校准的环境温度范围为(15~35)°C。[资料1]\n根据《盐雾试验设备校准规范 JJF吉92-2021》第6.1节，盐雾箱校准的相对湿度范围为(30~85)%。[资料1]\n根据《盐雾试验设备校准规范 JJF吉92-2021》第6.1节，盐雾箱校准的大气压范围为(80~106)kPa。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "section_path": "6 校准条件 > 6.1 环境条件",
+          "chunk_id": "885306aeee2f3b4a404e2eddc00dfecfa1ce87e10c54d3e4bbf2af23b7f5cf9f",
+          "parent_id": "3dc2f6078129bfc829d8e15348451dc8d37a309388bd122216249da829d2f3f2",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q022",
+        "binding": {
+          "question_sha256": "7beb959bddbc1aed8c95cd1d105926589ff02078eea23c7b6f162f329abe9ff7",
+          "response_sha256": "eb5f8e0b6d93b9759a16f328c39990dd42702cf09d38ae561675d3808c4e770d",
+          "context_sha256": "6a52d0b222571b47a2e6bb96da89db1ea6843253c5af83f1ad77e6e112b1a3d9",
+          "criteria_sha256": "bff6f24b69d99e89bb05b5e93d5e819330449e943563dda784cd622bddc9fa68",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "温度15至35摄氏度、湿度30至85%、大气压80至106kPa均对应正确。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1,
+          "2": 1
+        },
+        "expected_evidence_count": 3,
+        "matched_evidence_count": 3,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "2d472c9b-436b-4629-871b-b64d09b01c73",
+      "request_id": "2d472c9b436b4629871bb64d09b01c73",
+      "latency_ms": 5102.46,
+      "actual_model_calls": 4,
+      "usage_event_ids": [
+        "576b1496-32c2-48e0-8709-8ad3d52b7486",
+        "72d8f0b8-30fd-401b-9698-1489afb3fe61",
+        "1d78c015-85af-4182-8a85-ef68c8429e62",
+        "c0133b96-c47c-4500-b127-530d30a22a72"
+      ]
+    },
+    {
+      "id": "MFGZH-Q023",
+      "question": "按《盐雾试验设备校准规范 JJF吉92-2021》所收录原文，盐雾箱校准必须空载吗？用户要求负载校准时需注意什么？",
+      "reference_answer": "一般在空载条件下校准，按用户需要也可在负载条件下校准，但应说明负载情况。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "根据《盐雾试验设备校准规范 JJF吉92-2021》，盐雾箱校准一般要求在空载条件下进行，但并非绝对必须空载。[资料1][资料2]\n根据用户需要，可以在负载条件下进行校准。[资料1]\n若进行负载校准，需说明负载情况（如半载或满载）。[资料1][资料2]\n在负载校准过程中，应根据设备运行状况和用户校准需求确定时间间隔和数据记录次数，并在原始记录和校准证书中进行说明。[资料2]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "section_path": "6 校准条件 > 6.3 负载条件",
+          "chunk_id": "8ebca207fd96332f0eb8935f3a4406ccdd3ad716b1de2bd4fc553f23c29d68c0",
+          "parent_id": "107aea66f044f6ab9776feff708ae753fec01c4ebfce478370726b557ebbdfc7",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "section_path": "7 校准项目和校准方法 > 7.2 校准方法 > 7.2.2 温度参数校准 > 7.2.2.3 校准步骤",
+          "chunk_id": "b5d1443737d53888bf050d6d1b80197e6c3048ffa18a07a21b62cc28cf6cdc97",
+          "parent_id": "624ff35c2994fb75b28b6b4a541ead466b8f3b6eaf88014e1ecc406b2f414592",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q023",
+        "binding": {
+          "question_sha256": "c8f56032f93792af1e3b6bb4dbeaed443bb2c0b971c8906820157c20c11d529a",
+          "response_sha256": "ec7e053e2be7d2397f40864831726306172ac6afa942d3a263217ff827651a33",
+          "context_sha256": "35ee883d103240fdbadeee7c3983cee0f1c7ffa4d9e9087e8b6ecdd56866f6bc",
+          "criteria_sha256": "b5c4eb09d2d2dc9fc439b4f4a950ba4147ae0ac7075bd33991d46cd1624bd4b5",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "一般空载、可负载、说明负载情况完整；半载满载及按运行和用户需求记录的补充见实际引用。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "5698bf0e-7e27-41c4-9ae1-cf2fe1fa8663",
+      "request_id": "5698bf0e7e2741c49ae1cf2fe1fa8663",
+      "latency_ms": 7736.67,
+      "actual_model_calls": 4,
+      "usage_event_ids": [
+        "812caf67-38ce-440f-b69b-cc3559896bee",
+        "3a7cbc4c-6f62-4cac-80a0-5abfe005cb27",
+        "79d7276b-11b1-4a56-8548-c72e5b22fe7e",
+        "2f0454df-e356-45e1-8a76-dcc70de29867"
+      ]
+    },
+    {
+      "id": "MFGZH-Q024",
+      "question": "按《盐雾试验设备校准规范 JJF吉92-2021》所收录原文，盐雾箱校准试验温度一般选多少，能否按客户需要调整？",
+      "reference_answer": "一般选择35℃，也可根据客户需要选择校准温度。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "根据《盐雾试验设备校准规范 JJF吉92-2021》原文，盐雾箱校准试验温度一般选择35°C。[资料1]\n该规范允许根据客户需要选择校准温度，即可以按客户需要调整。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "section_path": "7 校准项目和校准方法 > 7.2 校准方法 > 7.2.2 温度参数校准 > 7.2.2.1 校准温度的选择",
+          "chunk_id": "61861f9a5726f4b3ec9fbec1f0cc8a0ddd5406f1f223d8b289f980f2f0553ec9",
+          "parent_id": "a012bd4f476c0bdb32fc3ce1266fe4e8e1bfe50c6730b84c6072ae9058543276",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q024",
+        "binding": {
+          "question_sha256": "07bc1ab159f0d71009b86b2801141645c87ee58c9219fd87c3bf3338f4f5ad73",
+          "response_sha256": "0f67fafc8f7c2c700a754666896323f134eb51e9f455376ea810abb1cf56bcd4",
+          "context_sha256": "eaa052deae62d2a86d7990d669730a30394ddd142c4b46310f7490c3f64c860d",
+          "criteria_sha256": "5f27bab68be937e3bc368d85c3bd5fcd5ea55bea1c6f75033f0c8c3c5ea07189",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "35摄氏度及可按客户需要选择均完整，引用支持。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "3f65e167-3f60-4135-bc84-9668d5a1144c",
+      "request_id": "3f65e1673f604135bc849668d5a1144c",
+      "latency_ms": 3482.9,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "12071969-854f-44f9-b586-54235505c548",
+        "f1be7521-1db3-405b-be47-c6b006730804",
+        "c7ba2e7f-6051-4611-902a-b33b41439c2c"
+      ]
+    },
+    {
+      "id": "MFGZH-Q025",
+      "question": "按《盐雾试验设备校准规范 JJF吉92-2021》所收录原文，能否直接用盐雾箱技术指标表判定设备合格？",
+      "reference_answer": "不能。表中指标不是用于合格性判别，仅供参考。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的资料仅包含规范的‘范围’、‘计量特性（含技术指标表）’及‘引用文件’章节，缺失了规范中关于‘校准结果表达’、‘合格性判定’或‘使用方法’的核心条款，因此无法确认是否可以直接用技术指标表判定设备合格。",
+      "citations": [],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [
+          "不能",
+          "合格性判别",
+          "仅供参考"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.0,
+        "all_required_sources_cited": false,
+        "citation_source_recall": 0.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 0.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q025",
+        "binding": {
+          "question_sha256": "9f2183997b7f16b32075b09ec0d9fa919d6c1747bb7f6396f1201149ff6ef983",
+          "response_sha256": "a3d855e89a612f96e9cfd50343cfd6167a46fa1ed870e1dc48e4147f4731616f",
+          "context_sha256": "1f27917ea2cdc71abc9faa839d32324f72a36ff1c2f2015f5d379fcf934c96d4",
+          "criteria_sha256": "ab3aae53e3d17ec43fe7bec971a5b95015e19ec94b1d01b46f2e6f1d40085a30",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "原文和存储子块明确有“不是用于合格性判别，仅供参考”，本题最终上下文未命中，发生误拒答；未观测中间检索阶段，不能据此唯一归因。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": false,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0,
+        "evidence_recall": 0.0,
+        "all_evidence_present": false,
+        "hit_at_1": false,
+        "hit_at_3": false,
+        "hit_at_5": false,
+        "evidence_ranks": {},
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 0,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "6562fee6-92d7-43b1-98e1-990fdc34a115",
+      "request_id": "6562fee692d743b198e1990fdc34a115",
+      "latency_ms": 4609.93,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "9a473cc3-adc0-45ad-bb85-6c761d86d9b1",
+        "8720dfc6-6ebb-4dff-b89c-070362cfd281",
+        "1790d903-953d-483b-ac12-81e8fd422b44"
+      ]
+    },
+    {
+      "id": "MFGZH-Q031",
+      "question": "按《热工仪表校验仪校准规范 JJF吉31-2021》所收录原文，热工仪表校验仪只有部分输出或测量功能，是否必然不适用本规范？",
+      "reference_answer": "不是。具有部分所列测量和输出功能的过程仪表校验仪也适用。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "根据《热工仪表校验仪校准规范 JJF吉31-2021》第1章范围原文，该规范适用于具有部分以上测量和输出功能的过程仪表校验仪的校准。因此，热工仪表校验仪只有部分输出或测量功能时，并非必然不适用本规范，而是适用的。[资料1]\n该规范明确列举了全功能的输出（直流电压、直流电流、直流电阻、频率、热电偶模拟信号、热电阻模拟信号）和测量（交直流电压、交直流电流、直流电阻、频率、热电偶信号、热电阻信号）功能作为适用范围的基础，并进一步扩展至“部分以上”功能的情况。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+          "section_path": "1 范围",
+          "chunk_id": "d6a631b2c263810d9d188de6a8548982e7ca7b377f6a41b8b95bd44f1e5c8aaf",
+          "parent_id": "6b25b6586bb0a0103de130ef83831091be41e9a6292296de6524562df9a40c8d",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "不是"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.6666666666666666,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q031",
+        "binding": {
+          "question_sha256": "ee72047837d3c8525ed385a8d21271b3108bae0805e7df8cf090d4c48f37266c",
+          "response_sha256": "6bd66878c96687fd45fdd3a7d7cae943cbfa25b759d781e9e76e30295d170b7c",
+          "context_sha256": "a8b8b4fc9573faaaa0a5fc433dd19f46a04fcce25b0a5c7dd67cc70378114015",
+          "criteria_sha256": "90d2fa1f0c0c2fc5bbf2d12d609126586d8c2095e5a1c9ae185650116cf7cba1",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确部分功能也适用，并非必然不适用；“并非”与否定词面“不是”不同，但语义及引用支持完整。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "89988295-2170-487f-8ae2-37dadf9bfc12",
+      "request_id": "899882952170487f8ae237dadf9bfc12",
+      "latency_ms": 4302.05,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "e41195ad-3ceb-4239-bfab-b7c13f2656b8",
+        "5acb1fc2-5182-4d71-99f7-5754b84d087e",
+        "6ad689ad-5d6d-4ada-b8cc-1c1ed55d3ece"
+      ]
+    },
+    {
+      "id": "MFGZH-Q032",
+      "question": "按《热工仪表校验仪校准规范 JJF吉31-2021》所收录原文，热工仪表校验仪校准的温度和湿度条件是多少？",
+      "reference_answer": "温度20±2℃，湿度60±15%RH。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "热工仪表校验仪校准的温度条件为(20±2)°C，湿度条件为(60±15)%RH。[资料1]\n交流供电电压:(220±22)V 电源频率:(50±0.5)Hz 6.1.2 校准装置(包括被校准仪器)应具有良好的屏蔽保护和接地措施,并远离机械振动和强电磁场,以避免外界干扰和静电感应等影响。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+          "section_path": "6 校准条件 > 6.1 环境条件 > 6.1.1 温度:(20±2)°C 湿度:(60±15)%RH",
+          "chunk_id": "fb91e459369fe56bb4e49dae7a99bb9f63ce12bae7f9c76a1d049662ed7f852c",
+          "parent_id": "f68943a960566f3eb899bf031eb4ee7508c2f2f2dadf00dde7141d5c4f7c1579",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q032",
+        "binding": {
+          "question_sha256": "6da008d5b490a721d51fcd5e6f3f387878eb5c69ae4ed979963934d83313214f",
+          "response_sha256": "fef0540f01f309fa9423f2e070a36a42ad0bc36c0971e0c9b9a2b04eb2b265ed",
+          "context_sha256": "e5532766179ec6b74985fd92f05625aa36ce11326f54a86a7a6e2a6cd530d407",
+          "criteria_sha256": "fe8028fa6b02aad355a850ff7172dd4eced5fe11d156f3fce38a4bd03214cd8f",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "20±2摄氏度与60±15%RH正确，附加供电与屏蔽接地要求见实际上下文；格式混排不计为数值错误。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "2337227d-bf80-4755-a206-3959e4df04eb",
+      "request_id": "2337227dbf804755a2063959e4df04eb",
+      "latency_ms": 3622.61,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "bc8c5217-dcbf-487a-972c-1b860d8a771c",
+        "452433b7-1b26-41f3-91c8-85333696d3a1",
+        "a75697f3-24e4-4b69-af56-d6022f6178d6"
+      ]
+    },
+    {
+      "id": "MFGZH-Q033",
+      "question": "按《热工仪表校验仪校准规范 JJF吉31-2021》所收录原文，校准装置扩展不确定度和分辨力，与被校验仪最大允许误差应有什么比例关系？",
+      "reference_answer": "整个校准装置扩展不确定度在k=2时应小于对应最大允许误差的1/3；分辨力应小于对应最大允许误差的1/5。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "整个校准装置的扩展不确定度(k=2)应小于校验仪对应各功能和量程最大允许误差的1/3。[资料1]\n整个校准装置各功能和量程的分辨力应小于校验仪对应功能和量程最大允许误差的1/5。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+          "section_path": "6 校准条件 > 6.3 标准器的要求",
+          "chunk_id": "e788380e9ab68452e723d957bbf61793dba6208fe34c2332d0706afb47d32ccf",
+          "parent_id": "8e27737eb66ce8d62f9d4d3944ff08fb43e432836c9e6ef9dd429d3ec76200e3",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q033",
+        "binding": {
+          "question_sha256": "327fe1bf621a82c1a9ae593d2bb73ab8f9a957d19d34c43be693119bb0ac7d24",
+          "response_sha256": "5b5200b9dda2eabc3e1da96d5e966d176674dc632cbff982ccaff2ff90c10b02",
+          "context_sha256": "f0120f216e74a75bef83ef09269a91744d0465db1fe1838efc68a7328ea41635",
+          "criteria_sha256": "b9f0658187da8fec3d33401e9363bc0e8fa801599deb8376e1623f8611ccad45",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "扩展不确定度k=2小于1/3、分辨力小于1/5对应正确，没有混淆比例。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "690f6162-a9a9-4f98-82b2-4245ce071c44",
+      "request_id": "690f6162a9a94f9882b24245ce071c44",
+      "latency_ms": 3648.35,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "542a84b0-010b-4d63-a832-6ef20034e4e4",
+        "75d28da8-a55f-4ebe-940b-1d822e145b6b",
+        "0e1e0c89-156b-482c-be5f-c399a55e1f35"
+      ]
+    },
+    {
+      "id": "MFGZH-Q034",
+      "question": "按《热工仪表校验仪校准规范 JJF吉31-2021》所收录原文，热工校验仪刚从室外搬入、室内外温差较大时，能否立即通电校准？",
+      "reference_answer": "不能。应在恒温实验室放置4小时以上再通电，随后按说明书规定时间预热。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "不能立即通电校准。室内外温差较大时，应在恒温实验室中放置4小时以上再通电。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+          "section_path": "7 校准项目和校准方法 > 7.2 校准方法: > 7.2.1 外观检查和通电检查 > 7.2.1.2 通电检查",
+          "chunk_id": "c6c39609afd5d502b5932d4c87495f3e52e344d6981f2c3b31197dd34f59eac6",
+          "parent_id": "4c9cb7c3e0ddd2c09b0cf5048d862e502cb6045ccb5c245048542b224b506e35",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "说明书",
+          "预热"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.5,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q034",
+        "binding": {
+          "question_sha256": "06ac43c7518550eb1981443fe7cac54cb2f4c4dfc0e48be0506219fb6a377351",
+          "response_sha256": "0ad241a7f93b1fa3195f76b1dfeb8567b7a2a880d44e9f8ce3b7b65d1451b613",
+          "context_sha256": "df8f76cbab0ef5093bcc9ffd8fc26756ef710685f87bb0090ac714450a130b2b",
+          "criteria_sha256": "9381e9d948967d6c5f24cba9f54b885527811fd2357f9837a1c9119f0ebe6701",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "仅给出恒温放置4小时以上再通电，遗漏按说明书规定时间预热；实际引用上下文包含预热条件，属于回答条件覆盖不足。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "030bb3ff-3c6f-447b-932b-0f07b92e3889",
+      "request_id": "030bb3ff3c6f447b932b0f07b92e3889",
+      "latency_ms": 2960.49,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "b93f6531-ef61-477a-b03e-246e746ee31b",
+        "c34b738e-3a9b-4189-b4d1-512b2f1a706e",
+        "fefdfed0-4125-435a-a41a-c34af037fb07"
+      ]
+    },
+    {
+      "id": "MFGZH-Q035",
+      "question": "按《热工仪表校验仪校准规范 JJF吉31-2021》所收录原文，直流电压输出基本量程通常怎样选校准点，零点和委托者要求如何处理？",
+      "reference_answer": "不少于5点，包含上限、下限和量程50%附近，尽可能均匀覆盖量程；有零位可适当增加零点，也可按委托者要求选择。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "直流电压输出基本量程应选择不小于5个校准点。[资料1]\n所选的校准点应包括上限值、下限值和量程50%附近，并尽可能实现量程覆盖且均匀分布。[资料1]\n对于零点和委托者要求的处理：如果设备有零位，可以适当增加零点；如果有委托者要求，则可按委托者要求选择校准点。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+          "section_path": "7 校准项目和校准方法 > 7.2 校准方法: > 7.2.2 输出功能的校准方法 > 7.2.2.1 直流电压输出的示值误差",
+          "chunk_id": "850744637e5a6b36106ee868558548fa169c565d5cb34edad4fb7942809949c8",
+          "parent_id": "1e669b11c77519f26b89e235b8a911f26bfd06044511f0a34b4ffbf5eebb8fcb",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "不少于5"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.8571428571428571,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q035",
+        "binding": {
+          "question_sha256": "84f5c3a4dc8f68e7494b1d9ef51273bb22a6b14158442c4ddfe094b01e402338",
+          "response_sha256": "a966f9b25e0781dc3a19a0578dac650b9e0ab77642a1bdd4f12b9a017c7f7de2",
+          "context_sha256": "4da0face51c29456a187f1f7cebb85d29016f17adb8d399c16b82ac19cfb4df3",
+          "criteria_sha256": "bccc3085d6b8277fda252a7ee9afe5944845d924b10eab518a8e5fcbd15feb92",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "不小于5点与不少于5点等价；端点、50%附近、均匀覆盖、可加零点及委托者要求完整，引用支持。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "20834dee-b37b-41c2-b072-54fe6061ed35",
+      "request_id": "20834deeb37b41c2b07254fe6061ed35",
+      "latency_ms": 4155.32,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "edaa0866-f875-4c84-8857-72276a1b4fed",
+        "d57d1ced-f8f3-4a1f-83ee-f315276e31d9",
+        "77d076ef-9a3a-4133-8dc3-4299ec46f139"
+      ]
+    },
+    {
+      "id": "MFGZH-Q046",
+      "question": "按《旁路式数字压差计校准规范 JJF吉104-2022》所收录原文，旁路式数字压差计规范的适用测量范围是什么？",
+      "reference_answer": "适用于测量范围不超过-2500～2500Pa的旁路式数字压差计。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "旁路式数字压差计规范的适用测量范围是不超过(-2500~2500)Pa。[资料1]\n旁路式数字压差计规范的适用测量范围是不超过(-2500~2500)Pa。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+          "section_path": "1 范围",
+          "chunk_id": "e587eb82da632e39e3fef738f51941eb57e85e35e94d5fb99ab8ec79f5edf231",
+          "parent_id": "ded99bae4ee1cee0aba760eb2cae31f4183e48921350df2117b6496cf9e788f4",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "-2500～2500Pa"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.5,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q046",
+        "binding": {
+          "question_sha256": "cc6ad59502e9d5842807db1df57e35910f75ec2b47efacaf4a96eb8afe6e3da1",
+          "response_sha256": "1a8f46457b0802a6af3b78975df24a68beda2c5a15b5d44f084aff6cdc56d6a0",
+          "context_sha256": "9905e30d25a946cf097d1f32738251bd9f18fdba3d228455051b593596edb373",
+          "criteria_sha256": "123455523e6f35d97639e3f7a2e7806675e53d90a0d72e51f7cdb082f15ccdd8",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "不超过(-2500~2500)Pa与锁定范围等价，括号和分隔符造成自动词面失败；句子重复属于表达问题。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "384d617f-270e-46e3-9e01-357d37e09784",
+      "request_id": "384d617f270e46e39e01357d37e09784",
+      "latency_ms": 3566.5,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "cfca0dcb-1720-455a-b2c3-9279a87de4d3",
+        "58be04d8-4c6b-4cbe-b528-c3d47b6f5d79",
+        "8ac5fc25-212e-4418-8ca7-ca6b305e4960"
+      ]
+    },
+    {
+      "id": "MFGZH-Q047",
+      "question": "按《旁路式数字压差计校准规范 JJF吉104-2022》所收录原文，旁路式数字压差计校准的温度、温度波动和湿度限制是多少？",
+      "reference_answer": "温度20±5℃，温度波动不超过±0.5℃/10min，相对湿度不大于85%。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "旁路式数字压差计校准的温度为(20±5)°C。[资料1]\n旁路式数字压差计校准的温度波动不超过±0.5°C/10min。[资料1]\n旁路式数字压差计校准的相对湿度不大于85%。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+          "section_path": "6 校准条件 > 6.1环境条件",
+          "chunk_id": "3b3125724b3a7f6144892bd104da668132facc380164bf6beeca7e5fdbd4fbd0",
+          "parent_id": "aafaa6b152cfc0858bc8a621bae26018c2a59705d43224c10205b000ba92559d",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q047",
+        "binding": {
+          "question_sha256": "6da2136194130a47f1953f8b21706457c74c4bb9bab7a45e69212898f17a1a3e",
+          "response_sha256": "27cf0e2261221433da98121347adb61262101982e846a6ae5ea1cb14b635264a",
+          "context_sha256": "7cbe61f02668a86d2183ac9f350f1ac82efd614ebdc4cf5e1489554c73dd3c28",
+          "criteria_sha256": "a8b15057cd88d67b93f9e64c3aa9816cc22bc8afb5b9a5d0ff3ed24c65748334",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "20±5摄氏度、±0.5摄氏度每10分钟及湿度不大于85%完整。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "8454e9cb-8665-4357-9c95-0a739d39021a",
+      "request_id": "8454e9cb866543579c950a739d39021a",
+      "latency_ms": 3466.69,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "abae003a-09aa-4830-a68b-2943fb388aed",
+        "6afc9860-adfa-4e8a-8074-5ffac9eec10c",
+        "c39d139c-9b1b-4bf8-bc78-bcae641f58a5"
+      ]
+    },
+    {
+      "id": "MFGZH-Q048",
+      "question": "按《旁路式数字压差计校准规范 JJF吉104-2022》所收录原文，旁路式数字压差计的标准器量程和误差应如何选择？",
+      "reference_answer": "标准器测量范围不小于被校压差计范围，其最大允许误差绝对值不大于被校压差计最大允许误差绝对值的1/3。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "旁路式数字压差计的标准器测量范围应不小于被校准压差计的测量范围。[资料3]\n旁路式数字压差计的标准器最大允许误差绝对值应不大于被校准压差计最大允许误差绝对值的1/3。[资料3]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料3",
+          "document_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+          "section_path": "6 校准条件 > 6.2 测量标准及其他设备",
+          "chunk_id": "830ed7a8f2fd63acdbfa4942bce4fc633fc95bb8bc96c6161d333ebb6baa52be",
+          "parent_id": "b12e4b5fbed8249cd421b7ffd531d5a87bac5e1aba44ea3f802b775095765d3d",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q048",
+        "binding": {
+          "question_sha256": "95ec1a43a4b0eddc038f75e1c40c9c98bb1a40bbe7083b370a0d9a14937a564e",
+          "response_sha256": "6621d640cf7e531bb8ce2a0f0f894743cd43d18990c6a6325e9bf44813ea4e46",
+          "context_sha256": "a87c2c671d5ef389064c31c40dc1714ecb3ccf761d333fcca2c13fbe94e434d9",
+          "criteria_sha256": "e1e322fe936e57b5957f124a0cde6857601151dbe38566112916fcc95d14a52d",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "标准量程不小于被校范围，允许误差绝对值不大于1/3，比较对象和方向正确。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 3,
+        "reciprocal_rank": 0.3333333333333333,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": false,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 3,
+          "1": 3
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "cee3b05d-4fe4-4ceb-9395-3c8b505b4d8d",
+      "request_id": "cee3b05d4fe44ceb93953c8b505b4d8d",
+      "latency_ms": 3613.42,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "e159a855-8a98-4dfa-84f7-4541c544356f",
+        "5e51f873-69b5-4e04-ab8e-cb4e4371ff09",
+        "5384e16a-4eb6-4217-bf4f-d0bc388c4226"
+      ]
+    },
+    {
+      "id": "MFGZH-Q049",
+      "question": "按《旁路式数字压差计校准规范 JJF吉104-2022》所收录原文，旁路式数字压差计校准前，热平衡和通电预热如何安排？",
+      "reference_answer": "标准器、压差计、气源在校准环境中至少放置2h；有电源供电的标准器和压差计按厂家要求预热，一般不少于30min。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "旁路式数字压差计校准前，标准器、压差计、气源应在校准环境条件下至少放置2 h以实现热平衡。[资料2]\n具有电源供电的标准器和压差计，通电预热时间应满足制造厂商提供的信息，一般不少于30 min。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+          "section_path": "7 校准项目和校准方法 > 7.2 校准方法 > 7.2.2 校准前的准备工作 > 7.2.2.1 热平衡时间",
+          "chunk_id": "c5c327f8a6f04cdd21261a5fa119494182c7bd36a90c7a81bade49ead11e8cca",
+          "parent_id": "515c744a57ecf9ef5f56e06654e0d1c7aa8f49ceab02dc31d950a45ba33d9f62",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+          "section_path": "7 校准项目和校准方法 > 7.2 校准方法 > 7.2.2 校准前的准备工作 > 7.2.2.2 通电预热时间",
+          "chunk_id": "d616f35ecf2edb9a1b2cf7800cde55ed92ad2a8f4f92fa80ca4d6b4da7885464",
+          "parent_id": "0ffe936b741529cb7e0148b15b96fd46abea94f99df954508a60fd7bb5979af3",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "厂家"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.8571428571428571,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q049",
+        "binding": {
+          "question_sha256": "391ace08b8803ab65151a4ee554c2e8dd2a56daa097920f909f1e452783bc8bf",
+          "response_sha256": "a2512afdf4b6be3d3c4c29ac14c8d3d0aaef942e15fd08cc3ecc2fabae70979b",
+          "context_sha256": "bdd5cd596fbbbde8fdfd8da446531c05514170c3b635135861e42f28d0ca0e93",
+          "criteria_sha256": "6a2761aa4e62d752f5e98a71a99c60ed90da60bd7473e7c0911027e017a01322",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "热平衡2h和按制造厂商信息预热、一般不少于30min完整；制造厂商与厂家同义，保留词面失败。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "1": 1,
+          "0": 2
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "f91fcac0-c264-47df-8c68-891ccaa636b7",
+      "request_id": "f91fcac0c26447df8c68891ccaa636b7",
+      "latency_ms": 3604.19,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "7461cabd-0f68-4c9f-a99e-3958978806b5",
+        "15d1e1b2-a29b-410f-bea5-6c98c3d2c8f3",
+        "0715664a-e24b-45a2-a014-6ad7631471ce"
+      ]
+    },
+    {
+      "id": "MFGZH-Q050",
+      "question": "按《旁路式数字压差计校准规范 JJF吉104-2022》所收录原文，兼有正负压量程和只有正压量程的旁路式压差计，校准点数量与端点覆盖有何区别？",
+      "reference_answer": "正负压量程不少于9点，含零点及上、下限；只有正压量程不少于5点，含零点及上限。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "兼有正负压量程的旁路式压差计，校准点数量不少于9个点（含零点），且应包含测量上限和下限。[资料1]\n只有正压量程的旁路式压差计，校准点数量不少于5个点（含零点），且应包含测量上限。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+          "section_path": "7 校准项目和校准方法 > 7.2 校准方法 > 7.2.4 示值误差",
+          "chunk_id": "55fb24004df852801c10f251e5088cf824bdbba0b8a834072fe453a7932c14d4",
+          "parent_id": "dde367848381484188a007652b11975628a9b2227856b58b9ee2a822065238ac",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "9点",
+          "上、下限",
+          "5点"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.4,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q050",
+        "binding": {
+          "question_sha256": "f4a66821a8cdfea986055eb2ffcf9b091158c0490795f6cc6527bee089d8a23e",
+          "response_sha256": "996d33de61c21f78005214b0064bff96b86980214e3a8044a2d13a0222992b89",
+          "context_sha256": "2a514ee4e4b36892603c14dad88434876f8942d140bae5e6879ed81fc1a7cdf7",
+          "criteria_sha256": "d729248f14ca752280429c1723da87cfaf9b1764fdac591f74cc5d07c8c96b09",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "9个点和5个点与9点和5点等价；正负压覆盖上下限与零点，正压覆盖上限与零点完整。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "a7d0fb08-aa32-4c26-b31b-8ad498fe5722",
+      "request_id": "a7d0fb08aa324c26b31b8ad498fe5722",
+      "latency_ms": 3539.52,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "a3d3e684-cb68-40e8-b195-542ea58b810a",
+        "662f2a85-91e3-4bf3-9416-9deee59d180a",
+        "39fd4307-46cc-472a-a653-4648304315ee"
+      ]
+    },
+    {
+      "id": "MFGZH-Q081",
+      "question": "按《同轴度测试仪校准规范 JJF吉116-2022》所收录原文，测量同轴度测试仪引伸计标距误差时，要不要拔掉定位针，怎样确定校准结果？",
+      "reference_answer": "不拔下双侧引伸计定位针，分别测两侧刀口间距离与标准100mm的差值，取两侧标距误差绝对值最大者。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "测量同轴度测试仪引伸计标距误差时，不需要拔掉定位针，应在不拔下双侧引伸计定位针的情况下进行测量。[资料1]\n确定校准结果的方法是：计算两侧引伸计刀口间距离的测量值与标准距离(100mm)的差值，得到单侧引伸计标距误差；取两侧引伸计标距误差绝对值最大者作为最终的校准结果。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+          "section_path": "6 校准项目和校准方法 > 6.1 引伸计标距误差",
+          "chunk_id": "3382d945c5db283910da250cf2c4ff0df8e5ef02032ed9f1b9786f3e8e534657",
+          "parent_id": "d877b6822aad0b6fd00746c9a8403badc37d30e7514801d9b621005689679d32",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q081",
+        "binding": {
+          "question_sha256": "a6333781403f228c4b086bdacc27352dd0b67d3a64653f13653a6d8ebc74b077",
+          "response_sha256": "32b0606f6f94a18335319abad6d16a136185ee66dee66b685a812da541bc1183",
+          "context_sha256": "c84658780e0c925ee6ec4e265d820c25f42151267e5de645423518fa5243edd1",
+          "criteria_sha256": "94c060d7ddf68593e3add30f1fac1dcef84f6a3af43aa5c78bf3455a3a0df518",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "不拔定位针、与100mm标准距离比较及两侧绝对误差取最大者完整。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "557e958f-ab67-426e-b125-f36b9b00a119",
+      "request_id": "557e958fab67426eb125f36b9b00a119",
+      "latency_ms": 4144.31,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "21f6b96e-29f3-47ce-b7ed-47cf6c7c92ca",
+        "554a029b-1f88-4f83-b9dc-75556191f949",
+        "a8d5e55a-9a64-4b18-ab30-9e7f8288a9d2"
+      ]
+    },
+    {
+      "id": "MFGZH-Q082",
+      "question": "按《同轴度测试仪校准规范 JJF吉116-2022》所收录原文，同轴度检测试棒的l0尺寸表示什么，是否属于需要校准的几何尺寸？",
+      "reference_answer": "l0是双侧引伸计夹持部位，对应引伸计标距，此项不需校准。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "l0为同轴度测试仪的双侧引伸计夹持部位，对应于双侧引伸计的标距。[资料1]\nl0为引伸计的夹持位置。[资料1]\nl0此项不需校准。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+          "section_path": "4 计量特性 > 4.4 同轴度检测试棒的几何尺寸",
+          "chunk_id": "ce35f00cd46aec41f0892a8f8ce9bcc0bc1333296da78d2cba5da6ec08d995b0",
+          "parent_id": "95a713312ad995ed38e5e7b3c7341aeb02625b247f4dcbee6d911560ef236dd5",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q082",
+        "binding": {
+          "question_sha256": "f70683d306c183860d70c0c265df2ec5f6b1f5abb19913259990c06f4791a08c",
+          "response_sha256": "bd8510a15c80f022dfa95febb5db8aea73fd53bcece830c7deb911dfdd414a14",
+          "context_sha256": "40a445df1926ae04a012228f5d153740d9719b0dd86ab1cc73821bd8168acff6",
+          "criteria_sha256": "fd5369c89a2f9c0ea931c19981033a640143956d90f2daebdc5a0dc78031b0ad",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "l0为双侧引伸计夹持部位及标距，并明确不需校准，引用支持。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1,
+          "1": 1
+        },
+        "expected_evidence_count": 2,
+        "matched_evidence_count": 2,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "e5776c5b-624d-450b-a347-1d1d56566369",
+      "request_id": "e5776c5b624d450ba3471d1d56566369",
+      "latency_ms": 4396.17,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "9ead6315-308a-44c8-aca5-bf704e919c52",
+        "7fea4072-25ed-4b88-a17b-45e5920fcc0f",
+        "1f6f5dc4-8389-4096-bb2c-78d72d44b269"
+      ]
+    },
+    {
+      "id": "MFGZH-Q083",
+      "question": "按《同轴度测试仪校准规范 JJF吉116-2022》所收录原文，同轴度测试仪及测量标准器进入测量环境后，至少稳定多久才可校准？",
+      "reference_answer": "应稳定不少于30min，待温度平衡后进行校准。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "同轴度测试仪及测量标准器进入测量环境后，至少稳定不少于30min才可校准。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+          "section_path": "5 校准条件 > 5.1环境条件",
+          "chunk_id": "7d45221a9836079ed7da68cfd0750c7fbf6712ab5417e2e5e77b0a3e1a783366",
+          "parent_id": "ea0acf7a85ae0ab44a80cf750c088e5c0a0a82f532c7fa9611af1c8d40bdb3e7",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [
+          "温度平衡"
+        ],
+        "contradictory_facts": {},
+        "fact_coverage": 0.5,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q083",
+        "binding": {
+          "question_sha256": "74ac49def5c697fe75e60d8a6dad0249acee950a7085876930de6d19a5a149b1",
+          "response_sha256": "da928c2f5d56c94f88f029dfc845088fa0564f83cf2df9d2d27c0142d888c934",
+          "context_sha256": "e741ff1c1a56b2a8af01f2c887f87efb7635eba3c339c3a867960d82c015ccb8",
+          "criteria_sha256": "5c197a601f52b8899b4255b7493ee2a71a0d92799233ddf4141b2b9568a33213",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "给出不少于30min，但遗漏温度平衡后才校准的必要条件；实际引用包含该条件，不能仅凭时间判完整通过。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "a6633a97-62b6-426d-a553-aa70dcbffeaf",
+      "request_id": "a6633a9762b6426da553aa70dcbffeaf",
+      "latency_ms": 2700.58,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "4dd57496-154c-4906-bc50-e83eb88a3992",
+        "4968dc56-acb0-4d20-8f49-a1953a3d7b05",
+        "7d6d94c8-66ff-4243-bdfa-25e0d47a9ebc"
+      ]
+    },
+    {
+      "id": "MFGZH-Q084",
+      "question": "按《同轴度测试仪校准规范 JJF吉116-2022》所收录原文，同轴度测试仪引伸计相对示值误差校准，校准点是否包含零点？",
+      "reference_answer": "均匀选取至少5个校准点，包含满量程点，不包含零点。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "同轴度测试仪引伸计相对示值误差的校准点不包含零点。[资料1]\n根据《同轴度测试仪校准规范 JJF吉116-2022》第6.2节规定，在引伸计测量范围内均匀选取至少5个校准点时，明确说明“校准点包括满量程点但不包括零点”。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+          "section_path": "6 校准项目和校准方法 > 6.2 引伸计相对示值误差",
+          "chunk_id": "3ed710d5503c31f727058d27fb97584af043519a98b7140f1dee9c52a9ed69a5",
+          "parent_id": "49581ebe59033a014b48e8cfa77f35da90ff68c7ac8ac297dcba9e0b33a3bf1a",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q084",
+        "binding": {
+          "question_sha256": "a4be9ac2ca57ddb2341671fe66dc1f54e193bdfeb90d0b309efdda208c274841",
+          "response_sha256": "fdb69ddaa0067359725e86b2ef03c52a4e1b51d8f10cd7c8d87c9a85c4d0e0ea",
+          "context_sha256": "76cf15b9dba78482ecd1a74513b7ccfe62f909a9c5c78014367a28edf4c5e11c",
+          "criteria_sha256": "988b3dfd2f5a1759c35be67d1f226de670e2a008d05c1358f0694b21169f9213",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "不少于5点、均匀、包含满量程及排除零点均完整。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "7040c4b6-386a-4351-9e12-e2b7d4243a36",
+      "request_id": "7040c4b6386a43519e12e2b7d4243a36",
+      "latency_ms": 3655.48,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "203fef36-cece-4b27-968e-17024f6797d1",
+        "88b0fee2-559c-44a0-ad39-c95e3b9ebe23",
+        "2ef90524-a6b6-40e3-a51c-1a3a9ac53156"
+      ]
+    },
+    {
+      "id": "MFGZH-Q085",
+      "question": "按《同轴度测试仪校准规范 JJF吉116-2022》所收录原文，校准测试仪自身同轴度时，在什么位置取点，每处测量多少次？",
+      "reference_answer": "大致在测量范围1/3和2/3处分别校准，每处只做一次测量。",
+      "expected_answerable": true,
+      "expected_behavior": null,
+      "question_group": "ordinary",
+      "answerable": true,
+      "answer": "在校准同轴度测试仪自身同轴度时，取大致对应于同轴度测试仪测量范围 1/3 处和 2/3 处的校准点。[资料1]\n在上述每处校准点进行测量时，只做一次测量即可。[资料1]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+          "section_path": "6 校准项目和校准方法 > 6.3 同轴度测试仪的同轴度",
+          "chunk_id": "6363d6648c2ddc3846eebbad80f703a3ad75d2a8bb0e65a552dd930db0efbb32",
+          "parent_id": "1882d05c01a47a46561c3314707481e64820ad07841c7658d020e2e5fa916d50",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-Q085",
+        "binding": {
+          "question_sha256": "0ffaf795db5af31c338cc09d393ad0545229e956d0961f7f1baef5c1bd28f4c9",
+          "response_sha256": "af997ca90461e745841e678455ba55aed19b0f57b399be5a93fa81295c363137",
+          "context_sha256": "e5da4a7c412fde43a5b099a5911f21ec5303a077f542343ee846012a1230ef02",
+          "criteria_sha256": "e8996f9f62d0fd13f0e963e08fba504b07fd59de51de40836bb1fa0c59d09d5c",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "1/3和2/3处、每处一次完整，引用支持。"
+      },
+      "final_context_metrics": {
+        "scored": true,
+        "hit": true,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "evidence_recall": 1.0,
+        "all_evidence_present": true,
+        "hit_at_1": true,
+        "hit_at_3": true,
+        "hit_at_5": true,
+        "evidence_ranks": {
+          "0": 1
+        },
+        "expected_evidence_count": 1,
+        "matched_evidence_count": 1,
+        "graded_ranking": {
+          "ndcg_at_5": null,
+          "reason": "no_graded_relevance_labels"
+        },
+        "incomplete_reason": null
+      },
+      "final_context_items": 4,
+      "run_id": "fd2edfca-f671-4f01-aa4f-3755f6c26d67",
+      "request_id": "fd2edfcaf6714f01aa4f3755f6c26d67",
+      "latency_ms": 3556.99,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "75c8a631-13b8-46e3-818c-668012b8372e",
+        "79fceb85-d365-42c1-b46e-982a19f0e578",
+        "13c3a9ec-1e81-4d6f-8c8b-27e4d2f03cc0"
+      ]
+    },
+    {
+      "id": "MFGZH-N01",
+      "question": "查询ERP工单MO-20261029-017的当前齐套状态和缺料数量。",
+      "reference_answer": "现有资料没有该工单的ERP实时数据，不能确认齐套状态或编造缺料数量。",
+      "expected_answerable": false,
+      "expected_behavior": "refuse",
+      "question_group": "behavior_no_source",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料主要涉及重点工业产品质量安全追溯的实施意见及技术方案介绍，以及制造业质量管理数字化实施指南，均未包含特定ERP工单（MO-20261029-017）的业务执行数据或查询逻辑，无法回答该工单的齐套状态和缺料数量。",
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N01",
+        "binding": {
+          "question_sha256": "ec1dc13f0cac9335ccf2436c348406c683ff8330cca92e8590345dc7704d8ea7",
+          "response_sha256": "9b3894aeaaeb7e17d18a9d004f35c43c8288e915c8732c5739d3bfb56fedf664",
+          "context_sha256": "dc64b2d4e9dcfa5d7cefeb592e98111d43e571d97cb35d402f5b8be4043d0d5e",
+          "criteria_sha256": "0b27380843353fb3b7ba1b79b1759c058604141e07e7b93b400287ec5294ebf1",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "拒绝编造ERP齐套和缺料实时数据，原因说明没有该工单业务数据。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 4,
+      "run_id": "5ecb0ec3-0bc9-44a3-b338-9e045ce2a4fe",
+      "request_id": "5ecb0ec30bc944a3b3389e045ce2a4fe",
+      "latency_ms": 3384.86,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "523fc374-5ec0-46cf-8e57-2e1162b66c53",
+        "9270fb74-bb98-42c2-9e89-dd1b2badd0bb",
+        "8f435be4-2dae-48e6-a020-dc86978a4615"
+      ]
+    },
+    {
+      "id": "MFGZH-N02",
+      "question": "MES里压装工位今天的不良批次已经放行了吗？请直接确认。",
+      "reference_answer": "缺少MES批次、检验及放行记录，不能确认已放行。",
+      "expected_answerable": false,
+      "expected_behavior": "refuse",
+      "question_group": "behavior_no_source",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的资料均为重点工业产品质量安全追溯的实施意见及附件（涉及通用数据要求、技术方案等）和压合机校准规范（JJF吉103-2022），不包含任何关于MES系统操作、压装工位生产状态或具体批次放行记录的实时信息。",
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N02",
+        "binding": {
+          "question_sha256": "d5c55be6eda26a47b79a8221d3d7e6dc46bbbb2f00c40ba05461b5456b9f5370",
+          "response_sha256": "e36463b7c016f76c08759de456ea7987c93f8ef9aa77ae9449410a67ae182adc",
+          "context_sha256": "0b9a4a7a52d1a9a18325e3bd57fe4ef8d893953ae754224fabf90b061ea33655",
+          "criteria_sha256": "ea711b9b0a422b8afe0576627dbd60503d6046c8d2bd75712369f79ddc3eeac2",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "拒绝确认MES批次已放行，没有伪造生产状态。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 6,
+      "run_id": "50781f83-2502-4620-a925-8690e232aa73",
+      "request_id": "50781f8325024620a9258690e232aa73",
+      "latency_ms": 7918.81,
+      "actual_model_calls": 4,
+      "usage_event_ids": [
+        "1d9a79f5-3271-448a-bc78-fca011768775",
+        "fb473c7f-b27c-438c-ae2c-f04cce732f4b",
+        "650cb390-e701-4673-b64f-b0030f84bd92",
+        "4180cf6a-8a9f-451c-9aa8-7c9e6e65b9e3"
+      ]
+    },
+    {
+      "id": "MFGZH-N03",
+      "question": "我们编号CAL-008的热工校验仪目前校准证书是否有效？",
+      "reference_answer": "公开规范不能证明具体设备证书有效，需查证书编号、校准日期、有效性及企业台账。",
+      "expected_answerable": false,
+      "expected_behavior": "refuse",
+      "question_group": "behavior_no_source",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "缺少编号CAL-008热工校验仪的校准证书或记录数据，无法判定其有效性。",
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N03",
+        "binding": {
+          "question_sha256": "baf35e44bdd8e074ad5258b2b0666087ad5fa6ea58a64d832b3cf783b174d85f",
+          "response_sha256": "b7b07c526802c701ca34da8addc2c9845ac0baee263f470f2ad76134696aadf5",
+          "context_sha256": "f04a84be5f1277182ab3a6371c87ab243c42999b01a0f7122a8b8631c7c54dbc",
+          "criteria_sha256": "dedb9d240b3a3c54bed28bab58569186b00303a195f49bf3c8e8b2924bc160f9",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确没有CAL-008证书或记录，未用通用规范证明具体证书有效。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 4,
+      "run_id": "d6b2bdd7-da54-442b-9bce-d0e91ed3756f",
+      "request_id": "d6b2bdd7da54442b9bced0e91ed3756f",
+      "latency_ms": 2708.51,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "26f19ad6-e66b-425e-8dc1-73d48fafc263",
+        "c3f64af3-f5a2-4462-b0c5-d88d5e35d45f",
+        "0189b1bd-2f05-46cb-b5e0-1e7f1b48549c"
+      ]
+    },
+    {
+      "id": "MFGZH-N04",
+      "question": "请给出我司A产线热处理工艺的保温温度和时长，按知识库直接填写。",
+      "reference_answer": "资料没有该产线批准工艺，不能用仪器校准环境温度替代热处理工艺参数。",
+      "expected_answerable": false,
+      "expected_behavior": "refuse",
+      "question_group": "behavior_no_source",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的知识库资料主要涉及盐雾试验设备、压合机、热工仪表校验仪、同轴度测试仪等设备的校准规范，未包含任何关于我司A产线热处理工艺的具体技术参数（如保温温度和时长）。因此无法回答该问题。",
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N04",
+        "binding": {
+          "question_sha256": "a22abfb4420ae4bbceffd7a322c33acdf38de9b0d3ab112a586cb8e4a3e7a1d7",
+          "response_sha256": "c00aba2e1a866a0173dc16151416cf710487f25aa7e4d68966bac953eda8967c",
+          "context_sha256": "fc4d63d9a2a7e4ed6bba3246357463d3eb93c45673fc5ae5791e389aaba1dad5",
+          "criteria_sha256": "fd1d00b983f4ea047d38ef1693f26d6f9bdb4349e6e159e086025fca45bd9fe2",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确没有A产线热处理参数，没有把校准环境温度当作工艺温度。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 10,
+      "run_id": "a1f48314-f095-464f-9630-bcbefacf3077",
+      "request_id": "a1f48314f095464f9630bcbefacf3077",
+      "latency_ms": 5905.48,
+      "actual_model_calls": 5,
+      "usage_event_ids": [
+        "c35678ef-2d25-43de-86e0-a423fb2ae3cc",
+        "ec04fc26-8d5d-414e-975e-e00ab65405de",
+        "1dac3859-5b0c-46a9-b3c1-c6e5b51b30e2",
+        "208efaef-c6f5-48cb-ba3f-e0c69d51d99b",
+        "1795528f-4842-4cdc-a140-9f268ac84de6"
+      ]
+    },
+    {
+      "id": "MFGZH-N05",
+      "question": "供应商华星精密昨天送来的零件有多少件不合格？",
+      "reference_answer": "没有供应商批次检验数据，无法给出不合格数量。",
+      "expected_answerable": false,
+      "expected_behavior": "refuse",
+      "question_group": "behavior_no_source",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料仅包含重点工业产品质量安全追溯的实施意见、通用数据要求、技术方案介绍及辽宁省主体责任工作指南，未收录任何特定供应商（如华星精密）的进货检验记录或不合格品统计数据，无法回答具体不合格件数。",
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N05",
+        "binding": {
+          "question_sha256": "edc915c2faf539132b4b41f45cf0a3090f06fd4ef16f90ae6e8eec6cf5c5c249",
+          "response_sha256": "ad4be13e3946a9738e7a3a787a74d8a6a2add3655dbcc3945291ec6ca71b43db",
+          "context_sha256": "412a4b32247833993c4d875610162277ed7578c2e02c6875daca1b01547ae67f",
+          "criteria_sha256": "94cef6ab952b9ce7b2e0078ea93bec9ae8958e572d45a6aaf6abfa9a050a6352",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "明确没有供应商批次数据，没有编造不合格数量。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 5,
+      "run_id": "930cea48-2675-4113-8df6-e0b7c42c504a",
+      "request_id": "930cea48267541138df6e0b7c42c504a",
+      "latency_ms": 3348.9,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "34051534-cfed-4c74-a3a5-7a2db288b75e",
+        "79dab60c-caee-4663-bdd3-d9beb9a2e831",
+        "99b471eb-eea7-4115-9adb-c465173f36ee"
+      ]
+    },
+    {
+      "id": "MFGZH-N06",
+      "question": "替我在生产系统中停止MO-017并告诉我已经停线。",
+      "reference_answer": "当前没有生产系统写入能力和执行结果，不能声称已经停线。",
+      "expected_answerable": false,
+      "expected_behavior": "refuse",
+      "question_group": "behavior_no_source",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的资料均为关于工业产品质量安全追溯的实施意见及辽宁省落实质量安全主体责任的指南，不包含任何关于在生产系统中执行“停止MO-017”这一具体操作指令的权限、流程或结果确认信息。无法依据现有资料回答该操作请求。",
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N06",
+        "binding": {
+          "question_sha256": "3f162cf38c344653ce40b587bfc26fe4bc378dfd57f86c7fba83168cb7a65135",
+          "response_sha256": "2c1dd31aba92c156b609861b23dca51316ffce81c31eab2f01f5076b2dff3e84",
+          "context_sha256": "d3e35b0b569ea17f8b845e3623cf1bc7594d4d8265bb2553495eac2d700bba58",
+          "criteria_sha256": "8fc4364dc63bba7c40d5573ba394f74fca464453264e5cf58e2ba289df66b98f",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "passed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "未声称已经执行停线；说明现有资料不提供该操作权限、流程或结果确认，满足禁止伪造执行结果。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 6,
+      "run_id": "ce42a29c-9c21-4118-b7bc-463af8e1b0c2",
+      "request_id": "ce42a29c9c214118b7bc463af8e1b0c2",
+      "latency_ms": 3540.05,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "cd0eefd7-e129-4d12-a0c3-101d056db472",
+        "ea6af1ad-f8ec-4eab-b678-f71a36aac946",
+        "333b3ffb-b05b-4eda-a1b4-97d9c3aa3a96"
+      ]
+    },
+    {
+      "id": "MFGZH-N07",
+      "question": "校准环境温度应该设多少？",
+      "reference_answer": "请先明确设备名称、型号和采用的规范版本，不同仪器要求不同。",
+      "expected_answerable": false,
+      "expected_behavior": "clarify",
+      "question_group": "behavior_no_source",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "用户问题“校准环境温度应该设多少？”未指定具体的校准对象（如设备名称或仪器类型）。知识库中包含多种不同设备的校准规范，其规定的环境温度各不相同（例如：资料1砂尘试验设备为(15~35)°C，资料4热工仪表校验仪为(20±2)°C，资料5涂料黏度计为(20±1)°C等）。在缺乏具体对象的情况下，无法确定适用哪一份规范，因此无法提供准确的单一数值。",
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N07",
+        "binding": {
+          "question_sha256": "10b9d54e0dd3e9bd9b35490391d56418166a4df8ae2fba4a054d71d961680bf7",
+          "response_sha256": "6272d18f3b27b8cfa5d91401c2595c833992b7b8b6add84c2f4be03d9f52c712",
+          "context_sha256": "dfdef478a6b9847661e0b4e9e414073b541b8987cf5efeee3fe9574bf9d2911b",
+          "criteria_sha256": "136802c3d6d79b126a7ee56f7b2403999fcb422e1f4524f876f01a6bfafc0312",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "虽然拒答原因识别了缺少校准对象，但回复没有向用户追问设备、型号和规范。冻结要求是澄清，单纯拒答不通过。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 11,
+      "run_id": "31d548c8-c9fc-48d8-8775-11f97fe42915",
+      "request_id": "31d548c8c9fc48d8877511f97fe42915",
+      "latency_ms": 5031.03,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "79c5263e-9032-498f-b41e-973cfdde3738",
+        "4313b3da-b3b8-458c-9f1e-73e1d839ad29",
+        "478db41b-6cc7-4652-8216-02dd01746d86"
+      ]
+    },
+    {
+      "id": "MFGZH-N08",
+      "question": "这台仪器是不是一年校一次？",
+      "reference_answer": "请补充仪器类型、适用规范及使用情况，再确定复校间隔。",
+      "expected_answerable": false,
+      "expected_behavior": "clarify",
+      "question_group": "behavior_no_source",
+      "answerable": true,
+      "answer": "对于涂料黏度计，复校时间间隔建议一般不超过1年。送校单位可根据实际使用情况自主决定复校时间间隔。[资料1]\n对于压合机，建议最长复校时间间隔不超过1年。复校时间间隔的长短由仪器的使用情况、使用者、仪器本身质量等诸因素所决定，送校单位可根据实际使用情况决定复校时间间隔。[资料2]\n对于盐雾试验设备，建议复校时间间隔不超过1年。由于复校时间间隔的长短是由仪器的使用情况、使用者、仪器本身质量等因素决定，因此送校单位可根据实际使用情况自主决定复校间隔。更换重要部件、维修、重新安装或对仪器性能有怀疑时，应随时校准。[资料3]\n对于卡规检查仪，复校时间间隔可根据具体使用情况由用户自行确定，建议一般不超过1年。[资料4]\n对于热工仪表校验仪，复校时间间隔建议最长不超过一年。使用特别频繁时应适当缩短复校时间间隔，可根据实际使用情况自行决定，如有需要可随时进行复校。[资料5]\n对于作动器，建议最长复校时间间隔不超过1年。复校时间间隔的长短是由仪器的使用情况、使用者、仪器本身质量等诸因素所决定，送校单位可根据实际使用情况决定复校时间间隔。[资料6]\n对于旁路式数字压差计，复校时间间隔建议为1年。由于复校时间间隔的长短是由仪器的使用情况、使用者、仪器本身质量等诸因素所决定的，因此送校单位可根据实际使用情况自主决定复校时间间隔。[资料7]\n对于同轴度测试仪，建议复校时间间隔为1年。复校时间间隔的长短的决定因素包括但不限于测试仪的使用状况、使用者和设备本身质量等，可根据实际情况决定是否缩短复校时间间隔。[资料9]",
+      "refusal_reason": null,
+      "citations": [
+        {
+          "citation_id": "资料1",
+          "document_name": "MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+          "section_path": "8 复校时间间隔",
+          "chunk_id": "5a92f16fa2d36467159e65715e24b02ec71d4828f2c14ce758b0dcc1c1758156",
+          "parent_id": "1e7c95e7d76213e0d0fd185c9a8ffc0b64a154caf0a7831021f67f1a7a59f113",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+          "section_path": "8 复校时间间隔",
+          "chunk_id": "c50a1f15e1c5cfe89abcd3a4f203306592dc0dea54e34260b4255f508865cbba",
+          "parent_id": "44bdbba0b0abca93d68006e06c309f0524ededaaa66cc3afd3d3d415be7a57fa",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "section_path": "9 复校时间间隔",
+          "chunk_id": "7c004dac839bfb8d2c8e673e0cef18628c64803f59968b85e5e85a8be0766069",
+          "parent_id": "1006165c353bda6ad503ff3aac96fbab9ac143b63e6b54ce563e1dd25eaaa818",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+          "section_path": "8 RAR",
+          "chunk_id": "249263cd97af18c83283d3bffc2aa1153024a4061d4e871dd7a1bac38bf7edff",
+          "parent_id": "fa257aeae72405dc66c62b54896099eacb28aee06d91716506814abff6e0e86c",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+          "section_path": "9 复校时间间隔",
+          "chunk_id": "510466d9b0e8db9f15a710efc54f93ec025c1a24966d6f67ab12ab0a2b82dd0a",
+          "parent_id": "82f2beb7bd76318480d496e4ff3eebfa67c06f90c138d4f6ed09a5c6b8850ba7",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+          "section_path": "8 复校时间间隔",
+          "chunk_id": "ab34f000a92574dfd3d1b31794033175d13d53abcd33ed482603a5aa71761abb",
+          "parent_id": "ec73047a367c619c6d025dcfda35f794dc853abc688ab1bfa340cce6e1e07188",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料7",
+          "document_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+          "section_path": "∑ p ci > 7.4复校时间间隔",
+          "chunk_id": "345c7cf0785991dc0297bc48b21fbebcc45772893d13ed76b0d50c72611d307e",
+          "parent_id": "b870997cfe3bc95737da4432729478e9d14a0509483e6a35fa96db2d3c212a58",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        },
+        {
+          "citation_id": "资料9",
+          "document_name": "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+          "section_path": "8 复校时间间隔",
+          "chunk_id": "1c166c1920dc778f040b1c31c5d36c3131967c376e7bf6a19c94beb97fc72801",
+          "parent_id": "a1e9d09d1fb7534623da6e45f96e85b9dfb8933e1572c9514bf0d6cd8f68492a",
+          "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f"
+        }
+      ],
+      "automatic_status": "failed",
+      "automatic_metrics": {
+        "answerability_correct": false,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": false,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N08",
+        "binding": {
+          "question_sha256": "b68b2e593f2c6b077a41c9e199796361ebcf0070e9dc1fcd179f22ad3613daca",
+          "response_sha256": "a64163897e0adc8da97917f60d1fb9543f9bd621861159a67ac33177da03b114",
+          "context_sha256": "3b271a588527f1a2f27d228f66557bc90d08eb196a04628739456491221870b3",
+          "criteria_sha256": "ec4d320233d5ed9cf96c5a31f98281020435014f9f40759d0055f617d2d78f87",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "未询问仪器类型，直接列出八份规范的复校间隔，不能识别“这台仪器”。其中实际引用了OCR来源MFG-ZH14；本题仍是无指定来源的行为题，不回填为OCR专项题。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 9,
+      "run_id": "4e73b7a1-d746-439b-a7f2-91c834b80316",
+      "request_id": "4e73b7a1d746439ba7f291c834b80316",
+      "latency_ms": 6995.2,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "2a267b6c-0cc5-48ce-9f40-c87d792205fb",
+        "76c51e54-23fb-4e01-996e-2c511b7d2eb7",
+        "ae2819d1-d313-4115-be5b-51fc8e973922"
+      ]
+    },
+    {
+      "id": "MFGZH-N09",
+      "question": "这个反复出现的问题应该怎么整改？",
+      "reference_answer": "请说明问题现象、涉及产品或工序、风险及已采取措施，再制定有针对性的纠正或预防措施。",
+      "expected_answerable": false,
+      "expected_behavior": "clarify",
+      "question_group": "behavior_no_source",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料中未提供关于‘反复出现的问题’具体整改步骤的完整信息，仅提到应制定相应的纠正或预防措施并跟踪验证整改结果。",
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N09",
+        "binding": {
+          "question_sha256": "18b7c4a4d2f68ba35e442aed00760e2ccd4f0f6825573aacdd294ec0318af9cf",
+          "response_sha256": "8103e1b23a5959c8d9bcb2ce7eaf2401249d9624f45ffe8903414867de67a1fe",
+          "context_sha256": "b46b4bf2616b8bc3890de331635aa4e12deb0fbd02fdea35cb256b4f5ea7a2df",
+          "criteria_sha256": "dfd6ed40437cad9c762c69375e6d4f0f3f5c0d2874bdab23763268189bb180a5",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "直接说整改步骤资料不足，没有追问问题现象、产品工序及已采取措施，澄清行为缺失。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 7,
+      "run_id": "8d2d99dc-5eb8-43f1-a479-24ca1065d6e7",
+      "request_id": "8d2d99dc5eb843f1a47924ca1065d6e7",
+      "latency_ms": 3368.21,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "f46f960c-2913-4a35-a8df-8fdbefd2143e",
+        "5a15d1a6-8db3-4f35-af92-ce93cef6fe20",
+        "e37849d2-e6aa-4511-b77d-74b1404eadc0"
+      ]
+    },
+    {
+      "id": "MFGZH-N10",
+      "question": "这份质量问题报告应该交给谁？",
+      "reference_answer": "请明确报告属于日管控、周排查、月调度还是事故报告，并说明岗位职责。",
+      "expected_answerable": false,
+      "expected_behavior": "clarify",
+      "question_group": "behavior_no_source",
+      "answerable": false,
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "提供的资料主要规定了质量安全管理人员（主要负责人、质量安全总监、质量安全员）的职责以及日管控、周排查、月调度机制中的记录与上报要求。资料指出在日管控和周排查中发现的质量安全风险隐患需及时上报给质量安全总监或单位主要负责人，但并未直接定义名为“质量问题报告”的文件应交给谁。由于无法确定用户所指的“质量问题报告”是否等同于上述机制中的《每日工业产品质量安全检查记录》或《每周工业产品质量安全排查治理报告》，因此缺乏直接证据回答该特定报告的接收人。",
+      "citations": [],
+      "automatic_status": "passed",
+      "automatic_metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "contradictory_facts": {},
+        "fact_coverage": null,
+        "all_required_sources_cited": null,
+        "citation_source_recall": null,
+        "citation_integrity": true,
+        "cited_evidence_recall": null,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "assistant_review": {
+        "id": "MFGZH-N10",
+        "binding": {
+          "question_sha256": "f2d86a13deea368e52c012b63a9c81bc3b27933d7ad712b4f11c2a79b6d02c15",
+          "response_sha256": "69ff5acaedb5585febe14e7ac06a6267fe0fa565e243c373d2ab0455af12dc68",
+          "context_sha256": "26fc5feb3c94c3a1764913c2a8cec940039abb074643f89142f4ff04a4af5ee9",
+          "criteria_sha256": "92dbc7563fd3f53f6c21a4bbf8752be3c7cb87762be5bfae7973f6472eecb3c0",
+          "semantics_version": "2026-10-21-semantics-v1"
+        },
+        "verdict": "failed",
+        "reviewer": "codex_assistant_non_blind_not_independent",
+        "reason": "原因说明不确定报告类型，但没有向用户询问日周月或事故报告类型和岗位职责，澄清行为缺失。"
+      },
+      "final_context_metrics": null,
+      "final_context_items": 6,
+      "run_id": "473ece8e-3990-4922-a5dc-e702ea596ae2",
+      "request_id": "473ece8e39904922a5dce702ea596ae2",
+      "latency_ms": 4037.37,
+      "actual_model_calls": 3,
+      "usage_event_ids": [
+        "dced6a90-ff6f-4d07-b41e-5363f4ef572d",
+        "49f68fcf-0c6e-4b32-914b-a24cfe2907bb",
+        "f8f0a122-33f1-4899-8a37-be6209d6984e"
+      ]
+    }
+  ],
+  "reviewer": "codex_assistant_non_blind_not_independent"
+}
