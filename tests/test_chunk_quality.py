@@ -248,7 +248,7 @@ def test_inspection_cli_is_read_only_and_hides_content_by_default(tmp_path, monk
                         lambda *_args, **_kwargs: pytest.fail("Inspection must not create embeddings"))
     assert main() == 0
     result = json.loads(capsys.readouterr().out)
-    assert result["chunking_version"] == "structured-v5"
+    assert result["chunking_version"] == "structured-v6"
     assert result["chunk_count"] == 1
     assert ("content" in result["chunks"][0]) == show_content
     assert path.read_bytes() == before

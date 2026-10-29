@@ -100,6 +100,7 @@ def validate_freeze(evaluation, corpus):
 
 
 def validate_labels(evaluation, corpus, cache):
+    from backend.app.knowledge.rag import CHUNKING_VERSION
     from scripts.build_manufacturing_questions import normalized, source_text
     frozen, splits, annotations = validate_freeze(evaluation, corpus)
     docs = {row["file"]: row for row in inventory(corpus)["documents"]}
@@ -108,7 +109,7 @@ def validate_labels(evaluation, corpus, cache):
     # Cache must bind to the final corpus and the parser actually being reviewed.
     for file, row in docs.items():
         saved = json.loads((cache / (row["id"] + ".json")).read_text(encoding="utf-8"))
-        if saved["source_sha256"] != row["sha256"] or saved["parser_sha256"] != fingerprint or saved["chunking_version"] != "structured-v5" or saved["record"]["status"] != "passed":
+        if saved["source_sha256"] != row["sha256"] or saved["parser_sha256"] != fingerprint or saved["chunking_version"] != CHUNKING_VERSION or saved["record"]["status"] != "passed":
             raise ValueError("Missing, stale or unsuccessful actual-parser cache: " + row["id"])
         parsed[file] = saved["chunks"]
     for annotation in annotations:
@@ -138,7 +139,7 @@ def validate_labels(evaluation, corpus, cache):
 
 def parse(corpus, cache, *, ocr=False, workers=2):
     from backend.app.documents.document_splitter import split_docx
-    from backend.app.documents.pdf_splitter import split_pdf
+    from backend.app.documents.pdf_splitter import PdfTextExtractionError, split_pdf
     from backend.app.documents.text_splitter import split_markdown, split_txt
     from backend.app.knowledge.rag import CHUNKING_VERSION
     manifest = inventory(corpus)
@@ -162,6 +163,12 @@ def parse(corpus, cache, *, ocr=False, workers=2):
                           review_required=any(c.metadata.get("quality", {}).get("review_required") for c in chunks))
             dump(target, dict(source_sha256=row["sha256"], parser_sha256=fingerprint, chunking_version=CHUNKING_VERSION,
                               record=record, chunks=[dict(content=c.page_content, metadata=c.metadata) for c in chunks]))
+        except PdfTextExtractionError as exc:
+            record = dict(id=row["id"], status="blocked", reason="ocr_text_missing",
+                          page_numbers=exc.page_numbers, chunks=0, review_required=True,
+                          error_type=type(exc).__name__)
+            dump(target, dict(source_sha256=row["sha256"], parser_sha256=fingerprint,
+                              chunking_version=CHUNKING_VERSION, record=record, chunks=[]))
         except Exception as exc:
             record = dict(id=row["id"], status="error", error_type=type(exc).__name__)
         print(json.dumps(record), flush=True)
@@ -194,7 +201,7 @@ def main(argv=None):
         print(json.dumps({key: value for key, value in result.items() if key not in ("matches", "failures")}))
         return int(bool(result["failed"]))
     print(json.dumps({key: value for key, value in result.items() if key != "records"}))
-    return 1 if result["summary"].get("failed") or result["summary"].get("error") else 2 if result["summary"].get("skipped") else 0
+    return 1 if result["summary"].get("failed") or result["summary"].get("error") else 3 if result["summary"].get("blocked") else 2 if result["summary"].get("skipped") else 0
 
 
 if __name__ == "__main__":

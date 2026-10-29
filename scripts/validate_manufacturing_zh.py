@@ -33,7 +33,7 @@ def audit_chunks(corpus,cache):
         if source['format']=='pdf':
             invalid += [i for i,c in enumerate(chunks) if not (1<=c['metadata'].get('page_start',0)<=c['metadata'].get('page_end',0)<=source['physical_pages'])]
         lengths=[len(c['content']) for c in chunks]
-        records.append(dict(id=source['id'],chunks=len(chunks),invalid_structure_indices=sorted(set(invalid)),
+        records.append(dict(id=source['id'],status=saved['record']['status'],chunks=len(chunks),invalid_structure_indices=sorted(set(invalid)),
             chunk_types=dict(Counter(c['metadata'].get('chunk_type') for c in chunks)),
             ocr_chunks=sum('ocr' in c['metadata'].get('parser','') for c in chunks),
             review_required_chunks=sum(bool(c['metadata'].get('quality',{}).get('review_required')) for c in chunks),
@@ -46,7 +46,7 @@ def audit_chunks(corpus,cache):
     return dict(evaluation_type='offline_actual_chunk_structure_and_noise_audit',external_model_calls=0,
                 corpus_manifest_sha256=sha((corpus/'manifest.json').read_bytes()),parser_sha256=parser_fingerprint(),
                 total_documents=len(records),total_chunks=sum(r['chunks'] for r in records),
-                failed_documents=[r['id'] for r in records if r['invalid_structure_indices']],records=records)
+                failed_documents=[r['id'] for r in records if r['invalid_structure_indices'] or r['status']!='passed'],records=records)
 
 
 def parse_observed(corpus,cache,report,*,ocr,workers):
@@ -68,10 +68,10 @@ def parse_observed(corpus,cache,report,*,ocr,workers):
         pdf_splitter.extract_pdf_pages=original_extract
     result['harness_sha256']=sha(Path(__file__).read_bytes())
     dump(report,result)
-    quality=audit_chunks(corpus,cache) if all(r['status']=='passed' for r in result['records']) else None
+    quality=audit_chunks(corpus,cache) if all(r['status'] in ('passed','blocked') for r in result['records']) else None
     if quality: dump(report.with_name('chunk-audit.json'),quality)
     print(json.dumps({k:v for k,v in result.items() if k!='records'}),flush=True)
-    return 1 if result['summary'].get('failed') or result['summary'].get('error') else 2 if result['summary'].get('skipped') else 0
+    return 1 if result['summary'].get('failed') or result['summary'].get('error') else 3 if result['summary'].get('blocked') else 2 if result['summary'].get('skipped') else 0
 
 
 def validate_freeze(evaluation,corpus):
@@ -171,11 +171,12 @@ def assess_readiness(evaluation,corpus,cache,label_report):
                 raise ValueError('Stale page observations')
             observations=observed['pages']
         failures=[r for r in label_report['failures'] if r['source_id']==source['id']]
-        coverage=len(observations)/source['physical_pages'] if source['format']=='pdf' else None
-        state='blocked_body_missing' if coverage is not None and coverage<0.5 else 'review_required_evidence_mismatch' if failures else 'sampled_evidence_verified'
+        nonempty_pages=sum(bool(p['text'].strip() or p.get('table_count')) for p in observations)
+        coverage=nonempty_pages/source['physical_pages'] if source['format']=='pdf' else None
+        state='blocked_body_missing' if saved['record']['status']=='blocked' or (coverage is not None and coverage<0.5) else 'review_required_evidence_mismatch' if failures else 'sampled_evidence_verified'
         ids=[a['id'] for a in annotations if any(e['source_id']==source['id'] for e in a['evidence_locators'])]
         records.append(dict(id=source['id'],source_sha256=source['sha256'],status=state,chunks=len(chunks),
-                            physical_pages=source['physical_pages'],extracted_nonempty_pages=len(observations) if observations else None,
+                            physical_pages=source['physical_pages'],extracted_nonempty_pages=nonempty_pages if observations else None,
                             page_text_coverage=coverage,positive_cases=len(ids),fully_matched_cases=sum(i not in failed_cases for i in ids),
                             unmatched_locators=len(failures),ocr_review_required=saved['record']['review_required']))
         for failure in failures:

@@ -12,6 +12,8 @@
 
 新增[中文公开原文v3](docs/MANUFACTURING_ZH_V3.md)：18份官方中文原文（16份原始PDF、2份网页正文转换），配套120题中文评测集，开发40题、测试80题。[离线检查](evals/manufacturing_zh_v3/reports/20261029-offline-r1/README.md)得到1,290个实际分块，但150处证据锚点仍有44处未连续匹配，1份扫描件正文严重缺失；尚未入库或运行模型问答，既有基线保留原样。
 
+已补充[PDF明确缺陷修复与回归对照](evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/README.md)：`structured-v6`修正误分栏、下标错行和数量开头正文误作标题，并阻断空OCR页的静默入库。原文、题集与首轮报告保留，困难扫描件识别仍需后续处理。
+
 ## 核心能力
 
 - Keycloak OIDC 登录、JWT 签名及 issuer、audience 校验

@@ -34,7 +34,7 @@ _HEADING_PATTERN = re.compile(
     r")\S+"
 )
 _LIST_PATTERN = re.compile(
-    r"^(?:[-•·]|\(?[0-9一二三四五六七八九十]+[、.)）])"
+    r"^(?:[-•·]|\(?[0-9一二三四五六七八九十]+(?:[、)）]|\.(?!\d)))"
 )
 _PAGE_NUMBER_PATTERN = re.compile(
     r"^(?:第\s*\d+\s*页|[-—–]\s*\d+\s*[-—–]|"
@@ -49,6 +49,17 @@ _HEADING_MARKER_PATTERN = re.compile(
 
 class PdfOcrUnavailableError(RuntimeError):
     """PDF needs OCR but the local OCR runtime is unavailable."""
+
+
+class PdfTextExtractionError(ValueError):
+    """An image page needed OCR but produced no text; review before indexing."""
+
+    def __init__(self, page_numbers: list[int]):
+        self.page_numbers = page_numbers
+        super().__init__(
+            f"PDF 第 {', '.join(map(str, page_numbers))} 页 OCR 未提取到文字；"
+            "无法确认是否为空白页，请复核后再入库。"
+        )
 
 
 @dataclass
@@ -80,6 +91,10 @@ def split_pdf(
     path = Path(file_path).resolve()
     resolved_document_name = document_name or path.stem
     pages = extract_pdf_pages(path, ocr_page=ocr_page)
+    empty_ocr_pages = [page.number for page in pages
+                       if page.parser == "ocr" and not page.text.strip() and not page.tables]
+    if empty_ocr_pages:
+        raise PdfTextExtractionError(empty_ocr_pages)
     corrections = {}
     if any(page.parser == 'ocr' for page in pages):
         file_hash = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -212,7 +227,9 @@ def extract_pdf_pages(
             parser = "ocr"
 
         text = normalize_pdf_text(text)
-        if text or tables:
+        # Keep failed OCR observations; never silently publish a partial PDF.
+        # A genuinely blank native page without images still needs no OCR.
+        if text or tables or parser == "ocr":
             extracted.append(
                 ExtractedPage(
                     number=page_number,
@@ -331,9 +348,9 @@ def collect_pdf_units(
                 continue
 
             heading_level = _heading_level(line)
+            line = _strip_heading_marker(line)
             if heading_level is not None:
                 flush_paragraph()
-                line = _strip_heading_marker(line)
                 headings = headings[: heading_level - 1]
                 headings.append(line)
                 continue
@@ -350,6 +367,17 @@ def collect_pdf_units(
                         parsers=(page.parser,),
                     )
                 )
+                continue
+
+            # A wrapped list item is still one item. Do not detach its final
+            # characters into a new paragraph, including across a page break.
+            previous = units[-1] if units else None
+            if (not paragraph_lines and previous and previous.kind == "list"
+                    and previous.section_path == tuple(headings)
+                    and not str(previous.content).endswith(_TERMINAL_PUNCTUATION)):
+                previous.content = _join_wrapped_lines([str(previous.content), line])
+                previous.page_end = page.number
+                previous.parsers = tuple(sorted(set(previous.parsers + (page.parser,))))
                 continue
 
             if not paragraph_lines:
@@ -509,7 +537,7 @@ def _extract_reading_order_text(page) -> str:
     for column in columns:
         lines: list[list[dict]] = []
         for word in sorted(column, key=lambda item: (item["top"], item["x0"])):
-            if not lines or abs(lines[-1][0]["top"] - word["top"]) > 3:
+            if not lines or not _same_text_line(lines[-1], word):
                 lines.append([word])
             else:
                 lines[-1].append(word)
@@ -535,6 +563,15 @@ def _extract_reading_order_text(page) -> str:
     return "\n".join(rendered)
 
 
+def _same_text_line(line: list[dict], word: dict) -> bool:
+    # A sub/superscript has a different top but overlaps the body glyphs.
+    # Anchor to the tallest glyph so small symbols cannot drag the next line.
+    anchor = max(line, key=lambda item: item["bottom"] - item["top"])
+    overlap = min(anchor["bottom"], word["bottom"]) - max(anchor["top"], word["top"])
+    height = min(anchor["bottom"] - anchor["top"], word["bottom"] - word["top"])
+    return overlap > 0 and overlap >= height * 0.5
+
+
 def _split_word_columns(
     words: list[dict],
     page_width: float,
@@ -552,6 +589,8 @@ def _split_word_columns(
     largest_gap, divider = max(gaps)
     if largest_gap < page_width * 0.12:
         return [words]
+    # A gap between word CENTERS is not a gutter: Chinese extractors can
+    # return an entire full-width line as one word, beside short clauses.
     left = [
         word
         for word in words
@@ -561,6 +600,8 @@ def _split_word_columns(
     ]
     right = [word for word in words if word not in left]
     if len(left) < 2 or len(right) < 2:
+        return [words]
+    if max(float(word["x1"]) for word in left) >= min(float(word["x0"]) for word in right):
         return [words]
     left_lines = {
         round(float(word["top"]) / 4)
@@ -660,9 +701,15 @@ def _heading_level(line: str) -> int | None:
         line = marker_match.group(2).strip()
     if len(line) > 60:
         return None
-    # A numbered requirement ending a sentence is body content, not a heading.
+    # Wrapped prose often has no terminal punctuation on its first line.
+    # Commas or a sentence followed by more text contradict a title, even
+    # when mixed font sizes produced a tentative typography heading marker.
+    if re.search(r"[，,；;]|[。！？!?].+", line):
+        return None
+    # Numeric prose can begin with a count ("3 次，...") as well as a list.
+    # Do not require a dot/list marker to protect a complete sentence.
     # Explicit typography markers still take precedence over this text heuristic.
-    if marker_level is None and _LIST_PATTERN.match(line) and line.endswith(("。", "；", ";", "！", "!", "？", "?")):
+    if marker_level is None and line.endswith(("。", "；", ";", "！", "!", "？", "?")):
         return None
     if not _HEADING_PATTERN.match(line):
         return marker_level
