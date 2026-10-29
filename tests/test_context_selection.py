@@ -38,6 +38,16 @@ def test_range_units_and_numeric_boundaries_are_not_interchanged():
     assert selected == documents[:4] and not reservations
 
 
+def test_range_specific_section_precedes_incidental_mentions_in_appendices():
+    documents = [doc('概览。', 0), doc('附录例子涉及0~10V和10~40V。', 1),
+                 doc('其他说明。', 2), doc('其他条件。', 3),
+                 doc('使用标准器A。', 4), doc('使用标准器B。', 5)]
+    documents[4].metadata['section_path'] = '量程(0~10)V的方法'
+    documents[5].metadata['section_path'] = '量程(10~40)V的方法'
+    selected, _ = select_context_chunks(documents, question='0～10V和10～40V分别使用什么？', max_per_source=4)
+    assert documents[4] in selected and documents[5] in selected and len(selected) == 4
+
+
 def test_single_range_and_other_sources_keep_existing_selection():
     documents = [doc('一般信息' + str(i), i) for i in range(4)] + [doc('范围(0~10)V。', 4)]
     selected, reservations = select_context_chunks(documents, question='0～10V用什么？', max_per_source=4)

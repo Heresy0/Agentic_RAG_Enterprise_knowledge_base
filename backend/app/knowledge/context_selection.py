@@ -50,7 +50,9 @@ def _support(document, facet):
     if facet.startswith('range:'):
         # Match explicit intervals and units; do not infer equivalent units or
         # copy a range from the question into the evidence.
-        return int(facet in _range_facets(str(document.metadata.get('section_path', '')) + '\n' + body))
+        if facet in _range_facets(str(document.metadata.get('section_path', ''))):
+            return 2
+        return int(facet in _range_facets(body))
     if facet == "cause":
         return int(bool(re.search(r"根因|因为|由于|导致|原因(?:是|为)|要求新增", body)))
     # Completing an acceptance account/environment is not project acceptance.
