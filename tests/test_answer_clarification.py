@@ -5,6 +5,7 @@ from test_answer_service import build_service, answer, make_document
 from backend.app.knowledge.answer_models import GenerationAnswerDraft
 from backend.app.knowledge.answer_validation import AnswerValidator
 from backend.app.knowledge.context_builder import ContextBuilder
+from backend.app.knowledge.prompts import ANSWER_INTERACTION_EVIDENCE, ANSWER_INTERACTION_EXAMPLES
 
 
 def draft(**changes):
@@ -57,3 +58,12 @@ def test_concrete_missing_evidence_is_still_refusal(monkeypatch):
     service,*_=build_service(monkeypatch,documents=[make_document('静态规范不提供实时工单状态。')],model_result=model)
     result=answer(service,'工单MO-123现在完成了吗？')
     assert result.response_type=='refuse' and not result.answerable and not result.clarification_questions
+
+
+@pytest.mark.parametrize('example', ANSWER_INTERACTION_EXAMPLES,
+                         ids=['general-rule', 'missing-user-condition', 'unsupported-action'])
+def test_prompt_examples_pass_live_schema_and_existing_evidence_validator(example):
+    model = GenerationAnswerDraft.model_validate(example['output'])
+    context = ContextBuilder().build([make_document(ANSWER_INTERACTION_EVIDENCE)], question=example['question'])
+    validation = AnswerValidator().validate(draft=model, context=context, question=example['question'])
+    assert validation.valid, validation.errors

@@ -116,6 +116,7 @@ def test_decisions_require_a_rule_measurement_chain_and_identity_mechanism():
 def test_response_layout_distinguishes_status_boundary_from_unknown_actual_date():
     status = json.loads(answer_contract('乙任务计划何时修复，是否已修复？', [dict(id='Q1')]))
     assert status['response_layout']['example']['answerable']
+    assert status['response_layout']['example']['response_type'] == 'answer'
     assert all(row['status']=='answered' for row in status['response_layout']['example']['coverage'])
     date = json.loads(answer_contract('乙任务计划何时修复，实际哪天修复？', [dict(id='Q1')]))
     assert 'response_layout' not in date

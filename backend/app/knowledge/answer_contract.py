@@ -70,7 +70,7 @@ def answer_contract(question, requirements):
         if not asks_actual_completion_date(question):
             layout = dict(mode='计划与证据边界；不是索要实际完成日期',
                 example_is_format_only='以下占位文本不能作为企业事实，必须替换为本次资料与必答编号',
-                example=dict(answerable=True, evidence_gap=None, refusal_reason=None,
+                example=dict(answerable=True, response_type='answer', evidence_gap=None, refusal_reason=None,
                     claims=[dict(text='原文明示的计划时间', citations=['原文计划所在的资料编号']),
                             dict(text='原文明示该计划不能证明已经完成，因此这些证据不能确认实际完成',
                                  citations=['原文边界声明所在的资料编号'])],
