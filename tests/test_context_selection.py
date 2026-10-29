@@ -19,6 +19,34 @@ def candidates():
     ])]
 
 
+def test_reserves_both_explicit_range_witnesses_with_original_budget():
+    documents = [doc('一般信息' + str(i), i) for i in range(4)] + [
+        doc('电压范围(0~10)V使用标准器A。', 4),
+        doc('电压范围(10~40)V使用标准器B。', 5),
+    ]
+    selected, reservations = select_context_chunks(documents, question='0～10V和10～40V分别使用什么？', max_per_source=4)
+    assert len(selected) == 4 and documents[0] in selected
+    assert documents[4] in selected and documents[5] in selected
+    assert len(reservations) == 2
+
+
+def test_range_units_and_numeric_boundaries_are_not_interchanged():
+    documents = [doc('一般信息' + str(i), i) for i in range(4)] + [
+        doc('范围(100~150)mm。范围(150~3000)kPa。', 4),
+    ]
+    selected, reservations = select_context_chunks(documents, question='0～150mm和150～3000mm用什么？', max_per_source=4)
+    assert selected == documents[:4] and not reservations
+
+
+def test_single_range_and_other_sources_keep_existing_selection():
+    documents = [doc('一般信息' + str(i), i) for i in range(4)] + [doc('范围(0~10)V。', 4)]
+    selected, reservations = select_context_chunks(documents, question='0～10V用什么？', max_per_source=4)
+    assert selected == documents[:4] and not reservations
+    outside = doc('范围(10~40)V。', 0, source='other')
+    selected, _ = select_context_chunks(documents + [outside], question='0～10V和10～40V用什么？', max_per_source=4)
+    assert outside in selected and len([d for d in selected if d.metadata['source_id'] == 'project-a']) == 4
+
+
 def test_reserves_actual_completion_without_increasing_source_or_character_budget():
     documents = candidates() + [doc("由于新增权限功能导致验收改期。", 0, "changes")]
     with capture_trace() as trace:
