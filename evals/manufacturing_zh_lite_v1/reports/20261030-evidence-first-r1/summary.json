@@ -1,0 +1,764 @@
+{
+  "experiment": "evidence-first-r1",
+  "decision": "do_not_promote_candidate",
+  "baseline_commit": "43aeafc",
+  "candidate_commit": "213224d",
+  "baseline_image": "enterprise-knowledge-manufacturing:response-type-33e13b5",
+  "candidate_image": "enterprise-knowledge-manufacturing:evidence-first-213224d",
+  "frozen_files": {
+    "evals\\manufacturing_zh_lite_v1\\profile.json": "d728d685605c8ebc7cdd013cfffd737d7c1f852516bbbbbfa9957b2d1cd2b965",
+    "evals\\manufacturing_zh_lite_v1\\development\\single_turn.jsonl": "2d540db80ca6ed1fe8a25890f3282b3487003fe1bc5b541844226a259be5c75e",
+    "evals\\manufacturing_zh_lite_v1\\regression\\single_turn.jsonl": "588d27c03af8c8dd010b63fd19e9bd1475bb1ac9d158f96b31b664888fdb964a",
+    "evals\\manufacturing_zh_lite_v1\\scoring_rules.json": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da"
+  },
+  "scope": "Known 98-case Chinese demo regression, not a blind test or independently measured semantic accuracy.",
+  "backend_tests": {
+    "passed": 1553,
+    "skipped": 55,
+    "warnings": 2,
+    "log_sha256": "4525c13d4dbc4a552caf13b678f3ae6dedd9c295f86c164b07cea9b95b16178b"
+  },
+  "attempts": {
+    "initial": 196,
+    "http503_affected": 24,
+    "additional_http200_with_provider403": 1,
+    "recovery": 25,
+    "total": 221,
+    "score_based_retries": 0,
+    "original_records_preserved": true
+  },
+  "first_attempt_summaries": {
+    "baseline": {
+      "total": 98,
+      "complete": 92,
+      "errors": 6,
+      "original_proxy_passed": 71,
+      "reviewed_proxy_passed": 80,
+      "scorer_version": "2026-10-29-r13",
+      "selection": "reviewed_demo_regression_not_blind_test",
+      "splits": {
+        "development": {
+          "total": 40,
+          "complete": 40,
+          "errors": 0,
+          "original_proxy_passed": 29,
+          "reviewed_proxy_passed": 36
+        },
+        "regression": {
+          "total": 58,
+          "complete": 52,
+          "errors": 6,
+          "original_proxy_passed": 42,
+          "reviewed_proxy_passed": 44
+        }
+      },
+      "groups": {
+        "ordinary": {
+          "total": 60,
+          "complete": 60,
+          "errors": 0,
+          "original_proxy_passed": 43,
+          "reviewed_proxy_passed": 53
+        },
+        "ocr": {
+          "total": 8,
+          "complete": 8,
+          "errors": 0,
+          "original_proxy_passed": 5,
+          "reviewed_proxy_passed": 5
+        },
+        "behavior": {
+          "total": 30,
+          "complete": 24,
+          "errors": 6,
+          "original_proxy_passed": 23,
+          "reviewed_proxy_passed": 22
+        }
+      },
+      "profile_sha256": "d728d685605c8ebc7cdd013cfffd737d7c1f852516bbbbbfa9957b2d1cd2b965",
+      "rules_sha256": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da",
+      "trace_sha256": {
+        "development": "570ca530b601e7b0fd91b45a508874c2701acd9857d7c939dc568cf4dbafb0f6",
+        "regression": "507dfe7bb6264db8ec8d3d7cccac0d8e86cad5561614e06979ef2075e7038453"
+      },
+      "qa_retries": 0,
+      "reviewer": "assistant_non_independent_automatic_proxy_not_semantic_accuracy"
+    },
+    "candidate": {
+      "total": 98,
+      "complete": 80,
+      "errors": 18,
+      "original_proxy_passed": 49,
+      "reviewed_proxy_passed": 57,
+      "scorer_version": "2026-10-29-r13",
+      "selection": "reviewed_demo_regression_not_blind_test",
+      "splits": {
+        "development": {
+          "total": 40,
+          "complete": 40,
+          "errors": 0,
+          "original_proxy_passed": 28,
+          "reviewed_proxy_passed": 31
+        },
+        "regression": {
+          "total": 58,
+          "complete": 40,
+          "errors": 18,
+          "original_proxy_passed": 21,
+          "reviewed_proxy_passed": 26
+        }
+      },
+      "groups": {
+        "ordinary": {
+          "total": 60,
+          "complete": 59,
+          "errors": 1,
+          "original_proxy_passed": 35,
+          "reviewed_proxy_passed": 43
+        },
+        "ocr": {
+          "total": 8,
+          "complete": 8,
+          "errors": 0,
+          "original_proxy_passed": 3,
+          "reviewed_proxy_passed": 3
+        },
+        "behavior": {
+          "total": 30,
+          "complete": 13,
+          "errors": 17,
+          "original_proxy_passed": 11,
+          "reviewed_proxy_passed": 11
+        }
+      },
+      "profile_sha256": "d728d685605c8ebc7cdd013cfffd737d7c1f852516bbbbbfa9957b2d1cd2b965",
+      "rules_sha256": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da",
+      "trace_sha256": {
+        "development": "571138873d24bce212a2df7515a098e5d19ff36b56c85199586ed0148b06b8cb",
+        "regression": "bdfe48f290f543d0ffa7450c04c6fa54a0f1b91692eb9c601c15bc7841e02831"
+      },
+      "qa_retries": 0,
+      "reviewer": "assistant_non_independent_automatic_proxy_not_semantic_accuracy"
+    }
+  },
+  "recovered_summaries": {
+    "baseline": {
+      "total": 98,
+      "complete": 98,
+      "errors": 0,
+      "original_proxy_passed": 74,
+      "reviewed_proxy_passed": 83,
+      "scorer_version": "2026-10-29-r13",
+      "selection": "reviewed_demo_regression_not_blind_test",
+      "splits": {
+        "development": {
+          "total": 40,
+          "complete": 40,
+          "errors": 0,
+          "original_proxy_passed": 29,
+          "reviewed_proxy_passed": 36
+        },
+        "regression": {
+          "total": 58,
+          "complete": 58,
+          "errors": 0,
+          "original_proxy_passed": 45,
+          "reviewed_proxy_passed": 47
+        }
+      },
+      "groups": {
+        "ordinary": {
+          "total": 60,
+          "complete": 60,
+          "errors": 0,
+          "original_proxy_passed": 43,
+          "reviewed_proxy_passed": 53
+        },
+        "ocr": {
+          "total": 8,
+          "complete": 8,
+          "errors": 0,
+          "original_proxy_passed": 5,
+          "reviewed_proxy_passed": 5
+        },
+        "behavior": {
+          "total": 30,
+          "complete": 30,
+          "errors": 0,
+          "original_proxy_passed": 26,
+          "reviewed_proxy_passed": 25
+        }
+      },
+      "profile_sha256": "d728d685605c8ebc7cdd013cfffd737d7c1f852516bbbbbfa9957b2d1cd2b965",
+      "rules_sha256": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da",
+      "trace_sha256": {
+        "development": "570ca530b601e7b0fd91b45a508874c2701acd9857d7c939dc568cf4dbafb0f6",
+        "regression": "853f785bc1eb97c869ac89d53064af01c8802bfecc70689eb814fe9d51a596f0"
+      },
+      "qa_retries": 6,
+      "reviewer": "assistant_non_independent_automatic_proxy_not_semantic_accuracy",
+      "view": "derived_provider_error_recovery",
+      "original_qa_attempts": 98,
+      "recovery_qa_attempts": 6,
+      "total_qa_attempts": 104,
+      "business_score_retries": 0,
+      "http_success_repeated_for_provider_error": 0,
+      "initial_http_failures": 6,
+      "initial_provider_affected_requests": 6,
+      "provenance_sha256": "1f5c7f1a41218d915643e23d42b9ee44e82cf23f9cacf51aed8cf80e63f0088d",
+      "single_uninterrupted_run": false
+    },
+    "candidate": {
+      "total": 98,
+      "complete": 98,
+      "errors": 0,
+      "original_proxy_passed": 61,
+      "reviewed_proxy_passed": 69,
+      "scorer_version": "2026-10-29-r13",
+      "selection": "reviewed_demo_regression_not_blind_test",
+      "splits": {
+        "development": {
+          "total": 40,
+          "complete": 40,
+          "errors": 0,
+          "original_proxy_passed": 28,
+          "reviewed_proxy_passed": 31
+        },
+        "regression": {
+          "total": 58,
+          "complete": 58,
+          "errors": 0,
+          "original_proxy_passed": 33,
+          "reviewed_proxy_passed": 38
+        }
+      },
+      "groups": {
+        "ordinary": {
+          "total": 60,
+          "complete": 60,
+          "errors": 0,
+          "original_proxy_passed": 36,
+          "reviewed_proxy_passed": 44
+        },
+        "ocr": {
+          "total": 8,
+          "complete": 8,
+          "errors": 0,
+          "original_proxy_passed": 3,
+          "reviewed_proxy_passed": 3
+        },
+        "behavior": {
+          "total": 30,
+          "complete": 30,
+          "errors": 0,
+          "original_proxy_passed": 22,
+          "reviewed_proxy_passed": 22
+        }
+      },
+      "profile_sha256": "d728d685605c8ebc7cdd013cfffd737d7c1f852516bbbbbfa9957b2d1cd2b965",
+      "rules_sha256": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da",
+      "trace_sha256": {
+        "development": "571138873d24bce212a2df7515a098e5d19ff36b56c85199586ed0148b06b8cb",
+        "regression": "2ca7eec9c32f713b2561065049e87417750925a269983f209dc0949e148880c4"
+      },
+      "qa_retries": 19,
+      "reviewer": "assistant_non_independent_automatic_proxy_not_semantic_accuracy",
+      "view": "derived_provider_error_recovery",
+      "original_qa_attempts": 98,
+      "recovery_qa_attempts": 19,
+      "total_qa_attempts": 117,
+      "business_score_retries": 0,
+      "http_success_repeated_for_provider_error": 1,
+      "initial_http_failures": 18,
+      "initial_provider_affected_requests": 19,
+      "provenance_sha256": "a1528deb2d653a8e99c666a727d1ac4ef6d275e3afaef025af5020f4f1e5fe12",
+      "single_uninterrupted_run": false
+    }
+  },
+  "automatic_r13_passed": {
+    "baseline": 83,
+    "candidate": 69
+  },
+  "equivalence_adjusted_proxy_passed": {
+    "baseline": 84,
+    "candidate": 79
+  },
+  "review": {
+    "reviewer": "assistant_non_independent",
+    "scope": "Symmetric union of automatic failures; adjust confirmed expression equivalence only. Automatic passes are not a complete semantic audit.",
+    "production_scoring_rules_changed": false,
+    "corrections": {
+      "baseline": {
+        "MFGZH-Q040": "已明确不是固定一年，并保留建议最长间隔和送校单位决定的条件；规则未识别否定表达。末尾复述问题仍是回答质量瑕疵。"
+      },
+      "candidate": {
+        "MFGZH-Q004": "至少每月听取一次与每月至少听取一次等价。",
+        "MFGZH-Q005": "未通过考核不得继续担任相应岗位，保留禁止任职与立即整改要求。",
+        "MFGZH-Q011": "至少需要保留3年与至少保留3年等价。",
+        "MFGZH-Q013": "由生产单位自行决定是否公开与选择是否公开等价，两个必填项均回答。",
+        "MFGZH-Q023": "明确说明具体的负载情况与说明负载情况等价；额外的测量间隔说明也来自同一规范的资料2。",
+        "MFGZH-Q028": "30分钟、2小时、2分钟与30min、2h、2min等价，16次未变。",
+        "MFGZH-Q058": "2小时和30分钟与2h和30min等价，均保留不少于条件。",
+        "MFGZH-Q083": "不少于30分钟与不少于30min等价，并已回答温度平衡。",
+        "MFGZH-Q020": "不是只做一次建设验收与不只是一次等价，并包含定期评估和最高管理者。",
+        "MFGZH-Q089": "移开/放开堵住的手指的同时开始计时与同时启动秒表的起始时机等价；断流停止时机也正确。"
+      }
+    },
+    "regressions": {
+      "MFGZH-Q018": "遗漏业务流程状态跟踪、在线监控和闭环管控，来源在相同上下文的同一条款内。",
+      "MFGZH-Q039": "本应可答，却因新增原文摘录校验最终拒答；无法从HTTP记录还原首轮摘录的具体格式错误。",
+      "MFGZH-Q044": "本应可答，却因新增原文摘录校验最终拒答；未证明原始草稿本身全部正确。",
+      "MFGZH-Q049": "本应可答，却因新增原文摘录校验最终拒答，热平衡及预热条件已在最终上下文。",
+      "MFGZH-Q076": "输出引入无关日期，被既有数字/日期校验拦截；未据此扩展OCR修改。",
+      "MFGZH-N10": "应先澄清报告类型，却直接给出接收岗位。",
+      "MFGZH-N24": "缺少容积/测量项目，应澄清；候选最终因摘录校验拒答。",
+      "MFGZH-N28": "缺少产品类别和追溯需求，应澄清；候选直接给出通用赋码选择。"
+    },
+    "gains": {
+      "MFGZH-Q019": "补齐质量数据全过程管理。",
+      "MFGZH-Q020": "从拒答恢复为回答最高管理者和持续定期评估；自动评分仍有否定表达误判。",
+      "MFGZH-Q034": "补齐按说明书要求预热的后续步骤。"
+    }
+  },
+  "groups": {
+    "ordinary": {
+      "total": 60,
+      "automatic": {
+        "baseline": 53,
+        "candidate": 44
+      },
+      "equivalence_adjusted": {
+        "baseline": 54,
+        "candidate": 53
+      }
+    },
+    "ocr": {
+      "total": 8,
+      "automatic": {
+        "baseline": 5,
+        "candidate": 3
+      },
+      "equivalence_adjusted": {
+        "baseline": 5,
+        "candidate": 4
+      }
+    },
+    "behavior": {
+      "total": 30,
+      "automatic": {
+        "baseline": 25,
+        "candidate": 22
+      },
+      "equivalence_adjusted": {
+        "baseline": 25,
+        "candidate": 22
+      }
+    }
+  },
+  "matching_context_subset": {
+    "total": 90,
+    "automatic": {
+      "baseline": 76,
+      "candidate": 62
+    },
+    "equivalence_adjusted": {
+      "baseline": 77,
+      "candidate": 72
+    },
+    "different_context_ids": [
+      "MFGZH-Q088",
+      "MFGZH-N11",
+      "MFGZH-N12",
+      "MFGZH-N18",
+      "MFGZH-N19",
+      "MFGZH-N20",
+      "MFGZH-N21",
+      "MFGZH-N23"
+    ]
+  },
+  "offline_probe": {
+    "results": {
+      "baseline": {
+        "r13_passed": 10,
+        "total": 12,
+        "failures": [
+          "MFGZH-N09",
+          "MFGZH-N10"
+        ],
+        "trace_sha256": "24543b201a82caed84cf9c693dc334d4b498afeac0a1157e50d4f869b07de3a9"
+      },
+      "candidate": {
+        "r13_passed": 7,
+        "total": 12,
+        "failures": [
+          "MFGZH-Q083",
+          "MFGZH-N07",
+          "MFGZH-N08",
+          "MFGZH-N09",
+          "MFGZH-N10"
+        ],
+        "trace_sha256": "152a816e8b9136fa377800c25ba2666cbf09fb781269f4ee4619262558bef94a"
+      },
+      "candidate-v2": {
+        "r13_passed": 10,
+        "total": 12,
+        "failures": [
+          "MFGZH-Q083",
+          "MFGZH-N09"
+        ],
+        "trace_sha256": "80da21a154f7b107f281dcf25a4fcb72871ca479b81e378dd254d8fe9ea40b7f"
+      }
+    },
+    "scope": "12 fixed saved contexts, generation and validation only; stable outputs reused.",
+    "first_probe_retained": true,
+    "second_probe_not_blind": true,
+    "contract_changes": [
+      "quote before aspect",
+      "discard unused quote for nonanswered coverage"
+    ],
+    "limits": "Functional contract correction preceded full regression; no prompt tuning or score-based QA reruns during full regression."
+  },
+  "usage": {
+    "baseline": {
+      "actual_qa_attempts": 104,
+      "effective_successful_cases": 98,
+      "initial_failed_qa_requests": 6,
+      "all_attempts_usage": {
+        "observed": true,
+        "calls": 318,
+        "reported_total_tokens": 1150028,
+        "unknown_usage_calls": 12,
+        "unknown_usage_rate": 0.03773584905660377,
+        "unpriced_calls": 318,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 12
+      },
+      "effective_cases_usage": {
+        "observed": true,
+        "calls": 312,
+        "reported_total_tokens": 1150028,
+        "unknown_usage_calls": 6,
+        "unknown_usage_rate": 0.019230769230769232,
+        "unpriced_calls": 312,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 6
+      },
+      "median_successful_request_ms": 4113.41,
+      "p95_successful_request_ms": 8124.0,
+      "stages": {
+        "answer_generation": 98,
+        "rerank": 100,
+        "query_embedding": 100,
+        "query_planning": 12,
+        "answer_repair": 1,
+        "agent_decision": 1
+      },
+      "failed_stages": [
+        {
+          "case_id": "MFGZH-N18",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N19",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N20",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N21",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N22",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N23",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N24",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N25",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N26",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N28",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N29",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N30",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        }
+      ]
+    },
+    "candidate": {
+      "actual_qa_attempts": 117,
+      "effective_successful_cases": 98,
+      "initial_failed_qa_requests": 18,
+      "all_attempts_usage": {
+        "observed": true,
+        "calls": 350,
+        "reported_total_tokens": 1193761,
+        "unknown_usage_calls": 28,
+        "unknown_usage_rate": 0.08,
+        "unpriced_calls": 350,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 28
+      },
+      "effective_cases_usage": {
+        "observed": true,
+        "calls": 317,
+        "reported_total_tokens": 1182352,
+        "unknown_usage_calls": 4,
+        "unknown_usage_rate": 0.012618296529968454,
+        "unpriced_calls": 317,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 4
+      },
+      "median_successful_request_ms": 4359.55,
+      "p95_successful_request_ms": 9254.51,
+      "stages": {
+        "answer_generation": 98,
+        "rerank": 98,
+        "query_embedding": 98,
+        "answer_repair": 9,
+        "agent_decision": 2,
+        "query_planning": 12
+      },
+      "failed_stages": [
+        {
+          "case_id": "MFGZH-Q088",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-Q089",
+          "stage": "answer_repair",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-Q089",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-Q090",
+          "stage": "answer_generation",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-Q090",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N11",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N12",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N13",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N14",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N15",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N16",
+          "stage": "answer_generation",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N16",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N17",
+          "stage": "answer_generation",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N17",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N18",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N19",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N20",
+          "stage": "answer_generation",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N20",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N21",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N22",
+          "stage": "rerank",
+          "status": "error",
+          "error_type": "RerankError"
+        },
+        {
+          "case_id": "MFGZH-N23",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N24",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N25",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N26",
+          "stage": "answer_generation",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N27",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N28",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N29",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        },
+        {
+          "case_id": "MFGZH-N30",
+          "stage": "query_embedding",
+          "status": "error",
+          "error_type": "PermissionDeniedError"
+        }
+      ]
+    }
+  },
+  "usage_limitations": "No prices configured. Unknown usage is not treated as zero. Latency includes concurrent initial requests and a later recovery batch; not a strict benchmark.",
+  "runtime": {
+    "stable_services_preserved": true,
+    "stable_ready": true,
+    "candidate_api_stopped": true,
+    "baseline_branch_unchanged": true
+  },
+  "evidence_limits": "HTTP records preserve final responses and context but not the initial quote/coverage draft. Exact quote mismatch causes cannot be reconstructed for every refusal.",
+  "source_artifacts": {
+    "baseline": {
+      "tmp\\manufacturing-evidence-first-full-r1\\baseline\\development-http-r1\\traces.jsonl": "570ca530b601e7b0fd91b45a508874c2701acd9857d7c939dc568cf4dbafb0f6",
+      "tmp\\manufacturing-evidence-first-full-r1\\baseline\\regression-http-r1\\traces.jsonl": "507dfe7bb6264db8ec8d3d7cccac0d8e86cad5561614e06979ef2075e7038453",
+      "tmp\\manufacturing-evidence-first-full-r1\\baseline\\regression-http-recovery-r1\\traces.jsonl": "6a750c0c90d945bc72059b69e9775c799347b123ae072be8311381b4611be1b0",
+      "tmp\\manufacturing-evidence-first-full-r1\\baseline\\all-attempt-model-usage-r2.json": "ab471e3132f85e58792bb5d7d64ee074f7bd047d5eca887223465f584f30347e"
+    },
+    "candidate": {
+      "tmp\\manufacturing-evidence-first-full-r1\\candidate\\development-http-r1\\traces.jsonl": "571138873d24bce212a2df7515a098e5d19ff36b56c85199586ed0148b06b8cb",
+      "tmp\\manufacturing-evidence-first-full-r1\\candidate\\regression-http-r1\\traces.jsonl": "bdfe48f290f543d0ffa7450c04c6fa54a0f1b91692eb9c601c15bc7841e02831",
+      "tmp\\manufacturing-evidence-first-full-r1\\candidate\\regression-http-recovery-r1\\traces.jsonl": "96c15eccbba40396a629946ab81ea949263bd8c04d12b619b8517e094e1bb071",
+      "tmp\\manufacturing-evidence-first-full-r1\\candidate\\all-attempt-model-usage-r2.json": "e02f9464ad8f89abe1f11e68a090b0656a1f024132a03b202768fc5a3a10aea3",
+      "tmp\\manufacturing-evidence-first-full-r1\\candidate\\regression-http-recovery-r2\\traces.jsonl": "a04c50b1497dae18481ebc4213cf3d06ab4095bb8e1cc2710bd03686cf127bb3"
+    }
+  }
+}
