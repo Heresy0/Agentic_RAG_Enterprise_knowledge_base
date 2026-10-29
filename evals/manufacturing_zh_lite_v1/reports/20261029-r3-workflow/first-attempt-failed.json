@@ -1,0 +1,124 @@
+{
+  "execution_commit": "9efc681",
+  "request_id": "f4d55eede00d472b9debb5b8b7cfe6ef",
+  "question": "按《作动器校准规范 JJF吉102-2022》所收录原文，作动器位移范围0～150mm和150～3000mm时，规范分别采用什么标准器？",
+  "response": {
+    "answer": "对于位移范围0～150mm的作动器，规范采用数显表作为标准器。[资料4]\n对于位移范围150～3000mm的作动器，规范采用激光跟踪仪（跟踪仪）作为标准器。[资料3]",
+    "answerable": true,
+    "citations": [
+      {
+        "citation_id": "资料4",
+        "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+        "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "section_path": "u c = u 2 ( F ) +u 2 ( F ) = 0.173N",
+        "chunk_id": "228a2d27339977b8d312a92d6c4dee4c6757a2b93461eaa395cfc4c87ddb84df",
+        "parent_id": "46856e115013eaeb7449d9e262f23a8d80ff33880032c25677915f87795cc616",
+        "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+        "knowledge_base_name": "公共参考"
+      },
+      {
+        "citation_id": "资料3",
+        "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+        "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "section_path": "6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm",
+        "chunk_id": "a9937e290249bfdad2fe6474bfda0015b09e2c60d4f74b2d3e57e1b1212bbc93",
+        "parent_id": "8f3c45f3d2e0041230b9da78fb8e635051de5df94aaaf46738167f238b26431b",
+        "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+        "knowledge_base_name": "公共参考"
+      }
+    ],
+    "refusal_reason": null,
+    "timings": {
+      "query_planning_ms": 2489.49,
+      "agent_decision_ms": 1895.12,
+      "agent_tool_ms": 0.0,
+      "hybrid_retrieval_ms": 2250.57,
+      "rerank_ms": 398.29,
+      "search_total_ms": 4731.88,
+      "context_build_ms": 2.44,
+      "generation_ms": 3478.96,
+      "validation_ms": 4.04,
+      "render_ms": 0.09,
+      "total_ms": 10707.72
+    },
+    "response_type": "answer",
+    "run_id": "f4d55eed-e00d-472b-9deb-b5b8b7cfe6ef",
+    "snapshot_status": "captured"
+  },
+  "context": [
+    {
+      "citation_id": "资料1",
+      "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "section_path": "(",
+      "chunk_id": "5ae02725314e07b526241f98284f08dc37a2994a9fbabb584265fade648cf871",
+      "parent_id": "1b687134d2362b58457f11a8b59446664a4388f7d4bb180fcc81d58347712a28",
+      "content": "## (\n\nF J J",
+      "content_sha256": "e4647232a4a59b125ccbd551a5f47ab2fa0420641a40639c177efeaeb375bddb",
+      "document_version": 1,
+      "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+    },
+    {
+      "citation_id": "资料2",
+      "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "section_path": "4 计量特性",
+      "chunk_id": "33fc803d02fa3132881f5f65d20deec4dd2165798f4407bfac8ada721695775b",
+      "parent_id": "0e1b0c864021c8225cb3dc6515f84d908ab83f9bbb81e716c44516a7c9fb8eff",
+      "content": "## 4 计量特性\n\n4.1 外观:作动器应有永久性铭牌。铭牌上应有:名称、型号、规格、准确度等级、制造厂名、出厂编号及日期。\n作动器应安装在稳固的基础上,其工作环境应清洁,应具有足够的刚性和试验空间以便进行各种试验。作动器无永久变形和可见的外部渗油。\n4.2 试验力载荷:压向≤5000kN,拉向≤500 kN,(力值校准范围并无硬性规定,如作动器原理相同或相似,大力值作动器也可参考本规范)进行分档标定,示值误差从每档满量程的20%点起测,满足允差范围±1%或±2%。校准方向:压向为正。施加试验力的过程应平稳、连续、无冲击和颤动现象。\n1 JJF(吉)102-2022 4.3 称重传感器,过载能力 150%,示值误差±1% 或±2%,力传感器,过载能力 110%,示值误差±1% 或±2%。\n4.4 作动器位移:0~3000mm 以内,示值误差从满量程的 20%点起测,满足允差范围±0.5%FS。位移传感器必须与作动器同轴安装。\n4.5 作动器整体应包含但不限于:主机框架(含作动器主体),伺服阀,力传感器(拉力、压力),位移传感器,油源(气源),电机,高压泵,控制系统等部件。",
+      "content_sha256": "27bdbd8d577de0faa5cae1336f1d093eb3e9e35337a6c65b0e4cce027cd45de6",
+      "document_version": 1,
+      "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+    },
+    {
+      "citation_id": "资料3",
+      "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "section_path": "6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm",
+      "chunk_id": "a9937e290249bfdad2fe6474bfda0015b09e2c60d4f74b2d3e57e1b1212bbc93",
+      "parent_id": "8f3c45f3d2e0041230b9da78fb8e635051de5df94aaaf46738167f238b26431b",
+      "content": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm\n\n长度测量轴示值误差用激光跟踪仪为标准器进行校准。在测量范围内至少选取均匀分布的 5 点作为校准点。在作动器伸缩方向安装固定好跟踪球,跟踪球安装在作动器的移动工作台上,在作动器起始位置将激光跟踪仪及作动器显示器清零,移动作动器的移动工作台至各校准点,作动器示值与激光跟踪仪的示值之差即为各点示值误差,上述过程重复测量 3 次,取平均值作为测量结果,测量结果中取其最大值为长度测量轴的示值误差。",
+      "content_sha256": "e84a7d587aa3a112514f4fb6ddab44bb7b59da487e2d33999dafe6c5584f8927",
+      "document_version": 1,
+      "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+    },
+    {
+      "citation_id": "资料4",
+      "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "section_path": "u c = u 2 ( F ) +u 2 ( F ) = 0.173N",
+      "chunk_id": "228a2d27339977b8d312a92d6c4dee4c6757a2b93461eaa395cfc4c87ddb84df",
+      "parent_id": "46856e115013eaeb7449d9e262f23a8d80ff33880032c25677915f87795cc616",
+      "content": "## u c = u 2 ( F ) +u 2 ( F ) = 0.173N\n\nC.7 扩展不确定度:\n取包含因子k=2,则扩展不确定度按公式(5)计算U = k • u c = 0.35N (k=2) (5) C.8 报告:\n作动器在100 N处的示值误差测量不确定度为:\nU相对扩展不确定度 U rel = ×100%= 0.35%≈0.4% (k=2) F 9 JJF(吉)102-2022附录 D数显表法示值误差的测量结果不确定度评定示例(测量范围 0~150mm) D.1测量方法示值误差是以数显表为标准,比较测量得出,测量范围为0~150mm。\nD.2数学模型作动器受检点的示值误差为:\nδ = T - L式中: δ— 作动器的示值误差;\nT— 作动器显示值;\nL— 数显表显示值。\nD.3合成方差和灵敏系数",
+      "content_sha256": "87d9d7e394b5a63cc04c4c96c75ab5ffa6eb1746ca5ab2aa69c31d6289185638",
+      "document_version": 1,
+      "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+    }
+  ],
+  "pipeline": {
+    "code_sha256": "3e64290356b47986808cbf0135029f5e2e3a905a3e3275d02884a45c2795def5",
+    "prompts_sha256": "c8bfcbe583629ba0e4898cd4cef9af7c4314b22cf80ae40e90206366ef28f274"
+  },
+  "metrics": {
+    "answerability_correct": true,
+    "missing_facts": [
+      "数显千分表"
+    ],
+    "behavior_contract_version": "response-type-v1",
+    "behavior_correct": null,
+    "contradictory_facts": {},
+    "fact_coverage": 0.75,
+    "all_required_sources_cited": true,
+    "citation_source_recall": 1.0,
+    "citation_integrity": true,
+    "cited_evidence_recall": 0.5,
+    "automatic_proxy_pass": false,
+    "semantic_correctness": "requires_manual_review",
+    "faithfulness": "requires_manual_review",
+    "known_issue": null
+  }
+}

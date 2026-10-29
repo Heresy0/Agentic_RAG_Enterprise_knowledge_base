@@ -2,6 +2,8 @@
 
 日常面试演示已收敛为[16份资料、98题精简回归集](evals/manufacturing_zh_lite_v1/README.md)：90道非OCR题全部保留，OCR保留5道原先通过题和3道代表性失败题；新增评分修订与原始成绩分开记录。
 
+当前制造业项目的启动、页面操作、真实反馈回归和面试讲述统一见[制造业演示指南](docs/MANUFACTURING_DEMO.md)。
+
 制造业演示的最新进展见[完整问答闭环与运行说明](docs/MANUFACTURING_CLOSED_LOOP.md)：普通解析与OCR已接入复核发布、澄清续答、原件追溯、反馈评测和验证关闭；40题开发集与80题留出集按原题保留全部结果。视觉解析待模型配置后单独实测。
 
 [![CI](https://github.com/Heresy0/Multi-tenant-long-context-rag-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/Heresy0/Multi-tenant-long-context-rag-engine/actions/workflows/ci.yml)

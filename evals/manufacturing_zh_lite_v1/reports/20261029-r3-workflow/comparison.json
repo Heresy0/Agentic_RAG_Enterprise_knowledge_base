@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "failures": [],
+  "partitions": {
+    "fixed": {
+      "total": 1,
+      "baseline_passed": 1,
+      "candidate_passed": 1,
+      "regressed_ids": [],
+      "improved_ids": []
+    },
+    "feedback": {
+      "total": 1,
+      "baseline_passed": 0,
+      "candidate_passed": 1,
+      "regressed_ids": [],
+      "improved_ids": [
+        "FB-d3c9c3bb-9b76-4269-a5da-e16f9165897b"
+      ]
+    }
+  },
+  "unreviewed_ids": [],
+  "baseline_summary": {
+    "partitions": {
+      "fixed": {
+        "total": 1,
+        "proxy_passed": 1,
+        "false_refusals": 0,
+        "wrong_accepts": 0
+      },
+      "feedback": {
+        "total": 1,
+        "proxy_passed": 0,
+        "false_refusals": 1,
+        "wrong_accepts": 0
+      }
+    },
+    "p95_ms": 9875.39,
+    "usage": {
+      "observed": true,
+      "calls": 8,
+      "reported_total_tokens": 27607,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 8,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0
+    },
+    "budget": {
+      "calls": 8,
+      "charged_tokens": 27607,
+      "unknown_calls": 0,
+      "elapsed_seconds": 16.079,
+      "limited_by": null
+    },
+    "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+  },
+  "candidate_summary": {
+    "partitions": {
+      "fixed": {
+        "total": 1,
+        "proxy_passed": 1,
+        "false_refusals": 0,
+        "wrong_accepts": 0
+      },
+      "feedback": {
+        "total": 1,
+        "proxy_passed": 1,
+        "false_refusals": 0,
+        "wrong_accepts": 0
+      }
+    },
+    "p95_ms": 8570.78,
+    "usage": {
+      "observed": true,
+      "calls": 8,
+      "reported_total_tokens": 27721,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 8,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0
+    },
+    "budget": {
+      "calls": 8,
+      "charged_tokens": 27721,
+      "unknown_calls": 0,
+      "elapsed_seconds": 14.117,
+      "limited_by": null
+    },
+    "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+  },
+  "usage_unknown": true,
+  "binding": "5ea83ef2587f4b3719b643ad80d2390652e1c94af6fb5955fcb3dca0229bfe8e",
+  "limitation": "自动事实/引用代理与人工复核；单次样本运行不代表生产泛化或容量。"
+}

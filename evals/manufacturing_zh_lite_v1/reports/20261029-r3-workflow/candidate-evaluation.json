@@ -1,0 +1,495 @@
+{
+  "id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0",
+  "status": "succeeded",
+  "current": true,
+  "requested_by_user_id": "86ac24eb-c183-45f3-ab8c-87034841b602",
+  "fixed_dataset_id": "35b4af08-b500-44b2-baf4-3e2604fe7155",
+  "feedback_dataset_id": "ad254949-b4f6-4979-8d06-3bfa5c3ad23b",
+  "created_at": "2026-10-29T14:54:29.859526+00:00",
+  "completed_cases": 2,
+  "expected_cases": 2,
+  "error_type": null,
+  "runtime": {
+    "values": {
+      "chat_model": "qwen3.7-flash",
+      "embedding_model": "text-embedding-v4",
+      "rerank_model": "qwen3-rerank",
+      "agentic_rag_mode": "auto",
+      "rag_planner_mode": "auto",
+      "rag_feedback_enabled": true,
+      "rag_repair_enabled": true,
+      "rag_rerank_top_k": 12,
+      "rag_parent_context_enabled": true,
+      "rag_context_selection_enabled": true,
+      "rag_max_searches": 3,
+      "agent_max_decisions": 2,
+      "agent_max_searches": 2,
+      "agent_max_reads": 1,
+      "agent_max_evidence": 24,
+      "agent_max_prompt_bytes": 12000,
+      "agent_max_output_tokens": 384,
+      "agent_max_decision_tokens": 16000,
+      "agent_max_seconds": 20.0,
+      "agent_decision_timeout_seconds": 8.0,
+      "rag_max_optional_calls": 4,
+      "rag_max_optional_tokens": 32000,
+      "rag_max_optional_seconds": 35.0,
+      "rag_planner_output_tokens": 768,
+      "rag_repair_output_tokens": 1536,
+      "rag_repair_prompt_bytes": 24000,
+      "rag_regeneration_output_tokens": 2048,
+      "rag_context_selection_output_tokens": 512,
+      "rag_context_selection_prompt_bytes": 16000,
+      "rag_planner_timeout_seconds": 8.0,
+      "rag_repair_timeout_seconds": 8.0,
+      "rag_regeneration_timeout_seconds": 15.0,
+      "rag_context_selection_timeout_seconds": 6.0,
+      "endpoint_hashes": {
+        "chat_base_url": "6c34e60046af0d45d53375c662f7190dbbcf1398017261156114acedd2b152d6",
+        "rerank_url": "6d2565df39a0c727ae82b1fcd562d46b8d90597231cf15d8db468e2504d336aa"
+      },
+      "pricing_hash": "c89a148be40e6752261e3038609a4b68de22fa3bfdaf32f884edffb8480b9bbe",
+      "pipeline": {
+        "code_sha256": "98812a1714bf82047c6fada2b8a42e4320a7f7938b51e12f3474651fa99eaa2c",
+        "prompts_sha256": "c8bfcbe583629ba0e4898cd4cef9af7c4314b22cf80ae40e90206366ef28f274"
+      },
+      "scorer": "2026-10-29-r13:quality-verification-v1",
+      "dependencies": {
+        "python": "3.12.15",
+        "langchain-core": "1.6.2",
+        "langchain-openai": "1.2.2",
+        "openai": "2.54.0",
+        "pydantic": "2.13.5",
+        "SQLAlchemy": "2.0.54",
+        "requests": "2.34.2"
+      }
+    },
+    "fingerprint": "458615a7a54fc2135eb70fa10af0aed6625ca412971ff75d42fb98a79079260f"
+  },
+  "budget": {
+    "allow_model_calls": true,
+    "max_cases": 2,
+    "max_model_calls": 24,
+    "max_tokens": 400000,
+    "reservation_tokens": 32000,
+    "max_seconds": 240
+  },
+  "summary": {
+    "partitions": {
+      "fixed": {
+        "total": 1,
+        "proxy_passed": 1,
+        "false_refusals": 0,
+        "wrong_accepts": 0
+      },
+      "feedback": {
+        "total": 1,
+        "proxy_passed": 1,
+        "false_refusals": 0,
+        "wrong_accepts": 0
+      }
+    },
+    "p95_ms": 8570.78,
+    "usage": {
+      "observed": true,
+      "calls": 8,
+      "reported_total_tokens": 27721,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 8,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0
+    },
+    "budget": {
+      "calls": 8,
+      "charged_tokens": 27721,
+      "unknown_calls": 0,
+      "elapsed_seconds": 14.117,
+      "limited_by": null
+    },
+    "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+  },
+  "records": [
+    {
+      "sample": {
+        "annotation_version": "feedback-review-v1",
+        "answerable": true,
+        "category": "other",
+        "citation_requirement": "all_supporting_sources",
+        "expected_behavior": "answer",
+        "expected_evidence": [
+          {
+            "chunk_id": "1f2a3dd8dc4ced9bb1b4cf728ea2f9413a445a5121c37fb448aeeb88640b29ee",
+            "citation_id": "资料1",
+            "context_sha256": "0c31a253f0eda74604ab21bdc87c68ee10668c5c4fb1d440706ecff92afbb4af",
+            "document": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+            "document_id": "2a194778-9cd4-480a-82c9-2a8c3abb0901",
+            "document_version": 1,
+            "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+            "parent_id": "74c737c6947a5c4ab65e405bafdbb4d590522ea13318da432c6cd5b358844120",
+            "quote": "10. 出厂检验报告或型式检验报告（必填，生产单位选择是否公开）",
+            "quote_sha256": "cb5b59d5469d80718fd5cc2cd8a5886f91b8adf963cc4744e894513c0cea4379",
+            "text": "10. 出厂检验报告或型式检验报告（必填，生产单位选择是否公开）",
+            "vector_generation": "1375f01ec77c466a8bf78e3beabb0654"
+          }
+        ],
+        "fact_alternatives": {
+          "必填": [
+            "必须填报",
+            "必须填写"
+          ],
+          "生产单位选择": [
+            "生产单位自主选择",
+            "生产单位自行选择",
+            "生产单位决定"
+          ]
+        },
+        "fact_assertions": {
+          "必填": {
+            "contradictions": [
+              "无需填报",
+              "不必填报",
+              "可以不填"
+            ],
+            "ignore_remediation_conditionals": false,
+            "polarity": "positive",
+            "use_literal": true
+          },
+          "生产单位选择": {
+            "contradictions": [],
+            "ignore_remediation_conditionals": false,
+            "polarity": "positive",
+            "use_literal": true
+          }
+        },
+        "forbidden_claims": [],
+        "group_key": "90ddc35bdcae004596643986800fd2893153f4de1d41bc1ec6104889a1c3ae37",
+        "id": "FB-1bc913b3-72e8-4762-916e-b4dc32b58a4b",
+        "original_question": "按《推进重点工业产品质量安全追溯的实施意见及附件 2024》所收录原文，追溯数据中的出厂检验报告或型式检验报告，是必须填报并一律向公众公开吗？",
+        "provenance": {
+          "case_revision": 2,
+          "corpus_sha256": "299204c94b79e46f5bdc9ac0a8cba39334073cce015a043006d1b79745653ab6",
+          "observed_retrieval_question": "按《推进重点工业产品质量安全追溯的实施意见及附件 2024》所收录原文，追溯数据中的出厂检验报告或型式检验报告，是必须填报并一律向公众公开吗？",
+          "request_id": "60a1a0e601784ae6a74336eb346ea479",
+          "reviewer_user_id": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "run_id": "60a1a0e6-0178-4ae6-a743-36eb346ea479",
+          "source_binding": "a659fff57141456261774bab1bf50fc9b69aee835e6e37b33d8cd2fee8d5928f"
+        },
+        "question": "按《推进重点工业产品质量安全追溯的实施意见及附件 2024》所收录原文，追溯数据中的出厂检验报告或型式检验报告，是必须填报并一律向公众公开吗？",
+        "reference_answer": "报告必填，但是否公开由生产单位选择；必填不等于必须公开。",
+        "required_facts": [
+          "必填",
+          "生产单位选择",
+          "是否公开"
+        ],
+        "source_groups": [
+          "0b93a5ad-5df6-4d26-9231-6803ecb32441"
+        ],
+        "split": "regression",
+        "role": "fixed"
+      },
+      "request_id": "ed5f8103454b44a9b7c837216a728172",
+      "response": {
+        "answer": "追溯数据中的出厂检验报告或型式检验报告是必须填报的。[资料1]\n该报告并非一律向公众公开，而是由生产单位选择是否公开。[资料1]",
+        "answerable": true,
+        "citations": [
+          {
+            "citation_id": "资料1",
+            "document_id": "2a194778-9cd4-480a-82c9-2a8c3abb0901",
+            "document_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+            "section_path": "推进重点工业产品质量安全追溯的实施意见及附件_2024",
+            "chunk_id": "1f2a3dd8dc4ced9bb1b4cf728ea2f9413a445a5121c37fb448aeeb88640b29ee",
+            "parent_id": "74c737c6947a5c4ab65e405bafdbb4d590522ea13318da432c6cd5b358844120",
+            "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+            "knowledge_base_name": "公共参考"
+          }
+        ],
+        "refusal_reason": null,
+        "timings": {
+          "query_planning_ms": 6.71,
+          "hybrid_retrieval_ms": 1907.72,
+          "rerank_ms": 386.33,
+          "search_total_ms": 2367.85,
+          "context_build_ms": 3.14,
+          "generation_ms": 2737.23,
+          "validation_ms": 5.59,
+          "render_ms": 0.14,
+          "total_ms": 5121.14
+        },
+        "response_type": "answer"
+      },
+      "context": [
+        {
+          "citation_id": "资料1",
+          "document_id": "2a194778-9cd4-480a-82c9-2a8c3abb0901",
+          "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+          "document_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+          "section_path": "推进重点工业产品质量安全追溯的实施意见及附件_2024",
+          "chunk_id": "1f2a3dd8dc4ced9bb1b4cf728ea2f9413a445a5121c37fb448aeeb88640b29ee",
+          "parent_id": "74c737c6947a5c4ab65e405bafdbb4d590522ea13318da432c6cd5b358844120",
+          "content": "## 推进重点工业产品质量安全追溯的实施意见及附件_2024\n\n7. 出厂编号/批次号/序号（必填，公开）\n\n8. 执行强制性国家标准（必填，公开）\n\n9. 生产许可证号/强制性认证证书编号（如涉及则必填，公开）\n\n10. 出厂检验报告或型式检验报告（必填，生产单位选择是否公开）\n\n11. 使用说明书或警示说明（如涉及则必填，公开）\n\n（三）流向信息\n\n1. 销售时间（必填，生产单位选择是否公开）\n\n2. 购方名称（必填，生产单位选择是否公开）\n\n3. 购方地址（必填，生产单位选择是否公开）\n\n4. 购方联系方式（必填，生产单位选择是否公开）\n\n二、销售单位数据要求\n\n（一）销售单位基本信息（注册时一次填报）\n\n1. 销售单位名称（必填，公开）\n\n2. 统一社会信用代码（必填，公开）\n\n3. 销售/注册地址（必填，公开）\n\n4. 联系方式（必填，公开）\n\n5. 营业执照（必填，公开）\n\n（二）流向信息\n\n1. 追溯码（必填）（追溯平台生成）\n\n2. 供应商名称（必填，销售单位选择是否公开）\n\n3. 采购时间（必填，销售单位选择是否公开）\n\n4. 客户名称（必填，销售单位选择是否公开）\n\n5. 售出时间（必填，销售单位选择是否公开）\n\n附件3\n\n免费使用的重点工业产品质量安全追溯技术方案介绍\n\n生产销售单位结合自身特点和需要，自主自愿选择任一种技术方案，实现产品质量安全数据与全国重点工业产品质量安全追溯平台对接。省级市场监管部门组织本地区其他有关部门、行业协会、第三方机构等，将能够实现产品质量安全关键信息追溯的已有追溯系统，与追溯平台进行对接。在前期试点的基础上，现就免费使用的商品条码、物联网标识编码（Ecode）、数字身份码、强制性产品认证（CCC认证）编码等追溯技术方案介绍如下。\n\n一、商品条码追溯技术方案\n\n（一）方案简介\n\n基于全球通用的GS1国际标准，采用商品条码作为追溯码，依托中国物品编码中心建设运维的中国食品（产品）安全追溯平台开展质量安全追溯，生产销售单位根据自身业务情况，选择一品一码、一批一码、一物一码进行追溯，以一维码、二维码、RFID标签等形式标识于产品本体或外包装，生产、销售等环节可按追溯要求填报追溯信息，可通过条码追溯微信小程序、中国编码APP、官方网站（https://www.chinatrace.org）等途径获取产品追溯信息。\n\n（二）适用范围\n\n该方案可应用于工业产品行业全域。特别适用于纺织服装、燃气灶具、家装建材、家用电器、儿童用品、老年用品、食品相关产品等重点工业产品。\n\n（三）费用情况\n\n向商品条码用户免费提供重点工业产品质量安全追溯数据录入及查询展示服务。\n\n（四）应用指引\n\n详见平台用户手册（https://chinatrace.org）。\n\n（五）技术支持\n\n联系系统管理员（010-84267313）获取接口文档与技术支持。\n\n二、物联网标识编码（Ecode）追溯技术方案\n\n（一）方案简介\n\n基于物联网标识体系Ecode系列国家标准，采用我国自主研发的物联网标识Ecode码作为追溯码，依托中国物品编码中心建设运维的国家物联网标识管理与公共服务平台开展质量安全追溯，生产销售单位根据自身业务情况，选用数字码、二维码、RFID标签等形式标识于产品本体或依附于本体的产品标签或铭牌，生产、销售等环节可按追溯要求填报追溯信息，通过国家物联网标识Ecode微信小程序、扫一扫、官方网站（https://www.iotroot.com）等途径获取产品追溯信息。\n\n（二）适用范围",
+          "content_sha256": "0c31a253f0eda74604ab21bdc87c68ee10668c5c4fb1d440706ecff92afbb4af",
+          "document_version": 1,
+          "vector_generation": "1375f01ec77c466a8bf78e3beabb0654"
+        },
+        {
+          "citation_id": "资料2",
+          "document_id": "2a194778-9cd4-480a-82c9-2a8c3abb0901",
+          "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+          "document_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+          "section_path": "推进重点工业产品质量安全追溯的实施意见及附件_2024",
+          "chunk_id": "5300911333e372cd9cdc199b6d1d8facb85d2477915a92b829a72b54f3c448d0",
+          "parent_id": "9faabfe9c9310782d4be23bb0c6a65afbb077511b011f9e35116dd0462c7916b",
+          "content": "## 推进重点工业产品质量安全追溯的实施意见及附件_2024\n\n来源：https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml\n\n发布机构：国家市场监督管理总局（会同县人民政府公开转载）\n\n资料性质：官方中文公开原文，作为知识参考，不替代企业批准的作业文件。\n\n转换说明：从官网正文转为 Markdown，保留原始 HTML；合并表格单元格重复展开。图片未自动转写。\n\n10月15日，市场监管总局发布《关于推进重点工业产品质量安全追溯的实施意见》（以下简称《实施意见》）。《实施意见》明确到2024年底，对电线电缆、燃气器具、电动自行车、冷轧带肋钢筋等9类实施生产许可证、强制性认证管理产品开展质量安全追溯；到2025年底，对所有实施生产许可证和强制性认证管理的产品开展质量安全追溯；到2027年底，对生产许可证、强制性认证管理以外，涉及人身健康和生命财产安全并有强制性国家标准要求的重点工业产品开展质量安全追溯。\n\n市场监管总局关于推进重点工业产品质量安全追溯的实施意见\n\n各省、自治区、直辖市和新疆生产建设兵团市场监管局（厅、委）:\n\n实施重点工业产品质量安全追溯，是落实工业产品生产销售单位质量安全主体责任，强化全过程质量安全风险防控，促进产品质量水平提升，加快全国统一大市场建设的重要举措。现就开展重点工业产品质量安全追溯提出以下实施意见。\n\n一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，依据《中华人民共和国产品质量法》等有关法律规定以及《质量强国建设纲要》要求，建立健全重点工业产品质量安全追溯体系，形成来源可查、去向可追、责任可究的质量安全追溯链条，保障人民群众生命财产安全，营造公平竞争、放心消费的市场环境。\n\n到2024年底，对电线电缆、燃气器具、电动自行车、冷轧带肋钢筋等实施生产许可证、强制性认证管理的重点工业产品（见附件1）开展质量安全追溯。到2025年底，对所有实施生产许可证、强制性认证管理的产品开展质量安全追溯。到2027年底，对生产许可证、强制性认证管理以外，涉及人身健康和生命财产安全并有强制性国家标准要求的重点工业产品开展质量安全追溯。\n\n二、重点工作\n\n（一）构建追溯机制。以统一的追溯码为载体，构建生产单位“源头赋码”，各销售单位、消费者“识码用码”的“一码贯通”机制。通过“码”上归集生产销售单位名称及地址、生产日期、检验合格证明、影响产品质量的流向等质量安全关键信息，实现重点工业产品质量安全追溯。市场监管总局结合产业实际、市场需求和产品质量安全风险等因素，制定发布质量安全追溯重点工业产品清单，组织开展质量安全追溯。\n\n（二）建设追溯平台。市场监管总局推进建设全国重点工业产品质量安全追溯平台（以下简称追溯平台），动态实时归集、追溯重点工业产品质量安全关键信息，为社会公众、生产销售单位、行业组织、监管部门提供查询检索和数字化监管服务。\n\n（三）明确追溯方式。通过商品条码、物联网标识编码（Ecode）、数字身份码、强制性产品认证（CCC认证）编码，或者其他能够提供产品质量安全关键信息的任一种已有追溯码，以及具有产品质量安全关键信息的已有追溯系统，与追溯平台对接并实时获取相关质量安全关键信息。生产销售单位可自主选择任一种能实现质量安全追溯并与追溯平台实现对接的追溯方式。",
+          "content_sha256": "fd39ddbd1eaf8293b77b0c0c7b4111af6e755899a0f641e7ba980452b6e7c47e",
+          "document_version": 1,
+          "vector_generation": "1375f01ec77c466a8bf78e3beabb0654"
+        },
+        {
+          "citation_id": "资料3",
+          "document_id": "2a194778-9cd4-480a-82c9-2a8c3abb0901",
+          "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+          "document_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+          "section_path": "推进重点工业产品质量安全追溯的实施意见及附件_2024",
+          "chunk_id": "7bb5c5b455c3914c0e0f6570b2bb0b768fb041f28f313f2f2ba30a2e618f4dd9",
+          "parent_id": "5506496b03f7128edb21e006d206822897b8e045a4651f8c8d097a8502a2a124",
+          "content": "## 推进重点工业产品质量安全追溯的实施意见及附件_2024\n\n（四）统一技术要求。不同的产品质量安全追溯方式应统一数据要求（见附件2），明确追溯数据内容、赋码途径、公开权限等。尚未实现产品质量安全追溯的生产销售单位，可免费选用商品条码、物联网标识编码（Ecode）、数字身份码、强制性产品认证（CCC认证）编码中任一种追溯技术（方案见附件3），与追溯平台实现对接。对可以不使用信息化追溯的定制产品，生产方和使用方应通过记录台账或签订合同等方式实现产品质量安全追溯，有关记录或台账至少保留3年。\n\n（五）生产销售单位追溯要求。生产单位应如实填报生产单位基本信息、产品信息、流向信息等产品质量安全关键信息。销售单位通过扫码查询等方式查验重点工业产品信息，并按追溯通用数据要求将重点工业产品进货和销售信息归集至追溯平台。\n\n（六）推动相关方积极参与。在制修订重点工业产品国家标准、行业标准时，将质量安全追溯要求纳入其中。鼓励制定专门的质量安全追溯标准。行业协会等社会团体可将实施重点工业产品质量安全追溯作为评价行业内企业质量信用、质量安全水平的重要因素。鼓励生产销售单位、用户单位将重点工业产品质量安全追溯作为招标采购、供应商遴选的重要参考。\n\n（七）保障追溯数据安全。参加追溯的相关方应做好追溯平台和追溯数据的安全防护，确保重点工业产品质量安全追溯数据真实、完整、准确、安全，做到可查证和不可篡改。市场监管总局会同有关部门和单位，加强相关信息基础设施安全保护和网络安全等级保护，实现对追溯平台安全防护技术保障和产品质量安全追溯数据全生命周期安全管理。\n\n各省级市场监管部门要高度重视，加强组织领导，结合实际采取切实有效措施，组织本地区生产销售单位开展重点工业产品质量安全追溯，实现与追溯平台对接。市场监管总局研究制定重点工业产品质量安全追溯管理办法，促进提升质量安全追溯规范化、法治化水平。\n\n附件：\n\n1. 第一批重点工业产品质量安全追溯清单\n\n2. 重点工业产品质量安全追溯通用数据要求\n\n3. 免费使用的重点工业产品质量安全追溯技术方案介绍\n\n市场监管总局\n\n2024年10月9日\n\n附件1\n\n第一批重点工业产品质量安全追溯清单\n\n产品类别|产品单元\n电线电缆|架空绞线 塑料绝缘控制电缆 挤包绝缘低压电力电缆 挤包绝缘中压电力电缆 架空绝缘电缆\n燃气器具|燃气用具连接用软管 燃气紧急 切断阀 家用燃气灶具 商用燃气燃烧器 具 瓶装液化石油气调压器（家用、商用）\n消防产品|家用可燃气体探测器\n电动自行车|电动自行车 电动自行车用充电器 电动自行车用蓄电池\n安全帽|普通型安全帽 特殊型安全帽\n胶合板|普通胶合板 难燃胶合板\n细木工板|普通细木工板 难燃细木工板\n冷轧带肋钢筋|普通钢筋混凝土用 预应力混凝土用\n钢丝绳|单层股钢丝绳 阻旋转钢丝绳 平行捻密实钢丝绳 压实（股）钢丝绳 异形股钢丝绳 单股钢丝绳 密封钢丝绳 扁钢丝绳 编织钢丝绳\n\n附件2\n\n重点工业产品质量安全追溯通用数据要求\n\n一、生产单位数据要求\n\n（一）生产单位基本信息（注册时一次填报）\n\n1. 生产单位名称（必填，公开）\n\n2. 统一社会信用代码（必填，公开）\n\n3. 生产/注册地址（必填，公开）\n\n4. 联系方式（必填，公开）\n\n5. 营业执照（必填，公开）\n\n（二）产品信息\n\n1. 追溯码（必填一种，公开）\n\n2. 产品名称（必填，公开）\n\n3. 产品类型（必填，公开）\n\n4. 规格型号（必填，公开）\n\n5. 生产日期（必填，公开）\n\n6. 质保期限（如涉及则必填，公开）",
+          "content_sha256": "4e82fca197c812d862ba31d2e524e3f10f05a747b8033e3d7233c4aa2c69c9ad",
+          "document_version": 1,
+          "vector_generation": "1375f01ec77c466a8bf78e3beabb0654"
+        },
+        {
+          "citation_id": "资料4",
+          "document_id": "2a194778-9cd4-480a-82c9-2a8c3abb0901",
+          "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+          "document_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+          "section_path": "推进重点工业产品质量安全追溯的实施意见及附件_2024",
+          "chunk_id": "23b32bfde6977cf8209720ac68057d6c6d806dcd9f4c2aa5f0cd5851b79f2c8b",
+          "parent_id": "0f1594a826327fee38cced8f4e628fe3d7a0a4f64aed9f2410f81c55b1b71aab",
+          "content": "## 推进重点工业产品质量安全追溯的实施意见及附件_2024\n\n采用一物一码本体标识，追溯精度高，可应用于工业产品行业全域，特别适用于涉及重大民生的高风险工业产品（如电线电缆、燃气器具及配件产品、电动自行车、电力设备、火灾报警产品等）。\n\n（三）费用情况\n\n向注册用户免费提供重点工业产品质量安全追溯数据录入及查询展示服务。\n\n（四）应用指引\n\n详见平台用户手册（https://www.iotroot.com）。\n\n（五）技术支持\n\n联系系统管理员（010-84295722）获取接口文档与技术支持。\n\n三、数字身份码追溯技术方案\n\n（一）方案简介\n\n基于ISO国际二维码通用标准，采用数字身份码作为追溯码，依托中国航天科工集团所属公司建设运维的产品数字身份码质量安全追溯平台开展质量安全追溯，生产销售单位根据自身业务情况，实现产品品类（一品一码）、产品批次（一批一码）、产品单品（一物一码）原料采购、生产加工、流通销售全链条质量信息追踪追溯。采用二维码、RFID标签等作为数据载体以碳带打印、喷墨打印、激光喷码、油墨印刷等多种附着方式印制于产品本体或外包装，生产、销售等环节可按追溯要求填报追溯信息，通过网页端、移动端扫码方式提供查询展示。\n\n（二）适用范围\n\n平台适用于安全风险隐患大、社会反映强烈的重点监管工业产品，可应用于工业产品行业全域。\n\n（三）费用情况\n\n向数字身份码用户免费提供重点工业产品质量安全追溯数据录入及查询展示服务。\n\n（四）应用指引\n\n详见平台用户手册（https://www.hgzcloud.com）。\n\n（五）技术支持\n\n联系平台管理员（0731-88149520）获取接口文档与技术支持。\n\n四、CCC认证产品质量安全追溯技术方案\n\n（一）方案简介\n\n依托全国认证认可信息公共服务平台，对实施CCC认证管理的相关产品实施质量安全追溯，并纳入全国重点工业产品质量安全追溯平台统一管理。实施CCC认证管理的相关生产单位自主选择商品条码、物联网标识编码（Ecode）、数字身份码等形式的追溯码，与CCC认证证书编码或标志编号相关联，通过认证活动中的数据填报或相关追溯系统对接等方式，经全国认证认可信息公共服务平台比对查验后录入至全国重点工业产品质量安全追溯平台（有关具体技术要求详见相关CCC认证实施规则文件等）。\n\n（二）适用范围\n\n适用于对实施CCC认证管理的全部产品类别，主要包括电线电缆、电路开关及保护装置、低压电器、电动工具、家用电器、电子产品及安全附件、照明电器、车辆及安全附件、消防产品、建材产品、儿童用品、防爆电气、家用燃气器具；具体产品目录详见《市场监管总局关于发布强制性产品认证目录描述与界定表的公告》（国家市场监督管理总局公告2023年第36号）。\n\n（三）费用情况\n\n免费提供CCC认证产品追溯数据查验展示服务。\n\n（四）应用指引\n\n详见全国认证认可信息公共服务平台相关技术用户手册（http://cx.cnca.cn/CertECloud/index/index/page）。\n\n（五）技术支持\n\n联系全国认证认可信息公共服务平台相关技术支持管理员获取接口文档与技术支持。",
+          "content_sha256": "04fc6c1226e10da81a4725c01e711a673d11eb198b4b9d8a4ee244d8496ad279",
+          "document_version": 1,
+          "vector_generation": "1375f01ec77c466a8bf78e3beabb0654"
+        }
+      ],
+      "observations_complete": true,
+      "metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "behavior_contract_version": "response-type-v1",
+        "behavior_correct": true,
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "forbidden_matches": [],
+      "proxy_pass": true,
+      "latency_ms": 5121.14,
+      "response_binding": "1c4301738c06e8c7c7c37601c39ba96b840d30dd4d8aa144df1cbd4a333602af",
+      "human_review": null
+    },
+    {
+      "sample": {
+        "annotation_version": "feedback-review-v1",
+        "answerable": true,
+        "category": "context",
+        "citation_requirement": "all_supporting_sources",
+        "expected_behavior": "answer",
+        "expected_evidence": [
+          {
+            "chunk_id": "4fb69014d4f9e7931165cf868130efe816ca162a955fefe584cc2f7d0c574d2f",
+            "citation_id": "资料4",
+            "context_sha256": "6a7210bf619242b95eb523b920ce94dcc295e8b9f81bc9480e8e4d98bc8069c3",
+            "document": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+            "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+            "document_version": 1,
+            "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+            "parent_id": "227cb6fc71c42f4d07760314edc9f1aa3bf364c3d4be716a2e900c4869096446",
+            "quote": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.1 以数显千分表为标准器测量作动器测量范围(0~150)mm",
+            "quote_sha256": "f86ff8c61ae200c59a4fdd4cc5fde1d550aacc169e9378983911282b599621e2",
+            "text": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.1 以数显千分表为标准器测量作动器测量范围(0~150)mm",
+            "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+          },
+          {
+            "chunk_id": "a9937e290249bfdad2fe6474bfda0015b09e2c60d4f74b2d3e57e1b1212bbc93",
+            "citation_id": "资料3",
+            "context_sha256": "e84a7d587aa3a112514f4fb6ddab44bb7b59da487e2d33999dafe6c5584f8927",
+            "document": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+            "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+            "document_version": 1,
+            "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+            "parent_id": "8f3c45f3d2e0041230b9da78fb8e635051de5df94aaaf46738167f238b26431b",
+            "quote": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm",
+            "quote_sha256": "733faf2bcc88402e97d3b2f2a501af7ab7901375d387a05bdec1549f464feccc",
+            "text": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm",
+            "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+          }
+        ],
+        "fact_alternatives": {
+          "0～150mm": [
+            "(0~150)mm",
+            "0~150mm",
+            "0至150mm"
+          ],
+          "150～3000mm": [
+            "(150~3000)mm",
+            "150~3000mm",
+            "150至3000mm"
+          ]
+        },
+        "forbidden_claims": [],
+        "group_key": "a391e705930f941de0ce580ea8102cadc519f5a88eac85ba5b5980cf8171ebe2",
+        "id": "FB-d3c9c3bb-9b76-4269-a5da-e16f9165897b",
+        "original_question": "按《作动器校准规范 JJF吉102-2022》所收录原文，作动器位移范围0～150mm和150～3000mm时，规范分别采用什么标准器？",
+        "provenance": {
+          "case_revision": 2,
+          "corpus_sha256": "299204c94b79e46f5bdc9ac0a8cba39334073cce015a043006d1b79745653ab6",
+          "observed_retrieval_question": "按《作动器校准规范 JJF吉102-2022》所收录原文，作动器位移范围0～150mm和150～3000mm时，规范分别采用什么标准器？",
+          "request_id": "a07433620cd84e9f9aa79de3cd8438f1",
+          "reviewer_user_id": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "run_id": "a0743362-0cd8-4e9f-9aa7-9de3cd8438f1",
+          "source_binding": "975945d43bf3eaa86e51c015976f1e5fa0ee621fff024e5dd73535a5ef56b3ac"
+        },
+        "question": "按《作动器校准规范 JJF吉102-2022》所收录原文，作动器位移范围0～150mm和150～3000mm时，规范分别采用什么标准器？",
+        "reference_answer": "0～150mm采用数显千分表；150～3000mm采用跟踪仪，正文校准方法为激光跟踪仪。",
+        "required_facts": [
+          "0～150mm",
+          "数显千分表",
+          "150～3000mm",
+          "跟踪仪"
+        ],
+        "source_groups": [
+          "0b93a5ad-5df6-4d26-9231-6803ecb32441"
+        ],
+        "split": "regression",
+        "role": "feedback"
+      },
+      "request_id": "c0dd282a729c41c1a3505b8b7f89cca7",
+      "response": {
+        "answer": "当位移范围为0~150mm时，规范采用数显千分表作为标准器。[资料4]\n当位移范围为150~3000mm时，规范采用激光跟踪仪（以跟踪仪为标准器）作为标准器。[资料3]",
+        "answerable": true,
+        "citations": [
+          {
+            "citation_id": "资料4",
+            "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+            "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+            "section_path": "6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.1 以数显千分表为标准器测量作动器测量范围(0~150)mm",
+            "chunk_id": "4fb69014d4f9e7931165cf868130efe816ca162a955fefe584cc2f7d0c574d2f",
+            "parent_id": "227cb6fc71c42f4d07760314edc9f1aa3bf364c3d4be716a2e900c4869096446",
+            "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+            "knowledge_base_name": "公共参考"
+          },
+          {
+            "citation_id": "资料3",
+            "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+            "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+            "section_path": "6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm",
+            "chunk_id": "a9937e290249bfdad2fe6474bfda0015b09e2c60d4f74b2d3e57e1b1212bbc93",
+            "parent_id": "8f3c45f3d2e0041230b9da78fb8e635051de5df94aaaf46738167f238b26431b",
+            "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+            "knowledge_base_name": "公共参考"
+          }
+        ],
+        "refusal_reason": null,
+        "timings": {
+          "query_planning_ms": 2706.34,
+          "agent_decision_ms": 1474.65,
+          "agent_tool_ms": 0.0,
+          "hybrid_retrieval_ms": 624.68,
+          "rerank_ms": 424.33,
+          "search_total_ms": 2665.47,
+          "context_build_ms": 2.74,
+          "generation_ms": 3194.69,
+          "validation_ms": 1.19,
+          "render_ms": 0.04,
+          "total_ms": 8570.78
+        },
+        "response_type": "answer"
+      },
+      "context": [
+        {
+          "citation_id": "资料1",
+          "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+          "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+          "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+          "section_path": "(",
+          "chunk_id": "5ae02725314e07b526241f98284f08dc37a2994a9fbabb584265fade648cf871",
+          "parent_id": "1b687134d2362b58457f11a8b59446664a4388f7d4bb180fcc81d58347712a28",
+          "content": "## (\n\nF J J",
+          "content_sha256": "e4647232a4a59b125ccbd551a5f47ab2fa0420641a40639c177efeaeb375bddb",
+          "document_version": 1,
+          "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+        },
+        {
+          "citation_id": "资料2",
+          "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+          "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+          "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+          "section_path": "4 计量特性",
+          "chunk_id": "33fc803d02fa3132881f5f65d20deec4dd2165798f4407bfac8ada721695775b",
+          "parent_id": "0e1b0c864021c8225cb3dc6515f84d908ab83f9bbb81e716c44516a7c9fb8eff",
+          "content": "## 4 计量特性\n\n4.1 外观:作动器应有永久性铭牌。铭牌上应有:名称、型号、规格、准确度等级、制造厂名、出厂编号及日期。\n作动器应安装在稳固的基础上,其工作环境应清洁,应具有足够的刚性和试验空间以便进行各种试验。作动器无永久变形和可见的外部渗油。\n4.2 试验力载荷:压向≤5000kN,拉向≤500 kN,(力值校准范围并无硬性规定,如作动器原理相同或相似,大力值作动器也可参考本规范)进行分档标定,示值误差从每档满量程的20%点起测,满足允差范围±1%或±2%。校准方向:压向为正。施加试验力的过程应平稳、连续、无冲击和颤动现象。\n1 JJF(吉)102-2022 4.3 称重传感器,过载能力 150%,示值误差±1% 或±2%,力传感器,过载能力 110%,示值误差±1% 或±2%。\n4.4 作动器位移:0~3000mm 以内,示值误差从满量程的 20%点起测,满足允差范围±0.5%FS。位移传感器必须与作动器同轴安装。\n4.5 作动器整体应包含但不限于:主机框架(含作动器主体),伺服阀,力传感器(拉力、压力),位移传感器,油源(气源),电机,高压泵,控制系统等部件。",
+          "content_sha256": "27bdbd8d577de0faa5cae1336f1d093eb3e9e35337a6c65b0e4cce027cd45de6",
+          "document_version": 1,
+          "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+        },
+        {
+          "citation_id": "资料3",
+          "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+          "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+          "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+          "section_path": "6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm",
+          "chunk_id": "a9937e290249bfdad2fe6474bfda0015b09e2c60d4f74b2d3e57e1b1212bbc93",
+          "parent_id": "8f3c45f3d2e0041230b9da78fb8e635051de5df94aaaf46738167f238b26431b",
+          "content": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm\n\n长度测量轴示值误差用激光跟踪仪为标准器进行校准。在测量范围内至少选取均匀分布的 5 点作为校准点。在作动器伸缩方向安装固定好跟踪球,跟踪球安装在作动器的移动工作台上,在作动器起始位置将激光跟踪仪及作动器显示器清零,移动作动器的移动工作台至各校准点,作动器示值与激光跟踪仪的示值之差即为各点示值误差,上述过程重复测量 3 次,取平均值作为测量结果,测量结果中取其最大值为长度测量轴的示值误差。",
+          "content_sha256": "e84a7d587aa3a112514f4fb6ddab44bb7b59da487e2d33999dafe6c5584f8927",
+          "document_version": 1,
+          "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+        },
+        {
+          "citation_id": "资料4",
+          "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+          "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+          "document_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+          "section_path": "6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.1 以数显千分表为标准器测量作动器测量范围(0~150)mm",
+          "chunk_id": "4fb69014d4f9e7931165cf868130efe816ca162a955fefe584cc2f7d0c574d2f",
+          "parent_id": "227cb6fc71c42f4d07760314edc9f1aa3bf364c3d4be716a2e900c4869096446",
+          "content": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.1 以数显千分表为标准器测量作动器测量范围(0~150)mm\n\n长度测量轴示值误差用数显千分表为标准器进行校准。在测量范围内至少选取均匀分布的 5 点作为校准点。在作动器伸缩方向安装固定好千分表,要保持数显千分表与移动方向平行,千分表安装在作动器的移动液压轴上,要确保千分表与测量轴保持平行,在作动器起始位置将数显千分表及作动器显示器清零,移动作动器的移动轴向位移至各校准点,作动器示值与作动器的示值之差即为各点示值误差,上述过程重复测量 3 次,取平均值作为测量结果,测量结果中取其最大值为长度测量轴的示值误差。",
+          "content_sha256": "6a7210bf619242b95eb523b920ce94dcc295e8b9f81bc9480e8e4d98bc8069c3",
+          "document_version": 1,
+          "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+        }
+      ],
+      "observations_complete": true,
+      "metrics": {
+        "answerability_correct": true,
+        "missing_facts": [],
+        "behavior_contract_version": "response-type-v1",
+        "behavior_correct": true,
+        "contradictory_facts": {},
+        "fact_coverage": 1.0,
+        "all_required_sources_cited": true,
+        "citation_source_recall": 1.0,
+        "citation_integrity": true,
+        "cited_evidence_recall": 1.0,
+        "automatic_proxy_pass": true,
+        "semantic_correctness": "requires_manual_review",
+        "faithfulness": "requires_manual_review",
+        "known_issue": null
+      },
+      "forbidden_matches": [],
+      "proxy_pass": true,
+      "latency_ms": 8570.78,
+      "response_binding": "8d11691761168204bae992acaf388a7ff2c9f508727368818986ef92ccd0ef6f",
+      "human_review": null
+    }
+  ]
+}

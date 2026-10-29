@@ -1,0 +1,74 @@
+{
+  "annotation_version": "feedback-review-v1",
+  "answerable": true,
+  "category": "context",
+  "citation_requirement": "all_supporting_sources",
+  "expected_behavior": "answer",
+  "expected_evidence": [
+    {
+      "chunk_id": "4fb69014d4f9e7931165cf868130efe816ca162a955fefe584cc2f7d0c574d2f",
+      "citation_id": "资料4",
+      "context_sha256": "6a7210bf619242b95eb523b920ce94dcc295e8b9f81bc9480e8e4d98bc8069c3",
+      "document": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+      "document_version": 1,
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "parent_id": "227cb6fc71c42f4d07760314edc9f1aa3bf364c3d4be716a2e900c4869096446",
+      "quote": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.1 以数显千分表为标准器测量作动器测量范围(0~150)mm",
+      "quote_sha256": "f86ff8c61ae200c59a4fdd4cc5fde1d550aacc169e9378983911282b599621e2",
+      "text": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.1 以数显千分表为标准器测量作动器测量范围(0~150)mm",
+      "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+    },
+    {
+      "chunk_id": "a9937e290249bfdad2fe6474bfda0015b09e2c60d4f74b2d3e57e1b1212bbc93",
+      "citation_id": "资料3",
+      "context_sha256": "e84a7d587aa3a112514f4fb6ddab44bb7b59da487e2d33999dafe6c5584f8927",
+      "document": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+      "document_version": 1,
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "parent_id": "8f3c45f3d2e0041230b9da78fb8e635051de5df94aaaf46738167f238b26431b",
+      "quote": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm",
+      "quote_sha256": "733faf2bcc88402e97d3b2f2a501af7ab7901375d387a05bdec1549f464feccc",
+      "text": "## 6 校准项目和校准方法 > 6.3 位移 > 6.3.1 长度测量轴(Z轴)示值误差 > 6.3.1.2 以跟踪仪为标准器测量作动器测量范围(150~3000)mm",
+      "vector_generation": "2a0b3c5daaa940ab8a64292dad4efdec"
+    }
+  ],
+  "fact_alternatives": {
+    "0～150mm": [
+      "(0~150)mm",
+      "0~150mm",
+      "0至150mm"
+    ],
+    "150～3000mm": [
+      "(150~3000)mm",
+      "150~3000mm",
+      "150至3000mm"
+    ]
+  },
+  "forbidden_claims": [],
+  "group_key": "a391e705930f941de0ce580ea8102cadc519f5a88eac85ba5b5980cf8171ebe2",
+  "id": "FB-d3c9c3bb-9b76-4269-a5da-e16f9165897b",
+  "original_question": "按《作动器校准规范 JJF吉102-2022》所收录原文，作动器位移范围0～150mm和150～3000mm时，规范分别采用什么标准器？",
+  "provenance": {
+    "case_revision": 2,
+    "corpus_sha256": "299204c94b79e46f5bdc9ac0a8cba39334073cce015a043006d1b79745653ab6",
+    "observed_retrieval_question": "按《作动器校准规范 JJF吉102-2022》所收录原文，作动器位移范围0～150mm和150～3000mm时，规范分别采用什么标准器？",
+    "request_id": "a07433620cd84e9f9aa79de3cd8438f1",
+    "reviewer_user_id": "86ac24eb-c183-45f3-ab8c-87034841b602",
+    "run_id": "a0743362-0cd8-4e9f-9aa7-9de3cd8438f1",
+    "source_binding": "975945d43bf3eaa86e51c015976f1e5fa0ee621fff024e5dd73535a5ef56b3ac"
+  },
+  "question": "按《作动器校准规范 JJF吉102-2022》所收录原文，作动器位移范围0～150mm和150～3000mm时，规范分别采用什么标准器？",
+  "reference_answer": "0～150mm采用数显千分表；150～3000mm采用跟踪仪，正文校准方法为激光跟踪仪。",
+  "required_facts": [
+    "0～150mm",
+    "数显千分表",
+    "150～3000mm",
+    "跟踪仪"
+  ],
+  "source_groups": [
+    "0b93a5ad-5df6-4d26-9231-6803ecb32441"
+  ],
+  "split": "regression"
+}
