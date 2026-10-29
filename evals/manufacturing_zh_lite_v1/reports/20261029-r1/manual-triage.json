@@ -1,0 +1,43 @@
+{
+  "reviewer": "assistant_non_independent",
+  "purpose": "triage_only_not_semantic_grading",
+  "score_changed": false,
+  "review_candidates_do_not_imply_pass": true,
+  "groups": {
+    "equivalent_wording_review_candidates": [
+      "MFGZH-Q002",
+      "MFGZH-Q012",
+      "MFGZH-Q020",
+      "MFGZH-Q031",
+      "MFGZH-Q049"
+    ],
+    "missing_facts": [
+      "MFGZH-Q008",
+      "MFGZH-Q019",
+      "MFGZH-Q034"
+    ],
+    "evidence_or_context_review": [
+      "MFGZH-Q025",
+      "MFGZH-Q043"
+    ],
+    "ocr_retained_known_failures": [
+      "MFGZH-Q068",
+      "MFGZH-Q071",
+      "MFGZH-Q077"
+    ],
+    "missing_clarification": [
+      "MFGZH-N09",
+      "MFGZH-N25",
+      "MFGZH-N26",
+      "MFGZH-N28",
+      "MFGZH-N30"
+    ],
+    "response_type_boundary_review_candidates": [
+      "MFGZH-N16",
+      "MFGZH-N21"
+    ],
+    "generation_timeout": [
+      "MFGZH-Q042"
+    ]
+  }
+}

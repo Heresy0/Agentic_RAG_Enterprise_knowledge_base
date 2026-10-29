@@ -1,0 +1,941 @@
+{
+  "tenant_id": "62721f0d-54b2-4361-8596-58585eb464ea",
+  "chunking_version": "structured-v7",
+  "cleaning_version": "conservative-v2",
+  "parser_sha256": "3728b6ecc7ae1130a02b3ef1a9b9e4176f89e1cd7c118418a402c64cfbe9dd3f",
+  "all_checks_passed": true,
+  "documents": 16,
+  "ready_documents": 16,
+  "chunks": 986,
+  "vectors": 986,
+  "parents": 503,
+  "jobs": {
+    "succeeded": 16
+  },
+  "model_config": {
+    "qa_snapshots_enabled": true,
+    "conversation_memory_enabled": false,
+    "chat_model": "qwen3.7-flash",
+    "embedding_model": "text-embedding-v4",
+    "rerank_model": "qwen3-rerank"
+  },
+  "records": [
+    {
+      "source_id": "MFG-ZH01",
+      "document_id": "0310a2bb-f1cb-407e-80c2-e393028a1ef7",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+      "status": "ready",
+      "sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "version": 1,
+      "chunk_count": 24,
+      "vector_count": 24,
+      "parent_count": 9,
+      "parser_counts": {
+        "pdfplumber": 24
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.746184+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 41,
+            "changed_stages": 9,
+            "applied_rules": {
+              "unicode_nfkc": 9
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 24,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 9
+      }
+    },
+    {
+      "source_id": "MFG-ZH02",
+      "document_id": "fca583f4-df87-486d-8f21-533a2b193342",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+      "status": "ready",
+      "sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "version": 1,
+      "chunk_count": 83,
+      "vector_count": 83,
+      "parent_count": 4,
+      "parser_counts": {
+        "markdown": 83
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.672645+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "applicability": "文档:MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 84,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 83,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 4
+      }
+    },
+    {
+      "source_id": "MFG-ZH03",
+      "document_id": "2a194778-9cd4-480a-82c9-2a8c3abb0901",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+      "status": "ready",
+      "sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "version": 1,
+      "chunk_count": 115,
+      "vector_count": 115,
+      "parent_count": 4,
+      "parser_counts": {
+        "markdown": 115
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.601990+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "applicability": "文档:MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 116,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 115,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 4
+      }
+    },
+    {
+      "source_id": "MFG-ZH04",
+      "document_id": "578de164-393d-4b45-bf95-22da60f54f64",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+      "status": "ready",
+      "sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "version": 1,
+      "chunk_count": 20,
+      "vector_count": 20,
+      "parent_count": 5,
+      "parser_counts": {
+        "pdfplumber": 20
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.529188+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 33,
+            "changed_stages": 10,
+            "applied_rules": {
+              "unicode_nfkc": 10
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 20,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 5
+      }
+    },
+    {
+      "source_id": "MFG-ZH05",
+      "document_id": "59529fdf-26e0-4e21-9a53-9e02dec4934b",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+      "status": "ready",
+      "sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "version": 1,
+      "chunk_count": 90,
+      "vector_count": 90,
+      "parent_count": 53,
+      "parser_counts": {
+        "pdfplumber": 34,
+        "pdfplumber+pdfplumber-layout": 15,
+        "pdfplumber-layout": 41
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.450269+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 145,
+            "changed_stages": 33,
+            "applied_rules": {
+              "unicode_nfkc": 26,
+              "normalize_empty_cells": 4,
+              "normalize_cell_whitespace": 6,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 90,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 53
+      }
+    },
+    {
+      "source_id": "MFG-ZH06",
+      "document_id": "26a9ce96-dd22-45b2-9b59-7e8b43dfec08",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+      "status": "ready",
+      "sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "version": 1,
+      "chunk_count": 49,
+      "vector_count": 49,
+      "parent_count": 33,
+      "parser_counts": {
+        "pdfplumber": 29,
+        "pdfplumber-layout": 11,
+        "pdfplumber+pdfplumber-layout": 9
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.357826+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 88,
+            "changed_stages": 25,
+            "applied_rules": {
+              "unicode_nfkc": 20,
+              "normalize_cell_whitespace": 4,
+              "normalize_empty_cells": 3
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 49,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 33
+      }
+    },
+    {
+      "source_id": "MFG-ZH07",
+      "document_id": "0e9446c9-0f50-4088-bd37-f4215ed46664",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+      "status": "ready",
+      "sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "version": 1,
+      "chunk_count": 212,
+      "vector_count": 212,
+      "parent_count": 136,
+      "parser_counts": {
+        "pdfplumber-layout": 162,
+        "pdfplumber+pdfplumber-layout": 10,
+        "pdfplumber": 40
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.277363+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 310,
+            "changed_stages": 66,
+            "applied_rules": {
+              "unicode_nfkc": 39,
+              "normalize_empty_cells": 22,
+              "normalize_cell_whitespace": 15,
+              "drop_empty_table_rows": 5
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 212,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 136
+      }
+    },
+    {
+      "source_id": "MFG-ZH08",
+      "document_id": "71a85a7d-194f-42a1-9a95-d4abb64187ad",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+      "status": "ready",
+      "sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "version": 1,
+      "chunk_count": 48,
+      "vector_count": 48,
+      "parent_count": 25,
+      "parser_counts": {
+        "pdfplumber": 21,
+        "pdfplumber-layout": 22,
+        "pdfplumber+pdfplumber-layout": 5
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.183543+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 88,
+            "changed_stages": 25,
+            "applied_rules": {
+              "unicode_nfkc": 18,
+              "normalize_cell_whitespace": 7,
+              "normalize_empty_cells": 6,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 48,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 25
+      }
+    },
+    {
+      "source_id": "MFG-ZH09",
+      "document_id": "6c4b465f-6517-47a1-be74-93d3b02c1f62",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "status": "ready",
+      "sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "version": 1,
+      "chunk_count": 62,
+      "vector_count": 62,
+      "parent_count": 30,
+      "parser_counts": {
+        "pdfplumber": 25,
+        "pdfplumber+pdfplumber-layout": 10,
+        "pdfplumber-layout": 27
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.091515+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 108,
+            "changed_stages": 32,
+            "applied_rules": {
+              "unicode_nfkc": 21,
+              "normalize_cell_whitespace": 11,
+              "normalize_empty_cells": 9,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 62,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 30
+      }
+    },
+    {
+      "source_id": "MFG-ZH10",
+      "document_id": "7948bb5e-c004-4995-994c-5c08f0874e3d",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+      "status": "ready",
+      "sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "version": 1,
+      "chunk_count": 76,
+      "vector_count": 76,
+      "parent_count": 53,
+      "parser_counts": {
+        "pdfplumber+pdfplumber-layout": 1,
+        "pdfplumber-layout": 46,
+        "pdfplumber": 29
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:13.001438+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 122,
+            "changed_stages": 28,
+            "applied_rules": {
+              "unicode_nfkc": 19,
+              "normalize_cell_whitespace": 7,
+              "normalize_empty_cells": 3,
+              "drop_empty_table_rows": 1
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 76,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 53
+      }
+    },
+    {
+      "source_id": "MFG-ZH12",
+      "document_id": "701cff82-df4f-4e2e-bdb5-6995dc36fc27",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "version": 1,
+      "chunk_count": 31,
+      "vector_count": 31,
+      "parent_count": 22,
+      "parser_counts": {
+        "ocr": 31
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:12.907558+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 31,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 50,
+            "changed_stages": 12,
+            "applied_rules": {
+              "normalize_horizontal_space": 8,
+              "strip_edges": 12,
+              "unicode_nfkc": 10
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 31,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 22
+      }
+    },
+    {
+      "source_id": "MFG-ZH14",
+      "document_id": "81178a14-3855-4f7b-92f1-e45121b4eeff",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "version": 1,
+      "chunk_count": 25,
+      "vector_count": 25,
+      "parent_count": 21,
+      "parser_counts": {
+        "ocr": 25
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:12.770673+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 25,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 45,
+            "changed_stages": 11,
+            "applied_rules": {
+              "normalize_horizontal_space": 6,
+              "strip_edges": 11,
+              "unicode_nfkc": 7
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 25,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 21
+      }
+    },
+    {
+      "source_id": "MFG-ZH15",
+      "document_id": "883ca56a-d924-4fcd-bcb9-753dc9adce9f",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "version": 1,
+      "chunk_count": 31,
+      "vector_count": 31,
+      "parent_count": 24,
+      "parser_counts": {
+        "ocr": 31
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:12.634798+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 31,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 52,
+            "changed_stages": 14,
+            "applied_rules": {
+              "unicode_nfkc": 10,
+              "normalize_horizontal_space": 10,
+              "strip_edges": 14
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 31,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 24
+      }
+    },
+    {
+      "source_id": "MFG-ZH16",
+      "document_id": "342b2816-e676-4bc1-9bda-5e724c72956e",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "version": 1,
+      "chunk_count": 26,
+      "vector_count": 26,
+      "parent_count": 22,
+      "parser_counts": {
+        "ocr": 26
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:12.506887+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 26,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 47,
+            "changed_stages": 13,
+            "applied_rules": {
+              "normalize_horizontal_space": 8,
+              "strip_edges": 13,
+              "unicode_nfkc": 8
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 26,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 22
+      }
+    },
+    {
+      "source_id": "MFG-ZH17",
+      "document_id": "5ca36cea-e476-4045-a943-bc886feaa384",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+      "status": "ready",
+      "sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "version": 1,
+      "chunk_count": 49,
+      "vector_count": 49,
+      "parent_count": 28,
+      "parser_counts": {
+        "pdfplumber": 31,
+        "pdfplumber-layout": 16,
+        "pdfplumber+pdfplumber-layout": 2
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:12.385245+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 80,
+            "changed_stages": 23,
+            "applied_rules": {
+              "unicode_nfkc": 19,
+              "normalize_cell_whitespace": 4,
+              "normalize_empty_cells": 3,
+              "drop_empty_table_rows": 1
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 49,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 28
+      }
+    },
+    {
+      "source_id": "MFG-ZH18",
+      "document_id": "cc0850a7-9e97-4385-acc5-8714ee8581fb",
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "file_name": "MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+      "status": "ready",
+      "sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "version": 1,
+      "chunk_count": 45,
+      "vector_count": 45,
+      "parent_count": 34,
+      "parser_counts": {
+        "pdfplumber-layout": 17,
+        "pdfplumber": 25,
+        "pdfplumber+pdfplumber-layout": 3
+      },
+      "metadata": {
+        "publication": {
+          "state": "published",
+          "revision": 3,
+          "document_version": 1,
+          "content_hash": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+          "chunking_version": "structured-v7",
+          "reviewed_by": "86ac24eb-c183-45f3-ab8c-87034841b602",
+          "reviewed_at": "2026-10-29T13:26:12.280044+00:00",
+          "review_note": "助手非独立面试演示复核：核对原件哈希、既有解析记录和选题范围，保留OCR质量标记及3道已知失败，未作全文人工校勘。",
+          "ocr_limitation_acknowledged": true
+        },
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 77,
+            "changed_stages": 17,
+            "applied_rules": {
+              "unicode_nfkc": 14,
+              "normalize_cell_whitespace": 3,
+              "normalize_empty_cells": 3,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 45,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 34
+      }
+    }
+  ]
+}
