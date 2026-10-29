@@ -1,0 +1,13 @@
+{
+  "tenant_id": "57addd95-bc9d-48a9-8c17-ee51c540a3b9",
+  "application_python_ref": "d8fe232",
+  "delivery_source_ref": "ea20d7d",
+  "parser_sha256": "3728b6ecc7ae1130a02b3ef1a9b9e4176f89e1cd7c118418a402c64cfbe9dd3f",
+  "index_audit_sha256": "e81dadb612e5a1c6aefe8d66d08dce6108a8c7c2aa66ba5e4c5bb64434fe69dc",
+  "acceptance_python_fingerprints": [
+    "647dead0506b79b34c9ab48183df95bb4fb5589665ff57afc18d628dc5196418"
+  ],
+  "frozen_questions_unchanged": true,
+  "heldout_caveat": "Source labels previously informed offline parsing checks; this is not an independent blind evaluation.",
+  "vision": "deferred_by_user_no_configuration_no_calls_no_score"
+}

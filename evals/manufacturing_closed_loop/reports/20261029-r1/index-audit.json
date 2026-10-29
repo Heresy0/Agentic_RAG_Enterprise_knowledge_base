@@ -1,0 +1,572 @@
+{
+  "tenant_id": "57addd95-bc9d-48a9-8c17-ee51c540a3b9",
+  "chunking_version": "structured-v7",
+  "cleaning_version": "conservative-v2",
+  "parser_sha256": "3728b6ecc7ae1130a02b3ef1a9b9e4176f89e1cd7c118418a402c64cfbe9dd3f",
+  "all_checks_passed": true,
+  "documents": 18,
+  "ready_documents": 17,
+  "chunks": 1034,
+  "vectors": 1034,
+  "parents": 538,
+  "jobs": {
+    "succeeded": 17,
+    "failed": 1
+  },
+  "model_config": {
+    "qa_snapshots_enabled": true,
+    "conversation_memory_enabled": false,
+    "chat_model": "qwen3.7-flash",
+    "embedding_model": "text-embedding-v4",
+    "rerank_model": "qwen3-rerank"
+  },
+  "records": [
+    {
+      "source_id": "MFG-ZH01",
+      "document_id": "07d1dee3-9587-48a7-a167-17f3906caf2f",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+      "status": "ready",
+      "sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "version": 1,
+      "chunk_count": 24,
+      "vector_count": 24,
+      "parent_count": 9,
+      "parser_counts": {
+        "pdfplumber": 24
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.955147+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH02",
+      "document_id": "16e08b1d-daa9-43c9-a520-b511370cb7e3",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+      "status": "ready",
+      "sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "version": 1,
+      "chunk_count": 83,
+      "vector_count": 83,
+      "parent_count": 4,
+      "parser_counts": {
+        "markdown": 83
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.869371+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH03",
+      "document_id": "e1a45668-48bb-4b02-8eaa-56f58e5b2ff4",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+      "status": "ready",
+      "sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "version": 1,
+      "chunk_count": 115,
+      "vector_count": 115,
+      "parent_count": 4,
+      "parser_counts": {
+        "markdown": 115
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.794519+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH04",
+      "document_id": "08752f9a-347b-43ad-abd1-eb9607adc6c0",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+      "status": "ready",
+      "sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "version": 1,
+      "chunk_count": 20,
+      "vector_count": 20,
+      "parent_count": 5,
+      "parser_counts": {
+        "pdfplumber": 20
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.718214+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH05",
+      "document_id": "821ce51e-bea2-4388-84a5-6aec087beac6",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+      "status": "ready",
+      "sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "version": 1,
+      "chunk_count": 90,
+      "vector_count": 90,
+      "parent_count": 53,
+      "parser_counts": {
+        "pdfplumber": 34,
+        "pdfplumber+pdfplumber-layout": 15,
+        "pdfplumber-layout": 41
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.638422+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH06",
+      "document_id": "f3057376-2df0-4f88-a388-16f48ebeb74a",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+      "status": "ready",
+      "sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "version": 1,
+      "chunk_count": 49,
+      "vector_count": 49,
+      "parent_count": 33,
+      "parser_counts": {
+        "pdfplumber": 29,
+        "pdfplumber-layout": 11,
+        "pdfplumber+pdfplumber-layout": 9
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.549858+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH07",
+      "document_id": "b2754af4-8f80-41c3-b9da-17155d09be50",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+      "status": "ready",
+      "sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "version": 1,
+      "chunk_count": 212,
+      "vector_count": 212,
+      "parent_count": 136,
+      "parser_counts": {
+        "pdfplumber": 40,
+        "pdfplumber+pdfplumber-layout": 10,
+        "pdfplumber-layout": 162
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.465360+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH08",
+      "document_id": "d3d62daf-caf6-45d0-9533-e5503929af68",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+      "status": "ready",
+      "sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "version": 1,
+      "chunk_count": 48,
+      "vector_count": 48,
+      "parent_count": 25,
+      "parser_counts": {
+        "pdfplumber": 21,
+        "pdfplumber-layout": 22,
+        "pdfplumber+pdfplumber-layout": 5
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.369236+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH09",
+      "document_id": "17d17d7a-9d6f-4e33-b6da-3ccdafd39057",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "status": "ready",
+      "sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "version": 1,
+      "chunk_count": 62,
+      "vector_count": 62,
+      "parent_count": 30,
+      "parser_counts": {
+        "pdfplumber": 25,
+        "pdfplumber-layout": 27,
+        "pdfplumber+pdfplumber-layout": 10
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.281243+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH10",
+      "document_id": "f8e38b14-ed65-4dff-b249-df6abd62930c",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+      "status": "ready",
+      "sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "version": 1,
+      "chunk_count": 76,
+      "vector_count": 76,
+      "parent_count": 53,
+      "parser_counts": {
+        "pdfplumber-layout": 46,
+        "pdfplumber": 29,
+        "pdfplumber+pdfplumber-layout": 1
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.194711+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH11",
+      "document_id": "9ea0625e-9502-466c-8a83-a8b0d1494e15",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+      "status": "failed",
+      "sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "version": 1,
+      "chunk_count": 0,
+      "vector_count": 0,
+      "parent_count": 0,
+      "parser_counts": {},
+      "publication": {
+        "state": "draft",
+        "revision": 1
+      },
+      "quality": {
+        "review_required": null,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH12",
+      "document_id": "d44cd3b7-7dde-4248-8411-bde233b76d11",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "version": 1,
+      "chunk_count": 31,
+      "vector_count": 31,
+      "parent_count": 22,
+      "parser_counts": {
+        "ocr": 31
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T11:00:00.107512+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": true,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH13",
+      "document_id": "0055cc41-9063-4958-9a70-72a4ab02f439",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "version": 1,
+      "chunk_count": 48,
+      "vector_count": 48,
+      "parent_count": 35,
+      "parser_counts": {
+        "ocr": 48
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T10:59:59.977098+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": true,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH14",
+      "document_id": "8dee62ca-e6da-428f-9986-8d930e8fd8f8",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "version": 1,
+      "chunk_count": 25,
+      "vector_count": 25,
+      "parent_count": 21,
+      "parser_counts": {
+        "ocr": 25
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T10:59:59.819781+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": true,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH15",
+      "document_id": "0514f5d1-fdf5-4d59-9c96-4dc23439ac7e",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "version": 1,
+      "chunk_count": 31,
+      "vector_count": 31,
+      "parent_count": 24,
+      "parser_counts": {
+        "ocr": 31
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T10:59:59.693517+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": true,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH16",
+      "document_id": "e597b21b-38e4-45a7-b13b-cb27dea9e2eb",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "version": 1,
+      "chunk_count": 26,
+      "vector_count": 26,
+      "parent_count": 22,
+      "parser_counts": {
+        "ocr": 26
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T10:59:59.565259+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": true,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH17",
+      "document_id": "1bf920a7-9ec5-43d0-a305-d90b1166f3aa",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+      "status": "ready",
+      "sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "version": 1,
+      "chunk_count": 49,
+      "vector_count": 49,
+      "parent_count": 28,
+      "parser_counts": {
+        "pdfplumber": 31,
+        "pdfplumber+pdfplumber-layout": 2,
+        "pdfplumber-layout": 16
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T10:59:59.432252+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    },
+    {
+      "source_id": "MFG-ZH18",
+      "document_id": "fbf3f320-4691-4511-b02e-331268969085",
+      "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+      "file_name": "MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+      "status": "ready",
+      "sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "version": 1,
+      "chunk_count": 45,
+      "vector_count": 45,
+      "parent_count": 34,
+      "parser_counts": {
+        "pdfplumber": 25,
+        "pdfplumber+pdfplumber-layout": 3,
+        "pdfplumber-layout": 17
+      },
+      "publication": {
+        "state": "published",
+        "revision": 3,
+        "document_version": 1,
+        "content_hash": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+        "chunking_version": "structured-v7",
+        "reviewed_by": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+        "reviewed_at": "2026-10-29T10:59:59.323942+00:00",
+        "review_note": "助手完成原件哈希、解析样本与既有离线报告的流程复核；保留OCR质量标记，非独立人工全文校勘，禁止据此直接生产。",
+        "ocr_limitation_acknowledged": true
+      },
+      "quality": {
+        "review_required": false,
+        "warnings": null
+      }
+    }
+  ]
+}

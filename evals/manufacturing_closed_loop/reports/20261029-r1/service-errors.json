@@ -1,0 +1,50 @@
+{
+  "failed_cases": [
+    {
+      "id": "MFGZH-Q020",
+      "error_type": "HTTPError",
+      "http_status": 503,
+      "question_hash": "32f2ff3b6b04ba2c66b44296f1401599e7782b79665112291e5c1b58ce408979"
+    },
+    {
+      "id": "MFGZH-Q064",
+      "error_type": "HTTPError",
+      "http_status": 503,
+      "question_hash": "02bbf4d744124e1971af254c29b4f84fa751864ee0968f611a317324bff099ce"
+    }
+  ],
+  "failed_model_calls": [
+    {
+      "event_id": "a6dcbce6-7211-4f92-9098-5087537c7e54",
+      "request_id": "2d94535a5f7d4cd89ce6b9e9c9d7121e",
+      "stage": "answer_generation",
+      "status": "error",
+      "details": {
+        "usage_source": "unknown",
+        "cached_input_tokens": null,
+        "reasoning_tokens": null,
+        "duration_ms": 60063.278,
+        "error_type": "APITimeoutError",
+        "provider_request_id": null,
+        "price_snapshot": null
+      }
+    },
+    {
+      "event_id": "bfdd66cc-c528-4086-8c22-85e2911b7e74",
+      "request_id": "ace2ac0cb1174f738a07f6ed9b05348d",
+      "stage": "answer_generation",
+      "status": "error",
+      "details": {
+        "usage_source": "unknown",
+        "cached_input_tokens": null,
+        "reasoning_tokens": null,
+        "duration_ms": 60075.771,
+        "error_type": "APITimeoutError",
+        "provider_request_id": null,
+        "price_snapshot": null
+      }
+    }
+  ],
+  "paid_qa_retries": 0,
+  "classification": "Two generation calls hit the existing 60-second deadline; provider usage unknown. No question was replayed."
+}

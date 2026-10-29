@@ -1,0 +1,33 @@
+{
+  "at_acceptance": [
+    {
+      "service": "api",
+      "image_id": "sha256:ab2a8f67023aaf2da332722de2b432e61d4c13e7172cd91f5674ab8d60c02c5a"
+    },
+    {
+      "service": "worker",
+      "image_id": "sha256:ab2a8f67023aaf2da332722de2b432e61d4c13e7172cd91f5674ab8d60c02c5a"
+    },
+    {
+      "service": "quality-worker",
+      "image_id": "sha256:ab2a8f67023aaf2da332722de2b432e61d4c13e7172cd91f5674ab8d60c02c5a"
+    }
+  ],
+  "at_delivery": [
+    {
+      "service": "api",
+      "image_id": "sha256:083e3afb62bfb223a24d5a8bd18954b3ec0b7e6249a2c16ba6ad13b514f42287"
+    },
+    {
+      "service": "worker",
+      "image_id": "sha256:083e3afb62bfb223a24d5a8bd18954b3ec0b7e6249a2c16ba6ad13b514f42287"
+    },
+    {
+      "service": "quality-worker",
+      "image_id": "sha256:083e3afb62bfb223a24d5a8bd18954b3ec0b7e6249a2c16ba6ad13b514f42287"
+    }
+  ],
+  "app_python_change_ref": "d8fe232",
+  "delivery_source_ref": "ea20d7d",
+  "note": "Final UI and CLI changes do not change backend Python/model configuration."
+}

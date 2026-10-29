@@ -1,0 +1,636 @@
+{
+  "reviewer": "assistant_non_independent",
+  "quality_improvement_claim": false,
+  "lifecycle_checks": [
+    "draft_excluded_from_citation",
+    "published_citation_available",
+    "stale_revision_rejected",
+    "updated_version_requires_review",
+    "stale_source_version_rejected",
+    "current_source_hash_matches",
+    "withdrawn_citation_unavailable",
+    "temporary_document_deleted"
+  ],
+  "qa_examples": [
+    {
+      "case": "native",
+      "question": "按第75号令《工业产品生产单位落实质量安全主体责任监督管理规定》所收录原文，月调度需形成的会议文件叫什么名称？",
+      "response": {
+        "answer": "按第75号令《工业产品生产单位落实质量安全主体责任监督管理规定》所收录原文，月调度需形成的会议文件名称为《每月工业产品质量安全调度会议纪要》。[资料1]\n该文件由单位主要负责人每月至少听取一次质量安全总监管理工作情况汇报后形成。[资料1]",
+        "answerable": true,
+        "citations": [
+          {
+            "citation_id": "资料1",
+            "document_id": "07d1dee3-9587-48a7-a167-17f3906caf2f",
+            "document_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+            "section_path": "主体责任监督管理规定",
+            "chunk_id": "1998b17cd297d2c67434df905c730097db231aae680352858c1f883636536d7a",
+            "parent_id": "87d93728663a279b59864d42424f431b7b143e248744456a8cba47c18c99aab9",
+            "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+            "knowledge_base_name": "公共参考"
+          }
+        ],
+        "refusal_reason": null,
+        "timings": {
+          "query_planning_ms": 2.76,
+          "hybrid_retrieval_ms": 1678.67,
+          "rerank_ms": 372.84,
+          "search_total_ms": 2125.92,
+          "context_build_ms": 1.94,
+          "generation_ms": 2952.03,
+          "validation_ms": 3.53,
+          "render_ms": 0.09,
+          "total_ms": 5086.73
+        },
+        "response_type": "answer",
+        "run_id": "58152f65-5234-483b-8149-5dadc02b2515",
+        "snapshot_status": "captured"
+      },
+      "retrieval_question": "按第75号令《工业产品生产单位落实质量安全主体责任监督管理规定》所收录原文，月调度需形成的会议文件叫什么名称？",
+      "semantic_result": "flow_observed"
+    },
+    {
+      "case": "clarify",
+      "question": "校准环境温度应该设多少？",
+      "response": {
+        "answer": "请问您指的是哪种设备的校准？（例如：砂尘试验箱、盐雾试验箱、热工仪表校验仪等）",
+        "answerable": false,
+        "citations": [],
+        "refusal_reason": null,
+        "timings": {
+          "query_planning_ms": 0.13,
+          "hybrid_retrieval_ms": 281.72,
+          "rerank_ms": 439.84,
+          "search_total_ms": 758.68,
+          "context_build_ms": 1.12,
+          "generation_ms": 2873.79,
+          "validation_ms": 0.37,
+          "render_ms": 0.05,
+          "total_ms": 3658.49
+        },
+        "response_type": "clarify",
+        "missing_fields": [
+          "设备类型"
+        ],
+        "clarification_questions": [
+          "请问您指的是哪种设备的校准？（例如：砂尘试验箱、盐雾试验箱、热工仪表校验仪等）"
+        ],
+        "run_id": "f59ce964-21e9-4534-9301-c0f8d9f23e41",
+        "snapshot_status": "captured",
+        "conversation_id": "a8080d52-6a96-4899-a6b4-c3e77c1b27ff",
+        "conversation_context_ms": 24.1
+      },
+      "retrieval_question": "校准环境温度应该设多少？",
+      "semantic_result": "flow_observed"
+    },
+    {
+      "case": "followup",
+      "question": "我说的是盐雾试验设备，按JJF（吉）92—2021，请说明校准时环境温度。",
+      "response": {
+        "answer": "根据JJF（吉）92—2021，盐雾试验设备校准时环境温度为(15~35)°C。[资料1]\n一般选择35°C作为盐雾箱校准试验温度，也可根据客户需要选择校准温度。[资料2]",
+        "answerable": true,
+        "citations": [
+          {
+            "citation_id": "资料1",
+            "document_id": "821ce51e-bea2-4388-84a5-6aec087beac6",
+            "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+            "section_path": "6 校准条件 > 6.1 环境条件",
+            "chunk_id": "a97e2e5b35a0494f6c84618d12c115ac055ae18aab009e4f75d5e0abda340bf9",
+            "parent_id": "47e8c384401414083111ae42302c8639a173f89dcac374fb67f51c4517fd79ab",
+            "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+            "knowledge_base_name": "公共参考"
+          },
+          {
+            "citation_id": "资料2",
+            "document_id": "821ce51e-bea2-4388-84a5-6aec087beac6",
+            "document_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+            "section_path": "7 校准项目和校准方法 > 7.2 校准方法 > 7.2.2 温度参数校准 > 7.2.2.1 校准温度的选择",
+            "chunk_id": "65a50155e09e106151fe15d76c6d9cdca3d2117c9041b784f7e6f235b7b82223",
+            "parent_id": "f200121876de89ed792f7e8adf51d0679beb9d3d044b746e5ce9faa19be18a87",
+            "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+            "knowledge_base_name": "公共参考"
+          }
+        ],
+        "refusal_reason": null,
+        "timings": {
+          "query_planning_ms": 0.1,
+          "hybrid_retrieval_ms": 254.43,
+          "rerank_ms": 364.84,
+          "search_total_ms": 653.99,
+          "context_build_ms": 1.42,
+          "generation_ms": 2748.53,
+          "validation_ms": 0.91,
+          "render_ms": 0.04,
+          "total_ms": 4451.45
+        },
+        "response_type": "answer",
+        "run_id": "6131208f-1b7c-4fa9-bccb-ba5fe73f4ab8",
+        "snapshot_status": "captured",
+        "conversation_id": "a8080d52-6a96-4899-a6b4-c3e77c1b27ff",
+        "conversation_context_ms": 1046.21
+      },
+      "retrieval_question": "根据JJF（吉）92—2021，盐雾试验设备校准时环境温度应设为多少？",
+      "semantic_result": "flow_observed"
+    },
+    {
+      "case": "switch",
+      "question": "换一个对象：我说的是热工仪表校验仪，按JJF（吉）31—2021，校准环境温度有什么要求？",
+      "response": {
+        "answer": "按JJF（吉）31—2021，热工仪表校验仪校准时环境温度为(20±2)°C。[资料1]\n湿度要求为(60±15)%RH。[资料1]",
+        "answerable": true,
+        "citations": [
+          {
+            "citation_id": "资料1",
+            "document_id": "b2754af4-8f80-41c3-b9da-17155d09be50",
+            "document_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+            "section_path": "6 校准条件 > 6.1 环境条件 > 6.1.1 温度:(20±2)°C 湿度:(60±15)%RH",
+            "chunk_id": "7934a49be5643c633518790333201f4bce0f391fd13af0187d7a81d8a38010d5",
+            "parent_id": "6013cacd4ca6f294ea3c4b917334e09c2debbac5929000e88d619502808f5e7f",
+            "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+            "knowledge_base_name": "公共参考"
+          }
+        ],
+        "refusal_reason": null,
+        "timings": {
+          "query_planning_ms": 0.16,
+          "hybrid_retrieval_ms": 384.35,
+          "rerank_ms": 486.42,
+          "search_total_ms": 905.78,
+          "context_build_ms": 1.25,
+          "generation_ms": 2919.85,
+          "validation_ms": 1.25,
+          "render_ms": 0.04,
+          "total_ms": 4876.85
+        },
+        "response_type": "answer",
+        "run_id": "99acefca-27eb-4ab0-ad22-8ced32492bb5",
+        "snapshot_status": "captured",
+        "conversation_id": "a8080d52-6a96-4899-a6b4-c3e77c1b27ff",
+        "conversation_context_ms": 1048.23
+      },
+      "retrieval_question": "按JJF（吉）31—2021，热工仪表校验仪校准环境温度有什么要求？",
+      "semantic_result": "flow_observed"
+    },
+    {
+      "case": "ocr",
+      "question": "按《卡规检查仪校准规范》所收录原文，校准环境温度和相对湿度有什么要求？",
+      "response": {
+        "answer": "根据《卡规检查仪校准规范》原文，校准室内温度应在 (2042) CHA。[资料1]\n根据《卡规检查仪校准规范》原文，校准室内湿度不超过 65%RH。[资料1]",
+        "answerable": true,
+        "citations": [
+          {
+            "citation_id": "资料1",
+            "document_id": "8dee62ca-e6da-428f-9986-8d930e8fd8f8",
+            "document_name": "MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+            "section_path": "4 计量特性 > 5.1 环境条件",
+            "chunk_id": "f139731743de845c8fee61e96e086eb20a60f413270ce3e2f67e4df498805ff2",
+            "parent_id": "d6ae4466a8961c5662f2b9db6e789b0c96498423da2c2b3f2bfb0a03a1514814",
+            "knowledge_base_id": "a90f4dd7-d15a-47ce-84f5-3db874517bbe",
+            "knowledge_base_name": "公共参考"
+          }
+        ],
+        "refusal_reason": null,
+        "timings": {
+          "query_planning_ms": 0.12,
+          "hybrid_retrieval_ms": 268.54,
+          "rerank_ms": 361.28,
+          "search_total_ms": 666.15,
+          "context_build_ms": 0.62,
+          "generation_ms": 2603.66,
+          "validation_ms": 1.51,
+          "render_ms": 0.07,
+          "total_ms": 3272.44
+        },
+        "response_type": "answer",
+        "run_id": "47f15175-602a-4948-b588-7e5852bf1107",
+        "snapshot_status": "captured"
+      },
+      "retrieval_question": "按《卡规检查仪校准规范》所收录原文，校准环境温度和相对湿度有什么要求？",
+      "semantic_result": "failed_ocr_corrupted_temperature"
+    },
+    {
+      "case": "refuse",
+      "question": "请查询ERP系统中工单HC-DEMO-20261029的实时完工数量，并更新MES系统。",
+      "response": {
+        "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+        "answerable": false,
+        "citations": [],
+        "refusal_reason": "提供的知识库资料主要涉及国家市场监管总局关于重点工业产品质量安全追溯的实施意见及通用数据要求，不包含企业内部ERP/MES系统的业务操作规范或特定工单数据。",
+        "timings": {
+          "query_planning_ms": 0.14,
+          "hybrid_retrieval_ms": 291.65,
+          "rerank_ms": 422.9,
+          "search_total_ms": 747.56,
+          "context_build_ms": 2.62,
+          "generation_ms": 3004.28,
+          "validation_ms": 0.46,
+          "render_ms": 0.03,
+          "total_ms": 3755.4
+        },
+        "response_type": "refuse",
+        "run_id": "5e6e5eaf-0130-4f82-a681-077dc304f7ca",
+        "snapshot_status": "captured"
+      },
+      "retrieval_question": "请查询ERP系统中工单HC-DEMO-20261029的实时完工数量，并更新MES系统。",
+      "semantic_result": "flow_observed"
+    }
+  ],
+  "datasets": {
+    "fixed": "288f1f12-f104-4146-b0c7-40de440e0836",
+    "feedback": "6d53dde2-a0b3-4d2b-a7e6-43923950eca5"
+  },
+  "cases": {
+    "fixed": "561e7d26-3074-45dc-ad6a-c25ad873ce60",
+    "feedback": "b1b5cec3-5c1c-4327-960a-f92c0546c87f"
+  },
+  "closure": {
+    "improvement": {
+      "id": "2639a409-8cbb-421e-b5a7-acd0fe446452",
+      "case_id": "b1b5cec3-5c1c-4327-960a-f92c0546c87f",
+      "regression_case_id": "b1b5cec3-5c1c-4327-960a-f92c0546c87f",
+      "revision": 3,
+      "status": "closed",
+      "owner_user_id": "51c89e3c-d628-42ac-b5bf-c30453e01814",
+      "description": "澄清交互与反馈回归闭环流程验收；两次同配置运行仅检查流程与一致性，不声称质量提升。",
+      "change_ref": "5bcf642",
+      "policy": {
+        "max_latency_ratio": 1.5,
+        "max_token_ratio": 1.3
+      },
+      "verification": {
+        "baseline_job_id": "145bdf69-0190-4cac-8bbf-ff816f8adee1",
+        "candidate_job_id": "1d88b69a-4709-4f11-a439-29a6c2a7881f",
+        "binding": "da3f59439048d026440ea2da8ae6869e3c0f96af922be52d93cd2780faa3c65d",
+        "acknowledge_unknown_usage": true,
+        "note": "助手执行的非独立流程验收，不代表真实用户反馈、独立人工复核或质量提升。"
+      },
+      "updated_at": "2026-10-29T11:18:17.972812+00:00"
+    },
+    "reviewer": "assistant_non_independent",
+    "quality_improvement_claim": false
+  },
+  "comparison": {
+    "passed": true,
+    "failures": [],
+    "partitions": {
+      "fixed": {
+        "total": 1,
+        "baseline_passed": 1,
+        "candidate_passed": 1,
+        "regressed_ids": [],
+        "improved_ids": []
+      },
+      "feedback": {
+        "total": 1,
+        "baseline_passed": 1,
+        "candidate_passed": 1,
+        "regressed_ids": [],
+        "improved_ids": []
+      }
+    },
+    "unreviewed_ids": [],
+    "baseline_summary": {
+      "partitions": {
+        "fixed": {
+          "total": 1,
+          "proxy_passed": 1,
+          "false_refusals": 0,
+          "wrong_accepts": 0
+        },
+        "feedback": {
+          "total": 1,
+          "proxy_passed": 1,
+          "false_refusals": 0,
+          "wrong_accepts": 0
+        }
+      },
+      "p95_ms": 5706.7,
+      "usage": {
+        "observed": true,
+        "calls": 6,
+        "reported_total_tokens": 20654,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 6,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "budget": {
+        "calls": 6,
+        "charged_tokens": 20654,
+        "unknown_calls": 0,
+        "elapsed_seconds": 10.949,
+        "limited_by": null
+      },
+      "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+    },
+    "candidate_summary": {
+      "partitions": {
+        "fixed": {
+          "total": 1,
+          "proxy_passed": 1,
+          "false_refusals": 0,
+          "wrong_accepts": 0
+        },
+        "feedback": {
+          "total": 1,
+          "proxy_passed": 1,
+          "false_refusals": 0,
+          "wrong_accepts": 0
+        }
+      },
+      "p95_ms": 3673.36,
+      "usage": {
+        "observed": true,
+        "calls": 6,
+        "reported_total_tokens": 20566,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 6,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "budget": {
+        "calls": 6,
+        "charged_tokens": 20566,
+        "unknown_calls": 0,
+        "elapsed_seconds": 7.369,
+        "limited_by": null
+      },
+      "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+    },
+    "usage_unknown": true,
+    "binding": "da3f59439048d026440ea2da8ae6869e3c0f96af922be52d93cd2780faa3c65d",
+    "limitation": "自动事实/引用代理与人工复核；单次样本运行不代表生产泛化或容量。"
+  },
+  "evaluations": {
+    "baseline": {
+      "id": "145bdf69-0190-4cac-8bbf-ff816f8adee1",
+      "status": "succeeded",
+      "budget": {
+        "allow_model_calls": true,
+        "max_cases": 2,
+        "max_model_calls": 24,
+        "max_tokens": 400000,
+        "reservation_tokens": 32000,
+        "max_seconds": 240
+      },
+      "summary": {
+        "partitions": {
+          "fixed": {
+            "total": 1,
+            "proxy_passed": 1,
+            "false_refusals": 0,
+            "wrong_accepts": 0
+          },
+          "feedback": {
+            "total": 1,
+            "proxy_passed": 1,
+            "false_refusals": 0,
+            "wrong_accepts": 0
+          }
+        },
+        "p95_ms": 5706.7,
+        "usage": {
+          "observed": true,
+          "calls": 6,
+          "reported_total_tokens": 20654,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 6,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "budget": {
+          "calls": 6,
+          "charged_tokens": 20654,
+          "unknown_calls": 0,
+          "elapsed_seconds": 10.949,
+          "limited_by": null
+        },
+        "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+      },
+      "runtime": {
+        "values": {
+          "chat_model": "qwen3.7-flash",
+          "embedding_model": "text-embedding-v4",
+          "rerank_model": "qwen3-rerank",
+          "agentic_rag_mode": "auto",
+          "rag_planner_mode": "auto",
+          "rag_feedback_enabled": true,
+          "rag_repair_enabled": true,
+          "rag_rerank_top_k": 12,
+          "rag_parent_context_enabled": true,
+          "rag_context_selection_enabled": true,
+          "rag_max_searches": 3,
+          "agent_max_decisions": 2,
+          "agent_max_searches": 2,
+          "agent_max_reads": 1,
+          "agent_max_evidence": 24,
+          "agent_max_prompt_bytes": 12000,
+          "agent_max_output_tokens": 384,
+          "agent_max_decision_tokens": 16000,
+          "agent_max_seconds": 20.0,
+          "agent_decision_timeout_seconds": 8.0,
+          "rag_max_optional_calls": 4,
+          "rag_max_optional_tokens": 32000,
+          "rag_max_optional_seconds": 35.0,
+          "rag_planner_output_tokens": 768,
+          "rag_repair_output_tokens": 1536,
+          "rag_repair_prompt_bytes": 24000,
+          "rag_regeneration_output_tokens": 2048,
+          "rag_context_selection_output_tokens": 512,
+          "rag_context_selection_prompt_bytes": 16000,
+          "rag_planner_timeout_seconds": 8.0,
+          "rag_repair_timeout_seconds": 8.0,
+          "rag_regeneration_timeout_seconds": 15.0,
+          "rag_context_selection_timeout_seconds": 6.0,
+          "endpoint_hashes": {
+            "chat_base_url": "6c34e60046af0d45d53375c662f7190dbbcf1398017261156114acedd2b152d6",
+            "rerank_url": "6d2565df39a0c727ae82b1fcd562d46b8d90597231cf15d8db468e2504d336aa"
+          },
+          "pricing_hash": "c89a148be40e6752261e3038609a4b68de22fa3bfdaf32f884edffb8480b9bbe",
+          "pipeline": {
+            "code_sha256": "647dead0506b79b34c9ab48183df95bb4fb5589665ff57afc18d628dc5196418",
+            "prompts_sha256": "f25ad13c4feb2fc90068827e30edc0408becbe9835919af29e9aefb6dbae7b59"
+          },
+          "scorer": "2026-10-29-r11:quality-verification-v1",
+          "dependencies": {
+            "python": "3.12.15",
+            "langchain-core": "1.6.2",
+            "langchain-openai": "1.2.2",
+            "openai": "2.54.0",
+            "pydantic": "2.13.5",
+            "SQLAlchemy": "2.0.54",
+            "requests": "2.34.2"
+          }
+        },
+        "fingerprint": "2ada2f7d1606c67c785e79f5d1fefe75d12866dbf38bf89e4ff54b3cd5ce2186"
+      },
+      "completed_cases": 2,
+      "expected_cases": 2
+    },
+    "candidate": {
+      "id": "1d88b69a-4709-4f11-a439-29a6c2a7881f",
+      "status": "succeeded",
+      "budget": {
+        "allow_model_calls": true,
+        "max_cases": 2,
+        "max_model_calls": 24,
+        "max_tokens": 400000,
+        "reservation_tokens": 32000,
+        "max_seconds": 240
+      },
+      "summary": {
+        "partitions": {
+          "fixed": {
+            "total": 1,
+            "proxy_passed": 1,
+            "false_refusals": 0,
+            "wrong_accepts": 0
+          },
+          "feedback": {
+            "total": 1,
+            "proxy_passed": 1,
+            "false_refusals": 0,
+            "wrong_accepts": 0
+          }
+        },
+        "p95_ms": 3673.36,
+        "usage": {
+          "observed": true,
+          "calls": 6,
+          "reported_total_tokens": 20566,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 6,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "budget": {
+          "calls": 6,
+          "charged_tokens": 20566,
+          "unknown_calls": 0,
+          "elapsed_seconds": 7.369,
+          "limited_by": null
+        },
+        "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+      },
+      "runtime": {
+        "values": {
+          "chat_model": "qwen3.7-flash",
+          "embedding_model": "text-embedding-v4",
+          "rerank_model": "qwen3-rerank",
+          "agentic_rag_mode": "auto",
+          "rag_planner_mode": "auto",
+          "rag_feedback_enabled": true,
+          "rag_repair_enabled": true,
+          "rag_rerank_top_k": 12,
+          "rag_parent_context_enabled": true,
+          "rag_context_selection_enabled": true,
+          "rag_max_searches": 3,
+          "agent_max_decisions": 2,
+          "agent_max_searches": 2,
+          "agent_max_reads": 1,
+          "agent_max_evidence": 24,
+          "agent_max_prompt_bytes": 12000,
+          "agent_max_output_tokens": 384,
+          "agent_max_decision_tokens": 16000,
+          "agent_max_seconds": 20.0,
+          "agent_decision_timeout_seconds": 8.0,
+          "rag_max_optional_calls": 4,
+          "rag_max_optional_tokens": 32000,
+          "rag_max_optional_seconds": 35.0,
+          "rag_planner_output_tokens": 768,
+          "rag_repair_output_tokens": 1536,
+          "rag_repair_prompt_bytes": 24000,
+          "rag_regeneration_output_tokens": 2048,
+          "rag_context_selection_output_tokens": 512,
+          "rag_context_selection_prompt_bytes": 16000,
+          "rag_planner_timeout_seconds": 8.0,
+          "rag_repair_timeout_seconds": 8.0,
+          "rag_regeneration_timeout_seconds": 15.0,
+          "rag_context_selection_timeout_seconds": 6.0,
+          "endpoint_hashes": {
+            "chat_base_url": "6c34e60046af0d45d53375c662f7190dbbcf1398017261156114acedd2b152d6",
+            "rerank_url": "6d2565df39a0c727ae82b1fcd562d46b8d90597231cf15d8db468e2504d336aa"
+          },
+          "pricing_hash": "c89a148be40e6752261e3038609a4b68de22fa3bfdaf32f884edffb8480b9bbe",
+          "pipeline": {
+            "code_sha256": "647dead0506b79b34c9ab48183df95bb4fb5589665ff57afc18d628dc5196418",
+            "prompts_sha256": "f25ad13c4feb2fc90068827e30edc0408becbe9835919af29e9aefb6dbae7b59"
+          },
+          "scorer": "2026-10-29-r11:quality-verification-v1",
+          "dependencies": {
+            "python": "3.12.15",
+            "langchain-core": "1.6.2",
+            "langchain-openai": "1.2.2",
+            "openai": "2.54.0",
+            "pydantic": "2.13.5",
+            "SQLAlchemy": "2.0.54",
+            "requests": "2.34.2"
+          }
+        },
+        "fingerprint": "2ada2f7d1606c67c785e79f5d1fefe75d12866dbf38bf89e4ff54b3cd5ce2186"
+      },
+      "completed_cases": 2,
+      "expected_cases": 2
+    }
+  },
+  "open_ocr_issue": {
+    "case": {
+      "id": "38f35986-7bda-47fc-ac51-a98e7c4c9caa",
+      "run_id": "48357fc1-82ca-4752-a5d1-2c95a0416282",
+      "revision": 2,
+      "review_status": "needs_evidence",
+      "sample_status": "draft",
+      "root_cause": "parsing",
+      "source_changed": false,
+      "export_eligible": false,
+      "export_blocked_reason": "not_approved",
+      "updated_at": "2026-10-29T11:15:28.549314+00:00"
+    },
+    "review": {
+      "review_status": "needs_evidence",
+      "sample_status": "draft",
+      "root_cause": "parsing",
+      "review_reason": "关键温度原文仍有OCR乱码，待人工核对或视觉模型单独实测；不批准回归参考答案。",
+      "expected_answerable": null,
+      "expected_behavior": null,
+      "reference_answer": null,
+      "evaluation_question": null,
+      "required_facts": [],
+      "forbidden_claims": [],
+      "evidence": [],
+      "feedback_snapshot": {
+        "id": "640ff2f7-02af-457d-aaba-130913dadb2b",
+        "rating": "down",
+        "reason": "incorrect",
+        "comment": "助手实测发现OCR温度字符损坏且答案复述乱码；保留失败，需核对原件，不猜测修正数值。",
+        "share_with_admins": true,
+        "allow_dataset_export": false,
+        "updated_at": "2026-10-29T11:15:28.403219+00:00"
+      },
+      "corpus_sha256": "5820b3b807a6c3d2dbe7930a42ebedd436970698a4278b7065e7bef975e7fe5a"
+    },
+    "source_run_id": "48357fc1-82ca-4752-a5d1-2c95a0416282"
+  },
+  "reviews": [
+    {
+      "sample_id": "FB-561e7d26-3074-45dc-ad6a-c25ad873ce60",
+      "response_binding": "b2e2b7569b116d53d5bbd18ade940273d6cca3a4a0dc4841fcb4f8e3e570a631",
+      "verdict": "passed",
+      "reason": "助手非独立流程复核：会议文件全名与所引第十二条原文相符，不代表独立质量评审。"
+    },
+    {
+      "sample_id": "FB-b1b5cec3-5c1c-4327-960a-f92c0546c87f",
+      "response_binding": "72b5c5fa13e71052c47c9c582c9e70a9d863dbeb0cd672ae9821840d388eee74",
+      "verdict": "passed",
+      "reason": "助手非独立流程复核：直接追问设备类型，没有猜测温度、执行操作或编造引用。"
+    }
+  ]
+}

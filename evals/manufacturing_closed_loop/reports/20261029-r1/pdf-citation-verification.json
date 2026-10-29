@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "case_id": "MFGZH-Q067",
+  "reader_role": "仅参考资料用户",
+  "physical_page_start": 5,
+  "physical_page_end": 5,
+  "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+  "content_type": "application/pdf",
+  "ocr_warning_retained": true
+}
