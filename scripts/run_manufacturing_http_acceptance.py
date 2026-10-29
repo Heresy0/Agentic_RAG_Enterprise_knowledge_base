@@ -21,6 +21,11 @@ sys.path.insert(0, str(ROOT))
 from scripts.evaluate_answers import load_dataset
 
 
+class SourceUnavailable(ValueError):
+    """A frozen case remains in the denominator but sends no paid QA request."""
+
+
+
 class LocalKeycloakSession(requests.Session):
     """Renew a short local demo token before requests; never retry paid QA."""
     def __init__(self, tokens_path):
@@ -110,11 +115,12 @@ def check_v2_inventory(http, base, kb_map, frozen, config):
             raise ValueError("V2 corpus is not fully ready; refuse paid requests against a partial library")
 
 
-def check_zh_inventory(http, base, kb_map, frozen, config, cases):
+def check_zh_inventory(http, base, kb_map, frozen, config, cases, *, record_unavailable=False):
     """Require every selected case's source; keep unrelated failed scans visible.
 
     The bounded development run may proceed with a failed test-only source.
-    A missing/failed source required by any selected case always blocks QA.
+    By default an unavailable required source blocks the entire run. An explicit
+    accounting mode records affected cases without sending those QA requests.
     SQL/hash/vector/version verification is separately bound by an audit file.
     """
     if config.get("corpus_manifest_sha256") != frozen["corpus_manifest_sha256"]:
@@ -148,9 +154,15 @@ def check_zh_inventory(http, base, kb_map, frozen, config, cases):
                 or proof["sha256"] != source["sha256"]
                 or proof["knowledge_base_id"] != kb_map[source["group"]]):
             raise ValueError("Live inventory changed since the index audit")
+        if row["status"] == "ready" and row.get("publication", {}).get("state", "legacy_published") not in {"published", "legacy_published"}:
+            raise ValueError("A ready source is not published")
     required = {name for case in cases for name in case["required_source_documents"]}
-    if not required <= actual.keys() or any(actual[name]["status"] != "ready" for name in required):
+    if not required <= actual.keys():
+        raise ValueError("Selected cases reference unknown source documents")
+    unavailable = {name for name in required if name not in actual or actual[name]["status"] != "ready"}
+    if unavailable and not record_unavailable:
         raise ValueError("A selected question requires an unavailable source")
+    return unavailable
 
 
 def snapshot_trace(case, response, snapshot, *, tenant_id, knowledge_base_ids, latency_ms):
@@ -203,6 +215,7 @@ def main(argv=None):
     parser.add_argument("--case-ids", nargs="+")
     parser.add_argument("--max-questions", type=int, help="Required V2 question ceiling; not a token or monetary cost cap")
     parser.add_argument("--refresh-local-keycloak-token", action="store_true", help="Renew the existing local demo refresh token before expiry; never retry QA")
+    parser.add_argument("--record-unavailable-sources", action="store_true", help="Explicitly record source-blocked Chinese cases as errors without QA; retain every selected case in the denominator")
     args = parser.parse_args(argv)
     if not args.allow_model_calls:
         parser.error("Real model calls require --allow-model-calls")
@@ -228,18 +241,25 @@ def main(argv=None):
         raise ValueError("Authenticated scope does not exactly match the isolated three libraries")
     if set(kb_map) != {"公共参考", "生产工艺", "质量检验"}:
         raise ValueError("Expected exactly the three isolated manufacturing groups")
+    unavailable = set()
+    if args.record_unavailable_sources and (not frozen or frozen.get("edition") != "manufacturing-zh-v3"):
+        parser.error("Source-blocked accounting is only supported for the frozen Chinese corpus")
     if frozen:
         if frozen.get("edition") == "manufacturing-zh-v3":
-            check_zh_inventory(http, base, kb_map, frozen, config, cases)
+            unavailable = check_zh_inventory(http, base, kb_map, frozen, config, cases, record_unavailable=args.record_unavailable_sources)
         else:
             check_v2_inventory(http, base, kb_map, frozen, config)
     attempts, errors = [], 0
     with (args.output_dir / "traces.jsonl").open("x", encoding="utf-8") as stream:
         for case in cases:
             started = perf_counter()
+            request_sent = False
             kb = kb_map.get(case["expected_scope"])
             scope_ids = {kb} if kb else set(kb_map.values())
             try:
+                if unavailable.intersection(case["required_source_documents"]):
+                    raise SourceUnavailable()
+                request_sent = True
                 answer = http.post(base + "/api/qa", json=dict(question=case["question"], knowledge_base_id=kb), timeout=180)
                 answer.raise_for_status()
                 response = answer.json()
@@ -260,9 +280,12 @@ def main(argv=None):
                              latency_ms=round((perf_counter() - started) * 1000, 2))
                 if isinstance(exc, requests.HTTPError) and exc.response is not None:
                     trace["http_status"] = exc.response.status_code
+                if isinstance(exc, SourceUnavailable):
+                    trace["blocked_sources"] = sorted(unavailable.intersection(case["required_source_documents"]))
+            trace["request_sent"] = request_sent
             stream.write(json.dumps(trace, ensure_ascii=False) + "\n")
             stream.flush()
-            attempts.append(dict(id=case["id"], error=trace.get("error_type"), run_id=trace.get("run_id")))
+            attempts.append(dict(id=case["id"], error=trace.get("error_type"), run_id=trace.get("run_id"), request_sent=request_sent))
             print(json.dumps(attempts[-1]), flush=True)
     summary = dict(evaluation_type="real_http_acceptance_with_owner_context_snapshots", questions=len(cases),
                    completed=len(cases) - errors, errors=errors, dataset_sha256=hashlib.sha256(dataset.read_bytes()).hexdigest(),
@@ -270,6 +293,8 @@ def main(argv=None):
                    corpus_manifest_sha256=frozen["corpus_manifest_sha256"] if frozen else None,
                    auth_refreshes=getattr(http, "auth_refreshes", 0),
                    qa_request_retries=0, unobserved_stages=["vector", "keyword", "fusion", "rerank"], attempts=attempts)
+    summary.update(qa_requests_sent=sum(r["request_sent"] for r in attempts),
+        source_unavailable=sum(r["error"] == "SourceUnavailable" for r in attempts), record_unavailable_sources=args.record_unavailable_sources)
     (args.output_dir / "http-summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return int(bool(errors))
 

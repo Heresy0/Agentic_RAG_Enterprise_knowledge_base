@@ -15,9 +15,10 @@ from scripts.validate_manufacturing_public import parser_fingerprint
 tid=UUID(sys.argv[1]);settings=Settings();db=create_database_engine(settings.database_url);store=MilvusVectorStore(settings)
 records=[]
 with Session(db) as session:
-    docs=session.scalars(select(KnowledgeDocument).where(KnowledgeDocument.tenant_id==tid)).all()
-    jobs=session.scalars(select(DocumentIndexingJob).where(DocumentIndexingJob.tenant_id==tid)).all()
-    assert len(docs)==18 and len(jobs)==18
+    docs=session.scalars(select(KnowledgeDocument).where(KnowledgeDocument.tenant_id==tid, KnowledgeDocument.status!='deleted')).all()
+    jobs=session.scalars(select(DocumentIndexingJob).where(DocumentIndexingJob.tenant_id==tid,
+        DocumentIndexingJob.document_id.in_([doc.id for doc in docs]))).all()
+    assert len(docs)==18 and len(jobs)>=18
     assert all(j.status in ('succeeded','failed') for j in jobs)
     for d in docs:
         chunks=session.scalars(select(DocumentChunk).where(DocumentChunk.document_id==d.id)).all()

@@ -12,10 +12,11 @@ def test_pipeline_is_bounded_scoped_and_contains_no_candidate_body():
     capture = SnapshotCapture(scope=scope, retrieval_question="需要哪种扭矩规格？")
     doc = Document(page_content="尚未进入最终上下文的私有正文", metadata=dict(
         tenant_id=str(scope.tenant_id), knowledge_base_id=str(scope.knowledge_base_id),
-        document_id=str(uuid4()), chunk_id="a"*64, rerank_score=0.8))
+        document_id=str(uuid4()), chunk_id="a"*64, parent_id="b"*64, document_version=2, rerank_score=0.8))
     capture.observe_stage("rerank", [doc])
     stage = capture.freeze()[1]["pipeline"]["stages"]["rerank"][0]
     assert stage["items"][0]["rerank_score"] == .8
+    assert stage["items"][0]["parent_id"] == "b"*64 and stage["items"][0]["document_version"] == 2
     assert doc.page_content not in str(stage)
     foreign = Document(page_content="外部", metadata={**doc.metadata, "tenant_id": str(uuid4())})
     capture.observe_stage("vector", [foreign])

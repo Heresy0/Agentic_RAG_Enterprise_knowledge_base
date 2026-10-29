@@ -61,6 +61,16 @@ def test_failed_test_only_scan_is_visible_but_does_not_block_native_development(
     check_zh_inventory(http,'http://127.0.0.1:8000',groups,frozen,config,cases)
 
 
+def test_explicit_source_accounting_retains_all_80_and_identifies_blocked_cases(tmp_path):
+    http,groups,frozen,config,_,_=setup_inventory(tmp_path)
+    _,cases,_=select_cases(EVAL,split='test',max_questions=80)
+    with pytest.raises(ValueError,match='unavailable source'):
+        check_zh_inventory(http,'http://127.0.0.1:8000',groups,frozen,config,cases)
+    unavailable=check_zh_inventory(http,'http://127.0.0.1:8000',groups,frozen,config,cases,record_unavailable=True)
+    assert len(cases)==80 and len(unavailable)==1
+    assert sum(bool(unavailable.intersection(c['required_source_documents'])) for c in cases)==5
+
+
 def test_failed_selected_source_blocks_paid_run(tmp_path):
     http,groups,frozen,config,cases,_=setup_inventory(tmp_path,bad_dev=True)
     with pytest.raises(ValueError,match='unavailable source'):

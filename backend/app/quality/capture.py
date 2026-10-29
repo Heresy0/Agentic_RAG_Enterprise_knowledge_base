@@ -46,9 +46,10 @@ class SnapshotCapture:
             row = dict(rank=rank, document_id=str(meta.get("document_id") or "")[:64],
                 knowledge_base_id=str(meta.get("knowledge_base_id") or "")[:64],
                 chunk_id=str(meta.get("chunk_id") or getattr(doc, "id", "") or "")[:128],
+                parent_id=str(meta.get("parent_id") or "")[:64],
                 vector_generation=str(meta.get("vector_generation") or "")[:64],
                 content_sha256=sha256(doc.page_content.encode()).hexdigest())
-            for key in ("vector_distance", "bm25_score", "rrf_rank", "rrf_score", "rerank_score", "model_rank", "final_rank"):
+            for key in ("document_version", "vector_distance", "bm25_score", "rrf_rank", "rrf_score", "rerank_score", "model_rank", "final_rank"):
                 value = meta.get(key)
                 if type(value) in (int, float) and isfinite(value):
                     row[key] = value
