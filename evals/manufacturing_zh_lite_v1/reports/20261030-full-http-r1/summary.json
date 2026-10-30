@@ -1,0 +1,238 @@
+{
+  "date": "2026-10-30",
+  "evaluation_type": "real_http_end_to_end_98_cases_not_blind_test",
+  "candidate_commit": "356471e",
+  "candidate_image": "enterprise-knowledge-manufacturing:decision-boundary-356471e",
+  "candidate_image_id": "sha256:ee3827220c6a9c63017c0ef48f2200783d1c4d01589c527a40450cb55d7b72f2",
+  "candidate_pipeline": {
+    "code_sha256": "5764ff733eae15be20b5ba2efb826f4134a9ed5ddf7c2a5325a6f9fcf0c80106",
+    "prompts_sha256": "f0530ca9ded79f4005aec2244f5a7aa821e8f0ab6f0598d2260f5e30e80b7f2d"
+  },
+  "total": 98,
+  "completed": 98,
+  "errors": 0,
+  "qa_request_retries": 0,
+  "historical_baseline_passed": 84,
+  "candidate_proxy_passed": 77,
+  "historical_groups": {
+    "ordinary": {
+      "total": 60,
+      "complete": 59,
+      "errors": 1,
+      "original_proxy_passed": 40,
+      "reviewed_proxy_passed": 54
+    },
+    "ocr": {
+      "total": 8,
+      "complete": 8,
+      "errors": 0,
+      "original_proxy_passed": 5,
+      "reviewed_proxy_passed": 5
+    },
+    "behavior": {
+      "total": 30,
+      "complete": 30,
+      "errors": 0,
+      "original_proxy_passed": 23,
+      "reviewed_proxy_passed": 25
+    }
+  },
+  "candidate_groups": {
+    "ordinary": {
+      "total": 60,
+      "complete": 60,
+      "errors": 0,
+      "original_proxy_passed": 37,
+      "reviewed_proxy_passed": 46
+    },
+    "ocr": {
+      "total": 8,
+      "complete": 8,
+      "errors": 0,
+      "original_proxy_passed": 5,
+      "reviewed_proxy_passed": 5
+    },
+    "behavior": {
+      "total": 30,
+      "complete": 30,
+      "errors": 0,
+      "original_proxy_passed": 27,
+      "reviewed_proxy_passed": 26
+    }
+  },
+  "behavior_groups": {
+    "answer": {
+      "total": 69,
+      "historical_passed": 60,
+      "candidate_passed": 51
+    },
+    "clarify": {
+      "total": 12,
+      "historical_passed": 7,
+      "candidate_passed": 10
+    },
+    "refuse": {
+      "total": 17,
+      "historical_passed": 17,
+      "candidate_passed": 16
+    }
+  },
+  "recovered_ids": [
+    "MFGZH-N09",
+    "MFGZH-Q042",
+    "MFGZH-Q043",
+    "MFGZH-N28",
+    "MFGZH-N30"
+  ],
+  "new_failed_ids": [
+    "MFGZH-Q005",
+    "MFGZH-Q006",
+    "MFGZH-Q046",
+    "MFGZH-Q083",
+    "MFGZH-Q017",
+    "MFGZH-Q018",
+    "MFGZH-Q020",
+    "MFGZH-Q027",
+    "MFGZH-Q030",
+    "MFGZH-Q089",
+    "MFGZH-N19",
+    "MFGZH-N21"
+  ],
+  "unchanged_failed_ids": [
+    "MFGZH-Q008",
+    "MFGZH-Q025",
+    "MFGZH-Q034",
+    "MFGZH-Q019",
+    "MFGZH-Q068",
+    "MFGZH-Q071",
+    "MFGZH-Q077",
+    "MFGZH-N25",
+    "MFGZH-N26"
+  ],
+  "new_failure_review_counts": {
+    "proxy_mismatch": 5,
+    "wording_boundary": 1,
+    "output_issue": 6
+  },
+  "proxy_score_changed": false,
+  "reviewer": "assistant_non_independent_source_review",
+  "frozen_profile_and_rules_verified": true,
+  "historical_reports_unchanged": true,
+  "source_file_hashes": {
+    "evals\\manufacturing_zh_lite_v1\\profile.json": "d728d685605c8ebc7cdd013cfffd737d7c1f852516bbbbbfa9957b2d1cd2b965",
+    "evals\\manufacturing_zh_lite_v1\\development\\single_turn.jsonl": "2d540db80ca6ed1fe8a25890f3282b3487003fe1bc5b541844226a259be5c75e",
+    "evals\\manufacturing_zh_lite_v1\\regression\\single_turn.jsonl": "588d27c03af8c8dd010b63fd19e9bd1475bb1ac9d158f96b31b664888fdb964a",
+    "evals\\manufacturing_zh_lite_v1\\scoring_rules.json": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da"
+  },
+  "historical_report_hashes": {
+    "tmp\\manufacturing-demo-lite-r1\\scoring-r13\\summary.json": "6fe518c8654bf2b13f8c4a685055a2348ffb4e25c05a86b31922a3e161d959d7",
+    "tmp\\manufacturing-demo-lite-r1\\scoring-r13\\answers.json": "3e41ac037b522b488a3a4a366d66ec4d144a645d3e98617441cc374916a5ebc3",
+    "tmp\\manufacturing-demo-lite-r1\\scoring-r13\\failures.json": "7d689a4ab6cf8bbc0ed4f1cccd94d41989792520672a9073d767010cb450daf0"
+  },
+  "new_trace_hashes": {
+    "development": "7599b12a310c67674c2c65ccfd1f58e277d4e8d1ad08edf45d47714d977d1f33",
+    "regression": "0603f25f3412ee43fd77cfaaf61bd72f7eabaff39ecc209ba46d33d586add90d"
+  },
+  "model_usage": {
+    "observed": true,
+    "calls": 312,
+    "reported_total_tokens": 1159992,
+    "unknown_usage_calls": 0,
+    "unknown_usage_rate": 0.0,
+    "unpriced_calls": 312,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 0
+  },
+  "model_stages": [
+    {
+      "stage": "agent_decision",
+      "status": "success",
+      "calls": 3
+    },
+    {
+      "stage": "answer_generation",
+      "status": "success",
+      "calls": 98
+    },
+    {
+      "stage": "answer_repair",
+      "status": "success",
+      "calls": 3
+    },
+    {
+      "stage": "query_embedding",
+      "status": "success",
+      "calls": 98
+    },
+    {
+      "stage": "query_planning",
+      "status": "success",
+      "calls": 12
+    },
+    {
+      "stage": "rerank",
+      "status": "success",
+      "calls": 98
+    }
+  ],
+  "ragas": {
+    "selection": "Every newly failed non-OCR answer case, including the r13 boundary-answer case N21",
+    "cases": 11,
+    "ids": [
+      "MFGZH-N21",
+      "MFGZH-Q005",
+      "MFGZH-Q006",
+      "MFGZH-Q017",
+      "MFGZH-Q018",
+      "MFGZH-Q020",
+      "MFGZH-Q027",
+      "MFGZH-Q030",
+      "MFGZH-Q046",
+      "MFGZH-Q083",
+      "MFGZH-Q089"
+    ],
+    "metrics": {
+      "factual_correctness": {
+        "scored": 11,
+        "mean": 0.5290909090909091,
+        "undefined": 0,
+        "errors": 0,
+        "at_or_above_threshold": 4,
+        "threshold": 0.8
+      },
+      "faithfulness": {
+        "scored": 11,
+        "mean": 0.8181818181818182,
+        "undefined": 0,
+        "errors": 0,
+        "at_or_above_threshold": 9,
+        "threshold": 0.9
+      }
+    },
+    "usage": {
+      "calls": 66,
+      "reported_total_tokens": 93766,
+      "unknown_usage_calls": 0,
+      "http_errors": 0,
+      "no_response_calls": 0
+    },
+    "report_sha256": "c3fa677ea66cbc8f98ba8272c507cc1bf111dc44fe3be0732451133caf4dcc42",
+    "limitation": "Selected new failures only, same model family, not full-set semantic accuracy; Q083 high F1 still missed a prerequisite."
+  },
+  "runner_tests": {
+    "passed": 22
+  },
+  "deployment": {
+    "candidate_stopped_intentionally": true,
+    "stable_image_unchanged": true,
+    "stable_image": "enterprise-knowledge-manufacturing:response-type-33e13b5",
+    "stable_health": "ok"
+  },
+  "limitations": [
+    "Historical complete run predates intervening fixes; not a controlled prompt-only before/after experiment.",
+    "All original r13 scores and references retained; selective manual review does not produce a corrected full-set accuracy.",
+    "The 98 cases are the reviewed demonstration/regression set, not an independent holdout.",
+    "HTTP owner snapshots expose final context and ledger, not vector/keyword/fusion/rerank candidate texts."
+  ]
+}

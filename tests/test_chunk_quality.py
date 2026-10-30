@@ -233,7 +233,14 @@ def test_synthetic_pdf_cover_does_not_displace_actual_acceptance_without_local_t
                      ("4 决议", "客户于9月29日签署最终验收。")])]
     context = ContextBuilder().build(documents, question="最后何时验收？")
     assert "签署最终验收" in context.text
-    assert [item.chunk_id for item in context.items] == ["0", "2", "3", "4"]
+    # Front matter is demoted, not discarded; a single source no longer has a four-block cap.
+    assert [item.chunk_id for item in context.items] == ["0", "2", "3", "4", "1"]
+    assert context.items[-1].evidence_role == "front_matter"
+    body_documents = [document for document in documents if document.id != "1"]
+    body_budget = ContextBuilder().build(body_documents, question="最后何时验收？").total_characters
+    bounded = ContextBuilder(max_characters=body_budget).build(documents, question="最后何时验收？")
+    assert [item.chunk_id for item in bounded.items] == ["0", "2", "3", "4"]
+    assert "签署最终验收" in bounded.text
 
 
 @pytest.mark.parametrize("show_content", [False, True])
