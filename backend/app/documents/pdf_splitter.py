@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-import math
 import hashlib
 import os
 import re
-import unicodedata
-from collections import Counter
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -23,6 +20,7 @@ from .document_splitter import (
 )
 from .chunk_quality import annotate_chunks, classify_chunk
 from .ocr_review import apply_reviewed_ocr
+from .document_cleaning import (clean_document, clean_text, clean_table, cleaning_trace, remove_repeated_marginalia)
 
 
 OcrPage = Callable[[Path, int], str]
@@ -34,12 +32,7 @@ _HEADING_PATTERN = re.compile(
     r")\S+"
 )
 _LIST_PATTERN = re.compile(
-    r"^(?:[-•·]|\(?[0-9一二三四五六七八九十]+[、.)）])"
-)
-_PAGE_NUMBER_PATTERN = re.compile(
-    r"^(?:第\s*\d+\s*页|[-—–]\s*\d+\s*[-—–]|"
-    r"page\s+\d+(?:\s+of\s+\d+)?|虚构测试资料\s+第\s*\d+\s*页)$",
-    flags=re.IGNORECASE,
+    r"^(?:[-•·]|\(?[0-9一二三四五六七八九十]+(?:[、)）]|\.(?!\d)))"
 )
 _TERMINAL_PUNCTUATION = tuple("。！？!?；;：:")
 _HEADING_MARKER_PATTERN = re.compile(
@@ -51,12 +44,24 @@ class PdfOcrUnavailableError(RuntimeError):
     """PDF needs OCR but the local OCR runtime is unavailable."""
 
 
+class PdfTextExtractionError(ValueError):
+    """An image page needed OCR but produced no text; review before indexing."""
+
+    def __init__(self, page_numbers: list[int]):
+        self.page_numbers = page_numbers
+        super().__init__(
+            f"PDF 第 {', '.join(map(str, page_numbers))} 页 OCR 未提取到文字；"
+            "无法确认是否为空白页，请复核后再入库。"
+        )
+
+
 @dataclass
 class ExtractedPage:
     number: int
     text: str
     parser: str
     tables: list[list[str]] = field(default_factory=list)
+    cleaning_traces: list[dict] = field(default_factory=list)
 
 
 @dataclass
@@ -68,6 +73,7 @@ class PdfUnit:
     page_end: int
     parsers: tuple[str, ...]
     rule_intro: str = ""
+    metadata: dict = field(default_factory=dict)
 
 
 def split_pdf(
@@ -80,14 +86,24 @@ def split_pdf(
     path = Path(file_path).resolve()
     resolved_document_name = document_name or path.stem
     pages = extract_pdf_pages(path, ocr_page=ocr_page)
+    empty_ocr_pages = [page.number for page in pages
+                       if page.parser == "ocr" and not page.text.strip() and not page.tables]
+    if empty_ocr_pages:
+        raise PdfTextExtractionError(empty_ocr_pages)
     corrections = {}
     if any(page.parser == 'ocr' for page in pages):
         file_hash = hashlib.sha256(path.read_bytes()).hexdigest()
         for page in pages:
             if page.parser == 'ocr':
+                before = page.text
                 page.text, corrections[page.number] = apply_reviewed_ocr(page.text, file_hash=file_hash, page=page.number)
+                if corrections[page.number]:
+                    page.cleaning_traces.append(cleaning_trace(before, page.text, profile="reviewed_ocr",
+                        rules=["hash_bound_reviewed_ocr"], scope={"format":"pdf", "page":page.number},
+                        counts={"corrections":len(corrections[page.number])}))
     pages = remove_repeated_marginalia(pages, document_name=resolved_document_name)
-    units = collect_pdf_units(pages)
+    units = clean_document(collect_pdf_units(pages), source_format="pdf",
+        upstream_traces=[trace for page in pages for trace in page.cleaning_traces])
 
     normal_splitter = RecursiveCharacterTextSplitter(
         separators=[
@@ -155,6 +171,7 @@ def split_pdf(
                         "page_start": unit.page_start,
                         "page_end": unit.page_end,
                         "parser": parser,
+                        **unit.metadata,
                         **({"rule_intro": unit.rule_intro} if unit.rule_intro else {}),
                     },
                 )
@@ -211,14 +228,17 @@ def extract_pdf_pages(
             )
             parser = "ocr"
 
-        text = normalize_pdf_text(text)
-        if text or tables:
+        text, trace = clean_text(text, profile="pdf_text", scope={"format":"pdf", "page":page_number})
+        # Keep failed OCR observations; never silently publish a partial PDF.
+        # A genuinely blank native page without images still needs no OCR.
+        if text or tables or parser == "ocr":
             extracted.append(
                 ExtractedPage(
                     number=page_number,
                     text=text,
                     parser=parser,
                     tables=tables,
+                    cleaning_traces=[*(layout_page.cleaning_traces if layout_page else []), trace],
                 )
             )
 
@@ -226,73 +246,8 @@ def extract_pdf_pages(
 
 
 def normalize_pdf_text(text: str) -> str:
-    text = unicodedata.normalize("NFKC", text)
-    text = text.replace("\x00", "").replace("\u00ad", "")
-    text = re.sub(r"(?<=[A-Za-z])-\s*\n\s*(?=[A-Za-z])", "", text)
-    lines: list[str] = []
-
-    for raw_line in text.replace("\r\n", "\n").split("\n"):
-        line = re.sub(r"[\t \u3000]+", " ", raw_line).strip()
-        lines.append(line)
-
-    return "\n".join(lines).strip()
-
-
-def remove_repeated_marginalia(
-    pages: list[ExtractedPage],
-    *,
-    document_name: str = "",
-) -> list[ExtractedPage]:
-    normalized_page_edges: list[set[str]] = []
-    for page in pages:
-        lines = [line for line in page.text.splitlines() if line]
-        normalized_page_edges.append({
-            _normalize_marginal_line(line)
-            for line in lines[:2] + lines[-2:]
-            if _safe_repeated_margin(line, document_name)
-        })
-
-    normalized_counts = Counter(
-        line
-        for page_edges in normalized_page_edges
-        for line in page_edges
-        if line
-    )
-    required = max(2, math.ceil(len(pages) * 0.6))
-    repeated = {
-        line
-        for line, count in normalized_counts.items()
-        if count >= required
-    }
-    cleaned: list[ExtractedPage] = []
-    for page in pages:
-        lines = page.text.splitlines()
-        nonempty_indexes = [
-            index for index, line in enumerate(lines) if line
-        ]
-        edge_indexes = set(nonempty_indexes[:2]) | set(
-            nonempty_indexes[-2:]
-        )
-        footer_indexes = set(nonempty_indexes[-2:])
-        kept = [
-            line
-            for index, line in enumerate(lines)
-            if not (
-                (index in edge_indexes and _safe_repeated_margin(line, document_name)
-                 and _normalize_marginal_line(line) in repeated)
-                or (index in footer_indexes and _PAGE_NUMBER_PATTERN.fullmatch(line.strip())
-                    and int(re.search(r"\d+", line).group()) == page.number)
-            )
-        ]
-        cleaned.append(
-            ExtractedPage(
-                number=page.number,
-                text="\n".join(kept).strip(),
-                parser=page.parser,
-                tables=page.tables,
-            )
-        )
-    return cleaned
+    """Compatibility wrapper for the shared PDF text-cleaning policy."""
+    return clean_text(text, profile="pdf_text")[0]
 
 
 def collect_pdf_units(
@@ -331,9 +286,9 @@ def collect_pdf_units(
                 continue
 
             heading_level = _heading_level(line)
+            line = _strip_heading_marker(line)
             if heading_level is not None:
                 flush_paragraph()
-                line = _strip_heading_marker(line)
                 headings = headings[: heading_level - 1]
                 headings.append(line)
                 continue
@@ -350,6 +305,17 @@ def collect_pdf_units(
                         parsers=(page.parser,),
                     )
                 )
+                continue
+
+            # A wrapped list item is still one item. Do not detach its final
+            # characters into a new paragraph, including across a page break.
+            previous = units[-1] if units else None
+            if (not paragraph_lines and previous and previous.kind == "list"
+                    and previous.section_path == tuple(headings)
+                    and not str(previous.content).endswith(_TERMINAL_PUNCTUATION)):
+                previous.content = _join_wrapped_lines([str(previous.content), line])
+                previous.page_end = page.number
+                previous.parsers = tuple(sorted(set(previous.parsers + (page.parser,))))
                 continue
 
             if not paragraph_lines:
@@ -453,10 +419,13 @@ def _extract_layout_pages(path: Path) -> dict[int, ExtractedPage]:
                 except Exception:
                     found_tables = []
 
-                for table in found_tables:
-                    rows = _normalize_table_rows(table.extract())
+                table_traces = []
+                for table_index, table in enumerate(found_tables):
+                    rows, table_trace = clean_table(table.extract(),
+                        scope={"format":"pdf", "page":page_number, "table":table_index})
                     if len(rows) >= 2:
                         tables.append(rows)
+                        table_traces.append(table_trace)
                         table_boxes.append(table.bbox)
 
                 text_page = page
@@ -478,6 +447,7 @@ def _extract_layout_pages(path: Path) -> dict[int, ExtractedPage]:
                         else "pdfplumber"
                     ),
                     tables=tables,
+                    cleaning_traces=table_traces,
                 )
     except Exception:
         # Layout extraction is enrichment. Malformed layout data should
@@ -509,7 +479,7 @@ def _extract_reading_order_text(page) -> str:
     for column in columns:
         lines: list[list[dict]] = []
         for word in sorted(column, key=lambda item: (item["top"], item["x0"])):
-            if not lines or abs(lines[-1][0]["top"] - word["top"]) > 3:
+            if not lines or not _same_text_line(lines[-1], word):
                 lines.append([word])
             else:
                 lines[-1].append(word)
@@ -535,6 +505,15 @@ def _extract_reading_order_text(page) -> str:
     return "\n".join(rendered)
 
 
+def _same_text_line(line: list[dict], word: dict) -> bool:
+    # A sub/superscript has a different top but overlaps the body glyphs.
+    # Anchor to the tallest glyph so small symbols cannot drag the next line.
+    anchor = max(line, key=lambda item: item["bottom"] - item["top"])
+    overlap = min(anchor["bottom"], word["bottom"]) - max(anchor["top"], word["top"])
+    height = min(anchor["bottom"] - anchor["top"], word["bottom"] - word["top"])
+    return overlap > 0 and overlap >= height * 0.5
+
+
 def _split_word_columns(
     words: list[dict],
     page_width: float,
@@ -552,6 +531,8 @@ def _split_word_columns(
     largest_gap, divider = max(gaps)
     if largest_gap < page_width * 0.12:
         return [words]
+    # A gap between word CENTERS is not a gutter: Chinese extractors can
+    # return an entire full-width line as one word, beside short clauses.
     left = [
         word
         for word in words
@@ -561,6 +542,8 @@ def _split_word_columns(
     ]
     right = [word for word in words if word not in left]
     if len(left) < 2 or len(right) < 2:
+        return [words]
+    if max(float(word["x1"]) for word in left) >= min(float(word["x0"]) for word in right):
         return [words]
     left_lines = {
         round(float(word["top"]) / 4)
@@ -584,15 +567,7 @@ def _looks_multicolumn(page) -> bool:
 
 
 def _normalize_table_rows(rows: list[list[str | None]]) -> list[str]:
-    normalized: list[str] = []
-    for row in rows:
-        cells = [
-            re.sub(r"\s+", " ", cell or "").strip()
-            for cell in row
-        ]
-        if any(cells):
-            normalized.append("|".join(cells))
-    return normalized
+    return clean_table(rows)[0]
 
 
 def _object_inside_box(
@@ -629,11 +604,18 @@ def _run_ocr(
     if tesseract_command:
         pytesseract.pytesseract.tesseract_cmd = tesseract_command
     poppler_path = os.getenv("POPPLER_PATH", "").strip() or None
+    raw_dpi = os.getenv("PDF_OCR_DPI", "220")
+    try:
+        dpi = int(raw_dpi)
+    except ValueError as exc:
+        raise ValueError("PDF_OCR_DPI 必须为150到400之间的整数") from exc
+    if not 150 <= dpi <= 400:
+        raise ValueError("PDF_OCR_DPI 必须为150到400之间的整数")
 
     try:
         images = convert_from_path(
             str(path),
-            dpi=220,
+            dpi=dpi,
             first_page=page_number,
             last_page=page_number,
             poppler_path=poppler_path,
@@ -642,10 +624,18 @@ def _run_ocr(
         )
         if not images:
             return ""
-        return pytesseract.image_to_string(
+        text = pytesseract.image_to_string(
             images[0],
             lang=os.getenv("PDF_OCR_LANGUAGE", "chi_sim+eng"),
         )
+        # Opt-in offline candidate: one retry only for truly empty results.
+        # Nonempty output and OCR review markers are never certified here.
+        if not text.strip() and _env_enabled("PDF_OCR_RETRY_EMPTY", default=False):
+            text = pytesseract.image_to_string(
+                images[0], lang=os.getenv("PDF_OCR_LANGUAGE", "chi_sim+eng"),
+                config="--psm 6",
+            )
+        return text
     except Exception as exc:
         raise PdfOcrUnavailableError(
             f"PDF 第 {page_number} 页 OCR 失败：{exc}"
@@ -659,6 +649,16 @@ def _heading_level(line: str) -> int | None:
         marker_level = max(1, int(marker_match.group(1)))
         line = marker_match.group(2).strip()
     if len(line) > 60:
+        return None
+    # Wrapped prose often has no terminal punctuation on its first line.
+    # Commas or a sentence followed by more text contradict a title, even
+    # when mixed font sizes produced a tentative typography heading marker.
+    if re.search(r"[，,；;]|[。！？!?].+", line):
+        return None
+    # Numeric prose can begin with a count ("3 次，...") as well as a list.
+    # Do not require a dot/list marker to protect a complete sentence.
+    # Explicit typography markers still take precedence over this text heuristic.
+    if marker_level is None and line.endswith(("。", "；", ";", "！", "!", "？", "?")):
         return None
     if not _HEADING_PATTERN.match(line):
         return marker_level
@@ -686,30 +686,6 @@ def _join_wrapped_lines(lines: list[str]) -> str:
         separator = " " if result[-1:].isascii() and line[:1].isascii() else ""
         result = f"{result}{separator}{line}"
     return result
-
-
-def _normalize_marginal_line(line: str) -> str:
-    return re.sub(r"\s+", "", line.strip().lower())
-
-
-def _safe_repeated_margin(line: str, document_name: str = "") -> bool:
-    # Repetition alone cannot prove a rule is a header/footer. Do not collapse
-    # changing amounts/versions into the same line or remove repeated obligations.
-    if len(line) > 80 or re.search(
-        r"\d|[|。！？；;:：]|必须|应当|不得|禁止|限额|上限|触发|应在|需要|条件|例外|"
-        r"生效|失效|有效期|版本|审批人|负责人|签署|验收结果|不应|不能|不可|不自动|"
-        r"仅|只有|如果|若|允许|可以|须|要求|不代表|不证明|确认|认定|已|重试|幂等", line,
-    ):
-        return False
-    if classify_chunk(line, {"document_name": document_name, "section_path": ""}) == "front_matter":
-        return True
-    # A repeated title may have a short company prefix absent from the filename.
-    # Unknown short business lines are not headers just because they repeat.
-    title = re.sub(r"\.(?:pdf|docx?|md|txt)$", "", document_name, flags=re.I)
-    title = _normalize_marginal_line(re.sub(r"^\d+[_、.\s-]+", "", title))
-    normalized = _normalize_marginal_line(line)
-    prefix = normalized[:-len(title)] if title and normalized.endswith(title) else ""
-    return bool(prefix and re.fullmatch(r"[\w·&-]+(?:科技|公司|有限公司)", prefix))
 
 
 def _meaningful_character_count(text: str) -> int:

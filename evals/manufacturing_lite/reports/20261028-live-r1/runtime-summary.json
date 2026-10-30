@@ -1,0 +1,292 @@
+{
+  "evaluation_type": "real_http_acceptance_scored_from_frozen_owner_snapshots",
+  "application_base_commit": "fe7221c",
+  "tenant_id": "19f4641c-5e25-479a-aa1b-6f7f7b621ca4",
+  "knowledge_bases": {
+    "公共参考": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+    "生产工艺": "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb",
+    "质量检验": "3352fe40-534b-4d2e-8eef-9b89cbeb877e"
+  },
+  "accounts": {
+    "操作员": {
+      "username": "mfg-operator-a8285175",
+      "subject": "3e5b97ac-ac32-45f7-a1b5-4fb67082c6f7"
+    },
+    "工艺工程师": {
+      "username": "mfg-process-a8285175",
+      "subject": "4944bf17-4fcf-4640-bd00-5d99d6b2ee3c"
+    },
+    "质量工程师": {
+      "username": "mfg-quality-a8285175",
+      "subject": "c4217c7c-4efd-4261-be9f-5038b2872311"
+    },
+    "知识管理员": {
+      "username": "mfg-admin-a8285175",
+      "subject": "a55a09ba-7ae1-46e5-8200-11ab42dc4247"
+    },
+    "仅参考资料用户": {
+      "username": "mfg-reference-a8285175",
+      "subject": "2cdef5bf-d89f-46e2-bd3c-04638fd79d4d"
+    }
+  },
+  "pipeline": {
+    "code_sha256": "7ade3cead1b96e1ee4445e47dc157c84eae3c123ae27d5f55bc7689b59ac3fc3",
+    "prompts_sha256": "5e902522e7f985560e4f805f1a9bc66cca77f1d31fc61beb6a6573eaca2c14fe"
+  },
+  "models": [
+    "qwen3.7-flash",
+    "text-embedding-v4",
+    "qwen3-rerank"
+  ],
+  "deployment_image": "enterprise-knowledge-manufacturing:20261028-fe7221c",
+  "corpus_manifest_sha256": "33008b62e400060907bab2c920240120e34ce40a267869c1805ba7a69acd587a",
+  "dataset_sha256": "650f7c26da5428080a35181f4b3126256a8fc9846f3b98d794e53120887e4ab5",
+  "http": {
+    "evaluation_type": "real_http_acceptance_with_owner_context_snapshots",
+    "questions": 20,
+    "completed": 20,
+    "errors": 0,
+    "dataset_sha256": "650f7c26da5428080a35181f4b3126256a8fc9846f3b98d794e53120887e4ab5",
+    "qa_request_retries": 0,
+    "unobserved_stages": [
+      "vector",
+      "keyword",
+      "fusion",
+      "rerank"
+    ],
+    "attempts": [
+      {
+        "id": "MFG-Q01",
+        "error": null,
+        "run_id": "b5bcf4a1-31ba-42e9-a95c-f7195b333aba"
+      },
+      {
+        "id": "MFG-Q02",
+        "error": null,
+        "run_id": "3a5c60f9-8f18-4dc1-9487-183ae1c6ef08"
+      },
+      {
+        "id": "MFG-Q03",
+        "error": null,
+        "run_id": "739eae6f-e72d-403b-97e4-9da56a28fb56"
+      },
+      {
+        "id": "MFG-Q04",
+        "error": null,
+        "run_id": "77fcba58-adc4-4051-b573-6d8a18191e40"
+      },
+      {
+        "id": "MFG-Q05",
+        "error": null,
+        "run_id": "d3c6a7f7-6725-4470-88c8-48a6704ac5e6"
+      },
+      {
+        "id": "MFG-Q06",
+        "error": null,
+        "run_id": "2886d233-16fc-42de-8be4-b97ceaa64d75"
+      },
+      {
+        "id": "MFG-Q07",
+        "error": null,
+        "run_id": "50f43212-48a7-4227-9ccf-fc6f852c740e"
+      },
+      {
+        "id": "MFG-Q08",
+        "error": null,
+        "run_id": "ec732585-b75b-48f8-b598-e9ef17171f76"
+      },
+      {
+        "id": "MFG-Q09",
+        "error": null,
+        "run_id": "14782397-511e-49fe-8b5f-f6656554cb78"
+      },
+      {
+        "id": "MFG-Q10",
+        "error": null,
+        "run_id": "0838d417-cb8b-47a9-a10c-b36f5466b475"
+      },
+      {
+        "id": "MFG-Q11",
+        "error": null,
+        "run_id": "946b2400-cb5f-447d-8971-a4af3cec7274"
+      },
+      {
+        "id": "MFG-Q12",
+        "error": null,
+        "run_id": "3eb16be3-6345-4646-83aa-279776db5816"
+      },
+      {
+        "id": "MFG-Q13",
+        "error": null,
+        "run_id": "d98ecdcd-6b10-4297-9cfc-ef7b5dfd3e82"
+      },
+      {
+        "id": "MFG-Q14",
+        "error": null,
+        "run_id": "835fe00a-8ac4-4af6-97c0-60678a554c52"
+      },
+      {
+        "id": "MFG-Q15",
+        "error": null,
+        "run_id": "1f3dd153-29d9-4395-b4c9-aed1b8526202"
+      },
+      {
+        "id": "MFG-Q16",
+        "error": null,
+        "run_id": "e6729353-a3ad-476c-9e26-021f7b235214"
+      },
+      {
+        "id": "MFG-Q17",
+        "error": null,
+        "run_id": "f380c00c-6b29-476a-a1ea-1dacc2f282d8"
+      },
+      {
+        "id": "MFG-Q18",
+        "error": null,
+        "run_id": "73fbfb6f-a923-4852-8a8c-f0f465438fc4"
+      },
+      {
+        "id": "MFG-Q19",
+        "error": null,
+        "run_id": "512394e5-5bd3-434b-baed-e4f502cd47bb"
+      },
+      {
+        "id": "MFG-Q20",
+        "error": null,
+        "run_id": "dda9d567-e729-41a9-a4c6-1b822ab6424b"
+      }
+    ]
+  },
+  "index": {
+    "tenant_id": "19f4641c-5e25-479a-aa1b-6f7f7b621ca4",
+    "documents": 17,
+    "ready_documents": 17,
+    "chunks": 1566,
+    "vectors": 1566,
+    "parents": 1110,
+    "jobs": 17,
+    "all_checks_passed": true
+  },
+  "automatic_proxy": {
+    "total": 20,
+    "passed": 14,
+    "failed": 6,
+    "error": 0,
+    "skipped": 0,
+    "partial": 0,
+    "not_applicable": 0,
+    "pass_rate": 0.7
+  },
+  "assistant_semantic_review": {
+    "total": 20,
+    "passed": 18,
+    "failed": 2,
+    "error": 0,
+    "skipped": 0,
+    "partial": 0,
+    "not_applicable": 0,
+    "pass_rate": 0.9
+  },
+  "context": {
+    "total": 20,
+    "passed": 16,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "partial": 0,
+    "not_applicable": 4,
+    "pass_rate": 1.0
+  },
+  "observed_response_citation_integrity": 20,
+  "acl_checks": {
+    "total": 33,
+    "passed": 33
+  },
+  "remaining_failures": [
+    "MFG-Q04",
+    "MFG-Q11"
+  ],
+  "automatic_review_differences": [
+    "MFG-Q01",
+    "MFG-Q08",
+    "MFG-Q09",
+    "MFG-Q15"
+  ],
+  "unobserved_stages": [
+    "vector",
+    "keyword",
+    "fusion",
+    "rerank"
+  ],
+  "latency_ms": {
+    "p50": 3794.9700000000003,
+    "p95_nearest_rank": 7259.6,
+    "total": 87403.43,
+    "definition": "sequential HTTP QA plus owner snapshot read, not load testing"
+  },
+  "usage": {
+    "all": {
+      "observed": true,
+      "calls": 230,
+      "reported_total_tokens": 305233,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 230,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0
+    },
+    "indexing": {
+      "observed": true,
+      "calls": 166,
+      "reported_total_tokens": 112018,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 166,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0
+    },
+    "qa": {
+      "observed": true,
+      "calls": 64,
+      "reported_total_tokens": 193215,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 64,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0
+    },
+    "stages": {
+      "rerank": 20,
+      "agent_decision": 1,
+      "document_embedding": 166,
+      "answer_generation": 20,
+      "query_embedding": 20,
+      "query_planning": 3
+    }
+  },
+  "final_regression": {
+    "tests": 1368,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 1,
+    "junit_sha256": "efef3b3a19144f79a8782446269b70a84a03c8525db9f4a3ff927bf532ef9861",
+    "passed": 1367
+  },
+  "raw_artifacts_sha256": {
+    "http-r1/traces.jsonl": "2cb10a4634f8f4ecebe13752ba19ca3b35986db021b6adf07aa3eeaf485ddb6f",
+    "http-r1/observed-with-ledger.jsonl": "9a98ef8f66090215a4360dc5b40ebcba667453454b61935def77e4cf7ebe1679",
+    "reviewed-r1/report.json": "33f7b404c3e22b57ec7673a359f8294831c5251be12a42dd07b36c1be20f4067",
+    "index-audit.json": "94abf8f10bccb79186ee6a97b2afdaa170992ab9764d5fb3d36aa9695158caf7",
+    "ledger-events.json": "75664f9594071f943b9260bf039dbb99596c74d9424d164ef2be613f3fc5469e"
+  },
+  "limitations": [
+    "20 synthetic questions; assistant review is non-blind and not independent.",
+    "All original criteria and corpus unchanged; proxy failures retained.",
+    "No new paid QA calls during scoring or review; retrieval candidate stages were not observed by the HTTP snapshot.",
+    "No model pricing configured; currency cost cannot be reported.",
+    "Application tenancy reuses existing database/vector/auth services."
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "ingestion": {
+    "observed": true,
+    "calls": 111,
+    "reported_total_tokens": 145041,
+    "unknown_usage_calls": 0,
+    "unknown_usage_rate": 0.0,
+    "unpriced_calls": 111,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 0,
+    "by_stage": {
+      "document_embedding": {
+        "observed": true,
+        "calls": 111,
+        "reported_total_tokens": 145041,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 111,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      }
+    }
+  },
+  "qa": {
+    "observed": true,
+    "calls": 128,
+    "reported_total_tokens": 458710,
+    "unknown_usage_calls": 0,
+    "unknown_usage_rate": 0.0,
+    "unpriced_calls": 128,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 0,
+    "by_stage": {
+      "answer_generation": {
+        "observed": true,
+        "calls": 40,
+        "reported_total_tokens": 222255,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 40,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "answer_repair": {
+        "observed": true,
+        "calls": 1,
+        "reported_total_tokens": 1031,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 1,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "query_embedding": {
+        "observed": true,
+        "calls": 41,
+        "reported_total_tokens": 1585,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 41,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "query_planning": {
+        "observed": true,
+        "calls": 5,
+        "reported_total_tokens": 2021,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 5,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "rerank": {
+        "observed": true,
+        "calls": 41,
+        "reported_total_tokens": 231818,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 41,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      }
+    }
+  },
+  "total": {
+    "observed": true,
+    "calls": 239,
+    "reported_total_tokens": 603751,
+    "unknown_usage_calls": 0,
+    "unknown_usage_rate": 0.0,
+    "unpriced_calls": 239,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 0,
+    "by_stage": {
+      "answer_generation": {
+        "observed": true,
+        "calls": 40,
+        "reported_total_tokens": 222255,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 40,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "answer_repair": {
+        "observed": true,
+        "calls": 1,
+        "reported_total_tokens": 1031,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 1,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "document_embedding": {
+        "observed": true,
+        "calls": 111,
+        "reported_total_tokens": 145041,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 111,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "query_embedding": {
+        "observed": true,
+        "calls": 41,
+        "reported_total_tokens": 1585,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 41,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "query_planning": {
+        "observed": true,
+        "calls": 5,
+        "reported_total_tokens": 2021,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 5,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "rerank": {
+        "observed": true,
+        "calls": 41,
+        "reported_total_tokens": 231818,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 41,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      }
+    }
+  },
+  "ingestion_by_document_route": {
+    "ordinary": {
+      "observed": true,
+      "calls": 92,
+      "reported_total_tokens": 120424,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 92,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "by_stage": {
+        "document_embedding": {
+          "observed": true,
+          "calls": 92,
+          "reported_total_tokens": 120424,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 92,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      }
+    },
+    "ocr": {
+      "observed": true,
+      "calls": 19,
+      "reported_total_tokens": 24617,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 19,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "by_stage": {
+        "document_embedding": {
+          "observed": true,
+          "calls": 19,
+          "reported_total_tokens": 24617,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 19,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      }
+    }
+  },
+  "qa_by_question_group": {
+    "ordinary": {
+      "observed": true,
+      "calls": 95,
+      "reported_total_tokens": 337566,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 95,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "by_stage": {
+        "answer_generation": {
+          "observed": true,
+          "calls": 30,
+          "reported_total_tokens": 152781,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 30,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "answer_repair": {
+          "observed": true,
+          "calls": 1,
+          "reported_total_tokens": 1031,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 1,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_embedding": {
+          "observed": true,
+          "calls": 30,
+          "reported_total_tokens": 1379,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 30,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_planning": {
+          "observed": true,
+          "calls": 4,
+          "reported_total_tokens": 1688,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 4,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "rerank": {
+          "observed": true,
+          "calls": 30,
+          "reported_total_tokens": 180687,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 30,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      }
+    },
+    "ocr": {
+      "observed": true,
+      "calls": 0,
+      "reported_total_tokens": 0,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": null,
+      "unpriced_calls": 0,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "by_stage": {}
+    },
+    "behavior_no_source": {
+      "observed": true,
+      "calls": 33,
+      "reported_total_tokens": 121144,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 33,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "by_stage": {
+        "answer_generation": {
+          "observed": true,
+          "calls": 10,
+          "reported_total_tokens": 69474,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 10,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_embedding": {
+          "observed": true,
+          "calls": 11,
+          "reported_total_tokens": 206,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 11,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_planning": {
+          "observed": true,
+          "calls": 1,
+          "reported_total_tokens": 333,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 1,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "rerank": {
+          "observed": true,
+          "calls": 11,
+          "reported_total_tokens": 51131,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 11,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      }
+    }
+  },
+  "qa_requests": 40,
+  "ledger_trace_ids_match": true,
+  "qa_request_retries": 0,
+  "held_out_test_questions_run": 0
+}

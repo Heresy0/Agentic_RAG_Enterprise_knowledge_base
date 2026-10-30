@@ -1,0 +1,2032 @@
+{
+  "tenant_id": "19f4641c-5e25-479a-aa1b-6f7f7b621ca4",
+  "documents": 60,
+  "ready_documents": 60,
+  "chunks": 8366,
+  "vectors": 8366,
+  "parents": 4828,
+  "jobs": 60,
+  "all_checks_passed": true,
+  "records": [
+    {
+      "source_id": "MFG-01",
+      "baseline": true,
+      "document_id": "4d3e6895-b5c5-4ff6-9ad0-0dd3445e6362",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "01_量具使用与测量准备手册.pdf",
+      "sha256": "e73a871c1026534567dcb9bab4bad08399cebc033523b480781ea532b4e30f2f",
+      "status": "ready",
+      "chunk_count": 6,
+      "vector_count": 6,
+      "generation": "f5a06f1babfb4160878d7acb7a6a74f9",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-MEA-001",
+          "business_version": "1.0",
+          "effective_from": "2026-01-01",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 1,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 6,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-02",
+      "baseline": true,
+      "document_id": "455b33b0-d232-42a8-8f7b-7df01c5262e1",
+      "knowledge_base_id": "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb",
+      "file_name": "02_首件确认与工序交接流程.pdf",
+      "sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "b114d06a5eab41eb845603efcba4b9db",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-FLOW-001",
+          "business_version": "1.0",
+          "effective_from": "2026-01-01",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-03",
+      "baseline": true,
+      "document_id": "d2f09dc7-715e-4eff-af88-4d4ee0270e63",
+      "knowledge_base_id": "3352fe40-534b-4d2e-8eef-9b89cbeb877e",
+      "file_name": "03_检验项目与量具对照表.pdf",
+      "sha256": "20bb924d978b08af9be7d35f311a9c391252f1b25e5211ec815978a2f0a9621a",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "700f3f493ea5476d87eec35e0de9e7f3",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-QC-MAP",
+          "business_version": "1.0",
+          "effective_from": "2026-01-01",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-04",
+      "baseline": true,
+      "document_id": "4191aaae-ff02-4c97-8a19-55ba2534b1de",
+      "knowledge_base_id": "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb",
+      "file_name": "04_定位治具更换通知扫描件.pdf",
+      "sha256": "e0e49d1e9886154beea20798183020d7ad5b1c661cde2e30293fcf746e1343e3",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "15c23162b0dd41af8f19124670864eb9",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "business_version": "1.0",
+          "effective_from": "2026-10-26",
+          "applicability": "衔川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 2,
+          "ocr_chunks": 4,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": "b33fdc1912f209ce41982568c7306dd11c61f7242ee820e9ccb001c0874ffb7f",
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-05",
+      "baseline": true,
+      "document_id": "b30ca4aa-0777-4a91-9d9b-f84777320024",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "05_NIST量块手册公开参考.pdf",
+      "sha256": "a798535274ef279adacce559217ae231b74c79ceadea7b1103bc7bcb15bf0acd",
+      "status": "ready",
+      "chunk_count": 1495,
+      "vector_count": 1495,
+      "generation": "93aefec64fad4787a60168a2180281a2",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 1495,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1092
+      }
+    },
+    {
+      "source_id": "MFG-06",
+      "baseline": true,
+      "document_id": "5bc01eb0-60d1-4cc2-8747-104c263b14a0",
+      "knowledge_base_id": "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb",
+      "file_name": "06_HC-A17_OP20作业指导书历史版.docx",
+      "sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "d355f07f9b194d0c83ed4032f5cc03ec",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-WI-A17-020",
+          "business_version": "1.0",
+          "effective_from": "2026-01-01",
+          "effective_to": "2026-09-30",
+          "applicability": "HC-A17的OP-20工序",
+          "business_status": "历史归档",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-07",
+      "baseline": true,
+      "document_id": "12d9d938-365f-4c59-8eb3-a90ad0304eee",
+      "knowledge_base_id": "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb",
+      "file_name": "07_HC-A17_OP20作业指导书现行版.docx",
+      "sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+      "status": "ready",
+      "chunk_count": 5,
+      "vector_count": 5,
+      "generation": "9f6b0dd42280452ba270021bfd8700f8",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-WI-A17-020",
+          "business_version": "2.0",
+          "effective_from": "2026-10-01",
+          "applicability": "HC-A17的OP-20工序",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 5,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-08",
+      "baseline": true,
+      "document_id": "e34100d5-f02a-413e-baa0-437e8edf82dd",
+      "knowledge_base_id": "3352fe40-534b-4d2e-8eef-9b89cbeb877e",
+      "file_name": "08_HC-A17首件检验规范.docx",
+      "sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "8bae287c40a64abfafc61b189f2e6d38",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-QC-A17-001",
+          "business_version": "1.0",
+          "effective_from": "2026-10-01",
+          "applicability": "HC-A17的OP-20首件检验",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-09",
+      "baseline": true,
+      "document_id": "aec18174-d51b-4ddb-87b5-9aba62d02620",
+      "knowledge_base_id": "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb",
+      "file_name": "09_工艺变更通知ECN-2026-018.docx",
+      "sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "59c344bdaaa047f695d3bddcd7c01d62",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "ECN-2026-018",
+          "business_version": "1.0",
+          "effective_from": "2026-10-01",
+          "applicability": "HC-A17的OP-20工序",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-10",
+      "baseline": true,
+      "document_id": "555e333f-83f7-4eb4-b09e-9d72c4aca918",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "10_产品工序与文件路由.md",
+      "sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "5055c8fe503b4e52be2771fcb6732aa8",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-ROUTE-001",
+          "business_version": "1.0",
+          "effective_from": "2026-01-01",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 1,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-11",
+      "baseline": true,
+      "document_id": "45fa975b-fc63-4536-84c4-1898ea9fa04d",
+      "knowledge_base_id": "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb",
+      "file_name": "11_工艺常见问题.md",
+      "sha256": "f4dddd4fa5305665ab1f78407cb3007c36436250301ac8c94e3cb91a4b2abb5c",
+      "status": "ready",
+      "chunk_count": 5,
+      "vector_count": 5,
+      "generation": "8ef2ef5505a14ba6b15af26fbbe99e61",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-FAQ-001",
+          "business_version": "1.0",
+          "effective_from": "2026-01-01",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 1,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 5,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-12",
+      "baseline": true,
+      "document_id": "a2f9c40f-3bd7-48f3-92a7-44976ee8b639",
+      "knowledge_base_id": "3352fe40-534b-4d2e-8eef-9b89cbeb877e",
+      "file_name": "12_检验记录填写与追溯规则.md",
+      "sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+      "status": "ready",
+      "chunk_count": 5,
+      "vector_count": 5,
+      "generation": "4ef2dbd90d814cbeabc03ce9c5a63f52",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-QC-REC",
+          "business_version": "1.0",
+          "effective_from": "2026-01-01",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 1,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 5,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-13",
+      "baseline": true,
+      "document_id": "c5b9ef55-c16a-41bc-aba2-b4b6c24e7eb7",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "13_历史文件查询与变更说明.md",
+      "sha256": "8d6d6e79537b95cf50bd3e0b196d0f2117310cdb7209ce69987d2439171a9fcd",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "8115298817834bdfa672d65391de0e41",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-DOC-001",
+          "business_version": "1.0",
+          "effective_from": "2026-01-01",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 1,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-14",
+      "baseline": true,
+      "document_id": "76df00d4-2ac4-4391-bd1c-0ebe947e8852",
+      "knowledge_base_id": "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb",
+      "file_name": "14_工单WO-017班次交接记录.txt",
+      "sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+      "status": "ready",
+      "chunk_count": 6,
+      "vector_count": 6,
+      "generation": "f81b6185b86c4b19929c9e129a8ce42e",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-HO-017",
+          "business_version": "1.0",
+          "effective_from": "2026-10-26",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 2,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 6,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-15",
+      "baseline": true,
+      "document_id": "12f93440-88a9-4d2a-ad41-a61f79009bee",
+      "knowledge_base_id": "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb",
+      "file_name": "15_工单WO-018班次交接记录.txt",
+      "sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "4f11e531f2bc4f70bdad40340001e8de",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-HO-018",
+          "business_version": "1.0",
+          "effective_from": "2026-10-02",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 2,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-16",
+      "baseline": true,
+      "document_id": "1c45a505-62bf-4ed2-85c2-f0b288feb467",
+      "knowledge_base_id": "3352fe40-534b-4d2e-8eef-9b89cbeb877e",
+      "file_name": "16_首件检验记录B-1026-017.txt",
+      "sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "abe8f27ede79475fb70b5eda30b9812e",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-QC-017",
+          "business_version": "1.0",
+          "effective_from": "2026-10-26",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 2,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-17",
+      "baseline": true,
+      "document_id": "81265b6f-c61b-41b8-b385-a4cd1afdb8b5",
+      "knowledge_base_id": "3352fe40-534b-4d2e-8eef-9b89cbeb877e",
+      "file_name": "17_量具点检与隔离交接记录.txt",
+      "sha256": "7147abdb03049bda57bf540710577f9736f2aca66589a6b91444ce30aea0b8f3",
+      "status": "ready",
+      "chunk_count": 4,
+      "vector_count": 4,
+      "generation": "c0cc0a55f22644afbc842b16608e5752",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "document_code": "HC-GAGE-017",
+          "business_version": "1.0",
+          "effective_from": "2026-10-28",
+          "applicability": "衡川精密已授权人员",
+          "business_status": "现行",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 2,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 4,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-P02",
+      "baseline": false,
+      "document_id": "3b5866f7-49e2-4505-afa5-5b2fd3c74cc2",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P02_Contact_Deformation_in_Gage_Block_Comparisons.pdf",
+      "sha256": "892713b49363f1d4b15fea9ec532b1a77f587a2b8c8dae6c7f62d9a4e65ba7b5",
+      "status": "ready",
+      "chunk_count": 592,
+      "vector_count": 592,
+      "generation": "c7d3941dc0c24fe8baaecc0541bb9310",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 1,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 592,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 529
+      }
+    },
+    {
+      "source_id": "MFG-P03",
+      "baseline": false,
+      "document_id": "eb782090-d74d-45cb-b4da-fd55ab133ba7",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+      "sha256": "dc3bc9eb2b88daf15674e4e82b5f8014e752f66b342ab9d2ed35d369ed5f8446",
+      "status": "ready",
+      "chunk_count": 78,
+      "vector_count": 78,
+      "generation": "a48f5816e6a84108a84c04f6a712c040",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 10,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 78,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 32
+      }
+    },
+    {
+      "source_id": "MFG-P04",
+      "baseline": false,
+      "document_id": "21df8dea-cd88-4afb-b35f-30022892866c",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P04_Intercomparison_Procedures_for_Gage_Blocks_Using_Electromechanical_Comparators.pdf",
+      "sha256": "30b4d3bbf9367c47787479bfc73388028bc264bff5d24e6f09576b445cff9fde",
+      "status": "ready",
+      "chunk_count": 135,
+      "vector_count": 135,
+      "generation": "d1e4b1c16c4c44f483cb37a8363c3db1",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 23,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 135,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 72
+      }
+    },
+    {
+      "source_id": "MFG-P05",
+      "baseline": false,
+      "document_id": "aa2c74bb-8de2-40bb-aae7-88dedddec99c",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+      "sha256": "965b620effe2216edb9e8da0f6bc7c290b21c4e00b8b727ef576bb940b564990",
+      "status": "ready",
+      "chunk_count": 385,
+      "vector_count": 385,
+      "generation": "e690eedad33d4a1196c3815d30ed3ba0",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 385,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 145
+      }
+    },
+    {
+      "source_id": "MFG-P06",
+      "baseline": false,
+      "document_id": "85c9c63e-25af-426a-bf63-ab4a39d149a1",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+      "sha256": "f2c8e6026d5589a63d492f192b72cd905f554b477a6049532256170aec477e92",
+      "status": "ready",
+      "chunk_count": 278,
+      "vector_count": 278,
+      "generation": "693a1e6eb7964895a75c7795529cc885",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 278,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 111
+      }
+    },
+    {
+      "source_id": "MFG-P07",
+      "baseline": false,
+      "document_id": "e2666be9-0b5e-4f8b-8f5a-b220056f8767",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P07_Traceability_of_Laser_Interferometric_Length_Measurements.pdf",
+      "sha256": "df46514f11692d7b1af06f9e9aa0f6cc7bdf9e0cea9f133027782292e4602d49",
+      "status": "ready",
+      "chunk_count": 85,
+      "vector_count": 85,
+      "generation": "d8ed30ae31bc43d2834d9e272eca723a",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 85,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 49
+      }
+    },
+    {
+      "source_id": "MFG-P08",
+      "baseline": false,
+      "document_id": "64aa5b73-408c-4bbd-aa53-eb36ae335e0e",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P08_On_Characterizing_Master_Involute_Profiles.pdf",
+      "sha256": "e57ec6c8eade96f9fc2568eda8d6aaf56bb9335824d8ce5a0ed8a9a149facf4f",
+      "status": "ready",
+      "chunk_count": 90,
+      "vector_count": 90,
+      "generation": "19712cfa46ab4dd29a23a56cb69d35ce",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 5,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 90,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 31
+      }
+    },
+    {
+      "source_id": "MFG-P09",
+      "baseline": false,
+      "document_id": "ec951fce-942a-4219-81ce-09a333223bd5",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P09_Measurements_of_Cylindrical_Standards.pdf",
+      "sha256": "8d0834b0d741b8e36a1ead69207dd6f8423468e520813cb588359451f96bdc4d",
+      "status": "ready",
+      "chunk_count": 87,
+      "vector_count": 87,
+      "generation": "163b185492e64c0693603ba8d4bef1b7",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 87,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 35
+      }
+    },
+    {
+      "source_id": "MFG-P10",
+      "baseline": false,
+      "document_id": "d0c777d1-3a30-4432-bdca-10da71084c4e",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P10_Gage_Block_Flatness_and_Parallelism_Measurement.pdf",
+      "sha256": "5540ff52116f5f4cde10572a330c0df9be42d54d23c017ac20c85622a91dbcec",
+      "status": "ready",
+      "chunk_count": 59,
+      "vector_count": 59,
+      "generation": "d100f036b0924b1398f81281fe4c3d05",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 3,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 59,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 29
+      }
+    },
+    {
+      "source_id": "MFG-P11",
+      "baseline": false,
+      "document_id": "80e0ba17-da9d-4b24-8ff4-0e6bf43e3b09",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P11_On_the_Compression_of_a_Cylinder_in_Contact_with_a_Plane_Surface.pdf",
+      "sha256": "981264a30d2e863c4d94d973b5ea0a312de0f8addb467c42aa83978198f5cece",
+      "status": "ready",
+      "chunk_count": 512,
+      "vector_count": 512,
+      "generation": "6228f797f59c4b178a44bcd24b9c9023",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 5,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 512,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 263
+      }
+    },
+    {
+      "source_id": "MFG-P12",
+      "baseline": false,
+      "document_id": "5a60a14c-69dc-4164-9188-a2c3af1d405d",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P12_A_Method_of_Calibrating_Two-dimensional_Reference_Plates.pdf",
+      "sha256": "a442542739607920bc2feba4708b743dbffe8b73c321b5792d1d1076b0dafc10",
+      "status": "ready",
+      "chunk_count": 203,
+      "vector_count": 203,
+      "generation": "8105bf5d92ac4fb49de76a85294a96f0",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 203,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 142
+      }
+    },
+    {
+      "source_id": "MFG-P13",
+      "baseline": false,
+      "document_id": "6430d103-01e0-4fbc-ada9-e8b09de4117d",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P13_The_Calibration_of_a_Roundness_Standard.pdf",
+      "sha256": "3935d69b339207b1a9578d695963c62ad3f9e4ad3ccd7c9b4704cfd74d35dc09",
+      "status": "ready",
+      "chunk_count": 152,
+      "vector_count": 152,
+      "generation": "74e17d7e6a7940a5b2134a736f3bd697",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 152,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 97
+      }
+    },
+    {
+      "source_id": "MFG-P14",
+      "baseline": false,
+      "document_id": "b7637d56-71ce-4f04-87f8-334e84236771",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P14_The_Calibration_of_Indexing_Tables_by_Subdivision.pdf",
+      "sha256": "37846d8a831435c23acef740687f09470fc5c1dd9e3c041e591a3a71685ab3de",
+      "status": "ready",
+      "chunk_count": 378,
+      "vector_count": 378,
+      "generation": "da6cd128a03c4d14bf08b93c50ccac61",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 378,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 263
+      }
+    },
+    {
+      "source_id": "MFG-P15",
+      "baseline": false,
+      "document_id": "efd49038-9980-49b4-804e-8a65be4a84fc",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P15_The_Calibration_of_a_Pentaprism.pdf",
+      "sha256": "1bcbccd47e6cf926747e95c4c13b113498852fcac812b650764a2018afc463e8",
+      "status": "ready",
+      "chunk_count": 206,
+      "vector_count": 206,
+      "generation": "df52e8c8be3a42daaf110aa53bd38fa4",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 10,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 206,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 120
+      }
+    },
+    {
+      "source_id": "MFG-P16",
+      "baseline": false,
+      "document_id": "4eec5005-3cec-42c6-825e-2c0d15936585",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P16_The_Calibration_of_Angle_Blocks_by_Intercomparison.pdf",
+      "sha256": "a3f0bacaa88d81cb26d63cff47c4082cd4faf1a0c3e98952f3a0d56351ee2551",
+      "status": "ready",
+      "chunk_count": 216,
+      "vector_count": 216,
+      "generation": "72fe2a89aa55436585b68ff31982e380",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 216,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 194
+      }
+    },
+    {
+      "source_id": "MFG-P17",
+      "baseline": false,
+      "document_id": "bd4afe4a-86bb-4643-8067-9bc7948df5d5",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P17_The_Calibration_of_an_Optical_Flat_by_Interferometric_Comparison_to_a_Master_Optical_Flat.pdf",
+      "sha256": "9b87524b1ee01037fd5575f6d88762f856baf19622016aa83a1666ddb27ed273",
+      "status": "ready",
+      "chunk_count": 239,
+      "vector_count": 239,
+      "generation": "674d3b56fd684ced84d7a29e0ec415e7",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 1,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 239,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 118
+      }
+    },
+    {
+      "source_id": "MFG-P18",
+      "baseline": false,
+      "document_id": "0c59aa43-8ae6-43af-ac28-ab9fe031c6a9",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P18_Measurement_Assurance_Program_A_Case_Study_Length_Measurements.pdf",
+      "sha256": "b8d27714753cea64bbe7e5f76a06dd4b719c5071209abc39ba7ca30c419805d1",
+      "status": "ready",
+      "chunk_count": 1305,
+      "vector_count": 1305,
+      "generation": "3ade0cd657314333b5ab6858a051063f",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 1305,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 939
+      }
+    },
+    {
+      "source_id": "MFG-P19",
+      "baseline": false,
+      "document_id": "06b7cec0-52cc-41cc-8d22-8a7e44a9f88b",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf",
+      "sha256": "817de0fd84545ec86d4393bbeb2adeb0f053d7ca945e1e00a56f0ce3d40be31b",
+      "status": "ready",
+      "chunk_count": 570,
+      "vector_count": 570,
+      "generation": "4c500f8165134f76bd7f46b25dca6ba1",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 1,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ]
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 570,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 320
+      }
+    },
+    {
+      "source_id": "MFG-P20",
+      "baseline": false,
+      "document_id": "60e56070-3d42-4d86-9b79-125a0ea3806c",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-P20_Notes_on_the_Fundamentals_of_Measurement_and_Measurement_as_a_Production_Process.pdf",
+      "sha256": "aa3055cd9a152e8b1bc2407a35aa5004b3a6b9c83def5a53fc12c619d5c238e6",
+      "status": "ready",
+      "chunk_count": 489,
+      "vector_count": 489,
+      "generation": "8f68ab361b934655ad8f25e0f7085201",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 489,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 149
+      }
+    },
+    {
+      "source_id": "MFG-W01",
+      "baseline": false,
+      "document_id": "a0274307-8b27-46ca-aa35-1a07736fa1b6",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W01_What_are_the_issues_for_characterization.md",
+      "sha256": "12175e447b1b0cc9d4233fab8e1c6b83a545f61075cc231decd751349cb56668",
+      "status": "ready",
+      "chunk_count": 26,
+      "vector_count": 26,
+      "generation": "1c9f993578024ea7ba47581b2d772935",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 26,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-W02",
+      "baseline": false,
+      "document_id": "93977480-287d-4aa1-b0bd-f96acf0270cb",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W02_What_is_a_check_standard.md",
+      "sha256": "d59927d85046a60558a0f70186d7265077cdc58454667de680aaf1b26138b6d2",
+      "status": "ready",
+      "chunk_count": 19,
+      "vector_count": 19,
+      "generation": "a92d85e014e943a68b8e369319e4107b",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 19,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-W03",
+      "baseline": false,
+      "document_id": "9a44052e-7bd1-4fcb-adde-531b75dfca0a",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W03_Issues_in_controlling_the_measurement_process.md",
+      "sha256": "836f86261259b1e8bb7a0d84f61858822e16bc6dbaf7cc6e7d5ce3feca01c453",
+      "status": "ready",
+      "chunk_count": 18,
+      "vector_count": 18,
+      "generation": "d0c3cff802274d12abe03d2e4cba51d0",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 18,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-W04",
+      "baseline": false,
+      "document_id": "c923d476-1ac6-4556-9fb3-9bbbd6bd0645",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W04_How_are_bias_and_variability_controlled.md",
+      "sha256": "9f9bf6491aad1b2f4aa3436997564eb0a3e08e7962bdf2a0a1e9919ecd92a221",
+      "status": "ready",
+      "chunk_count": 38,
+      "vector_count": 38,
+      "generation": "aa0f6de31604498d83283f4335bc267d",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 38,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 4
+      }
+    },
+    {
+      "source_id": "MFG-W05",
+      "baseline": false,
+      "document_id": "6746a50e-ff79-417b-8e0f-754fc73e85d6",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W05_How_is_short-term_variability_controlled.md",
+      "sha256": "04cadbd38f35394b2ecb312e6ac2a52e30d041811a8e9b962718870114828403",
+      "status": "ready",
+      "chunk_count": 19,
+      "vector_count": 19,
+      "generation": "e20a12d30b92417cb48409a3eab3893f",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 19,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-W06",
+      "baseline": false,
+      "document_id": "960083ce-57ee-43f7-801a-fa8c10daebed",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W06_Issues_in_calibration.md",
+      "sha256": "b1b24fe74e06b376d47ad9e9d3ca4d68a3317c163eab63cec9a58ff9a254dff4",
+      "status": "ready",
+      "chunk_count": 14,
+      "vector_count": 14,
+      "generation": "445dda411fa84af0b7e0db42e99680a2",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 14,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-W07",
+      "baseline": false,
+      "document_id": "7cbb2b05-27de-4d85-b61a-d288d9714fc1",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W07_Type_A_evaluations.md",
+      "sha256": "4745c5fc9177bb58b88965f8dba0242901a7b1188c5d5ff72144ca9cac12639c",
+      "status": "ready",
+      "chunk_count": 19,
+      "vector_count": 19,
+      "generation": "1d45ec2e84a84237951a907bdc33878f",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 19,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-W08",
+      "baseline": false,
+      "document_id": "2f271d2e-99bd-4a98-bae1-1374c0787f94",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W08_Type_B_evaluations.md",
+      "sha256": "84991deb065296592fcce1ad9ad37f26312262b5e6bc2e40918eec9536fbf091",
+      "status": "ready",
+      "chunk_count": 28,
+      "vector_count": 28,
+      "generation": "040b039f64f6400cb7b279d4c4a05230",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 28,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-W09",
+      "baseline": false,
+      "document_id": "a197dbcd-824c-42d0-b1cf-fe1c0980102a",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W09_What_is_Production_Process_Characterization.md",
+      "sha256": "fb73276495565be090dcb58bad8627d369ad0c8992dc325c1854600059df2f8f",
+      "status": "ready",
+      "chunk_count": 18,
+      "vector_count": 18,
+      "generation": "f28b7b4e2e654705878c90ddfffc90b7",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 18,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-W10",
+      "baseline": false,
+      "document_id": "3097c4bd-ff42-4b30-ba01-ba56a825b098",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W10_What_are_PPC_studies_used_for.md",
+      "sha256": "f3aab92ed72400743ca9bbc964778f840bdc39e07ca98148ed91b4b9ba6505c0",
+      "status": "ready",
+      "chunk_count": 21,
+      "vector_count": 21,
+      "generation": "162af683374c4e6aa8c92e1040e0720e",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 21,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-W11",
+      "baseline": false,
+      "document_id": "1f8224dc-495c-4a46-91e4-a9ccdd9f4efa",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W11_Define_Sampling_Plan.md",
+      "sha256": "c4ffb06e621d59bbf41a87466d35aa325039386254b126067958474b724dcca3",
+      "status": "ready",
+      "chunk_count": 17,
+      "vector_count": 17,
+      "generation": "b1125ae0a29440ed9d7dfad290889441",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 17,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-W12",
+      "baseline": false,
+      "document_id": "723a2a54-b37f-49aa-b5e6-2f85c4474726",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W12_Assessing_Process_Capability.md",
+      "sha256": "d9999185537967e588965f6807b79dce06987d2a5f73161244180db2e46b12a6",
+      "status": "ready",
+      "chunk_count": 24,
+      "vector_count": 24,
+      "generation": "1030442aff70466b9c560257b31c47fa",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 24,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-W13",
+      "baseline": false,
+      "document_id": "c3b1c053-ce9a-45b9-9f8b-32e3576b8ecc",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W13_What_are_Process_Control_Techniques.md",
+      "sha256": "c42e460d253310765cee18b94c2570de71acb8d1fbbd4acfded85d5714847d03",
+      "status": "ready",
+      "chunk_count": 34,
+      "vector_count": 34,
+      "generation": "7484b414cba042d680809e5580fb274a",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 34,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 4
+      }
+    },
+    {
+      "source_id": "MFG-W14",
+      "baseline": false,
+      "document_id": "9916cdeb-23c4-4527-8637-1f0c38840521",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W14_What_is_Process_Control.md",
+      "sha256": "224c29eeb4b77167ed65e11802386b62a034e619d8fada879ca3651d267fab61",
+      "status": "ready",
+      "chunk_count": 10,
+      "vector_count": 10,
+      "generation": "d268374e476e48519e4a6baa2a82abb4",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 10,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-W15",
+      "baseline": false,
+      "document_id": "31e6e3ea-8f6a-479f-b0b3-a7f646cc0540",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W15_What_to_do_if_the_process_is_Out_of_Control.md",
+      "sha256": "d5976606f0a5fe3fa01ef2a3879d7df87205e05963442b152a1b20866cdd071e",
+      "status": "ready",
+      "chunk_count": 9,
+      "vector_count": 9,
+      "generation": "b87e0278ebc84db1b4a8bec6e791f42e",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 9,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-W16",
+      "baseline": false,
+      "document_id": "8e435571-ccd1-424d-b7e7-cfd9cfb5a43f",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W16_What_to_do_if_In_Control_but_Unacceptable.md",
+      "sha256": "2ffdc557ac78fec2c9ba5053e517482715fd854ee5ed154581496c399e5a72e5",
+      "status": "ready",
+      "chunk_count": 16,
+      "vector_count": 16,
+      "generation": "60a7c9708362466981d4840b1913d6a4",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 16,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 1
+      }
+    },
+    {
+      "source_id": "MFG-W17",
+      "baseline": false,
+      "document_id": "d8deb0c2-85c2-4a82-81f7-543d34e78b2c",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W17_What_is_Process_Capability.md",
+      "sha256": "a493b3277e5b9a69025ff6d08e5505437365100087dabbf030421e2a40ade1b7",
+      "status": "ready",
+      "chunk_count": 102,
+      "vector_count": 102,
+      "generation": "178028e1c35f4623bb100da83d91e0fe",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 102,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 11
+      }
+    },
+    {
+      "source_id": "MFG-W18",
+      "baseline": false,
+      "document_id": "165c7efc-2bfa-47bf-9ac2-d965e9f4d094",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W18_What_is_Acceptance_Sampling.md",
+      "sha256": "9aca3bf1a4abee023e702f7cb8cd93854af66c4dc814ec18590784d3d2e60a96",
+      "status": "ready",
+      "chunk_count": 33,
+      "vector_count": 33,
+      "generation": "a9973a333e8f4fecbd1dd1c51277a632",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 33,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 4
+      }
+    },
+    {
+      "source_id": "MFG-W19",
+      "baseline": false,
+      "document_id": "9f9ad5c3-3499-4524-8990-3d13d279873b",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W19_Kinds_of_Lot_Acceptance_Sampling_Plans.md",
+      "sha256": "399ce46f22007d4fc99075a294dbda8469c2097c666f16ba8b5e038fb3d922ba",
+      "status": "ready",
+      "chunk_count": 33,
+      "vector_count": 33,
+      "generation": "8fc064e245c34881afac33d662c4df86",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 33,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 6
+      }
+    },
+    {
+      "source_id": "MFG-W20",
+      "baseline": false,
+      "document_id": "18c73d69-8ce2-4f91-92f7-83fcdabe73b1",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W20_What_is_Double_Sampling.md",
+      "sha256": "f5fb2051d840130680f6ff8b657f7e1a680973d60aeed63e9b6d12cc245e4e24",
+      "status": "ready",
+      "chunk_count": 38,
+      "vector_count": 38,
+      "generation": "f07d4e6f0efe4037a1802690f7884dbb",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 38,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 6
+      }
+    },
+    {
+      "source_id": "MFG-W21",
+      "baseline": false,
+      "document_id": "5cf6936b-8b69-463b-a296-82151b0e5c04",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W21_What_is_Multiple_Sampling.md",
+      "sha256": "7c6409a80a8a072f24519c5d780d3014adea5a37d3fe15fde5993c1a36cea4d8",
+      "status": "ready",
+      "chunk_count": 16,
+      "vector_count": 16,
+      "generation": "cde93557a29241f18fbe8797009319c1",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 16,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-W22",
+      "baseline": false,
+      "document_id": "838e6659-ca37-4eb8-91e5-6b528852b244",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W22_What_is_a_Sequential_Sampling_Plan.md",
+      "sha256": "b11e0c728e78132aad63389c1ee0297eaf4911d82f902f6be0a29785e3de177c",
+      "status": "ready",
+      "chunk_count": 133,
+      "vector_count": 133,
+      "generation": "7bfceedcb6ea4b47a2e0218dbd5ce757",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 133,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 5
+      }
+    },
+    {
+      "source_id": "MFG-W23",
+      "baseline": false,
+      "document_id": "1796ad6a-1085-4482-bfb4-d2f261b91610",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W23_What_is_Skip_Lot_Sampling.md",
+      "sha256": "8831c9a082200ab6fdc0f434c47196293d1f8b8c5f31c664a19ab9810517a15b",
+      "status": "ready",
+      "chunk_count": 25,
+      "vector_count": 25,
+      "generation": "006216d69e3e4ba8ab09c85a68b57468",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 25,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 3
+      }
+    },
+    {
+      "source_id": "MFG-W24",
+      "baseline": false,
+      "document_id": "28ac3af6-5f95-40b7-9a83-47e694b1e38d",
+      "knowledge_base_id": "a1265ae1-d200-4b38-897c-0a1f408ad30a",
+      "file_name": "MFG-W24_What_are_Control_Charts.md",
+      "sha256": "0b754daa47182b4c5dd4f0b015e2ea958cc7cc21291e70b079af3aa3bc509885",
+      "status": "ready",
+      "chunk_count": 31,
+      "vector_count": 31,
+      "generation": "0a2f232ec3884ae4a58b2c2c619eae34",
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v1",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": []
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 31,
+        "chunking_version": "structured-v5",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 6
+      }
+    }
+  ]
+}

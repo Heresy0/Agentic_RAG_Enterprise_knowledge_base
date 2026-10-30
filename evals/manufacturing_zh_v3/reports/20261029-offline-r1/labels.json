@@ -1,0 +1,1445 @@
+{
+  "evaluation_type": "offline_original_page_and_actual_chunk_anchor_validation",
+  "external_model_calls": 0,
+  "total_questions": 120,
+  "positive_questions": 90,
+  "negative_behaviors": {
+    "refuse": 18,
+    "clarify": 12
+  },
+  "total_locators": 150,
+  "matched": 106,
+  "failed": 44,
+  "matched_question_count": 57,
+  "corpus_manifest_sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6",
+  "freeze_sha256": "8ec785ae0a4513df83a8278211d135bd8c7fb29d70d67f27ccdadd1dceca1c9e",
+  "parser_sha256": "35caac6381b20ae18a38701c7860dae5685c71ce3bbbceb96424ba9a9f359e16",
+  "matches": [
+    {
+      "id": "MFGZH-Q001",
+      "source_id": "MFG-ZH01",
+      "physical_page": 3,
+      "anchor": "应当提出停止相应产品生产、销售等否决建议",
+      "source_match": true,
+      "chunk_indices": [
+        4
+      ]
+    },
+    {
+      "id": "MFGZH-Q001",
+      "source_id": "MFG-ZH01",
+      "physical_page": 3,
+      "anchor": "经确认存在缺陷的，应当按照国家有关规定进行召回",
+      "source_match": true,
+      "chunk_indices": [
+        4
+      ]
+    },
+    {
+      "id": "MFGZH-Q003",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "质量安全总监每周至少组织一次风险隐患排查",
+      "source_match": true,
+      "chunk_indices": [
+        35
+      ]
+    },
+    {
+      "id": "MFGZH-Q004",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "单位主要负责人每月至少听取一次质量安全总监管理工作",
+      "source_match": true,
+      "chunk_indices": [
+        35
+      ]
+    },
+    {
+      "id": "MFGZH-Q005",
+      "source_id": "MFG-ZH01",
+      "physical_page": 7,
+      "anchor": "未通过考核的人员不得担任相应岗位的质量安全管理人员",
+      "source_match": true,
+      "chunk_indices": [
+        36
+      ]
+    },
+    {
+      "id": "MFGZH-Q005",
+      "source_id": "MFG-ZH01",
+      "physical_page": 7,
+      "anchor": "抽查考核不合格的，生产单位应当立即采取整改措施",
+      "source_match": true,
+      "chunk_indices": [
+        36
+      ]
+    },
+    {
+      "id": "MFGZH-Q006",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "可以保留单位原有的部门和人员配置，但要明确质量安全总监、质量安全员的人员岗位",
+      "source_match": true,
+      "chunk_indices": [
+        14
+      ]
+    },
+    {
+      "id": "MFGZH-Q007",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "风险类型、风险名称、风险等级、控制措施、检查防范以及责任人",
+      "source_match": true,
+      "chunk_indices": [
+        56
+      ]
+    },
+    {
+      "id": "MFGZH-Q008",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "应明确责任部门及责任人",
+      "source_match": true,
+      "chunk_indices": [
+        64
+      ]
+    },
+    {
+      "id": "MFGZH-Q008",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "对不能现场立即整改的，应明确整改期限，在后续日管控检查中跟踪验证整改情况",
+      "source_match": true,
+      "chunk_indices": [
+        64
+      ]
+    },
+    {
+      "id": "MFGZH-Q009",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "频繁发生或存在较高工业产品质量安全风险的问题，应制定相应的纠正或预防措施，并跟踪验证整改结果",
+      "source_match": true,
+      "chunk_indices": [
+        68
+      ]
+    },
+    {
+      "id": "MFGZH-Q010",
+      "source_id": "MFG-ZH02",
+      "physical_page": null,
+      "anchor": "单位停工、停产后可暂不执行日管控、周排查、月调度，相关情况应存档备查",
+      "source_match": true,
+      "chunk_indices": [
+        72
+      ]
+    },
+    {
+      "id": "MFGZH-Q011",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "生产方和使用方应通过记录台账或签订合同等方式实现产品质量安全追溯，有关记录或台账至少保留3年",
+      "source_match": true,
+      "chunk_indices": [
+        15
+      ]
+    },
+    {
+      "id": "MFGZH-Q012",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "出厂检验报告或型式检验报告（必填，生产单位选择是否公开）",
+      "source_match": true,
+      "chunk_indices": [
+        48
+      ]
+    },
+    {
+      "id": "MFGZH-Q013",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "销售时间（必填，生产单位选择是否公开）",
+      "source_match": true,
+      "chunk_indices": [
+        51
+      ]
+    },
+    {
+      "id": "MFGZH-Q013",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "购方名称（必填，生产单位选择是否公开）",
+      "source_match": true,
+      "chunk_indices": [
+        52
+      ]
+    },
+    {
+      "id": "MFGZH-Q014",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "根据自身业务情况，选择一品一码、一批一码、一物一码进行追溯",
+      "source_match": true,
+      "chunk_indices": [
+        73
+      ]
+    },
+    {
+      "id": "MFGZH-Q015",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "与CCC认证证书编码或标志编号相关联",
+      "source_match": true,
+      "chunk_indices": [
+        106
+      ]
+    },
+    {
+      "id": "MFGZH-Q015",
+      "source_id": "MFG-ZH03",
+      "physical_page": null,
+      "anchor": "经全国认证认可信息公共服务平台比对查验后录入至全国重点工业产品质量安全追溯平台",
+      "source_match": true,
+      "chunk_indices": [
+        106
+      ]
+    },
+    {
+      "id": "MFGZH-Q016",
+      "source_id": "MFG-ZH04",
+      "physical_page": 6,
+      "anchor": "共享采购产品质量、批次、交期等信息",
+      "source_match": true,
+      "chunk_indices": [
+        27
+      ]
+    },
+    {
+      "id": "MFGZH-Q016",
+      "source_id": "MFG-ZH04",
+      "physical_page": 6,
+      "anchor": "有条件的企业应对关键物料实施一物一码管理",
+      "source_match": true,
+      "chunk_indices": [
+        27
+      ]
+    },
+    {
+      "id": "MFGZH-Q017",
+      "source_id": "MFG-ZH04",
+      "physical_page": 6,
+      "anchor": "在采购、生产、仓储、物流、交付及售后服务全过程提高物料数字化追溯管理水平",
+      "source_match": true,
+      "chunk_indices": [
+        27
+      ]
+    },
+    {
+      "id": "MFGZH-Q018",
+      "source_id": "MFG-ZH04",
+      "physical_page": 5,
+      "anchor": "流程优化、装备升级、信息系统集成、数据资源利用、操作规程更新",
+      "source_match": true,
+      "chunk_indices": [
+        19
+      ]
+    },
+    {
+      "id": "MFGZH-Q018",
+      "source_id": "MFG-ZH04",
+      "physical_page": 5,
+      "anchor": "强化质量目标和质量活动的闭环管控",
+      "source_match": true,
+      "chunk_indices": [
+        19
+      ]
+    },
+    {
+      "id": "MFGZH-Q019",
+      "source_id": "MFG-ZH04",
+      "physical_page": 7,
+      "anchor": "明确各环节的职责和权限，强化跨部门及部门内数据管理机制建设",
+      "source_match": true,
+      "chunk_indices": [
+        31
+      ]
+    },
+    {
+      "id": "MFGZH-Q020",
+      "source_id": "MFG-ZH04",
+      "physical_page": 5,
+      "anchor": "应定期评估数字化能力的提升效果，并向最高管理者报告",
+      "source_match": true,
+      "chunk_indices": [
+        17
+      ]
+    },
+    {
+      "id": "MFGZH-Q021",
+      "source_id": "MFG-ZH05",
+      "physical_page": 7,
+      "anchor": "温度偏差、温度波动度、温度均匀度及盐雾沉降率",
+      "source_match": true,
+      "chunk_indices": [
+        15
+      ]
+    },
+    {
+      "id": "MFGZH-Q022",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "环境温度：(15～35）℃",
+      "source_match": true,
+      "chunk_indices": [
+        31
+      ]
+    },
+    {
+      "id": "MFGZH-Q022",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "相对湿度：(30～85）％",
+      "source_match": true,
+      "chunk_indices": [
+        31
+      ]
+    },
+    {
+      "id": "MFGZH-Q022",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "大气压：（80～106）kPa",
+      "source_match": true,
+      "chunk_indices": [
+        31
+      ]
+    },
+    {
+      "id": "MFGZH-Q023",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "一般在空载条件下校准，根据用户需要可以在负载条件下进行校准，但应说明负载情况",
+      "source_match": true,
+      "chunk_indices": [
+        33
+      ]
+    },
+    {
+      "id": "MFGZH-Q024",
+      "source_id": "MFG-ZH05",
+      "physical_page": 10,
+      "anchor": "一般选择35℃作为盐雾箱校准试验温度，也可根据客户需要选择校准温度",
+      "source_match": true,
+      "chunk_indices": [
+        43
+      ]
+    },
+    {
+      "id": "MFGZH-Q025",
+      "source_id": "MFG-ZH05",
+      "physical_page": 9,
+      "anchor": "以上指标不是用于合格性判别，仅供参考",
+      "source_match": true,
+      "chunk_indices": [
+        37
+      ]
+    },
+    {
+      "id": "MFGZH-Q026",
+      "source_id": "MFG-ZH06",
+      "physical_page": 7,
+      "anchor": "环境温度：（15～35）℃",
+      "source_match": true,
+      "chunk_indices": [
+        16
+      ]
+    },
+    {
+      "id": "MFGZH-Q026",
+      "source_id": "MFG-ZH06",
+      "physical_page": 7,
+      "anchor": "环境相对湿度：不大于85%",
+      "source_match": true,
+      "chunk_indices": [
+        16
+      ]
+    },
+    {
+      "id": "MFGZH-Q027",
+      "source_id": "MFG-ZH06",
+      "physical_page": 8,
+      "anchor": "砂尘试验设备容积小于或等于2m3，温度测量点为9个，相对湿度测量点为3个",
+      "source_match": true,
+      "chunk_indices": [
+        23
+      ]
+    },
+    {
+      "id": "MFGZH-Q028",
+      "source_id": "MFG-ZH06",
+      "physical_page": 9,
+      "anchor": "稳定30min（稳定时间最长不超过2h）",
+      "source_match": true,
+      "chunk_indices": [
+        24,
+        25
+      ]
+    },
+    {
+      "id": "MFGZH-Q028",
+      "source_id": "MFG-ZH06",
+      "physical_page": 9,
+      "anchor": "每隔2min记录一次，在30min内共记录16次",
+      "source_match": true,
+      "chunk_indices": [
+        24,
+        25
+      ]
+    },
+    {
+      "id": "MFGZH-Q029",
+      "source_id": "MFG-ZH06",
+      "physical_page": 10,
+      "anchor": "风速测量在未注入砂尘时及在常温下进行",
+      "source_match": true,
+      "chunk_indices": [
+        26
+      ]
+    },
+    {
+      "id": "MFGZH-Q029",
+      "source_id": "MFG-ZH06",
+      "physical_page": 10,
+      "anchor": "每隔10min记录一次，在30min内共记录3次，读取风速计各测量点示值的最大值",
+      "source_match": true,
+      "chunk_indices": [
+        26
+      ]
+    },
+    {
+      "id": "MFGZH-Q030",
+      "source_id": "MFG-ZH06",
+      "physical_page": 7,
+      "anchor": "对计量特性另有要求的砂尘试验设备，按有关技术文件规定的要求进行校准",
+      "source_match": true,
+      "chunk_indices": [
+        18
+      ]
+    },
+    {
+      "id": "MFGZH-Q030",
+      "source_id": "MFG-ZH06",
+      "physical_page": 7,
+      "anchor": "不用于合格性判断，仅供参考",
+      "source_match": true,
+      "chunk_indices": [
+        18
+      ]
+    },
+    {
+      "id": "MFGZH-Q031",
+      "source_id": "MFG-ZH07",
+      "physical_page": 7,
+      "anchor": "也适用于具有部分以上测量和输出功能的过程仪表校验仪的校准",
+      "source_match": true,
+      "chunk_indices": [
+        19
+      ]
+    },
+    {
+      "id": "MFGZH-Q032",
+      "source_id": "MFG-ZH07",
+      "physical_page": 9,
+      "anchor": "温度：（20±2）℃湿度：（60±15）%RH",
+      "source_match": true,
+      "chunk_indices": [
+        38
+      ]
+    },
+    {
+      "id": "MFGZH-Q033",
+      "source_id": "MFG-ZH07",
+      "physical_page": 9,
+      "anchor": "整个校准装置的扩展不确定度（k=2）应小于校验仪对应各功能和量程最大允许误差的1/3",
+      "source_match": true,
+      "chunk_indices": [
+        41
+      ]
+    },
+    {
+      "id": "MFGZH-Q033",
+      "source_id": "MFG-ZH07",
+      "physical_page": 9,
+      "anchor": "整个校准装置各功能和量程的分辨力应小于校验仪对应功能和量程最大允许误差的1/5",
+      "source_match": true,
+      "chunk_indices": [
+        41
+      ]
+    },
+    {
+      "id": "MFGZH-Q034",
+      "source_id": "MFG-ZH07",
+      "physical_page": 10,
+      "anchor": "校验仪应按说明书中规定的时间预热，室内外温差较大时应在恒温实验室中放置4小时以上再通电",
+      "source_match": true,
+      "chunk_indices": [
+        46
+      ]
+    },
+    {
+      "id": "MFGZH-Q035",
+      "source_id": "MFG-ZH07",
+      "physical_page": 10,
+      "anchor": "基本量程选择不少于5个校准点，包括上限值、下限值和量程50%附近",
+      "source_match": true,
+      "chunk_indices": [
+        49
+      ]
+    },
+    {
+      "id": "MFGZH-Q035",
+      "source_id": "MFG-ZH07",
+      "physical_page": 10,
+      "anchor": "有零位的可以适当增加零点。对于委托者有要求的可按委托者要求选择校准点",
+      "source_match": true,
+      "chunk_indices": [
+        49
+      ]
+    },
+    {
+      "id": "MFGZH-Q036",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "温度：（10～35）℃",
+      "source_match": true,
+      "chunk_indices": [
+        18
+      ]
+    },
+    {
+      "id": "MFGZH-Q036",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "相对湿度：不大于80%",
+      "source_match": true,
+      "chunk_indices": [
+        18
+      ]
+    },
+    {
+      "id": "MFGZH-Q037",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "使其受力轴线与压合机工作轴线相重合",
+      "source_match": true,
+      "chunk_indices": [
+        22
+      ]
+    },
+    {
+      "id": "MFGZH-Q037",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "固定压合机主体，使其可以在该位置稳定工作，不产生影响校准结果的位移和振动",
+      "source_match": true,
+      "chunk_indices": [
+        22
+      ]
+    },
+    {
+      "id": "MFGZH-Q039",
+      "source_id": "MFG-ZH08",
+      "physical_page": 8,
+      "anchor": "在测量范围内至少选取均匀分布的5点作为校准点",
+      "source_match": true,
+      "chunk_indices": [
+        25
+      ]
+    },
+    {
+      "id": "MFGZH-Q040",
+      "source_id": "MFG-ZH08",
+      "physical_page": 9,
+      "anchor": "建议最长复校时间间隔不超过1年",
+      "source_match": true,
+      "chunk_indices": [
+        30
+      ]
+    },
+    {
+      "id": "MFGZH-Q040",
+      "source_id": "MFG-ZH08",
+      "physical_page": 9,
+      "anchor": "送校单位可根据实际使用情况决定复校时间间隔",
+      "source_match": true,
+      "chunk_indices": [
+        30
+      ]
+    },
+    {
+      "id": "MFGZH-Q041",
+      "source_id": "MFG-ZH09",
+      "physical_page": 6,
+      "anchor": "压向≤5000kN，拉向≤500kN",
+      "source_match": true,
+      "chunk_indices": [
+        14
+      ]
+    },
+    {
+      "id": "MFGZH-Q041",
+      "source_id": "MFG-ZH09",
+      "physical_page": 6,
+      "anchor": "大力值作动器也可参考本规范",
+      "source_match": true,
+      "chunk_indices": [
+        14
+      ]
+    },
+    {
+      "id": "MFGZH-Q041",
+      "source_id": "MFG-ZH09",
+      "physical_page": 6,
+      "anchor": "校准方向：压向为正",
+      "source_match": true,
+      "chunk_indices": [
+        14
+      ]
+    },
+    {
+      "id": "MFGZH-Q043",
+      "source_id": "MFG-ZH09",
+      "physical_page": 8,
+      "anchor": "以数显千分表为标准器测量作动器测量范围（0~150）mm",
+      "source_match": true,
+      "chunk_indices": [
+        25
+      ]
+    },
+    {
+      "id": "MFGZH-Q043",
+      "source_id": "MFG-ZH09",
+      "physical_page": 8,
+      "anchor": "以跟踪仪为标准器测量作动器测量范围（150~3000）mm",
+      "source_match": true,
+      "chunk_indices": [
+        26
+      ]
+    },
+    {
+      "id": "MFGZH-Q044",
+      "source_id": "MFG-ZH09",
+      "physical_page": 8,
+      "anchor": "要保持数显千分表与移动方向平行",
+      "source_match": true,
+      "chunk_indices": [
+        25
+      ]
+    },
+    {
+      "id": "MFGZH-Q045",
+      "source_id": "MFG-ZH09",
+      "physical_page": 9,
+      "anchor": "校准结果仅对被校对象有效的声明",
+      "source_match": true,
+      "chunk_indices": [
+        31
+      ]
+    },
+    {
+      "id": "MFGZH-Q045",
+      "source_id": "MFG-ZH09",
+      "physical_page": 9,
+      "anchor": "未经实验室书面批准，不得部分复制证书的声明",
+      "source_match": true,
+      "chunk_indices": [
+        31
+      ]
+    },
+    {
+      "id": "MFGZH-Q046",
+      "source_id": "MFG-ZH10",
+      "physical_page": 6,
+      "anchor": "测量范围不超过（-2500~2500）Pa",
+      "source_match": true,
+      "chunk_indices": [
+        13
+      ]
+    },
+    {
+      "id": "MFGZH-Q047",
+      "source_id": "MFG-ZH10",
+      "physical_page": 8,
+      "anchor": "温度：（20±5）℃，温度波动不超过±0.5℃/10min",
+      "source_match": true,
+      "chunk_indices": [
+        24
+      ]
+    },
+    {
+      "id": "MFGZH-Q047",
+      "source_id": "MFG-ZH10",
+      "physical_page": 8,
+      "anchor": "相对湿度：不大于85%",
+      "source_match": true,
+      "chunk_indices": [
+        24
+      ]
+    },
+    {
+      "id": "MFGZH-Q048",
+      "source_id": "MFG-ZH10",
+      "physical_page": 8,
+      "anchor": "所需标准器的测量范围应不小于压差计的测量范围",
+      "source_match": true,
+      "chunk_indices": [
+        25
+      ]
+    },
+    {
+      "id": "MFGZH-Q048",
+      "source_id": "MFG-ZH10",
+      "physical_page": 8,
+      "anchor": "标准器的最大允许误差绝对值应不大于被校准压差计最大允许误差绝对值的1/3",
+      "source_match": true,
+      "chunk_indices": [
+        25
+      ]
+    },
+    {
+      "id": "MFGZH-Q049",
+      "source_id": "MFG-ZH10",
+      "physical_page": 9,
+      "anchor": "标准器、压差计、气源应在校准环境条件下至少放置2h",
+      "source_match": true,
+      "chunk_indices": [
+        34
+      ]
+    },
+    {
+      "id": "MFGZH-Q049",
+      "source_id": "MFG-ZH10",
+      "physical_page": 9,
+      "anchor": "通电预热时间应满足制造厂商提供的信息，一般不少于30min",
+      "source_match": true,
+      "chunk_indices": [
+        35
+      ]
+    },
+    {
+      "id": "MFGZH-Q050",
+      "source_id": "MFG-ZH10",
+      "physical_page": 10,
+      "anchor": "具有正压、负压量程压差计的校准点不少于9个点（含零点），应包含测量上限和下限",
+      "source_match": true,
+      "chunk_indices": [
+        40
+      ]
+    },
+    {
+      "id": "MFGZH-Q050",
+      "source_id": "MFG-ZH10",
+      "physical_page": 10,
+      "anchor": "仅有正压量程压差计的校准点不少于5个点（含零点），应包含测量上限",
+      "source_match": true,
+      "chunk_indices": [
+        40
+      ]
+    },
+    {
+      "id": "MFGZH-Q056",
+      "source_id": "MFG-ZH12",
+      "physical_page": 5,
+      "anchor": "本规范适用于触针式表面轮廓测量仪的校准",
+      "source_match": true,
+      "chunk_indices": [
+        8
+      ]
+    },
+    {
+      "id": "MFGZH-Q057",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "室内湿度不超过75%RH",
+      "source_match": true,
+      "chunk_indices": [
+        13
+      ]
+    },
+    {
+      "id": "MFGZH-Q058",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "在室内平衡温度的时间不少于2h",
+      "source_match": true,
+      "chunk_indices": [
+        14
+      ]
+    },
+    {
+      "id": "MFGZH-Q059",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "作为校准，不判定合格与否，上述计量特性的指标仅供参考",
+      "source_match": true,
+      "chunk_indices": [
+        12
+      ]
+    },
+    {
+      "id": "MFGZH-Q061",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "上述计量特性的指标仅供参考",
+      "source_match": true,
+      "chunk_indices": [
+        15
+      ]
+    },
+    {
+      "id": "MFGZH-Q062",
+      "source_id": "MFG-ZH13",
+      "physical_page": 6,
+      "anchor": "圆锥螺纹塞规基面的中径误差不大于0.009mm",
+      "source_match": true,
+      "chunk_indices": [
+        10
+      ]
+    },
+    {
+      "id": "MFGZH-Q062",
+      "source_id": "MFG-ZH13",
+      "physical_page": 6,
+      "anchor": "圆锥螺纹环规基面的中径误差不大于0.015mm",
+      "source_match": true,
+      "chunk_indices": [
+        10
+      ]
+    },
+    {
+      "id": "MFGZH-Q063",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "应在室内放置不少于1个小时",
+      "source_match": true,
+      "chunk_indices": [
+        18
+      ]
+    },
+    {
+      "id": "MFGZH-Q065",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "允许有不影响使用的划痕",
+      "source_match": true,
+      "chunk_indices": [
+        16
+      ]
+    },
+    {
+      "id": "MFGZH-Q066",
+      "source_id": "MFG-ZH14",
+      "physical_page": 5,
+      "anchor": "分度值为0.001mm，测量范围（0-300）mm",
+      "source_match": true,
+      "chunk_indices": [
+        4
+      ]
+    },
+    {
+      "id": "MFGZH-Q067",
+      "source_id": "MFG-ZH14",
+      "physical_page": 5,
+      "anchor": "以量块作为标准器",
+      "source_match": true,
+      "chunk_indices": [
+        6
+      ]
+    },
+    {
+      "id": "MFGZH-Q067",
+      "source_id": "MFG-ZH14",
+      "physical_page": 5,
+      "anchor": "指示表的读数与量块实际值相比较",
+      "source_match": true,
+      "chunk_indices": [
+        6
+      ]
+    },
+    {
+      "id": "MFGZH-Q068",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "湿度不超过65%RH",
+      "source_match": true,
+      "chunk_indices": [
+        12
+      ]
+    },
+    {
+      "id": "MFGZH-Q070",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "示值变动性",
+      "source_match": true,
+      "chunk_indices": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "MFGZH-Q071",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "检具重复精度能力系数",
+      "source_match": true,
+      "chunk_indices": [
+        7
+      ]
+    },
+    {
+      "id": "MFGZH-Q071",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "检具准确精度能力系数",
+      "source_match": true,
+      "chunk_indices": [
+        7
+      ]
+    },
+    {
+      "id": "MFGZH-Q073",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "室内湿度不超过75%RH",
+      "source_match": true,
+      "chunk_indices": [
+        14,
+        15
+      ]
+    },
+    {
+      "id": "MFGZH-Q074",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "各组成部件应完好无缺，连接应紧固可靠",
+      "source_match": true,
+      "chunk_indices": [
+        13
+      ]
+    },
+    {
+      "id": "MFGZH-Q075",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+      "source_match": true,
+      "chunk_indices": [
+        10
+      ]
+    },
+    {
+      "id": "MFGZH-Q076",
+      "source_id": "MFG-ZH16",
+      "physical_page": 5,
+      "anchor": "深度量规、角度量规、形状、位置量规",
+      "source_match": true,
+      "chunk_indices": [
+        6
+      ]
+    },
+    {
+      "id": "MFGZH-Q078",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "室内湿度不超过75%RH",
+      "source_match": true,
+      "chunk_indices": [
+        13,
+        14
+      ]
+    },
+    {
+      "id": "MFGZH-Q079",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+      "source_match": true,
+      "chunk_indices": [
+        10
+      ]
+    },
+    {
+      "id": "MFGZH-Q080",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "周围应无影响校准结果的振动、冲击、电磁场或其它干扰源",
+      "source_match": true,
+      "chunk_indices": [
+        14
+      ]
+    },
+    {
+      "id": "MFGZH-Q081",
+      "source_id": "MFG-ZH17",
+      "physical_page": 8,
+      "anchor": "引伸计标距误差在不拔下双侧引伸计定位针的情况下测量",
+      "source_match": true,
+      "chunk_indices": [
+        22
+      ]
+    },
+    {
+      "id": "MFGZH-Q081",
+      "source_id": "MFG-ZH17",
+      "physical_page": 8,
+      "anchor": "取两侧引伸计标距误差绝对值最大者",
+      "source_match": true,
+      "chunk_indices": [
+        22
+      ]
+    },
+    {
+      "id": "MFGZH-Q082",
+      "source_id": "MFG-ZH17",
+      "physical_page": 7,
+      "anchor": "对应于双侧引伸计的标距",
+      "source_match": true,
+      "chunk_indices": [
+        16
+      ]
+    },
+    {
+      "id": "MFGZH-Q084",
+      "source_id": "MFG-ZH17",
+      "physical_page": 8,
+      "anchor": "均匀选取至少5个校准点，校准点包括满量程点但不包括零点",
+      "source_match": true,
+      "chunk_indices": [
+        23
+      ]
+    },
+    {
+      "id": "MFGZH-Q085",
+      "source_id": "MFG-ZH17",
+      "physical_page": 9,
+      "anchor": "测量范围1/3处、2/3处校准点分别进行校准，每处校准点只做一次测量",
+      "source_match": true,
+      "chunk_indices": [
+        26
+      ]
+    },
+    {
+      "id": "MFGZH-Q086",
+      "source_id": "MFG-ZH18",
+      "physical_page": 7,
+      "anchor": "测量温度（20±1）℃；相对湿度：≤85%",
+      "source_match": true,
+      "chunk_indices": [
+        18
+      ]
+    },
+    {
+      "id": "MFGZH-Q087",
+      "source_id": "MFG-ZH18",
+      "physical_page": 7,
+      "anchor": "国家一级或国家二级有证标准黏度液",
+      "source_match": true,
+      "chunk_indices": [
+        19
+      ]
+    },
+    {
+      "id": "MFGZH-Q089",
+      "source_id": "MFG-ZH18",
+      "physical_page": 7,
+      "anchor": "放开堵住的手指，同时启动秒表开始记时",
+      "source_match": true,
+      "chunk_indices": [
+        27,
+        28
+      ]
+    },
+    {
+      "id": "MFGZH-Q089",
+      "source_id": "MFG-ZH18",
+      "physical_page": 8,
+      "anchor": "在出现断流瞬间停止记时",
+      "source_match": true,
+      "chunk_indices": [
+        29
+      ]
+    },
+    {
+      "id": "MFGZH-Q090",
+      "source_id": "MFG-ZH18",
+      "physical_page": 8,
+      "anchor": "修正系数小数点后保留两位数字",
+      "source_match": true,
+      "chunk_indices": [
+        34
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "id": "MFGZH-Q002",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "未发现问题的，也应当予以记录，实行零风险报告",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q003",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "形成《每周工业产品质量安全排查治理报告》",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q004",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "形成《每月工业产品质量安全调度会议纪要》",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q019",
+      "source_id": "MFG-ZH04",
+      "physical_page": 7,
+      "anchor": "企业应将质量数据纳入数据资产管理范畴",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q038",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "一般取上限的20%，40%，60%，80%，100%等5个点",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q038",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "该过程校准进行3次。每次校准都要调零，每次校准过程结束后，隔30秒",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q039",
+      "source_id": "MFG-ZH08",
+      "physical_page": 8,
+      "anchor": "上述过程重复测量3次，取平均值作为测量结果，测量结果中取其最大值",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q042",
+      "source_id": "MFG-ZH09",
+      "physical_page": 7,
+      "anchor": "需要有与作动器相匹配的链接螺栓、拉环、千斤顶及拉向力校准装置",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q044",
+      "source_id": "MFG-ZH09",
+      "physical_page": 8,
+      "anchor": "上述过程重复测量3次，取平均值作为测量结果",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q051",
+      "source_id": "MFG-ZH11",
+      "physical_page": 6,
+      "anchor": "本规范适用于纤维内窥镜、电子内窥镜及光学内窥镜等工业内窥镜的校准",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q052",
+      "source_id": "MFG-ZH11",
+      "physical_page": 6,
+      "anchor": "通过光导纤维传像束来传送图像",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q052",
+      "source_id": "MFG-ZH11",
+      "physical_page": 6,
+      "anchor": "通过一组光学透镜来传送图像，工作部件通常不能弯曲",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q053",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "以顶点位于工业内窥镜头端部的锥角值（度）表示",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q054",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "纤维/电子内窥镜：大于1500lx",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q054",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "光学内窥镜：不小于仪器使用说明书标称值的90%",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q055",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "工作长度：仪器使用说明书的标称值×（1±1.2%）",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q055",
+      "source_id": "MFG-ZH11",
+      "physical_page": 7,
+      "anchor": "工作外径：不大于仪器使用说明书（标称值+0.2）mm",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q057",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "室内温度应在（20±3）℃范围内",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q057",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "室温变化不超过1℃/h",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q058",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "被校仪器连续通电预热时间不少于30min",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q060",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "轮廓坐标测量系统误差",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q060",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "校准球",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q061",
+      "source_id": "MFG-ZH13",
+      "physical_page": 6,
+      "anchor": "测量面的表面粗糙度Ra值不大于0.8μm",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q063",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "室内温度应在（20±5）℃",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q063",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "室内湿度不超过75%RH",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q064",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "螺纹量规代号和尺寸代号、制造厂商标、出厂年月",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q065",
+      "source_id": "MFG-ZH13",
+      "physical_page": 7,
+      "anchor": "不应有裂纹、毛刺、铁屑",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q068",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "室内温度应在（20±2）℃范围内",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q068",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "室温变化不超过1℃/h",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q069",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "在室内连续平衡温度的时间不少于2h",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q070",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "量块",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q070",
+      "source_id": "MFG-ZH14",
+      "physical_page": 6,
+      "anchor": "4等",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q072",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "检具一般由定位装置、夹紧装置、测量装置和辅助（传动和导向）装置组成",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q073",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "室内温度为（20±5）℃",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q073",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "平衡温度时间不少于2h",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q074",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "定位装置、夹紧装置应准确牢固，传动装置操作应灵活无卡滞",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q075",
+      "source_id": "MFG-ZH15",
+      "physical_page": 5,
+      "anchor": "工作面的表面粗糙度Ra值不大于0.2μm",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q077",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "产品名称、型号/规格、主要技术参数、出厂编号、制造厂名或商标及生产日期",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q078",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "室内温度为（20±5）℃",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q078",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "平衡温度时间不少于2h",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q079",
+      "source_id": "MFG-ZH16",
+      "physical_page": 6,
+      "anchor": "工作面的表面粗糙度Ra值不大于0.2μm",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q082",
+      "source_id": "MFG-ZH17",
+      "physical_page": 7,
+      "anchor": "l0为引伸计的夹持位置，此项不需校准",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q083",
+      "source_id": "MFG-ZH17",
+      "physical_page": 8,
+      "anchor": "应在测量环境中稳定不少于30min，待温度平衡后进行校准",
+      "source_match": true,
+      "chunk_indices": []
+    },
+    {
+      "id": "MFGZH-Q088",
+      "source_id": "MFG-ZH18",
+      "physical_page": 7,
+      "anchor": "将选用的一种标准黏度液放入恒温槽内，保持在测量温度±0.1℃内并恒温30min左右",
+      "source_match": true,
+      "chunk_indices": []
+    }
+  ],
+  "limitation": "锚点与页码验证不等于检索召回率、真实问答准确率或独立专家复核。"
+}

@@ -1,0 +1,17 @@
+{
+  "stage": "source-only editorial correction before any application model run",
+  "old_freeze_sha256": "4158741688e46c47bdd5e510e462ac8dee622fa3a87bbb6655d5a57252767b7a",
+  "final_freeze_sha256": "8ec785ae0a4513df83a8278211d135bd8c7fb29d70d67f27ccdadd1dceca1c9e",
+  "corrections": [
+    {
+      "id": "MFGZH-Q059",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "before": "不判断合格与否",
+      "after": "不判定合格与否",
+      "reason": "按原始扫描页纠正逐字证据锚点；两种表述语义接近，但不能把标注笔误算成OCR错误。"
+    }
+  ],
+  "parser_or_model_tuning": false,
+  "external_model_calls": 0
+}

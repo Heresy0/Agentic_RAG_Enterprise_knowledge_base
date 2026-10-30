@@ -1,6 +1,6 @@
 import logging
 from time import perf_counter
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 from fastapi import (
     APIRouter,
@@ -13,9 +13,11 @@ from fastapi import (
 from sqlalchemy.orm import Session
 
 from ..knowledge.answer_service import AnswerService
-from ..knowledge.conversations import ConversationBusy, ConversationNotFound
+from ..knowledge.conversations import ConversationBusy, ConversationNotFound, invalidate_owned_context
 from ..audit_service import AuditService
 from ..model_usage import usage_context
+from ..quality.capture import capture_snapshot, QA_SNAPSHOTS
+from ..quality.service import save_run
 from ..db.dependencies import get_database_session
 from ..schemas import (
     KnowledgeQuestionRequest,
@@ -248,13 +250,27 @@ def answer_question(
         ):
             response.headers[header] = value
 
+        run_fields = {}
+
         def record_answer_success(result):
             check_lease()
+            if getattr(request.app.state.settings, "qa_snapshots_enabled", False):
+                try:
+                    run = save_run(session, run_id=UUID(request_id), request_id=request_id,
+                        principal=principal, scope=scope, question=payload.question, result=result,
+                        capture=observation, settings=request.app.state.settings, conversation_id=payload.conversation_id,
+                        model_usage=usage.events)
+                    run_fields.update(run_id=run.id, snapshot_status=run.snapshot_status)
+                except Exception as exc:
+                    logger.warning(event_message("qa.snapshot_failed", **common_fields, error_type=type(exc).__name__))
+                    run_fields.update(snapshot_status="unavailable")
             commit_audit(outcome="success", details={
                 "answerable": result.answerable, "citation_count": len(result.citations),
                 "scope_mode": "all_accessible" if scope.knowledge_base_id is None else "single",
                 "knowledge_base_ids": sorted(map(str, scope.knowledge_base_ids)),
             })
+            if run_fields:
+                QA_SNAPSHOTS.labels(run_fields["snapshot_status"]).inc()
 
         conversation_fields = {}
         with maintain_concurrency_lease(concurrency_limiter, concurrency_lease,
@@ -262,7 +278,8 @@ def answer_question(
             with usage_context(scope=scope, session=session, settings=request.app.state.settings,
                                request_id=request_id, actor_user_id=principal.user_id,
                                actor_external_subject=principal.external_subject,
-                               conversation_id=payload.conversation_id):
+                               conversation_id=payload.conversation_id) as usage, capture_snapshot(
+                                   scope, payload.question, enabled=getattr(request.app.state.settings, "qa_snapshots_enabled", False)) as observation:
                 if payload.conversation_id is not None:
                     result, context_ms = request.app.state.conversation_answer_service.answer(
                         payload.question, conversation_id=payload.conversation_id,
@@ -302,7 +319,7 @@ def answer_question(
         )
 
         return KnowledgeQuestionResponse(
-            **result.model_dump(), **conversation_fields
+            **result.model_dump(), **conversation_fields, **run_fields
         )
 
     except (ConversationNotFound, ConversationBusy) as exc:
@@ -404,6 +421,8 @@ def answer_question(
         ) from exc
 
     except AuthorizationDenied as exc:
+        if payload.conversation_id is not None:
+            invalidate_owned_context(session, principal, payload.knowledge_base_id, payload.conversation_id)
         commit_audit(outcome="denied")
         record_qa_request(
             outcome="denied",

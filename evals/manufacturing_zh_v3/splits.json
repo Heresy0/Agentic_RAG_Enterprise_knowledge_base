@@ -1,0 +1,28 @@
+{
+  "edition": "manufacturing-zh-v3",
+  "status": "frozen_before_first_chinese_model_run",
+  "corpus_manifest_sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6",
+  "source_lock_sha256": "a2709ba470c8f57b70bec57b63675f8bccd5355ffa1c398cbd3293bd83b0cf6d",
+  "annotations_sha256": "eda661f0beb4b0aade9e62db2d24c11793ac64521ce9e6573094e7315f650cde",
+  "visual_review_sha256": "b2d971c74bb7a7fec555516ab87b612fed3247df0140fa3a8891abb9b314d85c",
+  "counts": {
+    "development": 40,
+    "test": 80
+  },
+  "dataset_sha256": {
+    "development": "c8146eface39d50c3f8f5832c062f8f80855a3641bb6b1ef4dddc8b6e83a014e",
+    "test": "7a7d49ba60f518d99a715c3e843a6777113e407953e8584d92338a35fa0f7f6a"
+  },
+  "positive_questions": 90,
+  "negative_behaviors": {
+    "refuse": 18,
+    "clarify": 12
+  },
+  "roles": {
+    "development": "用于后续调试，40题；未执行模型问答。",
+    "test": "80题，按来源族隔离；未用于模型驱动调参，标签可审计，非秘密或独立专家基准。"
+  },
+  "provenance": "同一助手依据原文逐项编写和检查，不是独立专家认证，也不是实测正确率。",
+  "readiness": "另见离线报告；结构非空不等于所有正文和证据都已成功解析。",
+  "external_model_calls": 0
+}

@@ -1,0 +1,51 @@
+{
+  "first": {
+    "created_at": "2026-10-29T19:07:28.587665+00:00",
+    "reason": "Provider AccessDenied.Unpurchased HTTP403 caused API503; user confirmed account balance restored.",
+    "original_runs_immutable": true,
+    "selection": {
+      "baseline": [
+        "MFGZH-N24",
+        "MFGZH-N25",
+        "MFGZH-N26",
+        "MFGZH-N28",
+        "MFGZH-N29",
+        "MFGZH-N30"
+      ],
+      "candidate": [
+        "MFGZH-Q090",
+        "MFGZH-N13",
+        "MFGZH-N14",
+        "MFGZH-N15",
+        "MFGZH-N16",
+        "MFGZH-N17",
+        "MFGZH-N18",
+        "MFGZH-N19",
+        "MFGZH-N20",
+        "MFGZH-N21",
+        "MFGZH-N23",
+        "MFGZH-N24",
+        "MFGZH-N25",
+        "MFGZH-N26",
+        "MFGZH-N27",
+        "MFGZH-N28",
+        "MFGZH-N29",
+        "MFGZH-N30"
+      ]
+    },
+    "maximum_recovery_requests": 24,
+    "successful_cases_rerun": false
+  },
+  "second": {
+    "created_at": "2026-10-29T19:15:11.156874+00:00",
+    "reason": "Successful HTTP response contained a persisted answer_repair PermissionDeniedError (provider403) during the same account outage.",
+    "selection": {
+      "candidate": [
+        "MFGZH-Q089"
+      ]
+    },
+    "maximum_recovery_requests": 1,
+    "ordinary_business_failures_rerun": false,
+    "rerank_400_not_used_as_retry_selection": true
+  }
+}

@@ -15,6 +15,28 @@ STRUCTURED_PDF = PDF_DIRECTORY / "structured_policy.pdf"
 SCANNED_PDF = PDF_DIRECTORY / "scanned_notice.pdf"
 
 
+def test_numbered_requirements_remain_body_across_pages():
+    from backend.app.documents.pdf_splitter import ExtractedPage, collect_pdf_units
+    units = collect_pdf_units([
+        ExtractedPage(1, "2 交接\n必须同时满足以下条件：\n1. 检查全部合格。\n2. 记录编号齐全。", "pypdf"),
+        ExtractedPage(2, "3. 负责人签署。\n4. 暂停事项按书面要求处理。", "pypdf"),
+    ])
+    assert len(units) == 1
+    unit = units[0]
+    assert unit.kind == "rule_group"
+    assert unit.section_path == ("2 交接",)
+    assert (unit.page_start, unit.page_end) == (1, 2)
+    for text in ("检查全部合格", "记录编号齐全", "负责人签署", "暂停事项"):
+        assert text in unit.content
+
+
+def test_explicit_pdf_heading_markers_and_numbered_headings_remain_headings():
+    from backend.app.documents.pdf_splitter import _heading_level
+    assert _heading_level("1.2 检查范围") == 2
+    assert _heading_level("[[PDF_HEADING_1]]3. 注意事项。") == 1
+    assert _heading_level("2. 记录编号齐全。") is None
+
+
 def test_pdf_cleans_marginalia_and_keeps_cross_page_text() -> None:
     chunks = split_file(
         STRUCTURED_PDF,

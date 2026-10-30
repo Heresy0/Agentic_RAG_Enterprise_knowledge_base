@@ -13,7 +13,7 @@ from ..documents.text_splitter import split_markdown, split_txt
 from .audited_embeddings import AuditedEmbeddings
 
 
-CHUNKING_VERSION = "structured-v4"
+CHUNKING_VERSION = "structured-v7"
 
 
 def split_file(

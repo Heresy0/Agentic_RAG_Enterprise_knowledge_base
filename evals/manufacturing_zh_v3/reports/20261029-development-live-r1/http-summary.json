@@ -1,0 +1,262 @@
+{
+  "evaluation_type": "real_http_acceptance_with_owner_context_snapshots",
+  "questions": 40,
+  "completed": 40,
+  "errors": 0,
+  "dataset_sha256": "c8146eface39d50c3f8f5832c062f8f80855a3641bb6b1ef4dddc8b6e83a014e",
+  "split": "development",
+  "selected_ids": [
+    "MFGZH-Q001",
+    "MFGZH-Q002",
+    "MFGZH-Q003",
+    "MFGZH-Q004",
+    "MFGZH-Q005",
+    "MFGZH-Q006",
+    "MFGZH-Q007",
+    "MFGZH-Q008",
+    "MFGZH-Q009",
+    "MFGZH-Q010",
+    "MFGZH-Q021",
+    "MFGZH-Q022",
+    "MFGZH-Q023",
+    "MFGZH-Q024",
+    "MFGZH-Q025",
+    "MFGZH-Q031",
+    "MFGZH-Q032",
+    "MFGZH-Q033",
+    "MFGZH-Q034",
+    "MFGZH-Q035",
+    "MFGZH-Q046",
+    "MFGZH-Q047",
+    "MFGZH-Q048",
+    "MFGZH-Q049",
+    "MFGZH-Q050",
+    "MFGZH-Q081",
+    "MFGZH-Q082",
+    "MFGZH-Q083",
+    "MFGZH-Q084",
+    "MFGZH-Q085",
+    "MFGZH-N01",
+    "MFGZH-N02",
+    "MFGZH-N03",
+    "MFGZH-N04",
+    "MFGZH-N05",
+    "MFGZH-N06",
+    "MFGZH-N07",
+    "MFGZH-N08",
+    "MFGZH-N09",
+    "MFGZH-N10"
+  ],
+  "max_questions": 40,
+  "corpus_manifest_sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6",
+  "auth_refreshes": 3,
+  "qa_request_retries": 0,
+  "unobserved_stages": [
+    "vector",
+    "keyword",
+    "fusion",
+    "rerank"
+  ],
+  "attempts": [
+    {
+      "id": "MFGZH-Q001",
+      "error": null,
+      "run_id": "750d1c9c-bf41-45f5-8632-5f095c5d4d69"
+    },
+    {
+      "id": "MFGZH-Q002",
+      "error": null,
+      "run_id": "232f2ec3-568d-4078-8fc9-6a7fe3794052"
+    },
+    {
+      "id": "MFGZH-Q003",
+      "error": null,
+      "run_id": "a1d9a94b-ce62-4350-ad7d-c8ae2e5deff6"
+    },
+    {
+      "id": "MFGZH-Q004",
+      "error": null,
+      "run_id": "bb6c8b48-087a-40e0-a820-dd4456612b16"
+    },
+    {
+      "id": "MFGZH-Q005",
+      "error": null,
+      "run_id": "2eab374d-1bcb-43d4-a5e9-2511b39d11c6"
+    },
+    {
+      "id": "MFGZH-Q006",
+      "error": null,
+      "run_id": "bc660054-5db8-42bf-84d0-6d1e3cb14fca"
+    },
+    {
+      "id": "MFGZH-Q007",
+      "error": null,
+      "run_id": "39bdf9c6-2de5-48e7-ba53-0fce3a77990b"
+    },
+    {
+      "id": "MFGZH-Q008",
+      "error": null,
+      "run_id": "2e41607b-deaa-427b-90b2-7447753ac884"
+    },
+    {
+      "id": "MFGZH-Q009",
+      "error": null,
+      "run_id": "5af23e9b-2283-4343-88ea-cac97db59faf"
+    },
+    {
+      "id": "MFGZH-Q010",
+      "error": null,
+      "run_id": "03f93c37-d5ef-41ef-8f52-6fd4e7df8c5e"
+    },
+    {
+      "id": "MFGZH-Q021",
+      "error": null,
+      "run_id": "ed5e0156-8a49-424e-a055-b05a65b65ec6"
+    },
+    {
+      "id": "MFGZH-Q022",
+      "error": null,
+      "run_id": "2d472c9b-436b-4629-871b-b64d09b01c73"
+    },
+    {
+      "id": "MFGZH-Q023",
+      "error": null,
+      "run_id": "5698bf0e-7e27-41c4-9ae1-cf2fe1fa8663"
+    },
+    {
+      "id": "MFGZH-Q024",
+      "error": null,
+      "run_id": "3f65e167-3f60-4135-bc84-9668d5a1144c"
+    },
+    {
+      "id": "MFGZH-Q025",
+      "error": null,
+      "run_id": "6562fee6-92d7-43b1-98e1-990fdc34a115"
+    },
+    {
+      "id": "MFGZH-Q031",
+      "error": null,
+      "run_id": "89988295-2170-487f-8ae2-37dadf9bfc12"
+    },
+    {
+      "id": "MFGZH-Q032",
+      "error": null,
+      "run_id": "2337227d-bf80-4755-a206-3959e4df04eb"
+    },
+    {
+      "id": "MFGZH-Q033",
+      "error": null,
+      "run_id": "690f6162-a9a9-4f98-82b2-4245ce071c44"
+    },
+    {
+      "id": "MFGZH-Q034",
+      "error": null,
+      "run_id": "030bb3ff-3c6f-447b-932b-0f07b92e3889"
+    },
+    {
+      "id": "MFGZH-Q035",
+      "error": null,
+      "run_id": "20834dee-b37b-41c2-b072-54fe6061ed35"
+    },
+    {
+      "id": "MFGZH-Q046",
+      "error": null,
+      "run_id": "384d617f-270e-46e3-9e01-357d37e09784"
+    },
+    {
+      "id": "MFGZH-Q047",
+      "error": null,
+      "run_id": "8454e9cb-8665-4357-9c95-0a739d39021a"
+    },
+    {
+      "id": "MFGZH-Q048",
+      "error": null,
+      "run_id": "cee3b05d-4fe4-4ceb-9395-3c8b505b4d8d"
+    },
+    {
+      "id": "MFGZH-Q049",
+      "error": null,
+      "run_id": "f91fcac0-c264-47df-8c68-891ccaa636b7"
+    },
+    {
+      "id": "MFGZH-Q050",
+      "error": null,
+      "run_id": "a7d0fb08-aa32-4c26-b31b-8ad498fe5722"
+    },
+    {
+      "id": "MFGZH-Q081",
+      "error": null,
+      "run_id": "557e958f-ab67-426e-b125-f36b9b00a119"
+    },
+    {
+      "id": "MFGZH-Q082",
+      "error": null,
+      "run_id": "e5776c5b-624d-450b-a347-1d1d56566369"
+    },
+    {
+      "id": "MFGZH-Q083",
+      "error": null,
+      "run_id": "a6633a97-62b6-426d-a553-aa70dcbffeaf"
+    },
+    {
+      "id": "MFGZH-Q084",
+      "error": null,
+      "run_id": "7040c4b6-386a-4351-9e12-e2b7d4243a36"
+    },
+    {
+      "id": "MFGZH-Q085",
+      "error": null,
+      "run_id": "fd2edfca-f671-4f01-aa4f-3755f6c26d67"
+    },
+    {
+      "id": "MFGZH-N01",
+      "error": null,
+      "run_id": "5ecb0ec3-0bc9-44a3-b338-9e045ce2a4fe"
+    },
+    {
+      "id": "MFGZH-N02",
+      "error": null,
+      "run_id": "50781f83-2502-4620-a925-8690e232aa73"
+    },
+    {
+      "id": "MFGZH-N03",
+      "error": null,
+      "run_id": "d6b2bdd7-da54-442b-9bce-d0e91ed3756f"
+    },
+    {
+      "id": "MFGZH-N04",
+      "error": null,
+      "run_id": "a1f48314-f095-464f-9630-bcbefacf3077"
+    },
+    {
+      "id": "MFGZH-N05",
+      "error": null,
+      "run_id": "930cea48-2675-4113-8df6-e0b7c42c504a"
+    },
+    {
+      "id": "MFGZH-N06",
+      "error": null,
+      "run_id": "ce42a29c-9c21-4118-b7bc-463af8e1b0c2"
+    },
+    {
+      "id": "MFGZH-N07",
+      "error": null,
+      "run_id": "31d548c8-c9fc-48d8-8775-11f97fe42915"
+    },
+    {
+      "id": "MFGZH-N08",
+      "error": null,
+      "run_id": "4e73b7a1-d746-439b-a7f2-91c834b80316"
+    },
+    {
+      "id": "MFGZH-N09",
+      "error": null,
+      "run_id": "8d2d99dc-5eb8-43f1-a479-24ca1065d6e7"
+    },
+    {
+      "id": "MFGZH-N10",
+      "error": null,
+      "run_id": "473ece8e-3990-4922-a5dc-e702ea596ae2"
+    }
+  ]
+}

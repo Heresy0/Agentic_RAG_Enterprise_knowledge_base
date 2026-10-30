@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-28",
+  "evaluation_type": "offline_implementation_checks",
+  "external_model_calls": 0,
+  "new_ingestions": 0,
+  "full_nonintegration": {
+    "exit_code": 0,
+    "passed": 1386,
+    "skipped": 1,
+    "integration_deselected": 54,
+    "command": "python -m pytest -m \"not integration\" -q"
+  },
+  "final_focused": {
+    "exit_code": 0,
+    "passed": 30,
+    "command": "python -m pytest tests/test_manufacturing_public.py tests/test_manufacturing_http_acceptance.py -q -o addopts="
+  },
+  "compileall": "passed",
+  "reproduction": "passed",
+  "public_positive_original_and_chunk_anchor_validation": "105 matched, 0 failed",
+  "corpus_manifest_sha256": "8cdb80bbab4ac3c113f61a58ccefe1c488e721e84fcd03f7cbbdb0c50c99a792",
+  "freeze_sha256": "81b193b714abca3cea683b00619a6cc8b683ead3f57981d851fc05ffe3f38918",
+  "unrun": [
+    "V2 live uploads and embeddings",
+    "150-question live HTTP QA",
+    "independent domain-expert answer review",
+    "integration test suite"
+  ],
+  "parser_runtime_image": {
+    "tag": "enterprise-knowledge-manufacturing:20261028-fe7221c",
+    "id": "sha256:300b3abb4f132f2d5daa5e016ecdd38ed85c9469cc0dcabb73143f01824bdedb",
+    "network": "none",
+    "application_code": "read_only_bind_mount"
+  },
+  "reproducibility_scope": "Source/data bytes reproduced exactly. OCR output is tied to the recorded runtime; do not assume bit-identical output in different system packages or images.",
+  "git_staged_byte_check": {
+    "files": 89,
+    "result": "passed"
+  },
+  "git_diff_check": "passed; original source asset whitespace preserved explicitly"
+}

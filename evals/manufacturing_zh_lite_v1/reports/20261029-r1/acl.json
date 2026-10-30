@@ -1,0 +1,147 @@
+[
+  {
+    "role": "操作员",
+    "check": "effective_permissions",
+    "passed": true
+  },
+  {
+    "role": "操作员",
+    "check": "read_公共参考",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "操作员",
+    "check": "read_生产工艺",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "操作员",
+    "check": "read_质量检验",
+    "actual": 403,
+    "passed": true
+  },
+  {
+    "role": "操作员",
+    "check": "cross_tenant_denied",
+    "actual": 403,
+    "passed": true
+  },
+  {
+    "role": "工艺工程师",
+    "check": "effective_permissions",
+    "passed": true
+  },
+  {
+    "role": "工艺工程师",
+    "check": "read_公共参考",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "工艺工程师",
+    "check": "read_生产工艺",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "工艺工程师",
+    "check": "read_质量检验",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "工艺工程师",
+    "check": "cross_tenant_denied",
+    "actual": 403,
+    "passed": true
+  },
+  {
+    "role": "质量工程师",
+    "check": "effective_permissions",
+    "passed": true
+  },
+  {
+    "role": "质量工程师",
+    "check": "read_公共参考",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "质量工程师",
+    "check": "read_生产工艺",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "质量工程师",
+    "check": "read_质量检验",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "质量工程师",
+    "check": "cross_tenant_denied",
+    "actual": 403,
+    "passed": true
+  },
+  {
+    "role": "知识管理员",
+    "check": "effective_permissions",
+    "passed": true
+  },
+  {
+    "role": "知识管理员",
+    "check": "read_公共参考",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "知识管理员",
+    "check": "read_生产工艺",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "知识管理员",
+    "check": "read_质量检验",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "知识管理员",
+    "check": "cross_tenant_denied",
+    "actual": 403,
+    "passed": true
+  },
+  {
+    "role": "仅参考资料用户",
+    "check": "effective_permissions",
+    "passed": true
+  },
+  {
+    "role": "仅参考资料用户",
+    "check": "read_公共参考",
+    "actual": 200,
+    "passed": true
+  },
+  {
+    "role": "仅参考资料用户",
+    "check": "read_生产工艺",
+    "actual": 403,
+    "passed": true
+  },
+  {
+    "role": "仅参考资料用户",
+    "check": "read_质量检验",
+    "actual": 403,
+    "passed": true
+  },
+  {
+    "role": "仅参考资料用户",
+    "check": "cross_tenant_denied",
+    "actual": 403,
+    "passed": true
+  }
+]

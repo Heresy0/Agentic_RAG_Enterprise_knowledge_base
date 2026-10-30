@@ -1,0 +1,1850 @@
+{
+  "baseline_ref": "caf26ea",
+  "unchanged": true,
+  "files": 460,
+  "verification": "Git baseline blob comparison respects clean filters; raw before/after SHA-256 values are equal",
+  "before_sha256": "0dcd36b0ffa4b5c2dd3345139e2b1d850fc88aa9b3ff5a8f6d1cbf7c36e15bd0",
+  "after_sha256": "0dcd36b0ffa4b5c2dd3345139e2b1d850fc88aa9b3ff5a8f6d1cbf7c36e15bd0",
+  "records": [
+    {
+      "path": "evals/README.md",
+      "sha256": "e2918eb8ef98e6fae60908e375ef69dfd048c4198679fa16bee77080626e7f3b"
+    },
+    {
+      "path": "evals/SCORING_ANNOTATION_REVIEW.md",
+      "sha256": "f80c4f08c3727a0be9cd9301585c5ac16ef761727dc1012f6df5e43ef6c08389"
+    },
+    {
+      "path": "evals/SYSTEM_EVALUATION.md",
+      "sha256": "9d5a5e49446b4ebee4822764f3dade54f71719223e5998f5423ff0bf7405ea33"
+    },
+    {
+      "path": "evals/acceptance/cc005_scoring_r10_20261016.json",
+      "sha256": "b4fc816e71ad77bddc14da06ed6efac6cf95a8696d944a01521856f363a25ffe"
+    },
+    {
+      "path": "evals/acceptance/context_comparison_20261022.json",
+      "sha256": "63d585887996f7fefdecaa206399f5c8e9168b49aa46c4c27b75fc74b56fb5d3"
+    },
+    {
+      "path": "evals/acceptance/context_comparison_20261022_reviews.json",
+      "sha256": "741ac063c52d9732899d1c80287f760eb88c3f9b7bacdcc0b263c47699a27380"
+    },
+    {
+      "path": "evals/acceptance/conversation_memory_20261014.json",
+      "sha256": "8b2dc57257cdb61362a16dda4e6f253c2ce2b3261ea639d0f976979d47fc29d8"
+    },
+    {
+      "path": "evals/acceptance/conversation_memory_live_20261014.json",
+      "sha256": "dfb22b277c56570691a785bbe841cd42fb5cd62bc4ebd81f628136e6bb62a872"
+    },
+    {
+      "path": "evals/acceptance/current_100_20261016.json",
+      "sha256": "0ff9b3e4b425662519394804dba2d3a6885fb5049f4fb0da2cbb2d1fa4c0747b"
+    },
+    {
+      "path": "evals/acceptance/current_120_20261016.json",
+      "sha256": "fea1908371e162633391702fad91e3d141befdc79bda97d41e2f2fe84ae198a6"
+    },
+    {
+      "path": "evals/acceptance/current_120_assistant_review_20261016.json",
+      "sha256": "6a8b7b824cfbedbdd979534f88d39d8a2d54f24faf130db13c2db15d6ed176f1"
+    },
+    {
+      "path": "evals/acceptance/load_test_20261014.json",
+      "sha256": "e49b31635afb07f376cc3dc04d971a071f38c4bd6e9835d2c5eb3b3cf7c3075e"
+    },
+    {
+      "path": "evals/acceptance/multihop_comparison_20261016.json",
+      "sha256": "6520e758a5e6b57650107d2841e94c4df74269673847d867bf9c3eb557a3a372"
+    },
+    {
+      "path": "evals/acceptance/multihop_parent_ablation_20261016.json",
+      "sha256": "522d01a22ee4acc645d88d15e8bdc89c4895e8e99f51fc7ec183f69f8dd0d17d"
+    },
+    {
+      "path": "evals/acceptance/nanqi_expansion_20261016.json",
+      "sha256": "e72bc2b130aa70ad097a5dee40c4d14303df4413b50379135ece60134edb74dd"
+    },
+    {
+      "path": "evals/acceptance/parent_child_20261014.json",
+      "sha256": "a362546add0d7f1d68da51979c0178d6a81a81c9d55fa24afcd5222c48b4a291"
+    },
+    {
+      "path": "evals/acceptance/parent_context_budget_20261022.json",
+      "sha256": "396a9853a127753c47bf6ba00fbc0a746455f93087bada61f8b32e3d19052686"
+    },
+    {
+      "path": "evals/acceptance/quality_checks_20261022.json",
+      "sha256": "4b49fc692a43d83a8ff816f1d3408ab521d24ffb9eb1c57a3cde64aeb7d58ee6"
+    },
+    {
+      "path": "evals/acceptance/quality_runtime_20261028.json",
+      "sha256": "e59f4830d3e7140ef7efc7bf64987c2c78bf4822fc33f6a0eca8c96b5cb67d18"
+    },
+    {
+      "path": "evals/acceptance/ragas_reference_comparison_100_20261016.json",
+      "sha256": "06c521be45a556c24a9e944eef2e1bcda08af85e0414ca85ca700be8009f9ece"
+    },
+    {
+      "path": "evals/acceptance/ragas_saved_100_20261016.json",
+      "sha256": "c13974b8292b7b2fdca9cff6d06909335f1217888d408af49c13b62e3dc93f30"
+    },
+    {
+      "path": "evals/acceptance/scoring_r7_100_20261016.json",
+      "sha256": "6f8ef8ebc656e27b433d8a43f8f08494eba2a904bae361c5dbab638f26b6bae5"
+    },
+    {
+      "path": "evals/acceptance/scoring_r9_100_20261016.json",
+      "sha256": "6d3a9af79b5cec7fb5b8cce70da775bdd4e9bc8cfd44268b4bca505737f6f39d"
+    },
+    {
+      "path": "evals/acceptance/suite_consolidation_20261016.json",
+      "sha256": "f97ba8e3ea748e3d69a37433b09a7b9185f5b0a0e135b7de7a8bcfc3b35ef178"
+    },
+    {
+      "path": "evals/archive/README.md",
+      "sha256": "a36d53a36effef1f7da7cdea8f8ae9aaba8798314034ca09f551709a485717bc"
+    },
+    {
+      "path": "evals/archive/datasets/answer_dev.jsonl",
+      "sha256": "90997c7387d164cd24f8128a71495c50fbabbe4db916c6f1c256c7bde90c70d0"
+    },
+    {
+      "path": "evals/archive/datasets/answer_test.jsonl",
+      "sha256": "0652e4149431ad4cda9830ef619643b13f8042443c71917ca71bc0bc46e2cad0"
+    },
+    {
+      "path": "evals/archive/datasets/retrieval_dev.jsonl",
+      "sha256": "35afe842abef05b426c3f321a711b4f2d9300f23453a81bdf40064b57a804be1"
+    },
+    {
+      "path": "evals/archive/datasets/retrieval_test.jsonl",
+      "sha256": "8af266a7047788f578d932baf6befbb45439cde3245f40eb508da51eaec492ff"
+    },
+    {
+      "path": "evals/archive/first_pass_generalization/README.md",
+      "sha256": "d5e60c5978547bbd4a607778b0e82299f7dfff074020a4ad210376d0b676227e"
+    },
+    {
+      "path": "evals/archive/first_pass_generalization/single_turn.jsonl",
+      "sha256": "f9beff7cff5321716e5a1b8c5cce0fe2e28b8c10838a140bac2bbaad2addf4e6"
+    },
+    {
+      "path": "evals/archive/load/current_workload.jsonl",
+      "sha256": "8a5a92b902b85766b09e796ff98affb4ef3f74a2941a342f3a66cc67dadadb9c"
+    },
+    {
+      "path": "evals/archive/manifest.json",
+      "sha256": "4b78ae4d8d834c76751744191ecfc262de7c681d98e5c0f6408ef78caeb3b0c9"
+    },
+    {
+      "path": "evals/archive/xinghai_multihop/README.md",
+      "sha256": "61aa3938119516c35a8210bc017b7ada9048f68c3da368dd90207d3c8aa8d239"
+    },
+    {
+      "path": "evals/archive/xinghai_multihop/coverage.json",
+      "sha256": "0613e5c932b6d444f09f9ff06e8ca21ed2b1553986d1f7b068aee172532e4f01"
+    },
+    {
+      "path": "evals/archive/xinghai_multihop/single_turn.jsonl",
+      "sha256": "27e6476f6cb62767bd2ed5c8f3151676d10b9d071c49fc2eab389f7fbc698997"
+    },
+    {
+      "path": "evals/archive/xinghai_multihop/测试题册.md",
+      "sha256": "9f3092e39ebe9d750981df4187c3a75297d7c5a749b13190fbd88770ef2c039a"
+    },
+    {
+      "path": "evals/archive/xinghai_multihop/答案与证据链.md",
+      "sha256": "2ea147b0f4880876e45994a2f6ce2ea8b51b2c73df4e8017b67cedfd8a485e0f"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/README.md",
+      "sha256": "7e639acf617b3d1a35952136f74478afdfdba9d2acf14716834ac9ab674ce6a3"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/by_scope/人力资源部.jsonl",
+      "sha256": "aa814aba9ce71e409483d329943bbd0162017493b2be6772fdb974581526c3e6"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/by_scope/公司公共.jsonl",
+      "sha256": "05e071e038c8eee1466cfd79e33a1c4be9921b86bd24590beb3c98711a000367"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/by_scope/平台研发部.jsonl",
+      "sha256": "4632a6e41f5e6325d1242bb855239bea713bd1ce204d9d4dd883974f64233193"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/by_scope/技术部.jsonl",
+      "sha256": "ad3a193f3127b210696cd7c54cd91803a6b2d8698de1498a4ce9128670e9709f"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/coverage.json",
+      "sha256": "9bd1750a78acfbd20116fd4fb7a025fb14d1a90fd2ee30565b3a80de8093c30b"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/cross_scope.jsonl",
+      "sha256": "2ab8318399aeb98876731e67651f28d9321b485c90240e604ecee38c8d7e1f08"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/single_turn.jsonl",
+      "sha256": "da0e1cb03ba8b05d303295e7c94c4f513d4ce7a116b7ab642900caf87b40fe35"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/unanswerable.jsonl",
+      "sha256": "23cda7256a8561513039694a0e8d97dee2f42e0f396b2352fc162eafe036f581"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/测试题册.md",
+      "sha256": "18b5b0e52db8d5ab72942f307d546c147a500c68eae0f601f5b5fbb038298823"
+    },
+    {
+      "path": "evals/archive/xinghai_nanqi/答案与评分.md",
+      "sha256": "a695a02ccc98f1ff32c656791da1f0e6c93d56eee5e421ba9191dd7340b01c9a"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/README.md",
+      "sha256": "af95c597bcbbf30e081482b425af01b3bb16c1b80e947e7f10540d3d030268cd"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/by_scope/人力资源部.jsonl",
+      "sha256": "6e7c49c4645bb684b642f68a8c21d30a2c7dbf799ef276dda6011a0466ce70bd"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/by_scope/公司公共.jsonl",
+      "sha256": "57c93961c7db30f8672f6eb96cc79f3a0c238f3d9a30baccbf2413ee314dcdfa"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/by_scope/平台研发部.jsonl",
+      "sha256": "4dca40eb7005c61fb6c7d729ea4f6decb5f36435414b1994cbc4d4c93681df9d"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/by_scope/技术部.jsonl",
+      "sha256": "68deb942a0ba8d3e934f47b7429bbff4c96aa2fb09df07812fdc57d17e9be7c7"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/conversations.json",
+      "sha256": "e6f976b8564b893b8fa8735eb00d46fdcc9e6f959cea587c2c5bf5cae17dbaf7"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/coverage.json",
+      "sha256": "4432d8b73b7ba2ba83b791aa39fe31389b31d8105ec36984c94ac5530b8b3cb0"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/cross_scope.jsonl",
+      "sha256": "c2facd1f8048e4d061aeec4180c17cd2eac6710bdc0c4f923c02309b5a32bee8"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/permissions.json",
+      "sha256": "22fcc9616ff3897526a177935ec9e20d639c76d5aac5f9475f26cf1ce00ec21e"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/single_turn.jsonl",
+      "sha256": "705e9606622e2ecbb13ea0363da61269b2c25b566b3c183e6b0d568703148982"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/unanswerable.jsonl",
+      "sha256": "0c6fd2664972ec07e7b59799d243b4ebf52cb7ff7d1ce28b2cc7d18b8533f9b4"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/测试题册.md",
+      "sha256": "db877698aa45226927e9a9182c12696da2770821b96261649a73985e43677790"
+    },
+    {
+      "path": "evals/archive/xinghai_v3/答案与评分.md",
+      "sha256": "4f165d362ca21536e7d3b4c45a9a50a749a1e26b62ed2e018e802a7cb66668bf"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/README.md",
+      "sha256": "9dfdd4497299eb2989bc1760ad4bd77a28e1ba6eed2d8b3b16ee3cd5057475d4"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/by_scope/人力资源部.jsonl",
+      "sha256": "f6b2ff6fcd26db0ee4a25daae3a1af553b3650f97c36da0dd97f88b69afbdb46"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/by_scope/公司公共.jsonl",
+      "sha256": "e18fd35dbe6d6d6a6bed47a27886cada0f8cfa290f5ba0368ebde0afc800ac87"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/by_scope/平台研发部.jsonl",
+      "sha256": "f6dc419afae620f41ef221e1e254753b80d4190aee44a016f9e15ca257761b66"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/by_scope/技术部.jsonl",
+      "sha256": "bfdae1e83c974c7dd1c7644e7fe1f0bfb3cdcf5047f4a3d7f8246b27fec39593"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/conversations.json",
+      "sha256": "e6f976b8564b893b8fa8735eb00d46fdcc9e6f959cea587c2c5bf5cae17dbaf7"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/coverage.json",
+      "sha256": "2b8717ad0550e9a12f31c0d2a822ea0535fd6370fd2844b6b750c138fbd67107"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/cross_scope.jsonl",
+      "sha256": "90a841ad68e43772d675677a1e27de67b8050f8dec2223f20a4e768532ecc5f9"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/permissions.json",
+      "sha256": "22fcc9616ff3897526a177935ec9e20d639c76d5aac5f9475f26cf1ce00ec21e"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/ragas_references_v1.json",
+      "sha256": "66cc21869963ed0f266e5bcaae740a7a024452337eac2ae948650187ce870f89"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/scoring_rules.json",
+      "sha256": "a369c6f49309bf4738430f69fd5161ba01b9502aae1dc72cae99aed5efb2817b"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/single_turn.jsonl",
+      "sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/unanswerable.jsonl",
+      "sha256": "4d41b667496572b72d1e0145d4e4a69dddae8ed8869929c28ab1a2e34896ce67"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/测试题册.md",
+      "sha256": "8512d597f73a8b1e6f7fd1cfe098fcba8032d24df882d53467786b9dedcec6d7"
+    },
+    {
+      "path": "evals/archive/xinghai_v4/答案与评分.md",
+      "sha256": "6decbbc4b624173e57676b1959d9f1e27c0c759a7b506275ea9aca7961e0b346"
+    },
+    {
+      "path": "evals/conversation_memory/live_cases.json",
+      "sha256": "421c6d9b0452d0edddd4f33f07c79d92ab0372277dae66d2a0683252250e6582"
+    },
+    {
+      "path": "evals/current/README.md",
+      "sha256": "f38598bd945fe3abbb3deac2f2ebcb1cd068acdfd1b1fadc88d04503b158d38d"
+    },
+    {
+      "path": "evals/current/by_scope/人力资源部.jsonl",
+      "sha256": "4209842071b44d22980769f2a1ac17e2b5c6fa56ffbadc9e20b9b8ac0898545f"
+    },
+    {
+      "path": "evals/current/by_scope/公司公共.jsonl",
+      "sha256": "e18fd35dbe6d6d6a6bed47a27886cada0f8cfa290f5ba0368ebde0afc800ac87"
+    },
+    {
+      "path": "evals/current/by_scope/平台研发部.jsonl",
+      "sha256": "c398caf3ace2f297c0acddefd3a2f4521df6f29043c0f7e1a97a0a496b5df5fb"
+    },
+    {
+      "path": "evals/current/by_scope/技术部.jsonl",
+      "sha256": "b65672c98094dac28b9ee6e115fc4dac282241327404b5c2f981767ef1db7573"
+    },
+    {
+      "path": "evals/current/conversations.json",
+      "sha256": "e6f976b8564b893b8fa8735eb00d46fdcc9e6f959cea587c2c5bf5cae17dbaf7"
+    },
+    {
+      "path": "evals/current/cross_scope.jsonl",
+      "sha256": "db8cf5ab076ecfd9f84b8f806758d18d6ff1495a322cd0c3beb36a569fe67f22"
+    },
+    {
+      "path": "evals/current/groups/completeness/README.md",
+      "sha256": "268ca42ab70d3f9cec32e670054a24dc0754ed6d49861f59211c526e367fe181"
+    },
+    {
+      "path": "evals/current/groups/completeness/single_turn.jsonl",
+      "sha256": "f9beff7cff5321716e5a1b8c5cce0fe2e28b8c10838a140bac2bbaad2addf4e6"
+    },
+    {
+      "path": "evals/current/groups/main/README.md",
+      "sha256": "3661b9c1130472da7c0bb5faa5000a87e48976c418cc6bfa4c692aa5e0b21a65"
+    },
+    {
+      "path": "evals/current/groups/main/ragas_references_v1.json",
+      "sha256": "93313972d774c34f35c53a063c9653631069cb5ca5cd7a67abf14b7d032f7fc7"
+    },
+    {
+      "path": "evals/current/groups/main/scoring_rules.json",
+      "sha256": "41445f2dc30229f21f8b94cf76008f32cea2f5640ce2efac8e8faded9c7db9d7"
+    },
+    {
+      "path": "evals/current/groups/main/single_turn.jsonl",
+      "sha256": "24539fc4634bf406045b6d57528ef6d902ddcf539728a879124272108a0f115a"
+    },
+    {
+      "path": "evals/current/groups/multihop/README.md",
+      "sha256": "5db2ffddfe0b7e242a1cda2cc2ca5e8ecd45a56a27726e7169e38f22e24a6a1f"
+    },
+    {
+      "path": "evals/current/groups/multihop/single_turn.jsonl",
+      "sha256": "27e6476f6cb62767bd2ed5c8f3151676d10b9d071c49fc2eab389f7fbc698997"
+    },
+    {
+      "path": "evals/current/load_workload.jsonl",
+      "sha256": "8a5a92b902b85766b09e796ff98affb4ef3f74a2941a342f3a66cc67dadadb9c"
+    },
+    {
+      "path": "evals/current/permissions.json",
+      "sha256": "22fcc9616ff3897526a177935ec9e20d639c76d5aac5f9475f26cf1ce00ec21e"
+    },
+    {
+      "path": "evals/current/quality_policy.json",
+      "sha256": "159f626b832731b88849240bae15fc8bffc6e0912c79851b578d5f38dac9033d"
+    },
+    {
+      "path": "evals/current/scoring_rules.json",
+      "sha256": "41445f2dc30229f21f8b94cf76008f32cea2f5640ce2efac8e8faded9c7db9d7"
+    },
+    {
+      "path": "evals/current/single_turn.jsonl",
+      "sha256": "c1ef8bef5a0b5f717d716d40bf00755c42e5f4850ae869958efdb83208ada19d"
+    },
+    {
+      "path": "evals/current/suite.json",
+      "sha256": "26068ab89eebf768b0421001aa651512a30006f29d4cb86a79c5f8ba8219f354"
+    },
+    {
+      "path": "evals/current/unanswerable.jsonl",
+      "sha256": "78e08beff9b78a56eeae13a8f95961a2e57892b0caa3b6b75cfc4bdcdcab8df8"
+    },
+    {
+      "path": "evals/current/测试题册.md",
+      "sha256": "e5544e02797307d73653a9fea10162507b085612ea007c6a53c328bf21ef150a"
+    },
+    {
+      "path": "evals/current/答案与评分.md",
+      "sha256": "e18c1115daef2ae58533041a1b10f13aee35dae81b0abe76792eac3858676899"
+    },
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/README.md",
+      "sha256": "e76c35e2aeb7ed80c6264c1766ea280dc4b54772948132dd3094d19d09144316"
+    },
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/baseline-preservation.json",
+      "sha256": "b4ad1c0314a9232606e4894a56bb426234c6716dede121c33da18e6879d5d9b6"
+    },
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/comparison.json",
+      "sha256": "ff4d405359d095af06d69860904bd86c554d591a09e1b4f73c57ea63d1f4c677"
+    },
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/provenance.json",
+      "sha256": "d04c420e49c2036f453becf05c93d688a3e9dc00a17fa31f295c0d9e7bd221d1"
+    },
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/validation.json",
+      "sha256": "fcb17166b8324e178279a1f1160eedcabeaacaa711c540838d88a26bf60f8fea"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/README.md",
+      "sha256": "7a5d7a716d8784949d954bb2f27f1e9042faf81c60a90a8e062352a29ca5a236"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/acl-checks.json",
+      "sha256": "3e1f41be57c6a7021503283410a5bc8ac895d0c57430cf4d10de7e1c904f8d17"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/answers.json",
+      "sha256": "8b7da9981cb0ed472cf2405f804ccade0da0837bf48cd97ec9fbb0f75546c8fe"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/baseline-preservation.json",
+      "sha256": "eb5ccfe1ff179585ed16619aec23bb1daa641578f76483256daf76fd7e13e488"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/database-preservation.json",
+      "sha256": "c0870b1e116c6436955023e6ee793ff4ef3ad0f97b00bc326529a16b747140f3"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/document-lifecycle.json",
+      "sha256": "3a30bf1503b377cd9b4bf57e35636b91cc272308e760aec6cd5dbca27952fb0e"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/failures.json",
+      "sha256": "4c0ae971046290c6e64cf535d2a0cb0c6b6c9e4ea6d7951dc22ecbbc84aaa697"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/index-audit.json",
+      "sha256": "08022f10974752d9649089bd08f5e23a1beaa74af0d6a1f613347bb6bb4fd8b3"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/original-vectors-verification.json",
+      "sha256": "e939b10c8b4babea538388b7d1e1c3c53f56ad908e4db382363ea7d9b60438ba"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/pdf-citation-verification.json",
+      "sha256": "f2908ce242de08737230dd9c6263b842d70f22d0e1df4508a7d5505ad1ef673c"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/provenance.json",
+      "sha256": "0fb554a2a20e28b8bec482fe2ac08951a1678f0ed752a48661e96c1e24c43a84"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/runtime-versions.json",
+      "sha256": "2c4e6cc877af4105514ddbb473cb457d52ccfca2d9fddb00d6deb77bf4a2c6df"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/service-errors.json",
+      "sha256": "5c45bdc224147dcae4a47d6588db727fe1167d3ea06f75dad5994545c70a0f32"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/summary.json",
+      "sha256": "81e33ca2768035c54ded3737243446ea792edbee6ba244e06fd0ee4af4541ebc"
+    },
+    {
+      "path": "evals/manufacturing_closed_loop/reports/20261029-r1/workflow-verification.json",
+      "sha256": "328f5fd61c5802585b09a4fa3a3ee6ca7dfe4ea344db78f10c8d8cc73ae6bdc7"
+    },
+    {
+      "path": "evals/manufacturing_lite/README.md",
+      "sha256": "da42d1f6194e9631ee6aecdbfc8d742aeb18797d4e52ee89d93849e346057f50"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/README.md",
+      "sha256": "438b7e6635d65e245da0d2ed0a5eb327f838ff85c33b94ea608353494a676fd2"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/acl-checks.json",
+      "sha256": "26699cbb6ebe788b464d0fac0bc0d377c6ed031ec8ae919600de689d3eda3d26"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/answers-and-reviews.json",
+      "sha256": "898eb2c4464be95d6d9510be471a20feed8f261a3632e4cc888b4c5b06cf6804"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/index-audit.json",
+      "sha256": "94abf8f10bccb79186ee6a97b2afdaa170992ab9764d5fb3d36aa9695158caf7"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/ledger-summary.json",
+      "sha256": "7edaeacee3b8f436e0a4ba086b0dee44133e486192a1226e54b8ac1744aec5c1"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/preservation.json",
+      "sha256": "ea7a758ba49eee992f2e383b0926feca1a51d0de76f0d04cedfb4108f5b1c73e"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/runtime-summary.json",
+      "sha256": "4b0bb3509e50a77951d8f20c8515b597b2cc58e51c76ab20ac0120d61b740535"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/semantic-reviews.jsonl",
+      "sha256": "a99382b245903210208e82f2eedeb41f318f6e2f56ac1cf1fa96b232355f9241"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/README.md",
+      "sha256": "7765c84c94409fcc6075548542672bcc259eba6e692be43797281951e9e77eb0"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/corpus-initial.json",
+      "sha256": "849f3d4a787bfa014d086ac3f5653807d6bc45e1f2aa1e4915b4a7ddfcf2e78e"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/corpus-reviewed.json",
+      "sha256": "01c09e87964052797b18106d5ef98434c72be5e6fb7813894511573dfaac424e"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/regression-summary.json",
+      "sha256": "be3a59405283c2ab67a6fed4d193a177317d31669217423397cb20d5a46182cd"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/unified-parsing.json",
+      "sha256": "5ae2267255aac5919300b005e26472ede8b4270148707e1567e9779a31795917"
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/unified-parsing.md",
+      "sha256": "684f69d47193957b19b62a34caec338cb65d97692d3cd2b2775b5d0b2570a0f9"
+    },
+    {
+      "path": "evals/manufacturing_lite/role_permissions.json",
+      "sha256": "bb32a269f34e9828cf1356a46481ef2f6bc37c268efb507c5ae8adb2d687873f"
+    },
+    {
+      "path": "evals/manufacturing_lite/single_turn.jsonl",
+      "sha256": "650f7c26da5428080a35181f4b3126256a8fc9846f3b98d794e53120887e4ab5"
+    },
+    {
+      "path": "evals/manufacturing_lite/subjects.example.json",
+      "sha256": "d7e9a048ea4497dc822e8ef4e46fb61829a099d13dc3e24b59ecf16f9f4941cc"
+    },
+    {
+      "path": "evals/manufacturing_lite/system_config.example.json",
+      "sha256": "9f132358e54758672be7ee2bb9b2285b0e3fb3bef6c7d672711626530a842865"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/README.md",
+      "sha256": "41a7902d079e119e797e7d2ddb58ecbd1ec9835129fbf78195ce5b5462e5c50e"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/annotations.json",
+      "sha256": "1b9a58801c16109834b5fc0ab0e02d6319ef48f7abae0402d854ea9e821f0e77"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/development/single_turn.jsonl",
+      "sha256": "ac069c928b67bcd7701fb70301efda8f8672e20dfef450983cf2d9675b371be4"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/README.md",
+      "sha256": "24b356d76026a8d0c0dc335b0c4f83a62974a4b4bb0e78f83eac286e46fa2fed"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/acl-checks.json",
+      "sha256": "05656a2929476601ec7b00c9833e3bfb52535fa6ae4465f2943eb0373a1eb32b"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/answers-and-reviews.json",
+      "sha256": "1fac3ba389088dc7410ce2d84a2c7e3c5c53f748af1383e0267c6717fd8410bb"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/database-run-audit.json",
+      "sha256": "97bf2ef24c5882de7330771887b08f6aecbb7280973c6efe64412aac00a135cd"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/index-audit.json",
+      "sha256": "1aa1f43865d4f93171b966d5e7c242bd9d77e665582a9ecd6aba70c2a653bb66"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/ledger-summary.json",
+      "sha256": "d22a7ae359c39cbc26945af9282cd2a94b7d40dfe24d0191a632b9e11204bf01"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/observation-audit.json",
+      "sha256": "75a626aae517949f53e933b11929a9de39bf3cd9afff51ac1faaebcba35e4651"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/preservation.json",
+      "sha256": "3217f00bb2be36d96dc2c853833935bbe2e5c8e8770d2af8f79dd50f908eda1e"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/runtime-summary.json",
+      "sha256": "040bebd8c12f2a0bba33301e37816ede1d8a8364a20841e7d94edab233bf8304"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/semantic-reviews.jsonl",
+      "sha256": "a48b52c6e6511801da43d0bdc6c5a1bea89685e7e1752939369f1cfbd43350e0"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/uploads.json",
+      "sha256": "bf974e9a02297761b07e07dd315908448ad6eb70c6e84a7ccf0fd8a2ea641f23"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/README.md",
+      "sha256": "51bff585e977d66338ca5aec3f1c8ceb6211a49fa581b06c7e1ef1530ad9b0e2"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/labels.json",
+      "sha256": "fb55e1156b76136827f6407ff261b7e6dd56a0ca0159d082510ebf9011696b68"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/parsing.json",
+      "sha256": "6bfa9bd40a5993f2a5df398f449ac86ee3a833e39d6fe6c7289cd23b66e7842b"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/reproduction.json",
+      "sha256": "36b99b01d8cf863c938970521d4834428b69afaf1e31e33696a6311d1efdf2c3"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/verification.json",
+      "sha256": "6da5812b0ab4fd9bba7ee062b27d6569364a6c617ad23c96611b63ee117d03de"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/visual-review.json",
+      "sha256": "69410d9df6a5236921eab8fc921e4fd82f9947470b32890e17c3508276463eb2"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/splits.json",
+      "sha256": "81b193b714abca3cea683b00619a6cc8b683ead3f57981d851fc05ffe3f38918"
+    },
+    {
+      "path": "evals/manufacturing_public_v2/test/single_turn.jsonl",
+      "sha256": "8e497fe8edfb9a9c69be2855788fa303b80705aabf26df54a207d9794050f0f0"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/README.md",
+      "sha256": "f18c901fb9efe1cc717b046b48df63a3c280db1c2c4f60bf866f2b9350623318"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/annotations.json",
+      "sha256": "eda661f0beb4b0aade9e62db2d24c11793ac64521ce9e6573094e7315f650cde"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/development/single_turn.jsonl",
+      "sha256": "c8146eface39d50c3f8f5832c062f8f80855a3641bb6b1ef4dddc8b6e83a014e"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/README.md",
+      "sha256": "a51d926d9e16c83c573dc25dd7cabd4d68c2b6df72625b33ab9c4b957df464af"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/acl-checks.json",
+      "sha256": "803446166877460622b60b4914b5c80dfe4178a2e491e183a3be6f449221ba6b"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/answers-and-reviews.json",
+      "sha256": "efb92c70d27b4195c2925a7400e941c1cd7bbb1f3b0e513c0107c32dfa9e0756"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/baseline-preservation.json",
+      "sha256": "13f9d754542a1c75495664fa0989e14bbdef3aa5cdc92162fd0130ebf58efed8"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/database-preservation.json",
+      "sha256": "0c5af4db969f31a94c1fa9a3d54377cea92c0ed0f358552884fdf566250d32c9"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/failures.json",
+      "sha256": "b09c54c65fda32364cd335493568f78a0a1fb9cc5a822708f57832b9fd1d408a"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/http-summary.json",
+      "sha256": "f94f41a045046d64086ef0499ab7a70054b5989ac8f08598fb0e4c9c22d0d68b"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/index-audit.json",
+      "sha256": "8d1b0038d9adadfa49c61e24d281a123a906a37c851f93110033e29b8c07a0fd"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/index-evidence.json",
+      "sha256": "43a2ffbce121811208d0bf8e3506c45259778693f1ebe3c3198c54e0897861eb"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/ledger-summary.json",
+      "sha256": "51dee089dd82cf9b4ac262542fcc5fbbca1fbfd65bf17583fc4270a492b9aa34"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/provenance.json",
+      "sha256": "37737d5cd59eac3852fafd984f796d74893d4510f0e7a51db3c0eed46ab360c6"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/summary.json",
+      "sha256": "b6e776abb280efe5ea978247558dcdc7cb08a62e3035e3664b6b6201b5822a6c"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-development-live-r1/validation.json",
+      "sha256": "1a342d6532d6db90c514d5cbdc5fa72488c6a590a0d3abe577eebb97bbe0d01b"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/README.md",
+      "sha256": "8fcb48526b9411f26a8564c972b0ed1ba7155f9e3fb2ec9edf336ae7a7b00ceb"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/baseline-preservation.json",
+      "sha256": "341f25a20be05bf65055d4d8e33a83b85cbeb3eed48dde37ebf773c3f92e1b2a"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/chunk-audit.json",
+      "sha256": "9c41c2a2d0f86da64874f89432e33992ea9becde7663fda95cc50fd0d67004cd"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/editorial-corrections.json",
+      "sha256": "bf11e2206af16782d47b102ce1d9ae28de6bbccf4511a8ff03d970fe9c7d12f3"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/labels.json",
+      "sha256": "867b2e37621ade632616ff688237e892b5f19d1aca338cfa8fedd19d58770a64"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/parsing.json",
+      "sha256": "5b499c760531bf33e98a43ac7d465a09f9bd4a4f7798bba31f20b2d3966ec759"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/readiness.json",
+      "sha256": "6765a2fd306b13f44b382d95a6674d9379fddffd55af4d03c2a93f95c27bced7"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/validation.json",
+      "sha256": "63ea100a811808e881e6a18d20cbe8f48bcc4d25f184ebd735b9b62a88cc746b"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/README.md",
+      "sha256": "17f88d95342322e747b34ff3fd556cd1012b6e4276b1b389132d5bbe32fd1a43"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/baseline-preservation.json",
+      "sha256": "395fbd91a877a6cb0198ff2a67d85670d4cb73b91d24f973fa37dc94f55681fb"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/chunk-audit.json",
+      "sha256": "f99a1200ad5d47b37e86dd297536dc28a7c3268088011d14796ee901979679a1"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/comparison.json",
+      "sha256": "416fc4dffbc8c90086d8052de4cac6ddf7146c25a1ebf9239857dbc9dd3b20d9"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/labels.json",
+      "sha256": "2e034f01cd704da20597e91b74089a773434966ae7dd8b39263ae19c4b694fb9"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/parsing.json",
+      "sha256": "a0f0ad0bb7d1e312f067f5c7781cd8f24dd4986d43adfb0c7a50900e078425f8"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/readiness.json",
+      "sha256": "7c38c48980f22f6a13960041267f1938804611443a401a68c9c7b4f4ec124b35"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/validation.json",
+      "sha256": "9a5980f1574f76e0300859ccf76f12cb5659f0f7882518e1207badf237a92903"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/splits.json",
+      "sha256": "8ec785ae0a4513df83a8278211d135bd8c7fb29d70d67f27ccdadd1dceca1c9e"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/test/single_turn.jsonl",
+      "sha256": "7a7d49ba60f518d99a715c3e843a6777113e407953e8584d92338a35fa0f7f6a"
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/visual-review.json",
+      "sha256": "b2d971c74bb7a7fec555516ab87b612fed3247df0140fa3a8891abb9b314d85c"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/README.md",
+      "sha256": "3c56b12ba96bf1d8fcc6031fbdb501fd29786fbae3824e19ae5c8533dcd93c17"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/annotations.json",
+      "sha256": "8bbc0add085bc8f4beda4f5f0effa93463aeb5c6fe7fd5e17cfe0ddfbb48bf2d"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/plan.json",
+      "sha256": "6b00070d8af34e2052476faa452915771d1ed3f3c160fd8fdd769073e9847f0f"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/README.md",
+      "sha256": "52e6398817a25317b92bf90fe818b0a6bf75ff665c177b19ea7625f9a59c6e01"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/baseline-preservation.json",
+      "sha256": "e544cdbe2fd20d9cf37504e1b2455fd2c2ba091cc24f950c5857cdef2f7bc6c5"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/baseline.json",
+      "sha256": "bb68cc8de3cfa11c83c68f96a85b7af9aa53db46c281487ba5c3d999b1a23024"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/candidate.json",
+      "sha256": "f0db96f3956cb5c891ecb8ec8dbe20025b0c2db0da4b9f46df84a0b86f2a5373"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/comparison.json",
+      "sha256": "73af82d644bf8df64f44ba9ff6c391eeea5edfa41708b47547660fcc16ef1c64"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/manual-review.json",
+      "sha256": "aef79e6e20ab5ef3b9d5de69c25c568caeb40b935c28abdab72a78aadb87a5ee"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/provenance.json",
+      "sha256": "780e6adc7363dd2a58e6e50a857a1ee0ad04f0fa52415e7e20fcf20b32d8a08d"
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/validation.json",
+      "sha256": "2b8604636e7f8cdd433e1f797af65ae4101f8575d8d3a576ab3e188b95febff9"
+    },
+    {
+      "path": "evals/quality_policy.json",
+      "sha256": "159f626b832731b88849240bae15fc8bffc6e0912c79851b578d5f38dac9033d"
+    },
+    {
+      "path": "evals/reports/answer_dev_smoke.json",
+      "sha256": "750b46805c9e4113e2f14184cdc8a0588b48550f1330ed23b36b9ea45c3d3066"
+    },
+    {
+      "path": "evals/reports/answer_dev_smoke_v2.json",
+      "sha256": "b374cf10665212b9f63d359de02edb85ba5f7bd5f083bf1f66754ae50a02e0e2"
+    },
+    {
+      "path": "evals/reports/answer_dev_timing_v1.json",
+      "sha256": "6926779f833d3e4e2755da9333b81e72845ea5de9693d92ca98a45349df7ac0f"
+    },
+    {
+      "path": "evals/reports/answer_dev_v1.json",
+      "sha256": "bb0a9f586a90c390bcc7942b5221870f6ad6399ce83d20dbfb322d7e491b17bc"
+    },
+    {
+      "path": "evals/reports/answer_dev_v2.json",
+      "sha256": "8b9a8fc73fbc6995baa7bc0ec27ca21d034fa04db24a0f7dc587af27e8871f17"
+    },
+    {
+      "path": "evals/reports/answer_dev_v3.json",
+      "sha256": "e55b99cff9bdf37cd151d9d9350cced52d815a261a5c5908ab33e1157f5969b3"
+    },
+    {
+      "path": "evals/reports/answer_test_technical_v1.json",
+      "sha256": "56f90cd8ca3a7ae781b312e96fdcfa2e452b183a560f84d1910b181bc485db93"
+    },
+    {
+      "path": "evals/reports/answer_timing_smoke.json",
+      "sha256": "dbcafb855fdb1ee6c180126f87cc4133acb7eea16904c285039d5ee55230c7a3"
+    },
+    {
+      "path": "evals/reports/load_test_steady_20261013.json",
+      "sha256": "70ac925f409d84697006a008b68ba89f912194647147c54dde87611308a4aa14"
+    },
+    {
+      "path": "evals/reports/load_test_steady_v1.json",
+      "sha256": "6cacb7a1fbb501d30d0b0b02c4885f0b3917c0019faeccce86275da0b2bad262"
+    },
+    {
+      "path": "evals/reports/retrieval_baseline.json",
+      "sha256": "c5086b7b91c60d750a34237e6b1a250c0f7edcc5792e2bf41994b8215f66d0ba"
+    },
+    {
+      "path": "evals/reports/retrieval_hybrid_v1.json",
+      "sha256": "beb72c1bbb814ed92266eb4c9819fdee83d927e8d2b87506cf0ecbfd3806f7e8"
+    },
+    {
+      "path": "evals/reports/retrieval_hybrid_v2.json",
+      "sha256": "9688fde947d026fe4d585c7280e7aeccee3ffbb2b7419f1ebe30f1cf766a3e67"
+    },
+    {
+      "path": "evals/reports/retrieval_rerank_v1.json",
+      "sha256": "c2bbd67303c0229b1b8d28ff4482b414526ac1f7f008cc3ed3d4cf6210841ae6"
+    },
+    {
+      "path": "evals/reports/retrieval_rerank_v2.json",
+      "sha256": "5aa3dc52c3f6de01afaf4affa6a44e19f471139e52fe083419fea57b939bcfa6"
+    },
+    {
+      "path": "evals/reports/retrieval_test_rerank_fetch30_v1.json",
+      "sha256": "095492a363af7cd86c8c322b5d45d65b04f9e33b20dbc7091f13f771cb2ffdd6"
+    },
+    {
+      "path": "evals/reports/retrieval_test_rerank_v1.json",
+      "sha256": "25a75d37a58de1ad86f4abc419ec5b750dab970cb017e2e5c6151ff1d1aa69a0"
+    },
+    {
+      "path": "evals/scoring_rules.json",
+      "sha256": "41445f2dc30229f21f8b94cf76008f32cea2f5640ce2efac8e8faded9c7db9d7"
+    },
+    {
+      "path": "evals/system_config.example.json",
+      "sha256": "f84dbb043a34226af1f1e4336b49d4a66339f01ec17c1bce99c19a03a06478a7"
+    },
+    {
+      "path": "sample_docs/fictional_enterprise/01_人事考勤与休假管理制度.docx",
+      "sha256": "a41728c85c88220f60bd1aa65c83b85c2d7e40deee29f53bafeb45efd5e39a8e"
+    },
+    {
+      "path": "sample_docs/fictional_enterprise/02_差旅与费用报销管理制度.docx",
+      "sha256": "ae437006100eb00f668c93881a3004414e986c5cb0502ea9355ac942e9193a8e"
+    },
+    {
+      "path": "sample_docs/fictional_enterprise/03_信息安全与数据分级管理制度.docx",
+      "sha256": "f9b660d563c09964048627e127e4888abf9a06ab1cfb8261e15874b02e051b6e"
+    },
+    {
+      "path": "sample_docs/fictional_enterprise/04_采购与供应商准入流程手册.docx",
+      "sha256": "c14f5538a485a31958afb595c8ab4c8fc8f728d59a01ab1a7251afdaf99d522a"
+    },
+    {
+      "path": "sample_docs/fictional_enterprise/05_客户项目交付与变更管理流程手册.docx",
+      "sha256": "c6275e43ad4c915c2386339be85a7d3e158fb1f2682ffcfb3c4c950401d14319"
+    },
+    {
+      "path": "sample_docs/fictional_enterprise/06_开放平台API接入与故障处理技术手册.docx",
+      "sha256": "c423aa28d6ad9edcbd874a954f1c5b9c9b6bfea47947743d78c2b70cbbab0df9"
+    },
+    {
+      "path": "sample_docs/fictional_enterprise/07_云服务订阅与数据处理合同示范文本.docx",
+      "sha256": "caa4354497a23cd2c1027fbe2ebeeb36497441a11fc8351aaf38ed4704117ed5"
+    },
+    {
+      "path": "sample_docs/fictional_enterprise/08_员工与客户服务FAQ.docx",
+      "sha256": "204ca6c1328ece9e3e5ba9c5774e32a250ab2aa579bb0532ba9f304a7889ec63"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/README.md",
+      "sha256": "f28bc457f7d09dfe98a1a06210d97f50d3321a07a4f525eef8585c2c173c5f56"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/公共参考/01_量具使用与测量准备手册.pdf",
+      "sha256": "e73a871c1026534567dcb9bab4bad08399cebc033523b480781ea532b4e30f2f"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/公共参考/05_NIST量块手册公开参考.pdf",
+      "sha256": "a798535274ef279adacce559217ae231b74c79ceadea7b1103bc7bcb15bf0acd"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/公共参考/10_产品工序与文件路由.md",
+      "sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/公共参考/13_历史文件查询与变更说明.md",
+      "sha256": "8d6d6e79537b95cf50bd3e0b196d0f2117310cdb7209ce69987d2439171a9fcd"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/02_首件确认与工序交接流程.pdf",
+      "sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/04_定位治具更换通知扫描件.pdf",
+      "sha256": "e0e49d1e9886154beea20798183020d7ad5b1c661cde2e30293fcf746e1343e3"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/06_HC-A17_OP20作业指导书历史版.docx",
+      "sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/07_HC-A17_OP20作业指导书现行版.docx",
+      "sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/09_工艺变更通知ECN-2026-018.docx",
+      "sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/11_工艺常见问题.md",
+      "sha256": "f4dddd4fa5305665ab1f78407cb3007c36436250301ac8c94e3cb91a4b2abb5c"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/14_工单WO-017班次交接记录.txt",
+      "sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/15_工单WO-018班次交接记录.txt",
+      "sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/03_检验项目与量具对照表.pdf",
+      "sha256": "20bb924d978b08af9be7d35f311a9c391252f1b25e5211ec815978a2f0a9621a"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/08_HC-A17首件检验规范.docx",
+      "sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/12_检验记录填写与追溯规则.md",
+      "sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/16_首件检验记录B-1026-017.txt",
+      "sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/17_量具点检与隔离交接记录.txt",
+      "sha256": "7147abdb03049bda57bf540710577f9736f2aca66589a6b91444ce30aea0b8f3"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/manifest.json",
+      "sha256": "33008b62e400060907bab2c920240120e34ce40a267869c1805ba7a69acd587a"
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/validation/scan_ground_truth.json",
+      "sha256": "586557ca294a5971c6fa30276ff5bbc820f8715b9dbd7a7ebe27e30afc08a3db"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2.sources.json",
+      "sha256": "53875a98872f35a039315b7a7153614687c68dc8dd2f4bb94649f449dd03e5f1"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/NOTICE.md",
+      "sha256": "af57b59872d59e3f0dc5a50d3bceba4f0cb3c0cfab103dea47861ab258801394"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/README.md",
+      "sha256": "ecc07419c3037bf4770ee66a98f300d729fd1ab9d94a3f95070a98c787ff7019"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/01_量具使用与测量准备手册.pdf",
+      "sha256": "e73a871c1026534567dcb9bab4bad08399cebc033523b480781ea532b4e30f2f"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/05_NIST量块手册公开参考.pdf",
+      "sha256": "a798535274ef279adacce559217ae231b74c79ceadea7b1103bc7bcb15bf0acd"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/10_产品工序与文件路由.md",
+      "sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/13_历史文件查询与变更说明.md",
+      "sha256": "8d6d6e79537b95cf50bd3e0b196d0f2117310cdb7209ce69987d2439171a9fcd"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P02_Contact_Deformation_in_Gage_Block_Comparisons.pdf",
+      "sha256": "892713b49363f1d4b15fea9ec532b1a77f587a2b8c8dae6c7f62d9a4e65ba7b5"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+      "sha256": "dc3bc9eb2b88daf15674e4e82b5f8014e752f66b342ab9d2ed35d369ed5f8446"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P04_Intercomparison_Procedures_for_Gage_Blocks_Using_Electromechanical_Comparators.pdf",
+      "sha256": "30b4d3bbf9367c47787479bfc73388028bc264bff5d24e6f09576b445cff9fde"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+      "sha256": "965b620effe2216edb9e8da0f6bc7c290b21c4e00b8b727ef576bb940b564990"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+      "sha256": "f2c8e6026d5589a63d492f192b72cd905f554b477a6049532256170aec477e92"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P07_Traceability_of_Laser_Interferometric_Length_Measurements.pdf",
+      "sha256": "df46514f11692d7b1af06f9e9aa0f6cc7bdf9e0cea9f133027782292e4602d49"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P08_On_Characterizing_Master_Involute_Profiles.pdf",
+      "sha256": "e57ec6c8eade96f9fc2568eda8d6aaf56bb9335824d8ce5a0ed8a9a149facf4f"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P09_Measurements_of_Cylindrical_Standards.pdf",
+      "sha256": "8d0834b0d741b8e36a1ead69207dd6f8423468e520813cb588359451f96bdc4d"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P10_Gage_Block_Flatness_and_Parallelism_Measurement.pdf",
+      "sha256": "5540ff52116f5f4cde10572a330c0df9be42d54d23c017ac20c85622a91dbcec"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P11_On_the_Compression_of_a_Cylinder_in_Contact_with_a_Plane_Surface.pdf",
+      "sha256": "981264a30d2e863c4d94d973b5ea0a312de0f8addb467c42aa83978198f5cece"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P12_A_Method_of_Calibrating_Two-dimensional_Reference_Plates.pdf",
+      "sha256": "a442542739607920bc2feba4708b743dbffe8b73c321b5792d1d1076b0dafc10"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P13_The_Calibration_of_a_Roundness_Standard.pdf",
+      "sha256": "3935d69b339207b1a9578d695963c62ad3f9e4ad3ccd7c9b4704cfd74d35dc09"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P14_The_Calibration_of_Indexing_Tables_by_Subdivision.pdf",
+      "sha256": "37846d8a831435c23acef740687f09470fc5c1dd9e3c041e591a3a71685ab3de"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P15_The_Calibration_of_a_Pentaprism.pdf",
+      "sha256": "1bcbccd47e6cf926747e95c4c13b113498852fcac812b650764a2018afc463e8"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P16_The_Calibration_of_Angle_Blocks_by_Intercomparison.pdf",
+      "sha256": "a3f0bacaa88d81cb26d63cff47c4082cd4faf1a0c3e98952f3a0d56351ee2551"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P17_The_Calibration_of_an_Optical_Flat_by_Interferometric_Comparison_to_a_Master_Optical_Flat.pdf",
+      "sha256": "9b87524b1ee01037fd5575f6d88762f856baf19622016aa83a1666ddb27ed273"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P18_Measurement_Assurance_Program_A_Case_Study_Length_Measurements.pdf",
+      "sha256": "b8d27714753cea64bbe7e5f76a06dd4b719c5071209abc39ba7ca30c419805d1"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf",
+      "sha256": "817de0fd84545ec86d4393bbeb2adeb0f053d7ca945e1e00a56f0ce3d40be31b"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P20_Notes_on_the_Fundamentals_of_Measurement_and_Measurement_as_a_Production_Process.pdf",
+      "sha256": "aa3055cd9a152e8b1bc2407a35aa5004b3a6b9c83def5a53fc12c619d5c238e6"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W01_What_are_the_issues_for_characterization.md",
+      "sha256": "12175e447b1b0cc9d4233fab8e1c6b83a545f61075cc231decd751349cb56668"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W02_What_is_a_check_standard.md",
+      "sha256": "d59927d85046a60558a0f70186d7265077cdc58454667de680aaf1b26138b6d2"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W03_Issues_in_controlling_the_measurement_process.md",
+      "sha256": "836f86261259b1e8bb7a0d84f61858822e16bc6dbaf7cc6e7d5ce3feca01c453"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W04_How_are_bias_and_variability_controlled.md",
+      "sha256": "9f9bf6491aad1b2f4aa3436997564eb0a3e08e7962bdf2a0a1e9919ecd92a221"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W05_How_is_short-term_variability_controlled.md",
+      "sha256": "04cadbd38f35394b2ecb312e6ac2a52e30d041811a8e9b962718870114828403"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W06_Issues_in_calibration.md",
+      "sha256": "b1b24fe74e06b376d47ad9e9d3ca4d68a3317c163eab63cec9a58ff9a254dff4"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W07_Type_A_evaluations.md",
+      "sha256": "4745c5fc9177bb58b88965f8dba0242901a7b1188c5d5ff72144ca9cac12639c"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W08_Type_B_evaluations.md",
+      "sha256": "84991deb065296592fcce1ad9ad37f26312262b5e6bc2e40918eec9536fbf091"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W09_What_is_Production_Process_Characterization.md",
+      "sha256": "fb73276495565be090dcb58bad8627d369ad0c8992dc325c1854600059df2f8f"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W10_What_are_PPC_studies_used_for.md",
+      "sha256": "f3aab92ed72400743ca9bbc964778f840bdc39e07ca98148ed91b4b9ba6505c0"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W11_Define_Sampling_Plan.md",
+      "sha256": "c4ffb06e621d59bbf41a87466d35aa325039386254b126067958474b724dcca3"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W12_Assessing_Process_Capability.md",
+      "sha256": "d9999185537967e588965f6807b79dce06987d2a5f73161244180db2e46b12a6"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W13_What_are_Process_Control_Techniques.md",
+      "sha256": "c42e460d253310765cee18b94c2570de71acb8d1fbbd4acfded85d5714847d03"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W14_What_is_Process_Control.md",
+      "sha256": "224c29eeb4b77167ed65e11802386b62a034e619d8fada879ca3651d267fab61"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W15_What_to_do_if_the_process_is_Out_of_Control.md",
+      "sha256": "d5976606f0a5fe3fa01ef2a3879d7df87205e05963442b152a1b20866cdd071e"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W16_What_to_do_if_In_Control_but_Unacceptable.md",
+      "sha256": "2ffdc557ac78fec2c9ba5053e517482715fd854ee5ed154581496c399e5a72e5"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W17_What_is_Process_Capability.md",
+      "sha256": "a493b3277e5b9a69025ff6d08e5505437365100087dabbf030421e2a40ade1b7"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W18_What_is_Acceptance_Sampling.md",
+      "sha256": "9aca3bf1a4abee023e702f7cb8cd93854af66c4dc814ec18590784d3d2e60a96"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W19_Kinds_of_Lot_Acceptance_Sampling_Plans.md",
+      "sha256": "399ce46f22007d4fc99075a294dbda8469c2097c666f16ba8b5e038fb3d922ba"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W20_What_is_Double_Sampling.md",
+      "sha256": "f5fb2051d840130680f6ff8b657f7e1a680973d60aeed63e9b6d12cc245e4e24"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W21_What_is_Multiple_Sampling.md",
+      "sha256": "7c6409a80a8a072f24519c5d780d3014adea5a37d3fe15fde5993c1a36cea4d8"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W22_What_is_a_Sequential_Sampling_Plan.md",
+      "sha256": "b11e0c728e78132aad63389c1ee0297eaf4911d82f902f6be0a29785e3de177c"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W23_What_is_Skip_Lot_Sampling.md",
+      "sha256": "8831c9a082200ab6fdc0f434c47196293d1f8b8c5f31c664a19ab9810517a15b"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W24_What_are_Control_Charts.md",
+      "sha256": "0b754daa47182b4c5dd4f0b015e2ea958cc7cc21291e70b079af3aa3bc509885"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/02_首件确认与工序交接流程.pdf",
+      "sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/04_定位治具更换通知扫描件.pdf",
+      "sha256": "e0e49d1e9886154beea20798183020d7ad5b1c661cde2e30293fcf746e1343e3"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/06_HC-A17_OP20作业指导书历史版.docx",
+      "sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/07_HC-A17_OP20作业指导书现行版.docx",
+      "sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/09_工艺变更通知ECN-2026-018.docx",
+      "sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/11_工艺常见问题.md",
+      "sha256": "f4dddd4fa5305665ab1f78407cb3007c36436250301ac8c94e3cb91a4b2abb5c"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/14_工单WO-017班次交接记录.txt",
+      "sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/15_工单WO-018班次交接记录.txt",
+      "sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/03_检验项目与量具对照表.pdf",
+      "sha256": "20bb924d978b08af9be7d35f311a9c391252f1b25e5211ec815978a2f0a9621a"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/08_HC-A17首件检验规范.docx",
+      "sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/12_检验记录填写与追溯规则.md",
+      "sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/16_首件检验记录B-1026-017.txt",
+      "sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/17_量具点检与隔离交接记录.txt",
+      "sha256": "7147abdb03049bda57bf540710577f9736f2aca66589a6b91444ce30aea0b8f3"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/manifest.json",
+      "sha256": "8cdb80bbab4ac3c113f61a58ccefe1c488e721e84fcd03f7cbbdb0c50c99a792"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W01.html",
+      "sha256": "9e55c3e18d9a9174de7db1112d5ae44a79e9750bdee4092226100a9a27baa280"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W02.html",
+      "sha256": "9346c072092a5313352586faea1eeb28823618829e777517edb1a193de4d6f15"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W03.html",
+      "sha256": "653d1d614a6262b2fefc965a0227196d64bafc4e679b41944c1ddc0f5f4a9c7e"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W04.html",
+      "sha256": "8f57b7af720b17f4a208699967d0ab4d4e11a8ed5d659611c6c2fa2b5b9dcb60"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W05.html",
+      "sha256": "5f92f6fe8a07b23585e26285d7f16265a78e76e5dddde64ec491292bbe0d259c"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W06.html",
+      "sha256": "94dc837bfdd4573c61aab42f7d02ef7dab7e54ebd8920614398566754b8ae4a0"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W07.html",
+      "sha256": "5185f462f52d10e475039e7e0e42958379f9ae78f7287700d3b0c2b02532abdc"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W08.html",
+      "sha256": "1bb89339652ff823c70d406de6460b76c2e822fadb5a9d7f34f79faf3700eed1"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W09.html",
+      "sha256": "64c860e29d68d954df81ca047020f2c6244240bc766e18989a34e915d3338d2a"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W10.html",
+      "sha256": "941cf857554339180f43a26cab987159469ccdca2e91e50c30b29f2670a93798"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W11.html",
+      "sha256": "2444efea65961380ce68d8024873296effdd7b35a49fc01f8eabae020365cb03"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W12.html",
+      "sha256": "c6bd621936dddc38d5f1766a713edf6c3cb1cb85e5e46d3bb0a4f9f533976898"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W13.html",
+      "sha256": "85771c7c3f6b72bdd7eeebf7b1be56f8647b78de33eed34238c0dde913f8e8ce"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W14.html",
+      "sha256": "0d3364347d18acc70cdde21d80333a36691295455f9b75cbfcaf7b872f1a6ef0"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W15.html",
+      "sha256": "daebc7b53ed0d86df9545e7929e53313c317dd38e9dbd63e4a4e327f5f9884b7"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W16.html",
+      "sha256": "6b696521df3d518b0f70f8aad8120fe2d7069674b8c0136c1b3d0729bb4aee29"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W17.html",
+      "sha256": "71512a20a8d34353fd920451e679e80bf988e6fd3a917f8e2f2a1cf7700963e3"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W18.html",
+      "sha256": "6c85d37f14ed3d08155442c65256ba3a169c4044a05c971c2a5364dd06f5823f"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W19.html",
+      "sha256": "d08a8dea2be6a4cacf90b698aac78fac33cb7d1e5615039f6fc9e317c2a1b2e0"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W20.html",
+      "sha256": "5349db4619e22889c09754d319f0eef92e92c348617d47573df03e05c68df69f"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W21.html",
+      "sha256": "553effd36fedd2dcedb109f6bc8a5c5fe5e6b82c08f65971aef17c33f516eb17"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W22.html",
+      "sha256": "969552a48cdb17c9a320fd9eb51dd283dbb698923649eba03d2c6a9b022d285e"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W23.html",
+      "sha256": "004abe23ba07e3bdba4dcfa38811e8be4bd0287dea37dad71678219595800d27"
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W24.html",
+      "sha256": "d46f93c30a16c3b76c7410c7da2d49edb16406b72a3a859cab7c05b88a8db6ed"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3.sources.json",
+      "sha256": "a2709ba470c8f57b70bec57b63675f8bccd5355ffa1c398cbd3293bd83b0cf6d"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/README.md",
+      "sha256": "928b624b964dec3196cfe6fa8483577063dcc2ffd92e77c86e0946ecebf3a425"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+      "sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+      "sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+      "sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+      "sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+      "sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+      "sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+      "sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+      "sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+      "sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+      "sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+      "sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+      "sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+      "sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+      "sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+      "sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+      "sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+      "sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/manifest.json",
+      "sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/originals/MFG-ZH02.html",
+      "sha256": "a31bf6d70b7cec62c84045fcb7ada689bbd9d4ceb96e8eaebc5a22e2aaa00930"
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/originals/MFG-ZH03.html",
+      "sha256": "058e47a6f286e953ff1e9c4c680be2fd00e52de8fac69755439565d330047e88"
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/README.md",
+      "sha256": "7ea238391a2451aaed6fab061ebc5c435ea710d67306288ad3f9e87da2840890"
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/documents/OCR-I01.pdf",
+      "sha256": "7ed8fa913721668f5f6454e6c4713f245a8f98436131cfd62e2c3e99814faaa4"
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/documents/OCR-I02.pdf",
+      "sha256": "6d7bb8bd06c373ac7b56d57883931189b179e5a61c715f26145651ce4c22eff6"
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/documents/OCR-I03.pdf",
+      "sha256": "df54979c9827018b2c7651f4e8bc0c17268e2f51993c90d0075eb497b6ed3583"
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/manifest.json",
+      "sha256": "dfface70ea9484dd98b6c425e3428acaf144a3f7e978958d100917cddaaa5315"
+    },
+    {
+      "path": "sample_docs/upload_api_test.txt",
+      "sha256": "7d575f9944a82daf6d011230c00c23f02e69b8313c6bb23801f3ff50e2b03270"
+    },
+    {
+      "path": "sample_docs/xinghai_base/README.md",
+      "sha256": "002ca4c5bcddfb25e0f7055d2e16e71b3cfb24b2d4b0575fd0413ed51e6ba15d"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/01_公司公共/02_差旅与费用报销管理制度.docx",
+      "sha256": "b21e8561ab0d45dd9b3c0a4010dda5903f207f8816cfbc6ab446296a50bf2d2d"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/01_公司公共/03_信息安全与数据分级管理制度.pdf",
+      "sha256": "33ad8df972ef357d455612b758453b1214348ab72180ec5933779360be43ea2c"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/01_公司公共/04_采购与供应商准入流程手册.docx",
+      "sha256": "b9d0c215fa3f6b44f3d822bd22a606309ed401e43e6d82fa206b264709a52d35"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/01_公司公共/07_公司组织与产品服务说明.pdf",
+      "sha256": "4a04478570ee91842e8ad14820d3405ed18a99b46400daf7a4c4715fc703a370"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/01_公司公共/08_差旅住宿标准_2025归档版.pdf",
+      "sha256": "0db8b1f5e48eae4f74f5d16af5f97676aa496032488cc4f311dc6c46f41a0a87"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/01_公司公共/16_员工与客户服务FAQ.md",
+      "sha256": "4764c03f95ec5edf7783996acd9cb55fc95ff30a984c26e7fe270358644e31e4"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/02_人力资源部/01_人事考勤与休假管理制度.docx",
+      "sha256": "c835489cd7f57a05e06d9113de668d9a0cf82efb4db29a9978cdf47ee161260c"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/02_人力资源部/20_九月内部通知与值班安排.txt",
+      "sha256": "0f8c2a17df9544948d5321478811cad6dfa8186286b512be6364f4ff9121ed6d"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/02_人力资源部/21_新员工入职与试用期评估操作手册.docx",
+      "sha256": "92d120f8aaa4402ff54a1b039827e3f1552cfad2d5bbb00d201be8af86809ab8"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/02_人力资源部/22_季度绩效评估与复核流程.md",
+      "sha256": "6f829ec74a6b57c477062410b3a6b2952a90fc2e3a5ed306bcfccff2cb3c56b1"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/02_人力资源部/23_内部培训与学习费用审批指引.md",
+      "sha256": "5146ed21663847d62226aea5a03b4c014cf0b84e949acf9c94e3352023f81a66"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/02_人力资源部/24_部门调动与账号权限交接清单.txt",
+      "sha256": "187145733b612a1358a1dc87272a39d5dff7905b0b911edb27620702c0442120"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/02_人力资源部/25_员工离职交接与访问撤销流程.pdf",
+      "sha256": "fac05496bbf1ee5588b1e11a72102bdd7358b127238c4407dd470575afd0aaba"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/03_技术部/05_客户项目交付与变更管理流程手册.docx",
+      "sha256": "1037faa9eaffa18f28959ce77a4bd038e24f92f8d441937bd300e21320e1dca0"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/03_技术部/06_云服务订阅与数据处理合同示范文本.pdf",
+      "sha256": "eaa426af01b07e33ddbb3f22a90ae6efc6a61680968cc80eb8a30121f1f8644c"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/03_技术部/09_客户数据外发审批补充规定.pdf",
+      "sha256": "56d2f3b30719bc19e6397df7a266ba835ae1b57a94ac74b427d47aafafdc6381"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/03_技术部/13_海岚项目最终验收纪要.pdf",
+      "sha256": "df19279aa38403dfe83d28217f597794901f327d2e3d836e0fe2d3b2fe122cd1"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/03_技术部/18_海岚项目周报与变更记录.md",
+      "sha256": "2e2a7d5336573e7b798347d02087eb165cb255b19e0ab1b3b2a7cab04649a00e"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/03_技术部/19_生产支持工单与故障记录.txt",
+      "sha256": "b68b184c2d1403a82febfc03308a4d4498095788e4990733ed4501b63d4a0e48"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/03_技术部/26_项目测试验收与缺陷分级规范.md",
+      "sha256": "4689bf0bd45dc0f638793f0020f9bc835a9ae9cf10886d2513154211f38ce277"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/03_技术部/27_报表导出重复提交事件复盘.pdf",
+      "sha256": "4965a36c86a0ef9fc6d349101b951516405ca8f36e3b06cfc913541099861f7f"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/04_平台研发部/10_系统资产复核台账.pdf",
+      "sha256": "47bb8dc3b4d5863ffa7dcb0b67a4d42b04f497d61d24c472cd5ed2964bf772bf"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/04_平台研发部/11_生产运维值班与回退手册.pdf",
+      "sha256": "7859c7fbf86771cbe13e29930e0cb15b413b8b732427d0bb994d564892e5bde3"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/04_平台研发部/12_生产维护通知_扫描件.pdf",
+      "sha256": "e404eed3765c243f1d414ea8009ee0a381550e519e9dd7a92b56c77a05d5da0a"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/04_平台研发部/14_协作云版本发布与兼容说明.pdf",
+      "sha256": "dcbd94ebc58281abe183621a4a04667f80053e5c298dc4127145e53eb2129ac1"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/04_平台研发部/15_开放平台API接入与故障处理技术手册.md",
+      "sha256": "25f0b577a64274657aad8196690e902b8136d84cb86addd46a0a002844337547"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/04_平台研发部/17_协作云部署与备份技术手册.md",
+      "sha256": "3a84f34a476a437933b35271c6924258a175b4e9832ba5e64adb4d1399170c68"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/04_平台研发部/28_知识库检索与多轮问答设计说明.md",
+      "sha256": "5425163ce4f7406313e30734929dc752a5a659ccbe0f0e28f27535114628ec35"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/04_平台研发部/29_文档入库验收与知识更新规范.docx",
+      "sha256": "f67a0c8f6a3d2e522a6665349895132c7515dc5ff0e40a3294fdf85c31a7966e"
+    },
+    {
+      "path": "sample_docs/xinghai_base/documents/04_平台研发部/30_Webhook投递重试与幂等处理规范.txt",
+      "sha256": "ed1356d36bd33d015f89f15ae03cc811f46e1119dc05e7332a4d6214160a480a"
+    },
+    {
+      "path": "sample_docs/xinghai_base/evaluation/conversation_cases.json",
+      "sha256": "fd90011890d0e3c965b5fa8ca5b8471951f306b475500389ffa6e1c80a6b2a40"
+    },
+    {
+      "path": "sample_docs/xinghai_base/evaluation/docx_content_checks.json",
+      "sha256": "7aa9f8823b3738635718487207c96fbbcada6613ee40c2bce21e82afd1fd56bd"
+    },
+    {
+      "path": "sample_docs/xinghai_base/evaluation/generation_checks.json",
+      "sha256": "377b99996430f6e7f157ddc5169d500e703de1e02d842a3255ac486583995bd1"
+    },
+    {
+      "path": "sample_docs/xinghai_base/evaluation/permission_cases.json",
+      "sha256": "d469eaefc0cf2778f449e772a586b5c67510aa0db870c004e50b1724bba297bd"
+    },
+    {
+      "path": "sample_docs/xinghai_base/evaluation/questions.jsonl",
+      "sha256": "07de2fa82909c8a5ee685f3661b904102872cd88dc86e98b77daacf518decf58"
+    },
+    {
+      "path": "sample_docs/xinghai_base/evaluation/scan_ground_truth.json",
+      "sha256": "2aa436ed109c0b456d28f79823492f435fb1a1f148d75d0fc69b33b6d898cbdd"
+    },
+    {
+      "path": "sample_docs/xinghai_base/evaluation/splitter_checks.json",
+      "sha256": "436d7844374b8ed744712dc1b9a5f4394d93535f8779bfb224c72b22dbd46119"
+    },
+    {
+      "path": "sample_docs/xinghai_base/manifest.json",
+      "sha256": "dc365c1248994b70559f16ca1ba21484a8f0f650f51322628ba9f34909d51e27"
+    },
+    {
+      "path": "sample_docs/xinghai_base/入库清单.csv",
+      "sha256": "f82ff9f8ac611fc6addd78f2c12841be8f5fa5c5bbffb480c86e464adf03bac4"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/README.md",
+      "sha256": "0eb51391d49e1e413932b0e6d5c567d41c183fe56b6bb08a9c35b8b9b0ffa157"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/01_公司公共/31_澄川项目临时外包访问流程.md",
+      "sha256": "a6085fb1c871830a36005bbce03afb648a0f43624eae76aa699f60dc0f477132"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/01_公司公共/32_澄川项目小额测试采购流程.md",
+      "sha256": "953ee03a311fd230104ae4fc59a28cc92be40d1b0a21e7c74eaa4788e7b4c93f"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/01_公司公共/45_澄川临时外包访问流程_2026三季度归档.md",
+      "sha256": "80a39971bff330ba904ec4000f050ee0f31bc65995bf029af584b011ef78b90c"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/01_公司公共/46_澄川测试采购流程_2026三季度归档.md",
+      "sha256": "7d1a300e202d657510b97c5acbfcf5c60778420434b00c3aff47c101fdb9925d"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/01_公司公共/50_澄川轮岗与项目申请入口说明.md",
+      "sha256": "ff572322ef07819818d467b18e7dfa3127f6cebc6487f89ef9d855f1e42a7011"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/02_人力资源部/33_澄川异地支持补休登记规则.md",
+      "sha256": "02ab5d11724f812cc9fe7aaa011fbe6b4a0834683840216347e13259e3cd6f3d"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/02_人力资源部/34_澄川支持轮岗导师评审清单.md",
+      "sha256": "6b069a29759bdae748a42c691d50cedb123cabcfd7a228866ca3781473eab232"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/02_人力资源部/47_澄川异地支持补休规则_2026三季度归档.md",
+      "sha256": "118573a08c3451cb82ae100d1572d9599e4166f02841f96fd1c6aceb5c6fec7e"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/02_人力资源部/48_澄川导师评审清单_2026三季度归档.md",
+      "sha256": "a6709d00f951e14dffb4f973b4a9159b20b8c75894c8cc1a95f6b38b4da32f1a"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/03_技术部/35_澄川迁移验证与交付验收流程.md",
+      "sha256": "ec575eacdecf41e7124d3ad82b71acad7a684e5e785016cdc57fa82b9e809c50"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/03_技术部/37_澄川项目启动与责任分工纪要.md",
+      "sha256": "65f8c302f40eebd15d70634b3ffe9e1c78927907fb13dc16b36337c3370aad87"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/03_技术部/38_澄川首次迁移演练记录.md",
+      "sha256": "b73bb1c35450380384db8d9ec86ee1a68a31184ff514d7f85061b374dbc92733"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/03_技术部/39_澄川非阻断缺陷处理确认单.md",
+      "sha256": "ae4b1df9dd384ab6c842b54f3c4424f7338780ba3fe9433cc443b7d81c3f1351"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/03_技术部/40_澄川项目最终验收纪要.md",
+      "sha256": "795dd823b5e204dd1b06510d7f963579a6f359f57549469da97b284442e838ec"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/03_技术部/49_澄川交付与平台运行责任对照.md",
+      "sha256": "6f06f53e923042e009833f2be0a3aab45719bb4ce7957cc4ea20e9d398a85ef6"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/04_平台研发部/36_澄川沙箱缓存预热与回滚流程.md",
+      "sha256": "a61bd4b2030b1ea243912bc6acf172185445d51221e1337dd6235bdc797704e6"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/04_平台研发部/41_澄川缓存键前缀事件复盘.md",
+      "sha256": "32d523deaa753ca3bb5502ab14666cab55e732f94c63edeb5530d8b861138ac7"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/04_平台研发部/42_澄川DNS缓存事件复盘.md",
+      "sha256": "ec6a65d347d4115cb0201e95ecfda0db66643e3e42bcd87d9c2c1fbfee483b38"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/04_平台研发部/43_澄川导出任务中断恢复记录.md",
+      "sha256": "5f731a29aa60ec1566fd4346caf40283417769e44473da78aa7daa23e0116686"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/documents/04_平台研发部/44_澄川附件查询慢请求复盘.md",
+      "sha256": "687e59f40176db1e6b0490ffa2cdd08b588e37879e3a8040e60dee56cb1d51e6"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/manifest.json",
+      "sha256": "db738034d5e39949172ed9bcaaa28ea8b6655af7de78b1d91ab622705148b54f"
+    },
+    {
+      "path": "sample_docs/xinghai_expansion/入库清单.csv",
+      "sha256": "37bab21629233002ee029ba209be264b613a2659b3569ed5889445b9fe1dab7c"
+    },
+    {
+      "path": "sample_docs/xinghai_multihop/README.md",
+      "sha256": "500d23f6ff879b36caaf47ecf7917117ea9c45bd8a1bdb3b404477fa0769d153"
+    },
+    {
+      "path": "sample_docs/xinghai_multihop/documents/03_技术部/51_青屿项目范围与适用规则登记.md",
+      "sha256": "701e0d31246fd02b55ec98f73b7c9e4a484d3712db01a8f04b7cd802ff262750"
+    },
+    {
+      "path": "sample_docs/xinghai_multihop/documents/03_技术部/53_青屿校验批次与验收签署记录.md",
+      "sha256": "ed2f7b9fde07da1e69a659f9886a44dfe93241ac92e1be20fb3475077c3f346c"
+    },
+    {
+      "path": "sample_docs/xinghai_multihop/documents/04_平台研发部/52_青屿验收接口规则与版本条件.md",
+      "sha256": "9ec1f7ab7fe9bdaf9b67d65f760dec3331ddb1245736ed27f4eb2161f38b0cbe"
+    },
+    {
+      "path": "sample_docs/xinghai_multihop/documents/04_平台研发部/54_雾岑服务配置与适配器映射.md",
+      "sha256": "6a4c4f81fe6508e1311fb523cb5572d15644e6dae2226cb8f8ad2da560e6576c"
+    },
+    {
+      "path": "sample_docs/xinghai_multihop/documents/04_平台研发部/55_雾岑服务分级与响应约定.md",
+      "sha256": "bbcc57a9e5cb946db358cf8a066350d9e7cf1d3d0fda4e5e4f8fe00065040b92"
+    },
+    {
+      "path": "sample_docs/xinghai_multihop/documents/04_平台研发部/56_雾岑同步与预览事件运行记录.md",
+      "sha256": "f8a4c64ea0a94b9c1f3f6dd1432053b1f7b3a47d14c7ca4634228c1375a05b37"
+    },
+    {
+      "path": "sample_docs/xinghai_multihop/manifest.json",
+      "sha256": "d1aa7eca87a2ae627094776222bb735795eae89b5545594b313a5446cb91c8af"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/README.md",
+      "sha256": "a83d8f5548529a89c41a3b638cc315cb0918f1ff78e8b822f234d785fd2570ca"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/01_公司公共/57_南栖项目范围与资料路由.md",
+      "sha256": "bc20f4346ea11e522845ec0a4d8ee7bc5595cc8f2202dfcd12471021a0665462"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/01_公司公共/58_南栖验收申请与交接流程.md",
+      "sha256": "f5ca463a5fc2ee3233cd6293124dbda0ab1fa5b7df3f2f3df4fbcbe91fb529ff"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/01_公司公共/59_南栖支持服务订购与计费边界.md",
+      "sha256": "9194e9b7c97fd379dd9e663afea6597eb7f015730b98a41c84ea04b7d305f258"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/02_人力资源部/60_南栖异地值守补休标准_历史版.md",
+      "sha256": "13b4f3610275cd5f1ce8204e0fd88c7e3d7362472fd50d05bc1867a382c28c46"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/02_人力资源部/61_南栖异地值守补休标准_现行版.md",
+      "sha256": "6c283ed262c873c26a61aa5bca5c67031c4fbbdc42c158546e8fa720178de38e"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/02_人力资源部/62_南栖值守登记与复核记录.md",
+      "sha256": "27732633e3c0986310fbcdf100a2e6c580fe860c0166588c15e11e3b4161a273"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/03_技术部/63_南栖验收规则与证据口径.md",
+      "sha256": "bfddcdb7518a5318a93fd634216bf338dbaa17acb66276570ac996ccb748a172"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/03_技术部/64_南栖校验结果与签署台账.md",
+      "sha256": "96b18e6effafab958ee1b0dc577a83cc81c8c342d67776ca4b75721a2bad2cbd"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/03_技术部/65_南栖通知投递与幂等规范.md",
+      "sha256": "1b3e3d51680d6097c7bf701270858ccd1940f54bbc0182299caaa70bffaf7a81"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/04_平台研发部/66_南栖连接器配置与服务等级映射.md",
+      "sha256": "13d0a59760793d8627ca498a97cb089f55abc254537a0f2b3d3d15ca1a5bc8b6"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/04_平台研发部/67_南栖服务时限与计时约定.md",
+      "sha256": "da54a76dbc81a41910e46a4866718e8f63dfcdb722ab3e03c33ecfd5bdb8f38a"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/documents/04_平台研发部/68_南栖运行事件与整改记录.md",
+      "sha256": "2bc6bb227f428ed1e1df0dc706be6b3ed4e8840106b87905f1ce0314d292d3e8"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/manifest.json",
+      "sha256": "2e60c7a77fab8ab186ea623a67854032fcfff133ad1ba0f2305ce268f3b20144"
+    },
+    {
+      "path": "sample_docs/xinghai_nanqi/入库清单.csv",
+      "sha256": "f6f8ad18ac45949c61e62e893e33acb14e6fc4101950bc48e3bea71020af283b"
+    }
+  ]
+}

@@ -15,6 +15,9 @@
     <nav aria-label="主导航">
       <button class="nav-item active" data-tab="qa"><span class="nav-symbol">✧</span>知识问答<span class="nav-arrow">↗</span></button>
       <button class="nav-item" data-tab="documents"><span class="nav-symbol">▤</span>文档管理</button>
+      <button class="nav-item" data-tab="feedback"><span class="nav-symbol">☷</span>问答反馈</button>
+      <button id="quality-nav" class="nav-item" data-tab="quality" disabled><span class="nav-symbol">✓</span>质量工作台</button>
+      <button id="verification-nav" class="nav-item" data-tab="verification" disabled><span class="nav-symbol">↗</span>评测与改进</button>
     </nav>
     <div class="sidebar-heading">我的知识库 <span id="kb-count">—</span></div>
     <div id="kb-list" class="kb-list"><p class="sidebar-empty">登录后查看可访问的知识库</p></div>
@@ -29,22 +32,54 @@
         <div class="scope-bar"><span class="scope-icon">▣</span><span>检索范围</span><strong id="current-kb">请先登录</strong><span id="permission" class="permission">请先登录</span><span class="scope-hint">答案仅来自有权限的知识库，可按库缩小范围</span></div>
         <div class="conversation-toolbar"><label for="conversation-list">最近对话</label><select id="conversation-list" disabled><option value="">新对话</option></select><button id="new-conversation" class="secondary" disabled>＋ 新对话</button><button id="delete-conversation" class="secondary" disabled>删除对话</button></div>
         <section id="answer-area" class="answer-area" aria-live="polite">
-          <div id="welcome" class="welcome"><div class="welcome-icon">✧</div><h2>你的知识，触手可及。</h2><p>直接提问，自动查找有权限的知识库；也可在左侧选择单个知识库。</p><div class="suggestions"><button data-question="开放平台访问令牌默认有效期是多少？"><span>查找具体信息</span>开放平台令牌的有效期是多少？ ↗</button><button data-question="API 调用失败后应该如何重试？"><span>了解操作流程</span>API 调用失败后应该如何重试？ ↗</button><button data-question="故障升级处理时需要提供哪些信息？"><span>解决实际问题</span>故障升级处理需要哪些信息？ ↗</button></div></div>
+          <div id="welcome" class="welcome"><div class="welcome-icon">✧</div><h2>你的知识，触手可及。</h2><p>直接提问，自动查找有权限的知识库；查询作业要求时，请写明型号、工序和业务日期。</p><div class="suggestions"><button data-question="2026年10月新开工的HC-A17 OP-20，首件须检查几件，何时才能恢复后续作业？"><span>查询作业要求</span>HC-A17 首件确认有哪些必要条件？ ↗</button><button data-question="HC-A17 OP-20两版指导书的首件数量有什么差异？"><span>核对工艺版本</span>两版指导书的首件数量有什么差异？ ↗</button><button data-question="借用量具需要同时满足哪些条件？"><span>了解检验流程</span>借用量具需要满足哪些条件？ ↗</button></div></div>
         </section>
-        <form id="question-form" class="composer"><label for="question" class="sr-only">向当前知识库提问</label><textarea id="question" rows="2" maxlength="1000" placeholder="向知识库提问，例如：API 调用失败后应该如何处理？" disabled></textarea><div class="composer-bottom"><span>✧ 基于资料回答，附带来源引用</span><button id="ask-button" class="primary" type="submit" disabled>发送问题 <span>↑</span></button></div></form>
+        <details class="work-context"><summary>补充作业条件（选填）</summary><p>填写用户已知的条件，帮助定位适用资料；这里不查询ERP或MES实时数据。修改条件后会开始新对话。</p><div class="feedback-filters"><label>产品／设备型号<input id="work-model" maxlength="80"></label><label>工序<input id="work-process" maxlength="60"></label><label>业务日期<input id="work-date" type="date"></label><label>工单编号<input id="work-order" maxlength="60"></label></div></details>
+        <form id="question-form" class="composer"><label for="question" class="sr-only">向当前知识库提问</label><textarea id="question" rows="2" maxlength="1000" placeholder="例如：2026年10月新开工的 HC-A17 OP-20 应执行哪些首件检查？" disabled></textarea><div class="composer-bottom"><span>✧ 基于资料回答，附带来源引用</span><button id="ask-button" class="primary" type="submit" disabled>发送问题 <span>↑</span></button></div></form>
         <p class="footnote">AI 答案仅供参考，重要事项请核对原始文档。</p>
       </section>
       <section id="documents-panel" aria-label="文档管理" hidden>
         <div class="document-toolbar"><div><h2 id="document-kb">知识库文档</h2><p>上传、查看和维护团队资料</p></div><button id="refresh-button" class="secondary">↻ 刷新</button></div>
         <form id="upload-form" class="upload-zone"><div class="upload-symbol">↑</div><div><h3>让新的知识加入团队</h3><p id="upload-description">支持 PDF、DOCX、TXT、Markdown</p></div><label class="secondary file-picker">选择文件<input id="upload-file" type="file" accept=".pdf,.docx,.txt,.md" disabled></label><button id="upload-button" class="primary" type="submit" disabled>上传并索引</button><span id="selected-file">尚未选择文件</span></form>
-        <div class="section-title"><h3>文档 <span id="document-count">0</span></h3><span>索引就绪后即可用于问答</span></div>
+        <div class="section-title"><h3>文档 <span id="document-count">0</span></h3><span>新资料索引完成后，复核发布才用于问答</span></div>
         <div class="table-wrap"><table><thead><tr><th>文档名称</th><th>状态</th><th>版本 / 分块</th><th>更新时间</th><th>操作</th></tr></thead><tbody id="documents-body"><tr><td colspan="5" class="empty-row">登录并选择知识库后查看文档</td></tr></tbody></table></div>
         <section id="jobs-section" hidden><div class="section-title"><h3>最近索引任务</h3><span>进行中的任务每 5 秒刷新</span></div><div id="jobs-list" class="jobs-list"></div></section>
+      </section>
+      <section id="feedback-panel" aria-label="问答反馈" hidden>
+        <div class="document-toolbar"><div><h2>问答反馈</h2><p>查看评价与回答当时的资料，帮助定位问题。</p></div><button id="feedback-refresh" class="secondary">↻ 刷新</button></div>
+        <div class="feedback-filters"><label>查看范围 <select id="feedback-view"><option value="mine">我的反馈</option><option id="feedback-shared-option" value="shared">提交给管理员的反馈</option></select></label><label>评价 <select id="feedback-rating"><option value="">全部评价</option><option value="up">有帮助</option><option value="down">待改进</option></select></label><span class="answer-meta">跟随左侧知识库筛选；共享反馈须拥有全部相关知识库的管理员权限。</span></div>
+        <div id="feedback-list" class="feedback-list" aria-live="polite"><p class="empty-row">登录后查看反馈。</p></div>
+        <button id="feedback-more" class="secondary" hidden>加载更多</button>
+      </section>
+      <section id="quality-panel" aria-label="质量工作台" hidden>
+        <div class="document-toolbar"><div><h2>反馈审核与回归样本</h2><p>仅显示用户主动共享、且你有权管理的反馈。</p></div><button id="quality-refresh" class="secondary">↻ 刷新</button></div>
+        <div class="feedback-filters"><label>审核状态 <select id="quality-status"><option value="">全部状态</option><option value="pending">待审核</option><option value="confirmed">问题成立</option><option value="needs_evidence">需补证据</option><option value="dismissed">反馈不成立</option></select></label><span class="answer-meta">跟随左侧知识库筛选；跨库记录须拥有全部相关库的管理员权限。</span></div>
+        <div id="quality-list" class="feedback-list" aria-live="polite"></div><button id="quality-more" class="secondary" hidden>加载更多</button>
+        <div class="section-title"><h3>内部回归样本版本</h3><span>仅导出已审核、获授权且标准仍有效的样本</span></div>
+        <div class="feedback-filters"><label for="quality-name">版本名称</label><input id="quality-name" maxlength="100" value="反馈回归集"><button id="quality-export" class="primary" disabled>用已选样本创建版本</button></div>
+        <div id="quality-versions" class="feedback-list"></div>
+      </section>
+      <section id="verification-panel" aria-label="评测与改进" hidden>
+        <div class="document-toolbar"><div><h2>评测任务与问题改进</h2><p>展示有权访问的完整任务；每题按其原样本范围检索。固定集与反馈集不得包含同组问题。</p></div><button id="verification-refresh" class="secondary">↻ 刷新</button></div>
+        <form id="evaluation-form" class="quality-form evaluation-form">
+          <label class="quality-field">固定基线集版本<select id="evaluation-fixed" required></select></label>
+          <label class="quality-field">反馈回归集版本<select id="evaluation-feedback" required></select></label>
+          <div class="evaluation-limits"><label>最大题数<input id="evaluation-max-cases" type="number" min="2" max="200" value="40" required></label><label>最大模型调用次数<input id="evaluation-max-calls" type="number" min="1" max="2000" value="200" required></label><label>Token 预算<input id="evaluation-max-tokens" type="number" min="16000" max="10000000" value="1000000" required></label><label>最长执行秒数<input id="evaluation-max-seconds" type="number" min="10" max="3600" value="600" required></label></div>
+          <label class="feedback-consent"><input id="evaluation-consent" type="checkbox">允许本次任务调用模型并产生用量。Token 使用含保守预留，实际费用以供应商账单为准。</label>
+          <button id="evaluation-submit" class="primary" type="submit" disabled>创建评测任务</button>
+          <p class="answer-meta">任务由独立评测 Worker 执行。取消会阻止后续调用，已发送的请求仍可能完成并产生用量。</p>
+        </form>
+        <div class="section-title"><h3>最近评测任务</h3><span>执行完成表示已取得结果，仍需核对自动评分和人工复核</span></div><div id="verification-jobs" class="feedback-list"></div>
+        <div class="section-title"><h3>改进记录</h3><span>在质量审核中确认问题后，点击“记录修复并进入验证”</span></div><div id="improvement-list" class="feedback-list"></div>
       </section>
     </div>
   </main>
   <dialog id="login-dialog" aria-labelledby="login-title"><form method="dialog"><button class="dialog-close" aria-label="关闭登录窗口">×</button></form><div class="dialog-logo">知</div><div class="eyebrow">WELCOME TO YOUR WORKSPACE</div><h2 id="login-title">连接你的团队知识</h2><p>使用企业账号登录，访问属于你的知识库。</p><button id="oidc-login" class="primary login-primary">使用企业账号登录 ↗</button><p id="login-help" class="login-help">通过 Keycloak 安全登录</p><details><summary>已有访问令牌？临时登录</summary><form id="token-form"><label for="token">访问令牌</label><textarea id="token" rows="3" spellcheck="false" autocomplete="off" placeholder="粘贴 Access Token（不含 Bearer 前缀）"></textarea><p class="login-help">令牌仅保存在当前页面内存中，刷新后需要重新登录。</p><button class="secondary" type="submit">连接工作空间</button></form></details></dialog>
   <dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">删除这份文档？</h2><p id="delete-description"></p><p>删除后将无法从这份文档检索答案。此操作无法撤销。</p><div class="dialog-actions"><button id="delete-cancel" class="secondary">取消</button><button id="delete-confirm" class="danger">确认删除</button></div></dialog>
   <dialog id="citation-dialog" aria-labelledby="citation-title"><form method="dialog"><button class="dialog-close" aria-label="关闭原文预览">×</button></form><h2 id="citation-title">引用原文</h2><p id="citation-meta" role="status"></p><pre id="citation-content"></pre></dialog>
+  <dialog id="document-review-dialog" aria-labelledby="document-review-title"><form method="dialog"><button class="dialog-close" aria-label="关闭文档复核">×</button></form><h2 id="document-review-title">文档复核与发布</h2><p id="document-review-status" role="status"></p><div id="document-review-content"></div></dialog>
+  <dialog id="snapshot-dialog" aria-labelledby="snapshot-title"><form method="dialog"><button class="dialog-close" aria-label="关闭问答快照">×</button></form><h2 id="snapshot-title">问答快照</h2><p id="snapshot-meta" role="status"></p><div id="snapshot-content"></div></dialog>
+  <dialog id="quality-dialog" aria-labelledby="quality-title"><form method="dialog"><button class="dialog-close" aria-label="关闭质量审核">×</button></form><h2 id="quality-title">反馈审核与样本标注</h2><p id="quality-dialog-status" role="status"></p><div id="quality-detail"></div></dialog>
+  <dialog id="verification-dialog" aria-labelledby="verification-title"><form method="dialog"><button class="dialog-close" aria-label="关闭验证详情">×</button></form><h2 id="verification-title">评测与改进详情</h2><div id="verification-detail"></div></dialog>
 </body>
 </html>

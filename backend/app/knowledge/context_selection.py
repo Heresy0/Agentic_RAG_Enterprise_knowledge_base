@@ -4,6 +4,7 @@ This is a bounded ordering heuristic over supplied evidence, not a relevance,
 authority or truth classifier. It never fetches documents or invents facts.
 """
 import re
+import unicodedata
 
 from .evidence_quality import prefer_content
 
@@ -12,6 +13,12 @@ _FINAL_QUERY = re.compile(r"最后|最终|实际|是否(?:已经|已)|何时|什
 _CAUSE_QUERY = re.compile(r"为何|为什么|原因|根因|因何")
 _DATE = re.compile(r"\d{4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}月\d{1,2}日")
 _PLANNED = re.compile(r"计划|原定|拟于|预计|安排|目标|调整至")
+_RANGE = re.compile(r"(?<![\d.])([+-]?\d+(?:\.\d+)?)\s*[~至—–-]\s*([+-]?\d+(?:\.\d+)?)\s*\)?\s*([A-Za-zμ%°]+)")
+
+
+def _range_facets(text):
+    normalized = unicodedata.normalize('NFKC', text)
+    return list(dict.fromkeys('range:' + '|'.join(match.groups()) for match in _RANGE.finditer(normalized)))
 
 
 def source_key(document):
@@ -32,11 +39,20 @@ def _facets(question):
         facets.extend("event:" + event for event in _EVENTS if event in question)
     if _CAUSE_QUERY.search(question):
         facets.append("cause")
+    ranges = _range_facets(question)
+    if len(ranges) > 1:
+        facets.extend(ranges)
     return facets
 
 
 def _support(document, facet):
     body = _body(document)
+    if facet.startswith('range:'):
+        # Match explicit intervals and units; do not infer equivalent units or
+        # copy a range from the question into the evidence.
+        if facet in _range_facets(str(document.metadata.get('section_path', ''))):
+            return 2
+        return int(facet in _range_facets(body))
     if facet == "cause":
         return int(bool(re.search(r"根因|因为|由于|导致|原因(?:是|为)|要求新增", body)))
     # Completing an acceptance account/environment is not project acceptance.

@@ -1,0 +1,73 @@
+{
+  "evaluation_type": "offline_regression_not_deployed_or_model_accuracy",
+  "base_commit": "3049685",
+  "python": [
+    {
+      "name": "manufacturing-full",
+      "command": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/Scripts/python.exe -m pytest -m 'not integration' --junitxml=tmp/manufacturing-full.xml",
+      "tests": 1354,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "junit_sha256": "a7d276d203bc2bfd4b7674e73467014360e622b8c8e71bd0ac7a64bf2428ddfd",
+      "skip_reasons": [
+        {
+          "test": "tests.test_conversation_memory_postgres::test_postgres_memory_turn_atomicity_and_privacy_cutoff_cas",
+          "reason": "Explicit local PostgreSQL integration opt-in required"
+        }
+      ]
+    },
+    {
+      "name": "manufacturing-targeted-final",
+      "command": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/Scripts/python.exe -m pytest tests/test_manufacturing_corpus.py tests/test_ocr_review.py tests/test_pdf_splitter.py --junitxml=tmp/manufacturing-targeted-final.xml",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "junit_sha256": "0e6620ee5fe79a24c32a0c195188992284611b7d0e837e4585ce52866b4c2d90",
+      "skip_reasons": []
+    }
+  ],
+  "additional_tests_after_full_collection": [
+    "tests.test_manufacturing_corpus::test_provision_dry_run_does_not_connect_to_database",
+    "tests.test_manufacturing_corpus::test_provision_creates_isolated_roles_and_refuses_existing_tenant_or_identity",
+    "tests.test_manufacturing_corpus::test_failed_demo_transaction_leaves_no_partial_tenant"
+  ],
+  "distinct_results": {
+    "skipped": 1,
+    "passed": 1356
+  },
+  "frontend": {
+    "command": "node --test tests/frontend/auth.test.mjs tests/frontend_conversations.test.cjs",
+    "passed": 36,
+    "failed": 0
+  },
+  "frozen_suite_check": {
+    "command": "python scripts/evaluate.py check",
+    "verified_cases": 120,
+    "changed": [],
+    "model_calls": 0
+  },
+  "compileall": {
+    "command": "python -m compileall -q backend scripts",
+    "exit_code": 0
+  },
+  "source_sha256": {
+    "backend/app/documents/pdf_splitter.py": "c8bf58bd62fe184c4320c2a43779ed009a8c0f8b1e6e5e2041016131bcb65768",
+    "backend/app/documents/reviewed_ocr.json": "ae622d7c597d6875f4ffe069220a5fe1c36da1ce4305ac88d91d7b6d8152058c",
+    "backend/app/knowledge/rag.py": "4626bd18088e4beb332a99ac8f01f4550e3fe72197d525ef94827a4ccd91ad1e",
+    "backend/app/static/index.html": "a83f4b33debf5e7a23ee2df141ac2b1382f9fb4c699d38d8ea8ba10fc65c4c46",
+    "tests/test_manufacturing_corpus.py": "a61428d930886be2c0e4a5d262aca8926f9b0c489ebab1f87bb3d764f5ad0b87",
+    "tests/test_pdf_splitter.py": "dc98c565eb1e3914b790347164c7b9b92f115fec6b26590412563e28985ef9de",
+    "scripts/build_manufacturing_corpus.py": "b32bd2af28dbfb82ae3caf98342d20c9fc32266b7de8b966aef833c39ebe1cad",
+    "scripts/manufacturing_corpus_data.py": "3b3ae27b35b5a3b9d4f9c941d052dbf28dbeb7cbede384fc05c778a48a62dbca",
+    "scripts/provision_manufacturing_demo.py": "6f58ff8823cb38028a231a8491362e4e9cad5f6abdfc05e440bb380a525dae7b",
+    "scripts/validate_manufacturing_corpus.py": "e7fd1d21be076f4e3d0b020388a38aeed9b4d26b16b409f8d458002b67856c40"
+  },
+  "external_model_calls": 0,
+  "business_database_writes": false,
+  "limitations": [
+    "54 integration tests deselected in full run; no deployed HTTP or manufacturing model-answer validation.",
+    "Report combines full regression and a subsequent targeted run including three new provisioning checks."
+  ]
+}

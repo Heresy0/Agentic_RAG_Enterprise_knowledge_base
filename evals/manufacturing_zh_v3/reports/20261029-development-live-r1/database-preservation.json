@@ -1,0 +1,18 @@
+{
+  "all_checks_passed": true,
+  "tables": {
+    "tenants": true,
+    "users": true,
+    "knowledge_bases": true,
+    "knowledge_base_user_grants": true,
+    "knowledge_base_department_grants": true,
+    "documents": true,
+    "document_chunks": true,
+    "document_parents": true,
+    "conversations": true,
+    "migration": true
+  },
+  "excluded_new_tenant": "d07c3522-391a-4bb0-a46c-cca668a277f3",
+  "before_sha256": "69dc42c3c5be8b423f819eee3436284f8403e99a5d780b06db7677453cab5cef",
+  "after_sha256": "69dc42c3c5be8b423f819eee3436284f8403e99a5d780b06db7677453cab5cef"
+}

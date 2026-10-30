@@ -1,0 +1,830 @@
+{
+  "evaluation_type": "real_http_development_run_with_owner_snapshots",
+  "base_commit": "cf67fd9",
+  "corpus_manifest_sha256": "8cdb80bbab4ac3c113f61a58ccefe1c488e721e84fcd03f7cbbdb0c50c99a792",
+  "dataset_sha256": "ac069c928b67bcd7701fb70301efda8f8672e20dfef450983cf2d9675b371be4",
+  "frozen_test_sha256": "8e497fe8edfb9a9c69be2855788fa303b80705aabf26df54a207d9794050f0f0",
+  "split": "development",
+  "selected_case_ids": [
+    "MFG-Q01",
+    "MFG-Q02",
+    "MFG-Q03",
+    "MFG-Q04",
+    "MFG-Q05",
+    "MFG-Q06",
+    "MFG-Q07",
+    "MFG-Q08",
+    "MFG-Q09",
+    "MFG-Q10",
+    "MFG-Q11",
+    "MFG-Q12",
+    "MFG-Q13",
+    "MFG-Q14",
+    "MFG-Q15",
+    "MFG-Q16",
+    "MFG-Q17",
+    "MFG-Q18",
+    "MFG-Q19",
+    "MFG-Q20",
+    "MFG2-Q001",
+    "MFG2-Q002",
+    "MFG2-Q003",
+    "MFG2-Q004",
+    "MFG2-Q005",
+    "MFG2-Q006",
+    "MFG2-Q007",
+    "MFG2-Q008",
+    "MFG2-Q009",
+    "MFG2-Q010",
+    "MFG2-Q011",
+    "MFG2-Q012",
+    "MFG2-Q013",
+    "MFG2-Q014",
+    "MFG2-Q015",
+    "MFG2-Q016",
+    "MFG2-Q017",
+    "MFG2-Q018",
+    "MFG2-Q019",
+    "MFG2-Q020",
+    "MFG2-Q021",
+    "MFG2-Q022",
+    "MFG2-Q023",
+    "MFG2-Q024",
+    "MFG2-Q025",
+    "MFG2-Q026",
+    "MFG2-Q027",
+    "MFG2-Q028",
+    "MFG2-Q029",
+    "MFG2-Q030"
+  ],
+  "held_out_test_questions_run": 0,
+  "tenant_id": "19f4641c-5e25-479a-aa1b-6f7f7b621ca4",
+  "pipeline": {
+    "code_sha256": "7ade3cead1b96e1ee4445e47dc157c84eae3c123ae27d5f55bc7689b59ac3fc3",
+    "prompts_sha256": "5e902522e7f985560e4f805f1a9bc66cca77f1d31fc61beb6a6573eaca2c14fe"
+  },
+  "http_collector_original": {
+    "evaluation_type": "real_http_acceptance_with_owner_context_snapshots",
+    "questions": 50,
+    "completed": 46,
+    "errors": 4,
+    "dataset_sha256": "ac069c928b67bcd7701fb70301efda8f8672e20dfef450983cf2d9675b371be4",
+    "split": "development",
+    "selected_ids": [
+      "MFG-Q01",
+      "MFG-Q02",
+      "MFG-Q03",
+      "MFG-Q04",
+      "MFG-Q05",
+      "MFG-Q06",
+      "MFG-Q07",
+      "MFG-Q08",
+      "MFG-Q09",
+      "MFG-Q10",
+      "MFG-Q11",
+      "MFG-Q12",
+      "MFG-Q13",
+      "MFG-Q14",
+      "MFG-Q15",
+      "MFG-Q16",
+      "MFG-Q17",
+      "MFG-Q18",
+      "MFG-Q19",
+      "MFG-Q20",
+      "MFG2-Q001",
+      "MFG2-Q002",
+      "MFG2-Q003",
+      "MFG2-Q004",
+      "MFG2-Q005",
+      "MFG2-Q006",
+      "MFG2-Q007",
+      "MFG2-Q008",
+      "MFG2-Q009",
+      "MFG2-Q010",
+      "MFG2-Q011",
+      "MFG2-Q012",
+      "MFG2-Q013",
+      "MFG2-Q014",
+      "MFG2-Q015",
+      "MFG2-Q016",
+      "MFG2-Q017",
+      "MFG2-Q018",
+      "MFG2-Q019",
+      "MFG2-Q020",
+      "MFG2-Q021",
+      "MFG2-Q022",
+      "MFG2-Q023",
+      "MFG2-Q024",
+      "MFG2-Q025",
+      "MFG2-Q026",
+      "MFG2-Q027",
+      "MFG2-Q028",
+      "MFG2-Q029",
+      "MFG2-Q030"
+    ],
+    "max_questions": 50,
+    "corpus_manifest_sha256": "8cdb80bbab4ac3c113f61a58ccefe1c488e721e84fcd03f7cbbdb0c50c99a792",
+    "auth_refreshes": 4,
+    "qa_request_retries": 0,
+    "unobserved_stages": [
+      "vector",
+      "keyword",
+      "fusion",
+      "rerank"
+    ],
+    "attempts": [
+      {
+        "id": "MFG-Q01",
+        "error": null,
+        "run_id": "4e2e97a4-bb3f-411f-a6d8-292880ac3430"
+      },
+      {
+        "id": "MFG-Q02",
+        "error": null,
+        "run_id": "87a42a8c-b441-432a-a233-2ea26eb77512"
+      },
+      {
+        "id": "MFG-Q03",
+        "error": null,
+        "run_id": "9f3158ee-7f5d-4d65-9818-061487d653cb"
+      },
+      {
+        "id": "MFG-Q04",
+        "error": null,
+        "run_id": "e32731bd-3fa9-4636-b665-4e106ecb1476"
+      },
+      {
+        "id": "MFG-Q05",
+        "error": null,
+        "run_id": "742c34dc-d2c6-44dc-879a-e75e547aabc0"
+      },
+      {
+        "id": "MFG-Q06",
+        "error": null,
+        "run_id": "a7cecc23-cc57-4e02-b874-50ddb8d17498"
+      },
+      {
+        "id": "MFG-Q07",
+        "error": null,
+        "run_id": "dfb550a8-12a9-4a0d-917b-7f63c78e8c9d"
+      },
+      {
+        "id": "MFG-Q08",
+        "error": null,
+        "run_id": "8e228c23-2e95-4a4b-a5eb-27ba36e804a3"
+      },
+      {
+        "id": "MFG-Q09",
+        "error": null,
+        "run_id": "0ea34ff9-2c45-4372-b073-b84f63dcb15a"
+      },
+      {
+        "id": "MFG-Q10",
+        "error": null,
+        "run_id": "9130d50c-4d4a-41b2-9761-ee619e0d93da"
+      },
+      {
+        "id": "MFG-Q11",
+        "error": null,
+        "run_id": "0d99f068-d059-4149-a31d-16f8bf8def39"
+      },
+      {
+        "id": "MFG-Q12",
+        "error": null,
+        "run_id": "371f6603-0413-4333-a283-78d2187aa01a"
+      },
+      {
+        "id": "MFG-Q13",
+        "error": null,
+        "run_id": "e9b6f263-ad74-4d7c-ac97-76880aba5ebb"
+      },
+      {
+        "id": "MFG-Q14",
+        "error": null,
+        "run_id": "2254689a-c0bb-410b-828c-8638cef0bee7"
+      },
+      {
+        "id": "MFG-Q15",
+        "error": null,
+        "run_id": "4039eaed-c0b3-4e86-8524-2a655dbc083a"
+      },
+      {
+        "id": "MFG-Q16",
+        "error": null,
+        "run_id": "75d7aa0e-57d3-4196-bcef-b35d60dfa00b"
+      },
+      {
+        "id": "MFG-Q17",
+        "error": null,
+        "run_id": "9d0ee168-23ce-46e3-a070-91984e8486a9"
+      },
+      {
+        "id": "MFG-Q18",
+        "error": null,
+        "run_id": "5bbd00f2-dbe5-4ca5-bff9-5cfec76cd93d"
+      },
+      {
+        "id": "MFG-Q19",
+        "error": null,
+        "run_id": "1bb8d66e-8a78-46ac-86b9-d6909bc464b6"
+      },
+      {
+        "id": "MFG-Q20",
+        "error": null,
+        "run_id": "66335e9d-e5fc-4aec-b023-cd362063ceb3"
+      },
+      {
+        "id": "MFG2-Q001",
+        "error": null,
+        "run_id": "5e5304f1-1cab-45ec-81e1-3ec69f97eebd"
+      },
+      {
+        "id": "MFG2-Q002",
+        "error": null,
+        "run_id": "bc7785ff-4a50-4b11-8419-ce565bb29671"
+      },
+      {
+        "id": "MFG2-Q003",
+        "error": null,
+        "run_id": "7998eb9f-1153-4ebc-954c-7815f52cf983"
+      },
+      {
+        "id": "MFG2-Q004",
+        "error": null,
+        "run_id": "803cf505-0f85-4867-a3fe-134d100596a7"
+      },
+      {
+        "id": "MFG2-Q005",
+        "error": null,
+        "run_id": "12a8472d-cc94-4635-a2dd-1c5aff994c74"
+      },
+      {
+        "id": "MFG2-Q006",
+        "error": null,
+        "run_id": "59aa2eac-4127-4668-aed2-f1a95d3218b6"
+      },
+      {
+        "id": "MFG2-Q007",
+        "error": null,
+        "run_id": "964084b5-9fc9-4e4f-a3df-a4df93677107"
+      },
+      {
+        "id": "MFG2-Q008",
+        "error": null,
+        "run_id": "d16fa752-596b-425a-9b70-a3ce2eb7e05a"
+      },
+      {
+        "id": "MFG2-Q009",
+        "error": null,
+        "run_id": "2fe0413c-166c-44bf-a546-c89b4a3ec204"
+      },
+      {
+        "id": "MFG2-Q010",
+        "error": null,
+        "run_id": "eb53ef60-8e11-4a75-9aed-ac8c0cab549a"
+      },
+      {
+        "id": "MFG2-Q011",
+        "error": null,
+        "run_id": "24661d8a-6e59-4cfc-a28a-27e35d13c1e8"
+      },
+      {
+        "id": "MFG2-Q012",
+        "error": "ValueError",
+        "run_id": null
+      },
+      {
+        "id": "MFG2-Q013",
+        "error": null,
+        "run_id": "c1c406dd-df8e-4abc-b060-9d7fb66dd328"
+      },
+      {
+        "id": "MFG2-Q014",
+        "error": "ValueError",
+        "run_id": null
+      },
+      {
+        "id": "MFG2-Q015",
+        "error": null,
+        "run_id": "7a43d193-eb30-4732-980f-e04468142b09"
+      },
+      {
+        "id": "MFG2-Q016",
+        "error": null,
+        "run_id": "6f147e10-3857-4ede-8e1e-5d910ff20608"
+      },
+      {
+        "id": "MFG2-Q017",
+        "error": null,
+        "run_id": "eed3810a-7be0-4e77-b1ec-3fa1925d8b0d"
+      },
+      {
+        "id": "MFG2-Q018",
+        "error": "ValueError",
+        "run_id": null
+      },
+      {
+        "id": "MFG2-Q019",
+        "error": null,
+        "run_id": "1923544b-7865-4b5c-992e-383bd34500e7"
+      },
+      {
+        "id": "MFG2-Q020",
+        "error": null,
+        "run_id": "eebb9b60-6062-4012-9cc2-fdc079b7cff9"
+      },
+      {
+        "id": "MFG2-Q021",
+        "error": null,
+        "run_id": "d703f82d-f114-4048-80a8-30b8457ec2d0"
+      },
+      {
+        "id": "MFG2-Q022",
+        "error": "ValueError",
+        "run_id": null
+      },
+      {
+        "id": "MFG2-Q023",
+        "error": null,
+        "run_id": "1303df7f-5a11-45ff-801a-ee29cccbfbd1"
+      },
+      {
+        "id": "MFG2-Q024",
+        "error": null,
+        "run_id": "8cab148c-ec73-4dee-a7e5-2981900fb01f"
+      },
+      {
+        "id": "MFG2-Q025",
+        "error": null,
+        "run_id": "7e19e862-b94a-4f04-8af8-4604a2263eb1"
+      },
+      {
+        "id": "MFG2-Q026",
+        "error": null,
+        "run_id": "052d93c6-31ee-4216-a32b-7354073c8f0b"
+      },
+      {
+        "id": "MFG2-Q027",
+        "error": null,
+        "run_id": "96417934-8cee-43bb-9bb3-1ac9c861d0a8"
+      },
+      {
+        "id": "MFG2-Q028",
+        "error": null,
+        "run_id": "a57adbb6-9c00-470a-8fc3-91e458357d9f"
+      },
+      {
+        "id": "MFG2-Q029",
+        "error": null,
+        "run_id": "64f22e77-06c6-44f6-82d5-d4f88044bebd"
+      },
+      {
+        "id": "MFG2-Q030",
+        "error": null,
+        "run_id": "93d13e1d-8ae9-489a-a544-4271034c3a07"
+      }
+    ]
+  },
+  "http_response_audit": {
+    "http_successful_saved_responses": 50,
+    "complete_context_snapshots": 46,
+    "incomplete_context_snapshots": 4,
+    "recovered": [
+      {
+        "id": "MFG2-Q012",
+        "run_id": "b1890606-2f86-4332-883f-989800ace611",
+        "request_id": "b18906062f864332883f989800ace611",
+        "snapshot_status": "incomplete",
+        "complete_context": false,
+        "qa_retried": false,
+        "original_response_sha256": "6dcb3d8b855b68aa87840c4df5678279ee62a4e03f2898a79c4ba3a054a3c45c",
+        "original_snapshot_sha256": "44a8a5b91f5c7e1337df6ecc188ac532120390159f5cebb74fb4eff1a0740e21"
+      },
+      {
+        "id": "MFG2-Q014",
+        "run_id": "884a26b6-b41d-45cf-b9d4-6543b619a315",
+        "request_id": "884a26b6b41d45cfb9d46543b619a315",
+        "snapshot_status": "incomplete",
+        "complete_context": false,
+        "qa_retried": false,
+        "original_response_sha256": "40debffcbbcdafb7b481dfbfde97fb7223532dce5803d05b29ead288d3d66079",
+        "original_snapshot_sha256": "600af3ebb3899222a30a5cfc2f6dbea5565cbebf03624ee7ddfa7a961e3ac789"
+      },
+      {
+        "id": "MFG2-Q018",
+        "run_id": "aed0cb53-6923-4f3b-a7b1-54c579714a2e",
+        "request_id": "aed0cb5369234f3ba7b154c579714a2e",
+        "snapshot_status": "incomplete",
+        "complete_context": false,
+        "qa_retried": false,
+        "original_response_sha256": "03b5739ebad6973ce0f65123166a22fdde7fd61b4b2b7937e0cf1a5387af4006",
+        "original_snapshot_sha256": "63446258fcbec84d0a02cce243196804a37fad2ff28a3258c61a038a72fdaef9"
+      },
+      {
+        "id": "MFG2-Q022",
+        "run_id": "f494a42d-cfae-4fbf-8508-58a7e2c0a3ac",
+        "request_id": "f494a42dcfae4fbf850858a7e2c0a3ac",
+        "snapshot_status": "incomplete",
+        "complete_context": false,
+        "qa_retried": false,
+        "original_response_sha256": "2c974b1063f31d826c5934b0dd692c68ada1d08c82669bd113fa386c661f19b1",
+        "original_snapshot_sha256": "3402fb6b077c3ecb3df25deff09f67b876d4ccab4f00c26e3ec8aceb2251d7f2"
+      }
+    ],
+    "original_strict_traces_sha256": "30ee091d9b2e075ffc54e3c939a7d0a211ae6b3a382387e90ccd8407c62f1db2",
+    "derived_observations_sha256": "ec2c5d1765ef99a4c712d7ec326cda0859180cbaeaefd4d7498037472591eb82",
+    "qa_retries": 0
+  },
+  "index": {
+    "tenant_id": "19f4641c-5e25-479a-aa1b-6f7f7b621ca4",
+    "documents": 60,
+    "ready_documents": 60,
+    "chunks": 8366,
+    "vectors": 8366,
+    "parents": 4828,
+    "jobs": 60,
+    "all_checks_passed": true
+  },
+  "new_uploads": 43,
+  "reused_original_documents": 17,
+  "automatic_proxy": {
+    "total": 50,
+    "passed": 23,
+    "failed": 27,
+    "error": 0,
+    "skipped": 0,
+    "partial": 0,
+    "not_applicable": 0,
+    "pass_rate": 0.46
+  },
+  "assistant_semantic_review": {
+    "total": 50,
+    "passed": 32,
+    "failed": 13,
+    "error": 0,
+    "skipped": 4,
+    "partial": 1,
+    "not_applicable": 0,
+    "pass_rate": 0.7111111111111111
+  },
+  "assistant_passes_over_all_50": 0.64,
+  "subsets": {
+    "original_20": {
+      "total": 20,
+      "automatic": {
+        "failed": 6,
+        "passed": 14
+      },
+      "assistant_review": {
+        "passed": 18,
+        "failed": 2
+      }
+    },
+    "new_public_30": {
+      "total": 30,
+      "automatic": {
+        "failed": 21,
+        "passed": 9
+      },
+      "assistant_review": {
+        "passed": 14,
+        "failed": 11,
+        "uncertain": 1,
+        "not_reviewed": 4
+      }
+    }
+  },
+  "context": {
+    "total": 50,
+    "passed": 34,
+    "failed": 8,
+    "error": 0,
+    "skipped": 4,
+    "partial": 0,
+    "not_applicable": 4,
+    "pass_rate": 0.8095238095238095
+  },
+  "usage": {
+    "new_document_ingestion": {
+      "observed": true,
+      "calls": 697,
+      "reported_total_tokens": 584328,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 697,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "by_stage": {
+        "document_embedding": {
+          "observed": true,
+          "calls": 697,
+          "reported_total_tokens": 584328,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 697,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      }
+    },
+    "development_qa": {
+      "observed": true,
+      "calls": 160,
+      "reported_total_tokens": 453784,
+      "unknown_usage_calls": 2,
+      "unknown_usage_rate": 0.0125,
+      "unpriced_calls": 160,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 2,
+      "by_stage": {
+        "agent_decision": {
+          "observed": true,
+          "calls": 5,
+          "reported_total_tokens": 7246,
+          "unknown_usage_calls": 1,
+          "unknown_usage_rate": 0.2,
+          "unpriced_calls": 5,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 1
+        },
+        "answer_generation": {
+          "observed": true,
+          "calls": 46,
+          "reported_total_tokens": 239017,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 46,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "answer_repair": {
+          "observed": true,
+          "calls": 2,
+          "reported_total_tokens": 3760,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 2,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_embedding": {
+          "observed": true,
+          "calls": 50,
+          "reported_total_tokens": 1017,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 50,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_planning": {
+          "observed": true,
+          "calls": 7,
+          "reported_total_tokens": 2336,
+          "unknown_usage_calls": 1,
+          "unknown_usage_rate": 0.14285714285714285,
+          "unpriced_calls": 7,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 1
+        },
+        "rerank": {
+          "observed": true,
+          "calls": 50,
+          "reported_total_tokens": 200408,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 50,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      }
+    },
+    "total": {
+      "observed": true,
+      "calls": 857,
+      "reported_total_tokens": 1038112,
+      "unknown_usage_calls": 2,
+      "unknown_usage_rate": 0.002333722287047841,
+      "unpriced_calls": 857,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 2
+    },
+    "unique_event_ids": 857,
+    "qa_trace_ledger_ids_match": true,
+    "ingestion_jobs_selected": 43,
+    "qa_requests_selected": 50,
+    "reused_baseline_ingestion_excluded": true
+  },
+  "actual_response_citation_integrity": 46,
+  "latency_ms": {
+    "p50": 3507.455,
+    "p95_nearest_rank": 8252.29,
+    "total": 205163.87,
+    "definition": "Sequential QA and owner snapshot; request-ledger reads are outside this timing, not a load test."
+  },
+  "final_regression": {
+    "tests": 1389,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 1,
+    "deselected_integration": 54,
+    "junit_sha256": "06137766df4438ceb771b49495fa47d94b37dd5908c991acb4beecc2724193af"
+  },
+  "prior_twenty_comparison": [
+    {
+      "id": "MFG-Q01",
+      "previous_automatic": "failed",
+      "current_automatic": "failed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q02",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q03",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q04",
+      "previous_automatic": "failed",
+      "current_automatic": "failed",
+      "previous_assistant": "failed",
+      "current_assistant": "failed"
+    },
+    {
+      "id": "MFG-Q05",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q06",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q07",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q08",
+      "previous_automatic": "failed",
+      "current_automatic": "failed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q09",
+      "previous_automatic": "failed",
+      "current_automatic": "failed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q10",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q11",
+      "previous_automatic": "failed",
+      "current_automatic": "failed",
+      "previous_assistant": "failed",
+      "current_assistant": "failed"
+    },
+    {
+      "id": "MFG-Q12",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q13",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q14",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q15",
+      "previous_automatic": "failed",
+      "current_automatic": "failed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q16",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q17",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q18",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q19",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    },
+    {
+      "id": "MFG-Q20",
+      "previous_automatic": "passed",
+      "current_automatic": "passed",
+      "previous_assistant": "passed",
+      "current_assistant": "passed"
+    }
+  ],
+  "independent_semantic_review": false,
+  "remaining_failures": [
+    "MFG-Q04",
+    "MFG-Q11",
+    "MFG2-Q003",
+    "MFG2-Q004",
+    "MFG2-Q010",
+    "MFG2-Q011",
+    "MFG2-Q013",
+    "MFG2-Q015",
+    "MFG2-Q020",
+    "MFG2-Q021",
+    "MFG2-Q024",
+    "MFG2-Q026",
+    "MFG2-Q029"
+  ],
+  "incomplete_context_refusals": [
+    "MFG2-Q012",
+    "MFG2-Q014",
+    "MFG2-Q018",
+    "MFG2-Q022"
+  ],
+  "unreviewed": [
+    "MFG2-Q005",
+    "MFG2-Q012",
+    "MFG2-Q014",
+    "MFG2-Q018",
+    "MFG2-Q022"
+  ],
+  "raw_artifacts_sha256": {
+    "http-r1\\traces.jsonl": "30ee091d9b2e075ffc54e3c939a7d0a211ae6b3a382387e90ccd8407c62f1db2",
+    "http-r1\\observed-responses.jsonl": "ec2c5d1765ef99a4c712d7ec326cda0859180cbaeaefd4d7498037472591eb82",
+    "reviewed-r1\\report.json": "2b0151ad2372dccf04266cb8e045ccb77240950dc54528e2c16a3973110b29cf",
+    "ledger-events.json": "e13a34da36918940860998a014c7d72e38aa53668a3dbad2ac7cc7a1468bcbe3",
+    "uploads.json": "bf974e9a02297761b07e07dd315908448ad6eb70c6e84a7ccf0fd8a2ea641f23"
+  },
+  "runner_sha256": "c0968181c3c492097800fa5309c776416501fdd77afd06ba5b5f6b554e6d0e77",
+  "limitations": [
+    "Development results, not frozen-test accuracy or factory performance.",
+    "Assistant review is non-blind and not independent; frozen criteria unchanged.",
+    "First run retained; no paid question retry and no source/answer-label changes.",
+    "Vector, keyword, fusion and rerank candidate stages are unobserved in HTTP snapshots.",
+    "Added corpus and model randomness mean original-20 differences are diagnostic, not causal improvement.",
+    "Model prices are not configured; currency amount cannot be reported."
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "new_document_ingestion": {
+    "observed": true,
+    "calls": 697,
+    "reported_total_tokens": 584328,
+    "unknown_usage_calls": 0,
+    "unknown_usage_rate": 0.0,
+    "unpriced_calls": 697,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 0,
+    "by_stage": {
+      "document_embedding": {
+        "observed": true,
+        "calls": 697,
+        "reported_total_tokens": 584328,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 697,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      }
+    }
+  },
+  "development_qa": {
+    "observed": true,
+    "calls": 160,
+    "reported_total_tokens": 453784,
+    "unknown_usage_calls": 2,
+    "unknown_usage_rate": 0.0125,
+    "unpriced_calls": 160,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 2,
+    "by_stage": {
+      "agent_decision": {
+        "observed": true,
+        "calls": 5,
+        "reported_total_tokens": 7246,
+        "unknown_usage_calls": 1,
+        "unknown_usage_rate": 0.2,
+        "unpriced_calls": 5,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 1
+      },
+      "answer_generation": {
+        "observed": true,
+        "calls": 46,
+        "reported_total_tokens": 239017,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 46,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "answer_repair": {
+        "observed": true,
+        "calls": 2,
+        "reported_total_tokens": 3760,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 2,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "query_embedding": {
+        "observed": true,
+        "calls": 50,
+        "reported_total_tokens": 1017,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 50,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      },
+      "query_planning": {
+        "observed": true,
+        "calls": 7,
+        "reported_total_tokens": 2336,
+        "unknown_usage_calls": 1,
+        "unknown_usage_rate": 0.14285714285714285,
+        "unpriced_calls": 7,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 1
+      },
+      "rerank": {
+        "observed": true,
+        "calls": 50,
+        "reported_total_tokens": 200408,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 50,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0
+      }
+    }
+  },
+  "total": {
+    "observed": true,
+    "calls": 857,
+    "reported_total_tokens": 1038112,
+    "unknown_usage_calls": 2,
+    "unknown_usage_rate": 0.002333722287047841,
+    "unpriced_calls": 857,
+    "unpersisted_calls": 0,
+    "estimated_cost_by_currency": {},
+    "errors": 2
+  },
+  "unique_event_ids": 857,
+  "qa_trace_ledger_ids_match": true,
+  "ingestion_jobs_selected": 43,
+  "qa_requests_selected": 50,
+  "reused_baseline_ingestion_excluded": true
+}

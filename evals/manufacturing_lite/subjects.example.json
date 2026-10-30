@@ -1,0 +1,7 @@
+{
+  "操作员": "REPLACE_OPERATOR_SUB",
+  "工艺工程师": "REPLACE_PROCESS_SUB",
+  "质量工程师": "REPLACE_QUALITY_SUB",
+  "知识管理员": "REPLACE_ADMIN_SUB",
+  "仅参考资料用户": "REPLACE_REFERENCE_SUB"
+}

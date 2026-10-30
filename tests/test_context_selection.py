@@ -19,6 +19,44 @@ def candidates():
     ])]
 
 
+def test_reserves_both_explicit_range_witnesses_with_original_budget():
+    documents = [doc('一般信息' + str(i), i) for i in range(4)] + [
+        doc('电压范围(0~10)V使用标准器A。', 4),
+        doc('电压范围(10~40)V使用标准器B。', 5),
+    ]
+    selected, reservations = select_context_chunks(documents, question='0～10V和10～40V分别使用什么？', max_per_source=4)
+    assert len(selected) == 4 and documents[0] in selected
+    assert documents[4] in selected and documents[5] in selected
+    assert len(reservations) == 2
+
+
+def test_range_units_and_numeric_boundaries_are_not_interchanged():
+    documents = [doc('一般信息' + str(i), i) for i in range(4)] + [
+        doc('范围(100~150)mm。范围(150~3000)kPa。', 4),
+    ]
+    selected, reservations = select_context_chunks(documents, question='0～150mm和150～3000mm用什么？', max_per_source=4)
+    assert selected == documents[:4] and not reservations
+
+
+def test_range_specific_section_precedes_incidental_mentions_in_appendices():
+    documents = [doc('概览。', 0), doc('附录例子涉及0~10V和10~40V。', 1),
+                 doc('其他说明。', 2), doc('其他条件。', 3),
+                 doc('使用标准器A。', 4), doc('使用标准器B。', 5)]
+    documents[4].metadata['section_path'] = '量程(0~10)V的方法'
+    documents[5].metadata['section_path'] = '量程(10~40)V的方法'
+    selected, _ = select_context_chunks(documents, question='0～10V和10～40V分别使用什么？', max_per_source=4)
+    assert documents[4] in selected and documents[5] in selected and len(selected) == 4
+
+
+def test_single_range_and_other_sources_keep_existing_selection():
+    documents = [doc('一般信息' + str(i), i) for i in range(4)] + [doc('范围(0~10)V。', 4)]
+    selected, reservations = select_context_chunks(documents, question='0～10V用什么？', max_per_source=4)
+    assert selected == documents[:4] and not reservations
+    outside = doc('范围(10~40)V。', 0, source='other')
+    selected, _ = select_context_chunks(documents + [outside], question='0～10V和10～40V用什么？', max_per_source=4)
+    assert outside in selected and len([d for d in selected if d.metadata['source_id'] == 'project-a']) == 4
+
+
 def test_reserves_actual_completion_without_increasing_source_or_character_budget():
     documents = candidates() + [doc("由于新增权限功能导致验收改期。", 0, "changes")]
     with capture_trace() as trace:
@@ -31,12 +69,12 @@ def test_reserves_actual_completion_without_increasing_source_or_character_budge
     assert reservations and reservations[0]["included"]
 
 
-def test_no_special_case_company_amount_or_date_and_negative_status_is_evidence():
+def test_single_source_negative_status_is_retained_without_source_clipping():
     documents = [doc("修复计划为4月9日。", 0), doc("会议安排为4月9日。", 1),
                  doc("缺陷尚未修复。", 2)]
     context = ContextBuilder(max_chunks_per_source=2).build(documents, question="缺陷是否已经修复？")
     assert any("尚未修复" in item.content for item in context.items)
-    assert len(context.items) == 2
+    assert len(context.items) == 3
 
 
 def test_only_intervenes_at_source_cap_and_preserves_metadata_and_ordinary_queries():

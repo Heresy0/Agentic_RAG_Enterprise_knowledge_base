@@ -4,7 +4,7 @@ import pytest
 from langchain_core.messages import AIMessage
 from sqlalchemy.exc import SQLAlchemyError
 
-from test_answer_service import TEST_SCOPE, make_document, build_service, answer
+from test_answer_service import TEST_SCOPE, make_document, build_service, answer, FakeStructuredLLM
 from backend.app.evaluation.trace import capture_trace, record_documents, record_scope
 from backend.app.knowledge.answer_models import GenerationAnswerDraft
 from backend.app.knowledge.evidence_feedback import EvidenceFeedback
@@ -16,13 +16,13 @@ QUESTION = "甲工艺与乙工艺的温度分别是多少？"
 
 
 def missing(*, quote="乙工艺", reason="missing_evidence", ids=("Q1",)):
-    return GenerationAnswerDraft.model_validate(dict(answerable=False, claims=[], refusal_reason="缺少乙工艺温度证据",
+    return GenerationAnswerDraft.model_validate(dict(answerable=False, response_type='refuse', claims=[], refusal_reason="缺少乙工艺温度证据",
         coverage=[dict(requirement_id="Q1", aspect="乙工艺温度", status="insufficient", claim_indices=[], missing_information="缺温度")],
         evidence_gap=dict(reason=reason, requirement_ids=list(ids), source_quote=quote)))
 
 
 def complete(*, temperature=90, citation="资料2"):
-    return GenerationAnswerDraft.model_validate(dict(answerable=True, refusal_reason=None, evidence_gap=None,
+    return GenerationAnswerDraft.model_validate(dict(answerable=True, response_type='answer', refusal_reason=None, evidence_gap=None,
         claims=[dict(text="甲工艺温度是80摄氏度", citations=["资料1"]),
                 dict(text=f"乙工艺温度是{temperature}摄氏度", citations=[citation])],
         coverage=[dict(requirement_id="Q1", aspect="双方温度", status="answered", claim_indices=[1, 2], missing_information=None)]))
@@ -64,7 +64,7 @@ def setup(monkeypatch, *, initial=None, candidate=None, extra=None, search_hook=
             if isinstance(candidate, Exception):
                 raise candidate
             return dict(raw=AIMessage(content="", usage_metadata=dict(input_tokens=100, output_tokens=20, total_tokens=120)),
-                        parsed=candidate, parsing_error=None)
+                        parsed=FakeStructuredLLM(candidate).invoke(messages), parsing_error=None)
         return SimpleNamespace(with_structured_output=lambda *args, **kwargs: SimpleNamespace(invoke=invoke))
     service._regeneration_model_factory = factory
     service._evidence_feedback = EvidenceFeedback(service._settings, retrieval, service._evidence_coordinator,
@@ -108,7 +108,7 @@ def test_one_directed_search_and_regeneration_use_original_question_and_final_va
 @pytest.mark.parametrize("initial", [missing(reason="conflict", quote=None),
     missing(reason="unsupported_request", quote=None), missing(quote="其他租户"), missing(ids=("Q9",)),
     missing(ids=("Q1", "Q1")),
-    GenerationAnswerDraft.model_validate(dict(answerable=False, claims=[], refusal_reason="缺证据",
+    GenerationAnswerDraft.model_validate(dict(answerable=False, response_type='refuse', claims=[], refusal_reason="缺证据",
         coverage=[dict(requirement_id="Q1", aspect="温度", status="insufficient", claim_indices=[], missing_information="缺温度")])),
 ])
 def test_only_well_formed_anchored_evidence_gaps_are_retried(monkeypatch, initial):

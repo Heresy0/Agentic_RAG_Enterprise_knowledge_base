@@ -1,0 +1,1297 @@
+{
+  "base_commit": "55e825e2fd34e1ec6d2e0760bd9fd897bf3a9751",
+  "checked_files": 215,
+  "changed_files": [],
+  "files": [
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/README.md",
+      "baseline_sha256": "e76c35e2aeb7ed80c6264c1766ea280dc4b54772948132dd3094d19d09144316",
+      "current_sha256": "e76c35e2aeb7ed80c6264c1766ea280dc4b54772948132dd3094d19d09144316",
+      "unchanged": true
+    },
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/baseline-preservation.json",
+      "baseline_sha256": "b4ad1c0314a9232606e4894a56bb426234c6716dede121c33da18e6879d5d9b6",
+      "current_sha256": "b4ad1c0314a9232606e4894a56bb426234c6716dede121c33da18e6879d5d9b6",
+      "unchanged": true
+    },
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/comparison.json",
+      "baseline_sha256": "ff4d405359d095af06d69860904bd86c554d591a09e1b4f73c57ea63d1f4c677",
+      "current_sha256": "ff4d405359d095af06d69860904bd86c554d591a09e1b4f73c57ea63d1f4c677",
+      "unchanged": true
+    },
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/provenance.json",
+      "baseline_sha256": "d04c420e49c2036f453becf05c93d688a3e9dc00a17fa31f295c0d9e7bd221d1",
+      "current_sha256": "d04c420e49c2036f453becf05c93d688a3e9dc00a17fa31f295c0d9e7bd221d1",
+      "unchanged": true
+    },
+    {
+      "path": "evals/document_cleaning_v1/reports/20261029-offline-r1/validation.json",
+      "baseline_sha256": "fcb17166b8324e178279a1f1160eedcabeaacaa711c540838d88a26bf60f8fea",
+      "current_sha256": "fcb17166b8324e178279a1f1160eedcabeaacaa711c540838d88a26bf60f8fea",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/README.md",
+      "baseline_sha256": "da42d1f6194e9631ee6aecdbfc8d742aeb18797d4e52ee89d93849e346057f50",
+      "current_sha256": "da42d1f6194e9631ee6aecdbfc8d742aeb18797d4e52ee89d93849e346057f50",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/README.md",
+      "baseline_sha256": "438b7e6635d65e245da0d2ed0a5eb327f838ff85c33b94ea608353494a676fd2",
+      "current_sha256": "438b7e6635d65e245da0d2ed0a5eb327f838ff85c33b94ea608353494a676fd2",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/acl-checks.json",
+      "baseline_sha256": "26699cbb6ebe788b464d0fac0bc0d377c6ed031ec8ae919600de689d3eda3d26",
+      "current_sha256": "26699cbb6ebe788b464d0fac0bc0d377c6ed031ec8ae919600de689d3eda3d26",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/answers-and-reviews.json",
+      "baseline_sha256": "898eb2c4464be95d6d9510be471a20feed8f261a3632e4cc888b4c5b06cf6804",
+      "current_sha256": "898eb2c4464be95d6d9510be471a20feed8f261a3632e4cc888b4c5b06cf6804",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/index-audit.json",
+      "baseline_sha256": "94abf8f10bccb79186ee6a97b2afdaa170992ab9764d5fb3d36aa9695158caf7",
+      "current_sha256": "94abf8f10bccb79186ee6a97b2afdaa170992ab9764d5fb3d36aa9695158caf7",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/ledger-summary.json",
+      "baseline_sha256": "7edaeacee3b8f436e0a4ba086b0dee44133e486192a1226e54b8ac1744aec5c1",
+      "current_sha256": "7edaeacee3b8f436e0a4ba086b0dee44133e486192a1226e54b8ac1744aec5c1",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/preservation.json",
+      "baseline_sha256": "ea7a758ba49eee992f2e383b0926feca1a51d0de76f0d04cedfb4108f5b1c73e",
+      "current_sha256": "ea7a758ba49eee992f2e383b0926feca1a51d0de76f0d04cedfb4108f5b1c73e",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/runtime-summary.json",
+      "baseline_sha256": "4b0bb3509e50a77951d8f20c8515b597b2cc58e51c76ab20ac0120d61b740535",
+      "current_sha256": "4b0bb3509e50a77951d8f20c8515b597b2cc58e51c76ab20ac0120d61b740535",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028-live-r1/semantic-reviews.jsonl",
+      "baseline_sha256": "a99382b245903210208e82f2eedeb41f318f6e2f56ac1cf1fa96b232355f9241",
+      "current_sha256": "a99382b245903210208e82f2eedeb41f318f6e2f56ac1cf1fa96b232355f9241",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/README.md",
+      "baseline_sha256": "7765c84c94409fcc6075548542672bcc259eba6e692be43797281951e9e77eb0",
+      "current_sha256": "7765c84c94409fcc6075548542672bcc259eba6e692be43797281951e9e77eb0",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/corpus-initial.json",
+      "baseline_sha256": "849f3d4a787bfa014d086ac3f5653807d6bc45e1f2aa1e4915b4a7ddfcf2e78e",
+      "current_sha256": "849f3d4a787bfa014d086ac3f5653807d6bc45e1f2aa1e4915b4a7ddfcf2e78e",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/corpus-reviewed.json",
+      "baseline_sha256": "01c09e87964052797b18106d5ef98434c72be5e6fb7813894511573dfaac424e",
+      "current_sha256": "01c09e87964052797b18106d5ef98434c72be5e6fb7813894511573dfaac424e",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/regression-summary.json",
+      "baseline_sha256": "be3a59405283c2ab67a6fed4d193a177317d31669217423397cb20d5a46182cd",
+      "current_sha256": "be3a59405283c2ab67a6fed4d193a177317d31669217423397cb20d5a46182cd",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/unified-parsing.json",
+      "baseline_sha256": "5ae2267255aac5919300b005e26472ede8b4270148707e1567e9779a31795917",
+      "current_sha256": "5ae2267255aac5919300b005e26472ede8b4270148707e1567e9779a31795917",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/reports/20261028/unified-parsing.md",
+      "baseline_sha256": "684f69d47193957b19b62a34caec338cb65d97692d3cd2b2775b5d0b2570a0f9",
+      "current_sha256": "684f69d47193957b19b62a34caec338cb65d97692d3cd2b2775b5d0b2570a0f9",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/role_permissions.json",
+      "baseline_sha256": "bb32a269f34e9828cf1356a46481ef2f6bc37c268efb507c5ae8adb2d687873f",
+      "current_sha256": "bb32a269f34e9828cf1356a46481ef2f6bc37c268efb507c5ae8adb2d687873f",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/single_turn.jsonl",
+      "baseline_sha256": "650f7c26da5428080a35181f4b3126256a8fc9846f3b98d794e53120887e4ab5",
+      "current_sha256": "650f7c26da5428080a35181f4b3126256a8fc9846f3b98d794e53120887e4ab5",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/subjects.example.json",
+      "baseline_sha256": "d7e9a048ea4497dc822e8ef4e46fb61829a099d13dc3e24b59ecf16f9f4941cc",
+      "current_sha256": "d7e9a048ea4497dc822e8ef4e46fb61829a099d13dc3e24b59ecf16f9f4941cc",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_lite/system_config.example.json",
+      "baseline_sha256": "9f132358e54758672be7ee2bb9b2285b0e3fb3bef6c7d672711626530a842865",
+      "current_sha256": "9f132358e54758672be7ee2bb9b2285b0e3fb3bef6c7d672711626530a842865",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/README.md",
+      "baseline_sha256": "41a7902d079e119e797e7d2ddb58ecbd1ec9835129fbf78195ce5b5462e5c50e",
+      "current_sha256": "41a7902d079e119e797e7d2ddb58ecbd1ec9835129fbf78195ce5b5462e5c50e",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/annotations.json",
+      "baseline_sha256": "1b9a58801c16109834b5fc0ab0e02d6319ef48f7abae0402d854ea9e821f0e77",
+      "current_sha256": "1b9a58801c16109834b5fc0ab0e02d6319ef48f7abae0402d854ea9e821f0e77",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/development/single_turn.jsonl",
+      "baseline_sha256": "ac069c928b67bcd7701fb70301efda8f8672e20dfef450983cf2d9675b371be4",
+      "current_sha256": "ac069c928b67bcd7701fb70301efda8f8672e20dfef450983cf2d9675b371be4",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/README.md",
+      "baseline_sha256": "24b356d76026a8d0c0dc335b0c4f83a62974a4b4bb0e78f83eac286e46fa2fed",
+      "current_sha256": "24b356d76026a8d0c0dc335b0c4f83a62974a4b4bb0e78f83eac286e46fa2fed",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/acl-checks.json",
+      "baseline_sha256": "05656a2929476601ec7b00c9833e3bfb52535fa6ae4465f2943eb0373a1eb32b",
+      "current_sha256": "05656a2929476601ec7b00c9833e3bfb52535fa6ae4465f2943eb0373a1eb32b",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/answers-and-reviews.json",
+      "baseline_sha256": "1fac3ba389088dc7410ce2d84a2c7e3c5c53f748af1383e0267c6717fd8410bb",
+      "current_sha256": "1fac3ba389088dc7410ce2d84a2c7e3c5c53f748af1383e0267c6717fd8410bb",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/database-run-audit.json",
+      "baseline_sha256": "97bf2ef24c5882de7330771887b08f6aecbb7280973c6efe64412aac00a135cd",
+      "current_sha256": "97bf2ef24c5882de7330771887b08f6aecbb7280973c6efe64412aac00a135cd",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/index-audit.json",
+      "baseline_sha256": "1aa1f43865d4f93171b966d5e7c242bd9d77e665582a9ecd6aba70c2a653bb66",
+      "current_sha256": "1aa1f43865d4f93171b966d5e7c242bd9d77e665582a9ecd6aba70c2a653bb66",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/ledger-summary.json",
+      "baseline_sha256": "d22a7ae359c39cbc26945af9282cd2a94b7d40dfe24d0191a632b9e11204bf01",
+      "current_sha256": "d22a7ae359c39cbc26945af9282cd2a94b7d40dfe24d0191a632b9e11204bf01",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/observation-audit.json",
+      "baseline_sha256": "75a626aae517949f53e933b11929a9de39bf3cd9afff51ac1faaebcba35e4651",
+      "current_sha256": "75a626aae517949f53e933b11929a9de39bf3cd9afff51ac1faaebcba35e4651",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/preservation.json",
+      "baseline_sha256": "3217f00bb2be36d96dc2c853833935bbe2e5c8e8770d2af8f79dd50f908eda1e",
+      "current_sha256": "3217f00bb2be36d96dc2c853833935bbe2e5c8e8770d2af8f79dd50f908eda1e",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/runtime-summary.json",
+      "baseline_sha256": "040bebd8c12f2a0bba33301e37816ede1d8a8364a20841e7d94edab233bf8304",
+      "current_sha256": "040bebd8c12f2a0bba33301e37816ede1d8a8364a20841e7d94edab233bf8304",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/semantic-reviews.jsonl",
+      "baseline_sha256": "a48b52c6e6511801da43d0bdc6c5a1bea89685e7e1752939369f1cfbd43350e0",
+      "current_sha256": "a48b52c6e6511801da43d0bdc6c5a1bea89685e7e1752939369f1cfbd43350e0",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-development-live-r1/uploads.json",
+      "baseline_sha256": "bf974e9a02297761b07e07dd315908448ad6eb70c6e84a7ccf0fd8a2ea641f23",
+      "current_sha256": "bf974e9a02297761b07e07dd315908448ad6eb70c6e84a7ccf0fd8a2ea641f23",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/README.md",
+      "baseline_sha256": "51bff585e977d66338ca5aec3f1c8ceb6211a49fa581b06c7e1ef1530ad9b0e2",
+      "current_sha256": "51bff585e977d66338ca5aec3f1c8ceb6211a49fa581b06c7e1ef1530ad9b0e2",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/labels.json",
+      "baseline_sha256": "fb55e1156b76136827f6407ff261b7e6dd56a0ca0159d082510ebf9011696b68",
+      "current_sha256": "fb55e1156b76136827f6407ff261b7e6dd56a0ca0159d082510ebf9011696b68",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/parsing.json",
+      "baseline_sha256": "6bfa9bd40a5993f2a5df398f449ac86ee3a833e39d6fe6c7289cd23b66e7842b",
+      "current_sha256": "6bfa9bd40a5993f2a5df398f449ac86ee3a833e39d6fe6c7289cd23b66e7842b",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/reproduction.json",
+      "baseline_sha256": "36b99b01d8cf863c938970521d4834428b69afaf1e31e33696a6311d1efdf2c3",
+      "current_sha256": "36b99b01d8cf863c938970521d4834428b69afaf1e31e33696a6311d1efdf2c3",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/verification.json",
+      "baseline_sha256": "6da5812b0ab4fd9bba7ee062b27d6569364a6c617ad23c96611b63ee117d03de",
+      "current_sha256": "6da5812b0ab4fd9bba7ee062b27d6569364a6c617ad23c96611b63ee117d03de",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/reports/20261028-offline-r1/visual-review.json",
+      "baseline_sha256": "69410d9df6a5236921eab8fc921e4fd82f9947470b32890e17c3508276463eb2",
+      "current_sha256": "69410d9df6a5236921eab8fc921e4fd82f9947470b32890e17c3508276463eb2",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/splits.json",
+      "baseline_sha256": "81b193b714abca3cea683b00619a6cc8b683ead3f57981d851fc05ffe3f38918",
+      "current_sha256": "81b193b714abca3cea683b00619a6cc8b683ead3f57981d851fc05ffe3f38918",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_public_v2/test/single_turn.jsonl",
+      "baseline_sha256": "8e497fe8edfb9a9c69be2855788fa303b80705aabf26df54a207d9794050f0f0",
+      "current_sha256": "8e497fe8edfb9a9c69be2855788fa303b80705aabf26df54a207d9794050f0f0",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/README.md",
+      "baseline_sha256": "f18c901fb9efe1cc717b046b48df63a3c280db1c2c4f60bf866f2b9350623318",
+      "current_sha256": "f18c901fb9efe1cc717b046b48df63a3c280db1c2c4f60bf866f2b9350623318",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/annotations.json",
+      "baseline_sha256": "eda661f0beb4b0aade9e62db2d24c11793ac64521ce9e6573094e7315f650cde",
+      "current_sha256": "eda661f0beb4b0aade9e62db2d24c11793ac64521ce9e6573094e7315f650cde",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/development/single_turn.jsonl",
+      "baseline_sha256": "c8146eface39d50c3f8f5832c062f8f80855a3641bb6b1ef4dddc8b6e83a014e",
+      "current_sha256": "c8146eface39d50c3f8f5832c062f8f80855a3641bb6b1ef4dddc8b6e83a014e",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/README.md",
+      "baseline_sha256": "8fcb48526b9411f26a8564c972b0ed1ba7155f9e3fb2ec9edf336ae7a7b00ceb",
+      "current_sha256": "8fcb48526b9411f26a8564c972b0ed1ba7155f9e3fb2ec9edf336ae7a7b00ceb",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/baseline-preservation.json",
+      "baseline_sha256": "341f25a20be05bf65055d4d8e33a83b85cbeb3eed48dde37ebf773c3f92e1b2a",
+      "current_sha256": "341f25a20be05bf65055d4d8e33a83b85cbeb3eed48dde37ebf773c3f92e1b2a",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/chunk-audit.json",
+      "baseline_sha256": "9c41c2a2d0f86da64874f89432e33992ea9becde7663fda95cc50fd0d67004cd",
+      "current_sha256": "9c41c2a2d0f86da64874f89432e33992ea9becde7663fda95cc50fd0d67004cd",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/editorial-corrections.json",
+      "baseline_sha256": "bf11e2206af16782d47b102ce1d9ae28de6bbccf4511a8ff03d970fe9c7d12f3",
+      "current_sha256": "bf11e2206af16782d47b102ce1d9ae28de6bbccf4511a8ff03d970fe9c7d12f3",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/labels.json",
+      "baseline_sha256": "867b2e37621ade632616ff688237e892b5f19d1aca338cfa8fedd19d58770a64",
+      "current_sha256": "867b2e37621ade632616ff688237e892b5f19d1aca338cfa8fedd19d58770a64",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/parsing.json",
+      "baseline_sha256": "5b499c760531bf33e98a43ac7d465a09f9bd4a4f7798bba31f20b2d3966ec759",
+      "current_sha256": "5b499c760531bf33e98a43ac7d465a09f9bd4a4f7798bba31f20b2d3966ec759",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/readiness.json",
+      "baseline_sha256": "6765a2fd306b13f44b382d95a6674d9379fddffd55af4d03c2a93f95c27bced7",
+      "current_sha256": "6765a2fd306b13f44b382d95a6674d9379fddffd55af4d03c2a93f95c27bced7",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-offline-r1/validation.json",
+      "baseline_sha256": "63ea100a811808e881e6a18d20cbe8f48bcc4d25f184ebd735b9b62a88cc746b",
+      "current_sha256": "63ea100a811808e881e6a18d20cbe8f48bcc4d25f184ebd735b9b62a88cc746b",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/README.md",
+      "baseline_sha256": "17f88d95342322e747b34ff3fd556cd1012b6e4276b1b389132d5bbe32fd1a43",
+      "current_sha256": "17f88d95342322e747b34ff3fd556cd1012b6e4276b1b389132d5bbe32fd1a43",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/baseline-preservation.json",
+      "baseline_sha256": "395fbd91a877a6cb0198ff2a67d85670d4cb73b91d24f973fa37dc94f55681fb",
+      "current_sha256": "395fbd91a877a6cb0198ff2a67d85670d4cb73b91d24f973fa37dc94f55681fb",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/chunk-audit.json",
+      "baseline_sha256": "f99a1200ad5d47b37e86dd297536dc28a7c3268088011d14796ee901979679a1",
+      "current_sha256": "f99a1200ad5d47b37e86dd297536dc28a7c3268088011d14796ee901979679a1",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/comparison.json",
+      "baseline_sha256": "416fc4dffbc8c90086d8052de4cac6ddf7146c25a1ebf9239857dbc9dd3b20d9",
+      "current_sha256": "416fc4dffbc8c90086d8052de4cac6ddf7146c25a1ebf9239857dbc9dd3b20d9",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/labels.json",
+      "baseline_sha256": "2e034f01cd704da20597e91b74089a773434966ae7dd8b39263ae19c4b694fb9",
+      "current_sha256": "2e034f01cd704da20597e91b74089a773434966ae7dd8b39263ae19c4b694fb9",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/parsing.json",
+      "baseline_sha256": "a0f0ad0bb7d1e312f067f5c7781cd8f24dd4986d43adfb0c7a50900e078425f8",
+      "current_sha256": "a0f0ad0bb7d1e312f067f5c7781cd8f24dd4986d43adfb0c7a50900e078425f8",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/readiness.json",
+      "baseline_sha256": "7c38c48980f22f6a13960041267f1938804611443a401a68c9c7b4f4ec124b35",
+      "current_sha256": "7c38c48980f22f6a13960041267f1938804611443a401a68c9c7b4f4ec124b35",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/validation.json",
+      "baseline_sha256": "9a5980f1574f76e0300859ccf76f12cb5659f0f7882518e1207badf237a92903",
+      "current_sha256": "9a5980f1574f76e0300859ccf76f12cb5659f0f7882518e1207badf237a92903",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/splits.json",
+      "baseline_sha256": "8ec785ae0a4513df83a8278211d135bd8c7fb29d70d67f27ccdadd1dceca1c9e",
+      "current_sha256": "8ec785ae0a4513df83a8278211d135bd8c7fb29d70d67f27ccdadd1dceca1c9e",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/test/single_turn.jsonl",
+      "baseline_sha256": "7a7d49ba60f518d99a715c3e843a6777113e407953e8584d92338a35fa0f7f6a",
+      "current_sha256": "7a7d49ba60f518d99a715c3e843a6777113e407953e8584d92338a35fa0f7f6a",
+      "unchanged": true
+    },
+    {
+      "path": "evals/manufacturing_zh_v3/visual-review.json",
+      "baseline_sha256": "b2d971c74bb7a7fec555516ab87b612fed3247df0140fa3a8891abb9b314d85c",
+      "current_sha256": "b2d971c74bb7a7fec555516ab87b612fed3247df0140fa3a8891abb9b314d85c",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/README.md",
+      "baseline_sha256": "3c56b12ba96bf1d8fcc6031fbdb501fd29786fbae3824e19ae5c8533dcd93c17",
+      "current_sha256": "3c56b12ba96bf1d8fcc6031fbdb501fd29786fbae3824e19ae5c8533dcd93c17",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/annotations.json",
+      "baseline_sha256": "8bbc0add085bc8f4beda4f5f0effa93463aeb5c6fe7fd5e17cfe0ddfbb48bf2d",
+      "current_sha256": "8bbc0add085bc8f4beda4f5f0effa93463aeb5c6fe7fd5e17cfe0ddfbb48bf2d",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/plan.json",
+      "baseline_sha256": "6b00070d8af34e2052476faa452915771d1ed3f3c160fd8fdd769073e9847f0f",
+      "current_sha256": "6b00070d8af34e2052476faa452915771d1ed3f3c160fd8fdd769073e9847f0f",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/README.md",
+      "baseline_sha256": "52e6398817a25317b92bf90fe818b0a6bf75ff665c177b19ea7625f9a59c6e01",
+      "current_sha256": "52e6398817a25317b92bf90fe818b0a6bf75ff665c177b19ea7625f9a59c6e01",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/baseline-preservation.json",
+      "baseline_sha256": "e544cdbe2fd20d9cf37504e1b2455fd2c2ba091cc24f950c5857cdef2f7bc6c5",
+      "current_sha256": "e544cdbe2fd20d9cf37504e1b2455fd2c2ba091cc24f950c5857cdef2f7bc6c5",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/baseline.json",
+      "baseline_sha256": "bb68cc8de3cfa11c83c68f96a85b7af9aa53db46c281487ba5c3d999b1a23024",
+      "current_sha256": "bb68cc8de3cfa11c83c68f96a85b7af9aa53db46c281487ba5c3d999b1a23024",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/candidate.json",
+      "baseline_sha256": "f0db96f3956cb5c891ecb8ec8dbe20025b0c2db0da4b9f46df84a0b86f2a5373",
+      "current_sha256": "f0db96f3956cb5c891ecb8ec8dbe20025b0c2db0da4b9f46df84a0b86f2a5373",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/comparison.json",
+      "baseline_sha256": "73af82d644bf8df64f44ba9ff6c391eeea5edfa41708b47547660fcc16ef1c64",
+      "current_sha256": "73af82d644bf8df64f44ba9ff6c391eeea5edfa41708b47547660fcc16ef1c64",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/manual-review.json",
+      "baseline_sha256": "aef79e6e20ab5ef3b9d5de69c25c568caeb40b935c28abdab72a78aadb87a5ee",
+      "current_sha256": "aef79e6e20ab5ef3b9d5de69c25c568caeb40b935c28abdab72a78aadb87a5ee",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/provenance.json",
+      "baseline_sha256": "780e6adc7363dd2a58e6e50a857a1ee0ad04f0fa52415e7e20fcf20b32d8a08d",
+      "current_sha256": "780e6adc7363dd2a58e6e50a857a1ee0ad04f0fa52415e7e20fcf20b32d8a08d",
+      "unchanged": true
+    },
+    {
+      "path": "evals/ocr_small_experiment_v1/reports/20261029-offline-r1/validation.json",
+      "baseline_sha256": "2b8604636e7f8cdd433e1f797af65ae4101f8575d8d3a576ab3e188b95febff9",
+      "current_sha256": "2b8604636e7f8cdd433e1f797af65ae4101f8575d8d3a576ab3e188b95febff9",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/README.md",
+      "baseline_sha256": "f28bc457f7d09dfe98a1a06210d97f50d3321a07a4f525eef8585c2c173c5f56",
+      "current_sha256": "f28bc457f7d09dfe98a1a06210d97f50d3321a07a4f525eef8585c2c173c5f56",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/公共参考/01_量具使用与测量准备手册.pdf",
+      "baseline_sha256": "e73a871c1026534567dcb9bab4bad08399cebc033523b480781ea532b4e30f2f",
+      "current_sha256": "e73a871c1026534567dcb9bab4bad08399cebc033523b480781ea532b4e30f2f",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/公共参考/05_NIST量块手册公开参考.pdf",
+      "baseline_sha256": "a798535274ef279adacce559217ae231b74c79ceadea7b1103bc7bcb15bf0acd",
+      "current_sha256": "a798535274ef279adacce559217ae231b74c79ceadea7b1103bc7bcb15bf0acd",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/公共参考/10_产品工序与文件路由.md",
+      "baseline_sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+      "current_sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/公共参考/13_历史文件查询与变更说明.md",
+      "baseline_sha256": "8d6d6e79537b95cf50bd3e0b196d0f2117310cdb7209ce69987d2439171a9fcd",
+      "current_sha256": "8d6d6e79537b95cf50bd3e0b196d0f2117310cdb7209ce69987d2439171a9fcd",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/02_首件确认与工序交接流程.pdf",
+      "baseline_sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+      "current_sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/04_定位治具更换通知扫描件.pdf",
+      "baseline_sha256": "e0e49d1e9886154beea20798183020d7ad5b1c661cde2e30293fcf746e1343e3",
+      "current_sha256": "e0e49d1e9886154beea20798183020d7ad5b1c661cde2e30293fcf746e1343e3",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/06_HC-A17_OP20作业指导书历史版.docx",
+      "baseline_sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+      "current_sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/07_HC-A17_OP20作业指导书现行版.docx",
+      "baseline_sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+      "current_sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/09_工艺变更通知ECN-2026-018.docx",
+      "baseline_sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+      "current_sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/11_工艺常见问题.md",
+      "baseline_sha256": "f4dddd4fa5305665ab1f78407cb3007c36436250301ac8c94e3cb91a4b2abb5c",
+      "current_sha256": "f4dddd4fa5305665ab1f78407cb3007c36436250301ac8c94e3cb91a4b2abb5c",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/14_工单WO-017班次交接记录.txt",
+      "baseline_sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+      "current_sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/生产工艺/15_工单WO-018班次交接记录.txt",
+      "baseline_sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+      "current_sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/03_检验项目与量具对照表.pdf",
+      "baseline_sha256": "20bb924d978b08af9be7d35f311a9c391252f1b25e5211ec815978a2f0a9621a",
+      "current_sha256": "20bb924d978b08af9be7d35f311a9c391252f1b25e5211ec815978a2f0a9621a",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/08_HC-A17首件检验规范.docx",
+      "baseline_sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+      "current_sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/12_检验记录填写与追溯规则.md",
+      "baseline_sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+      "current_sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/16_首件检验记录B-1026-017.txt",
+      "baseline_sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+      "current_sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/documents/质量检验/17_量具点检与隔离交接记录.txt",
+      "baseline_sha256": "7147abdb03049bda57bf540710577f9736f2aca66589a6b91444ce30aea0b8f3",
+      "current_sha256": "7147abdb03049bda57bf540710577f9736f2aca66589a6b91444ce30aea0b8f3",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/manifest.json",
+      "baseline_sha256": "33008b62e400060907bab2c920240120e34ce40a267869c1805ba7a69acd587a",
+      "current_sha256": "33008b62e400060907bab2c920240120e34ce40a267869c1805ba7a69acd587a",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_lite/validation/scan_ground_truth.json",
+      "baseline_sha256": "586557ca294a5971c6fa30276ff5bbc820f8715b9dbd7a7ebe27e30afc08a3db",
+      "current_sha256": "586557ca294a5971c6fa30276ff5bbc820f8715b9dbd7a7ebe27e30afc08a3db",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2.sources.json",
+      "baseline_sha256": "53875a98872f35a039315b7a7153614687c68dc8dd2f4bb94649f449dd03e5f1",
+      "current_sha256": "53875a98872f35a039315b7a7153614687c68dc8dd2f4bb94649f449dd03e5f1",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/NOTICE.md",
+      "baseline_sha256": "af57b59872d59e3f0dc5a50d3bceba4f0cb3c0cfab103dea47861ab258801394",
+      "current_sha256": "af57b59872d59e3f0dc5a50d3bceba4f0cb3c0cfab103dea47861ab258801394",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/README.md",
+      "baseline_sha256": "ecc07419c3037bf4770ee66a98f300d729fd1ab9d94a3f95070a98c787ff7019",
+      "current_sha256": "ecc07419c3037bf4770ee66a98f300d729fd1ab9d94a3f95070a98c787ff7019",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/01_量具使用与测量准备手册.pdf",
+      "baseline_sha256": "e73a871c1026534567dcb9bab4bad08399cebc033523b480781ea532b4e30f2f",
+      "current_sha256": "e73a871c1026534567dcb9bab4bad08399cebc033523b480781ea532b4e30f2f",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/05_NIST量块手册公开参考.pdf",
+      "baseline_sha256": "a798535274ef279adacce559217ae231b74c79ceadea7b1103bc7bcb15bf0acd",
+      "current_sha256": "a798535274ef279adacce559217ae231b74c79ceadea7b1103bc7bcb15bf0acd",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/10_产品工序与文件路由.md",
+      "baseline_sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+      "current_sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/13_历史文件查询与变更说明.md",
+      "baseline_sha256": "8d6d6e79537b95cf50bd3e0b196d0f2117310cdb7209ce69987d2439171a9fcd",
+      "current_sha256": "8d6d6e79537b95cf50bd3e0b196d0f2117310cdb7209ce69987d2439171a9fcd",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P02_Contact_Deformation_in_Gage_Block_Comparisons.pdf",
+      "baseline_sha256": "892713b49363f1d4b15fea9ec532b1a77f587a2b8c8dae6c7f62d9a4e65ba7b5",
+      "current_sha256": "892713b49363f1d4b15fea9ec532b1a77f587a2b8c8dae6c7f62d9a4e65ba7b5",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P03_Preparations_for_Gage_Block_Comparison_Measurements.pdf",
+      "baseline_sha256": "dc3bc9eb2b88daf15674e4e82b5f8014e752f66b342ab9d2ed35d369ed5f8446",
+      "current_sha256": "dc3bc9eb2b88daf15674e4e82b5f8014e752f66b342ab9d2ed35d369ed5f8446",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P04_Intercomparison_Procedures_for_Gage_Blocks_Using_Electromechanical_Comparators.pdf",
+      "baseline_sha256": "30b4d3bbf9367c47787479bfc73388028bc264bff5d24e6f09576b445cff9fde",
+      "current_sha256": "30b4d3bbf9367c47787479bfc73388028bc264bff5d24e6f09576b445cff9fde",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P05_Uncertainty_and_Dimensional_Calibrations.pdf",
+      "baseline_sha256": "965b620effe2216edb9e8da0f6bc7c290b21c4e00b8b727ef576bb940b564990",
+      "current_sha256": "965b620effe2216edb9e8da0f6bc7c290b21c4e00b8b727ef576bb940b564990",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P06_Guidelines_for_Evaluating_and_Expressing_the_Uncertainty_of_NIST_Measurement_Results.pdf",
+      "baseline_sha256": "f2c8e6026d5589a63d492f192b72cd905f554b477a6049532256170aec477e92",
+      "current_sha256": "f2c8e6026d5589a63d492f192b72cd905f554b477a6049532256170aec477e92",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P07_Traceability_of_Laser_Interferometric_Length_Measurements.pdf",
+      "baseline_sha256": "df46514f11692d7b1af06f9e9aa0f6cc7bdf9e0cea9f133027782292e4602d49",
+      "current_sha256": "df46514f11692d7b1af06f9e9aa0f6cc7bdf9e0cea9f133027782292e4602d49",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P08_On_Characterizing_Master_Involute_Profiles.pdf",
+      "baseline_sha256": "e57ec6c8eade96f9fc2568eda8d6aaf56bb9335824d8ce5a0ed8a9a149facf4f",
+      "current_sha256": "e57ec6c8eade96f9fc2568eda8d6aaf56bb9335824d8ce5a0ed8a9a149facf4f",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P09_Measurements_of_Cylindrical_Standards.pdf",
+      "baseline_sha256": "8d0834b0d741b8e36a1ead69207dd6f8423468e520813cb588359451f96bdc4d",
+      "current_sha256": "8d0834b0d741b8e36a1ead69207dd6f8423468e520813cb588359451f96bdc4d",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P10_Gage_Block_Flatness_and_Parallelism_Measurement.pdf",
+      "baseline_sha256": "5540ff52116f5f4cde10572a330c0df9be42d54d23c017ac20c85622a91dbcec",
+      "current_sha256": "5540ff52116f5f4cde10572a330c0df9be42d54d23c017ac20c85622a91dbcec",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P11_On_the_Compression_of_a_Cylinder_in_Contact_with_a_Plane_Surface.pdf",
+      "baseline_sha256": "981264a30d2e863c4d94d973b5ea0a312de0f8addb467c42aa83978198f5cece",
+      "current_sha256": "981264a30d2e863c4d94d973b5ea0a312de0f8addb467c42aa83978198f5cece",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P12_A_Method_of_Calibrating_Two-dimensional_Reference_Plates.pdf",
+      "baseline_sha256": "a442542739607920bc2feba4708b743dbffe8b73c321b5792d1d1076b0dafc10",
+      "current_sha256": "a442542739607920bc2feba4708b743dbffe8b73c321b5792d1d1076b0dafc10",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P13_The_Calibration_of_a_Roundness_Standard.pdf",
+      "baseline_sha256": "3935d69b339207b1a9578d695963c62ad3f9e4ad3ccd7c9b4704cfd74d35dc09",
+      "current_sha256": "3935d69b339207b1a9578d695963c62ad3f9e4ad3ccd7c9b4704cfd74d35dc09",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P14_The_Calibration_of_Indexing_Tables_by_Subdivision.pdf",
+      "baseline_sha256": "37846d8a831435c23acef740687f09470fc5c1dd9e3c041e591a3a71685ab3de",
+      "current_sha256": "37846d8a831435c23acef740687f09470fc5c1dd9e3c041e591a3a71685ab3de",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P15_The_Calibration_of_a_Pentaprism.pdf",
+      "baseline_sha256": "1bcbccd47e6cf926747e95c4c13b113498852fcac812b650764a2018afc463e8",
+      "current_sha256": "1bcbccd47e6cf926747e95c4c13b113498852fcac812b650764a2018afc463e8",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P16_The_Calibration_of_Angle_Blocks_by_Intercomparison.pdf",
+      "baseline_sha256": "a3f0bacaa88d81cb26d63cff47c4082cd4faf1a0c3e98952f3a0d56351ee2551",
+      "current_sha256": "a3f0bacaa88d81cb26d63cff47c4082cd4faf1a0c3e98952f3a0d56351ee2551",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P17_The_Calibration_of_an_Optical_Flat_by_Interferometric_Comparison_to_a_Master_Optical_Flat.pdf",
+      "baseline_sha256": "9b87524b1ee01037fd5575f6d88762f856baf19622016aa83a1666ddb27ed273",
+      "current_sha256": "9b87524b1ee01037fd5575f6d88762f856baf19622016aa83a1666ddb27ed273",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P18_Measurement_Assurance_Program_A_Case_Study_Length_Measurements.pdf",
+      "baseline_sha256": "b8d27714753cea64bbe7e5f76a06dd4b719c5071209abc39ba7ca30c419805d1",
+      "current_sha256": "b8d27714753cea64bbe7e5f76a06dd4b719c5071209abc39ba7ca30c419805d1",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P19_Measurement_Assurance_for_Gage_Blocks.pdf",
+      "baseline_sha256": "817de0fd84545ec86d4393bbeb2adeb0f053d7ca945e1e00a56f0ce3d40be31b",
+      "current_sha256": "817de0fd84545ec86d4393bbeb2adeb0f053d7ca945e1e00a56f0ce3d40be31b",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-P20_Notes_on_the_Fundamentals_of_Measurement_and_Measurement_as_a_Production_Process.pdf",
+      "baseline_sha256": "aa3055cd9a152e8b1bc2407a35aa5004b3a6b9c83def5a53fc12c619d5c238e6",
+      "current_sha256": "aa3055cd9a152e8b1bc2407a35aa5004b3a6b9c83def5a53fc12c619d5c238e6",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W01_What_are_the_issues_for_characterization.md",
+      "baseline_sha256": "12175e447b1b0cc9d4233fab8e1c6b83a545f61075cc231decd751349cb56668",
+      "current_sha256": "12175e447b1b0cc9d4233fab8e1c6b83a545f61075cc231decd751349cb56668",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W02_What_is_a_check_standard.md",
+      "baseline_sha256": "d59927d85046a60558a0f70186d7265077cdc58454667de680aaf1b26138b6d2",
+      "current_sha256": "d59927d85046a60558a0f70186d7265077cdc58454667de680aaf1b26138b6d2",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W03_Issues_in_controlling_the_measurement_process.md",
+      "baseline_sha256": "836f86261259b1e8bb7a0d84f61858822e16bc6dbaf7cc6e7d5ce3feca01c453",
+      "current_sha256": "836f86261259b1e8bb7a0d84f61858822e16bc6dbaf7cc6e7d5ce3feca01c453",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W04_How_are_bias_and_variability_controlled.md",
+      "baseline_sha256": "9f9bf6491aad1b2f4aa3436997564eb0a3e08e7962bdf2a0a1e9919ecd92a221",
+      "current_sha256": "9f9bf6491aad1b2f4aa3436997564eb0a3e08e7962bdf2a0a1e9919ecd92a221",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W05_How_is_short-term_variability_controlled.md",
+      "baseline_sha256": "04cadbd38f35394b2ecb312e6ac2a52e30d041811a8e9b962718870114828403",
+      "current_sha256": "04cadbd38f35394b2ecb312e6ac2a52e30d041811a8e9b962718870114828403",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W06_Issues_in_calibration.md",
+      "baseline_sha256": "b1b24fe74e06b376d47ad9e9d3ca4d68a3317c163eab63cec9a58ff9a254dff4",
+      "current_sha256": "b1b24fe74e06b376d47ad9e9d3ca4d68a3317c163eab63cec9a58ff9a254dff4",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W07_Type_A_evaluations.md",
+      "baseline_sha256": "4745c5fc9177bb58b88965f8dba0242901a7b1188c5d5ff72144ca9cac12639c",
+      "current_sha256": "4745c5fc9177bb58b88965f8dba0242901a7b1188c5d5ff72144ca9cac12639c",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W08_Type_B_evaluations.md",
+      "baseline_sha256": "84991deb065296592fcce1ad9ad37f26312262b5e6bc2e40918eec9536fbf091",
+      "current_sha256": "84991deb065296592fcce1ad9ad37f26312262b5e6bc2e40918eec9536fbf091",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W09_What_is_Production_Process_Characterization.md",
+      "baseline_sha256": "fb73276495565be090dcb58bad8627d369ad0c8992dc325c1854600059df2f8f",
+      "current_sha256": "fb73276495565be090dcb58bad8627d369ad0c8992dc325c1854600059df2f8f",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W10_What_are_PPC_studies_used_for.md",
+      "baseline_sha256": "f3aab92ed72400743ca9bbc964778f840bdc39e07ca98148ed91b4b9ba6505c0",
+      "current_sha256": "f3aab92ed72400743ca9bbc964778f840bdc39e07ca98148ed91b4b9ba6505c0",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W11_Define_Sampling_Plan.md",
+      "baseline_sha256": "c4ffb06e621d59bbf41a87466d35aa325039386254b126067958474b724dcca3",
+      "current_sha256": "c4ffb06e621d59bbf41a87466d35aa325039386254b126067958474b724dcca3",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W12_Assessing_Process_Capability.md",
+      "baseline_sha256": "d9999185537967e588965f6807b79dce06987d2a5f73161244180db2e46b12a6",
+      "current_sha256": "d9999185537967e588965f6807b79dce06987d2a5f73161244180db2e46b12a6",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W13_What_are_Process_Control_Techniques.md",
+      "baseline_sha256": "c42e460d253310765cee18b94c2570de71acb8d1fbbd4acfded85d5714847d03",
+      "current_sha256": "c42e460d253310765cee18b94c2570de71acb8d1fbbd4acfded85d5714847d03",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W14_What_is_Process_Control.md",
+      "baseline_sha256": "224c29eeb4b77167ed65e11802386b62a034e619d8fada879ca3651d267fab61",
+      "current_sha256": "224c29eeb4b77167ed65e11802386b62a034e619d8fada879ca3651d267fab61",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W15_What_to_do_if_the_process_is_Out_of_Control.md",
+      "baseline_sha256": "d5976606f0a5fe3fa01ef2a3879d7df87205e05963442b152a1b20866cdd071e",
+      "current_sha256": "d5976606f0a5fe3fa01ef2a3879d7df87205e05963442b152a1b20866cdd071e",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W16_What_to_do_if_In_Control_but_Unacceptable.md",
+      "baseline_sha256": "2ffdc557ac78fec2c9ba5053e517482715fd854ee5ed154581496c399e5a72e5",
+      "current_sha256": "2ffdc557ac78fec2c9ba5053e517482715fd854ee5ed154581496c399e5a72e5",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W17_What_is_Process_Capability.md",
+      "baseline_sha256": "a493b3277e5b9a69025ff6d08e5505437365100087dabbf030421e2a40ade1b7",
+      "current_sha256": "a493b3277e5b9a69025ff6d08e5505437365100087dabbf030421e2a40ade1b7",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W18_What_is_Acceptance_Sampling.md",
+      "baseline_sha256": "9aca3bf1a4abee023e702f7cb8cd93854af66c4dc814ec18590784d3d2e60a96",
+      "current_sha256": "9aca3bf1a4abee023e702f7cb8cd93854af66c4dc814ec18590784d3d2e60a96",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W19_Kinds_of_Lot_Acceptance_Sampling_Plans.md",
+      "baseline_sha256": "399ce46f22007d4fc99075a294dbda8469c2097c666f16ba8b5e038fb3d922ba",
+      "current_sha256": "399ce46f22007d4fc99075a294dbda8469c2097c666f16ba8b5e038fb3d922ba",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W20_What_is_Double_Sampling.md",
+      "baseline_sha256": "f5fb2051d840130680f6ff8b657f7e1a680973d60aeed63e9b6d12cc245e4e24",
+      "current_sha256": "f5fb2051d840130680f6ff8b657f7e1a680973d60aeed63e9b6d12cc245e4e24",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W21_What_is_Multiple_Sampling.md",
+      "baseline_sha256": "7c6409a80a8a072f24519c5d780d3014adea5a37d3fe15fde5993c1a36cea4d8",
+      "current_sha256": "7c6409a80a8a072f24519c5d780d3014adea5a37d3fe15fde5993c1a36cea4d8",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W22_What_is_a_Sequential_Sampling_Plan.md",
+      "baseline_sha256": "b11e0c728e78132aad63389c1ee0297eaf4911d82f902f6be0a29785e3de177c",
+      "current_sha256": "b11e0c728e78132aad63389c1ee0297eaf4911d82f902f6be0a29785e3de177c",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W23_What_is_Skip_Lot_Sampling.md",
+      "baseline_sha256": "8831c9a082200ab6fdc0f434c47196293d1f8b8c5f31c664a19ab9810517a15b",
+      "current_sha256": "8831c9a082200ab6fdc0f434c47196293d1f8b8c5f31c664a19ab9810517a15b",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/公共参考/MFG-W24_What_are_Control_Charts.md",
+      "baseline_sha256": "0b754daa47182b4c5dd4f0b015e2ea958cc7cc21291e70b079af3aa3bc509885",
+      "current_sha256": "0b754daa47182b4c5dd4f0b015e2ea958cc7cc21291e70b079af3aa3bc509885",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/02_首件确认与工序交接流程.pdf",
+      "baseline_sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+      "current_sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/04_定位治具更换通知扫描件.pdf",
+      "baseline_sha256": "e0e49d1e9886154beea20798183020d7ad5b1c661cde2e30293fcf746e1343e3",
+      "current_sha256": "e0e49d1e9886154beea20798183020d7ad5b1c661cde2e30293fcf746e1343e3",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/06_HC-A17_OP20作业指导书历史版.docx",
+      "baseline_sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+      "current_sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/07_HC-A17_OP20作业指导书现行版.docx",
+      "baseline_sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+      "current_sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/09_工艺变更通知ECN-2026-018.docx",
+      "baseline_sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+      "current_sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/11_工艺常见问题.md",
+      "baseline_sha256": "f4dddd4fa5305665ab1f78407cb3007c36436250301ac8c94e3cb91a4b2abb5c",
+      "current_sha256": "f4dddd4fa5305665ab1f78407cb3007c36436250301ac8c94e3cb91a4b2abb5c",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/14_工单WO-017班次交接记录.txt",
+      "baseline_sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+      "current_sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/生产工艺/15_工单WO-018班次交接记录.txt",
+      "baseline_sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+      "current_sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/03_检验项目与量具对照表.pdf",
+      "baseline_sha256": "20bb924d978b08af9be7d35f311a9c391252f1b25e5211ec815978a2f0a9621a",
+      "current_sha256": "20bb924d978b08af9be7d35f311a9c391252f1b25e5211ec815978a2f0a9621a",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/08_HC-A17首件检验规范.docx",
+      "baseline_sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+      "current_sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/12_检验记录填写与追溯规则.md",
+      "baseline_sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+      "current_sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/16_首件检验记录B-1026-017.txt",
+      "baseline_sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+      "current_sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/documents/质量检验/17_量具点检与隔离交接记录.txt",
+      "baseline_sha256": "7147abdb03049bda57bf540710577f9736f2aca66589a6b91444ce30aea0b8f3",
+      "current_sha256": "7147abdb03049bda57bf540710577f9736f2aca66589a6b91444ce30aea0b8f3",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/manifest.json",
+      "baseline_sha256": "8cdb80bbab4ac3c113f61a58ccefe1c488e721e84fcd03f7cbbdb0c50c99a792",
+      "current_sha256": "8cdb80bbab4ac3c113f61a58ccefe1c488e721e84fcd03f7cbbdb0c50c99a792",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W01.html",
+      "baseline_sha256": "9e55c3e18d9a9174de7db1112d5ae44a79e9750bdee4092226100a9a27baa280",
+      "current_sha256": "9e55c3e18d9a9174de7db1112d5ae44a79e9750bdee4092226100a9a27baa280",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W02.html",
+      "baseline_sha256": "9346c072092a5313352586faea1eeb28823618829e777517edb1a193de4d6f15",
+      "current_sha256": "9346c072092a5313352586faea1eeb28823618829e777517edb1a193de4d6f15",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W03.html",
+      "baseline_sha256": "653d1d614a6262b2fefc965a0227196d64bafc4e679b41944c1ddc0f5f4a9c7e",
+      "current_sha256": "653d1d614a6262b2fefc965a0227196d64bafc4e679b41944c1ddc0f5f4a9c7e",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W04.html",
+      "baseline_sha256": "8f57b7af720b17f4a208699967d0ab4d4e11a8ed5d659611c6c2fa2b5b9dcb60",
+      "current_sha256": "8f57b7af720b17f4a208699967d0ab4d4e11a8ed5d659611c6c2fa2b5b9dcb60",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W05.html",
+      "baseline_sha256": "5f92f6fe8a07b23585e26285d7f16265a78e76e5dddde64ec491292bbe0d259c",
+      "current_sha256": "5f92f6fe8a07b23585e26285d7f16265a78e76e5dddde64ec491292bbe0d259c",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W06.html",
+      "baseline_sha256": "94dc837bfdd4573c61aab42f7d02ef7dab7e54ebd8920614398566754b8ae4a0",
+      "current_sha256": "94dc837bfdd4573c61aab42f7d02ef7dab7e54ebd8920614398566754b8ae4a0",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W07.html",
+      "baseline_sha256": "5185f462f52d10e475039e7e0e42958379f9ae78f7287700d3b0c2b02532abdc",
+      "current_sha256": "5185f462f52d10e475039e7e0e42958379f9ae78f7287700d3b0c2b02532abdc",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W08.html",
+      "baseline_sha256": "1bb89339652ff823c70d406de6460b76c2e822fadb5a9d7f34f79faf3700eed1",
+      "current_sha256": "1bb89339652ff823c70d406de6460b76c2e822fadb5a9d7f34f79faf3700eed1",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W09.html",
+      "baseline_sha256": "64c860e29d68d954df81ca047020f2c6244240bc766e18989a34e915d3338d2a",
+      "current_sha256": "64c860e29d68d954df81ca047020f2c6244240bc766e18989a34e915d3338d2a",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W10.html",
+      "baseline_sha256": "941cf857554339180f43a26cab987159469ccdca2e91e50c30b29f2670a93798",
+      "current_sha256": "941cf857554339180f43a26cab987159469ccdca2e91e50c30b29f2670a93798",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W11.html",
+      "baseline_sha256": "2444efea65961380ce68d8024873296effdd7b35a49fc01f8eabae020365cb03",
+      "current_sha256": "2444efea65961380ce68d8024873296effdd7b35a49fc01f8eabae020365cb03",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W12.html",
+      "baseline_sha256": "c6bd621936dddc38d5f1766a713edf6c3cb1cb85e5e46d3bb0a4f9f533976898",
+      "current_sha256": "c6bd621936dddc38d5f1766a713edf6c3cb1cb85e5e46d3bb0a4f9f533976898",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W13.html",
+      "baseline_sha256": "85771c7c3f6b72bdd7eeebf7b1be56f8647b78de33eed34238c0dde913f8e8ce",
+      "current_sha256": "85771c7c3f6b72bdd7eeebf7b1be56f8647b78de33eed34238c0dde913f8e8ce",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W14.html",
+      "baseline_sha256": "0d3364347d18acc70cdde21d80333a36691295455f9b75cbfcaf7b872f1a6ef0",
+      "current_sha256": "0d3364347d18acc70cdde21d80333a36691295455f9b75cbfcaf7b872f1a6ef0",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W15.html",
+      "baseline_sha256": "daebc7b53ed0d86df9545e7929e53313c317dd38e9dbd63e4a4e327f5f9884b7",
+      "current_sha256": "daebc7b53ed0d86df9545e7929e53313c317dd38e9dbd63e4a4e327f5f9884b7",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W16.html",
+      "baseline_sha256": "6b696521df3d518b0f70f8aad8120fe2d7069674b8c0136c1b3d0729bb4aee29",
+      "current_sha256": "6b696521df3d518b0f70f8aad8120fe2d7069674b8c0136c1b3d0729bb4aee29",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W17.html",
+      "baseline_sha256": "71512a20a8d34353fd920451e679e80bf988e6fd3a917f8e2f2a1cf7700963e3",
+      "current_sha256": "71512a20a8d34353fd920451e679e80bf988e6fd3a917f8e2f2a1cf7700963e3",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W18.html",
+      "baseline_sha256": "6c85d37f14ed3d08155442c65256ba3a169c4044a05c971c2a5364dd06f5823f",
+      "current_sha256": "6c85d37f14ed3d08155442c65256ba3a169c4044a05c971c2a5364dd06f5823f",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W19.html",
+      "baseline_sha256": "d08a8dea2be6a4cacf90b698aac78fac33cb7d1e5615039f6fc9e317c2a1b2e0",
+      "current_sha256": "d08a8dea2be6a4cacf90b698aac78fac33cb7d1e5615039f6fc9e317c2a1b2e0",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W20.html",
+      "baseline_sha256": "5349db4619e22889c09754d319f0eef92e92c348617d47573df03e05c68df69f",
+      "current_sha256": "5349db4619e22889c09754d319f0eef92e92c348617d47573df03e05c68df69f",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W21.html",
+      "baseline_sha256": "553effd36fedd2dcedb109f6bc8a5c5fe5e6b82c08f65971aef17c33f516eb17",
+      "current_sha256": "553effd36fedd2dcedb109f6bc8a5c5fe5e6b82c08f65971aef17c33f516eb17",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W22.html",
+      "baseline_sha256": "969552a48cdb17c9a320fd9eb51dd283dbb698923649eba03d2c6a9b022d285e",
+      "current_sha256": "969552a48cdb17c9a320fd9eb51dd283dbb698923649eba03d2c6a9b022d285e",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W23.html",
+      "baseline_sha256": "004abe23ba07e3bdba4dcfa38811e8be4bd0287dea37dad71678219595800d27",
+      "current_sha256": "004abe23ba07e3bdba4dcfa38811e8be4bd0287dea37dad71678219595800d27",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_public_v2/originals/MFG-W24.html",
+      "baseline_sha256": "d46f93c30a16c3b76c7410c7da2d49edb16406b72a3a859cab7c05b88a8db6ed",
+      "current_sha256": "d46f93c30a16c3b76c7410c7da2d49edb16406b72a3a859cab7c05b88a8db6ed",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3.sources.json",
+      "baseline_sha256": "a2709ba470c8f57b70bec57b63675f8bccd5355ffa1c398cbd3293bd83b0cf6d",
+      "current_sha256": "a2709ba470c8f57b70bec57b63675f8bccd5355ffa1c398cbd3293bd83b0cf6d",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/README.md",
+      "baseline_sha256": "928b624b964dec3196cfe6fa8483577063dcc2ffd92e77c86e0946ecebf3a425",
+      "current_sha256": "928b624b964dec3196cfe6fa8483577063dcc2ffd92e77c86e0946ecebf3a425",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+      "baseline_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "current_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+      "baseline_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "current_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+      "baseline_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "current_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+      "baseline_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "current_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+      "baseline_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "current_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+      "baseline_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "current_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+      "baseline_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "current_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+      "baseline_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "current_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "baseline_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "current_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+      "baseline_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "current_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+      "baseline_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "current_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+      "baseline_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "current_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+      "baseline_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "current_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+      "baseline_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "current_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+      "baseline_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "current_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+      "baseline_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "current_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+      "baseline_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "current_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+      "baseline_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "current_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/manifest.json",
+      "baseline_sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6",
+      "current_sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/originals/MFG-ZH02.html",
+      "baseline_sha256": "a31bf6d70b7cec62c84045fcb7ada689bbd9d4ceb96e8eaebc5a22e2aaa00930",
+      "current_sha256": "a31bf6d70b7cec62c84045fcb7ada689bbd9d4ceb96e8eaebc5a22e2aaa00930",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/manufacturing_zh_v3/originals/MFG-ZH03.html",
+      "baseline_sha256": "058e47a6f286e953ff1e9c4c680be2fd00e52de8fac69755439565d330047e88",
+      "current_sha256": "058e47a6f286e953ff1e9c4c680be2fd00e52de8fac69755439565d330047e88",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/README.md",
+      "baseline_sha256": "7ea238391a2451aaed6fab061ebc5c435ea710d67306288ad3f9e87da2840890",
+      "current_sha256": "7ea238391a2451aaed6fab061ebc5c435ea710d67306288ad3f9e87da2840890",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/documents/OCR-I01.pdf",
+      "baseline_sha256": "7ed8fa913721668f5f6454e6c4713f245a8f98436131cfd62e2c3e99814faaa4",
+      "current_sha256": "7ed8fa913721668f5f6454e6c4713f245a8f98436131cfd62e2c3e99814faaa4",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/documents/OCR-I02.pdf",
+      "baseline_sha256": "6d7bb8bd06c373ac7b56d57883931189b179e5a61c715f26145651ce4c22eff6",
+      "current_sha256": "6d7bb8bd06c373ac7b56d57883931189b179e5a61c715f26145651ce4c22eff6",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/documents/OCR-I03.pdf",
+      "baseline_sha256": "df54979c9827018b2c7651f4e8bc0c17268e2f51993c90d0075eb497b6ed3583",
+      "current_sha256": "df54979c9827018b2c7651f4e8bc0c17268e2f51993c90d0075eb497b6ed3583",
+      "unchanged": true
+    },
+    {
+      "path": "sample_docs/ocr_independent_v1/manifest.json",
+      "baseline_sha256": "dfface70ea9484dd98b6c425e3428acaf144a3f7e978958d100917cddaaa5315",
+      "current_sha256": "dfface70ea9484dd98b6c425e3428acaf144a3f7e978958d100917cddaaa5315",
+      "unchanged": true
+    }
+  ]
+}

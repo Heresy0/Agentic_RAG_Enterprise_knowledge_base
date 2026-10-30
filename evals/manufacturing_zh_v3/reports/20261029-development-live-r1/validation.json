@@ -1,0 +1,19 @@
+{
+  "full_suite": {
+    "tests": 1511,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 55,
+    "passed": 1456
+  },
+  "http_exit_code": 0,
+  "automatic_replay_exit_code": 1,
+  "reviewed_replay_exit_code": 1,
+  "replay_nonzero_reason": "存在真实失败题；报告已生成，不是执行错误。",
+  "original_database_tables_unchanged": true,
+  "baseline_files_unchanged": 215,
+  "source_and_vector_checks_passed": true,
+  "acl_checks": 25,
+  "frozen_40_questions_unchanged": true,
+  "held_out_80_model_runs": 0
+}

@@ -186,7 +186,7 @@ def test_policy_persistence_legacy_read_and_scope_guards(session, scope_data, tm
     assert own.metadata_json["policy"]["effective_from"] == "2026-07-01"
     for chunk in session.scalars(select(DocumentChunk)):
         assert chunk.metadata_json["policy"]["business_version"] == "1.4"
-    own.metadata_json = {k: v for k, v in own.metadata_json.items() if k != "policy"}
+    own.metadata_json = {k: v for k, v in own.metadata_json.items() if k not in ("policy", "publication")}
     session.commit()  # Emulate a ready legacy index without document policy metadata.
     before = deepcopy(own.metadata_json)
     repository = ChunkRepository(session)
@@ -272,7 +272,10 @@ def test_indexes_file_and_skips_unchanged_file(
     assert document is not None
     assert document.status == "ready"
     assert document.metadata_json["quality"]["review_required"] is False
-    assert all(chunk.metadata_json["cleaning_version"] == "conservative-v1"
+    assert document.metadata_json["quality"]["cleaning"]["trace_count"] > 0
+    assert all(chunk.metadata_json["cleaning_version"] == "conservative-v2"
+               and chunk.metadata_json["cleaning"]["version"] == "conservative-v2"
+               and chunk.metadata_json["cleaning"]["traces"]
                and chunk.metadata_json["evidence_role"] in {"content", "front_matter"}
                for chunk in session.scalars(select(DocumentChunk)))
     assert document.file_size_bytes == file_path.stat().st_size
@@ -319,7 +322,7 @@ def test_old_chunking_version_is_rebuilt_only_on_explicit_indexing(session, scop
     assert service.index_file(file_path=path, scope=scope, created_by_user_id=scope_data.user_id) > 0
     assert embeddings.document_calls == 2
     document = session.scalar(select(KnowledgeDocument))
-    assert document.metadata_json["chunking_version"] == CHUNKING_VERSION == "structured-v4"
+    assert document.metadata_json["chunking_version"] == CHUNKING_VERSION == "structured-v7"
     assert service.index_file(file_path=path, scope=scope, created_by_user_id=scope_data.user_id) == 0
     assert embeddings.document_calls == 2
 

@@ -5,6 +5,7 @@ from sqlalchemy import Engine, and_, bindparam, func, select, text
 from sqlalchemy.orm import Session
 
 from ..db.models import DocumentChunk, KnowledgeDocument
+from ..documents.publication import published_predicate
 from ..security.retrieval_scope import RetrievalScope
 from .keyword_tokenizer import build_keyword_text
 from .chunk_repository import ChunkRepository, StoredChunk
@@ -38,6 +39,7 @@ class PgKeywordRepository:
                 (DocumentChunk.knowledge_base_id.in_(bindparam("knowledge_base_ids", expanding=True))
                  if all_accessible else DocumentChunk.knowledge_base_id == bindparam("knowledge_base_id")),
                 KnowledgeDocument.status == "ready",
+                published_predicate(),
                 DocumentChunk.keyword_text.op("|||", is_comparison=True)(bindparam("keyword_query")),
             )
             .order_by(score.desc(), DocumentChunk.id.asc())

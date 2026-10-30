@@ -1,0 +1,547 @@
+{
+  "evaluation_type": "first_frozen_chinese_development_real_http_run",
+  "base_cleaning_commit": "55e825e2fd34e1ec6d2e0760bd9fd897bf3a9751",
+  "acceptance_runner_commit": "2286510cbff7a96e17b3105ca57810c435aeb748",
+  "chunking_version": "structured-v7",
+  "cleaning_version": "conservative-v2",
+  "parser_sha256": "7c8909bf9ea048eedad8532e7d4cc1f21bcc1ddba7454fc025713351450a4fbc",
+  "corpus_manifest_sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6",
+  "dataset_sha256": "c8146eface39d50c3f8f5832c062f8f80855a3641bb6b1ef4dddc8b6e83a014e",
+  "held_out_test_dataset_sha256": "7a7d49ba60f518d99a715c3e843a6777113e407953e8584d92338a35fa0f7f6a",
+  "held_out_test_questions_run": 0,
+  "questions": 40,
+  "http_complete": 40,
+  "http_errors": 0,
+  "complete_context_snapshots": 40,
+  "qa_request_retries": 0,
+  "index": {
+    "tenant_id": "d07c3522-391a-4bb0-a46c-cca668a277f3",
+    "chunking_version": "structured-v7",
+    "cleaning_version": "conservative-v2",
+    "parser_sha256": "7c8909bf9ea048eedad8532e7d4cc1f21bcc1ddba7454fc025713351450a4fbc",
+    "all_checks_passed": true,
+    "documents": 18,
+    "ready_documents": 17,
+    "chunks": 1034,
+    "vectors": 1034,
+    "parents": 538,
+    "jobs": {
+      "succeeded": 17,
+      "failed": 1
+    },
+    "model_config": {
+      "qa_snapshots_enabled": true,
+      "conversation_memory_enabled": false,
+      "embedding_model": "text-embedding-v4",
+      "rerank_model": "qwen3-rerank"
+    }
+  },
+  "index_by_document_route": {
+    "ordinary": {
+      "documents": 12,
+      "statuses": {
+        "ready": 12
+      },
+      "chunks": 873,
+      "vectors": 873,
+      "review_required_documents": 0
+    },
+    "ocr": {
+      "documents": 6,
+      "statuses": {
+        "failed": 1,
+        "ready": 5
+      },
+      "chunks": 161,
+      "vectors": 161,
+      "review_required_documents": 5
+    }
+  },
+  "automatic_proxy": {
+    "total": 40,
+    "passed": 30,
+    "failed": 10,
+    "error": 0,
+    "skipped": 0,
+    "partial": 0,
+    "not_applicable": 0,
+    "pass_rate": 0.75
+  },
+  "assistant_semantic_review": {
+    "total": 40,
+    "passed": 33,
+    "failed": 7,
+    "error": 0,
+    "skipped": 0,
+    "partial": 0,
+    "not_applicable": 0,
+    "pass_rate": 0.825
+  },
+  "question_groups": {
+    "ordinary": {
+      "questions": 30,
+      "automatic": {
+        "passed": 21,
+        "failed": 9
+      },
+      "assistant_review": {
+        "passed": 27,
+        "failed": 3
+      },
+      "assistant_pass_rate": 0.9
+    },
+    "ocr": {
+      "questions": 0,
+      "automatic": {},
+      "assistant_review": {},
+      "assistant_pass_rate": null
+    },
+    "mixed": {
+      "questions": 0,
+      "automatic": {},
+      "assistant_review": {},
+      "assistant_pass_rate": null
+    },
+    "behavior_no_source": {
+      "questions": 10,
+      "automatic": {
+        "passed": 9,
+        "failed": 1
+      },
+      "assistant_review": {
+        "passed": 6,
+        "failed": 4
+      },
+      "assistant_pass_rate": 0.6
+    }
+  },
+  "negative_behaviors": {
+    "refuse": {
+      "questions": 6,
+      "automatic": {
+        "passed": 6
+      },
+      "assistant_review": {
+        "passed": 6
+      },
+      "assistant_pass_rate": 1.0
+    },
+    "clarify": {
+      "questions": 4,
+      "automatic": {
+        "passed": 3,
+        "failed": 1
+      },
+      "assistant_review": {
+        "failed": 4
+      },
+      "assistant_pass_rate": 0.0
+    }
+  },
+  "final_context": {
+    "total": 40,
+    "passed": 29,
+    "failed": 1,
+    "error": 0,
+    "skipped": 0,
+    "partial": 0,
+    "not_applicable": 10,
+    "pass_rate": 0.9666666666666667
+  },
+  "stored_child_evidence": {
+    "ordinary": {
+      "anchors": 95,
+      "matched": 95
+    },
+    "ocr": {
+      "anchors": 55,
+      "matched": 25
+    }
+  },
+  "ocr_question_limitation": "冻结开发集没有指定OCR来源的正例，OCR专项问答样本量0且准确率为null；N08行为题实际引用OCR和普通资料，不回填分组。",
+  "usage": {
+    "ingestion": {
+      "observed": true,
+      "calls": 111,
+      "reported_total_tokens": 145041,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 111,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "by_stage": {
+        "document_embedding": {
+          "observed": true,
+          "calls": 111,
+          "reported_total_tokens": 145041,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 111,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      }
+    },
+    "qa": {
+      "observed": true,
+      "calls": 128,
+      "reported_total_tokens": 458710,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 128,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "by_stage": {
+        "answer_generation": {
+          "observed": true,
+          "calls": 40,
+          "reported_total_tokens": 222255,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 40,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "answer_repair": {
+          "observed": true,
+          "calls": 1,
+          "reported_total_tokens": 1031,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 1,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_embedding": {
+          "observed": true,
+          "calls": 41,
+          "reported_total_tokens": 1585,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 41,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_planning": {
+          "observed": true,
+          "calls": 5,
+          "reported_total_tokens": 2021,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 5,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "rerank": {
+          "observed": true,
+          "calls": 41,
+          "reported_total_tokens": 231818,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 41,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      }
+    },
+    "total": {
+      "observed": true,
+      "calls": 239,
+      "reported_total_tokens": 603751,
+      "unknown_usage_calls": 0,
+      "unknown_usage_rate": 0.0,
+      "unpriced_calls": 239,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 0,
+      "by_stage": {
+        "answer_generation": {
+          "observed": true,
+          "calls": 40,
+          "reported_total_tokens": 222255,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 40,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "answer_repair": {
+          "observed": true,
+          "calls": 1,
+          "reported_total_tokens": 1031,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 1,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "document_embedding": {
+          "observed": true,
+          "calls": 111,
+          "reported_total_tokens": 145041,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 111,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_embedding": {
+          "observed": true,
+          "calls": 41,
+          "reported_total_tokens": 1585,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 41,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "query_planning": {
+          "observed": true,
+          "calls": 5,
+          "reported_total_tokens": 2021,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 5,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        },
+        "rerank": {
+          "observed": true,
+          "calls": 41,
+          "reported_total_tokens": 231818,
+          "unknown_usage_calls": 0,
+          "unknown_usage_rate": 0.0,
+          "unpriced_calls": 41,
+          "unpersisted_calls": 0,
+          "estimated_cost_by_currency": {},
+          "errors": 0
+        }
+      }
+    },
+    "ingestion_by_document_route": {
+      "ordinary": {
+        "observed": true,
+        "calls": 92,
+        "reported_total_tokens": 120424,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 92,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0,
+        "by_stage": {
+          "document_embedding": {
+            "observed": true,
+            "calls": 92,
+            "reported_total_tokens": 120424,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 92,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          }
+        }
+      },
+      "ocr": {
+        "observed": true,
+        "calls": 19,
+        "reported_total_tokens": 24617,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 19,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0,
+        "by_stage": {
+          "document_embedding": {
+            "observed": true,
+            "calls": 19,
+            "reported_total_tokens": 24617,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 19,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          }
+        }
+      }
+    },
+    "qa_by_question_group": {
+      "ordinary": {
+        "observed": true,
+        "calls": 95,
+        "reported_total_tokens": 337566,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 95,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0,
+        "by_stage": {
+          "answer_generation": {
+            "observed": true,
+            "calls": 30,
+            "reported_total_tokens": 152781,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 30,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          },
+          "answer_repair": {
+            "observed": true,
+            "calls": 1,
+            "reported_total_tokens": 1031,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 1,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          },
+          "query_embedding": {
+            "observed": true,
+            "calls": 30,
+            "reported_total_tokens": 1379,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 30,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          },
+          "query_planning": {
+            "observed": true,
+            "calls": 4,
+            "reported_total_tokens": 1688,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 4,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          },
+          "rerank": {
+            "observed": true,
+            "calls": 30,
+            "reported_total_tokens": 180687,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 30,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          }
+        }
+      },
+      "ocr": {
+        "observed": true,
+        "calls": 0,
+        "reported_total_tokens": 0,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": null,
+        "unpriced_calls": 0,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0,
+        "by_stage": {}
+      },
+      "behavior_no_source": {
+        "observed": true,
+        "calls": 33,
+        "reported_total_tokens": 121144,
+        "unknown_usage_calls": 0,
+        "unknown_usage_rate": 0.0,
+        "unpriced_calls": 33,
+        "unpersisted_calls": 0,
+        "estimated_cost_by_currency": {},
+        "errors": 0,
+        "by_stage": {
+          "answer_generation": {
+            "observed": true,
+            "calls": 10,
+            "reported_total_tokens": 69474,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 10,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          },
+          "query_embedding": {
+            "observed": true,
+            "calls": 11,
+            "reported_total_tokens": 206,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 11,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          },
+          "query_planning": {
+            "observed": true,
+            "calls": 1,
+            "reported_total_tokens": 333,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 1,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          },
+          "rerank": {
+            "observed": true,
+            "calls": 11,
+            "reported_total_tokens": 51131,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": 0.0,
+            "unpriced_calls": 11,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          }
+        }
+      }
+    },
+    "qa_requests": 40,
+    "ledger_trace_ids_match": true,
+    "qa_request_retries": 0,
+    "held_out_test_questions_run": 0
+  },
+  "total_physical_model_calls": 239,
+  "tests": {
+    "tests": 1511,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 55,
+    "passed": 1456
+  },
+  "latency_ms": {
+    "p50": 3970.23,
+    "p95": 7736.67,
+    "max": 7950.2
+  },
+  "limitations": [
+    "助手语义复核非盲、非独立、非专家认证；自动代理结果没有被改写。",
+    "入库锚点覆盖不代表全文与表格章节归属正确；已观察到盐雾表尾注释归在6.4.3下。",
+    "仅最终上下文已观测；Q025不能唯一归因为检索、重排或预算。",
+    "本轮是首轮中文40题，不能与旧英文/跨语言50题直接计算改进幅度。"
+  ]
+}

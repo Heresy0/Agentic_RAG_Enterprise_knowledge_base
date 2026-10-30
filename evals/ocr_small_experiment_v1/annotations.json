@@ -1,0 +1,718 @@
+{
+  "samples": [
+    {
+      "id": "OCR-I01-p1",
+      "group": "independent",
+      "source_id": "OCR-I01",
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I01.pdf",
+      "source_sha256": "7ed8fa913721668f5f6454e6c4713f245a8f98436131cfd62e2c3e99814faaa4",
+      "page": 1,
+      "checks": [
+        {
+          "id": "OCR-I01-p1-c1",
+          "kind": "numeric_unit",
+          "text": "2023年02月21日"
+        },
+        {
+          "id": "OCR-I01-p1-c2",
+          "kind": "prose",
+          "text": "原材料报验不齐全，缺少钢筋、近期水泥等报验"
+        },
+        {
+          "id": "OCR-I01-p1-c3",
+          "kind": "numeric_unit",
+          "text": "30个工作日内报监督机构"
+        }
+      ],
+      "reference_excerpt": "未按规定落实施工进场报验。原材料报验不齐全，缺少钢筋、近期水泥等报验。",
+      "visual_review": {
+        "reviewer": "same_assistant_not_independent_expert",
+        "complete_page_seen": true,
+        "render_sha256": "bb470b7ea9fac68f3eb9c69175771c963701cba90f305f3a50991f2acc181755",
+        "inspection_rotation_degrees": 0,
+        "ocr_input_rotation_degrees": 0,
+        "handwriting_excluded": true
+      }
+    },
+    {
+      "id": "OCR-I01-p6",
+      "group": "independent",
+      "source_id": "OCR-I01",
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I01.pdf",
+      "source_sha256": "7ed8fa913721668f5f6454e6c4713f245a8f98436131cfd62e2c3e99814faaa4",
+      "page": 6,
+      "checks": [
+        {
+          "id": "OCR-I01-p6-c1",
+          "kind": "table_cell",
+          "text": "施工员"
+        },
+        {
+          "id": "OCR-I01-p6-c2",
+          "kind": "table_cell",
+          "text": "班组长及分包单位负责人"
+        },
+        {
+          "id": "OCR-I01-p6-c3",
+          "kind": "prose",
+          "text": "按季度考评"
+        }
+      ],
+      "reference_excerpt": null,
+      "visual_review": {
+        "reviewer": "same_assistant_not_independent_expert",
+        "complete_page_seen": true,
+        "render_sha256": "e66a6e339ad15349a204c165a86b29bbbae7f25c156af77297af9a3a99badd98",
+        "inspection_rotation_degrees": 180,
+        "ocr_input_rotation_degrees": 0,
+        "handwriting_excluded": true
+      }
+    },
+    {
+      "id": "OCR-I01-p10",
+      "group": "independent",
+      "source_id": "OCR-I01",
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I01.pdf",
+      "source_sha256": "7ed8fa913721668f5f6454e6c4713f245a8f98436131cfd62e2c3e99814faaa4",
+      "page": 10,
+      "checks": [
+        {
+          "id": "OCR-I01-p10-c1",
+          "kind": "numeric_unit",
+          "text": "[2020]37号"
+        },
+        {
+          "id": "OCR-I01-p10-c2",
+          "kind": "prose",
+          "text": "质量管理领导小组"
+        },
+        {
+          "id": "OCR-I01-p10-c3",
+          "kind": "prose",
+          "text": "保质保量完工"
+        }
+      ],
+      "reference_excerpt": null,
+      "visual_review": {
+        "reviewer": "same_assistant_not_independent_expert",
+        "complete_page_seen": true,
+        "render_sha256": "2678fa47ff687dec0666ffe50ea61c4f7876c3ba173b0f8103af3154902852e7",
+        "inspection_rotation_degrees": 270,
+        "ocr_input_rotation_degrees": 0,
+        "handwriting_excluded": true
+      }
+    },
+    {
+      "id": "OCR-I02-p2",
+      "group": "independent",
+      "source_id": "OCR-I02",
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I02.pdf",
+      "source_sha256": "6d7bb8bd06c373ac7b56d57883931189b179e5a61c715f26145651ce4c22eff6",
+      "page": 2,
+      "checks": [
+        {
+          "id": "OCR-I02-p2-c1",
+          "kind": "table_cell",
+          "text": "SD-A-211"
+        },
+        {
+          "id": "OCR-I02-p2-c2",
+          "kind": "table_cell",
+          "text": "智能控制仿真教学模块"
+        },
+        {
+          "id": "OCR-I02-p2-c3",
+          "kind": "numeric_unit",
+          "text": "679500.00元"
+        }
+      ],
+      "reference_excerpt": null,
+      "visual_review": {
+        "reviewer": "same_assistant_not_independent_expert",
+        "complete_page_seen": true,
+        "render_sha256": "1bf23615bf0e83b83388180cbe69817541cadf044e8dce659de28b944fbd5ae2",
+        "inspection_rotation_degrees": 0,
+        "ocr_input_rotation_degrees": 0,
+        "handwriting_excluded": true
+      }
+    },
+    {
+      "id": "OCR-I02-p8",
+      "group": "independent",
+      "source_id": "OCR-I02",
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I02.pdf",
+      "source_sha256": "6d7bb8bd06c373ac7b56d57883931189b179e5a61c715f26145651ce4c22eff6",
+      "page": 8,
+      "checks": [
+        {
+          "id": "OCR-I02-p8-c1",
+          "kind": "numeric_unit",
+          "text": "输入电源：单相AC220V（1±10%）"
+        },
+        {
+          "id": "OCR-I02-p8-c2",
+          "kind": "numeric_unit",
+          "text": "整体功率：<1.5kVA"
+        },
+        {
+          "id": "OCR-I02-p8-c3",
+          "kind": "numeric_unit",
+          "text": "分辨率1024*600"
+        }
+      ],
+      "reference_excerpt": null,
+      "visual_review": {
+        "reviewer": "same_assistant_not_independent_expert",
+        "complete_page_seen": true,
+        "render_sha256": "401a48d0569a87e31bc1622b54b94b73b45563dbfaa507f901272dbd6fe37f07",
+        "inspection_rotation_degrees": 0,
+        "ocr_input_rotation_degrees": 0,
+        "handwriting_excluded": true
+      }
+    },
+    {
+      "id": "OCR-I02-p10",
+      "group": "independent",
+      "source_id": "OCR-I02",
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I02.pdf",
+      "source_sha256": "6d7bb8bd06c373ac7b56d57883931189b179e5a61c715f26145651ce4c22eff6",
+      "page": 10,
+      "checks": [
+        {
+          "id": "OCR-I02-p10-c1",
+          "kind": "prose",
+          "text": "支持工业机器人的程序导出"
+        },
+        {
+          "id": "OCR-I02-p10-c2",
+          "kind": "identifier",
+          "text": "OPCUA"
+        },
+        {
+          "id": "OCR-I02-p10-c3",
+          "kind": "prose",
+          "text": "软件系统的免费维护期为三年"
+        }
+      ],
+      "reference_excerpt": "支持工业机器人的程序导出，根据仿真中的机器人运行轨迹生成可执行的机器人程序，包含FANUC、ABB、UR等机器人本体程序的导出。",
+      "visual_review": {
+        "reviewer": "same_assistant_not_independent_expert",
+        "complete_page_seen": true,
+        "render_sha256": "a4548bba9a6253f85adccd97e026527f1594ece50aa22e2653b10744a1ba1f6c",
+        "inspection_rotation_degrees": 0,
+        "ocr_input_rotation_degrees": 0,
+        "handwriting_excluded": true
+      }
+    },
+    {
+      "id": "OCR-I03-p2",
+      "group": "independent",
+      "source_id": "OCR-I03",
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I03.pdf",
+      "source_sha256": "df54979c9827018b2c7651f4e8bc0c17268e2f51993c90d0075eb497b6ed3583",
+      "page": 2,
+      "checks": [
+        {
+          "id": "OCR-I03-p2-c1",
+          "kind": "numeric_unit",
+          "text": "三年质保期"
+        },
+        {
+          "id": "OCR-I03-p2-c2",
+          "kind": "numeric_unit",
+          "text": "20个日历日内交付使用"
+        },
+        {
+          "id": "OCR-I03-p2-c3",
+          "kind": "prose",
+          "text": "设备到达指定的场所后经用户检验合格后方可交货"
+        }
+      ],
+      "reference_excerpt": null,
+      "visual_review": {
+        "reviewer": "same_assistant_not_independent_expert",
+        "complete_page_seen": true,
+        "render_sha256": "937c9a4737b83f554e8b238ffffc4648e7ea1aec8965efc14d1df2eb53da90df",
+        "inspection_rotation_degrees": 0,
+        "ocr_input_rotation_degrees": 0,
+        "handwriting_excluded": true
+      }
+    },
+    {
+      "id": "OCR-I03-p3",
+      "group": "independent",
+      "source_id": "OCR-I03",
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I03.pdf",
+      "source_sha256": "df54979c9827018b2c7651f4e8bc0c17268e2f51993c90d0075eb497b6ed3583",
+      "page": 3,
+      "checks": [
+        {
+          "id": "OCR-I03-p3-c1",
+          "kind": "numeric_unit",
+          "text": "2,018,000.00元"
+        },
+        {
+          "id": "OCR-I03-p3-c2",
+          "kind": "numeric_unit",
+          "text": "60%，即人民币：￥1,210,800.00元"
+        },
+        {
+          "id": "OCR-I03-p3-c3",
+          "kind": "numeric_unit",
+          "text": "30%，即人民币：￥605,400.00元"
+        }
+      ],
+      "reference_excerpt": "甲方对乙方提供的服务有权进行监督，当乙方服务质量、服务内容不符合约定时，甲方有权要求乙方及时进行整改，对乙方拒不改正或整改不到位的，甲方有权随时解除合同，并根据具体情况扣除部分或全部服务费用。",
+      "visual_review": {
+        "reviewer": "same_assistant_not_independent_expert",
+        "complete_page_seen": true,
+        "render_sha256": "626479b0cca474c7f1a5aba441fabb1fbc953819f95382465af4b27c0de0b7ac",
+        "inspection_rotation_degrees": 0,
+        "ocr_input_rotation_degrees": 0,
+        "handwriting_excluded": true
+      }
+    },
+    {
+      "id": "OCR-I03-p4",
+      "group": "independent",
+      "source_id": "OCR-I03",
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I03.pdf",
+      "source_sha256": "df54979c9827018b2c7651f4e8bc0c17268e2f51993c90d0075eb497b6ed3583",
+      "page": 4,
+      "checks": [
+        {
+          "id": "OCR-I03-p4-c1",
+          "kind": "numeric_unit",
+          "text": "10%，即人民币：￥201,800.00元"
+        },
+        {
+          "id": "OCR-I03-p4-c2",
+          "kind": "numeric_unit",
+          "text": "验收申请报告后7日内"
+        },
+        {
+          "id": "OCR-I03-p4-c3",
+          "kind": "numeric_unit",
+          "text": "甲方在5日内提出整改意见"
+        }
+      ],
+      "reference_excerpt": null,
+      "visual_review": {
+        "reviewer": "same_assistant_not_independent_expert",
+        "complete_page_seen": true,
+        "render_sha256": "c1e1aa8daf28c576dc3c545e15d7b197251faff5dca94761daa6cdeb14274574",
+        "inspection_rotation_degrees": 0,
+        "ocr_input_rotation_degrees": 0,
+        "handwriting_excluded": true
+      }
+    },
+    {
+      "id": "MFG-ZH11-p6",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH11",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "page": 6,
+      "checks": [
+        {
+          "id": "MFGZH-Q051-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "本规范适用于纤维内窥镜、电子内窥镜及光学内窥镜等工业内窥镜的校准"
+        },
+        {
+          "id": "MFGZH-Q052-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "通过光导纤维传像束来传送图像"
+        },
+        {
+          "id": "MFGZH-Q052-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "通过一组光学透镜来传送图像，工作部件通常不能弯曲"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH11-p7",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH11",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "page": 7,
+      "checks": [
+        {
+          "id": "MFGZH-Q053-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "以顶点位于工业内窥镜头端部的锥角值（度）表示"
+        },
+        {
+          "id": "MFGZH-Q054-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "纤维/电子内窥镜：大于1500lx"
+        },
+        {
+          "id": "MFGZH-Q054-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "光学内窥镜：不小于仪器使用说明书标称值的90%"
+        },
+        {
+          "id": "MFGZH-Q055-a4",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作长度：仪器使用说明书的标称值×（1±1.2%）"
+        },
+        {
+          "id": "MFGZH-Q055-a5",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作外径：不大于仪器使用说明书（标称值+0.2）mm"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH12-p5",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH12",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "page": 5,
+      "checks": [
+        {
+          "id": "MFGZH-Q056-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "本规范适用于触针式表面轮廓测量仪的校准"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH12-p6",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH12",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "page": 6,
+      "checks": [
+        {
+          "id": "MFGZH-Q057-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度应在（20±3）℃范围内"
+        },
+        {
+          "id": "MFGZH-Q057-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "室温变化不超过1℃/h"
+        },
+        {
+          "id": "MFGZH-Q057-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH"
+        },
+        {
+          "id": "MFGZH-Q058-a4",
+          "kind": "frozen_legacy_anchor",
+          "text": "在室内平衡温度的时间不少于2h"
+        },
+        {
+          "id": "MFGZH-Q058-a5",
+          "kind": "frozen_legacy_anchor",
+          "text": "被校仪器连续通电预热时间不少于30min"
+        },
+        {
+          "id": "MFGZH-Q059-a6",
+          "kind": "frozen_legacy_anchor",
+          "text": "作为校准，不判定合格与否，上述计量特性的指标仅供参考"
+        },
+        {
+          "id": "MFGZH-Q060-a7",
+          "kind": "frozen_legacy_anchor",
+          "text": "轮廓坐标测量系统误差"
+        },
+        {
+          "id": "MFGZH-Q060-a8",
+          "kind": "frozen_legacy_anchor",
+          "text": "校准球"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH13-p6",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH13",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "page": 6,
+      "checks": [
+        {
+          "id": "MFGZH-Q061-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "测量面的表面粗糙度Ra值不大于0.8μm"
+        },
+        {
+          "id": "MFGZH-Q062-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "圆锥螺纹塞规基面的中径误差不大于0.009mm"
+        },
+        {
+          "id": "MFGZH-Q062-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "圆锥螺纹环规基面的中径误差不大于0.015mm"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH13-p7",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH13",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "page": 7,
+      "checks": [
+        {
+          "id": "MFGZH-Q061-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "上述计量特性的指标仅供参考"
+        },
+        {
+          "id": "MFGZH-Q063-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度应在（20±5）℃"
+        },
+        {
+          "id": "MFGZH-Q063-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH"
+        },
+        {
+          "id": "MFGZH-Q063-a4",
+          "kind": "frozen_legacy_anchor",
+          "text": "应在室内放置不少于1个小时"
+        },
+        {
+          "id": "MFGZH-Q064-a5",
+          "kind": "frozen_legacy_anchor",
+          "text": "螺纹量规代号和尺寸代号、制造厂商标、出厂年月"
+        },
+        {
+          "id": "MFGZH-Q065-a6",
+          "kind": "frozen_legacy_anchor",
+          "text": "不应有裂纹、毛刺、铁屑"
+        },
+        {
+          "id": "MFGZH-Q065-a7",
+          "kind": "frozen_legacy_anchor",
+          "text": "允许有不影响使用的划痕"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH14-p5",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH14",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "page": 5,
+      "checks": [
+        {
+          "id": "MFGZH-Q066-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "分度值为0.001mm，测量范围（0-300）mm"
+        },
+        {
+          "id": "MFGZH-Q067-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "以量块作为标准器"
+        },
+        {
+          "id": "MFGZH-Q067-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "指示表的读数与量块实际值相比较"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH14-p6",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH14",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "page": 6,
+      "checks": [
+        {
+          "id": "MFGZH-Q068-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度应在（20±2）℃范围内"
+        },
+        {
+          "id": "MFGZH-Q068-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "室温变化不超过1℃/h"
+        },
+        {
+          "id": "MFGZH-Q068-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "湿度不超过65%RH"
+        },
+        {
+          "id": "MFGZH-Q069-a4",
+          "kind": "frozen_legacy_anchor",
+          "text": "在室内连续平衡温度的时间不少于2h"
+        },
+        {
+          "id": "MFGZH-Q070-a5",
+          "kind": "frozen_legacy_anchor",
+          "text": "示值变动性"
+        },
+        {
+          "id": "MFGZH-Q070-a6",
+          "kind": "frozen_legacy_anchor",
+          "text": "量块"
+        },
+        {
+          "id": "MFGZH-Q070-a7",
+          "kind": "frozen_legacy_anchor",
+          "text": "4等"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH15-p5",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH15",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "page": 5,
+      "checks": [
+        {
+          "id": "MFGZH-Q071-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "检具重复精度能力系数"
+        },
+        {
+          "id": "MFGZH-Q071-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "检具准确精度能力系数"
+        },
+        {
+          "id": "MFGZH-Q072-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "检具一般由定位装置、夹紧装置、测量装置和辅助（传动和导向）装置组成"
+        },
+        {
+          "id": "MFGZH-Q075-a4",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作面的表面粗糙度Ra值不大于0.2μm"
+        },
+        {
+          "id": "MFGZH-Q075-a5",
+          "kind": "frozen_legacy_anchor",
+          "text": "作为校准，不判断合格与否，上述计量特性的指标仅供参考"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH15-p6",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH15",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "page": 6,
+      "checks": [
+        {
+          "id": "MFGZH-Q073-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度为（20±5）℃"
+        },
+        {
+          "id": "MFGZH-Q073-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH"
+        },
+        {
+          "id": "MFGZH-Q073-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "平衡温度时间不少于2h"
+        },
+        {
+          "id": "MFGZH-Q074-a4",
+          "kind": "frozen_legacy_anchor",
+          "text": "各组成部件应完好无缺，连接应紧固可靠"
+        },
+        {
+          "id": "MFGZH-Q074-a5",
+          "kind": "frozen_legacy_anchor",
+          "text": "定位装置、夹紧装置应准确牢固，传动装置操作应灵活无卡滞"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH16-p5",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH16",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "page": 5,
+      "checks": [
+        {
+          "id": "MFGZH-Q076-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "深度量规、角度量规、形状、位置量规"
+        }
+      ],
+      "reference_excerpt": null
+    },
+    {
+      "id": "MFG-ZH16-p6",
+      "group": "legacy_regression",
+      "source_id": "MFG-ZH16",
+      "file": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+      "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "page": 6,
+      "checks": [
+        {
+          "id": "MFGZH-Q077-a1",
+          "kind": "frozen_legacy_anchor",
+          "text": "产品名称、型号/规格、主要技术参数、出厂编号、制造厂名或商标及生产日期"
+        },
+        {
+          "id": "MFGZH-Q078-a2",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度为（20±5）℃"
+        },
+        {
+          "id": "MFGZH-Q078-a3",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH"
+        },
+        {
+          "id": "MFGZH-Q078-a4",
+          "kind": "frozen_legacy_anchor",
+          "text": "平衡温度时间不少于2h"
+        },
+        {
+          "id": "MFGZH-Q079-a5",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作面的表面粗糙度Ra值不大于0.2μm"
+        },
+        {
+          "id": "MFGZH-Q079-a6",
+          "kind": "frozen_legacy_anchor",
+          "text": "作为校准，不判断合格与否，上述计量特性的指标仅供参考"
+        },
+        {
+          "id": "MFGZH-Q080-a7",
+          "kind": "frozen_legacy_anchor",
+          "text": "周围应无影响校准结果的振动、冲击、电磁场或其它干扰源"
+        }
+      ],
+      "reference_excerpt": null
+    }
+  ],
+  "review_note": "独立样本27处检查与3段转写均在实际OCR前按完整原页冻结；同一助手标注，非专家认证。旧55锚点原样复制，只作回归。"
+}

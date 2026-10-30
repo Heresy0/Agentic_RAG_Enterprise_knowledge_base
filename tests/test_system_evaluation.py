@@ -311,10 +311,10 @@ def test_answer_trace_uses_actual_trimmed_context_not_raw_candidates(monkeypatch
                                  source="private.docx", document_name="private", section_path="说明"))
     retrieval = SimpleNamespace(search=lambda *a, **kw: [doc])
     fake_model = SimpleNamespace(with_structured_output=lambda schema, **kwargs:
-                      SimpleNamespace(invoke=lambda messages: GenerationAnswerDraft(
-                          answerable=False, refusal_reason="资料不足", coverage=[dict(
+                      SimpleNamespace(invoke=lambda messages: schema(
+                          answerable=False, response_type='refuse', refusal_reason="资料不足", coverage=[dict(
                               requirement_id="Q1", aspect="q", status="insufficient", claim_indices=[],
-                              missing_information="资料不足")])) )
+                              missing_information="资料不足", source_quote=None)])) )
     monkeypatch.setattr(module, "ChatOpenAI", lambda **kwargs: fake_model)
     settings = SimpleNamespace(chat_model="fake", chat_base_url="https://unused.example", chat_api_key="test-only")
     service = module.AnswerService(settings=settings, retrieval_service=retrieval,

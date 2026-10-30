@@ -319,6 +319,7 @@ class DocumentIndexingJobService:
         scope: RetrievalScope,
         job_id: UUID,
         error: str,
+        retryable: bool = True,
     ) -> DocumentIndexingJob:
         """记录失败；有剩余次数时重新排队。"""
         normalized_error = error.strip()
@@ -342,7 +343,7 @@ class DocumentIndexingJobService:
             job.last_error = normalized_error[:4000]
             job.indexed_chunk_count = None
 
-            if job.attempt_count < job.max_attempts:
+            if retryable and job.attempt_count < job.max_attempts:
                 job.status = "queued"
                 job.available_at = (
                     now + self._retry_delay

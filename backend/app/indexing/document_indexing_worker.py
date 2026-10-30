@@ -1,4 +1,5 @@
 import logging
+from ..documents.pdf_splitter import PdfTextExtractionError
 from datetime import datetime, timedelta, timezone
 from time import perf_counter
 
@@ -359,6 +360,7 @@ class DocumentIndexingWorker:
                 scope=scope,
                 job_id=job.id,
                 error=error_message,
+                retryable=not isinstance(error, PdfTextExtractionError),
             )
 
         except Exception:

@@ -14,10 +14,12 @@ from backend.app.evaluation.reporting import LAYERS, compare_baseline, quality_l
 from backend.app.evaluation.runner import evaluate_local, replay
 from backend.app.evaluation.http_runner import evaluate_conversations, evaluate_permissions
 from backend.app.evaluation.conversation_runner import evaluate_local_conversations
-from scripts.evaluate_answers import load_dataset
+from scripts.evaluate_answers import load_dataset, summarize_trace_timings
 from backend.app.evaluation.metrics import SCORER_VERSION
 from backend.app.evaluation.scoring_rules import apply_scoring_rules
 from backend.app.evaluation.suite import load_suite, select_groups, group_scores
+from backend.app.evaluation.quality_policy import EVALUATOR_VERSION, apply_quality_policy
+from backend.app.evaluation.semantics import apply_semantic_reviews
 
 
 def parse_args(argv=None):
@@ -32,6 +34,8 @@ def parse_args(argv=None):
     parser.add_argument("--trace-input", type=Path)
     parser.add_argument("--performance-report", type=Path)
     parser.add_argument("--baseline-report", type=Path, help="Compare a like-for-like previous system report")
+    parser.add_argument("--quality-policy", type=Path, help="Additional versioned ranking/semantic checks; defaults to dataset-dir/quality_policy.json")
+    parser.add_argument("--semantic-reviews", type=Path, help="Fingerprint-bound independent review JSONL for observed final answers")
     parser.add_argument("--limit", type=int, help="Limit each case collection, not total model calls")
     parser.add_argument("--case-ids", nargs='+', help="Only these single-turn IDs; applied before --limit")
     parser.add_argument("--conversation-ids", nargs='+', help="Only these conversation group IDs; applied before --limit")
@@ -50,7 +54,9 @@ def parse_args(argv=None):
         parser.error("--limit must be positive")
     if args.mode == "replay" and not args.trace_input:
         parser.error("--mode replay requires --trace-input")
-    live_model_layers = {"retrieval", "rerank", "context", "answer", "conversations", "security"}
+    if args.semantic_reviews and (args.mode == "offline" or "semantics" not in args.layers):
+        parser.error("--semantic-reviews requires live/replay mode and the semantics layer")
+    live_model_layers = {"retrieval", "rerank", "context", "answer", "ranking", "semantics", "conversations", "security"}
     if args.mode == "live" and live_model_layers.intersection(args.layers) and not args.allow_model_calls:
         parser.error("Live embedding/reranking/answer calls require --allow-model-calls")
     return args
@@ -65,6 +71,10 @@ def main(argv=None):
     rules_path = args.dataset_dir / 'scoring_rules.json'
     cases = apply_scoring_rules(load_dataset(args.dataset_dir / "single_turn.jsonl"), rules_path)
     suite=load_suite(args.dataset_dir,cases)
+    if args.quality_policy and not args.quality_policy.is_file():
+        raise ValueError("Explicit quality policy file does not exist")
+    cases, policy_sha = apply_quality_policy(cases, args.quality_policy or args.dataset_dir / "quality_policy.json",
+                                            args.dataset_dir / "single_turn.jsonl")
     full_case_count = len(cases)
     cases=select_groups(cases,suite,args.group)
     if args.case_ids:
@@ -75,6 +85,7 @@ def main(argv=None):
     if args.limit:
         cases = cases[:args.limit]
     report = dict(schema_version=1, scorer_version=SCORER_VERSION,
+                  evaluator_version=EVALUATOR_VERSION, quality_policy_sha256=policy_sha,
                   scoring_rules_sha256=hashlib.sha256(rules_path.read_bytes()).hexdigest() if rules_path.is_file() else None,
                   mode=args.mode, selected_cases=len(cases), available_cases=full_case_count,
                   selected_case_ids=[case["id"] for case in cases],
@@ -101,10 +112,11 @@ def main(argv=None):
             report["layers"][name] = dict(status="error", error_type=type(exc).__name__)
     if "parsing" in args.layers:
         run_layer("parsing", lambda: evaluate_parsing(args.corpus, cases, ocr=args.ocr))
-    quality_requested = {"retrieval", "rerank", "context", "answer"}.intersection(args.layers)
+    quality_requested = {"retrieval", "rerank", "context", "answer", "ranking", "semantics"}.intersection(args.layers)
+    include_answer = bool({"answer", "semantics"}.intersection(quality_requested))
     if args.mode == "replay" and quality_requested:
         quality = {}
-        run_layer("_quality", lambda: replay(cases, args.trace_input, include_answer="answer" in quality_requested))
+        run_layer("_quality", lambda: replay(cases, args.trace_input, include_answer=include_answer))
         quality = report["layers"].pop("_quality")
         if quality.get("status") == "error":
             report["layers"].update({name: quality for name in quality_requested})
@@ -117,7 +129,7 @@ def main(argv=None):
             sort_keys=True).encode()).hexdigest()
         if quality_requested or "index" in args.layers:
             run_layer("_quality", lambda: evaluate_local(cases if quality_requested else [], config,
-                        include_answer="answer" in quality_requested,
+                        include_answer=include_answer,
                         include_index="index" in args.layers,
                         expected_documents=json.loads((args.corpus / "manifest.json").read_text(encoding="utf-8"))["documents"]
                             if "index" in args.layers else (),
@@ -163,8 +175,15 @@ def main(argv=None):
         report["layers"]["security"]["limitation"] = "Isolated mocked/SQLite regressions only; deployed-profile ACL tests have not run."
     if "performance" in args.layers:
         run_layer("performance", lambda: read_performance_report(args.performance_report))
+    if quality and quality.get("records") is not None and args.semantic_reviews:
+        quality = apply_semantic_reviews(quality, args.semantic_reviews)
+        report["layers"]["semantics"] = quality_layers(quality)["semantics"]
     if suite and quality_requested and quality and quality.get('records') is not None:
         report['group_scores']=group_scores(quality,suite,report['selected_case_ids'],quality_requested)
+    if quality and quality.get("records") is not None:
+        report["timings"] = summarize_trace_timings(quality["records"])
+        report["retrieval_metrics_sha256"] = hashlib.sha256(
+            (ROOT / "backend/app/evaluation/retrieval_metrics.py").read_bytes().replace(b'\r\n', b'\n')).hexdigest()
     if args.baseline_report:
         baseline = json.loads(args.baseline_report.read_text(encoding="utf-8"))
         report["baseline_comparison"] = compare_baseline(report, baseline)

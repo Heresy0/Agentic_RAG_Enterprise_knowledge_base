@@ -1,0 +1,9 @@
+{
+  "total": 1490,
+  "passed": 1435,
+  "skipped": 55,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 143.778,
+  "external_model_calls": 0
+}

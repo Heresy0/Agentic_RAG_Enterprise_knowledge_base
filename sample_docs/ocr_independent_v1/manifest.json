@@ -1,0 +1,258 @@
+{
+  "total_documents": 3,
+  "total_pdf_pages": 37,
+  "documents": [
+    {
+      "id": "OCR-I01",
+      "title": "浙江公开水利工程质量与安全检查资料",
+      "publisher": "浙江政府网站公开附件（常山相关工程检查记录）",
+      "source_url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web2167/site/attach/0/d1348a1812af46cc81640c315491b6e2.pdf",
+      "final_url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web2167/site/attach/0/d1348a1812af46cc81640c315491b6e2.pdf",
+      "retrieved_at": "2026-10-29T07:06:35.104377+00:00",
+      "sha256": "7ed8fa913721668f5f6454e6c4713f245a8f98436131cfd62e2c3e99814faaa4",
+      "bytes": 4719715,
+      "physical_pages": 12,
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I01.pdf",
+      "page_inventory": [
+        {
+          "page": 1,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 2,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 3,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 4,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 5,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 6,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 7,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 8,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 9,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 10,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 11,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 12,
+          "native_text_characters": 0,
+          "images": 2
+        }
+      ],
+      "sampled_pages": [
+        1,
+        6,
+        10
+      ],
+      "source_family": "zj-safety",
+      "purpose": "independent_ocr_validation_only_not_business_knowledge",
+      "rights_status": "official_public_access; redistribution_permission_not_asserted"
+    },
+    {
+      "id": "OCR-I02",
+      "title": "陕西机电职业技术学院智能控制与仿真技术实训室采购合同",
+      "publisher": "陕西机电职业技术学院／陕西省政府采购网",
+      "source_url": "https://www.ccgp-shaanxi.gov.cn/gpx-bid-file/2022/11/3/8a69c8558405a97001843c5338371293.pdf?accessCode=04c5b5b49566dbb9e5402c212128109f",
+      "final_url": "https://www.ccgp-shaanxi.gov.cn/gpx-bid-file/2022/11/3/8a69c8558405a97001843c5338371293.pdf?accessCode=04c5b5b49566dbb9e5402c212128109f",
+      "retrieved_at": "2026-10-29T07:08:58.784535+00:00",
+      "sha256": "6d7bb8bd06c373ac7b56d57883931189b179e5a61c715f26145651ce4c22eff6",
+      "bytes": 4282977,
+      "physical_pages": 14,
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I02.pdf",
+      "page_inventory": [
+        {
+          "page": 1,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 2,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 3,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 4,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 5,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 6,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 7,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 8,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 9,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 10,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 11,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 12,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 13,
+          "native_text_characters": 0,
+          "images": 1
+        },
+        {
+          "page": 14,
+          "native_text_characters": 0,
+          "images": 1
+        }
+      ],
+      "sampled_pages": [
+        2,
+        8,
+        10
+      ],
+      "source_family": "sx-industrial-control",
+      "purpose": "independent_ocr_validation_only_not_business_knowledge",
+      "rights_status": "official_public_access; redistribution_permission_not_asserted"
+    },
+    {
+      "id": "OCR-I03",
+      "title": "伊金霍洛旗卫生健康委员会信息安全提升采购合同",
+      "publisher": "伊金霍洛旗卫生健康委员会／内蒙古自治区政府采购网",
+      "source_url": "https://www.ccgp-neimenggu.gov.cn/gpx-bid-file/2023/12/29/402881cc8ca58b11018cb3cf367f5e9b.pdf?accessCode=ba55d15c065b696d74ba4c4357570b70",
+      "final_url": "https://www.ccgp-neimenggu.gov.cn/gpx-bid-file/2023/12/29/402881cc8ca58b11018cb3cf367f5e9b.pdf?accessCode=ba55d15c065b696d74ba4c4357570b70",
+      "retrieved_at": "2026-10-29T07:12:09.925167+00:00",
+      "sha256": "df54979c9827018b2c7651f4e8bc0c17268e2f51993c90d0075eb497b6ed3583",
+      "bytes": 3797026,
+      "physical_pages": 11,
+      "file": "sample_docs/ocr_independent_v1/documents/OCR-I03.pdf",
+      "page_inventory": [
+        {
+          "page": 1,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 2,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 3,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 4,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 5,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 6,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 7,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 8,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 9,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 10,
+          "native_text_characters": 0,
+          "images": 2
+        },
+        {
+          "page": 11,
+          "native_text_characters": 0,
+          "images": 2
+        }
+      ],
+      "sampled_pages": [
+        2,
+        3,
+        4
+      ],
+      "source_family": "nm-system-contract",
+      "purpose": "independent_ocr_validation_only_not_business_knowledge",
+      "rights_status": "official_public_access; redistribution_permission_not_asserted"
+    }
+  ],
+  "limitation": "跨机构、跨文种OCR验证材料，不加入现有制造业正文库。三份均为原始全扫描PDF；只评测选定页面。"
+}

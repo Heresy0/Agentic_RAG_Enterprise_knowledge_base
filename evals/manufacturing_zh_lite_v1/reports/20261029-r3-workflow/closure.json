@@ -1,0 +1,22 @@
+{
+  "id": "ae2cd773-bde9-4fc3-b9b7-cb01d98f0641",
+  "case_id": "842536dd-b1e2-4484-bf0e-45463f36317d",
+  "regression_case_id": "d3c9c3bb-9b76-4269-a5da-e16f9165897b",
+  "revision": 3,
+  "status": "closed",
+  "owner_user_id": "86ac24eb-c183-45f3-ab8c-87034841b602",
+  "description": "原Q043已召回的量程方法被来源预算挤出；复用区间与单位证据保留，优先对应方法章节。原失败与首轮修复失败保留，采用新快照建立回归样本。",
+  "change_ref": "efb8a30",
+  "policy": {
+    "max_latency_ratio": 1.5,
+    "max_token_ratio": 1.3
+  },
+  "verification": {
+    "baseline_job_id": "664404b1-0311-4759-9ed3-c2ad01a98d02",
+    "candidate_job_id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0",
+    "binding": "5ea83ef2587f4b3719b643ad80d2390652e1c94af6fb5955fcb3dca0229bfe8e",
+    "acknowledge_unknown_usage": true,
+    "note": "助手非独立复核的制造业真实失败改进验证；不是实际企业用户反馈或生产泛化准确率。已核对检验报告必填/公开选择与两个量程对应标准器，答案和所引正文一致。实际调用与Token已核对；供应商单价未配置，明确确认未定价限制，不报告金额。两题对照不代表全98题或生产泛化提升。"
+  },
+  "updated_at": "2026-10-29T14:57:00.168220+00:00"
+}

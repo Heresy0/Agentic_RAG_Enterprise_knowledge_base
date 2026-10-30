@@ -35,7 +35,7 @@ def feedback_scenario(scenario):
     session.flush()
     retrieval._vector_store.upsert(make_vector_records([chunk], LocalEmbeddings().embed_documents([chunk.content])))
     session.commit()
-    first = GenerationAnswerDraft.model_validate(dict(answerable=False, claims=[], refusal_reason='缺少beta证据',
+    first = GenerationAnswerDraft.model_validate(dict(answerable=False, response_type='refuse', claims=[], refusal_reason='缺少beta证据',
         coverage=[dict(requirement_id='Q1', aspect='beta workflow', status='insufficient', claim_indices=[], missing_information='缺少beta证据')],
         evidence_gap=dict(reason='missing_evidence', requirement_ids=['Q1'], source_quote='beta')))
     return session, scope, actor, retrieval, chunks, doc, first
@@ -64,7 +64,8 @@ def build(feedback_scenario, monkeypatch, *, phase=None):
     def first_invoke(messages):
         if phase == 'first_generation':
             revoke()
-        return first
+        from test_answer_service import FakeStructuredLLM
+        return FakeStructuredLLM(first).invoke(messages)
     first_factory = lambda **kwargs: SimpleNamespace(with_structured_output=lambda *args, **kwargs:
         SimpleNamespace(invoke=first_invoke))
     monkeypatch.setattr('backend.app.knowledge.answer_service.ChatOpenAI', first_factory)
@@ -77,12 +78,13 @@ def build(feedback_scenario, monkeypatch, *, phase=None):
             session.delete(beta)
             session.commit()
         # Alpha first, beta second after the existing interleaved merge.
-        result = GenerationAnswerDraft.model_validate(dict(answerable=True, refusal_reason=None, evidence_gap=None,
+        result = GenerationAnswerDraft.model_validate(dict(answerable=True, response_type='answer', refusal_reason=None, evidence_gap=None,
             claims=[dict(text='alpha workflow approved evidence', citations=['资料1']),
                     dict(text='beta workflow approved evidence', citations=['资料2'])],
             coverage=[dict(requirement_id='Q1', aspect='双方workflow', status='answered', claim_indices=[1, 2], missing_information=None)]))
+        from test_answer_service import FakeStructuredLLM
         return dict(raw=AIMessage(content='', usage_metadata=dict(input_tokens=100, output_tokens=20, total_tokens=120)),
-                    parsed=result, parsing_error=None)
+                    parsed=FakeStructuredLLM(result).invoke(messages), parsing_error=None)
     factory = lambda **kwargs: SimpleNamespace(with_structured_output=lambda *args, **kwargs:
         SimpleNamespace(invoke=regenerate))
     settings = SimpleNamespace(rag_feedback_enabled=True, agentic_rag_mode='off', rag_planner_mode='off',

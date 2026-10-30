@@ -7,3 +7,32 @@ sample_docs/xinghai_expansion/** -text
 sample_docs/xinghai_nanqi/** -text
 evals/archive/** -text whitespace=cr-at-eol
 evals/current/** -text whitespace=cr-at-eol
+evals/quality_policy.json -text
+# These source files are byte-hashed by their frozen generated views/profiles.
+evals/scoring_rules.json -text whitespace=cr-at-eol
+evals/manufacturing_zh_lite_v1/profile.json -text whitespace=cr-at-eol
+evals/manufacturing_zh_lite_v1/scoring_rules.json -text whitespace=cr-at-eol
+evals/manufacturing_zh_lite_v1/demo_release.json -text whitespace=cr-at-eol
+evals/manufacturing_zh_lite_v1/*/single_turn.jsonl -text whitespace=cr-at-eol
+sample_docs/manufacturing_lite/** -text whitespace=cr-at-eol
+evals/manufacturing_lite/** -text whitespace=cr-at-eol
+scripts/manufacturing_corpus_data.py text eol=lf
+sample_docs/manufacturing_public_v2/** -text whitespace=cr-at-eol
+# Original/source asset whitespace is frozen by SHA256, including HTML tails.
+sample_docs/manufacturing_public_v2/documents/** -text -whitespace
+sample_docs/manufacturing_public_v2/originals/** -text -whitespace
+sample_docs/manufacturing_public_v2.sources.json -text
+evals/manufacturing_public_v2/** -text whitespace=cr-at-eol
+scripts/manufacturing_public_sources.py text eol=lf
+scripts/manufacturing_public_questions.py text eol=lf
+sample_docs/manufacturing_zh_v3/** -text whitespace=cr-at-eol
+sample_docs/manufacturing_zh_v3/documents/** -text -whitespace
+sample_docs/manufacturing_zh_v3/originals/** -text -whitespace
+sample_docs/manufacturing_zh_v3.sources.json -text
+evals/manufacturing_zh_v3/** -text whitespace=cr-at-eol
+scripts/*manufacturing_zh*.py text eol=lf
+sample_docs/ocr_independent_v1/** -text whitespace=cr-at-eol
+sample_docs/ocr_independent_v1/documents/** -text -whitespace
+evals/ocr_small_experiment_v1/** -text whitespace=cr-at-eol
+scripts/run_ocr_small_experiment.py text eol=lf
+evals/document_cleaning_v1/** -text whitespace=cr-at-eol

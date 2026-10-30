@@ -11,8 +11,11 @@ import sys
 from pathlib import Path
 from uuid import UUID
 
-from .metrics import evidence_metrics, score_answer, score_generation, summarize_records, summarize_stages
+from .metrics import score_answer, score_generation, summarize_records
+from .retrieval_metrics import evidence_metrics, summarize_stages
 from .trace import capture_trace, record_context
+from .ranking import OBSERVED_STAGES, citation_rows, graded_ranking, rank_diagnostics
+from .semantics import score_semantics
 from ..model_usage import summarize_usage, usage_context
 
 
@@ -20,27 +23,41 @@ def score_trace(case, trace, *, include_answer=False):
     stages = trace.get("stages", {})
     metrics = {stage: evidence_metrics(case["expected_evidence"], rows,
                                      alternative_sets=case.get("accepted_evidence_sets", []))
-               for stage, rows in stages.items() if stage in ("vector", "keyword", "fusion", "rerank", "context")}
+               for stage, rows in stages.items() if stage in OBSERVED_STAGES}
+    if "response" in trace and "context" in stages:
+        metrics["citations"] = evidence_metrics(case["expected_evidence"], citation_rows(trace["response"], stages["context"]),
+                                               alternative_sets=case.get("accepted_evidence_sets", []))
+    for stage in OBSERVED_STAGES:
+        if stage in metrics:
+            rows = citation_rows(trace["response"], stages["context"]) if stage == "citations" else stages[stage]
+            metrics[stage]["graded_ranking"] = graded_ranking(case.get("relevance_judgments"), rows)
+    metrics["ranking_requirements"] = case.get("ranking_checks", {"max_first_relevant_rank": 1})
+    metrics["rank_diagnostics"] = rank_diagnostics(metrics)
+    if "context" in metrics:
+        metrics["context"]["incomplete_reason"] = next((row.get("incomplete_reason")
+            for row in stages.get("context_status", []) if row.get("incomplete_reason")), None)
     metrics["model_usage"] = summarize_usage(stages.get("model_usage", []), observed="model_usage" in stages)
     metrics["model_usage"]["events"] = stages.get("model_usage", [])
     violations = sum(bool(row.get("scope_violation")) for rows in stages.values() for row in rows)
     if trace.get("error_type"):
-        return dict(id=case["id"], status="error", error_type=trace["error_type"], metrics=metrics)
+        return dict(id=case["id"], status="error", error_type=trace["error_type"], metrics=metrics,
+                    latency_ms=trace.get("latency_ms"), latency_scope=trace.get("latency_scope"))
     status = "partial"
     if case["answerable"] and metrics.get("context", {}).get("scored"):
-        status = "passed" if metrics["context"]["all_evidence_present"] else "failed"
+        status = "passed" if metrics["context"]["all_evidence_present"] and not metrics["context"].get("incomplete_reason") else "failed"
     if include_answer:
         if "response" not in trace:
             return dict(id=case["id"], status="skipped", reason="no_final_response_in_trace", metrics=metrics)
         metrics["answer"] = score_answer(case, trace["response"], stages.get("context"))
         metrics["generation"] = score_generation(case, trace)
+        metrics["semantics"] = score_semantics(case, trace["response"], stages.get("context"))
         status = "passed" if metrics["answer"]["automatic_proxy_pass"] else "failed"
     if violations:
         status = "failed"
     return dict(id=case["id"], category=case.get("category"), source_groups=case.get("source_groups", []),
                 difficulty=case.get("difficulty"), status=status,
                 metrics=metrics, scope_violation_count=violations,
-                latency_ms=trace.get("latency_ms"), response=trace.get("response"),
+                latency_ms=trace.get("latency_ms"), latency_scope=trace.get("latency_scope"), response=trace.get("response"),
                 limitation="Automatic proxy results require semantic review; unlabelled negatives have no retrieval score.")
 
 
@@ -154,7 +171,9 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
             if cases:
                 retrieval = RetrievalService(settings)
                 answer = AnswerService(settings=settings, retrieval_service=retrieval) if include_answer else None
-                builder = ContextBuilder()
+                from ..knowledge.parent_context_selection import BudgetedParentSelector, parent_selection_scope
+                from ..knowledge.rag_budget import RagBudget, rag_budget_scope
+                builder = ContextBuilder(parent_selector=BudgetedParentSelector(settings))
                 for case in cases:
                     started = time.perf_counter()
                     trace = None
@@ -174,10 +193,12 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
                                 documents = retrieval.search(case["question"], scope=scope, session=session)
                                 documents = [doc for doc in documents if scope.contains(
                                     doc.metadata.get("tenant_id"), doc.metadata.get("knowledge_base_id"))]
-                                record_context(builder.build(documents, question=case["question"]))
+                                with rag_budget_scope(RagBudget.from_settings(settings)), \
+                                        parent_selection_scope(scope=scope, session=session):
+                                    record_context(builder.build(documents, question=case["question"]))
                                 response = None
                         snapshot = dict(trace.to_dict(), id=case["id"], schema_version=1,
-                                        origin="jwt_verified_local_backend_services",
+                                        origin="jwt_verified_local_backend_services", latency_scope="local_backend_services",
                                         latency_ms=round((time.perf_counter() - started) * 1000, 2),
                                         question_hash=hashlib.sha256(case["question"].encode()).hexdigest())
                         if response is not None:

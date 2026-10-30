@@ -1,0 +1,13 @@
+# Reuse the installed, locally verified dependencies. Rebuild Dockerfile normally
+# when requirements change; this derivative intentionally uses the same runtime.
+ARG BASE_IMAGE=enterprise-knowledge-manufacturing:20261028-fe7221c
+FROM ${BASE_IMAGE}
+USER root
+COPY requirements.txt /tmp/manufacturing-requirements.txt
+RUN cmp /tmp/manufacturing-requirements.txt /app/requirements.txt && rm /tmp/manufacturing-requirements.txt
+RUN python -c "import shutil; [shutil.rmtree('/app/'+p) for p in ('backend','scripts','migrations')]"
+COPY --chown=app:app backend /app/backend
+COPY --chown=app:app scripts /app/scripts
+COPY --chown=app:app migrations /app/migrations
+COPY --chown=app:app alembic.ini /app/alembic.ini
+USER app

@@ -27,6 +27,8 @@ from ..evaluation.trace import record_documents, record_scope
 
 FINAL_K = 8
 FETCH_K = 30
+RANK_METADATA_KEYS = ("rerank_score", "rerank_status", "retrieval_latency_ms", "rerank_latency_ms",
+                      "rrf_rank", "rrf_score", "model_rank", "final_rank")
 
 
 class RetrievalService:
@@ -70,7 +72,7 @@ class RetrievalService:
             document_ids={UUID(doc.metadata["document_id"]) for doc in current})
         names = {str(key): name for key, name in scope.knowledge_base_names}
         for doc in current:
-            for key in ("rerank_score", "rerank_status", "retrieval_latency_ms", "rerank_latency_ms"):
+            for key in RANK_METADATA_KEYS:
                 if key in original.get(doc.metadata["chunk_id"], {}):
                     doc.metadata[key] = original[doc.metadata["chunk_id"]][key]
             if doc.metadata["document_id"] in policies:
@@ -166,7 +168,7 @@ class RetrievalService:
             parents = repository.parent_chunks(scope=scope, expected=original)
             documents = [stored_chunk_to_document(row) for row in parents]
             for doc in documents:
-                for key in ('rerank_score','rerank_status','retrieval_latency_ms','rerank_latency_ms'):
+                for key in RANK_METADATA_KEYS:
                     if key in original.get(doc.metadata['chunk_id'],{}):
                         doc.metadata[key]=original[doc.metadata['chunk_id']][key]
             documents = select_evidence(query, documents)

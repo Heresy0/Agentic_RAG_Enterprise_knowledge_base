@@ -27,6 +27,7 @@ from backend.app.knowledge.chunk_repository import (
 from backend.app.indexing.document_indexing_service import (
     DocumentIndexingService,
 )
+from backend.app.documents.publication import reviewed_publication
 from langchain_core.embeddings import Embeddings
 
 
@@ -354,6 +355,19 @@ def test_index_file_and_search_real_Milvus(
     assert written_count >= 1
 
     repository = ChunkRepository(postgres_session, vector_store)
+
+    # Indexed drafts become searchable only after a reviewer publishes them.
+    assert repository.search(scope=technology_scope,
+                             query_embedding=_embedding(1.0, 0.0), limit=10) == []
+    document = postgres_session.scalar(select(KnowledgeDocument).where(
+        KnowledgeDocument.tenant_id == tenant.id,
+        KnowledgeDocument.knowledge_base_id == technology_kb.id,
+    ))
+    document.metadata_json = {**document.metadata_json, "publication": reviewed_publication(
+        document, state="published", actor_id=user.id,
+        note="集成测试确认原文与索引一致", acknowledge_ocr=False,
+    )}
+    postgres_session.commit()
 
     technology_hits = repository.search(
         scope=technology_scope,

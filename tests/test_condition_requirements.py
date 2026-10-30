@@ -49,9 +49,23 @@ def test_each_derived_requirement_is_mandatory_and_binds_actual_citation():
     requirements = question_requirements(question, evidence)
     assert [row.id for row in requirements] == ['Q1', 'E1', 'E2', 'E3', 'E4']
     rows = [dict(requirement_id=row.id, aspect=row.text, status='answered', claim_indices=[1], missing_information=None) for row in requirements]
-    draft = GenerationAnswerDraft(answerable=True, claims=[AnswerClaim(text='已有答案', citations=['资料1'])], coverage=rows)
+    draft = GenerationAnswerDraft(answerable=True, response_type='answer', claims=[AnswerClaim(text='已有答案', citations=['资料1'])], coverage=rows)
     assert not coverage_errors(draft, question, evidence)
     draft.coverage.pop()
     assert any('E4' in error for error in coverage_errors(draft, question, evidence))
     draft.claims[0].citations = ['资料2']
     assert any('对应原文引用' in error for error in coverage_errors(draft, question, evidence))
+
+
+def test_auxiliary_plan_never_exempts_evidence_conditions():
+    from backend.app.knowledge.query_planner import query_plan_scope, rule_plan
+    question = 'D3有什么条件？谁审批？'
+    evidence = context(TABLE)
+    with query_plan_scope(rule_plan(question)):
+        rows = [dict(requirement_id=r.id, aspect=r.text, status='answered', claim_indices=[1], missing_information=None)
+                for r in question_requirements(question, evidence) if not r.id.startswith('P')]
+        draft = GenerationAnswerDraft(answerable=True, response_type='answer',
+            claims=[AnswerClaim(text='已有答案', citations=['资料1'])], coverage=rows)
+        assert not coverage_errors(draft, question, evidence)
+        draft.coverage.pop()
+        assert any('E4' in error for error in coverage_errors(draft, question, evidence))

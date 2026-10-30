@@ -1,0 +1,50 @@
+{
+  "http_successful_saved_responses": 50,
+  "complete_context_snapshots": 46,
+  "incomplete_context_snapshots": 4,
+  "recovered": [
+    {
+      "id": "MFG2-Q012",
+      "run_id": "b1890606-2f86-4332-883f-989800ace611",
+      "request_id": "b18906062f864332883f989800ace611",
+      "snapshot_status": "incomplete",
+      "complete_context": false,
+      "qa_retried": false,
+      "original_response_sha256": "6dcb3d8b855b68aa87840c4df5678279ee62a4e03f2898a79c4ba3a054a3c45c",
+      "original_snapshot_sha256": "44a8a5b91f5c7e1337df6ecc188ac532120390159f5cebb74fb4eff1a0740e21"
+    },
+    {
+      "id": "MFG2-Q014",
+      "run_id": "884a26b6-b41d-45cf-b9d4-6543b619a315",
+      "request_id": "884a26b6b41d45cfb9d46543b619a315",
+      "snapshot_status": "incomplete",
+      "complete_context": false,
+      "qa_retried": false,
+      "original_response_sha256": "40debffcbbcdafb7b481dfbfde97fb7223532dce5803d05b29ead288d3d66079",
+      "original_snapshot_sha256": "600af3ebb3899222a30a5cfc2f6dbea5565cbebf03624ee7ddfa7a961e3ac789"
+    },
+    {
+      "id": "MFG2-Q018",
+      "run_id": "aed0cb53-6923-4f3b-a7b1-54c579714a2e",
+      "request_id": "aed0cb5369234f3ba7b154c579714a2e",
+      "snapshot_status": "incomplete",
+      "complete_context": false,
+      "qa_retried": false,
+      "original_response_sha256": "03b5739ebad6973ce0f65123166a22fdde7fd61b4b2b7937e0cf1a5387af4006",
+      "original_snapshot_sha256": "63446258fcbec84d0a02cce243196804a37fad2ff28a3258c61a038a72fdaef9"
+    },
+    {
+      "id": "MFG2-Q022",
+      "run_id": "f494a42d-cfae-4fbf-8508-58a7e2c0a3ac",
+      "request_id": "f494a42dcfae4fbf850858a7e2c0a3ac",
+      "snapshot_status": "incomplete",
+      "complete_context": false,
+      "qa_retried": false,
+      "original_response_sha256": "2c974b1063f31d826c5934b0dd692c68ada1d08c82669bd113fa386c661f19b1",
+      "original_snapshot_sha256": "3402fb6b077c3ecb3df25deff09f67b876d4ccab4f00c26e3ec8aceb2251d7f2"
+    }
+  ],
+  "original_strict_traces_sha256": "30ee091d9b2e075ffc54e3c939a7d0a211ae6b3a382387e90ccd8407c62f1db2",
+  "derived_observations_sha256": "ec2c5d1765ef99a4c712d7ec326cda0859180cbaeaefd4d7498037472591eb82",
+  "qa_retries": 0
+}

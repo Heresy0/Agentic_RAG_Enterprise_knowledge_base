@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterator
+from typing import Any, Iterator
 
 from docx import Document as WordDocument
 from docx.document import Document as WordDocumentType
@@ -15,6 +15,7 @@ from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from .chunk_quality import annotate_chunks
+from .document_cleaning import clean_document, clean_table
 
 FAQ_PATTERN = re.compile(r"^Q\d+\s*")
 NUMBERED_HEADING_PATTERN = re.compile(
@@ -28,7 +29,7 @@ class ContentUnit:
     kind: str
     content: str | list[str]
     section_path: tuple[str,...]
-    metadata: dict[str, str] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 def iter_docx_blocks(
@@ -67,17 +68,7 @@ def get_heading_level(paragraph: Paragraph) -> int | None:
 
 
 def table_rows(table: Table) -> list[str]:
-    rows: list[str] = []
-
-    for row in table.rows:
-        cells = [
-            re.sub(r"\s+", " ", cell.text).strip()
-            for cell in row.cells
-        ]
-        if any(cells):
-            rows.append("|".join(cells))
-
-    return rows
+    return clean_table([[cell.text for cell in row.cells] for row in table.rows])[0]
 
 
 def bind_rule_lists(units: list[ContentUnit]) -> list[ContentUnit]:
@@ -213,13 +204,15 @@ def collect_units(
             flush_paragraphs()
             flush_faq()
 
-            rows = table_rows(block)
+            rows, trace = clean_table([[cell.text for cell in row.cells] for row in block.rows],
+                                      scope={"format":"docx", "table_unit":len(units)})
             if rows:
                 units.append(
                     ContentUnit(
                         kind="table",
                         content=rows,
                         section_path=tuple(headings),
+                        metadata={"_cleaning_traces":[trace]},
                     )
                 )
             continue
@@ -286,6 +279,7 @@ def split_content_units(
     document_name: str,
     chunk_size: int = 450,
     chunk_overlap: int = 60,
+    cleaning_traces: list[dict] | None = None,
 ) -> list[Document]:
     """各格式识别结构后，共用分块、上下文和元数据生成。"""
     document_type = document_type_from_name(document_name)
@@ -315,7 +309,9 @@ def split_content_units(
 
     chunks: list[Document] = []
 
-    for unit_index, unit in enumerate(bind_rule_lists(units)):
+    units = clean_document(bind_rule_lists(units), source_format=path.suffix.lower().lstrip('.'),
+                           upstream_traces=cleaning_traces or ())
+    for unit_index, unit in enumerate(units):
         section_path = " > ".join(unit.section_path)
         section_name = section_path or "文档说明"
 

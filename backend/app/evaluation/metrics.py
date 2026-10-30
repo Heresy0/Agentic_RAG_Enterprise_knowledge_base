@@ -6,7 +6,7 @@ from urllib.parse import unquote
 from .assertions import fact_assertion_match
 
 
-SCORER_VERSION = "2026-10-16-r10"
+SCORER_VERSION = "2026-10-29-r13"
 
 
 def normalize(value):
@@ -37,18 +37,23 @@ def evidence_metrics(evidence, rows, *, alternative_sets=()):
             return dict(result, matched_evidence_set=results.index(result))
     if not evidence:
         return dict(scored=False, reason="no_positive_evidence_labels")
-    matched, first_rank = set(), None
+    matched, first_rank, evidence_ranks = set(), None, {}
     for rank, row in enumerate(rows, 1):
         for index, item in enumerate(evidence):
             if (document_key(row.get("document_name", "")) == document_key(item["document"])
                     and contains_fact(row.get("content", ""), item["text"])):
                 matched.add(index)
+                evidence_ranks.setdefault(str(index), rank)
                 if first_rank is None:
                     first_rank = rank
     return dict(scored=True, hit=bool(matched), first_relevant_rank=first_rank,
                 reciprocal_rank=1 / first_rank if first_rank else 0,
                 evidence_recall=len(matched) / len(evidence),
                 all_evidence_present=len(matched) == len(evidence),
+                 hit_at_1=first_rank == 1,
+                 hit_at_3=first_rank is not None and first_rank <= 3,
+                 hit_at_5=first_rank is not None and first_rank <= 5,
+                 evidence_ranks=evidence_ranks,
                 expected_evidence_count=len(evidence), matched_evidence_count=len(matched))
 
 
@@ -64,6 +69,10 @@ def score_answer(case, response, context=None):
         options = [fact, *alternatives.get(fact, [])]
         rule = case.get('fact_assertions', {}).get(fact)
         if rule:
+            if rule.get('use_literal') is False:
+                # Labels such as "不是" are too broad on their own. A reviewed
+                # rule can require complete, scoped assertions instead.
+                options = alternatives.get(fact, [])
             options = [normalize(option) for option in options]
             rule = dict(rule, contradictions=[normalize(value) for value in rule.get('contradictions', [])])
             matched, conflicting = fact_assertion_match(normalize(response['answer']), options, rule)
@@ -98,12 +107,26 @@ def score_answer(case, response, context=None):
             supported = evidence_metrics(case["expected_evidence"], matched_context,
                                          alternative_sets=case.get("accepted_evidence_sets", []))["evidence_recall"]
     answerability_correct = response["answerable"] == case["answerable"]
+    expected_behavior = case.get("expected_behavior")
+    behavior_correct = None
+    if expected_behavior in {"answer", "clarify", "refuse"}:
+        actual = response.get("response_type") or ("answer" if response["answerable"] else "refuse")
+        behavior_correct = actual in case.get('accepted_behaviors', [expected_behavior])
+        if actual == "clarify":
+            questions, fields = response.get("clarification_questions", []), response.get("missing_fields", [])
+            behavior_correct = (behavior_correct and not response["answerable"] and not response["citations"]
+                and 1 <= len(questions) <= 3 and 1 <= len(fields) <= 5
+                and all(isinstance(s, str) and s.strip() for s in questions + fields))
     if case["answerable"]:
         proxy_pass = (answerability_correct and not missing and expected.issubset(cited)
+                      and (case.get('citation_requirement') != 'all_supporting_sources' or bool(cited))
                       and integrity is not False and (supported is None or supported == 1))
     else:
         proxy_pass = answerability_correct and not response["citations"]
+    if behavior_correct is not None:
+        proxy_pass = proxy_pass and behavior_correct
     return dict(answerability_correct=answerability_correct, missing_facts=missing,
+                behavior_contract_version="response-type-v1", behavior_correct=behavior_correct,
                 contradictory_facts=contradictions,
                 fact_coverage=(len(facts) - len(missing)) / len(facts) if facts else None,
                 all_required_sources_cited=expected.issubset(cited) if expected else None,
@@ -168,6 +191,9 @@ def summarize_stages(records):
         scored = [row["metrics"][stage] for row in records if row.get("metrics", {}).get(stage, {}).get("scored")]
         result[stage] = dict(scored_cases=len(scored),
                             hit_rate=sum(row["hit"] for row in scored) / len(scored) if scored else None,
+                            **{f"hit_at_{k}": sum(row.get("first_relevant_rank") is not None and
+                                row["first_relevant_rank"] <= k for row in scored) / len(scored)
+                                if scored else None for k in (1, 3, 5)},
                             mrr=sum(row["reciprocal_rank"] for row in scored) / len(scored) if scored else None,
                             mean_evidence_recall=sum(row["evidence_recall"] for row in scored) / len(scored) if scored else None,
                             all_evidence_rate=sum(row["all_evidence_present"] for row in scored) / len(scored) if scored else None)

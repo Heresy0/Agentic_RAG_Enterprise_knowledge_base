@@ -1,0 +1,60 @@
+{
+  "total": 7,
+  "records": [
+    {
+      "id": "MFGZH-Q025",
+      "question_group": "ordinary",
+      "reason": "原文和存储子块明确有“不是用于合格性判别，仅供参考”，本题最终上下文未命中，发生误拒答；未观测中间检索阶段，不能据此唯一归因。",
+      "final_context_all_evidence": false,
+      "observed_failure": "final_context_missing_evidence"
+    },
+    {
+      "id": "MFGZH-Q034",
+      "question_group": "ordinary",
+      "reason": "仅给出恒温放置4小时以上再通电，遗漏按说明书规定时间预热；实际引用上下文包含预热条件，属于回答条件覆盖不足。",
+      "final_context_all_evidence": true,
+      "observed_failure": "answer_omits_condition"
+    },
+    {
+      "id": "MFGZH-Q083",
+      "question_group": "ordinary",
+      "reason": "给出不少于30min，但遗漏温度平衡后才校准的必要条件；实际引用包含该条件，不能仅凭时间判完整通过。",
+      "final_context_all_evidence": true,
+      "observed_failure": "answer_omits_condition"
+    },
+    {
+      "id": "MFGZH-N07",
+      "question_group": "behavior_no_source",
+      "reason": "虽然拒答原因识别了缺少校准对象，但回复没有向用户追问设备、型号和规范。冻结要求是澄清，单纯拒答不通过。",
+      "final_context_all_evidence": null,
+      "observed_failure": "clarification_missing"
+    },
+    {
+      "id": "MFGZH-N08",
+      "question_group": "behavior_no_source",
+      "reason": "未询问仪器类型，直接列出八份规范的复校间隔，不能识别“这台仪器”。其中实际引用了OCR来源MFG-ZH14；本题仍是无指定来源的行为题，不回填为OCR专项题。",
+      "final_context_all_evidence": null,
+      "observed_failure": "clarification_missing"
+    },
+    {
+      "id": "MFGZH-N09",
+      "question_group": "behavior_no_source",
+      "reason": "直接说整改步骤资料不足，没有追问问题现象、产品工序及已采取措施，澄清行为缺失。",
+      "final_context_all_evidence": null,
+      "observed_failure": "clarification_missing"
+    },
+    {
+      "id": "MFGZH-N10",
+      "question_group": "behavior_no_source",
+      "reason": "原因说明不确定报告类型，但没有向用户询问日周月或事故报告类型和岗位职责，澄清行为缺失。",
+      "final_context_all_evidence": null,
+      "observed_failure": "clarification_missing"
+    }
+  ],
+  "unobserved_stages": [
+    "vector",
+    "keyword",
+    "fusion",
+    "rerank"
+  ]
+}

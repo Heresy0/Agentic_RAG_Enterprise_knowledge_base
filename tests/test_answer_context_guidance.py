@@ -26,10 +26,10 @@ def parent():
     ))
 
 
-def test_selection_removes_unrelated_body_without_losing_anchor_scope_tables_or_negative_facts():
+def test_default_selection_keeps_the_complete_parent_including_background():
     original = parent()
     selected = select_parent_context(original, '每个完整支援日的登记标准是多少？')
-    assert '绿色标志' not in selected.page_content
+    assert selected.page_content == original.page_content
     assert original.metadata['matched_child_content'] in selected.page_content
     assert '常规值班不适用' in selected.page_content
     assert 'A|书面登记' in selected.page_content and '不得重复登记' in selected.page_content
@@ -58,7 +58,7 @@ def test_missing_or_unverifiable_anchor_never_guesses_a_slice():
 
 def test_selected_context_still_rejects_unsupported_numbers_and_missing_coverage():
     context = ContextBuilder().build([parent()], question='每个完整支援日的登记标准是多少？')
-    draft = GenerationAnswerDraft.model_validate(dict(answerable=True,
+    draft = GenerationAnswerDraft.model_validate(dict(answerable=True, response_type='answer',
         claims=[dict(text='每个支援日登记999小时', citations=['资料1'])],
         coverage=[dict(requirement_id='Q1', aspect='标准', status='answered',
                        claim_indices=[1], missing_information=None)]))

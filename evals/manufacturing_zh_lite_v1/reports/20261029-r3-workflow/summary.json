@@ -1,0 +1,48 @@
+{
+  "evaluation_type": "known_failure_real_worker_before_after_not_generalization_accuracy",
+  "reviewer": "assistant_non_independent",
+  "tenant_id": "62721f0d-54b2-4361-8596-58585eb464ea",
+  "baseline_commit": "ceb3fc7",
+  "first_failed_attempt_commit": "9efc681",
+  "candidate_commit": "efb8a30",
+  "scorer": "2026-10-29-r13:quality-verification-v1",
+  "baseline_passed": 1,
+  "candidate_passed": 2,
+  "total": 2,
+  "fixed_regressions": 0,
+  "feedback_improved": [
+    "MFGZH-Q043"
+  ],
+  "closed_improvement_id": "ae2cd773-bde9-4fc3-b9b7-cb01d98f0641",
+  "unchanged_config_and_prompts": true,
+  "cli_worker_scoring_parity_checked": true,
+  "retained_full_98_score": 84,
+  "full_98_qa_rerun": false,
+  "backend_tests": {
+    "passed": 1519,
+    "skipped": 55,
+    "log_sha256": "61edb094eb26777611be8314afbf33d0ee7c27d2ee1f00994ed09ec8af52ddcf"
+  },
+  "frontend_tests": {
+    "passed": 39,
+    "log_sha256": "230adb270050ccebad898ecf28c6e10e6f2bde23344067d2e404d90f49b0e902"
+  },
+  "acl_checks": 25,
+  "ledger": {
+    "qa_requests": 6,
+    "requests_with_events": 6,
+    "calls": 26,
+    "reported_total_tokens": 86692,
+    "unknown_usage": 0,
+    "unpriced_calls": 26,
+    "errors": 0
+  },
+  "raw_source_sha256": {
+    "baseline-result.json": "7f6b63f0e621aba6c4cf7e9099de7cfa5bf149db18392fb5548a3d9ba80668a5",
+    "candidate-result.json": "4bff55adcee8d734643781d7b9c553d98716dabcb97640227371d0bedd1806bc",
+    "probe.json": "400779f9f27f9ddc95dfec3d3c26456a94446e38d036f4bc5e68380844f6bcb2",
+    "probe2.json": "b8f1e4ae1e6f51156e6453729654924b8e30504441834819d006f4b6a657c7f8",
+    "criteria.json": "0256216d3dcf6291f1dd063923a02604be7ffc549bd8a381e2ce5365b2adebb6"
+  },
+  "private_run": "tmp/manufacturing-finalize-r1"
+}

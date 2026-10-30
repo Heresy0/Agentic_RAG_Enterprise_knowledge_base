@@ -1,0 +1,826 @@
+{
+  "tenant_id": "d07c3522-391a-4bb0-a46c-cca668a277f3",
+  "chunking_version": "structured-v7",
+  "cleaning_version": "conservative-v2",
+  "parser_sha256": "7c8909bf9ea048eedad8532e7d4cc1f21bcc1ddba7454fc025713351450a4fbc",
+  "all_checks_passed": true,
+  "documents": 18,
+  "ready_documents": 17,
+  "chunks": 1034,
+  "vectors": 1034,
+  "parents": 538,
+  "jobs": {
+    "succeeded": 17,
+    "failed": 1
+  },
+  "model_config": {
+    "qa_snapshots_enabled": true,
+    "conversation_memory_enabled": false,
+    "embedding_model": "text-embedding-v4",
+    "rerank_model": "qwen3-rerank"
+  },
+  "records": [
+    {
+      "source_id": "MFG-ZH01",
+      "document_id": "12a6d25a-4469-48bc-9b65-c521a83f21ad",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+      "status": "ready",
+      "sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "version": 1,
+      "chunk_count": 24,
+      "vector_count": 24,
+      "parent_count": 9,
+      "parser_counts": {
+        "pdfplumber": 24
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 41,
+            "changed_stages": 9,
+            "applied_rules": {
+              "unicode_nfkc": 9
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 24,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 9
+      }
+    },
+    {
+      "source_id": "MFG-ZH02",
+      "document_id": "c7a7a195-77da-4a86-a0ce-bbb94784acf9",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+      "status": "ready",
+      "sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "version": 1,
+      "chunk_count": 83,
+      "vector_count": 83,
+      "parent_count": 4,
+      "parser_counts": {
+        "markdown": 83
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "applicability": "文档:MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 84,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 83,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 4
+      }
+    },
+    {
+      "source_id": "MFG-ZH03",
+      "document_id": "b7ba7059-62b2-4201-a2f6-a7e5ba91b593",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+      "status": "ready",
+      "sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "version": 1,
+      "chunk_count": 115,
+      "vector_count": 115,
+      "parent_count": 4,
+      "parser_counts": {
+        "markdown": 115
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "applicability": "文档:MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 116,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 115,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 4
+      }
+    },
+    {
+      "source_id": "MFG-ZH04",
+      "document_id": "7a61fc75-7c72-4f29-9021-7622ff74b109",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+      "status": "ready",
+      "sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "version": 1,
+      "chunk_count": 20,
+      "vector_count": 20,
+      "parent_count": 5,
+      "parser_counts": {
+        "pdfplumber": 20
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 33,
+            "changed_stages": 10,
+            "applied_rules": {
+              "unicode_nfkc": 10
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 20,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 5
+      }
+    },
+    {
+      "source_id": "MFG-ZH05",
+      "document_id": "372abd9b-abaa-4635-bd85-0e01a7a53df6",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+      "status": "ready",
+      "sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "version": 1,
+      "chunk_count": 90,
+      "vector_count": 90,
+      "parent_count": 53,
+      "parser_counts": {
+        "pdfplumber": 34,
+        "pdfplumber+pdfplumber-layout": 15,
+        "pdfplumber-layout": 41
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 145,
+            "changed_stages": 33,
+            "applied_rules": {
+              "unicode_nfkc": 26,
+              "normalize_empty_cells": 4,
+              "normalize_cell_whitespace": 6,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 90,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 53
+      }
+    },
+    {
+      "source_id": "MFG-ZH06",
+      "document_id": "e9dbcd20-d30f-4f90-ae3f-7c2bc84472cc",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+      "status": "ready",
+      "sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "version": 1,
+      "chunk_count": 49,
+      "vector_count": 49,
+      "parent_count": 33,
+      "parser_counts": {
+        "pdfplumber": 29,
+        "pdfplumber-layout": 11,
+        "pdfplumber+pdfplumber-layout": 9
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 88,
+            "changed_stages": 25,
+            "applied_rules": {
+              "unicode_nfkc": 20,
+              "normalize_cell_whitespace": 4,
+              "normalize_empty_cells": 3
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 49,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 33
+      }
+    },
+    {
+      "source_id": "MFG-ZH07",
+      "document_id": "733142ad-8797-471a-a877-55c5f18c755f",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+      "status": "ready",
+      "sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "version": 1,
+      "chunk_count": 212,
+      "vector_count": 212,
+      "parent_count": 136,
+      "parser_counts": {
+        "pdfplumber-layout": 162,
+        "pdfplumber+pdfplumber-layout": 10,
+        "pdfplumber": 40
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 310,
+            "changed_stages": 66,
+            "applied_rules": {
+              "unicode_nfkc": 39,
+              "normalize_empty_cells": 22,
+              "normalize_cell_whitespace": 15,
+              "drop_empty_table_rows": 5
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 212,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 136
+      }
+    },
+    {
+      "source_id": "MFG-ZH08",
+      "document_id": "8c130633-715c-4a42-a273-e02f1b3aa04d",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+      "status": "ready",
+      "sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "version": 1,
+      "chunk_count": 48,
+      "vector_count": 48,
+      "parent_count": 25,
+      "parser_counts": {
+        "pdfplumber": 21,
+        "pdfplumber+pdfplumber-layout": 5,
+        "pdfplumber-layout": 22
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 88,
+            "changed_stages": 25,
+            "applied_rules": {
+              "unicode_nfkc": 18,
+              "normalize_cell_whitespace": 7,
+              "normalize_empty_cells": 6,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 48,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 25
+      }
+    },
+    {
+      "source_id": "MFG-ZH09",
+      "document_id": "bcf783ce-4435-4ec0-97ba-a49e864fc538",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+      "status": "ready",
+      "sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+      "version": 1,
+      "chunk_count": 62,
+      "vector_count": 62,
+      "parent_count": 30,
+      "parser_counts": {
+        "pdfplumber-layout": 27,
+        "pdfplumber": 25,
+        "pdfplumber+pdfplumber-layout": 10
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 108,
+            "changed_stages": 32,
+            "applied_rules": {
+              "unicode_nfkc": 21,
+              "normalize_cell_whitespace": 11,
+              "normalize_empty_cells": 9,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 62,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 30
+      }
+    },
+    {
+      "source_id": "MFG-ZH10",
+      "document_id": "4b143a79-ad69-435e-bdec-a70bb76c799a",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+      "status": "ready",
+      "sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+      "version": 1,
+      "chunk_count": 76,
+      "vector_count": 76,
+      "parent_count": 53,
+      "parser_counts": {
+        "pdfplumber": 29,
+        "pdfplumber-layout": 46,
+        "pdfplumber+pdfplumber-layout": 1
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 122,
+            "changed_stages": 28,
+            "applied_rules": {
+              "unicode_nfkc": 19,
+              "normalize_cell_whitespace": 7,
+              "normalize_empty_cells": 3,
+              "drop_empty_table_rows": 1
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 76,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 53
+      }
+    },
+    {
+      "source_id": "MFG-ZH11",
+      "document_id": "f252d13d-55ff-4230-8eef-502e77ab7f78",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+      "status": "failed",
+      "sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+      "version": 1,
+      "chunk_count": 0,
+      "vector_count": 0,
+      "parent_count": 0,
+      "parser_counts": {},
+      "metadata": {}
+    },
+    {
+      "source_id": "MFG-ZH12",
+      "document_id": "a67bc953-6393-47d4-b329-c32521fb4d27",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+      "version": 1,
+      "chunk_count": 31,
+      "vector_count": 31,
+      "parent_count": 22,
+      "parser_counts": {
+        "ocr": 31
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 31,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 50,
+            "changed_stages": 12,
+            "applied_rules": {
+              "normalize_horizontal_space": 8,
+              "strip_edges": 12,
+              "unicode_nfkc": 10
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 31,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 22
+      }
+    },
+    {
+      "source_id": "MFG-ZH13",
+      "document_id": "59883496-d5f2-4265-bf2b-b3a267751616",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+      "version": 1,
+      "chunk_count": 48,
+      "vector_count": 48,
+      "parent_count": 35,
+      "parser_counts": {
+        "ocr": 48
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 48,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 80,
+            "changed_stages": 22,
+            "applied_rules": {
+              "normalize_horizontal_space": 17,
+              "strip_edges": 22,
+              "unicode_nfkc": 14
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 48,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 35
+      }
+    },
+    {
+      "source_id": "MFG-ZH14",
+      "document_id": "748e44c3-258a-48d4-a08d-960b2c4d8eda",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+      "version": 1,
+      "chunk_count": 25,
+      "vector_count": 25,
+      "parent_count": 21,
+      "parser_counts": {
+        "ocr": 25
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 25,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 45,
+            "changed_stages": 11,
+            "applied_rules": {
+              "normalize_horizontal_space": 6,
+              "strip_edges": 11,
+              "unicode_nfkc": 7
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 25,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 21
+      }
+    },
+    {
+      "source_id": "MFG-ZH15",
+      "document_id": "515e0892-3160-40ed-b74d-7d4cdd848152",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+      "version": 1,
+      "chunk_count": 31,
+      "vector_count": 31,
+      "parent_count": 24,
+      "parser_counts": {
+        "ocr": 31
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 31,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 52,
+            "changed_stages": 14,
+            "applied_rules": {
+              "unicode_nfkc": 10,
+              "normalize_horizontal_space": 10,
+              "strip_edges": 14
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 31,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 24
+      }
+    },
+    {
+      "source_id": "MFG-ZH16",
+      "document_id": "51631181-2d58-4961-aebc-5d2536218621",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+      "status": "ready",
+      "sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+      "version": 1,
+      "chunk_count": 26,
+      "vector_count": 26,
+      "parent_count": 22,
+      "parser_counts": {
+        "ocr": 26
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 26,
+          "review_required": true,
+          "review_reasons": [
+            "ocr_unverified"
+          ],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 47,
+            "changed_stages": 13,
+            "applied_rules": {
+              "normalize_horizontal_space": 8,
+              "strip_edges": 13,
+              "unicode_nfkc": 8
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 26,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 22
+      }
+    },
+    {
+      "source_id": "MFG-ZH17",
+      "document_id": "2f8ebcc1-780a-47b2-83d2-25b2b2cddcb2",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+      "status": "ready",
+      "sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+      "version": 1,
+      "chunk_count": 49,
+      "vector_count": 49,
+      "parent_count": 28,
+      "parser_counts": {
+        "pdfplumber": 31,
+        "pdfplumber-layout": 16,
+        "pdfplumber+pdfplumber-layout": 2
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 80,
+            "changed_stages": 23,
+            "applied_rules": {
+              "unicode_nfkc": 19,
+              "normalize_cell_whitespace": 4,
+              "normalize_empty_cells": 3,
+              "drop_empty_table_rows": 1
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 49,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 28
+      }
+    },
+    {
+      "source_id": "MFG-ZH18",
+      "document_id": "1ae444e5-4b85-4a61-9e7f-98ef694dd9bb",
+      "knowledge_base_id": "edb1cc11-dd46-440d-a8a9-a07102376d1f",
+      "file_name": "MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+      "status": "ready",
+      "sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+      "version": 1,
+      "chunk_count": 45,
+      "vector_count": 45,
+      "parent_count": 34,
+      "parser_counts": {
+        "pdfplumber": 25,
+        "pdfplumber-layout": 17,
+        "pdfplumber+pdfplumber-layout": 3
+      },
+      "metadata": {
+        "policy": {
+          "schema_version": "policy-v1",
+          "origin": "labelled_source_fields",
+          "topics": []
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 77,
+            "changed_stages": 17,
+            "applied_rules": {
+              "unicode_nfkc": 14,
+              "normalize_cell_whitespace": 3,
+              "normalize_empty_cells": 3,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "ocr_review_revision": null,
+        "chunk_count": 45,
+        "chunking_version": "structured-v7",
+        "embedding_model": "text-embedding-v4",
+        "parent_chunking_version": "section-parents-v1",
+        "parent_count": 34
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "all_checks_passed": true,
+  "synthetic_fixture": true,
+  "reviewer": "assistant_non_independent",
+  "document_id": "f8186cf1-cd01-4c53-a940-4194bcb0d801",
+  "checks": [
+    "draft_excluded_from_citation",
+    "published_citation_available",
+    "stale_revision_rejected",
+    "updated_version_requires_review",
+    "stale_source_version_rejected",
+    "current_source_hash_matches",
+    "withdrawn_citation_unavailable",
+    "temporary_document_deleted"
+  ],
+  "indexing_uploads": 2,
+  "qa_requests": 0
+}

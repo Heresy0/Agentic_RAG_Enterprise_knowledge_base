@@ -15,11 +15,15 @@ from .api.qa import router as qa_router
 from .api.system import router as system_router
 from .api.frontend import router as frontend_router
 from .api.model_usage import router as model_usage_router
+from .api.feedback import router as feedback_router
+from .api.quality import router as quality_router
+from .api.verification import router as verification_router
 from .db.session import (
     create_database_engine,
     create_session_factory,
     verify_database_connection,
 )
+from .api.document_review import router as document_review_router
 from .api.knowledge_bases import (
     router as knowledge_base_router,
 )
@@ -140,6 +144,10 @@ app.middleware("http")(observe_http_request)
 app.include_router(qa_router)
 app.include_router(conversations_router)
 app.include_router(knowledge_base_router)
+app.include_router(document_review_router)
 app.include_router(system_router)
 app.include_router(frontend_router)
 app.include_router(model_usage_router)
+app.include_router(feedback_router)
+app.include_router(quality_router)
+app.include_router(verification_router)

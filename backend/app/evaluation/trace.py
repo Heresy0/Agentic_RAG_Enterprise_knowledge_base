@@ -4,7 +4,9 @@ from contextvars import ContextVar
 from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import PurePosixPath
+from math import isfinite
 from prometheus_client import Counter
+from ..quality import capture as observation
 
 RAG_ROUTES = Counter("enterprise_rag_routes", "RAG strategy selections by phase", ["phase", "strategy"])
 RAG_REPAIRS = Counter("enterprise_rag_repairs", "Bounded answer repair outcomes", ["outcome"])
@@ -51,6 +53,7 @@ def start_model_usage():
 
 
 def record_scope(query, scope):
+    observation.observe_resolution(query)
     trace = _current.get()
     if trace is not None:
         trace.query = query
@@ -64,6 +67,9 @@ def _in_scope(trace, metadata):
 
 
 def record_documents(stage, documents):
+    observation.observe_stage(stage, documents)
+    if stage in {"authorized_final", "feedback_evidence"}:
+        observation.observe_documents(documents)
     trace = _current.get()
     if trace is None:
         return
@@ -93,10 +99,16 @@ def record_documents(stage, documents):
                          section_path=metadata.get("section_path")))
         if metadata.get('parent_id'):
             rows[-1]['parent_id'] = metadata['parent_id']
+        for key in ("rrf_rank", "rrf_score", "rerank_score", "model_rank", "final_rank"):
+            value = metadata.get(key)
+            if type(value) in (int, float) and isfinite(value):
+                rows[-1][key] = value
     trace.stages[stage] = rows
 
 
 def record_context(context, *, stage="context"):
+    if stage == "context":
+        observation.observe_context(context)
     trace = _current.get()
     if trace is None:
         return
@@ -117,6 +129,7 @@ def record_context(context, *, stage="context"):
             if item.parent_id:
                 rows[-1]['parent_id'] = item.parent_id
     trace.stages[stage] = rows
+    trace.stages[stage + "_status"] = [dict(incomplete_reason=context.incomplete_reason)]
 
 
 def record_calculations(records):
@@ -135,14 +148,15 @@ def record_answer_decision(*, stage, answerable, reason=None, temporal=None):
     """Structured outcome only; never collect hidden model reasoning."""
     if stage in {'pre_generation', 'generation_error', 'validation', 'final'} and type(answerable) is bool:
         RAG_TERMINAL_RESULTS.labels(stage, str(answerable).lower()).inc()
+    decision = dict(stage=stage, answerable=answerable, reason=reason, temporal=deepcopy(temporal))
+    observation.observe_diagnostic('answer_decisions', decision)
     trace = _current.get()
     if trace is not None:
-        trace.stages.setdefault("answer_decisions", []).append(dict(
-            stage=stage, answerable=answerable, reason=reason, temporal=deepcopy(temporal),
-        ))
+        trace.stages.setdefault("answer_decisions", []).append(decision)
 
 
 def record_answer_completion(records):
+    observation.observe_diagnostic('answer_completion', dict(decisions=records))
     trace = _current.get()
     if trace is not None:
         trace.stages['answer_completion'] = deepcopy(records)
@@ -150,13 +164,13 @@ def record_answer_completion(records):
 
 def record_answer_generation(response, claims, coverage, *, changed, validation_errors, stage="answer_generation"):
     """Opt-in visible first answer/coverage only, never hidden reasoning or public API fields."""
+    data = dict(response=response.model_dump(mode='json'), claims=deepcopy(claims),
+                coverage=deepcopy(coverage), completion_changed=changed,
+                validation_errors=list(validation_errors))
+    observation.observe_diagnostic(stage, data)
     trace = _current.get()
     if trace is not None:
-        trace.stages[stage] = [dict(
-            response=response.model_dump(mode='json'), claims=deepcopy(claims),
-            coverage=deepcopy(coverage), completion_changed=changed,
-            validation_errors=list(validation_errors),
-        )]
+        trace.stages[stage] = [data]
 
 
 def record_conversation_resolution(question, resolved, history_count):
@@ -165,6 +179,13 @@ def record_conversation_resolution(question, resolved, history_count):
         trace.stages['conversation_resolution'] = [dict(
             question=question, retrieval_question=resolved, history_count=history_count,
         )]
+
+
+def record_memory_event(outcome, item_count, conflict_count):
+    """Counts only: never copy summary values, quotes or model reasoning to diagnostics."""
+    trace = _current.get()
+    if trace is not None:
+        trace.stages['conversation_memory'] = [dict(outcome=outcome, item_count=item_count, conflict_count=conflict_count)]
 
 
 def record_agent_event(event):
@@ -176,6 +197,7 @@ def record_agent_event(event):
 
 def record_rag_event(event):
     """Visible plans, strategy transitions and repair outcomes, opt-in only."""
+    observation.observe_diagnostic('rag_routing', event)
     kind = event.get("kind")
     if kind in {"plan", "retrieval_route", "strategy_transition"}:
         strategy = event.get("selected_strategy", event.get("strategy"))

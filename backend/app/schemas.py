@@ -16,6 +16,8 @@ class KnowledgeQuestionRequest(BaseModel):
 
 
 class KnowledgeQuestionResponse(AnswerResult):
+    run_id: UUID | None = None
+    snapshot_status: str | None = None
     conversation_id: UUID | None = None
     conversation_context_ms: float | None = None
 
@@ -40,6 +42,8 @@ class KnowledgeDocumentSummary(BaseModel):
     chunk_count: int
     created_at: datetime
     updated_at: datetime
+    publication: dict = Field(default_factory=dict)
+    quality: dict = Field(default_factory=dict)
 
 
 class KnowledgeDocumentListResponse(BaseModel):
@@ -53,6 +57,10 @@ class CitationPreview(BaseModel):
     chunk_id: str
     section_path: str
     content: str
+    page_start: int | None = None
+    page_end: int | None = None
+    mime_type: str | None = None
+    quality: dict = Field(default_factory=dict)
 
 
 class DocumentIndexingJobSummary(BaseModel):

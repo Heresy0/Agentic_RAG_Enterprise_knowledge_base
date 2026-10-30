@@ -1,0 +1,90 @@
+[
+  {
+    "id": "MFGZH-Q002",
+    "previous_status": "failed",
+    "reviewed_status": "passed",
+    "review_note": "未发现问题仍应记录与不能不留记录等价；保留记录及零风险报告要求，并拒绝相反结论。",
+    "question_sha256": "2af5e2484e8fd55495a700b3545cd30b8625678640f40711dff23647ec1d0021",
+    "response_sha256": "800835faaef659f116708cc020065fd284c86c3f156b081e4d067310af0baaaf",
+    "previous_missing_facts": [
+      "不能"
+    ],
+    "reviewed_missing_facts": [],
+    "citation_integrity": true
+  },
+  {
+    "id": "MFGZH-Q031",
+    "previous_status": "failed",
+    "reviewed_status": "passed",
+    "review_note": "补充不必然不适用本规范，仍要求部分功能适用的限定判断及原文引用。",
+    "question_sha256": "9c413e156cc0ac0099cc5395d915b7c17ca51ec207864ea1e27f760a770d80c5",
+    "response_sha256": "aea51e13d0e269b0cd2f569ea2bc018f895ce822487fa6212d11941070f471f4",
+    "previous_missing_facts": [
+      "不是"
+    ],
+    "reviewed_missing_facts": [],
+    "citation_integrity": true
+  },
+  {
+    "id": "MFGZH-Q049",
+    "previous_status": "failed",
+    "reviewed_status": "passed",
+    "review_note": "增加2h/2小时、30min/30分钟的固定单位等价，不改变数值和其他事实要求。",
+    "question_sha256": "855c8b0de54879939de68641b5bdc846f42facb0e265545c44f97ff4e1086a7b",
+    "response_sha256": "347048e089968c28e3cb4f3f578575b0d094746de82ffc260a5739f35458e063",
+    "previous_missing_facts": [
+      "2h",
+      "30min"
+    ],
+    "reviewed_missing_facts": [],
+    "citation_integrity": true
+  },
+  {
+    "id": "MFGZH-Q012",
+    "previous_status": "failed",
+    "reviewed_status": "passed",
+    "review_note": "必须填报/必须填写与必填等价，是否公开及生产单位选择仍必答。",
+    "question_sha256": "6e9abb1f43082577dcc48c5b8ca01e8681bd65eeb7a5272328189412521d175f",
+    "response_sha256": "24a4596bfd01cc68ec4ae777b56a456950039cdd7e6bb676483febf60ebc07db",
+    "previous_missing_facts": [
+      "必填"
+    ],
+    "reviewed_missing_facts": [],
+    "citation_integrity": true
+  },
+  {
+    "id": "MFGZH-Q020",
+    "previous_status": "failed",
+    "reviewed_status": "passed",
+    "review_note": "持续定期评估本身排除仅一次验收；最高管理者和定期评估仍必答，不接受一次即足够的相反结论。",
+    "question_sha256": "32f2ff3b6b04ba2c66b44296f1401599e7782b79665112291e5c1b58ce408979",
+    "response_sha256": "4bda5bdcbf78ed7617a922f0666df8cf57dbac1713d1ba8344939d15c66d9961",
+    "previous_missing_facts": [
+      "不只是一次"
+    ],
+    "reviewed_missing_facts": [],
+    "citation_integrity": true
+  },
+  {
+    "id": "MFGZH-N16",
+    "previous_status": "failed",
+    "reviewed_status": "passed",
+    "review_note": "缺少批准图纸时，拒绝编造与追问图纸均是合理路径；仍须answerable=false、无引用，澄清必须有完整问题与缺失字段。",
+    "question_sha256": "14361d375b30a3f8f8d55bf8cbefc3ed3a7c715096692c61dc4e7d4c19a35ab1",
+    "response_sha256": "3e32d403574f3d73d14c72941077f396b4cd8ca615d4354a1ee0ad8458677263",
+    "previous_missing_facts": [],
+    "reviewed_missing_facts": [],
+    "citation_integrity": true
+  },
+  {
+    "id": "MFGZH-N21",
+    "previous_status": "failed",
+    "reviewed_status": "passed",
+    "review_note": "对错误保证作有依据的否定属于回答，不是缺证据拒答；必须说明不能保证及不能替代产品检验，并有有效引用。自动分仍不代替引用语义支持的人工复核。",
+    "question_sha256": "4ec62c2c69278201c5e385e73c38ce931f43903b861ff553a992be4f71ddd739",
+    "response_sha256": "6b71f648f23abd90edde9d883077465e292266ff89a1ef1ae9f3f1c4e0d3f113",
+    "previous_missing_facts": [],
+    "reviewed_missing_facts": [],
+    "citation_integrity": true
+  }
+]

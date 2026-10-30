@@ -71,6 +71,7 @@ from ..documents.document_deletion_service import (
     DocumentNotFoundError,
 )
 from ..knowledge.chunk_repository import ChunkRepository
+from ..documents.publication import publication, published_predicate
 
 
 router = APIRouter(
@@ -225,6 +226,8 @@ def list_knowledge_base_documents(
                 ),
                 created_at=document.created_at,
                 updated_at=document.updated_at,
+                publication=publication(document),
+                quality=(document.metadata_json or {}).get("quality", {}),
             )
             for document in documents
         ]
@@ -258,11 +261,13 @@ def preview_citation(
         DocumentChunk.id == chunk_id, DocumentChunk.document_id == document_id,
         DocumentChunk.tenant_id == principal.tenant_id, DocumentChunk.knowledge_base_id == knowledge_base_id,
         KnowledgeDocument.status == "ready",
+        published_predicate(),
     )).first()
     if row is None:
         raise HTTPException(status_code=404, detail="引用原文已不可用，文档可能已更新或删除，请重新提问。")
     chunk, document = row
     content, section = chunk.content, str(chunk.metadata_json.get('section_path',''))
+    page_start, page_end = chunk.metadata_json.get("page_start"), chunk.metadata_json.get("page_end")
     if parent_id is not None:
         repository = ChunkRepository(session)
         anchor = repository._stored(chunk, document)
@@ -271,9 +276,21 @@ def preview_citation(
         if not parents or parents[0].metadata.get('parent_id')!=parent_id:
             raise HTTPException(status_code=404, detail='引用父块已不可用，请重新提问。')
         content, section = parents[0].content, str(parents[0].metadata.get('section_path',''))
+        parent_meta = parents[0].metadata
+        siblings = session.scalars(select(DocumentChunk).where(
+            DocumentChunk.tenant_id == principal.tenant_id, DocumentChunk.knowledge_base_id == knowledge_base_id,
+            DocumentChunk.document_id == document_id,
+            DocumentChunk.chunk_index.between(parent_meta["parent_first_index"], parent_meta["parent_last_index"])))
+        spans = [(s.metadata_json.get("page_start"), s.metadata_json.get("page_end")) for s in siblings]
+        starts = [s for s, e in spans if type(s) is int and type(e) is int and 1 <= s <= e]
+        ends = [e for s, e in spans if type(s) is int and type(e) is int and 1 <= s <= e]
+        page_start, page_end = (min(starts), max(ends)) if len(starts) == len(spans) and starts else (None, None)
     return CitationPreview(document_id=document.id, document_name=document.file_name,
                            document_version=document.version, chunk_id=chunk.id,
-                           section_path=section, content=content)
+                           section_path=section, content=content,
+                           page_start=page_start,
+                           page_end=page_end, mime_type=document.mime_type,
+                           quality=(document.metadata_json or {}).get("quality", {}))
 
 
 @router.post(

@@ -49,11 +49,11 @@ def test_metadata_table_and_unknown_heading_are_conservatively_classified():
     assert evidence_role(chunk("需要先审批", section="文档说明")) == "content"
 
 
-def test_context_reserves_budget_for_rules_even_when_called_without_selector():
+def test_single_source_keeps_rules_first_without_clipping_other_fitting_blocks():
     built = ContextBuilder().build(header_first()[:8], question="返回401会重试吗？")
-    assert len(built.items) == 4
+    assert len(built.items) == 8
     assert "其他4xx直接进入失败待核查" in built.text
-    assert [item.chunk_id for item in built.items] == ["boundary", "rule", "idempotency", "logs"]
+    assert [item.chunk_id for item in built.items[:4]] == ["boundary", "rule", "idempotency", "logs"]
     assert built.total_characters <= 12000
 
 

@@ -25,6 +25,10 @@ def indexed(session, scope_data, tmp_path):
     service=DocumentIndexingService(session=session,settings=_settings(),embeddings=embedding,vector_store=FakeVectorStore())
     service.index_file(file_path=path,scope=scope,created_by_user_id=scope_data.user_id)
     doc=session.scalar(select(KnowledgeDocument))
+    # These tests exercise retrieval of an explicitly reviewed source.
+    assert doc.metadata_json["publication"]["state"] == "draft"
+    doc.metadata_json={**doc.metadata_json,"publication":{"state":"published","revision":3}}
+    session.commit()
     chunks=session.scalars(select(DocumentChunk).order_by(DocumentChunk.chunk_index)).all()
     return scope,path,service,doc,chunks,embedding
 

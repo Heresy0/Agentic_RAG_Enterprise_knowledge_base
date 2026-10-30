@@ -1,0 +1,219 @@
+{
+  "qa_requests": 6,
+  "requests_with_events": 6,
+  "calls": 26,
+  "reported_total_tokens": 86692,
+  "unknown_usage": 0,
+  "unpriced_calls": 26,
+  "errors": 0,
+  "records": [
+    {
+      "event_id": "eab04c58-86e3-4757-ab70-97fc5f8ba699",
+      "request_id": "a07433620cd84e9f9aa79de3cd8438f1",
+      "stage": "query_planning",
+      "status": "success",
+      "total_tokens": 467,
+      "job_id": null
+    },
+    {
+      "event_id": "1449702f-952f-4a11-ac88-1c5d55a759b8",
+      "request_id": "a07433620cd84e9f9aa79de3cd8438f1",
+      "stage": "query_embedding",
+      "status": "success",
+      "total_tokens": 56,
+      "job_id": null
+    },
+    {
+      "event_id": "a5fa5edf-d9e6-4914-881e-70007e0077f5",
+      "request_id": "a07433620cd84e9f9aa79de3cd8438f1",
+      "stage": "rerank",
+      "status": "success",
+      "total_tokens": 7426,
+      "job_id": null
+    },
+    {
+      "event_id": "7a787077-4978-4ad4-bb5d-9186e9de4182",
+      "request_id": "a07433620cd84e9f9aa79de3cd8438f1",
+      "stage": "agent_decision",
+      "status": "success",
+      "total_tokens": 2531,
+      "job_id": null
+    },
+    {
+      "event_id": "f422aca0-b597-4fd5-b446-bdd9ecd779a8",
+      "request_id": "a07433620cd84e9f9aa79de3cd8438f1",
+      "stage": "answer_generation",
+      "status": "success",
+      "total_tokens": 5190,
+      "job_id": null
+    },
+    {
+      "event_id": "51b64346-b9f7-43de-87cc-d65e1fbd203d",
+      "request_id": "c0dd282a729c41c1a3505b8b7f89cca7",
+      "stage": "query_planning",
+      "status": "success",
+      "total_tokens": 524,
+      "job_id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0"
+    },
+    {
+      "event_id": "49126253-1ecc-46b9-a943-9e3a9ff3ace5",
+      "request_id": "c0dd282a729c41c1a3505b8b7f89cca7",
+      "stage": "query_embedding",
+      "status": "success",
+      "total_tokens": 56,
+      "job_id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0"
+    },
+    {
+      "event_id": "e05c51a5-a0ce-4d5f-81a6-ce8691adec28",
+      "request_id": "c0dd282a729c41c1a3505b8b7f89cca7",
+      "stage": "rerank",
+      "status": "success",
+      "total_tokens": 7426,
+      "job_id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0"
+    },
+    {
+      "event_id": "d907fa17-61bf-4741-8984-354eed4c4aef",
+      "request_id": "c0dd282a729c41c1a3505b8b7f89cca7",
+      "stage": "agent_decision",
+      "status": "success",
+      "total_tokens": 2531,
+      "job_id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0"
+    },
+    {
+      "event_id": "20663ec6-8057-40a8-95cb-b47d380cec72",
+      "request_id": "c0dd282a729c41c1a3505b8b7f89cca7",
+      "stage": "answer_generation",
+      "status": "success",
+      "total_tokens": 5195,
+      "job_id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0"
+    },
+    {
+      "event_id": "ff81ab01-d162-4b12-87d9-1edc35b3a8ab",
+      "request_id": "c7c8513301f44bd5bf297f2d3d937e6e",
+      "stage": "query_planning",
+      "status": "success",
+      "total_tokens": 478,
+      "job_id": "664404b1-0311-4759-9ed3-c2ad01a98d02"
+    },
+    {
+      "event_id": "a1f74488-36ae-47f4-bddd-8f93a5321b03",
+      "request_id": "c7c8513301f44bd5bf297f2d3d937e6e",
+      "stage": "query_embedding",
+      "status": "success",
+      "total_tokens": 56,
+      "job_id": "664404b1-0311-4759-9ed3-c2ad01a98d02"
+    },
+    {
+      "event_id": "0070cb4f-57fa-4b58-b40c-bb89df592ccd",
+      "request_id": "c7c8513301f44bd5bf297f2d3d937e6e",
+      "stage": "rerank",
+      "status": "success",
+      "total_tokens": 7426,
+      "job_id": "664404b1-0311-4759-9ed3-c2ad01a98d02"
+    },
+    {
+      "event_id": "0fc58831-1f0b-4619-a9f7-2b702bbd83ed",
+      "request_id": "c7c8513301f44bd5bf297f2d3d937e6e",
+      "stage": "agent_decision",
+      "status": "success",
+      "total_tokens": 2531,
+      "job_id": "664404b1-0311-4759-9ed3-c2ad01a98d02"
+    },
+    {
+      "event_id": "a3083e2c-82d8-4d67-8a7b-079f10a3c60e",
+      "request_id": "c7c8513301f44bd5bf297f2d3d937e6e",
+      "stage": "answer_generation",
+      "status": "success",
+      "total_tokens": 5127,
+      "job_id": "664404b1-0311-4759-9ed3-c2ad01a98d02"
+    },
+    {
+      "event_id": "8b62fb4f-986a-47ac-91fa-404701413431",
+      "request_id": "dd9b43b6077844809bc008352250258d",
+      "stage": "query_embedding",
+      "status": "success",
+      "total_tokens": 45,
+      "job_id": "664404b1-0311-4759-9ed3-c2ad01a98d02"
+    },
+    {
+      "event_id": "212c2d25-0fd4-43ab-86fc-150a10044e4d",
+      "request_id": "dd9b43b6077844809bc008352250258d",
+      "stage": "rerank",
+      "status": "success",
+      "total_tokens": 4748,
+      "job_id": "664404b1-0311-4759-9ed3-c2ad01a98d02"
+    },
+    {
+      "event_id": "2d0324d2-9afd-467d-a9cf-9ebd883cae5c",
+      "request_id": "dd9b43b6077844809bc008352250258d",
+      "stage": "answer_generation",
+      "status": "success",
+      "total_tokens": 7196,
+      "job_id": "664404b1-0311-4759-9ed3-c2ad01a98d02"
+    },
+    {
+      "event_id": "30d29133-3c2e-4b0b-9774-4bd0c399bc8a",
+      "request_id": "ed5f8103454b44a9b7c837216a728172",
+      "stage": "query_embedding",
+      "status": "success",
+      "total_tokens": 45,
+      "job_id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0"
+    },
+    {
+      "event_id": "5fab39c9-2afe-4d41-acb9-dc07a85b976d",
+      "request_id": "ed5f8103454b44a9b7c837216a728172",
+      "stage": "rerank",
+      "status": "success",
+      "total_tokens": 4748,
+      "job_id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0"
+    },
+    {
+      "event_id": "3a44583f-b16a-493d-9ba0-64a83e4dbd0a",
+      "request_id": "ed5f8103454b44a9b7c837216a728172",
+      "stage": "answer_generation",
+      "status": "success",
+      "total_tokens": 7196,
+      "job_id": "5ce3bc61-95c4-4fe4-9cf5-45cd6bf0edd0"
+    },
+    {
+      "event_id": "981dd76a-f033-416d-8e1b-66263fdd9612",
+      "request_id": "f4d55eede00d472b9debb5b8b7cfe6ef",
+      "stage": "query_planning",
+      "status": "success",
+      "total_tokens": 524,
+      "job_id": null
+    },
+    {
+      "event_id": "983a574a-3e02-4392-9627-4c719c38d0b5",
+      "request_id": "f4d55eede00d472b9debb5b8b7cfe6ef",
+      "stage": "query_embedding",
+      "status": "success",
+      "total_tokens": 56,
+      "job_id": null
+    },
+    {
+      "event_id": "e1099c89-8201-4ca9-83df-b6a8f017aad6",
+      "request_id": "f4d55eede00d472b9debb5b8b7cfe6ef",
+      "stage": "rerank",
+      "status": "success",
+      "total_tokens": 7426,
+      "job_id": null
+    },
+    {
+      "event_id": "59fafe57-b34f-46d8-b083-f946e966b232",
+      "request_id": "f4d55eede00d472b9debb5b8b7cfe6ef",
+      "stage": "agent_decision",
+      "status": "success",
+      "total_tokens": 2531,
+      "job_id": null
+    },
+    {
+      "event_id": "2356d2fa-5080-479f-aed0-8a5ed260eb0b",
+      "request_id": "f4d55eede00d472b9debb5b8b7cfe6ef",
+      "stage": "answer_generation",
+      "status": "success",
+      "total_tokens": 5157,
+      "job_id": null
+    }
+  ]
+}

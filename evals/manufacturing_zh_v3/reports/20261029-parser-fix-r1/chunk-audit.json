@@ -1,0 +1,341 @@
+{
+  "evaluation_type": "offline_actual_chunk_structure_and_noise_audit",
+  "external_model_calls": 0,
+  "corpus_manifest_sha256": "80f117c485b5324aade4ba890dbbe0ebfa60d9ab296a4f508ba691e79cf80ea6",
+  "parser_sha256": "fc199760920294077744c5ee0b1219f3143e8e8467bdd2c39d69b72e1b3719cc",
+  "total_documents": 18,
+  "total_chunks": 1034,
+  "failed_documents": [
+    "MFG-ZH11"
+  ],
+  "records": [
+    {
+      "id": "MFG-ZH01",
+      "status": "passed",
+      "chunks": 24,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 17,
+        "rule_group": 2,
+        "list": 5
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 0,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH02",
+      "status": "passed",
+      "chunks": 83,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 83
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 0,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH03",
+      "status": "passed",
+      "chunks": 115,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 81,
+        "list": 33,
+        "table": 1
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 0,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH04",
+      "status": "passed",
+      "chunks": 20,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 8,
+        "list": 12
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 7,
+      "short_chunks_under_60": 1,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH05",
+      "status": "passed",
+      "chunks": 90,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 70,
+        "table": 12,
+        "list": 8
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 3,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH06",
+      "status": "passed",
+      "chunks": 49,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 41,
+        "table": 7,
+        "list": 1
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 1,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH07",
+      "status": "passed",
+      "chunks": 212,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 170,
+        "list": 7,
+        "table": 35
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 3,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH08",
+      "status": "passed",
+      "chunks": 48,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 36,
+        "table": 8,
+        "list": 4
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 2,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH09",
+      "status": "passed",
+      "chunks": 62,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 46,
+        "table": 12,
+        "list": 4
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 2,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH10",
+      "status": "passed",
+      "chunks": 76,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 63,
+        "table": 11,
+        "list": 2
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 0,
+      "short_chunks_under_60": 1,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH11",
+      "status": "blocked",
+      "chunks": 0,
+      "invalid_structure_indices": [],
+      "chunk_types": {},
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 0,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH12",
+      "status": "passed",
+      "chunks": 31,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 28,
+        "list": 3
+      },
+      "ocr_chunks": 31,
+      "review_required_chunks": 31,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH13",
+      "status": "passed",
+      "chunks": 48,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 47,
+        "list": 1
+      },
+      "ocr_chunks": 48,
+      "review_required_chunks": 48,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH14",
+      "status": "passed",
+      "chunks": 25,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 23,
+        "list": 2
+      },
+      "ocr_chunks": 25,
+      "review_required_chunks": 25,
+      "root_section_chunks": 0,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH15",
+      "status": "passed",
+      "chunks": 31,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 31
+      },
+      "ocr_chunks": 31,
+      "review_required_chunks": 31,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH16",
+      "status": "passed",
+      "chunks": 26,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 26
+      },
+      "ocr_chunks": 26,
+      "review_required_chunks": 26,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH17",
+      "status": "passed",
+      "chunks": 49,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 43,
+        "table": 5,
+        "list": 1
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 3,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    },
+    {
+      "id": "MFG-ZH18",
+      "status": "passed",
+      "chunks": 45,
+      "invalid_structure_indices": [],
+      "chunk_types": {
+        "paragraph": 39,
+        "table": 5,
+        "list": 1
+      },
+      "ocr_chunks": 0,
+      "review_required_chunks": 0,
+      "root_section_chunks": 1,
+      "short_chunks_under_60": 0,
+      "long_chunks_over_1200": 0,
+      "watermark_chunks": 0,
+      "replacement_characters": 0,
+      "limitation": "结构、长度和水印检查，不等于全文语义或表格关系全部正确。"
+    }
+  ]
+}

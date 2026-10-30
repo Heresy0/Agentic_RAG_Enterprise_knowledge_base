@@ -39,6 +39,7 @@ class BuiltContext:
     text: str
     items: list[ContextItem]
     total_characters: int
+    incomplete_reason: str | None = None
 
     @classmethod
     def empty(cls) -> "BuiltContext":
@@ -50,11 +51,13 @@ class BuiltContext:
 
 
 class ContextBuilder:
+    """Apply source balancing only to multi-source evidence; always bound text."""
     def __init__(
         self,
         *,
         max_characters: int = 12000,
         max_chunks_per_source: int = 4,
+        parent_selector=None,
     ) -> None:
         if max_characters < 1:
             raise ValueError("max_characters必须大于0")
@@ -66,6 +69,7 @@ class ContextBuilder:
 
         self.max_characters = max_characters
         self.max_chunks_per_source = max_chunks_per_source
+        self.parent_selector = parent_selector
 
     def build(
         self,
@@ -76,16 +80,34 @@ class ContextBuilder:
         if not documents:
             return BuiltContext.empty()
 
+        supplied = documents
         documents = prioritize_content(self._deduplicate(documents), question=question)
+        def address(document):
+            return str(document.id or document.metadata.get("chunk_id") or "")
+        retained_objects = {id(document) for document in documents}
+        exclusions = [dict(chunk_id=address(document), reason="duplicate_or_empty")
+                      for document in supplied if id(document) not in retained_objects]
         documents = [select_parent_context(document, question) for document in documents]
         candidate_count = len(documents)
+        sources = {source_key(document) for document in documents}
+        single_source = len(sources) == 1 and "未知来源" not in sources
+        # A source quota provides diversity only when there are multiple sources.
+        # Unknown identities retain the conservative quota; text budgets below
+        # still apply even when all candidates share one known logical source.
+        source_limit = len(documents) if single_source else self.max_chunks_per_source
+        before_source_limit = documents
         documents, reservations = select_context_chunks(
-            documents, question=question, max_per_source=self.max_chunks_per_source,
+            documents, question=question, max_per_source=source_limit,
         )
+        retained_objects = {id(document) for document in documents}
+        exclusions.extend(dict(chunk_id=address(document), reason="per_source_limit")
+                          for document in before_source_limit if id(document) not in retained_objects)
         items: list[ContextItem] = []
         rendered_blocks: list[str] = []
         source_counts: dict[str, int] = {}
         used_characters = 0
+        incomplete_reason = None
+        parent_selections = []
 
         for document in documents:
             content = document.page_content.strip()
@@ -98,7 +120,7 @@ class ContextBuilder:
             logical_source = source_key(document)
             count = source_counts.get(logical_source, 0)
 
-            if count >= self.max_chunks_per_source:
+            if count >= source_limit:
                 continue
 
             document_name = str(
@@ -137,17 +159,30 @@ class ContextBuilder:
             )
 
             if available_content_size < 1:
+                exclusions.append(dict(chunk_id=address(document), reason="character_budget_exhausted"))
+                if metadata.get("chunk_type") == "parent":
+                    incomplete_reason = "parent_context_budget_incomplete"
                 continue
 
             if len(content) > available_content_size:
+                if metadata.get("chunk_type") == "parent":
+                    if self.parent_selector is not None:
+                        document = self.parent_selector.select(document, question=question,
+                                                               max_characters=available_content_size)
+                    parent_selections.append(dict(chunk_id=address(document), **document.metadata["parent_selection"]))
+                    content = document.page_content.strip()
+                    if len(content) > available_content_size:
+                        exclusions.append(dict(chunk_id=address(document), reason="complete_parent_exceeds_remaining_budget"))
+                        incomplete_reason = "parent_context_budget_incomplete"
+                        continue
                 # 后续长块不能挤掉排名更高的已选内容。
-                if rendered_blocks:
+                elif rendered_blocks:
+                    exclusions.append(dict(chunk_id=address(document), reason="whole_block_exceeds_remaining_budget"))
                     continue
-
-                content = self._truncate_content(
-                    content,
-                    available_content_size,
-                )
+                else:
+                    content = self._truncate_content(content, available_content_size)
+            elif metadata.get("chunk_type") == "parent":
+                parent_selections.append(dict(chunk_id=address(document), **metadata["parent_selection"]))
 
             if not content:
                 continue
@@ -201,14 +236,16 @@ class ContextBuilder:
         record_context_selection(dict(
             candidate_count=candidate_count, source_limited_count=len(documents),
             selected_count=len(items), selected_characters=used_characters,
+            exclusions=exclusions,
             max_characters=self.max_characters, max_chunks_per_source=self.max_chunks_per_source,
+            source_limit_applied=not single_source,
             reservations=[dict(row, included=any(item.chunk_id == row["chunk_id"] for item in items))
                           for row in reservations],
-            parent_selections=[dict(chunk_id=str(document.id), **document.metadata['parent_selection'])
-                               for document in documents if document.metadata.get('parent_selection')],
+            incomplete_reason=incomplete_reason,
+            parent_selections=parent_selections,
         ))
         if not items:
-            return BuiltContext.empty()
+            return BuiltContext(text="", items=[], total_characters=0, incomplete_reason=incomplete_reason)
 
         context_text = "\n\n".join(rendered_blocks)
 
@@ -216,6 +253,7 @@ class ContextBuilder:
             text=context_text,
             items=items,
             total_characters=len(context_text),
+            incomplete_reason=incomplete_reason,
         )
 
     def _deduplicate(

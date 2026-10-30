@@ -35,7 +35,8 @@ KB_NAMES = {
 
 
 def dump(path, value):
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # Reproduce the original frozen pack's Windows JSON bytes on every platform.
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\r\n")
 
 
 def normalize(text):

@@ -1,0 +1,157 @@
+{
+  "date": "2026-10-30",
+  "baseline_commit": "43aeafc",
+  "samples": 12,
+  "source_dataset_sha256": "2d540db80ca6ed1fe8a25890f3282b3487003fe1bc5b541844226a259be5c75e",
+  "source_traces_sha256": "c67ed5090fb997e8528677a391c9de1afaa63448a5e1c1915acee5e8ba60aea0",
+  "scoring_rules_version": "2026-10-29-r13",
+  "scoring_rules_sha256": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da",
+  "scope": "Fixed saved public context, first generation plus existing validator/rendering only; no retrieval, completion, feedback or repair.",
+  "tuning_policy": "One candidate; no tuning after results",
+  "versions": {
+    "baseline": {
+      "protocol": {
+        "frozen_sha256": "8af28860cc1aa8f22fc777fbc1b51ad128532ad1952ac45326f867ce6551e957",
+        "prompts_sha256": "c8bfcbe583629ba0e4898cd4cef9af7c4314b22cf80ae40e90206366ef28f274",
+        "answer_contract_sha256": "9e66c064e7d4df717af2d31f980ee0257dd033df0aba3b804222da177df7407b",
+        "model": "qwen3.7-flash",
+        "temperature": 0,
+        "max_tokens": 3072,
+        "sdk_retries": 0,
+        "generated": 12,
+        "mode": "Fixed saved public context, first generation plus existing validator/rendering only; no retrieval, completion, feedback or repair.",
+        "validation_policy": "Existing validator; no regeneration.",
+        "reported_tokens": 79336
+      },
+      "generation_calls": 12,
+      "reported_generation_tokens": 79336,
+      "unknown_generation_usage": 0,
+      "behavior_correct": 10,
+      "r13_proxy_passed": 10,
+      "groups": {
+        "answer": {
+          "total": 4,
+          "behavior_correct": 4
+        },
+        "clarify": {
+          "total": 4,
+          "behavior_correct": 2
+        },
+        "refuse": {
+          "total": 4,
+          "behavior_correct": 4
+        }
+      },
+      "ragas_metrics": {
+        "factual_correctness": {
+          "scored": 4,
+          "mean": 0.73,
+          "undefined": 0,
+          "errors": 0,
+          "at_or_above_threshold": 2,
+          "threshold": 0.8
+        },
+        "faithfulness": {
+          "scored": 4,
+          "mean": 1.0,
+          "undefined": 0,
+          "errors": 0,
+          "at_or_above_threshold": 4,
+          "threshold": 0.9
+        }
+      },
+      "ragas_usage": {
+        "calls": 24,
+        "reported_total_tokens": 34830,
+        "unknown_usage_calls": 0,
+        "http_errors": 0,
+        "no_response_calls": 0
+      },
+      "source_report_sha256": "8005cf2227d9605fa617eb0d917436a7d460fd92ea12f9f7b1503a1b3b693c8d",
+      "source_traces_sha256": "24543b201a82caed84cf9c693dc334d4b498afeac0a1157e50d4f869b07de3a9",
+      "judge_report_sha256": "3bf232b1660b19a9adc9be6e9c318f8bd072f4d3fe7e08a8b4d67acef6206cf1"
+    },
+    "candidate": {
+      "protocol": {
+        "frozen_sha256": "8af28860cc1aa8f22fc777fbc1b51ad128532ad1952ac45326f867ce6551e957",
+        "prompts_sha256": "f0530ca9ded79f4005aec2244f5a7aa821e8f0ab6f0598d2260f5e30e80b7f2d",
+        "answer_contract_sha256": "d400a63518925b7e98104d34dcb9cf96f3a3589210232818dbe0f81e4ff8d927",
+        "model": "qwen3.7-flash",
+        "temperature": 0,
+        "max_tokens": 3072,
+        "sdk_retries": 0,
+        "generated": 12,
+        "mode": "Fixed saved public context, first generation plus existing validator/rendering only; no retrieval, completion, feedback or repair.",
+        "validation_policy": "Existing validator; no regeneration.",
+        "reported_tokens": 78303
+      },
+      "generation_calls": 12,
+      "reported_generation_tokens": 78303,
+      "unknown_generation_usage": 0,
+      "behavior_correct": 12,
+      "r13_proxy_passed": 11,
+      "groups": {
+        "answer": {
+          "total": 4,
+          "behavior_correct": 4
+        },
+        "clarify": {
+          "total": 4,
+          "behavior_correct": 4
+        },
+        "refuse": {
+          "total": 4,
+          "behavior_correct": 4
+        }
+      },
+      "ragas_metrics": {
+        "factual_correctness": {
+          "scored": 4,
+          "mean": 0.5275,
+          "undefined": 0,
+          "errors": 0,
+          "at_or_above_threshold": 1,
+          "threshold": 0.8
+        },
+        "faithfulness": {
+          "scored": 4,
+          "mean": 0.875,
+          "undefined": 0,
+          "errors": 0,
+          "at_or_above_threshold": 3,
+          "threshold": 0.9
+        }
+      },
+      "ragas_usage": {
+        "calls": 24,
+        "reported_total_tokens": 34043,
+        "unknown_usage_calls": 0,
+        "http_errors": 0,
+        "no_response_calls": 0
+      },
+      "source_report_sha256": "0b03ac0ed68c9f1e79c3476a4a80e59ecca2bf88ba1871c304bd7f67621df471",
+      "source_traces_sha256": "05309e594ad910c19b0fa12ca36c68bc50fd5eb420aeac247fd60ae970e4d8ee",
+      "judge_report_sha256": "be40330342199cbb535d0db835b3a63294e3f06e34937e4116eeb852d3fe39e6"
+    }
+  },
+  "judge_protocol_equal": true,
+  "user_messages_equal": true,
+  "r13_policy": "Apply existing r13 to saved generations only; raw experimental reports remain unchanged.",
+  "ragas_policy": "Reuse evaluate_saved_ragas.py on four answer cases per version; original references unchanged; not for judging clarification quality.",
+  "backend_tests": {
+    "passed": 1534,
+    "skipped": 55,
+    "warnings": 2
+  },
+  "deployment": {
+    "updated": false,
+    "running_image": "enterprise-knowledge-manufacturing:response-type-33e13b5",
+    "reason": "Candidate has a confirmed omitted calibration prerequisite; retain the running baseline."
+  },
+  "limitations": [
+    "One generation per case and version; development cases, not holdout or an end-to-end run.",
+    "Ragas uses the generator model family and is not an independent human verdict.",
+    "Identical Q006 answers received different faithfulness scores; retain raw scores.",
+    "Assistant source review is non-independent; behavior type success is not full semantic quality."
+  ]
+}

@@ -1,0 +1,2372 @@
+[
+  {
+    "id": "MFGZH-Q001",
+    "split": "development",
+    "concept_id": "zh01-defect-and-certificate",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": 3,
+        "anchor": "应当提出停止相应产品生产、销售等否决建议",
+        "source_id": "MFG-ZH01",
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "document": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+        "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 3,
+        "anchor": "经确认存在缺陷的，应当按照国家有关规定进行召回",
+        "source_id": "MFG-ZH01",
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "document": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+        "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q002",
+    "split": "development",
+    "concept_id": "zh01-zero-risk-record",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "未发现问题的，也应当予以记录，实行零风险报告",
+        "source_id": "MFG-ZH01",
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "document": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+        "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q003",
+    "split": "development",
+    "concept_id": "zh01-weekly-owner",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "质量安全总监每周至少组织一次风险隐患排查",
+        "source_id": "MFG-ZH01",
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "document": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+        "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "形成《每周工业产品质量安全排查治理报告》",
+        "source_id": "MFG-ZH01",
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "document": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+        "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q004",
+    "split": "development",
+    "concept_id": "zh01-monthly-owner",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "单位主要负责人每月至少听取一次质量安全总监管理工作",
+        "source_id": "MFG-ZH01",
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "document": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+        "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "形成《每月工业产品质量安全调度会议纪要》",
+        "source_id": "MFG-ZH01",
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "document": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+        "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q005",
+    "split": "development",
+    "concept_id": "zh01-qualification",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "未通过考核的人员不得担任相应岗位的质量安全管理人员",
+        "source_id": "MFG-ZH01",
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "document": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+        "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "抽查考核不合格的，生产单位应当立即采取整改措施",
+        "source_id": "MFG-ZH01",
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "document": "documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+        "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q006",
+    "split": "development",
+    "concept_id": "zh02-retain-qms",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "可以保留单位原有的部门和人员配置，但要明确质量安全总监、质量安全员的人员岗位",
+        "source_id": "MFG-ZH02",
+        "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+        "document": "documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+        "source_url": "https://scjg.ln.gov.cn/scjdglj/fw/wyk/tbtg/cpzlaqjg/2023070414585541222/index.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q007",
+    "split": "development",
+    "concept_id": "zh02-risk-register-fields",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "风险类型、风险名称、风险等级、控制措施、检查防范以及责任人",
+        "source_id": "MFG-ZH02",
+        "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+        "document": "documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+        "source_url": "https://scjg.ln.gov.cn/scjdglj/fw/wyk/tbtg/cpzlaqjg/2023070414585541222/index.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q008",
+    "split": "development",
+    "concept_id": "zh02-unfinished-correction",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "应明确责任部门及责任人",
+        "source_id": "MFG-ZH02",
+        "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+        "document": "documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+        "source_url": "https://scjg.ln.gov.cn/scjdglj/fw/wyk/tbtg/cpzlaqjg/2023070414585541222/index.shtml",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": null,
+        "anchor": "对不能现场立即整改的，应明确整改期限，在后续日管控检查中跟踪验证整改情况",
+        "source_id": "MFG-ZH02",
+        "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+        "document": "documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+        "source_url": "https://scjg.ln.gov.cn/scjdglj/fw/wyk/tbtg/cpzlaqjg/2023070414585541222/index.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q009",
+    "split": "development",
+    "concept_id": "zh02-recurrent-risk",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "频繁发生或存在较高工业产品质量安全风险的问题，应制定相应的纠正或预防措施，并跟踪验证整改结果",
+        "source_id": "MFG-ZH02",
+        "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+        "document": "documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+        "source_url": "https://scjg.ln.gov.cn/scjdglj/fw/wyk/tbtg/cpzlaqjg/2023070414585541222/index.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q010",
+    "split": "development",
+    "concept_id": "zh02-shutdown-record",
+    "baseline": false,
+    "source_family": "industrial-quality-responsibility-75",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "单位停工、停产后可暂不执行日管控、周排查、月调度，相关情况应存档备查",
+        "source_id": "MFG-ZH02",
+        "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+        "document": "documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+        "source_url": "https://scjg.ln.gov.cn/scjdglj/fw/wyk/tbtg/cpzlaqjg/2023070414585541222/index.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q011",
+    "split": "test",
+    "concept_id": "zh03-custom-product-retention",
+    "baseline": false,
+    "source_family": "industrial-product-traceability-2024",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "生产方和使用方应通过记录台账或签订合同等方式实现产品质量安全追溯，有关记录或台账至少保留3年",
+        "source_id": "MFG-ZH03",
+        "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+        "document": "documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+        "source_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q012",
+    "split": "test",
+    "concept_id": "zh03-report-visibility",
+    "baseline": false,
+    "source_family": "industrial-product-traceability-2024",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "出厂检验报告或型式检验报告（必填，生产单位选择是否公开）",
+        "source_id": "MFG-ZH03",
+        "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+        "document": "documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+        "source_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q013",
+    "split": "test",
+    "concept_id": "zh03-flow-visibility",
+    "baseline": false,
+    "source_family": "industrial-product-traceability-2024",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "销售时间（必填，生产单位选择是否公开）",
+        "source_id": "MFG-ZH03",
+        "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+        "document": "documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+        "source_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": null,
+        "anchor": "购方名称（必填，生产单位选择是否公开）",
+        "source_id": "MFG-ZH03",
+        "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+        "document": "documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+        "source_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q014",
+    "split": "test",
+    "concept_id": "zh03-gs1-granularity",
+    "baseline": false,
+    "source_family": "industrial-product-traceability-2024",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "根据自身业务情况，选择一品一码、一批一码、一物一码进行追溯",
+        "source_id": "MFG-ZH03",
+        "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+        "document": "documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+        "source_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q015",
+    "split": "test",
+    "concept_id": "zh03-ccc-linkage",
+    "baseline": false,
+    "source_family": "industrial-product-traceability-2024",
+    "evidence_locators": [
+      {
+        "physical_page": null,
+        "anchor": "与CCC认证证书编码或标志编号相关联",
+        "source_id": "MFG-ZH03",
+        "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+        "document": "documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+        "source_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": null,
+        "anchor": "经全国认证认可信息公共服务平台比对查验后录入至全国重点工业产品质量安全追溯平台",
+        "source_id": "MFG-ZH03",
+        "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+        "document": "documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+        "source_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q016",
+    "split": "test",
+    "concept_id": "zh04-supplier-sharing",
+    "baseline": false,
+    "source_family": "manufacturing-quality-digitalization-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "共享采购产品质量、批次、交期等信息",
+        "source_id": "MFG-ZH04",
+        "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "document": "documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+        "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "有条件的企业应对关键物料实施一物一码管理",
+        "source_id": "MFG-ZH04",
+        "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "document": "documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+        "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q017",
+    "split": "test",
+    "concept_id": "zh04-material-lifecycle",
+    "baseline": false,
+    "source_family": "manufacturing-quality-digitalization-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "在采购、生产、仓储、物流、交付及售后服务全过程提高物料数字化追溯管理水平",
+        "source_id": "MFG-ZH04",
+        "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "document": "documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+        "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q018",
+    "split": "test",
+    "concept_id": "zh04-integration-planning",
+    "baseline": false,
+    "source_family": "manufacturing-quality-digitalization-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 5,
+        "anchor": "流程优化、装备升级、信息系统集成、数据资源利用、操作规程更新",
+        "source_id": "MFG-ZH04",
+        "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "document": "documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+        "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 5,
+        "anchor": "强化质量目标和质量活动的闭环管控",
+        "source_id": "MFG-ZH04",
+        "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "document": "documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+        "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q019",
+    "split": "test",
+    "concept_id": "zh04-data-stewardship",
+    "baseline": false,
+    "source_family": "manufacturing-quality-digitalization-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "企业应将质量数据纳入数据资产管理范畴",
+        "source_id": "MFG-ZH04",
+        "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "document": "documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+        "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "明确各环节的职责和权限，强化跨部门及部门内数据管理机制建设",
+        "source_id": "MFG-ZH04",
+        "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "document": "documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+        "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q020",
+    "split": "test",
+    "concept_id": "zh04-capability-review",
+    "baseline": false,
+    "source_family": "manufacturing-quality-digitalization-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 5,
+        "anchor": "应定期评估数字化能力的提升效果，并向最高管理者报告",
+        "source_id": "MFG-ZH04",
+        "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "document": "documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+        "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q021",
+    "split": "development",
+    "concept_id": "zh05-scope",
+    "baseline": false,
+    "source_family": "jl-salt-mist-92-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "温度偏差、温度波动度、温度均匀度及盐雾沉降率",
+        "source_id": "MFG-ZH05",
+        "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+        "document": "documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831582548526055.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q022",
+    "split": "development",
+    "concept_id": "zh05-environment",
+    "baseline": false,
+    "source_family": "jl-salt-mist-92-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "环境温度：(15～35）℃",
+        "source_id": "MFG-ZH05",
+        "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+        "document": "documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831582548526055.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 9,
+        "anchor": "相对湿度：(30～85）％",
+        "source_id": "MFG-ZH05",
+        "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+        "document": "documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831582548526055.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 9,
+        "anchor": "大气压：（80～106）kPa",
+        "source_id": "MFG-ZH05",
+        "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+        "document": "documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831582548526055.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q023",
+    "split": "development",
+    "concept_id": "zh05-load-condition",
+    "baseline": false,
+    "source_family": "jl-salt-mist-92-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "一般在空载条件下校准，根据用户需要可以在负载条件下进行校准，但应说明负载情况",
+        "source_id": "MFG-ZH05",
+        "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+        "document": "documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831582548526055.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q024",
+    "split": "development",
+    "concept_id": "zh05-temperature-choice",
+    "baseline": false,
+    "source_family": "jl-salt-mist-92-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 10,
+        "anchor": "一般选择35℃作为盐雾箱校准试验温度，也可根据客户需要选择校准温度",
+        "source_id": "MFG-ZH05",
+        "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+        "document": "documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831582548526055.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q025",
+    "split": "development",
+    "concept_id": "zh05-reference-not-passfail",
+    "baseline": false,
+    "source_family": "jl-salt-mist-92-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "以上指标不是用于合格性判别，仅供参考",
+        "source_id": "MFG-ZH05",
+        "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+        "document": "documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831582548526055.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q026",
+    "split": "test",
+    "concept_id": "zh06-environment",
+    "baseline": false,
+    "source_family": "jl-sand-dust-121-2023",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "环境温度：（15～35）℃",
+        "source_id": "MFG-ZH06",
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "document": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "环境相对湿度：不大于85%",
+        "source_id": "MFG-ZH06",
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "document": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q027",
+    "split": "test",
+    "concept_id": "zh06-small-chamber-points",
+    "baseline": false,
+    "source_family": "jl-sand-dust-121-2023",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "砂尘试验设备容积小于或等于2m3，温度测量点为9个，相对湿度测量点为3个",
+        "source_id": "MFG-ZH06",
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "document": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q028",
+    "split": "test",
+    "concept_id": "zh06-temperature-logging",
+    "baseline": false,
+    "source_family": "jl-sand-dust-121-2023",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "稳定30min（稳定时间最长不超过2h）",
+        "source_id": "MFG-ZH06",
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "document": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 9,
+        "anchor": "每隔2min记录一次，在30min内共记录16次",
+        "source_id": "MFG-ZH06",
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "document": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q029",
+    "split": "test",
+    "concept_id": "zh06-wind-measurement",
+    "baseline": false,
+    "source_family": "jl-sand-dust-121-2023",
+    "evidence_locators": [
+      {
+        "physical_page": 10,
+        "anchor": "风速测量在未注入砂尘时及在常温下进行",
+        "source_id": "MFG-ZH06",
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "document": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 10,
+        "anchor": "每隔10min记录一次，在30min内共记录3次，读取风速计各测量点示值的最大值",
+        "source_id": "MFG-ZH06",
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "document": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q030",
+    "split": "test",
+    "concept_id": "zh06-nonstandard-requirements",
+    "baseline": false,
+    "source_family": "jl-sand-dust-121-2023",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "对计量特性另有要求的砂尘试验设备，按有关技术文件规定的要求进行校准",
+        "source_id": "MFG-ZH06",
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "document": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "不用于合格性判断，仅供参考",
+        "source_id": "MFG-ZH06",
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "document": "documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q031",
+    "split": "development",
+    "concept_id": "zh07-partial-functions",
+    "baseline": false,
+    "source_family": "jl-thermal-calibrator-31-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "也适用于具有部分以上测量和输出功能的过程仪表校验仪的校准",
+        "source_id": "MFG-ZH07",
+        "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+        "document": "documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831581706202719.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q032",
+    "split": "development",
+    "concept_id": "zh07-environment",
+    "baseline": false,
+    "source_family": "jl-thermal-calibrator-31-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "温度：（20±2）℃湿度：（60±15）%RH",
+        "source_id": "MFG-ZH07",
+        "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+        "document": "documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831581706202719.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q033",
+    "split": "development",
+    "concept_id": "zh07-standards-budget",
+    "baseline": false,
+    "source_family": "jl-thermal-calibrator-31-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "整个校准装置的扩展不确定度（k=2）应小于校验仪对应各功能和量程最大允许误差的1/3",
+        "source_id": "MFG-ZH07",
+        "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+        "document": "documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831581706202719.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 9,
+        "anchor": "整个校准装置各功能和量程的分辨力应小于校验仪对应功能和量程最大允许误差的1/5",
+        "source_id": "MFG-ZH07",
+        "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+        "document": "documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831581706202719.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q034",
+    "split": "development",
+    "concept_id": "zh07-temperature-equilibration",
+    "baseline": false,
+    "source_family": "jl-thermal-calibrator-31-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 10,
+        "anchor": "校验仪应按说明书中规定的时间预热，室内外温差较大时应在恒温实验室中放置4小时以上再通电",
+        "source_id": "MFG-ZH07",
+        "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+        "document": "documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831581706202719.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q035",
+    "split": "development",
+    "concept_id": "zh07-dc-voltage-points",
+    "baseline": false,
+    "source_family": "jl-thermal-calibrator-31-2021",
+    "evidence_locators": [
+      {
+        "physical_page": 10,
+        "anchor": "基本量程选择不少于5个校准点，包括上限值、下限值和量程50%附近",
+        "source_id": "MFG-ZH07",
+        "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+        "document": "documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831581706202719.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 10,
+        "anchor": "有零位的可以适当增加零点。对于委托者有要求的可按委托者要求选择校准点",
+        "source_id": "MFG-ZH07",
+        "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+        "document": "documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831581706202719.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q036",
+    "split": "test",
+    "concept_id": "zh08-environment",
+    "baseline": false,
+    "source_family": "jl-compactor-103-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "温度：（10～35）℃",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "相对湿度：不大于80%",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q037",
+    "split": "test",
+    "concept_id": "zh08-force-axis",
+    "baseline": false,
+    "source_family": "jl-compactor-103-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "使其受力轴线与压合机工作轴线相重合",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "固定压合机主体，使其可以在该位置稳定工作，不产生影响校准结果的位移和振动",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q038",
+    "split": "test",
+    "concept_id": "zh08-force-repeats",
+    "baseline": false,
+    "source_family": "jl-compactor-103-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "一般取上限的20%，40%，60%，80%，100%等5个点",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "该过程校准进行3次。每次校准都要调零，每次校准过程结束后，隔30秒",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q039",
+    "split": "test",
+    "concept_id": "zh08-displacement-error",
+    "baseline": false,
+    "source_family": "jl-compactor-103-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "在测量范围内至少选取均匀分布的5点作为校准点",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 8,
+        "anchor": "上述过程重复测量3次，取平均值作为测量结果，测量结果中取其最大值",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q040",
+    "split": "test",
+    "concept_id": "zh08-recalibration",
+    "baseline": false,
+    "source_family": "jl-compactor-103-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "建议最长复校时间间隔不超过1年",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 9,
+        "anchor": "送校单位可根据实际使用情况决定复校时间间隔",
+        "source_id": "MFG-ZH08",
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "document": "documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q041",
+    "split": "test",
+    "concept_id": "zh09-force-directions",
+    "baseline": false,
+    "source_family": "jl-actuator-102-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "压向≤5000kN，拉向≤500kN",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "大力值作动器也可参考本规范",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "校准方向：压向为正",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q042",
+    "split": "test",
+    "concept_id": "zh09-tension-fixtures",
+    "baseline": false,
+    "source_family": "jl-actuator-102-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "需要有与作动器相匹配的链接螺栓、拉环、千斤顶及拉向力校准装置",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q043",
+    "split": "test",
+    "concept_id": "zh09-displacement-standard-choice",
+    "baseline": false,
+    "source_family": "jl-actuator-102-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "以数显千分表为标准器测量作动器测量范围（0~150）mm",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 8,
+        "anchor": "以跟踪仪为标准器测量作动器测量范围（150~3000）mm",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q044",
+    "split": "test",
+    "concept_id": "zh09-displacement-alignment",
+    "baseline": false,
+    "source_family": "jl-actuator-102-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "要保持数显千分表与移动方向平行",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 8,
+        "anchor": "上述过程重复测量3次，取平均值作为测量结果",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q045",
+    "split": "test",
+    "concept_id": "zh09-report-scope",
+    "baseline": false,
+    "source_family": "jl-actuator-102-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "校准结果仅对被校对象有效的声明",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 9,
+        "anchor": "未经实验室书面批准，不得部分复制证书的声明",
+        "source_id": "MFG-ZH09",
+        "source_sha256": "b114623eac54a556b25fe574d2db1c749abe079cfb67dd15594fea97bf54d991",
+        "document": "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125243623917237.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q046",
+    "split": "development",
+    "concept_id": "zh10-range",
+    "baseline": false,
+    "source_family": "jl-differential-pressure-104-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "测量范围不超过（-2500~2500）Pa",
+        "source_id": "MFG-ZH10",
+        "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "document": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244968970079.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q047",
+    "split": "development",
+    "concept_id": "zh10-environment",
+    "baseline": false,
+    "source_family": "jl-differential-pressure-104-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "温度：（20±5）℃，温度波动不超过±0.5℃/10min",
+        "source_id": "MFG-ZH10",
+        "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "document": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244968970079.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 8,
+        "anchor": "相对湿度：不大于85%",
+        "source_id": "MFG-ZH10",
+        "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "document": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244968970079.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q048",
+    "split": "development",
+    "concept_id": "zh10-reference-standard",
+    "baseline": false,
+    "source_family": "jl-differential-pressure-104-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "所需标准器的测量范围应不小于压差计的测量范围",
+        "source_id": "MFG-ZH10",
+        "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "document": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244968970079.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 8,
+        "anchor": "标准器的最大允许误差绝对值应不大于被校准压差计最大允许误差绝对值的1/3",
+        "source_id": "MFG-ZH10",
+        "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "document": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244968970079.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q049",
+    "split": "development",
+    "concept_id": "zh10-preparation",
+    "baseline": false,
+    "source_family": "jl-differential-pressure-104-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "标准器、压差计、气源应在校准环境条件下至少放置2h",
+        "source_id": "MFG-ZH10",
+        "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "document": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244968970079.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 9,
+        "anchor": "通电预热时间应满足制造厂商提供的信息，一般不少于30min",
+        "source_id": "MFG-ZH10",
+        "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "document": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244968970079.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q050",
+    "split": "development",
+    "concept_id": "zh10-pressure-points",
+    "baseline": false,
+    "source_family": "jl-differential-pressure-104-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 10,
+        "anchor": "具有正压、负压量程压差计的校准点不少于9个点（含零点），应包含测量上限和下限",
+        "source_id": "MFG-ZH10",
+        "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "document": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244968970079.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 10,
+        "anchor": "仅有正压量程压差计的校准点不少于5个点（含零点），应包含测量上限",
+        "source_id": "MFG-ZH10",
+        "source_sha256": "59f3a138cea4813e8aff50ea301ec7fef2c90cb64403c88f8792713457b86abb",
+        "document": "documents/公共参考/MFG-ZH10_旁路式数字压差计校准规范_JJF吉104-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244968970079.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q051",
+    "split": "test",
+    "concept_id": "zh11-scope-types",
+    "baseline": false,
+    "source_family": "jl-industrial-endoscope-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "本规范适用于纤维内窥镜、电子内窥镜及光学内窥镜等工业内窥镜的校准",
+        "source_id": "MFG-ZH11",
+        "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+        "document": "documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202012/P020201208480360995113.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q052",
+    "split": "test",
+    "concept_id": "zh11-flexible-rigid",
+    "baseline": false,
+    "source_family": "jl-industrial-endoscope-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "通过光导纤维传像束来传送图像",
+        "source_id": "MFG-ZH11",
+        "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+        "document": "documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202012/P020201208480360995113.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "通过一组光学透镜来传送图像，工作部件通常不能弯曲",
+        "source_id": "MFG-ZH11",
+        "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+        "document": "documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202012/P020201208480360995113.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q053",
+    "split": "test",
+    "concept_id": "zh11-field-of-view",
+    "baseline": false,
+    "source_family": "jl-industrial-endoscope-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "以顶点位于工业内窥镜头端部的锥角值（度）表示",
+        "source_id": "MFG-ZH11",
+        "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+        "document": "documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202012/P020201208480360995113.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q054",
+    "split": "test",
+    "concept_id": "zh11-illumination",
+    "baseline": false,
+    "source_family": "jl-industrial-endoscope-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "纤维/电子内窥镜：大于1500lx",
+        "source_id": "MFG-ZH11",
+        "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+        "document": "documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202012/P020201208480360995113.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "光学内窥镜：不小于仪器使用说明书标称值的90%",
+        "source_id": "MFG-ZH11",
+        "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+        "document": "documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202012/P020201208480360995113.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q055",
+    "split": "test",
+    "concept_id": "zh11-length-and-diameter",
+    "baseline": false,
+    "source_family": "jl-industrial-endoscope-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "工作长度：仪器使用说明书的标称值×（1±1.2%）",
+        "source_id": "MFG-ZH11",
+        "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+        "document": "documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202012/P020201208480360995113.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "工作外径：不大于仪器使用说明书（标称值+0.2）mm",
+        "source_id": "MFG-ZH11",
+        "source_sha256": "03c8584deeeb02017b29d3931fb3ee1e1b507477e688f3b92f9dfe81c94c5ce8",
+        "document": "documents/公共参考/MFG-ZH11_工业内窥镜校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202012/P020201208480360995113.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q056",
+    "split": "test",
+    "concept_id": "zh12-scope",
+    "baseline": false,
+    "source_family": "jl-surface-profile-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 5,
+        "anchor": "本规范适用于触针式表面轮廓测量仪的校准",
+        "source_id": "MFG-ZH12",
+        "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "document": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119402544220995.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q057",
+    "split": "test",
+    "concept_id": "zh12-environment",
+    "baseline": false,
+    "source_family": "jl-surface-profile-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "室内温度应在（20±3）℃范围内",
+        "source_id": "MFG-ZH12",
+        "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "document": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119402544220995.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "室温变化不超过1℃/h",
+        "source_id": "MFG-ZH12",
+        "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "document": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119402544220995.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "室内湿度不超过75%RH",
+        "source_id": "MFG-ZH12",
+        "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "document": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119402544220995.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q058",
+    "split": "test",
+    "concept_id": "zh12-equilibration-preheat",
+    "baseline": false,
+    "source_family": "jl-surface-profile-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "在室内平衡温度的时间不少于2h",
+        "source_id": "MFG-ZH12",
+        "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "document": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119402544220995.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "被校仪器连续通电预热时间不少于30min",
+        "source_id": "MFG-ZH12",
+        "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "document": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119402544220995.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q059",
+    "split": "test",
+    "concept_id": "zh12-reference-only",
+    "baseline": false,
+    "source_family": "jl-surface-profile-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "作为校准，不判定合格与否，上述计量特性的指标仅供参考",
+        "source_id": "MFG-ZH12",
+        "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "document": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119402544220995.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q060",
+    "split": "test",
+    "concept_id": "zh12-coordinate-reference",
+    "baseline": false,
+    "source_family": "jl-surface-profile-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "轮廓坐标测量系统误差",
+        "source_id": "MFG-ZH12",
+        "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "document": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119402544220995.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "校准球",
+        "source_id": "MFG-ZH12",
+        "source_sha256": "3bd1f3d0899d60c38bc3527498967aa5903ad68a4bc7261d39b863dfeab11f91",
+        "document": "documents/公共参考/MFG-ZH12_表面轮廓测量仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119402544220995.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q061",
+    "split": "test",
+    "concept_id": "zh13-surface-roughness",
+    "baseline": false,
+    "source_family": "jl-conical-thread-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "测量面的表面粗糙度Ra值不大于0.8μm",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "上述计量特性的指标仅供参考",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q062",
+    "split": "test",
+    "concept_id": "zh13-pitch-diameter",
+    "baseline": false,
+    "source_family": "jl-conical-thread-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "圆锥螺纹塞规基面的中径误差不大于0.009mm",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "圆锥螺纹环规基面的中径误差不大于0.015mm",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q063",
+    "split": "test",
+    "concept_id": "zh13-environment",
+    "baseline": false,
+    "source_family": "jl-conical-thread-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "室内温度应在（20±5）℃",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "室内湿度不超过75%RH",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "应在室内放置不少于1个小时",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q064",
+    "split": "test",
+    "concept_id": "zh13-markings",
+    "baseline": false,
+    "source_family": "jl-conical-thread-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "螺纹量规代号和尺寸代号、制造厂商标、出厂年月",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q065",
+    "split": "test",
+    "concept_id": "zh13-working-surface",
+    "baseline": false,
+    "source_family": "jl-conical-thread-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "不应有裂纹、毛刺、铁屑",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "允许有不影响使用的划痕",
+        "source_id": "MFG-ZH13",
+        "source_sha256": "f215b6afcb61fcfeaaf39f729d9d52eaa428fa47ba9a59c1d3fa12f9ee137eff",
+        "document": "documents/公共参考/MFG-ZH13_圆锥螺纹量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119401430105654.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q066",
+    "split": "test",
+    "concept_id": "zh14-range",
+    "baseline": false,
+    "source_family": "jl-caliper-checker-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 5,
+        "anchor": "分度值为0.001mm，测量范围（0-300）mm",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q067",
+    "split": "test",
+    "concept_id": "zh14-measurement-principle",
+    "baseline": false,
+    "source_family": "jl-caliper-checker-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 5,
+        "anchor": "以量块作为标准器",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 5,
+        "anchor": "指示表的读数与量块实际值相比较",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q068",
+    "split": "test",
+    "concept_id": "zh14-environment",
+    "baseline": false,
+    "source_family": "jl-caliper-checker-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "室内温度应在（20±2）℃范围内",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "室温变化不超过1℃/h",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "湿度不超过65%RH",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q069",
+    "split": "test",
+    "concept_id": "zh14-equilibration",
+    "baseline": false,
+    "source_family": "jl-caliper-checker-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "在室内连续平衡温度的时间不少于2h",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q070",
+    "split": "test",
+    "concept_id": "zh14-reference-block-grade",
+    "baseline": false,
+    "source_family": "jl-caliper-checker-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "示值变动性",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "量块",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "4等",
+        "source_id": "MFG-ZH14",
+        "source_sha256": "7ca4e348400e8cdd66cd71843e43419e022b0da07415c36ecc2ed1403757c378",
+        "document": "documents/公共参考/MFG-ZH14_卡规检查仪校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119400360575640.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q071",
+    "split": "test",
+    "concept_id": "zh15-capability-definitions",
+    "baseline": false,
+    "source_family": "jl-inspection-fixture-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 5,
+        "anchor": "检具重复精度能力系数",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 5,
+        "anchor": "检具准确精度能力系数",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q072",
+    "split": "test",
+    "concept_id": "zh15-components",
+    "baseline": false,
+    "source_family": "jl-inspection-fixture-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 5,
+        "anchor": "检具一般由定位装置、夹紧装置、测量装置和辅助（传动和导向）装置组成",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q073",
+    "split": "test",
+    "concept_id": "zh15-environment",
+    "baseline": false,
+    "source_family": "jl-inspection-fixture-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "室内温度为（20±5）℃",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "室内湿度不超过75%RH",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "平衡温度时间不少于2h",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q074",
+    "split": "test",
+    "concept_id": "zh15-mechanical-condition",
+    "baseline": false,
+    "source_family": "jl-inspection-fixture-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "各组成部件应完好无缺，连接应紧固可靠",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "定位装置、夹紧装置应准确牢固，传动装置操作应灵活无卡滞",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q075",
+    "split": "test",
+    "concept_id": "zh15-roughness-and-verdict",
+    "baseline": false,
+    "source_family": "jl-inspection-fixture-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 5,
+        "anchor": "工作面的表面粗糙度Ra值不大于0.2μm",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 5,
+        "anchor": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+        "source_id": "MFG-ZH15",
+        "source_sha256": "ee219118d123850ca0070a7232ced8f4230dadbae601ce086779531565482f19",
+        "document": "documents/公共参考/MFG-ZH15_检验夹具校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119399220950619.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q076",
+    "split": "test",
+    "concept_id": "zh16-gauge-types",
+    "baseline": false,
+    "source_family": "jl-special-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 5,
+        "anchor": "深度量规、角度量规、形状、位置量规",
+        "source_id": "MFG-ZH16",
+        "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+        "document": "documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119398404525340.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q077",
+    "split": "test",
+    "concept_id": "zh16-identification",
+    "baseline": false,
+    "source_family": "jl-special-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "产品名称、型号/规格、主要技术参数、出厂编号、制造厂名或商标及生产日期",
+        "source_id": "MFG-ZH16",
+        "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+        "document": "documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119398404525340.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q078",
+    "split": "test",
+    "concept_id": "zh16-environment",
+    "baseline": false,
+    "source_family": "jl-special-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "室内温度为（20±5）℃",
+        "source_id": "MFG-ZH16",
+        "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+        "document": "documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119398404525340.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "室内湿度不超过75%RH",
+        "source_id": "MFG-ZH16",
+        "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+        "document": "documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119398404525340.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "平衡温度时间不少于2h",
+        "source_id": "MFG-ZH16",
+        "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+        "document": "documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119398404525340.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q079",
+    "split": "test",
+    "concept_id": "zh16-roughness-reference",
+    "baseline": false,
+    "source_family": "jl-special-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "工作面的表面粗糙度Ra值不大于0.2μm",
+        "source_id": "MFG-ZH16",
+        "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+        "document": "documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119398404525340.pdf",
+        "verification": "visual_original_scan"
+      },
+      {
+        "physical_page": 6,
+        "anchor": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+        "source_id": "MFG-ZH16",
+        "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+        "document": "documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119398404525340.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q080",
+    "split": "test",
+    "concept_id": "zh16-interference",
+    "baseline": false,
+    "source_family": "jl-special-gauge-archive",
+    "evidence_locators": [
+      {
+        "physical_page": 6,
+        "anchor": "周围应无影响校准结果的振动、冲击、电磁场或其它干扰源",
+        "source_id": "MFG-ZH16",
+        "source_sha256": "7941d223064c21daa4f7c2d0d21c3a0a402f5fea73c82d76f81e95fb4b4bb4ba",
+        "document": "documents/公共参考/MFG-ZH16_专用量规校准规范_吉林公开扫描原件.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202011/P020201119398404525340.pdf",
+        "verification": "visual_original_scan"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q081",
+    "split": "development",
+    "concept_id": "zh17-gauge-length",
+    "baseline": false,
+    "source_family": "jl-coaxiality-116-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "引伸计标距误差在不拔下双侧引伸计定位针的情况下测量",
+        "source_id": "MFG-ZH17",
+        "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+        "document": "documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125252444897475.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 8,
+        "anchor": "取两侧引伸计标距误差绝对值最大者",
+        "source_id": "MFG-ZH17",
+        "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+        "document": "documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125252444897475.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q082",
+    "split": "development",
+    "concept_id": "zh17-noncalibrated-dimension",
+    "baseline": false,
+    "source_family": "jl-coaxiality-116-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "l0为引伸计的夹持位置，此项不需校准",
+        "source_id": "MFG-ZH17",
+        "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+        "document": "documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125252444897475.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 7,
+        "anchor": "对应于双侧引伸计的标距",
+        "source_id": "MFG-ZH17",
+        "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+        "document": "documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125252444897475.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q083",
+    "split": "development",
+    "concept_id": "zh17-equilibration",
+    "baseline": false,
+    "source_family": "jl-coaxiality-116-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "应在测量环境中稳定不少于30min，待温度平衡后进行校准",
+        "source_id": "MFG-ZH17",
+        "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+        "document": "documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125252444897475.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q084",
+    "split": "development",
+    "concept_id": "zh17-relative-error-points",
+    "baseline": false,
+    "source_family": "jl-coaxiality-116-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "均匀选取至少5个校准点，校准点包括满量程点但不包括零点",
+        "source_id": "MFG-ZH17",
+        "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+        "document": "documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125252444897475.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q085",
+    "split": "development",
+    "concept_id": "zh17-coaxiality-points",
+    "baseline": false,
+    "source_family": "jl-coaxiality-116-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 9,
+        "anchor": "测量范围1/3处、2/3处校准点分别进行校准，每处校准点只做一次测量",
+        "source_id": "MFG-ZH17",
+        "source_sha256": "3b72cb4bb46ddb96d41aa9a1152d2a7865e4dcae20d9ac66c69755c011cfa669",
+        "document": "documents/公共参考/MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125252444897475.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q086",
+    "split": "test",
+    "concept_id": "zh18-environment",
+    "baseline": false,
+    "source_family": "jl-coating-viscometer-114-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "测量温度（20±1）℃；相对湿度：≤85%",
+        "source_id": "MFG-ZH18",
+        "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+        "document": "documents/公共参考/MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125251372727238.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q087",
+    "split": "test",
+    "concept_id": "zh18-reference-material",
+    "baseline": false,
+    "source_family": "jl-coating-viscometer-114-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "国家一级或国家二级有证标准黏度液",
+        "source_id": "MFG-ZH18",
+        "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+        "document": "documents/公共参考/MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125251372727238.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q088",
+    "split": "test",
+    "concept_id": "zh18-liquid-equilibration",
+    "baseline": false,
+    "source_family": "jl-coating-viscometer-114-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "将选用的一种标准黏度液放入恒温槽内，保持在测量温度±0.1℃内并恒温30min左右",
+        "source_id": "MFG-ZH18",
+        "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+        "document": "documents/公共参考/MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125251372727238.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q089",
+    "split": "test",
+    "concept_id": "zh18-time-stop",
+    "baseline": false,
+    "source_family": "jl-coating-viscometer-114-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 7,
+        "anchor": "放开堵住的手指，同时启动秒表开始记时",
+        "source_id": "MFG-ZH18",
+        "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+        "document": "documents/公共参考/MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125251372727238.pdf",
+        "verification": "original_text"
+      },
+      {
+        "physical_page": 8,
+        "anchor": "在出现断流瞬间停止记时",
+        "source_id": "MFG-ZH18",
+        "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+        "document": "documents/公共参考/MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125251372727238.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-Q090",
+    "split": "test",
+    "concept_id": "zh18-correction-rounding",
+    "baseline": false,
+    "source_family": "jl-coating-viscometer-114-2022",
+    "evidence_locators": [
+      {
+        "physical_page": 8,
+        "anchor": "修正系数小数点后保留两位数字",
+        "source_id": "MFG-ZH18",
+        "source_sha256": "510ed46e72ba24db586b0bc6af9ea57d4c1b93c451b19263c02d42fc2d5a714a",
+        "document": "documents/公共参考/MFG-ZH18_DIN53211-4涂料黏度计校准规范_JJF吉114-2022.pdf",
+        "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125251372727238.pdf",
+        "verification": "original_text"
+      }
+    ]
+  },
+  {
+    "id": "MFGZH-N01",
+    "split": "development",
+    "concept_id": "erp-order-state",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N02",
+    "split": "development",
+    "concept_id": "mes-release",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N03",
+    "split": "development",
+    "concept_id": "calibration-certificate",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N04",
+    "split": "development",
+    "concept_id": "unseen-formula",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N05",
+    "split": "development",
+    "concept_id": "supplier-reject-number",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N06",
+    "split": "development",
+    "concept_id": "execute-stop-command",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N07",
+    "split": "development",
+    "concept_id": "unspecified-calibrator",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N08",
+    "split": "development",
+    "concept_id": "unspecified-interval",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N09",
+    "split": "development",
+    "concept_id": "weekly-risk-location",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N10",
+    "split": "development",
+    "concept_id": "accountable-person",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N11",
+    "split": "test",
+    "concept_id": "realtime-stock",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N12",
+    "split": "test",
+    "concept_id": "plc-program",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N13",
+    "split": "test",
+    "concept_id": "manufacturer-torque",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N14",
+    "split": "test",
+    "concept_id": "daily-evidence",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N15",
+    "split": "test",
+    "concept_id": "write-calibration-date",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N16",
+    "split": "test",
+    "concept_id": "unseen-tolerance",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N17",
+    "split": "test",
+    "concept_id": "scanned-numbers",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N18",
+    "split": "test",
+    "concept_id": "source-currentness",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N19",
+    "split": "test",
+    "concept_id": "actual-recall",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N20",
+    "split": "test",
+    "concept_id": "trace-private-list",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N21",
+    "split": "test",
+    "concept_id": "guarantee-precision",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N22",
+    "split": "test",
+    "concept_id": "external-approval",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N23",
+    "split": "test",
+    "concept_id": "pressure-polarity",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N24",
+    "split": "test",
+    "concept_id": "chamber-volume",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N25",
+    "split": "test",
+    "concept_id": "force-direction",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N26",
+    "split": "test",
+    "concept_id": "viscosity-model",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N27",
+    "split": "test",
+    "concept_id": "fixture-feature",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N28",
+    "split": "test",
+    "concept_id": "trace-granularity",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N29",
+    "split": "test",
+    "concept_id": "environment-conflict",
+    "baseline": false,
+    "evidence_locators": []
+  },
+  {
+    "id": "MFGZH-N30",
+    "split": "test",
+    "concept_id": "continue-after-drift",
+    "baseline": false,
+    "evidence_locators": []
+  }
+]

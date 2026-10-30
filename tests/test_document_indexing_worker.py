@@ -247,6 +247,19 @@ def _add_ready_document(
     return document
 
 
+def test_empty_ocr_is_a_permanent_failure_without_automatic_retries(session, scenario):
+    from backend.app.documents.pdf_splitter import PdfTextExtractionError
+    upload = _upload(session, scenario, file_name="待识别.txt", content=b"scan-placeholder")
+    worker = DocumentIndexingWorker(session=session, settings=_settings(scenario),
+        indexing_service=FakeCandidateIndexingService(session, errors=[PdfTextExtractionError([2])]))
+    assert worker.run_once()
+    session.expire_all()
+    job = session.get(DocumentIndexingJob, upload.indexing_job.id)
+    assert (job.status, job.attempt_count) == ("failed", 1)
+    assert session.get(KnowledgeDocument, upload.document.id).status == "failed"
+    assert not worker.run_once()
+
+
 def test_worker_completes_new_document(
     session: Session,
     scenario: Scenario,

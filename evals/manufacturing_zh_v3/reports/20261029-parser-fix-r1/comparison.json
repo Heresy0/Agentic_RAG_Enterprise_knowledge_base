@@ -1,0 +1,100 @@
+{
+  "evaluation_type": "offline_parser_regression_not_answer_accuracy",
+  "external_model_calls": 0,
+  "before_parser_sha256": "35caac6381b20ae18a38701c7860dae5685c71ce3bbbceb96424ba9a9f359e16",
+  "after_parser_sha256": "fc199760920294077744c5ee0b1219f3143e8e8467bdd2c39d69b72e1b3719cc",
+  "freeze_sha256": "8ec785ae0a4513df83a8278211d135bd8c7fb29d70d67f27ccdadd1dceca1c9e",
+  "before_matched": 106,
+  "after_matched": 120,
+  "before_failed": 44,
+  "after_failed": 30,
+  "before_fully_matched_questions": 57,
+  "after_fully_matched_questions": 70,
+  "improved": [
+    {
+      "id": "MFGZH-Q002",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "未发现问题的，也应当予以记录，实行零风险报告"
+    },
+    {
+      "id": "MFGZH-Q003",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "形成《每周工业产品质量安全排查治理报告》"
+    },
+    {
+      "id": "MFGZH-Q004",
+      "source_id": "MFG-ZH01",
+      "physical_page": 6,
+      "anchor": "形成《每月工业产品质量安全调度会议纪要》"
+    },
+    {
+      "id": "MFGZH-Q019",
+      "source_id": "MFG-ZH04",
+      "physical_page": 7,
+      "anchor": "企业应将质量数据纳入数据资产管理范畴"
+    },
+    {
+      "id": "MFGZH-Q038",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "一般取上限的20%，40%，60%，80%，100%等5个点"
+    },
+    {
+      "id": "MFGZH-Q038",
+      "source_id": "MFG-ZH08",
+      "physical_page": 7,
+      "anchor": "该过程校准进行3次。每次校准都要调零，每次校准过程结束后，隔30秒"
+    },
+    {
+      "id": "MFGZH-Q039",
+      "source_id": "MFG-ZH08",
+      "physical_page": 8,
+      "anchor": "上述过程重复测量3次，取平均值作为测量结果，测量结果中取其最大值"
+    },
+    {
+      "id": "MFGZH-Q042",
+      "source_id": "MFG-ZH09",
+      "physical_page": 7,
+      "anchor": "需要有与作动器相匹配的链接螺栓、拉环、千斤顶及拉向力校准装置"
+    },
+    {
+      "id": "MFGZH-Q044",
+      "source_id": "MFG-ZH09",
+      "physical_page": 8,
+      "anchor": "上述过程重复测量3次，取平均值作为测量结果"
+    },
+    {
+      "id": "MFGZH-Q058",
+      "source_id": "MFG-ZH12",
+      "physical_page": 6,
+      "anchor": "被校仪器连续通电预热时间不少于30min"
+    },
+    {
+      "id": "MFGZH-Q074",
+      "source_id": "MFG-ZH15",
+      "physical_page": 6,
+      "anchor": "定位装置、夹紧装置应准确牢固，传动装置操作应灵活无卡滞"
+    },
+    {
+      "id": "MFGZH-Q082",
+      "source_id": "MFG-ZH17",
+      "physical_page": 7,
+      "anchor": "l0为引伸计的夹持位置，此项不需校准"
+    },
+    {
+      "id": "MFGZH-Q083",
+      "source_id": "MFG-ZH17",
+      "physical_page": 8,
+      "anchor": "应在测量环境中稳定不少于30min，待温度平衡后进行校准"
+    },
+    {
+      "id": "MFGZH-Q088",
+      "source_id": "MFG-ZH18",
+      "physical_page": 7,
+      "anchor": "将选用的一种标准黏度液放入恒温槽内，保持在测量温度±0.1℃内并恒温30min左右"
+    }
+  ],
+  "regressed": []
+}

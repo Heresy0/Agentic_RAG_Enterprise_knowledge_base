@@ -1,0 +1,563 @@
+{
+  "reviewer": "Codex assistant review of Qwen business outputs; not human review",
+  "rubric": "核对问题、冻结参考答案与实际引用原文。完整正确要求核心结论正确，且不省略影响适用范围、执行条件或例外的条款；题目已给出的前提可不重复，无关附属信息不要求逐字复述。拒答对正例计失败，对负例按证据边界判断。与关键词代理分数分开。",
+  "cases": {
+    "XH-001": {
+      "both": "遗漏每次不超过15分钟的免说明适用条件。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-002": {
+      "both": "提前5个工作日正确，但遗漏连续超过3个工作日需部门负责人审批。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-003": {
+      "both": "当前普通员工上海650元，含税单间口径正确。"
+    },
+    "XH-004": {
+      "both": "负责人A类城市850元，含税单间口径正确。"
+    },
+    "XH-005": {
+      "both": "行程结束后10个自然日的提交期限正确。"
+    },
+    "XH-006": {
+      "both": "停止扩大影响及30分钟报告正确，但遗漏不得自行删除日志的限制。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-007": {
+      "both": "严重暴露漏洞原则72小时，未混淆高危7日。"
+    },
+    "XH-008": {
+      "both": "恰好50000元归第二档，2家有效报价、部门批准和比价记录均保留。"
+    },
+    "XH-009": {
+      "both": "3家报价与双负责人正确，但遗漏完成供应商准入。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-010": {
+      "both": "影响里程碑须双方授权代表书面批准。"
+    },
+    "XH-011": {
+      "both": "最终验收后90日，合同另有约定的例外保留。"
+    },
+    "XH-012": {
+      "both": "99.2%对应当月10%，次月10个工作日申请。"
+    },
+    "XH-013": {
+      "full_parent": "30日正确，但遗漏窗口到期启动删除及其例外。",
+      "model_sections": "30日导出、到期删除及法律或双方约定例外完整。",
+      "fail": [
+        "full_parent"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission"
+      }
+    },
+    "XH-014": {
+      "both": "公司180人，与其他项目和部门人数未混淆。"
+    },
+    "XH-015": {
+      "both": "平台研发部64人，附加公司规模未冲突。"
+    },
+    "XH-016": {
+      "both": "明确回答2025年历史550元，未套用当前650元。"
+    },
+    "XH-017": {
+      "both": "在题目已批准前提下，必须经加密协作空间发送及72小时自动失效正确；必须经该空间已排除普通邮件通道。"
+    },
+    "XH-018": {
+      "both": "ASSET-026对应证书管理，每月复核正确。"
+    },
+    "XH-019": {
+      "both": "连续10分钟低于99.0%与写入错误为两项独立触发情形，无AND误解。"
+    },
+    "XH-020": {
+      "both": "维护时间、报表导出范围及登录审批API不受影响完整。"
+    },
+    "XH-021": {
+      "both": "实际最终验收签署日期为2026年9月29日。"
+    },
+    "XH-022": {
+      "both": "计划10月9日与未证明实际修复明确区分。"
+    },
+    "XH-023": {
+      "both": "产品2.6.0与API /v1维度区分正确，未误称/v2。"
+    },
+    "XH-024": {
+      "both": "429和Retry-After正确，但完整处理方案遗漏指数退避及不得多应用绕过限流。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-025": {
+      "both": "15分钟且不等于解决时间正确，但遗漏订单专属目标优先的例外。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-026": {
+      "full_parent": "35日、RPO15分钟、RTO2小时且内部目标不替代订单完整。",
+      "model_sections": "35日、RPO15分钟、RTO2小时正确，但遗漏内部目标不替代客户订单的边界。",
+      "fail": [
+        "model_sections"
+      ],
+      "failure_category": {
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-027": {
+      "both": "4人日和25日改29日正确，但遗漏新增跨部门审批代理这一变更内容。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "incomplete_answer",
+        "model_sections": "incomplete_answer"
+      }
+    },
+    "XH-028": {
+      "both": "首次响应17分钟、恢复43分钟，指标未混淆。"
+    },
+    "XH-029": {
+      "both": "培训9月24日15:00至16:30，北京时间，主讲许澜。"
+    },
+    "XH-030": {
+      "full_parent": "有效期24小时及同一操作重试不变保留，但未明确写操作必须提交。",
+      "model_sections": "只给24小时，遗漏写操作必需及同一操作重试保持不变。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-031": {
+      "full_parent": "新增跨部门审批代理、4人日、验收改期及最终签署完整。",
+      "model_sections": "有参考答案及证据却被数字/日期引用校验拒答，未交付答案。",
+      "fail": [
+        "model_sections"
+      ]
+    },
+    "XH-032": {
+      "both": "未给出资料没有的营业收入，正确拒答。"
+    },
+    "XH-033": {
+      "both": "未把变更工作量当合同金额，正确拒答。"
+    },
+    "XH-034": {
+      "both": "未推测不存在的私人手机号，正确拒答。"
+    },
+    "XH-035": {
+      "both": "未承诺不存在的未来涨薪比例，正确拒答。"
+    },
+    "XH-D-21": {
+      "both": "到岗后3个工作日确定岗位任务及导师，期限正确。"
+    },
+    "XH-D-22": {
+      "both": "书面反馈后5个工作日、完整材料后7个工作日，两项起算条件完整。"
+    },
+    "XH-D-23": {
+      "both": "2000元边界及直属经理加HR正确，但遗漏单人单次含税总额口径。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-D-24": {
+      "both": "交接需求、只读及5个工作日正确，但遗漏知识库、批准人和自动到期时间。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-D-25": {
+      "both": "问题所问发起角色HR及最后工作日前2个工作日正确，未把发起等同撤权已执行。"
+    },
+    "XH-D-26": {
+      "both": "10月9日仅为计划，不构成已修复证明。"
+    },
+    "XH-D-27": {
+      "both": "首次响应13分钟、复核68分钟，指标正确。"
+    },
+    "XH-D-28": {
+      "both": "向量/BM25/RRF30条、重排8条且授权库共享，未声称每库各有预算。"
+    },
+    "XH-D-29": {
+      "both": "上传不等于ready，failed不得进入候选，否定方向正确。"
+    },
+    "XH-D-30": {
+      "both": "6次包含首次与7日去重记录正确。"
+    },
+    "XH-E-046": {
+      "both": "恰好8000元属于第二档，部门及HR负责人审批。"
+    },
+    "XH-E-047": {
+      "both": "8001元归超过8000元档，三方复核角色完整。"
+    },
+    "XH-E-048": {
+      "both": "超时不证明业务未执行，待核实正确，但遗漏重试仍须幂等。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-E-050": {
+      "both": "按tenant_id与event_id组合去重，跨租户不合并，保留7日。"
+    },
+    "XH-E-051": {
+      "both": "培训或导师评审不自动授予生产及数据访问权限，需另行授权。"
+    },
+    "XH-E-052": {
+      "both": "过滤不等于数据库自动删除，核心否定正确。"
+    },
+    "XH-E-053": {
+      "both": "重排失败保留融合结果；未声称取消授权过滤。"
+    },
+    "XH-E-054": {
+      "both": "明确目标配置不证明真实生产已启用。"
+    },
+    "XH-E-049": {
+      "both": "原文有重试间隔且可计算，但最终被引用/结构校验拒答，未交付20:42:30。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ]
+    },
+    "XH-E-055": {
+      "both": "D1不得验收，D3替代方案、非阻断、客户书面接受及修复日期均在最终答案保留。答案重复冗长影响展示。"
+    },
+    "XH-E-056": {
+      "both": "3次API重试与Webhook含首次6次区分正确，但遗漏API重试须满足幂等条件。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "XH-E-057": {
+      "both": "扫描件负责人林澈、验证周宁，未沿用OCR误识别人名。"
+    },
+    "XH-E-058": {
+      "both": "未从培训或制度推测许澜个人绩效，正确拒答。"
+    },
+    "XH-E-059": {
+      "both": "未编造知识库没有的生产签名密钥，正确拒答。"
+    },
+    "XH-E-060": {
+      "both": "未把2026年现行住宿标准承诺到2027年，正确拒答。"
+    },
+    "CC-001": {
+      "both": "历史9月20日24小时与当前10月13日8小时，对象时期对应正确。"
+    },
+    "CC-002": {
+      "both": "测试采购第三季度5000、10月13日3000，未套用通用采购档位。"
+    },
+    "CC-003": {
+      "both": "将澄川项目单日标准误读为员工月累计数据，错误拒答，未交付9月12小时及10月8小时。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ]
+    },
+    "CC-004": {
+      "both": "第三季度1次第30日、10月2次第15及30自然日完整。"
+    },
+    "CC-005": {
+      "both": "一轮不能验收，连续2轮且缺失0，否定和必要条件完整。"
+    },
+    "CC-006": {
+      "both": "观察10分钟与P95连续5分钟大于800毫秒，未混淆观察和触发时长。"
+    },
+    "CC-007": {
+      "both": "计划10月10日与实际10月9日区分正确。"
+    },
+    "CC-008": {
+      "both": "附件映射漏新增目录导致3条附件索引缺失，不把记录计数一致当完整通过。"
+    },
+    "CC-009": {
+      "both": "书面接受导出替代方案、10月16日前修复与未关闭事实完整。"
+    },
+    "CC-010": {
+      "both": "VERIFY-02及03为两次通过，DRILL-01失败不计入。"
+    },
+    "CC-011": {
+      "both": "缓存键前缀配置遗漏导致命中率下降，发现至恢复14分钟。"
+    },
+    "CC-012": {
+      "both": "客户端解析缓存与23分钟正确，未误称业务缓存。"
+    },
+    "CC-013": {
+      "both": "原任务检查点恢复，18分钟仅到结果生成，未扩大到下载/验收。"
+    },
+    "CC-014": {
+      "both": "隐式类型转换导致索引失效，统一类型解决，明确不是扩连接池。"
+    },
+    "CC-015": {
+      "both": "技术部确认、平台研发获准值班执行及连续2轮缺失0，职责和条件完整。"
+    },
+    "CC-016": {
+      "both": "HR登记及导师第15、30自然日节点正确。"
+    },
+    "CC-017": {
+      "both": "恰好3000第一档、无需财务金额复核、批准前不得付款，边界正确。"
+    },
+    "CC-018": {
+      "both": "键前缀与DNS缓存为不同根因，分别14分钟与23分钟，未串案。"
+    },
+    "CC-019": {
+      "both": "不推测2027年已批报价，正确拒答。"
+    },
+    "CC-020": {
+      "both": "不把修复期限当实际完成关闭日期，正确拒答。"
+    },
+    "NQ-001": {
+      "both": "完整材料确认后起算3个工作日，补正等待不计入，条件完整。"
+    },
+    "NQ-002": {
+      "both": "有历史10小时及当前8小时的标准证据，但最终必答要点校验拒答。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ]
+    },
+    "NQ-003": {
+      "both": "已确认半日按当前南栖标准4小时正确。"
+    },
+    "NQ-004": {
+      "both": "原文有数量和标准，但计算输入的引用校验失败拒答，未交付20小时。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ]
+    },
+    "NQ-005": {
+      "both": "复核不自动授予权限，另行申请并获批，否定和后续步骤完整。"
+    },
+    "NQ-006": {
+      "both": "不同订阅不合并，tenant_id/subscription_id/event_id三字段完整。"
+    },
+    "NQ-007": {
+      "both": "最多4次投递含首次、3次重试，未混用通用6次。"
+    },
+    "NQ-008": {
+      "both": "有重试间隔证据，但计算/引用校验拒答，未交付09:23:20。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ]
+    },
+    "NQ-009": {
+      "both": "AC-N2、连续2轮、两轮缺失0和附件摘要一致均完整。"
+    },
+    "NQ-010": {
+      "full_parent": "选包NQ-PACK-03、AC-N2、两轮缺失0及附件一致、无开放D1/D2、D3书面接受期限，结论依据完整；展示重复冗长。",
+      "model_sections": "数字提取把编号尾部-03/-07列为缺少证据，触发拒答；未交付已有答案。",
+      "fail": [
+        "model_sections"
+      ]
+    },
+    "NQ-011": {
+      "both": "D3非阻断、客户书面接受及修复期限齐全，且明确客户接受不证明已修复。"
+    },
+    "NQ-012": {
+      "both": "原计划10月15日，实际10月16日10:20签署，未混淆计划与实际。"
+    },
+    "NQ-013": {
+      "both": "实际CFG-NQ-102绑定SL-NQ-B，首响应8分钟恢复30分钟，未用旧等级。"
+    },
+    "NQ-014": {
+      "full_parent": "有实际配置与时间线却被数字引用校验拒答，未交付两项均满足的结论。",
+      "model_sections": "错误声称恢复不满足30分钟目标；原文恢复应从09:03至09:31计算为28分钟，且答案未给恢复实测。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "semantic_error",
+        "model_sections": "semantic_error"
+      }
+    },
+    "NQ-015": {
+      "both": "有人工确认09:03和恢复09:31证据，但计算/引用校验拒答，未交付28分钟及正确起算。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ]
+    },
+    "NQ-016": {
+      "both": "仅脱敏档案沙箱，不包含生产，不能据此认定同名生产已部署。"
+    },
+    "NQ-017": {
+      "both": "不把10月20日整改计划或临时恢复认作实际上线，正确拒答。"
+    },
+    "NQ-018": {
+      "both": "缺少全月请求数据，不推测P95，正确拒答。"
+    },
+    "NQ-019": {
+      "both": "不由范围/时限推算已签订单金额，正确拒答。"
+    },
+    "NQ-020": {
+      "both": "不把现行补休8小时承诺为2027年已批准标准，正确拒答。"
+    },
+    "MH-001": {
+      "both": "AR-T2连续2轮缺失0、附件一致、无开放D1/D2及D3保留条件完整，未将禁止方向说反。"
+    },
+    "MH-002": {
+      "both": "实际配置对应SL-B2首响应8分钟，没有套用旧配置等级。"
+    },
+    "MH-003": {
+      "both": "同步故障适配器ADP-N7及平台研发连接器组复核，实体链路正确。"
+    },
+    "MH-004": {
+      "both": "D3非阻断、客户书面接受、明确修复期限，所以不阻止签署，依据完整。"
+    },
+    "MH-005": {
+      "both": "QY-PACK-R2适用AR-T2，两轮缺失0、附件一致、无开放D1/D2及D3书面接受修复期限均完整。"
+    },
+    "MH-006": {
+      "both": "实际SL-B2，7分50秒不超过8分钟、32分钟不超过35分钟；首次告警与人工发现起算区分完整。"
+    },
+    "MH-007": {
+      "full_parent": "1轮到2轮及当前禁止D2正确，但把旧版未载明禁止D2误说为历史条件无限制，超出证据。",
+      "model_sections": "有历史与当前规则证据，但被日期引用与覆盖校验拒答。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "semantic_error",
+        "model_sections": "semantic_error"
+      }
+    },
+    "MH-008": {
+      "both": "计划12日实际13日，D3非阻断及书面接受修复期限完整。"
+    },
+    "MH-009": {
+      "full_parent": "有同步及预览事件时限和实测，但数字引用校验拒答，未交付比较。",
+      "model_sections": "同步7分50秒不超过8分钟达标、预览18分钟超过15分钟不达标，实际等级映射正确。",
+      "fail": [
+        "full_parent"
+      ]
+    },
+    "MH-010": {
+      "both": "没有已批2027年归档存储预算，不猜金额，正确拒答。"
+    },
+    "MH-011": {
+      "both": "同对象同生效期5分钟与9分钟冲突未澄清，无替代关系，正确拒绝给唯一值。"
+    },
+    "MH-012": {
+      "both": "不把10月16日整改计划或临时恢复当已上线，正确拒答。"
+    },
+    "FP-001": {
+      "both": "2000元档、经理和HR、单人单次含税、提前5工作日及不得预付均正确，但完整政策限制遗漏不得拆分规避。",
+      "fail": [
+        "full_parent",
+        "model_sections"
+      ],
+      "failure_category": {
+        "full_parent": "condition_omission",
+        "model_sections": "condition_omission"
+      }
+    },
+    "FP-002": {
+      "full_parent": "首句误称恰好8000元必须财务支持组复核，与后句第二档仅部门及HR负责人矛盾；边界8000不应增加财务。",
+      "model_sections": "恰好8000第二档，部门及HR负责人批准、不得拆分，边界与禁止条件完整。",
+      "fail": [
+        "full_parent"
+      ],
+      "failure_category": {
+        "full_parent": "semantic_error"
+      }
+    },
+    "FP-003": {
+      "full_parent": "有临时只读审批条款，但覆盖校验拒答，未交付5工作日及审批字段。",
+      "model_sections": "确有交接需求方可批准，只读、最多5工作日及知识库/批准人/自动到期均完整。",
+      "fail": [
+        "full_parent"
+      ]
+    },
+    "FP-004": {
+      "both": "数据库15分钟/2小时，附件24小时/4小时，内部目标不替代订单承诺，指标对象与边界完整。"
+    },
+    "FP-005": {
+      "full_parent": "每月隔离环境、平台负责人确认恢复数据时间点/关键链路/租户隔离、值班组180日完整。",
+      "model_sections": "频率、隔离环境、角色及180日正确，但完整恢复演练核验范围遗漏恢复数据时间点。",
+      "fail": [
+        "model_sections"
+      ],
+      "failure_category": {
+        "model_sections": "condition_omission"
+      }
+    },
+    "FP-006": {
+      "both": "D2修复并回归，D3替代方案非阻断且客户书面接受修复日期，口头不够；条件否定完整。"
+    },
+    "FP-007": {
+      "both": "每租户每应用120次/分钟、突发30及合同/控制台专属额度优先完整。"
+    },
+    "FP-008": {
+      "both": "tenant_id与event_id组合、保留7日，同一事件delivery_attempt变化不重新执行业务，禁止条件完整。"
+    }
+  },
+  "observations_sha256": {
+    "criteria": "e9d798aa332f654a324d1b80f33999b4d64a6a7f48fcceb4f85061f19949e2d6",
+    "full_parent": "43df21deff8777c820ddf2a7a88fdb79574aa0ba83c67a9a2cbda4f1208c7013",
+    "model_sections": "49b353409fdf4f9b6e1ce9bddb8bee343629d8f7e3a296bda5e883e470fa0e43"
+  },
+  "review_revision": "v2: explicit failure categories; original v1 verdicts and reasons unchanged"
+}

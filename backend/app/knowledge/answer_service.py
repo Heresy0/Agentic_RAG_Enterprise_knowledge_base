@@ -1,6 +1,7 @@
 import time
 import json
 from pydantic import ValidationError
+from .answer_validation import interaction_errors
 from langchain_core.exceptions import OutputParserException
 
 from langchain_core.messages import (
@@ -13,6 +14,7 @@ from sqlalchemy.orm import Session
 from .answer_models import (
     AnswerDraft,
     GenerationAnswerDraft,
+    EvidenceFirstAnswerDraft,
     AnswerResult,
     AnswerTimings,
     Citation,
@@ -25,6 +27,7 @@ from .context_builder import (
     BuiltContext,
     ContextBuilder,
 )
+from .parent_context_selection import BudgetedParentSelector, parent_selection_scope
 from .prompts import ANSWER_SYSTEM_PROMPT
 from .answer_constraints import complete_cited_table_conditions, generation_constraints, temporal_evidence_context
 from .answer_completion import complete_answer
@@ -74,7 +77,7 @@ class AnswerService:
         self._query_planner = query_planner or QueryPlanner(settings)
         self._answer_repair = answer_repair or AnswerRepair(settings)
         self._context_builder = (
-            context_builder or ContextBuilder()
+            context_builder or ContextBuilder(parent_selector=BudgetedParentSelector(settings))
         )
         self._validator = (
             validator or AnswerValidator()
@@ -89,12 +92,12 @@ class AnswerService:
             api_key=settings.chat_api_key,
             temperature=0,
             reasoning_effort="none",
-            timeout=60,
+            timeout=120,
             max_retries=0,
         )
 
         self._structured_llm = (
-            llm.with_structured_output(GenerationAnswerDraft, include_raw=True)
+            llm.with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
         )
 
     @audited_scope
@@ -110,7 +113,8 @@ class AnswerService:
         if not question:
             raise ValueError("问题不能为空")
         total_started = time.perf_counter()
-        with rag_budget_scope(RagBudget.from_settings(self._settings)) as budget:
+        with rag_budget_scope(RagBudget.from_settings(self._settings)) as budget, \
+                parent_selection_scope(scope=scope, session=session):
             try:
                 planning_started = time.perf_counter()
                 plan = self._query_planner.plan(question, scope=scope, session=session)
@@ -176,14 +180,16 @@ class AnswerService:
         )
 
         future_gap = bool(context.items) and future_certainty_gap(question, context.items)
-        if not context.items or future_gap:
+        if not context.items or future_gap or context.incomplete_reason:
             render_started = time.perf_counter()
             result = self._refusal(
+                "上下文预算不足以完整保留相关条款及限制条件，请缩小问题范围后重试。"
+                if context.incomplete_reason else
                 "缺少已确定覆盖该未来期间的正式制度，不能把现行规则说成未来承诺。"
                 if future_gap else "没有检索到相关知识库资料。"
             )
             record_answer_decision(stage="pre_generation", answerable=False,
-                                   reason="future_policy_gap" if future_gap else "empty_context")
+                                   reason=context.incomplete_reason or ("future_policy_gap" if future_gap else "empty_context"))
             timings["render_ms"] = _elapsed_ms(
                 render_started
             )
@@ -196,7 +202,7 @@ class AnswerService:
         def refresh_context():
             current = self._retrieval_service.refresh_evidence(documents, scope=scope, session=session)
             refreshed = self._context_builder.build(current, question=question)
-            return [(item.chunk_id, item.content, item.policy) for item in refreshed.items] == [
+            return not refreshed.incomplete_reason and [(item.chunk_id, item.content, item.policy) for item in refreshed.items] == [
                 (item.chunk_id, item.content, item.policy) for item in context.items]
 
         generation_started = time.perf_counter()
@@ -282,7 +288,8 @@ class AnswerService:
         first_contract_errors = direct_answer_errors(question, draft)
         first_response = (self._render_result(draft=draft, context=context)
                           if first_validation.valid and draft.answerable and not coverage_failures and not first_contract_errors
-                          else self._refusal(draft.refusal_reason or "首次生成未通过证据与必答项校验。"))
+                          else (self._unanswerable(draft) if first_validation.valid and not draft.answerable
+                                else self._refusal(draft.refusal_reason or "首次生成未通过证据与必答项校验。")))
         first_claims = [claim.model_dump() for claim in draft.claims]
         first_answerable = draft.answerable
         first_coverage = coverage_snapshot(draft, question, context)
@@ -322,6 +329,7 @@ class AnswerService:
             validation.valid = False
             validation.errors.extend(coverage_failures)
         contract_failures = direct_answer_errors(question, draft)
+        contract_failures.extend(interaction_errors(draft))
         if contract_failures:
             validation.valid = False
             validation.errors.extend(contract_failures)
@@ -349,10 +357,7 @@ class AnswerService:
 
         if not draft.answerable:
             render_started = time.perf_counter()
-            result = self._refusal(
-                draft.refusal_reason
-                or "知识库资料不足。"
-            )
+            result = self._unanswerable(draft)
             record_answer_decision(stage="final", answerable=False, reason=draft.refusal_reason)
             if regenerated:
                 record_rag_event(dict(kind='feedback_final', answerable=False))
@@ -451,7 +456,7 @@ class AnswerService:
     def _regeneration_preflight(self, question, context):
         messages = self._generation_messages(question, context)
         prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
-        prompt_bytes += len(json.dumps(GenerationAnswerDraft.model_json_schema()).encode("utf-8")) + 256
+        prompt_bytes += len(json.dumps(EvidenceFirstAnswerDraft.model_json_schema()).encode("utf-8")) + 256
         output = getattr(self._settings, "rag_regeneration_output_tokens", 2048)
         current_rag_budget().check_model(prompt_bytes=prompt_bytes, output_tokens=output)
         return messages, prompt_bytes, output
@@ -464,17 +469,28 @@ class AnswerService:
                 base_url=self._settings.chat_base_url, api_key=self._settings.chat_api_key, temperature=0,
                 reasoning_effort="none", max_retries=0, max_tokens=output,
                 timeout=min(getattr(self._settings, "rag_regeneration_timeout_seconds", 15), remaining)
-            ).with_structured_output(GenerationAnswerDraft, include_raw=True)
+            ).with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
             result = invoke_structured(model, messages, stage="answer_regeneration", model_name=self._settings.chat_model)
             return self._as_generation_draft(result)
 
     @staticmethod
     def _as_generation_draft(result):
-        if not isinstance(result, GenerationAnswerDraft):
-            if isinstance(result, AnswerDraft):
+        if not isinstance(result, EvidenceFirstAnswerDraft):
+            if isinstance(result, (AnswerDraft, GenerationAnswerDraft)):
                 result = result.model_dump()
-            result = GenerationAnswerDraft.model_validate(result)
-
+            result = EvidenceFirstAnswerDraft.model_validate(result)
+        # An unanswered item makes no cited assertion. Like the redundant
+        # retrieval request below, its unused quote must not turn clarification
+        # into refusal. Keep the original model object untouched for callers.
+        if any(row.status != 'answered' and row.source_quote is not None for row in result.coverage):
+            result = result.model_copy(update={'coverage': [
+                row.model_copy(update={'source_quote': None}) if row.status != 'answered' else row
+                for row in result.coverage]})
+        # A user condition cannot be supplied by another search. A declared
+        # clarification takes precedence over a redundant retrieval request;
+        # claims, answerability and the actual questions still undergo validation.
+        if result.response_type == "clarify" and result.evidence_gap is not None:
+            result = result.model_copy(update={"evidence_gap": None})
         return result
 
     def _render_result(
@@ -527,7 +543,16 @@ class AnswerService:
             answer="\n".join(answer_parts),
             answerable=True,
             citations=citations,
+            response_type="answer",
         )
+
+    @staticmethod
+    def _unanswerable(draft) -> AnswerResult:
+        if getattr(draft, "response_type", None) == "clarify":
+            return AnswerResult(answer="\n".join(draft.clarification_questions), answerable=False, citations=[],
+                response_type="clarify", missing_fields=draft.missing_fields,
+                clarification_questions=draft.clarification_questions)
+        return AnswerService._refusal(draft.refusal_reason or "知识库资料不足。")
 
     @staticmethod
     def _refusal(reason: str) -> AnswerResult:
@@ -536,4 +561,5 @@ class AnswerService:
             answerable=False,
             citations=[],
             refusal_reason=reason,
+            response_type="refuse",
         )

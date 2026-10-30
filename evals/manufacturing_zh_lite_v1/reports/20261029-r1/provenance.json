@@ -1,0 +1,31 @@
+{
+  "original_baseline_commit": "caf26ea2653846846268b1d9b14826f36c2329f6",
+  "execution_commit": "beb4fd9e880914ef1d9e4a213e3fe13883304585",
+  "pipeline": {
+    "code_sha256": "334c9147bc1211229f61189a024983e13483eaf8fd42e71b9935ef29d118ab5b",
+    "prompts_sha256": "c8bfcbe583629ba0e4898cd4cef9af7c4314b22cf80ae40e90206366ef28f274"
+  },
+  "tenant_id": "62721f0d-54b2-4361-8596-58585eb464ea",
+  "grading_reviewer": "assistant_non_independent",
+  "qa_retries": 0,
+  "backend_tests": {
+    "passed": 1495,
+    "skipped": 55,
+    "warnings": 2,
+    "log_sha256": "fa4aefbe81105f4e99ff7bf7236088efcf16b7734d60595d9e02ebaf0d219ff1"
+  },
+  "frontend_tests": {
+    "passed": 30,
+    "log_sha256": "e28739e2915b0db85a3bcf3184ab657a3e9163f6159b828b36444a3234f41c7a"
+  },
+  "index": {
+    "documents": 16,
+    "child_chunks": 986,
+    "parents": 503
+  },
+  "source_trace_sha256": {
+    "development": "c67ed5090fb997e8528677a391c9de1afaa63448a5e1c1915acee5e8ba60aea0",
+    "regression": "e2c92ff38d23e17eafd1009df2b278707902b28077d16b66ed3a796d4714b280"
+  },
+  "private_snapshots": "tmp/manufacturing-demo-lite-r1 (ignored; credentials and raw business snapshots are not published)"
+}

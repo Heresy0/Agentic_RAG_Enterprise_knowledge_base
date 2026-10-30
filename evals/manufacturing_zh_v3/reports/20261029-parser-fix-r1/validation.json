@@ -1,0 +1,19 @@
+{
+  "focused": {
+    "total": 98,
+    "passed": 98,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 24.394
+  },
+  "full": {
+    "total": 1476,
+    "passed": 1421,
+    "skipped": 55,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 145.153
+  },
+  "external_application_model_runs": 0
+}

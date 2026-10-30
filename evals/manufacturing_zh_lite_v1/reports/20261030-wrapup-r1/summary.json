@@ -1,0 +1,139 @@
+{
+  "status": "interview_demo_wrapup_with_known_failures",
+  "date": "2026-10-30",
+  "timezone": "Asia/Shanghai",
+  "corpus_documents": 16,
+  "regression_questions": 98,
+  "scorer_version": "2026-10-29-r13",
+  "stable": {
+    "source_commit": "43aeafc7656ce3092e41f79392d56762cb7af8d6",
+    "image_id": "sha256:a105a27fae8ed06ff2f1136860594266d79ea7d4ed136e31238f2bdc03358bd8",
+    "port": 8000,
+    "preserved": true
+  },
+  "candidate": {
+    "answer_code_commit": "868005e3d22b9c63bffdc5556abfa26795871065",
+    "image_id": "sha256:88cba4b97e7137a738b93543e8bb54e068a9c0083671df3c90cc90991e5493eb",
+    "port": 8001,
+    "promoted_to_stable": false
+  },
+  "original_98_run": {
+    "code": "a1d9a5f",
+    "total": 98,
+    "complete": 95,
+    "errors": 3,
+    "automatic_r13_passed": 72,
+    "equivalence_adjusted_proxy": 83
+  },
+  "recovery": {
+    "code": "868005e",
+    "qa_requests": 3,
+    "complete": 3,
+    "errors": 0,
+    "automatic_r13_passed": 2,
+    "model_events": 9,
+    "model_errors": 0,
+    "automatic_retries": 0,
+    "cases": [
+      {
+        "id": "MFGZH-Q024",
+        "automatic_r13_pass": true,
+        "generation_ms": 3103.669,
+        "missing_facts": []
+      },
+      {
+        "id": "MFGZH-Q025",
+        "automatic_r13_pass": true,
+        "generation_ms": 2592.373,
+        "missing_facts": []
+      },
+      {
+        "id": "MFGZH-Q077",
+        "automatic_r13_pass": false,
+        "generation_ms": 3559.77,
+        "missing_facts": [
+          "产品名称",
+          "规格",
+          "主要技术参数",
+          "出厂编号"
+        ]
+      }
+    ]
+  },
+  "derived_98_view": {
+    "scope": "mixed_version_error_recovery_view_not_a_new_full_98_run",
+    "versions": {
+      "a1d9a5f": 95,
+      "868005e": 3
+    },
+    "total": 98,
+    "complete": 98,
+    "errors": 0,
+    "automatic_r13_passed": 74,
+    "equivalence_adjusted_proxy": 85,
+    "expression_corrections": {
+      "MFGZH-Q005": "不得继续担任相应岗位与不得担任等价，立即整改措施已回答。",
+      "MFGZH-Q006": "明确这两个人员的岗位与明确两类人员岗位等价，保留配置、履职均已回答。",
+      "MFGZH-Q013": "可以选择是否进行公开与选择是否公开等价。",
+      "MFGZH-Q020": "需要定期进行评估、不是只做一次建设验收，分别等价于两个必答事实。",
+      "MFGZH-Q028": "30分钟、2小时、每隔2分钟与30min、2h、每隔2min等价，16次未变。",
+      "MFGZH-Q029": "10分钟与10min等价；原文也明确支持新增的公式(3)平均风速说明。",
+      "MFGZH-Q039": "均匀分布的5个点与均匀选5点等价；3次、算术平均、最大值均齐全。",
+      "MFGZH-Q083": "不少于30分钟与不少于30min等价，温度平衡条件已回答。",
+      "MFGZH-Q058": "不少于2小时及30分钟与2h及30min等价。",
+      "MFGZH-Q089": "移开堵住流出口的手指同时开始计时，与同时启动秒表等价；断流停止也已回答。重复回答另记为表达问题。",
+      "MFGZH-N21": "本轮新增“校准是仪器计量特性评定，而非对最终产品的直接检验”，与r13已允许的“而非对最终产品的全检或质量担保”属于同一校准不能代替产品检验的边界表达；不能保证100%合格也已明确。前轮只有结果有效范围及复校间隔，故前轮未补回。此处只审核必答边界表达，不宣称所有引用完成独立语义验证。"
+    }
+  },
+  "remaining_failures": {
+    "ordinary": [
+      "MFGZH-Q008",
+      "MFGZH-Q023",
+      "MFGZH-Q034"
+    ],
+    "ocr": [
+      "MFGZH-Q068",
+      "MFGZH-Q071",
+      "MFGZH-Q076",
+      "MFGZH-Q077"
+    ],
+    "behavior": [
+      "MFGZH-N09",
+      "MFGZH-N10",
+      "MFGZH-N18",
+      "MFGZH-N25",
+      "MFGZH-N26",
+      "MFGZH-N28"
+    ]
+  },
+  "diagnostic_complete_snapshots": 95,
+  "tests": {
+    "closure_targeted_passed": 438,
+    "timeout_targeted_passed": 110,
+    "counts_are_separate_overlapping_suites": true
+  },
+  "frozen_inputs_unchanged": true,
+  "original_reports_unchanged": true,
+  "stable_runtime_unchanged": true,
+  "health_http": {
+    "8000": 200,
+    "8001": 200
+  },
+  "limitations": [
+    "Expression review is assistant non-independent and does not fully audit all automatically passing answers.",
+    "The98view combines95saved answers with3preselected execution-error recoveries and is not a fresh single-version run.",
+    "The regression set has been used for development and OCR selection; no independent accuracy claim.",
+    "All3recovered generations completed in under60seconds; no isolated causal gain is claimed for the120second timeout.",
+    "ERP/MES is not connected; visual parsing remains untested; document-only manufacturing QA scope."
+  ],
+  "private_artifact_sha256": {
+    "tmp/closure-98-a1d9a5f-r1/report/summary.json": "d7f5d9bf22275f62274a14878e7e5eabbd0e89d6ab4bfd15b7c7f28bffddc324",
+    "tmp/closure-98-a1d9a5f-r1/report/review-with-baseline.json": "870f1a8bbe48ffcdffba6bd741540872e2f16214d92de065bf50cc3599b4ab26",
+    "tmp/timeout-recovery-868005e-r1/selection.json": "a2ea965b54947ca40b2862667aedb40249c94d095f9837b815697d9637ca34d6",
+    "tmp/timeout-recovery-868005e-r1/recovery-summary.json": "ad3cca0ed184806b8f0982f4514375af87820801f0f14b2c2a494a7fa5d3b0b2",
+    "tmp/timeout-recovery-868005e-r1/derived-98-summary.json": "dcf9b9f2d57a28338e355aec93d605f2329ec7189da23d74c349871d605bbf85",
+    "tmp/three-item-closure-20261030/targeted-tests.xml": "9b09ff2b741252a34643bffc80bde4f98c20214dc6c3fe1237c7ace2fc46b69b",
+    "tmp/qa-timeout-120-20261030/tests.xml": "533abd50b3ea30d42498a645386fbb15a6cfcb05465d277e48922342d49b83e9",
+    "tmp/final-wrapup-20261030/runtime.json": "c1cd4223b0b3ea40276d51f8a96904ba72f67b138db2b8a772972600d1aae071"
+  }
+}

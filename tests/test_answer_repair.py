@@ -3,9 +3,9 @@ from types import SimpleNamespace
 import pytest
 from langchain_core.messages import AIMessage
 
-from test_answer_service import TEST_SCOPE, make_document, build_service, answer
+from test_answer_service import TEST_SCOPE, make_document, build_service, answer, FakeStructuredLLM
 from backend.app.evaluation.trace import capture_trace
-from backend.app.knowledge.answer_models import GenerationAnswerDraft
+from backend.app.knowledge.answer_models import EvidenceFirstAnswerDraft, GenerationAnswerDraft
 from backend.app.knowledge.answer_repair import AnswerRepair
 from backend.app.knowledge.answer_validation import AnswerValidator
 from backend.app.knowledge.context_builder import ContextBuilder
@@ -23,7 +23,7 @@ class Guard:
 
 
 def draft(*, text="温度是80摄氏度", citation="资料1", indices=(2,), status="answered", answerable=True):
-    return GenerationAnswerDraft.model_validate(dict(answerable=answerable,
+    return GenerationAnswerDraft.model_validate(dict(answerable=answerable, response_type='answer' if answerable else 'refuse',
         claims=[dict(text=text, citations=[citation])], refusal_reason=None,
         coverage=[dict(requirement_id="Q1", aspect="温度", status=status, claim_indices=list(indices),
                        missing_information=None if status == "answered" else "缺少温度证据")]))
@@ -33,14 +33,29 @@ def repair_service(result, *, hook=None):
     calls, guard = [], Guard()
     def factory(**kwargs):
         calls.append(kwargs)
+        selected_schema = None
         def invoke(messages):
             if hook:
                 hook(guard)
             if isinstance(result, Exception):
                 raise result
+            parsed = result
+            if selected_schema is EvidenceFirstAnswerDraft and isinstance(result, GenerationAnswerDraft):
+                if '知识库资料：\n' in messages[1].content:
+                    parsed = FakeStructuredLLM(result).invoke(messages)
+                else:
+                    import json
+                    data = json.loads(messages[1].content)
+                    parsed = result.model_dump()
+                    for row in parsed['coverage']:
+                        row.setdefault('source_quote', data['evidence'][0]['content'][:600] if row['status']=='answered' else None)
             return dict(raw=AIMessage(content="", usage_metadata=dict(input_tokens=100, output_tokens=20, total_tokens=120)),
-                        parsed=result, parsing_error=None)
-        return SimpleNamespace(with_structured_output=lambda *args, **kwargs: SimpleNamespace(invoke=invoke))
+                        parsed=parsed, parsing_error=None)
+        def structured(schema, **kwargs):
+            nonlocal selected_schema
+            selected_schema = schema
+            return SimpleNamespace(invoke=invoke)
+        return SimpleNamespace(with_structured_output=structured)
     settings = SimpleNamespace(rag_repair_enabled=True, chat_model="fake", chat_base_url="https://fake.invalid", chat_api_key="fake")
     return AnswerRepair(settings, model_factory=factory, guard_factory=lambda *args: guard), calls, guard
 
@@ -63,6 +78,20 @@ def test_one_model_repair_fixes_coverage_without_changing_facts():
     assert trace.stages["rag_routing"][-1]["outcome"] == "model_repaired"
 
 
+def test_auxiliary_warning_does_not_block_real_coverage_repair():
+    from backend.app.knowledge.query_planner import QueryPlan, query_plan_scope
+    original, fixed = draft(), draft(indices=(1,))
+    for model in (original, fixed):
+        model.coverage.append(model.coverage[0].model_copy(update=dict(requirement_id='P1',
+            status='insufficient', claim_indices=[], missing_information='辅助建议未覆盖')))
+    plan = QueryPlan(intent='fact', strategy='standard', reason='direct_lookup',
+        subquestions=[dict(question='温度是多少？', source_quote='温度是多少？')])
+    service, calls, _ = repair_service(fixed)
+    with query_plan_scope(plan):
+        result, _, _ = execute(service, original)
+    assert result == fixed and len(calls) == 1
+
+
 def test_unambiguous_citation_format_is_repaired_locally():
     original = draft(citation=" [资料1] ", indices=(1,))
     service, calls, _ = repair_service(RuntimeError("must not call"))
@@ -74,7 +103,7 @@ def test_unambiguous_citation_format_is_repaired_locally():
 @pytest.mark.parametrize("original", [
     draft(text="温度是90摄氏度", indices=(1,)),
     draft(status="insufficient", indices=()),
-    GenerationAnswerDraft.model_validate(dict(answerable=False, claims=[], refusal_reason="缺证据",
+    GenerationAnswerDraft.model_validate(dict(answerable=False, response_type='refuse', claims=[], refusal_reason="缺证据",
         coverage=[dict(requirement_id="Q1", aspect="温度", status="insufficient", claim_indices=[], missing_information="缺证据")])),
 ])
 def test_missing_truth_and_unsupported_numbers_never_trigger_repair(original):

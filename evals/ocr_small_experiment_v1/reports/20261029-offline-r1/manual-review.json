@@ -1,0 +1,23 @@
+{
+  "reviewer": "same_assistant_not_independent_expert",
+  "review_after_frozen_run": true,
+  "records": [
+    {
+      "sample": "OCR-I02-p2",
+      "physical_page": 2,
+      "original_row": "计算机／启天M433／20台／7350.00／147000.00",
+      "observation": "原件第4行单价7350.00、小计147000.00。基线文字仍有该价格对，候选两值均缺失；两配置均未恢复可靠整表，型号识别也有错误。",
+      "baseline_table_certified": false,
+      "candidate_table_certified": false,
+      "added_to_frozen_score": false
+    },
+    {
+      "sample": "MFG-ZH11-p6",
+      "observation": "候选PSM6重试由空变为非空，但输出只有零碎符号和字母，原有证据仍未匹配，不能作为正文恢复成功。",
+      "candidate_characters": 158,
+      "candidate_text_sha256": "36b97064d2328d3d54d9526b491077582482dc443930269e8e62edc69217d35a",
+      "ready_for_index": false
+    }
+  ],
+  "scope": "探索性人工复核，不改冻结标注，不新增打分项，不据此继续调参。"
+}

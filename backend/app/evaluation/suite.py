@@ -2,7 +2,7 @@
 import hashlib
 import json
 
-from .metrics import summarize_stages
+from .retrieval_metrics import summarize_stages
 from .reporting import quality_layers
 
 
@@ -15,6 +15,8 @@ def load_suite(directory,cases):
         raise ValueError('Suite dataset fingerprint differs; rebuild/check the suite')
     if suite['scoring_rules_sha256']!=sha(directory/'scoring_rules.json'):
         raise ValueError('Suite scoring fingerprint differs')
+    if suite.get('quality_policy_sha256') and suite['quality_policy_sha256']!=sha(directory/'quality_policy.json'):
+        raise ValueError('Suite quality policy fingerprint differs')
     ids=[r['id'] for r in cases];group_ids=[];names=[]
     for group in suite['groups']:
         group_ids.extend(group['case_ids']);names.append(group['id'])

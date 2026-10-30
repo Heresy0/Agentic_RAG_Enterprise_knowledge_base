@@ -1,0 +1,236 @@
+{
+  "evaluation_type": "actual_authenticated_http_not_unit_fixture",
+  "checks": [
+    {
+      "name": "操作员有效库及权限",
+      "actual": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "viewer",
+        "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb": "viewer"
+      },
+      "expected": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "viewer",
+        "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb": "viewer"
+      },
+      "passed": true
+    },
+    {
+      "name": "操作员读取公共参考",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "操作员读取生产工艺",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "操作员读取质量检验",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "工艺工程师有效库及权限",
+      "actual": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "viewer",
+        "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb": "editor",
+        "3352fe40-534b-4d2e-8eef-9b89cbeb877e": "viewer"
+      },
+      "expected": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "viewer",
+        "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb": "editor",
+        "3352fe40-534b-4d2e-8eef-9b89cbeb877e": "viewer"
+      },
+      "passed": true
+    },
+    {
+      "name": "工艺工程师读取公共参考",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "工艺工程师读取生产工艺",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "工艺工程师读取质量检验",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "质量工程师有效库及权限",
+      "actual": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "viewer",
+        "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb": "viewer",
+        "3352fe40-534b-4d2e-8eef-9b89cbeb877e": "editor"
+      },
+      "expected": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "viewer",
+        "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb": "viewer",
+        "3352fe40-534b-4d2e-8eef-9b89cbeb877e": "editor"
+      },
+      "passed": true
+    },
+    {
+      "name": "质量工程师读取公共参考",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "质量工程师读取生产工艺",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "质量工程师读取质量检验",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "知识管理员有效库及权限",
+      "actual": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "admin",
+        "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb": "admin",
+        "3352fe40-534b-4d2e-8eef-9b89cbeb877e": "admin"
+      },
+      "expected": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "admin",
+        "e1f0c526-bdfc-47ad-a894-9d4e53a8cabb": "admin",
+        "3352fe40-534b-4d2e-8eef-9b89cbeb877e": "admin"
+      },
+      "passed": true
+    },
+    {
+      "name": "知识管理员读取公共参考",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "知识管理员读取生产工艺",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "知识管理员读取质量检验",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "仅参考资料用户有效库及权限",
+      "actual": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "viewer"
+      },
+      "expected": {
+        "a1265ae1-d200-4b38-897c-0a1f408ad30a": "viewer"
+      },
+      "passed": true
+    },
+    {
+      "name": "仅参考资料用户读取公共参考",
+      "actual": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "仅参考资料用户读取生产工艺",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "仅参考资料用户读取质量检验",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "操作员跨租户直访",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "工艺工程师跨租户直访",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "质量工程师跨租户直访",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "知识管理员跨租户直访",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "仅参考资料用户跨租户直访",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "操作员不可上传",
+      "actual": 403,
+      "expected": 403,
+      "passed": true
+    },
+    {
+      "name": "管理员引用预览",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "name": "操作员引用预览",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "name": "仅参考用户不可预览工艺引用",
+      "expected": 403,
+      "actual": 403,
+      "passed": true
+    },
+    {
+      "name": "未共享快照对同租户其他用户不可见",
+      "expected": 404,
+      "actual": 404,
+      "passed": true
+    },
+    {
+      "name": "撤权后旧令牌引用预览拒绝",
+      "expected": 403,
+      "actual": 403,
+      "passed": true
+    },
+    {
+      "name": "撤权后旧令牌有效库立即变化",
+      "passed": true
+    },
+    {
+      "name": "恢复原授权后预览可用",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    }
+  ],
+  "restored_operator_grant": true
+}

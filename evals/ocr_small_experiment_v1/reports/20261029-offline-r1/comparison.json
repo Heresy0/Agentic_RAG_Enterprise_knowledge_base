@@ -1,0 +1,1498 @@
+{
+  "evaluation_type": "sampled_ocr_page_text_only",
+  "external_model_calls": 0,
+  "plan_sha256": "6b00070d8af34e2052476faa452915771d1ed3f3c160fd8fdd769073e9847f0f",
+  "profiles": {
+    "baseline": {
+      "totals": {
+        "independent": {
+          "checks": 27,
+          "matched": 10,
+          "pages": 9,
+          "empty_pages": 1,
+          "errors": 0,
+          "seconds": 80.32868919999964,
+          "retries": 0
+        },
+        "legacy_regression": {
+          "checks": 55,
+          "matched": 25,
+          "pages": 12,
+          "empty_pages": 2,
+          "errors": 0,
+          "seconds": 98.71854810399782,
+          "retries": 0
+        }
+      },
+      "checks": [
+        {
+          "id": "OCR-I01-p1:OCR-I01-p1-c1",
+          "sample": "OCR-I01-p1",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "2023年02月21日",
+          "matched": true
+        },
+        {
+          "id": "OCR-I01-p1:OCR-I01-p1-c2",
+          "sample": "OCR-I01-p1",
+          "group": "independent",
+          "kind": "prose",
+          "text": "原材料报验不齐全，缺少钢筋、近期水泥等报验",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p1:OCR-I01-p1-c3",
+          "sample": "OCR-I01-p1",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "30个工作日内报监督机构",
+          "matched": true
+        },
+        {
+          "id": "OCR-I01-p6:OCR-I01-p6-c1",
+          "sample": "OCR-I01-p6",
+          "group": "independent",
+          "kind": "table_cell",
+          "text": "施工员",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p6:OCR-I01-p6-c2",
+          "sample": "OCR-I01-p6",
+          "group": "independent",
+          "kind": "table_cell",
+          "text": "班组长及分包单位负责人",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p6:OCR-I01-p6-c3",
+          "sample": "OCR-I01-p6",
+          "group": "independent",
+          "kind": "prose",
+          "text": "按季度考评",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p10:OCR-I01-p10-c1",
+          "sample": "OCR-I01-p10",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "[2020]37号",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p10:OCR-I01-p10-c2",
+          "sample": "OCR-I01-p10",
+          "group": "independent",
+          "kind": "prose",
+          "text": "质量管理领导小组",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p10:OCR-I01-p10-c3",
+          "sample": "OCR-I01-p10",
+          "group": "independent",
+          "kind": "prose",
+          "text": "保质保量完工",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p2:OCR-I02-p2-c1",
+          "sample": "OCR-I02-p2",
+          "group": "independent",
+          "kind": "table_cell",
+          "text": "SD-A-211",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p2:OCR-I02-p2-c2",
+          "sample": "OCR-I02-p2",
+          "group": "independent",
+          "kind": "table_cell",
+          "text": "智能控制仿真教学模块",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p2:OCR-I02-p2-c3",
+          "sample": "OCR-I02-p2",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "679500.00元",
+          "matched": true
+        },
+        {
+          "id": "OCR-I02-p8:OCR-I02-p8-c1",
+          "sample": "OCR-I02-p8",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "输入电源：单相AC220V（1±10%）",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p8:OCR-I02-p8-c2",
+          "sample": "OCR-I02-p8",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "整体功率：<1.5kVA",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p8:OCR-I02-p8-c3",
+          "sample": "OCR-I02-p8",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "分辨率1024*600",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p10:OCR-I02-p10-c1",
+          "sample": "OCR-I02-p10",
+          "group": "independent",
+          "kind": "prose",
+          "text": "支持工业机器人的程序导出",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p10:OCR-I02-p10-c2",
+          "sample": "OCR-I02-p10",
+          "group": "independent",
+          "kind": "identifier",
+          "text": "OPCUA",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p10:OCR-I02-p10-c3",
+          "sample": "OCR-I02-p10",
+          "group": "independent",
+          "kind": "prose",
+          "text": "软件系统的免费维护期为三年",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p2:OCR-I03-p2-c1",
+          "sample": "OCR-I03-p2",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "三年质保期",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p2:OCR-I03-p2-c2",
+          "sample": "OCR-I03-p2",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "20个日历日内交付使用",
+          "matched": false
+        },
+        {
+          "id": "OCR-I03-p2:OCR-I03-p2-c3",
+          "sample": "OCR-I03-p2",
+          "group": "independent",
+          "kind": "prose",
+          "text": "设备到达指定的场所后经用户检验合格后方可交货",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p3:OCR-I03-p3-c1",
+          "sample": "OCR-I03-p3",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "2,018,000.00元",
+          "matched": false
+        },
+        {
+          "id": "OCR-I03-p3:OCR-I03-p3-c2",
+          "sample": "OCR-I03-p3",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "60%，即人民币：￥1,210,800.00元",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p3:OCR-I03-p3-c3",
+          "sample": "OCR-I03-p3",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "30%，即人民币：￥605,400.00元",
+          "matched": false
+        },
+        {
+          "id": "OCR-I03-p4:OCR-I03-p4-c1",
+          "sample": "OCR-I03-p4",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "10%，即人民币：￥201,800.00元",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p4:OCR-I03-p4-c2",
+          "sample": "OCR-I03-p4",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "验收申请报告后7日内",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p4:OCR-I03-p4-c3",
+          "sample": "OCR-I03-p4",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "甲方在5日内提出整改意见",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH11-p6:MFGZH-Q051-a1",
+          "sample": "MFG-ZH11-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "本规范适用于纤维内窥镜、电子内窥镜及光学内窥镜等工业内窥镜的校准",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p6:MFGZH-Q052-a2",
+          "sample": "MFG-ZH11-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "通过光导纤维传像束来传送图像",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p6:MFGZH-Q052-a3",
+          "sample": "MFG-ZH11-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "通过一组光学透镜来传送图像，工作部件通常不能弯曲",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q053-a1",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "以顶点位于工业内窥镜头端部的锥角值（度）表示",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q054-a2",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "纤维/电子内窥镜：大于1500lx",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q054-a3",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "光学内窥镜：不小于仪器使用说明书标称值的90%",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q055-a4",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作长度：仪器使用说明书的标称值×（1±1.2%）",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q055-a5",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作外径：不大于仪器使用说明书（标称值+0.2）mm",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH12-p5:MFGZH-Q056-a1",
+          "sample": "MFG-ZH12-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "本规范适用于触针式表面轮廓测量仪的校准",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q057-a1",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度应在（20±3）℃范围内",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q057-a2",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室温变化不超过1℃/h",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q057-a3",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q058-a4",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "在室内平衡温度的时间不少于2h",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q058-a5",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "被校仪器连续通电预热时间不少于30min",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q059-a6",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "作为校准，不判定合格与否，上述计量特性的指标仅供参考",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q060-a7",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "轮廓坐标测量系统误差",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q060-a8",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "校准球",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p6:MFGZH-Q061-a1",
+          "sample": "MFG-ZH13-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "测量面的表面粗糙度Ra值不大于0.8μm",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p6:MFGZH-Q062-a2",
+          "sample": "MFG-ZH13-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "圆锥螺纹塞规基面的中径误差不大于0.009mm",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH13-p6:MFGZH-Q062-a3",
+          "sample": "MFG-ZH13-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "圆锥螺纹环规基面的中径误差不大于0.015mm",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q061-a1",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "上述计量特性的指标仅供参考",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q063-a2",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度应在（20±5）℃",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q063-a3",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q063-a4",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "应在室内放置不少于1个小时",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q064-a5",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "螺纹量规代号和尺寸代号、制造厂商标、出厂年月",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q065-a6",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "不应有裂纹、毛刺、铁屑",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q065-a7",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "允许有不影响使用的划痕",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p5:MFGZH-Q066-a1",
+          "sample": "MFG-ZH14-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "分度值为0.001mm，测量范围（0-300）mm",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p5:MFGZH-Q067-a2",
+          "sample": "MFG-ZH14-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "以量块作为标准器",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p5:MFGZH-Q067-a3",
+          "sample": "MFG-ZH14-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "指示表的读数与量块实际值相比较",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q068-a1",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度应在（20±2）℃范围内",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q068-a2",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室温变化不超过1℃/h",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q068-a3",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "湿度不超过65%RH",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q069-a4",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "在室内连续平衡温度的时间不少于2h",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q070-a5",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "示值变动性",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q070-a6",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "量块",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q070-a7",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "4等",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q071-a1",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "检具重复精度能力系数",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q071-a2",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "检具准确精度能力系数",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q072-a3",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "检具一般由定位装置、夹紧装置、测量装置和辅助（传动和导向）装置组成",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q075-a4",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作面的表面粗糙度Ra值不大于0.2μm",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q075-a5",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q073-a1",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度为（20±5）℃",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q073-a2",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q073-a3",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "平衡温度时间不少于2h",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q074-a4",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "各组成部件应完好无缺，连接应紧固可靠",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q074-a5",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "定位装置、夹紧装置应准确牢固，传动装置操作应灵活无卡滞",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH16-p5:MFGZH-Q076-a1",
+          "sample": "MFG-ZH16-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "深度量规、角度量规、形状、位置量规",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q077-a1",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "产品名称、型号/规格、主要技术参数、出厂编号、制造厂名或商标及生产日期",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q078-a2",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度为（20±5）℃",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q078-a3",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q078-a4",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "平衡温度时间不少于2h",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q079-a5",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作面的表面粗糙度Ra值不大于0.2μm",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q079-a6",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q080-a7",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "周围应无影响校准结果的振动、冲击、电磁场或其它干扰源",
+          "matched": true
+        }
+      ],
+      "excerpts": [
+        {
+          "sample": "OCR-I01-p1",
+          "edit_distance": 2,
+          "reference_characters": 35,
+          "excerpt_error_rate": 0.05714285714285714
+        },
+        {
+          "sample": "OCR-I02-p10",
+          "edit_distance": 54,
+          "reference_characters": 64,
+          "excerpt_error_rate": 0.84375
+        },
+        {
+          "sample": "OCR-I03-p3",
+          "edit_distance": 0,
+          "reference_characters": 96,
+          "excerpt_error_rate": 0.0
+        }
+      ],
+      "by_kind": {
+        "frozen_legacy_anchor": {
+          "total": 55,
+          "matched": 25
+        },
+        "identifier": {
+          "total": 1,
+          "matched": 0
+        },
+        "numeric_unit": {
+          "total": 15,
+          "matched": 8
+        },
+        "prose": {
+          "total": 7,
+          "matched": 2
+        },
+        "table_cell": {
+          "total": 4,
+          "matched": 0
+        }
+      },
+      "raw_observations_sha256": "bb68cc8de3cfa11c83c68f96a85b7af9aa53db46c281487ba5c3d999b1a23024",
+      "runtime": {
+        "tesseract": "5.3.0",
+        "languages": [
+          "chi_sim",
+          "eng",
+          "osd"
+        ],
+        "packages": {
+          "pytesseract": "0.3.13",
+          "pdf2image": "1.17.0",
+          "pypdf": "6.19.0",
+          "pdfplumber": "0.11.8"
+        }
+      },
+      "parser_sha256": "43cbada02f5f325ab9b3badf9e929a292adb1e5ef01699f906df230f4fa86ec4"
+    },
+    "candidate": {
+      "totals": {
+        "independent": {
+          "checks": 27,
+          "matched": 11,
+          "pages": 9,
+          "empty_pages": 1,
+          "errors": 0,
+          "seconds": 117.2290251609993,
+          "retries": 1
+        },
+        "legacy_regression": {
+          "checks": 55,
+          "matched": 25,
+          "pages": 12,
+          "empty_pages": 1,
+          "errors": 0,
+          "seconds": 142.01707660599823,
+          "retries": 2
+        }
+      },
+      "checks": [
+        {
+          "id": "OCR-I01-p1:OCR-I01-p1-c1",
+          "sample": "OCR-I01-p1",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "2023年02月21日",
+          "matched": true
+        },
+        {
+          "id": "OCR-I01-p1:OCR-I01-p1-c2",
+          "sample": "OCR-I01-p1",
+          "group": "independent",
+          "kind": "prose",
+          "text": "原材料报验不齐全，缺少钢筋、近期水泥等报验",
+          "matched": true
+        },
+        {
+          "id": "OCR-I01-p1:OCR-I01-p1-c3",
+          "sample": "OCR-I01-p1",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "30个工作日内报监督机构",
+          "matched": true
+        },
+        {
+          "id": "OCR-I01-p6:OCR-I01-p6-c1",
+          "sample": "OCR-I01-p6",
+          "group": "independent",
+          "kind": "table_cell",
+          "text": "施工员",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p6:OCR-I01-p6-c2",
+          "sample": "OCR-I01-p6",
+          "group": "independent",
+          "kind": "table_cell",
+          "text": "班组长及分包单位负责人",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p6:OCR-I01-p6-c3",
+          "sample": "OCR-I01-p6",
+          "group": "independent",
+          "kind": "prose",
+          "text": "按季度考评",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p10:OCR-I01-p10-c1",
+          "sample": "OCR-I01-p10",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "[2020]37号",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p10:OCR-I01-p10-c2",
+          "sample": "OCR-I01-p10",
+          "group": "independent",
+          "kind": "prose",
+          "text": "质量管理领导小组",
+          "matched": false
+        },
+        {
+          "id": "OCR-I01-p10:OCR-I01-p10-c3",
+          "sample": "OCR-I01-p10",
+          "group": "independent",
+          "kind": "prose",
+          "text": "保质保量完工",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p2:OCR-I02-p2-c1",
+          "sample": "OCR-I02-p2",
+          "group": "independent",
+          "kind": "table_cell",
+          "text": "SD-A-211",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p2:OCR-I02-p2-c2",
+          "sample": "OCR-I02-p2",
+          "group": "independent",
+          "kind": "table_cell",
+          "text": "智能控制仿真教学模块",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p2:OCR-I02-p2-c3",
+          "sample": "OCR-I02-p2",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "679500.00元",
+          "matched": true
+        },
+        {
+          "id": "OCR-I02-p8:OCR-I02-p8-c1",
+          "sample": "OCR-I02-p8",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "输入电源：单相AC220V（1±10%）",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p8:OCR-I02-p8-c2",
+          "sample": "OCR-I02-p8",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "整体功率：<1.5kVA",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p8:OCR-I02-p8-c3",
+          "sample": "OCR-I02-p8",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "分辨率1024*600",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p10:OCR-I02-p10-c1",
+          "sample": "OCR-I02-p10",
+          "group": "independent",
+          "kind": "prose",
+          "text": "支持工业机器人的程序导出",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p10:OCR-I02-p10-c2",
+          "sample": "OCR-I02-p10",
+          "group": "independent",
+          "kind": "identifier",
+          "text": "OPCUA",
+          "matched": false
+        },
+        {
+          "id": "OCR-I02-p10:OCR-I02-p10-c3",
+          "sample": "OCR-I02-p10",
+          "group": "independent",
+          "kind": "prose",
+          "text": "软件系统的免费维护期为三年",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p2:OCR-I03-p2-c1",
+          "sample": "OCR-I03-p2",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "三年质保期",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p2:OCR-I03-p2-c2",
+          "sample": "OCR-I03-p2",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "20个日历日内交付使用",
+          "matched": false
+        },
+        {
+          "id": "OCR-I03-p2:OCR-I03-p2-c3",
+          "sample": "OCR-I03-p2",
+          "group": "independent",
+          "kind": "prose",
+          "text": "设备到达指定的场所后经用户检验合格后方可交货",
+          "matched": false
+        },
+        {
+          "id": "OCR-I03-p3:OCR-I03-p3-c1",
+          "sample": "OCR-I03-p3",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "2,018,000.00元",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p3:OCR-I03-p3-c2",
+          "sample": "OCR-I03-p3",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "60%，即人民币：￥1,210,800.00元",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p3:OCR-I03-p3-c3",
+          "sample": "OCR-I03-p3",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "30%，即人民币：￥605,400.00元",
+          "matched": false
+        },
+        {
+          "id": "OCR-I03-p4:OCR-I03-p4-c1",
+          "sample": "OCR-I03-p4",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "10%，即人民币：￥201,800.00元",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p4:OCR-I03-p4-c2",
+          "sample": "OCR-I03-p4",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "验收申请报告后7日内",
+          "matched": true
+        },
+        {
+          "id": "OCR-I03-p4:OCR-I03-p4-c3",
+          "sample": "OCR-I03-p4",
+          "group": "independent",
+          "kind": "numeric_unit",
+          "text": "甲方在5日内提出整改意见",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH11-p6:MFGZH-Q051-a1",
+          "sample": "MFG-ZH11-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "本规范适用于纤维内窥镜、电子内窥镜及光学内窥镜等工业内窥镜的校准",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p6:MFGZH-Q052-a2",
+          "sample": "MFG-ZH11-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "通过光导纤维传像束来传送图像",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p6:MFGZH-Q052-a3",
+          "sample": "MFG-ZH11-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "通过一组光学透镜来传送图像，工作部件通常不能弯曲",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q053-a1",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "以顶点位于工业内窥镜头端部的锥角值（度）表示",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q054-a2",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "纤维/电子内窥镜：大于1500lx",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q054-a3",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "光学内窥镜：不小于仪器使用说明书标称值的90%",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q055-a4",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作长度：仪器使用说明书的标称值×（1±1.2%）",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH11-p7:MFGZH-Q055-a5",
+          "sample": "MFG-ZH11-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作外径：不大于仪器使用说明书（标称值+0.2）mm",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH12-p5:MFGZH-Q056-a1",
+          "sample": "MFG-ZH12-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "本规范适用于触针式表面轮廓测量仪的校准",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q057-a1",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度应在（20±3）℃范围内",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q057-a2",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室温变化不超过1℃/h",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q057-a3",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q058-a4",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "在室内平衡温度的时间不少于2h",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q058-a5",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "被校仪器连续通电预热时间不少于30min",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q059-a6",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "作为校准，不判定合格与否，上述计量特性的指标仅供参考",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q060-a7",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "轮廓坐标测量系统误差",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH12-p6:MFGZH-Q060-a8",
+          "sample": "MFG-ZH12-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "校准球",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p6:MFGZH-Q061-a1",
+          "sample": "MFG-ZH13-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "测量面的表面粗糙度Ra值不大于0.8μm",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p6:MFGZH-Q062-a2",
+          "sample": "MFG-ZH13-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "圆锥螺纹塞规基面的中径误差不大于0.009mm",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH13-p6:MFGZH-Q062-a3",
+          "sample": "MFG-ZH13-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "圆锥螺纹环规基面的中径误差不大于0.015mm",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q061-a1",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "上述计量特性的指标仅供参考",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q063-a2",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度应在（20±5）℃",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q063-a3",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q063-a4",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "应在室内放置不少于1个小时",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q064-a5",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "螺纹量规代号和尺寸代号、制造厂商标、出厂年月",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q065-a6",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "不应有裂纹、毛刺、铁屑",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH13-p7:MFGZH-Q065-a7",
+          "sample": "MFG-ZH13-p7",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "允许有不影响使用的划痕",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p5:MFGZH-Q066-a1",
+          "sample": "MFG-ZH14-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "分度值为0.001mm，测量范围（0-300）mm",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p5:MFGZH-Q067-a2",
+          "sample": "MFG-ZH14-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "以量块作为标准器",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p5:MFGZH-Q067-a3",
+          "sample": "MFG-ZH14-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "指示表的读数与量块实际值相比较",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q068-a1",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度应在（20±2）℃范围内",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q068-a2",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室温变化不超过1℃/h",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q068-a3",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "湿度不超过65%RH",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q069-a4",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "在室内连续平衡温度的时间不少于2h",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q070-a5",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "示值变动性",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q070-a6",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "量块",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH14-p6:MFGZH-Q070-a7",
+          "sample": "MFG-ZH14-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "4等",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q071-a1",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "检具重复精度能力系数",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q071-a2",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "检具准确精度能力系数",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q072-a3",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "检具一般由定位装置、夹紧装置、测量装置和辅助（传动和导向）装置组成",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q075-a4",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作面的表面粗糙度Ra值不大于0.2μm",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p5:MFGZH-Q075-a5",
+          "sample": "MFG-ZH15-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q073-a1",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度为（20±5）℃",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q073-a2",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q073-a3",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "平衡温度时间不少于2h",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q074-a4",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "各组成部件应完好无缺，连接应紧固可靠",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH15-p6:MFGZH-Q074-a5",
+          "sample": "MFG-ZH15-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "定位装置、夹紧装置应准确牢固，传动装置操作应灵活无卡滞",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH16-p5:MFGZH-Q076-a1",
+          "sample": "MFG-ZH16-p5",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "深度量规、角度量规、形状、位置量规",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q077-a1",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "产品名称、型号/规格、主要技术参数、出厂编号、制造厂名或商标及生产日期",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q078-a2",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内温度为（20±5）℃",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q078-a3",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "室内湿度不超过75%RH",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q078-a4",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "平衡温度时间不少于2h",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q079-a5",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "工作面的表面粗糙度Ra值不大于0.2μm",
+          "matched": false
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q079-a6",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "作为校准，不判断合格与否，上述计量特性的指标仅供参考",
+          "matched": true
+        },
+        {
+          "id": "MFG-ZH16-p6:MFGZH-Q080-a7",
+          "sample": "MFG-ZH16-p6",
+          "group": "legacy_regression",
+          "kind": "frozen_legacy_anchor",
+          "text": "周围应无影响校准结果的振动、冲击、电磁场或其它干扰源",
+          "matched": true
+        }
+      ],
+      "excerpts": [
+        {
+          "sample": "OCR-I01-p1",
+          "edit_distance": 0,
+          "reference_characters": 35,
+          "excerpt_error_rate": 0.0
+        },
+        {
+          "sample": "OCR-I02-p10",
+          "edit_distance": 54,
+          "reference_characters": 64,
+          "excerpt_error_rate": 0.84375
+        },
+        {
+          "sample": "OCR-I03-p3",
+          "edit_distance": 1,
+          "reference_characters": 96,
+          "excerpt_error_rate": 0.010416666666666666
+        }
+      ],
+      "by_kind": {
+        "frozen_legacy_anchor": {
+          "total": 55,
+          "matched": 25
+        },
+        "identifier": {
+          "total": 1,
+          "matched": 0
+        },
+        "numeric_unit": {
+          "total": 15,
+          "matched": 9
+        },
+        "prose": {
+          "total": 7,
+          "matched": 2
+        },
+        "table_cell": {
+          "total": 4,
+          "matched": 0
+        }
+      },
+      "raw_observations_sha256": "f0db96f3956cb5c891ecb8ec8dbe20025b0c2db0da4b9f46df84a0b86f2a5373",
+      "runtime": {
+        "tesseract": "5.3.0",
+        "languages": [
+          "chi_sim",
+          "eng",
+          "osd"
+        ],
+        "packages": {
+          "pytesseract": "0.3.13",
+          "pdf2image": "1.17.0",
+          "pypdf": "6.19.0",
+          "pdfplumber": "0.11.8"
+        }
+      },
+      "parser_sha256": "43cbada02f5f325ab9b3badf9e929a292adb1e5ef01699f906df230f4fa86ec4"
+    }
+  },
+  "improved": [
+    "OCR-I01-p1:OCR-I01-p1-c2",
+    "OCR-I03-p3:OCR-I03-p3-c1",
+    "MFG-ZH12-p6:MFGZH-Q060-a7",
+    "MFG-ZH13-p7:MFGZH-Q063-a3",
+    "MFG-ZH15-p6:MFGZH-Q073-a3"
+  ],
+  "regressed": [
+    "OCR-I03-p2:OCR-I03-p2-c3",
+    "MFG-ZH14-p5:MFGZH-Q066-a1",
+    "MFG-ZH14-p5:MFGZH-Q067-a3",
+    "MFG-ZH15-p5:MFGZH-Q071-a2"
+  ],
+  "default_adoption": false,
+  "limitation": "Only 21 sampled pages; anchors and excerpt distance do not certify whole pages, table relationships, or answer accuracy."
+}

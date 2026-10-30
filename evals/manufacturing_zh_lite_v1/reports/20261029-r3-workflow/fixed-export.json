@@ -1,0 +1,76 @@
+{
+  "annotation_version": "feedback-review-v1",
+  "answerable": true,
+  "category": "other",
+  "citation_requirement": "all_supporting_sources",
+  "expected_behavior": "answer",
+  "expected_evidence": [
+    {
+      "chunk_id": "1f2a3dd8dc4ced9bb1b4cf728ea2f9413a445a5121c37fb448aeeb88640b29ee",
+      "citation_id": "资料1",
+      "context_sha256": "0c31a253f0eda74604ab21bdc87c68ee10668c5c4fb1d440706ecff92afbb4af",
+      "document": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+      "document_id": "2a194778-9cd4-480a-82c9-2a8c3abb0901",
+      "document_version": 1,
+      "knowledge_base_id": "0b93a5ad-5df6-4d26-9231-6803ecb32441",
+      "parent_id": "74c737c6947a5c4ab65e405bafdbb4d590522ea13318da432c6cd5b358844120",
+      "quote": "10. 出厂检验报告或型式检验报告（必填，生产单位选择是否公开）",
+      "quote_sha256": "cb5b59d5469d80718fd5cc2cd8a5886f91b8adf963cc4744e894513c0cea4379",
+      "text": "10. 出厂检验报告或型式检验报告（必填，生产单位选择是否公开）",
+      "vector_generation": "1375f01ec77c466a8bf78e3beabb0654"
+    }
+  ],
+  "fact_alternatives": {
+    "必填": [
+      "必须填报",
+      "必须填写"
+    ],
+    "生产单位选择": [
+      "生产单位自主选择",
+      "生产单位自行选择",
+      "生产单位决定"
+    ]
+  },
+  "fact_assertions": {
+    "必填": {
+      "contradictions": [
+        "无需填报",
+        "不必填报",
+        "可以不填"
+      ],
+      "ignore_remediation_conditionals": false,
+      "polarity": "positive",
+      "use_literal": true
+    },
+    "生产单位选择": {
+      "contradictions": [],
+      "ignore_remediation_conditionals": false,
+      "polarity": "positive",
+      "use_literal": true
+    }
+  },
+  "forbidden_claims": [],
+  "group_key": "90ddc35bdcae004596643986800fd2893153f4de1d41bc1ec6104889a1c3ae37",
+  "id": "FB-1bc913b3-72e8-4762-916e-b4dc32b58a4b",
+  "original_question": "按《推进重点工业产品质量安全追溯的实施意见及附件 2024》所收录原文，追溯数据中的出厂检验报告或型式检验报告，是必须填报并一律向公众公开吗？",
+  "provenance": {
+    "case_revision": 2,
+    "corpus_sha256": "299204c94b79e46f5bdc9ac0a8cba39334073cce015a043006d1b79745653ab6",
+    "observed_retrieval_question": "按《推进重点工业产品质量安全追溯的实施意见及附件 2024》所收录原文，追溯数据中的出厂检验报告或型式检验报告，是必须填报并一律向公众公开吗？",
+    "request_id": "60a1a0e601784ae6a74336eb346ea479",
+    "reviewer_user_id": "86ac24eb-c183-45f3-ab8c-87034841b602",
+    "run_id": "60a1a0e6-0178-4ae6-a743-36eb346ea479",
+    "source_binding": "a659fff57141456261774bab1bf50fc9b69aee835e6e37b33d8cd2fee8d5928f"
+  },
+  "question": "按《推进重点工业产品质量安全追溯的实施意见及附件 2024》所收录原文，追溯数据中的出厂检验报告或型式检验报告，是必须填报并一律向公众公开吗？",
+  "reference_answer": "报告必填，但是否公开由生产单位选择；必填不等于必须公开。",
+  "required_facts": [
+    "必填",
+    "生产单位选择",
+    "是否公开"
+  ],
+  "source_groups": [
+    "0b93a5ad-5df6-4d26-9231-6803ecb32441"
+  ],
+  "split": "regression"
+}

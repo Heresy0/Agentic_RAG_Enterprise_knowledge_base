@@ -1,0 +1,670 @@
+[
+  {
+    "id": "MFGZH-Q003",
+    "question": "按《工业产品生产单位落实质量安全主体责任监督管理规定 第75号令 2023》所收录原文，生产单位的周排查由谁组织，最低频次及形成的记录是什么？",
+    "reference_answer": "质量安全总监每周至少组织一次风险隐患排查，形成《每周工业产品质量安全排查治理报告》。",
+    "expected_behavior": "answer",
+    "baseline": {
+      "id": "MFGZH-Q003",
+      "expected_behavior": "answer",
+      "response_type": "answer",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "生产单位的周排查由质量安全总监组织。[资料1]\n周排查的最低频次为每周至少一次。[资料1]\n周排查形成的记录是《每周工业产品质量安全排查治理报告》。[资料1]",
+      "refusal_reason": null,
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [
+        "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf"
+      ],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-Q003",
+      "expected_behavior": "answer",
+      "response_type": "answer",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "生产单位的周排查由质量安全总监组织。[资料1]\n周排查的最低频次为每周至少一次。[资料1]\n周排查形成的记录是《每周工业产品质量安全排查治理报告》。[资料1]",
+      "refusal_reason": null,
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [
+        "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf"
+      ],
+      "validation_errors": []
+    },
+    "answer_identical": true,
+    "ragas": {
+      "baseline": {
+        "id": "MFGZH-Q003",
+        "expected_answerable": true,
+        "answerable": true,
+        "original_status": "passed",
+        "judge_screen_pass": true,
+        "disagreement": false,
+        "factual_correctness": {
+          "status": "ok",
+          "value": 0.86,
+          "reason": null,
+          "duration_ms": 7653.18
+        },
+        "faithfulness": {
+          "status": "ok",
+          "value": 1.0,
+          "reason": null,
+          "duration_ms": 3209.43
+        }
+      },
+      "candidate": {
+        "id": "MFGZH-Q003",
+        "expected_answerable": true,
+        "answerable": true,
+        "original_status": "passed",
+        "judge_screen_pass": true,
+        "disagreement": false,
+        "factual_correctness": {
+          "status": "ok",
+          "value": 0.86,
+          "reason": null,
+          "duration_ms": 7208.83
+        },
+        "faithfulness": {
+          "status": "ok",
+          "value": 1.0,
+          "reason": null,
+          "duration_ms": 3119.15
+        }
+      }
+    }
+  },
+  {
+    "id": "MFGZH-Q006",
+    "question": "按《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》所收录原文，企业已有质量管理部门，落实质量安全总监和质量安全员制度是否必须重建组织？",
+    "reference_answer": "可以保留原有部门和人员配置，但须明确质量安全总监、质量安全员的人员岗位，确保履行相应职责。",
+    "expected_behavior": "answer",
+    "baseline": {
+      "id": "MFGZH-Q006",
+      "expected_behavior": "answer",
+      "response_type": "answer",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "企业已有质量管理部门的，不需要重建组织。根据《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》规定，对于已经建立质量管理体系或者质量管理部门的生产、销售单位，可以保留单位原有的部门和人员配置。[资料1]\n在保留原有部门配置的基础上，只需明确质量安全总监和质量安全员的人员岗位，确保其能够按照相关规定要求履行相应职责即可。[资料1]",
+      "refusal_reason": null,
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [
+        "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md"
+      ],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-Q006",
+      "expected_behavior": "answer",
+      "response_type": "answer",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "企业已有质量管理部门的，不需要重建组织。根据《辽宁省工业产品生产销售单位落实质量安全主体责任工作指南 2023》规定，对于已经建立质量管理体系或者质量管理部门的生产、销售单位，可以保留单位原有的部门和人员配置。[资料1]\n在保留原有部门配置的基础上，只需明确质量安全总监和质量安全员的人员岗位，确保其能够按照相关规定要求履行相应职责即可。[资料1]",
+      "refusal_reason": null,
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [
+        "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md"
+      ],
+      "validation_errors": []
+    },
+    "answer_identical": true,
+    "ragas": {
+      "baseline": {
+        "id": "MFGZH-Q006",
+        "expected_answerable": true,
+        "answerable": true,
+        "original_status": "passed",
+        "judge_screen_pass": false,
+        "disagreement": true,
+        "factual_correctness": {
+          "status": "ok",
+          "value": 0.5,
+          "reason": null,
+          "duration_ms": 8393.64
+        },
+        "faithfulness": {
+          "status": "ok",
+          "value": 1.0,
+          "reason": null,
+          "duration_ms": 9534.72
+        }
+      },
+      "candidate": {
+        "id": "MFGZH-Q006",
+        "expected_answerable": true,
+        "answerable": true,
+        "original_status": "passed",
+        "judge_screen_pass": false,
+        "disagreement": true,
+        "factual_correctness": {
+          "status": "ok",
+          "value": 0.5,
+          "reason": null,
+          "duration_ms": 8056.97
+        },
+        "faithfulness": {
+          "status": "ok",
+          "value": 0.5,
+          "reason": null,
+          "duration_ms": 13834.42
+        }
+      }
+    }
+  },
+  {
+    "id": "MFGZH-Q083",
+    "question": "按《同轴度测试仪校准规范 JJF吉116-2022》所收录原文，同轴度测试仪及测量标准器进入测量环境后，至少稳定多久才可校准？",
+    "reference_answer": "应稳定不少于30min，待温度平衡后进行校准。",
+    "expected_behavior": "answer",
+    "baseline": {
+      "id": "MFGZH-Q083",
+      "expected_behavior": "answer",
+      "response_type": "answer",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "同轴度测试仪及测量标准器进入测量环境后，至少稳定不少于30min才可校准。[资料1]\n待温度平衡后进行校准。[资料1]",
+      "refusal_reason": null,
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [
+        "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf"
+      ],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-Q083",
+      "expected_behavior": "answer",
+      "response_type": "answer",
+      "behavior_correct": true,
+      "r13_proxy_pass": false,
+      "missing_facts": [
+        "温度平衡"
+      ],
+      "answer": "同轴度测试仪及测量标准器进入测量环境后，至少稳定不少于30min才可校准。[资料1]",
+      "refusal_reason": null,
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [
+        "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf"
+      ],
+      "validation_errors": []
+    },
+    "answer_identical": false,
+    "ragas": {
+      "baseline": {
+        "id": "MFGZH-Q083",
+        "expected_answerable": true,
+        "answerable": true,
+        "original_status": "passed",
+        "judge_screen_pass": false,
+        "disagreement": true,
+        "factual_correctness": {
+          "status": "ok",
+          "value": 0.67,
+          "reason": null,
+          "duration_ms": 4904.78
+        },
+        "faithfulness": {
+          "status": "ok",
+          "value": 1.0,
+          "reason": null,
+          "duration_ms": 2814.95
+        }
+      },
+      "candidate": {
+        "id": "MFGZH-Q083",
+        "expected_answerable": true,
+        "answerable": true,
+        "original_status": "failed",
+        "judge_screen_pass": false,
+        "disagreement": false,
+        "factual_correctness": {
+          "status": "ok",
+          "value": 0.75,
+          "reason": null,
+          "duration_ms": 7634.11
+        },
+        "faithfulness": {
+          "status": "ok",
+          "value": 1.0,
+          "reason": null,
+          "duration_ms": 2032.74
+        }
+      }
+    }
+  },
+  {
+    "id": "MFGZH-Q084",
+    "question": "按《同轴度测试仪校准规范 JJF吉116-2022》所收录原文，同轴度测试仪引伸计相对示值误差校准，校准点是否包含零点？",
+    "reference_answer": "均匀选取至少5个校准点，包含满量程点，不包含零点。",
+    "expected_behavior": "answer",
+    "baseline": {
+      "id": "MFGZH-Q084",
+      "expected_behavior": "answer",
+      "response_type": "answer",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "同轴度测试仪引伸计相对示值误差的校准点不包含零点。[资料1]\n根据《同轴度测试仪校准规范 JJF吉116-2022》第6.2节规定，在引伸计测量范围内均匀选取至少5个校准点时，明确说明“校准点包括满量程点但不包括零点”。[资料1]",
+      "refusal_reason": null,
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [
+        "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf"
+      ],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-Q084",
+      "expected_behavior": "answer",
+      "response_type": "answer",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "同轴度测试仪引伸计相对示值误差校准时，校准点不包括零点。[资料1]",
+      "refusal_reason": null,
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [
+        "MFG-ZH17_同轴度测试仪校准规范_JJF吉116-2022.pdf"
+      ],
+      "validation_errors": []
+    },
+    "answer_identical": false,
+    "ragas": {
+      "baseline": {
+        "id": "MFGZH-Q084",
+        "expected_answerable": true,
+        "answerable": true,
+        "original_status": "passed",
+        "judge_screen_pass": true,
+        "disagreement": false,
+        "factual_correctness": {
+          "status": "ok",
+          "value": 0.89,
+          "reason": null,
+          "duration_ms": 9500.52
+        },
+        "faithfulness": {
+          "status": "ok",
+          "value": 1.0,
+          "reason": null,
+          "duration_ms": 4246.35
+        }
+      },
+      "candidate": {
+        "id": "MFGZH-Q084",
+        "expected_answerable": true,
+        "answerable": true,
+        "original_status": "failed",
+        "judge_screen_pass": false,
+        "disagreement": false,
+        "factual_correctness": {
+          "status": "ok",
+          "value": 0.0,
+          "reason": null,
+          "duration_ms": 6938.56
+        },
+        "faithfulness": {
+          "status": "ok",
+          "value": 1.0,
+          "reason": null,
+          "duration_ms": 2121.57
+        }
+      }
+    }
+  },
+  {
+    "id": "MFGZH-N07",
+    "question": "校准环境温度应该设多少？",
+    "reference_answer": "请先明确设备名称、型号和采用的规范版本，不同仪器要求不同。",
+    "expected_behavior": "clarify",
+    "baseline": {
+      "id": "MFGZH-N07",
+      "expected_behavior": "clarify",
+      "response_type": "clarify",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "请问您需要进行校准的具体设备名称或类型是什么？",
+      "refusal_reason": null,
+      "missing_fields": [
+        "设备类型"
+      ],
+      "clarification_questions": [
+        "请问您需要进行校准的具体设备名称或类型是什么？"
+      ],
+      "sources": [],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-N07",
+      "expected_behavior": "clarify",
+      "response_type": "clarify",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "请问您需要校准哪种具体的设备或仪器？",
+      "refusal_reason": null,
+      "missing_fields": [
+        "被校准设备名称或类型"
+      ],
+      "clarification_questions": [
+        "请问您需要校准哪种具体的设备或仪器？"
+      ],
+      "sources": [],
+      "validation_errors": []
+    },
+    "answer_identical": false,
+    "ragas": {
+      "baseline": null,
+      "candidate": null
+    }
+  },
+  {
+    "id": "MFGZH-N08",
+    "question": "这台仪器是不是一年校一次？",
+    "reference_answer": "请补充仪器类型、适用规范及使用情况，再确定复校间隔。",
+    "expected_behavior": "clarify",
+    "baseline": {
+      "id": "MFGZH-N08",
+      "expected_behavior": "clarify",
+      "response_type": "clarify",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "请问您询问的是哪一台仪器（请提供仪器名称或型号）？",
+      "refusal_reason": null,
+      "missing_fields": [
+        "仪器名称或型号"
+      ],
+      "clarification_questions": [
+        "请问您询问的是哪一台仪器（请提供仪器名称或型号）？"
+      ],
+      "sources": [],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-N08",
+      "expected_behavior": "clarify",
+      "response_type": "clarify",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "请问您询问的是哪一台仪器（请提供仪器名称或型号）？",
+      "refusal_reason": null,
+      "missing_fields": [
+        "仪器型号"
+      ],
+      "clarification_questions": [
+        "请问您询问的是哪一台仪器（请提供仪器名称或型号）？"
+      ],
+      "sources": [],
+      "validation_errors": []
+    },
+    "answer_identical": true,
+    "ragas": {
+      "baseline": null,
+      "candidate": null
+    }
+  },
+  {
+    "id": "MFGZH-N09",
+    "question": "这个反复出现的问题应该怎么整改？",
+    "reference_answer": "请说明问题现象、涉及产品或工序、风险及已采取措施，再制定有针对性的纠正或预防措施。",
+    "expected_behavior": "clarify",
+    "baseline": {
+      "id": "MFGZH-N09",
+      "expected_behavior": "clarify",
+      "response_type": "answer",
+      "behavior_correct": false,
+      "r13_proxy_pass": false,
+      "missing_facts": [],
+      "answer": "对于频繁发生的质量安全风险隐患，应制定相应的纠正或预防措施。[资料1]\n针对上述制定的纠正或预防措施，需要进行跟踪验证以确认整改结果。[资料1]\n在周排查中识别出的风险隐患应及时明确责任人并进行整改。[资料1]",
+      "refusal_reason": null,
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [
+        "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md"
+      ],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-N09",
+      "expected_behavior": "clarify",
+      "response_type": "clarify",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "该问题属于哪个生产或管理环节（如进货查验、生产过程控制等）？\n该问题在《工业产品质量安全风险管控清单》中的风险等级是什么？\n目前是否已经采取了任何初步的防范措施或上报？",
+      "refusal_reason": null,
+      "missing_fields": [
+        "问题类型与环节",
+        "风险等级",
+        "是否已采取初步措施"
+      ],
+      "clarification_questions": [
+        "该问题属于哪个生产或管理环节（如进货查验、生产过程控制等）？",
+        "该问题在《工业产品质量安全风险管控清单》中的风险等级是什么？",
+        "目前是否已经采取了任何初步的防范措施或上报？"
+      ],
+      "sources": [],
+      "validation_errors": []
+    },
+    "answer_identical": false,
+    "ragas": {
+      "baseline": null,
+      "candidate": null
+    }
+  },
+  {
+    "id": "MFGZH-N10",
+    "question": "这份质量问题报告应该交给谁？",
+    "reference_answer": "请明确报告属于日管控、周排查、月调度还是事故报告，并说明岗位职责。",
+    "expected_behavior": "clarify",
+    "baseline": {
+      "id": "MFGZH-N10",
+      "expected_behavior": "clarify",
+      "response_type": "refuse",
+      "behavior_correct": false,
+      "r13_proxy_pass": false,
+      "missing_facts": [],
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料不足。",
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-N10",
+      "expected_behavior": "clarify",
+      "response_type": "clarify",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "这是日常检查发现的质量问题，还是突发的重大风险隐患或质量安全事故？",
+      "refusal_reason": null,
+      "missing_fields": [
+        "报告类型"
+      ],
+      "clarification_questions": [
+        "这是日常检查发现的质量问题，还是突发的重大风险隐患或质量安全事故？"
+      ],
+      "sources": [],
+      "validation_errors": []
+    },
+    "answer_identical": false,
+    "ragas": {
+      "baseline": null,
+      "candidate": null
+    }
+  },
+  {
+    "id": "MFGZH-N01",
+    "question": "查询ERP工单MO-20261029-017的当前齐套状态和缺料数量。",
+    "reference_answer": "现有资料没有该工单的ERP实时数据，不能确认齐套状态或编造缺料数量。",
+    "expected_behavior": "refuse",
+    "baseline": {
+      "id": "MFGZH-N01",
+      "expected_behavior": "refuse",
+      "response_type": "refuse",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料主要涉及重点工业产品质量安全追溯的实施意见及制造业质量管理数字化实施指南，未包含ERP工单管理、物料齐套状态查询或缺料统计的具体业务数据或操作规范。",
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-N01",
+      "expected_behavior": "refuse",
+      "response_type": "refuse",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "当前无法在ERP中查询或操作工单。",
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [],
+      "validation_errors": []
+    },
+    "answer_identical": true,
+    "ragas": {
+      "baseline": null,
+      "candidate": null
+    }
+  },
+  {
+    "id": "MFGZH-N03",
+    "question": "我们编号CAL-008的热工校验仪目前校准证书是否有效？",
+    "reference_answer": "公开规范不能证明具体设备证书有效，需查证书编号、校准日期、有效性及企业台账。",
+    "expected_behavior": "refuse",
+    "baseline": {
+      "id": "MFGZH-N03",
+      "expected_behavior": "refuse",
+      "response_type": "refuse",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料不足。",
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-N03",
+      "expected_behavior": "refuse",
+      "response_type": "refuse",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料不足。",
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [],
+      "validation_errors": []
+    },
+    "answer_identical": true,
+    "ragas": {
+      "baseline": null,
+      "candidate": null
+    }
+  },
+  {
+    "id": "MFGZH-N05",
+    "question": "供应商华星精密昨天送来的零件有多少件不合格？",
+    "reference_answer": "没有供应商批次检验数据，无法给出不合格数量。",
+    "expected_behavior": "refuse",
+    "baseline": {
+      "id": "MFGZH-N05",
+      "expected_behavior": "refuse",
+      "response_type": "refuse",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料不足。",
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-N05",
+      "expected_behavior": "refuse",
+      "response_type": "refuse",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "当前无法在ERP中执行审批。",
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [],
+      "validation_errors": []
+    },
+    "answer_identical": true,
+    "ragas": {
+      "baseline": null,
+      "candidate": null
+    }
+  },
+  {
+    "id": "MFGZH-N06",
+    "question": "替我在生产系统中停止MO-017并告诉我已经停线。",
+    "reference_answer": "当前没有生产系统写入能力和执行结果，不能声称已经停线。",
+    "expected_behavior": "refuse",
+    "baseline": {
+      "id": "MFGZH-N06",
+      "expected_behavior": "refuse",
+      "response_type": "refuse",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "知识库资料不足。",
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [],
+      "validation_errors": []
+    },
+    "candidate": {
+      "id": "MFGZH-N06",
+      "expected_behavior": "refuse",
+      "response_type": "refuse",
+      "behavior_correct": true,
+      "r13_proxy_pass": true,
+      "missing_facts": [],
+      "answer": "根据当前知识库资料，暂时无法回答这个问题。",
+      "refusal_reason": "当前无法在生产系统中执行停止MO-017的操作。",
+      "missing_fields": [],
+      "clarification_questions": [],
+      "sources": [],
+      "validation_errors": []
+    },
+    "answer_identical": true,
+    "ragas": {
+      "baseline": null,
+      "candidate": null
+    }
+  }
+]

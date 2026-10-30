@@ -13,6 +13,7 @@ from backend.app.knowledge.answer_models import (
     AnswerClaim,
     AnswerDraft,
     GenerationAnswerDraft,
+    EvidenceFirstAnswerDraft,
 )
 from backend.app.knowledge.answer_service import (
     REFUSAL_TEXT,
@@ -130,11 +131,13 @@ class FakeStructuredLLM:
 
     def invoke(self, messages: list):
         self.calls.append(messages)
-        # Existing fixtures predate the generation-only coverage contract.
-        # Enrich mock output here, never in production; explicit new coverage stays untouched.
-        if isinstance(self.result, GenerationAnswerDraft):
+        # Legacy typed fixtures predate the live response-type/coverage contract.
+        # Enrich only test output; raw response types are never inferred.
+        if isinstance(self.result, EvidenceFirstAnswerDraft):
             return self.result
-        payload = self.result.model_dump() if isinstance(self.result, AnswerDraft) else dict(self.result)
+        payload = self.result.model_dump() if isinstance(self.result, (AnswerDraft, GenerationAnswerDraft)) else dict(self.result)
+        if isinstance(self.result, AnswerDraft):
+            payload['response_type'] = 'answer' if self.result.answerable else 'refuse'
         if 'coverage' not in payload:
             import json
             requirements = json.loads(messages[1].content.split('必答问题清单（用户数据）：\n', 1)[1].split('\n\n', 1)[0])
@@ -143,6 +146,19 @@ class FakeStructuredLLM:
                 claim_indices=list(range(1, len(payload.get('claims', [])) + 1)) if payload['answerable'] else [],
                 missing_information=None if payload['answerable'] else '模拟资料不足',
             ) for row in requirements]
+        # Legacy mock drafts receive real snippets from the current mock context.
+        # Production generation never infers or fabricates omitted evidence.
+        import re
+        parts = re.split(r'(?m)^\[(资料\d+)\]\n', messages[1].content.split('知识库资料：\n', 1)[1])
+        sources = {parts[i]: parts[i + 1].split('内容：', 1)[1] for i in range(1, len(parts), 2)}
+        for row in payload['coverage']:
+            if 'source_quote' in row:
+                continue
+            cited = [c.strip().strip('[]【】') for index in row['claim_indices']
+                     if 1 <= index <= len(payload.get('claims', []))
+                     for c in payload['claims'][index - 1]['citations']]
+            body = next((sources[c] for c in cited if c in sources), next(iter(sources.values()), ''))
+            row['source_quote'] = body[:600] if row['status'] == 'answered' else None
         return payload
 
 
@@ -264,10 +280,10 @@ def test_initializes_structured_model_with_expected_settings(
         "api_key": "test-key",
         "temperature": 0,
         "reasoning_effort": "none",
-        "timeout": 60,
+        "timeout": 120,
         "max_retries": 0,
     }]
-    assert chat_model.schemas == [GenerationAnswerDraft]
+    assert chat_model.schemas == [EvidenceFirstAnswerDraft]
 
 
 def test_blank_question_is_rejected_before_retrieval(
@@ -538,6 +554,7 @@ def test_dictionary_model_result_is_validated_and_rendered(
         monkeypatch,
         model_result={
             "answerable": True,
+            "response_type": "answer",
             "claims": [
                 {
                     "text": "抵扣比例为10%",
@@ -681,7 +698,7 @@ def test_invalid_calculation_inputs_still_refuse_without_second_model_call(monke
 def test_derived_conditions_are_in_first_prompt_and_cannot_be_hidden_by_fallback(monkeypatch):
     from backend.app.evaluation.trace import capture_trace
     evidence = '等级|条件|处理\nL7高级|已批准且持设备证书|管理员登记并开通只读权限'
-    result = GenerationAnswerDraft(answerable=True,
+    result = GenerationAnswerDraft(answerable=True, response_type='answer',
         claims=[AnswerClaim(text='管理员登记并开通只读权限', citations=['资料1'])],
         coverage=[dict(requirement_id='Q1', aspect='L7办理条件', status='answered', claim_indices=[1], missing_information=None)])
     service, _, llm, *_ = build_service(monkeypatch, model_result=result, documents=[make_document(evidence)])
@@ -696,7 +713,7 @@ def test_first_pass_complete_answer_keeps_one_call_and_no_supplement(monkeypatch
     from backend.app.evaluation.trace import capture_trace
     service, retrieval, llm, *_ = build_service(monkeypatch,
         documents=[make_document('采购由部门负责人审批，紧急采购仍须事后补录。')],
-        model_result=GenerationAnswerDraft(answerable=True, claims=[
+        model_result=GenerationAnswerDraft(answerable=True, response_type='answer', claims=[
             AnswerClaim(text='采购由部门负责人审批', citations=['资料1']),
             AnswerClaim(text='紧急采购仍须事后补录', citations=['资料1']),
         ], coverage=[
@@ -722,7 +739,7 @@ def test_first_pass_complete_answer_keeps_one_call_and_no_supplement(monkeypatch
 ])
 def test_missing_or_invalid_coverage_refuses_without_repair_call(monkeypatch, coverage):
     service, _, llm, *_ = build_service(monkeypatch, model_result=GenerationAnswerDraft(
-        answerable=True, claims=[AnswerClaim(text='抵扣比例10%', citations=['资料1'])], coverage=coverage))
+        answerable=True, response_type='answer', claims=[AnswerClaim(text='抵扣比例10%', citations=['资料1'])], coverage=coverage))
     result = answer(service, '抵扣比例多少？由谁审批？')
     assert not result.answerable and not result.citations
     assert len(llm.calls) == 1 and '必答' in result.refusal_reason
@@ -733,7 +750,7 @@ def test_missing_requirement_cannot_be_hidden_by_budget_fallback(monkeypatch):
     table = ('阶段|目标配置|注意事项\n向量候选|最多20条|范围过滤\n'
              '关键词候选|BM25最多20条|参数绑定\n融合|RRF取20条|共享预算\n重排|最多保留5条|失败降级')
     service, _, llm, *_ = build_service(monkeypatch, documents=[make_document(table)],
-        model_result=GenerationAnswerDraft(answerable=True, claims=[AnswerClaim(text='向量候选最多20条', citations=['资料1'])],
+        model_result=GenerationAnswerDraft(answerable=True, response_type='answer', claims=[AnswerClaim(text='向量候选最多20条', citations=['资料1'])],
             coverage=[dict(requirement_id='Q1', aspect='候选预算', status='answered', claim_indices=[1], missing_information=None)]))
     with capture_trace() as trace:
         result = answer(service, '检索候选和重排预算是多少？每个知识库各一份吗？')

@@ -1,0 +1,100 @@
+{
+  "fixed_id": "MFGZH-Q012",
+  "feedback_id": "MFGZH-Q043",
+  "fixed": {
+    "id": "MFGZH-Q012",
+    "question": "按《推进重点工业产品质量安全追溯的实施意见及附件 2024》所收录原文，追溯数据中的出厂检验报告或型式检验报告，是必须填报并一律向公众公开吗？",
+    "reference_answer": "报告必填，但是否公开由生产单位选择；必填不等于必须公开。",
+    "answerable": true,
+    "required_facts": [
+      "必填",
+      "生产单位选择",
+      "是否公开"
+    ],
+    "expected_evidence": [
+      {
+        "document": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+        "text": "出厂检验报告或型式检验报告（必填，生产单位选择是否公开）"
+      }
+    ],
+    "source_groups": [
+      "公共参考"
+    ],
+    "expected_scope": "公共参考",
+    "source_file_paths": [
+      "documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md"
+    ],
+    "required_source_documents": [
+      "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md"
+    ],
+    "citation_requirement": "all_supporting_sources",
+    "category": "生产质量与追溯",
+    "difficulty": "medium",
+    "annotation_version": "manufacturing-zh-v3",
+    "profile": "中文公共参考测试用户",
+    "manual_review_required": true,
+    "semantic_checks": [
+      "报告必填，但是否公开由生产单位选择；必填不等于必须公开。"
+    ],
+    "optional_facts": [],
+    "forbidden_claims": []
+  },
+  "feedback": {
+    "id": "MFGZH-Q043",
+    "question": "按《作动器校准规范 JJF吉102-2022》所收录原文，作动器位移范围0～150mm和150～3000mm时，规范分别采用什么标准器？",
+    "reference_answer": "0～150mm采用数显千分表；150～3000mm采用跟踪仪，正文校准方法为激光跟踪仪。",
+    "answerable": true,
+    "required_facts": [
+      "0～150mm",
+      "数显千分表",
+      "150～3000mm",
+      "跟踪仪"
+    ],
+    "expected_evidence": [
+      {
+        "document": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "text": "以数显千分表为标准器测量作动器测量范围（0~150）mm"
+      },
+      {
+        "document": "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf",
+        "text": "以跟踪仪为标准器测量作动器测量范围（150~3000）mm"
+      }
+    ],
+    "source_groups": [
+      "公共参考"
+    ],
+    "expected_scope": "公共参考",
+    "source_file_paths": [
+      "documents/公共参考/MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf"
+    ],
+    "required_source_documents": [
+      "MFG-ZH09_作动器校准规范_JJF吉102-2022.pdf"
+    ],
+    "citation_requirement": "all_supporting_sources",
+    "category": "设备与量具校准",
+    "difficulty": "medium",
+    "annotation_version": "manufacturing-zh-v3",
+    "profile": "中文公共参考测试用户",
+    "manual_review_required": true,
+    "semantic_checks": [
+      "0～150mm采用数显千分表；150～3000mm采用跟踪仪，正文校准方法为激光跟踪仪。"
+    ],
+    "optional_facts": [],
+    "forbidden_claims": []
+  },
+  "feedback_fact_alternatives": {
+    "0～150mm": [
+      "(0~150)mm",
+      "0~150mm",
+      "0至150mm"
+    ],
+    "150～3000mm": [
+      "(150~3000)mm",
+      "150~3000mm",
+      "150至3000mm"
+    ]
+  },
+  "frozen_before_candidate_fix": true,
+  "reviewer": "assistant_non_independent",
+  "rules_sha256": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da"
+}

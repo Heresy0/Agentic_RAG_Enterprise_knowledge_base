@@ -308,7 +308,7 @@ def test_indexes_pending_document_at_version_one_and_is_idempotent(
     assert embeddings.document_calls == 1
     assert all(
         chunk.metadata_json["source"] == final_uri
-        and chunk.metadata_json["cleaning_version"] == "conservative-v1"
+        and chunk.metadata_json["cleaning_version"] == "conservative-v2"
         and chunk.metadata_json["quality"]["review_required"] is False
         and chunk.metadata_json["policy"]["business_version"] == "1.4"
         and chunk.metadata_json["document_name"]

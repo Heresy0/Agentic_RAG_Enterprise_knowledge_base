@@ -1,0 +1,600 @@
+{
+  "schema_version": 1,
+  "scorer_version": "2026-10-16-r10",
+  "evaluator_version": "2026-10-21-quality-v1",
+  "quality_policy_sha256": null,
+  "scoring_rules_sha256": null,
+  "mode": "offline",
+  "selected_cases": 20,
+  "available_cases": 20,
+  "selected_case_ids": [
+    "MFG-Q01",
+    "MFG-Q02",
+    "MFG-Q03",
+    "MFG-Q04",
+    "MFG-Q05",
+    "MFG-Q06",
+    "MFG-Q07",
+    "MFG-Q08",
+    "MFG-Q09",
+    "MFG-Q10",
+    "MFG-Q11",
+    "MFG-Q12",
+    "MFG-Q13",
+    "MFG-Q14",
+    "MFG-Q15",
+    "MFG-Q16",
+    "MFG-Q17",
+    "MFG-Q18",
+    "MFG-Q19",
+    "MFG-Q20"
+  ],
+  "requested_conversation_ids": null,
+  "conversation_backend": null,
+  "conversations_sha256": null,
+  "corpus_manifest_sha256": "33008b62e400060907bab2c920240120e34ce40a267869c1805ba7a69acd587a",
+  "scope_config_sha256": null,
+  "dataset_sha256": "650f7c26da5428080a35181f4b3126256a8fc9846f3b98d794e53120887e4ab5",
+  "live_model_calls_enabled": false,
+  "business_permission_changes": false,
+  "layers": {
+    "parsing": {
+      "status": "completed",
+      "evaluation_type": "offline_actual_project_splitters",
+      "summary": {
+        "total": 34,
+        "passed": 34,
+        "failed": 0,
+        "error": 0,
+        "skipped": 0,
+        "partial": 0,
+        "not_applicable": 0,
+        "pass_rate": 1.0
+      },
+      "records": [
+        {
+          "id": "01_量具使用与测量准备手册.pdf",
+          "group": "公共参考",
+          "format": "pdf",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 6,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "02_首件确认与工序交接流程.pdf",
+          "group": "生产工艺",
+          "format": "pdf",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "03_检验项目与量具对照表.pdf",
+          "group": "质量检验",
+          "format": "pdf",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "04_定位治具更换通知扫描件.pdf",
+          "group": "生产工艺",
+          "format": "pdf",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "05_NIST量块手册公开参考.pdf",
+          "group": "公共参考",
+          "format": "pdf",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 1495,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "06_HC-A17_OP20作业指导书历史版.docx",
+          "group": "生产工艺",
+          "format": "docx",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "07_HC-A17_OP20作业指导书现行版.docx",
+          "group": "生产工艺",
+          "format": "docx",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 5,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "08_HC-A17首件检验规范.docx",
+          "group": "质量检验",
+          "format": "docx",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "09_工艺变更通知ECN-2026-018.docx",
+          "group": "生产工艺",
+          "format": "docx",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "10_产品工序与文件路由.md",
+          "group": "公共参考",
+          "format": "md",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "11_工艺常见问题.md",
+          "group": "生产工艺",
+          "format": "md",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 5,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "12_检验记录填写与追溯规则.md",
+          "group": "质量检验",
+          "format": "md",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 5,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "13_历史文件查询与变更说明.md",
+          "group": "公共参考",
+          "format": "md",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "14_工单WO-017班次交接记录.txt",
+          "group": "生产工艺",
+          "format": "txt",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 6,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "15_工单WO-018班次交接记录.txt",
+          "group": "生产工艺",
+          "format": "txt",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "16_首件检验记录B-1026-017.txt",
+          "group": "质量检验",
+          "format": "txt",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "17_量具点检与隔离交接记录.txt",
+          "group": "质量检验",
+          "format": "txt",
+          "kind": "document",
+          "status": "passed",
+          "chunks": 4,
+          "check": "nonempty_chunks_and_document_section_fields"
+        },
+        {
+          "id": "manifest_inventory",
+          "kind": "inventory",
+          "status": "passed"
+        },
+        {
+          "id": "MFG-Q01",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 4,
+            "reciprocal_rank": 0.25,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": false,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 4
+            },
+            "expected_evidence_count": 1,
+            "matched_evidence_count": 1
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q02",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 3,
+            "reciprocal_rank": 0.3333333333333333,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": true,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 3
+            },
+            "expected_evidence_count": 1,
+            "matched_evidence_count": 1
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q03",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 2,
+            "reciprocal_rank": 0.5,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": true,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "1": 2,
+              "0": 7
+            },
+            "expected_evidence_count": 2,
+            "matched_evidence_count": 2
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q04",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 3,
+            "reciprocal_rank": 0.3333333333333333,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": true,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "1": 3,
+              "0": 7
+            },
+            "expected_evidence_count": 2,
+            "matched_evidence_count": 2
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q05",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 81,
+            "reciprocal_rank": 0.012345679012345678,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": false,
+            "hit_at_5": false,
+            "evidence_ranks": {
+              "0": 81
+            },
+            "expected_evidence_count": 1,
+            "matched_evidence_count": 1
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q06",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 4,
+            "reciprocal_rank": 0.25,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": false,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 4
+            },
+            "expected_evidence_count": 1,
+            "matched_evidence_count": 1
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q07",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 4,
+            "reciprocal_rank": 0.25,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": false,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 4,
+              "1": 4
+            },
+            "expected_evidence_count": 2,
+            "matched_evidence_count": 2
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q08",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 3,
+            "reciprocal_rank": 0.3333333333333333,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": true,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 3,
+              "1": 3,
+              "2": 3
+            },
+            "expected_evidence_count": 3,
+            "matched_evidence_count": 3
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q09",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 4,
+            "reciprocal_rank": 0.25,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": false,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "1": 4,
+              "0": 9
+            },
+            "expected_evidence_count": 2,
+            "matched_evidence_count": 2
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q10",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 3,
+            "reciprocal_rank": 0.3333333333333333,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": true,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 3
+            },
+            "expected_evidence_count": 1,
+            "matched_evidence_count": 1
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q11",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 3,
+            "reciprocal_rank": 0.3333333333333333,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": true,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 3,
+              "1": 4
+            },
+            "expected_evidence_count": 2,
+            "matched_evidence_count": 2
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q12",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 3,
+            "reciprocal_rank": 0.3333333333333333,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": true,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 3,
+              "1": 3,
+              "2": 3
+            },
+            "expected_evidence_count": 3,
+            "matched_evidence_count": 3
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q13",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 4,
+            "reciprocal_rank": 0.25,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": false,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 4
+            },
+            "expected_evidence_count": 1,
+            "matched_evidence_count": 1
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q14",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 3,
+            "reciprocal_rank": 0.3333333333333333,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": true,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 3,
+              "1": 8
+            },
+            "expected_evidence_count": 2,
+            "matched_evidence_count": 2
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q15",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 4,
+            "reciprocal_rank": 0.25,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": false,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "1": 4,
+              "0": 6
+            },
+            "expected_evidence_count": 2,
+            "matched_evidence_count": 2
+          },
+          "missing_source_count": 0
+        },
+        {
+          "id": "MFG-Q16",
+          "kind": "evidence",
+          "status": "passed",
+          "metrics": {
+            "scored": true,
+            "hit": true,
+            "first_relevant_rank": 3,
+            "reciprocal_rank": 0.3333333333333333,
+            "evidence_recall": 1.0,
+            "all_evidence_present": true,
+            "hit_at_1": false,
+            "hit_at_3": true,
+            "hit_at_5": true,
+            "evidence_ranks": {
+              "0": 3
+            },
+            "expected_evidence_count": 1,
+            "matched_evidence_count": 1
+          },
+          "missing_source_count": 0
+        }
+      ],
+      "limitations": [
+        "Anchors are selected evidence, not exhaustive parsing accuracy or retrieval recall."
+      ]
+    }
+  },
+  "suite_sha256": null,
+  "selected_groups": null,
+  "created_at": "2026-10-28T11:09:12.561196+00:00",
+  "overall_status": "passed_automated_checks_not_production_certification",
+  "model_usage": {
+    "observed": false,
+    "calls": null,
+    "reported_total_tokens": null,
+    "unknown_usage_calls": null,
+    "unknown_usage_rate": null,
+    "unpriced_calls": null,
+    "unpersisted_calls": null,
+    "estimated_cost_by_currency": {},
+    "errors": null,
+    "observed_requests": 0,
+    "unobserved_requests": 0,
+    "limitation": "Known usage subtotal only; unknown usage is not zero. Historical replay is not new spend."
+  }
+}

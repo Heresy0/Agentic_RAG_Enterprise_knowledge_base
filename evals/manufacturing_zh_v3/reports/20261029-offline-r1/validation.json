@@ -1,0 +1,21 @@
+{
+  "focused": {
+    "total": 17,
+    "passed": 17,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 13.121
+  },
+  "full": {
+    "total": 1460,
+    "passed": 1405,
+    "skipped": 55,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 148.452
+  },
+  "external_application_model_runs": 0,
+  "skip_note": "跳过项不计为通过；本轮没有真实问答验收。",
+  "recorded_at": "2026-10-29T06:09:30.521791+00:00"
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-14",
+  "base_commit": "2d2b034",
+  "branch": "codex/conversation-memory",
+  "status": "offline_and_postgres_validated_no_real_model_evaluation",
+  "tests": {
+    "targeted-final": {
+      "tests": 125,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 125,
+      "duration_seconds": 14.609,
+      "raw_sha256": "f4fc32edc0fc2956d78fce3428e8502a2c94f5d43d694013915fd953cb9de1e7"
+    },
+    "final": {
+      "tests": 1099,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 49,
+      "passed": 1050,
+      "duration_seconds": 76.826,
+      "raw_sha256": "0a077f4265b278b21d0e43e4afdf17fcc568d1847d708585bc4196761c623ec8"
+    },
+    "postgres": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1,
+      "duration_seconds": 7.171,
+      "raw_sha256": "5b3d2d3b51db613b7cc4a35e588d039c390a6288b6412139b367f881dfa83693"
+    }
+  },
+  "deployment": {
+    "memory_enabled": true,
+    "revision": "f2b4d6e8a013",
+    "readiness": {
+      "status": "ok",
+      "database": "up",
+      "redis": "up",
+      "milvus": "up"
+    },
+    "temporary_test_tenants_remaining": 0,
+    "sha256": {
+      "backend/app/knowledge/conversation_memory.py": "e7f0f9486a14b7dddbc128d41d8c9df617d913fe86481bfa0903cac8eb047c0d",
+      "backend/app/knowledge/conversation_service.py": "a4d8284521250ef3e78451fc9096e2f502b8b8f054c464191dbf1e3de59103f4",
+      "backend/app/knowledge/conversations.py": "fcadf5ded0cdb86cd8c887f8ca79c97e4a0571922615fa7c21f7de24695c0377",
+      "backend/app/api/conversations.py": "12e045a02b5813ebed5c0e7390abcc97c438bb0162ef2a1ed39f17f2bd924df6",
+      "backend/app/api/qa.py": "5c3eaf7181bbca7f51295cea0e608a15eaa95c9133eb4efaa5396e8b2bfd80ae",
+      "backend/app/config.py": "0b629b9da6707d79299fb787f369218393bc368b5f527e3fed9aaddecd1d1e69",
+      "backend/app/db/conversation_models.py": "c878d6a3a34c84580adf54964ddb30889f6176c4fdb5c24686013587131849fe"
+    }
+  },
+  "core_unchanged_from_base": {
+    "backend/app/knowledge/answer_service.py": true,
+    "backend/app/knowledge/answer_validation.py": true,
+    "backend/app/knowledge/answer_coverage.py": true,
+    "backend/app/knowledge/calculation_service.py": true,
+    "backend/app/knowledge/rag_budget.py": true,
+    "backend/app/knowledge/evidence_feedback.py": true,
+    "backend/app/knowledge/evidence_coordinator.py": true,
+    "backend/app/security/authorization.py": true,
+    "backend/app/security/retrieval_scope.py": true
+  },
+  "source_sha256_lf_normalized": {
+    "backend/app/knowledge/conversation_memory.py": "e7f0f9486a14b7dddbc128d41d8c9df617d913fe86481bfa0903cac8eb047c0d",
+    "backend/app/knowledge/conversation_service.py": "a4d8284521250ef3e78451fc9096e2f502b8b8f054c464191dbf1e3de59103f4",
+    "backend/app/knowledge/conversations.py": "fcadf5ded0cdb86cd8c887f8ca79c97e4a0571922615fa7c21f7de24695c0377",
+    "backend/app/api/conversations.py": "12e045a02b5813ebed5c0e7390abcc97c438bb0162ef2a1ed39f17f2bd924df6",
+    "backend/app/api/qa.py": "5c3eaf7181bbca7f51295cea0e608a15eaa95c9133eb4efaa5396e8b2bfd80ae",
+    "backend/app/config.py": "0b629b9da6707d79299fb787f369218393bc368b5f527e3fed9aaddecd1d1e69",
+    "backend/app/db/conversation_models.py": "c878d6a3a34c84580adf54964ddb30889f6176c4fdb5c24686013587131849fe"
+  },
+  "limits": {
+    "items": 16,
+    "unresolved_conflict_groups": 4,
+    "state_bytes": 8192,
+    "history_turns": 6,
+    "prompt_text_bytes": 36000,
+    "output_tokens": 4096,
+    "rewrite_calls_per_followup_max": 1
+  },
+  "paid_model_calls_in_this_validation": 0,
+  "real_model_extraction_accuracy_measured": false,
+  "full_80_and_12_qa_evaluation_executed": false
+}

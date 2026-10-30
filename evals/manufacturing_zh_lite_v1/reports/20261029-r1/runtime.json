@@ -1,0 +1,14 @@
+[
+  {
+    "service": "api",
+    "image_id": "sha256:21a81f9d628d34ec22f4eaa3f88563368d46d7e5295d1952d16bf775f6885113"
+  },
+  {
+    "service": "worker",
+    "image_id": "sha256:21a81f9d628d34ec22f4eaa3f88563368d46d7e5295d1952d16bf775f6885113"
+  },
+  {
+    "service": "quality-worker",
+    "image_id": "sha256:21a81f9d628d34ec22f4eaa3f88563368d46d7e5295d1952d16bf775f6885113"
+  }
+]

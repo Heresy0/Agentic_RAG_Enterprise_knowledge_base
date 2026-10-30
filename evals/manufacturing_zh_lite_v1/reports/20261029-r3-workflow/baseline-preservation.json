@@ -1,0 +1,27 @@
+{
+  "all_checks_passed": true,
+  "tables": {
+    "tenants": true,
+    "users": true,
+    "knowledge_bases": true,
+    "knowledge_base_user_grants": true,
+    "knowledge_base_department_grants": true,
+    "documents": true,
+    "document_chunks": true,
+    "document_parents": true,
+    "conversations": true,
+    "migration": true
+  },
+  "excluded_new_tenant": "62721f0d-54b2-4361-8596-58585eb464ea",
+  "before_sha256": "83bbd7f773fb9c9aa541597607e6da5ecfc9d0ff54ccdb84afe4b94014ccd4e8",
+  "after_sha256": "83bbd7f773fb9c9aa541597607e6da5ecfc9d0ff54ccdb84afe4b94014ccd4e8",
+  "frozen_files_unchanged": 460,
+  "files_before_sha256": "0dcd36b0ffa4b5c2dd3345139e2b1d850fc88aa9b3ff5a8f6d1cbf7c36e15bd0",
+  "files_after_sha256": "0dcd36b0ffa4b5c2dd3345139e2b1d850fc88aa9b3ff5a8f6d1cbf7c36e15bd0",
+  "old_vectors": {
+    "documents": 169,
+    "sql_chunks": 11037,
+    "vectors": 11037,
+    "all_checks_passed": true
+  }
+}
