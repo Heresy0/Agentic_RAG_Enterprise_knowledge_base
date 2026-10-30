@@ -54,7 +54,7 @@ async function api(path, options = {}) {
   const headers = new Headers(options.headers);
   headers.set("Authorization", `Bearer ${token}`);
   if (options.body && !(options.body instanceof FormData)) headers.set("Content-Type", "application/json");
-  const response = await fetch(path, { ...requestOptions, headers, signal: AbortSignal.timeout(120000), credentials: "same-origin" });
+  const response = await fetch(path, { ...requestOptions, headers, signal: AbortSignal.timeout(path === "/api/qa" ? 180000 : 120000), credentials: "same-origin" });
   if (epoch !== state.auth.epoch) throw new Error("登录状态已改变，请重试。");
   let data = null;
   if (response.status !== 204) {

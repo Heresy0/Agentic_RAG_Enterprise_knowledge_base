@@ -92,7 +92,7 @@ class AnswerService:
             api_key=settings.chat_api_key,
             temperature=0,
             reasoning_effort="none",
-            timeout=60,
+            timeout=120,
             max_retries=0,
         )
 

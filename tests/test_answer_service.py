@@ -280,7 +280,7 @@ def test_initializes_structured_model_with_expected_settings(
         "api_key": "test-key",
         "temperature": 0,
         "reasoning_effort": "none",
-        "timeout": 60,
+        "timeout": 120,
         "max_retries": 0,
     }]
     assert chat_model.schemas == [EvidenceFirstAnswerDraft]

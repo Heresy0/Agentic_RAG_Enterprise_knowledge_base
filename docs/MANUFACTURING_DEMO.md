@@ -34,6 +34,8 @@ docker compose -f compose.yaml -f compose.manufacturing.yaml up -d --no-deps --n
 
 ## 候选生成诊断
 
+首轮生成请求的等待上限由60秒调至120秒，浏览器问答请求等待180秒；98题HTTP评测客户端原有180秒等待保持不变。仍为零自动重试，规划、修复等可选阶段的预算不变。延长等待是否能恢复超时题，需要另行验证，不能直接补记通过；已保存的运行结果与稳定展示镜像保持原样。
+
 运行包含本次改动的API后，沿现有owner快照接口`GET /api/qa/runs/{run_id}`查看`snapshot.generation.stages`：
 
 - `answer_generation`、`answer_regeneration`或`answer_schema_recovery`保存可见首稿、claims、覆盖清单、校验错误和后处理是否改变内容；`coverage.plan_warnings`记录辅助P项问题。
