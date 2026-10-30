@@ -45,6 +45,9 @@ def test_runtime_upgrade_joins_legacy_memory_and_quality_without_data_loss(start
         with engine.begin() as connection:
             for model in (Tenant, User, KnowledgeBase, Conversation):
                 model.__table__.create(connection)
+            # The e1 baseline predates memory_json; current ORM models already
+            # include it, so restore the historical shape before applying branches.
+            connection.execute(text('ALTER TABLE conversations DROP COLUMN memory_json'))
             context = MigrationContext.configure(connection, opts={
                 'fn': lambda revisions, _: script._upgrade_revs('head', revisions)})
             with Operations.context(context):

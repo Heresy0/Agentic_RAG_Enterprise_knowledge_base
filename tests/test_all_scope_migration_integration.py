@@ -4,12 +4,13 @@ import importlib
 import pytest
 from alembic.migration import MigrationContext
 from alembic.operations import Operations
-from sqlalchemy import select
+from sqlalchemy import create_engine, select, text
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
 from uuid import uuid4
 
-from backend.app.db.conversation_models import ConversationTurn
-from backend.app.db.models import User
+from backend.app.db.conversation_models import Conversation, ConversationTurn
+from backend.app.db.models import KnowledgeBase, Tenant, User
 from backend.app.knowledge.answer_models import AnswerResult
 from backend.app.knowledge.conversations import ConversationStore
 from backend.app.security.principal import Principal
@@ -19,7 +20,31 @@ from tests.test_pg_bm25_integration import bm25_session, _scope  # noqa: F401
 pytestmark = pytest.mark.integration
 
 
-def test_postgres_migration_preserves_legacy_history_and_all_scope_tenant_fk(bm25_session):
+@pytest.fixture
+def isolated_migration_session(bm25_session):
+    # Later QA tables depend on this migration's unique constraint. Exercise its
+    # round trip on its own tables, rather than downgrading beneath newer FKs.
+    schema = 'all_scope_migration_' + uuid4().hex
+    url = bm25_session.get_bind().engine.url
+    control = create_engine(url)
+    engine = create_engine(url, connect_args={'options': f'-csearch_path={schema}'})
+    try:
+        with control.begin() as connection:
+            connection.execute(text(f'CREATE SCHEMA "{schema}"'))
+        with engine.begin() as connection:
+            for model in (Tenant, User, KnowledgeBase, Conversation, ConversationTurn):
+                model.__table__.create(connection)
+        with Session(engine, expire_on_commit=False) as session:
+            yield session
+    finally:
+        engine.dispose()
+        with control.begin() as connection:
+            connection.execute(text(f'DROP SCHEMA IF EXISTS "{schema}" CASCADE'))
+        control.dispose()
+
+
+def test_postgres_migration_preserves_legacy_history_and_all_scope_tenant_fk(isolated_migration_session):
+    bm25_session = isolated_migration_session
     scope, tenant = _scope(bm25_session)
     user = User(tenant_id=tenant.id, external_subject=uuid4().hex, name="Migration test")
     bm25_session.add(user)
