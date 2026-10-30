@@ -8,6 +8,12 @@ sample_docs/xinghai_nanqi/** -text
 evals/archive/** -text whitespace=cr-at-eol
 evals/current/** -text whitespace=cr-at-eol
 evals/quality_policy.json -text
+# These source files are byte-hashed by their frozen generated views/profiles.
+evals/scoring_rules.json -text whitespace=cr-at-eol
+evals/manufacturing_zh_lite_v1/profile.json -text whitespace=cr-at-eol
+evals/manufacturing_zh_lite_v1/scoring_rules.json -text whitespace=cr-at-eol
+evals/manufacturing_zh_lite_v1/demo_release.json -text whitespace=cr-at-eol
+evals/manufacturing_zh_lite_v1/*/single_turn.jsonl -text whitespace=cr-at-eol
 sample_docs/manufacturing_lite/** -text whitespace=cr-at-eol
 evals/manufacturing_lite/** -text whitespace=cr-at-eol
 scripts/manufacturing_corpus_data.py text eol=lf
