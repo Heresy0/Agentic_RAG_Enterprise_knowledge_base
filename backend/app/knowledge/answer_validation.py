@@ -50,6 +50,7 @@ class ValidationResult:
     errors: list[str] = field(
         default_factory=list
     )
+    coverage_errors: list[str] = field(default_factory=list)
 
 
 def interaction_errors(draft):
@@ -77,8 +78,9 @@ class AnswerValidator:
         question: str = "",
     ) -> ValidationResult:
         errors = interaction_errors(draft)
-        if isinstance(draft, GenerationAnswerDraft):
-            errors.extend(coverage_errors(draft, question, context))
+        coverage_failures = (coverage_errors(draft, question, context)
+                             if isinstance(draft, GenerationAnswerDraft) else [])
+        errors.extend(coverage_failures)
 
         allowed_ids = {
             item.citation_id
@@ -101,6 +103,7 @@ class AnswerValidator:
             return ValidationResult(
                 valid=not errors,
                 errors=errors,
+                coverage_errors=coverage_failures,
             )
 
         if not draft.claims:
@@ -174,6 +177,7 @@ class AnswerValidator:
         return ValidationResult(
             valid=not errors,
             errors=errors,
+            coverage_errors=coverage_failures,
         )
 
     @classmethod

@@ -11,6 +11,7 @@ from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from sqlalchemy.exc import SQLAlchemyError
 
+from ..config import Settings
 from ..evaluation.trace import record_rag_event
 from ..model_usage import invoke_structured
 from ..security.authorization import AuthorizationDenied
@@ -107,11 +108,11 @@ def rule_plan(question):
 
 
 class QueryPlanner:
-    def __init__(self, settings, *, model_factory=ChatOpenAI, guard_factory=EvidenceAccess):
+    def __init__(self, settings: Settings, *, model_factory=ChatOpenAI, guard_factory=EvidenceAccess):
         self.settings, self.model_factory, self.guard_factory = settings, model_factory, guard_factory
 
     def plan(self, question, *, scope, session):
-        if getattr(self.settings, "rag_planner_mode", "off") == "off":
+        if self.settings.rag_planner_mode == "off":
             return None
         fallback = rule_plan(question)
         source = "rules"
@@ -125,11 +126,11 @@ class QueryPlanner:
                             HumanMessage(content=json.dumps(dict(question=question), ensure_ascii=False))]
                 prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
                 prompt_bytes += len(json.dumps(QueryPlan.model_json_schema()).encode("utf-8")) + 256
-                output = getattr(self.settings, "rag_planner_output_tokens", 768)
+                output = self.settings.rag_planner_output_tokens
                 with budget.model_attempt(prompt_bytes=prompt_bytes, output_tokens=output) as remaining:
                     model = self.model_factory(model=self.settings.chat_model, base_url=self.settings.chat_base_url,
                         api_key=self.settings.chat_api_key, temperature=0, reasoning_effort="none", max_retries=0,
-                        timeout=min(getattr(self.settings, "rag_planner_timeout_seconds", 8), remaining), max_tokens=output
+                        timeout=min(self.settings.rag_planner_timeout_seconds, remaining), max_tokens=output
                     ).with_structured_output(QueryPlan, include_raw=True)
                     candidate = invoke_structured(model, messages, stage="query_planning", model_name=self.settings.chat_model)
                     candidate = QueryPlan.model_validate(candidate).validate_question(question)

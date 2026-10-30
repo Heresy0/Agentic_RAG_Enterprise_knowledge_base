@@ -316,7 +316,8 @@ def test_answer_trace_uses_actual_trimmed_context_not_raw_candidates(monkeypatch
                               requirement_id="Q1", aspect="q", status="insufficient", claim_indices=[],
                               missing_information="资料不足", source_quote=None)])) )
     monkeypatch.setattr(module, "ChatOpenAI", lambda **kwargs: fake_model)
-    settings = SimpleNamespace(chat_model="fake", chat_base_url="https://unused.example", chat_api_key="test-only")
+    settings = SimpleNamespace(chat_model="fake", chat_base_url="https://unused.example", chat_api_key="test-only",
+                               rag_planner_mode="off", rag_repair_enabled=False)
     service = module.AnswerService(settings=settings, retrieval_service=retrieval,
                                    context_builder=ContextBuilder(max_characters=100))
     with capture_trace() as trace:

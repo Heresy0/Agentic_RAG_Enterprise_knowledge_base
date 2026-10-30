@@ -7,7 +7,6 @@ import unicodedata
 
 import jieba
 
-KEYWORD_TOKENIZATION_VERSION = "jieba-v1"
 SPECIAL_TOKEN_PATTERN = re.compile(
     r"[a-z][a-z0-9]*(?:[-_][a-z0-9]+)+|\d+(?:\.\d+)?%?",
     flags=re.IGNORECASE,
