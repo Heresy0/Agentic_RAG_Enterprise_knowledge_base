@@ -51,6 +51,7 @@ class BuiltContext:
 
 
 class ContextBuilder:
+    """Apply source balancing only to multi-source evidence; always bound text."""
     def __init__(
         self,
         *,
@@ -88,9 +89,15 @@ class ContextBuilder:
                       for document in supplied if id(document) not in retained_objects]
         documents = [select_parent_context(document, question) for document in documents]
         candidate_count = len(documents)
+        sources = {source_key(document) for document in documents}
+        single_source = len(sources) == 1 and "未知来源" not in sources
+        # A source quota provides diversity only when there are multiple sources.
+        # Unknown identities retain the conservative quota; text budgets below
+        # still apply even when all candidates share one known logical source.
+        source_limit = len(documents) if single_source else self.max_chunks_per_source
         before_source_limit = documents
         documents, reservations = select_context_chunks(
-            documents, question=question, max_per_source=self.max_chunks_per_source,
+            documents, question=question, max_per_source=source_limit,
         )
         retained_objects = {id(document) for document in documents}
         exclusions.extend(dict(chunk_id=address(document), reason="per_source_limit")
@@ -113,7 +120,7 @@ class ContextBuilder:
             logical_source = source_key(document)
             count = source_counts.get(logical_source, 0)
 
-            if count >= self.max_chunks_per_source:
+            if count >= source_limit:
                 continue
 
             document_name = str(
@@ -231,6 +238,7 @@ class ContextBuilder:
             selected_count=len(items), selected_characters=used_characters,
             exclusions=exclusions,
             max_characters=self.max_characters, max_chunks_per_source=self.max_chunks_per_source,
+            source_limit_applied=not single_source,
             reservations=[dict(row, included=any(item.chunk_id == row["chunk_id"] for item in items))
                           for row in reservations],
             incomplete_reason=incomplete_reason,

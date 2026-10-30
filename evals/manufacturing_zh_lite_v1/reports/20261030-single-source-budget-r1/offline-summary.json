@@ -1,0 +1,137 @@
+{
+  "total": 98,
+  "baseline_reproduced": 98,
+  "single_source_cases": 70,
+  "changed": 55,
+  "multi_source_unchanged": 28,
+  "unreproduced": [],
+  "newly_incomplete": [],
+  "new_model_calls": 0,
+  "evaluation_type": "offline_context_assembly_replay_not_qa_accuracy",
+  "baseline_commit": "1f218ba",
+  "source_run": "soft-quote-20261030-034719",
+  "max_characters": 12000,
+  "source_quota_for_multi_source": 4,
+  "unknown_source_quota_preserved": true,
+  "clarification_or_scoring_changes": false,
+  "source_hashes": {
+    "tmp\\single-source-context-r1\\cases.json": "f218c43903d4475d8c75dbb7c8c8f6a033d0a86780bda2b96134b4be47c549cd",
+    "tmp\\soft-quote-20261030-034719\\read-only-index-evidence-all16.json": "96e8415906286b4ac2e6cb7169de55d65759023e4d03845501676673ebe6caf5",
+    "backend\\app\\knowledge\\context_builder.py": "896e1f22fec00a032e673976c643b5a0fc4f3f1aa2d7089914ce6dbbce418672"
+  },
+  "targets": {
+    "MFGZH-Q025": {
+      "before_ids": [
+        "7448f7f0d01d55a392ba77aaca6a7696286ae4d8dabb960a1191ba81eaf543b5",
+        "ef49aa9907e9e0d0e88c2c9f9e3caf8c87760e781198d5bc620ad687b84df910",
+        "daec5094df402ec840400288af51d7a1aeb7d0b72629943eadb154d306207872",
+        "58cea348c9fa49af25d1d95b1a29855a7f1af2ba1e3e8476bfb7b05d217b662b"
+      ],
+      "after_ids": [
+        "7448f7f0d01d55a392ba77aaca6a7696286ae4d8dabb960a1191ba81eaf543b5",
+        "ef49aa9907e9e0d0e88c2c9f9e3caf8c87760e781198d5bc620ad687b84df910",
+        "daec5094df402ec840400288af51d7a1aeb7d0b72629943eadb154d306207872",
+        "58cea348c9fa49af25d1d95b1a29855a7f1af2ba1e3e8476bfb7b05d217b662b",
+        "ee2748cfdbefb7d5c7ac6f051e37052b4c3bd0116adcc33b8b5953a00b589d51",
+        "08e9a39bb0c8db443eed39465cbc8e8860cf02b424ca34b2862287d7fd57e50f",
+        "37354575a185355e625565ddff554ee8b1cc10bbda6ef27a06bea09d8b5f2ef9",
+        "7c8f65c59e038e822b55bde9c2326451ef848e3587aa062258d9f111e487e162",
+        "a08f3e272d3d3f596bbbcd411ab9411a017345a72182ec6cf125d3cb740b5dd0",
+        "5a454164b6843c5ca050d5a1f8dd88d248332888e461a7521f1d75bc330321cd"
+      ],
+      "before_characters": 755,
+      "after_characters": 3345,
+      "before_incomplete": null,
+      "after_incomplete": null,
+      "source_count": 1
+    },
+    "MFGZH-Q068": {
+      "before_ids": [
+        "49e0003bf7a8053ff49533a571646c41e4067a59f8901c593d95d4a053a3329d",
+        "5464c29067a40205811fb7c6c8cccd4a7653806fab3ea7c48bcb87b98c967c4f",
+        "21bb47df8b850b7eeaa2f1f284e155e0047eca64417a04766089a7e9bbbbad23",
+        "c3d58356ad5ee961c613925162c787e1d24405bc292b3f94766e66c438f013cf",
+        "808aae2a8d585fe6d2639a711b23e4def671235df625f27543f7681cb9ed899b",
+        "0373bc778bc458a7db3fb6a242cdbcb3cb68c76a2eb3ed419ed05f41d97ac3e4"
+      ],
+      "after_ids": [
+        "49e0003bf7a8053ff49533a571646c41e4067a59f8901c593d95d4a053a3329d",
+        "5464c29067a40205811fb7c6c8cccd4a7653806fab3ea7c48bcb87b98c967c4f",
+        "21bb47df8b850b7eeaa2f1f284e155e0047eca64417a04766089a7e9bbbbad23",
+        "c3d58356ad5ee961c613925162c787e1d24405bc292b3f94766e66c438f013cf",
+        "808aae2a8d585fe6d2639a711b23e4def671235df625f27543f7681cb9ed899b",
+        "0373bc778bc458a7db3fb6a242cdbcb3cb68c76a2eb3ed419ed05f41d97ac3e4"
+      ],
+      "before_characters": 2162,
+      "after_characters": 2162,
+      "before_incomplete": null,
+      "after_incomplete": null,
+      "source_count": 3
+    },
+    "MFGZH-Q071": {
+      "before_ids": [
+        "60faf7774aab366eb7c49bdcf880f6b7b1543911724a192d3ba9916499f34968",
+        "2898e02fd7bc19e99c83f1fd9b86f9024244fe6f36008ebc2a7aa22f15ee3b74",
+        "4de4ddaeeae6302da2b88045d971e3491d25dfb01b49bc6f325655b875cd0bd6",
+        "4515918dde11f8ddfef4cf4c3ca80e0bcf4a33dbd9b19278a617b961966d77cc"
+      ],
+      "after_ids": [
+        "60faf7774aab366eb7c49bdcf880f6b7b1543911724a192d3ba9916499f34968",
+        "2898e02fd7bc19e99c83f1fd9b86f9024244fe6f36008ebc2a7aa22f15ee3b74",
+        "4de4ddaeeae6302da2b88045d971e3491d25dfb01b49bc6f325655b875cd0bd6",
+        "4515918dde11f8ddfef4cf4c3ca80e0bcf4a33dbd9b19278a617b961966d77cc",
+        "c763fd702c383deb841528f1a068a05f0d1bffcf2775611b484c9e9d14c0ea85",
+        "cb8c2320e1d340bedee5da37cdcbc5da535d4ad0923323cf20ece7c48eb93daf",
+        "2f25578f6a99cb2d90ee7eff298492f63020c38d09d9af0bec0706be6b9ddbd5",
+        "33287082341b456e0c657d88b45befe9c649434fa56d799b41d8ec78fe845eef",
+        "3758af739621fef5f37b23c944d0fe969741480ea7a113f94d068e1e5b2e45c9",
+        "60b57ba11908d2cd75348b5d5bac3988a37758385d3ce3755f0a45b2627d2615",
+        "aba608390b60d6a4c090799cb5ff02c0e6cb891fac4a9ce18dec22da3005559f",
+        "70e63202be2da5d80f7dd6222b9d9e7d542b803b0fc3d0e44a17eb2f06248bea",
+        "e33b6e3e05fdb2f813ab87f6c01082f428f266003c2ea32f59e39825ae3c21fc",
+        "3ff1e93f760a215fcb4d37ad3be5ab4c62b6f34df7ea311181b348b9cf3053e8"
+      ],
+      "before_characters": 2374,
+      "after_characters": 5855,
+      "before_incomplete": null,
+      "after_incomplete": null,
+      "source_count": 1
+    },
+    "MFGZH-Q077": {
+      "before_ids": [
+        "01a7c0fd7114b7ffde88a233399d992d0145d61013291ec54d46f1b4d91fa34b",
+        "41d049a72500f45e3e4ef2f87f03f7da9cfb4f7ea2e887846f2cf2036afb8bc4",
+        "6ed0f4f68da114b37cffc91d53f8b0bb1d62cad9d7af0e8e5c13772fbb1efb97",
+        "dd1fa7eeb0cd2abb0e61fe8b1d7c380d5e8bbb5fcd8d57ac04ab6eac16f44c91"
+      ],
+      "after_ids": [
+        "01a7c0fd7114b7ffde88a233399d992d0145d61013291ec54d46f1b4d91fa34b",
+        "41d049a72500f45e3e4ef2f87f03f7da9cfb4f7ea2e887846f2cf2036afb8bc4",
+        "6ed0f4f68da114b37cffc91d53f8b0bb1d62cad9d7af0e8e5c13772fbb1efb97",
+        "dd1fa7eeb0cd2abb0e61fe8b1d7c380d5e8bbb5fcd8d57ac04ab6eac16f44c91",
+        "a920fc356ac8bfc2894b52ca6bb0b95809e3bdf319ec9de6198de1b02df158fc",
+        "0dc05325e3bd1fa3f380a018a03a0c9cc7aab66bf310aeafe2c4463e588c67ac",
+        "a1e5632c50cd41f06f6fc62b700f6005197a2d358e9def26f0c21ac747856025",
+        "68bf3ef0bdd0237441f96d138541b8eb876f326a09f6ec42c3cbc24415ae2476",
+        "12f1b86f41b7ba7e926ed48e8ca58468254491234f08c97873a42fd04d6263d0",
+        "83d118ff1fbee34c3e5ec5eb2c9fce8b0575af7c48398d1ee07206f12c9a0636",
+        "c82b674d128fff6ef55fb6eadba7d67253c213409aa0dd04f77a067c82a1c0d0"
+      ],
+      "before_characters": 1193,
+      "after_characters": 3289,
+      "before_incomplete": null,
+      "after_incomplete": null,
+      "source_count": 1
+    }
+  },
+  "context_characters": {
+    "before": {
+      "total": 353089,
+      "maximum": 9808
+    },
+    "after": {
+      "total": 504774,
+      "maximum": 9808
+    }
+  }
+}

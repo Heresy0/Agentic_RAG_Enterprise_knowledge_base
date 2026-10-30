@@ -2,6 +2,7 @@ from langchain_core.documents import Document
 
 import pytest
 
+from backend.app.evaluation.trace import capture_trace
 from backend.app.knowledge.context_builder import (
     BuiltContext,
     ContextBuilder,
@@ -156,6 +157,56 @@ def test_limits_chunks_per_logical_source() -> None:
         "来源A内容1",
         "来源B内容",
     ]
+
+
+@pytest.mark.parametrize('configured_cap', [1, 4])
+def test_single_known_source_keeps_late_conditions_within_text_budget(configured_cap):
+    texts = ['培训总则。', '员工范围。', '申请流程。', '审批职责。',
+             '课程记录。', '外包人员不适用上述培训办法。']
+    documents = [make_document(text, source_id='training-policy', chunk_id=f't{i}')
+                 for i, text in enumerate(texts)]
+    with capture_trace() as trace:
+        result = ContextBuilder(max_chunks_per_source=configured_cap).build(documents)
+    assert [item.content for item in result.items] == texts
+    assert [item.citation_id for item in result.items] == [f'资料{i}' for i in range(1, 7)]
+    assert result.total_characters <= 12000
+    selection = trace.stages['context_selection'][0]
+    assert not selection['source_limit_applied']
+    assert not any(row['reason'] == 'per_source_limit' for row in selection['exclusions'])
+
+
+def test_single_source_still_obeys_character_budget_after_four_blocks():
+    documents = [make_document(f'第{i}项条件。', source_id='policy', chunk_id=f'c{i}')
+                 for i in range(6)]
+    budget = ContextBuilder().build(documents[:5]).total_characters
+    with capture_trace() as trace:
+        result = ContextBuilder(max_characters=budget).build(documents)
+    assert [item.chunk_id for item in result.items] == [f'c{i}' for i in range(5)]
+    assert result.total_characters == budget == len(result.text)
+    assert any(row['chunk_id'] == 'c5' and row['reason'] == 'character_budget_exhausted'
+               for row in trace.stages['context_selection'][0]['exclusions'])
+
+
+def test_single_source_does_not_truncate_an_overflowing_parent():
+    documents = [make_document(f'完整条款{i}。', source_id='policy', chunk_id=f'p{i}')
+                 for i in range(4)]
+    overflowing = make_document('完整父块不能截断。' * 100, source_id='policy', chunk_id='long-parent')
+    overflowing.metadata.update(chunk_type='parent', parent_id='parent-id')
+    budget = ContextBuilder().build(documents).total_characters + 100
+    with capture_trace() as trace:
+        result = ContextBuilder(max_characters=budget).build(documents + [overflowing])
+    assert len(result.items) == 4 and result.total_characters <= budget
+    assert result.incomplete_reason == 'parent_context_budget_incomplete'
+    assert any(row['chunk_id'] == 'long-parent' and row['reason'] == 'complete_parent_exceeds_remaining_budget'
+               for row in trace.stages['context_selection'][0]['exclusions'])
+
+
+def test_unknown_source_identity_does_not_disable_source_quota():
+    documents = [Document(id=f'u{i}', page_content=f'独立内容{i}。') for i in range(6)]
+    with capture_trace() as trace:
+        result = ContextBuilder().build(documents)
+    assert len(result.items) == 4
+    assert trace.stages['context_selection'][0]['source_limit_applied']
 
 
 def test_context_never_exceeds_character_budget() -> None:

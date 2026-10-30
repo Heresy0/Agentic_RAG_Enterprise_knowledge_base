@@ -69,12 +69,12 @@ def test_reserves_actual_completion_without_increasing_source_or_character_budge
     assert reservations and reservations[0]["included"]
 
 
-def test_no_special_case_company_amount_or_date_and_negative_status_is_evidence():
+def test_single_source_negative_status_is_retained_without_source_clipping():
     documents = [doc("修复计划为4月9日。", 0), doc("会议安排为4月9日。", 1),
                  doc("缺陷尚未修复。", 2)]
     context = ContextBuilder(max_chunks_per_source=2).build(documents, question="缺陷是否已经修复？")
     assert any("尚未修复" in item.content for item in context.items)
-    assert len(context.items) == 2
+    assert len(context.items) == 3
 
 
 def test_only_intervenes_at_source_cap_and_preserves_metadata_and_ordinary_queries():
