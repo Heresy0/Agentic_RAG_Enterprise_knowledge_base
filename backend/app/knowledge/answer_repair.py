@@ -7,12 +7,14 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 from sqlalchemy.exc import SQLAlchemyError
 
+from ..config import Settings
 from ..evaluation.trace import record_rag_event
 from ..model_usage import invoke_structured
 from ..security.authorization import AuthorizationDenied
 from .answer_models import AnswerClaim, AnswerDraft, EvidenceFirstAnswerDraft, GenerationAnswerDraft
-from .answer_coverage import coverage_errors, requirement_prompt
+from .answer_coverage import requirement_prompt
 from .answer_contract import direct_answer_errors
+from .answer_validation import ValidationResult
 from .evidence_coordinator import EvidenceAccess
 from .rag_budget import current_rag_budget
 from .calculation_repair import normalize_calculations, verified_calculation_repair
@@ -94,18 +96,20 @@ def preserves_decision_addition(original, candidate):
 
 
 class AnswerRepair:
-    def __init__(self, settings, *, model_factory=ChatOpenAI, guard_factory=EvidenceAccess):
+    def __init__(self, settings: Settings, *, model_factory=ChatOpenAI, guard_factory=EvidenceAccess):
         self.settings, self.model_factory, self.guard_factory = settings, model_factory, guard_factory
 
-    def repair(self, draft, *, question, context, validator, scope, session, refresh_context):
-        if not getattr(self.settings, "rag_repair_enabled", False):
+    def repair(self, draft, *, question, context, validator, validation: ValidationResult,
+               scope, session, refresh_context):
+        if not self.settings.rag_repair_enabled:
             record_rag_event(dict(kind="repair", outcome="disabled", model_calls=0))
             return draft
-        errors = validator.validate(draft=draft, context=context, question=question).errors
+        errors = list(validation.errors)
         # Supplement only a fully valid positive draft; no refusal conversion.
-        decision_mode = not errors and bool(direct_answer_errors(question, draft))
+        decision_errors = direct_answer_errors(question, draft) if not errors else []
+        decision_mode = bool(decision_errors)
         if decision_mode:
-            errors = direct_answer_errors(question, draft)
+            errors = decision_errors
         numeric_binding = numeric_binding_supported(draft, errors, validator, context, question)
         if not eligible(draft, errors, numeric_binding=numeric_binding):
             record_rag_event(dict(kind="repair", outcome="ineligible" if errors else "not_needed", model_calls=0))
@@ -122,11 +126,13 @@ class AnswerRepair:
             normalized = [identifier.strip().strip("[]【】").strip() for identifier in claim.citations]
             if normalized and all(identifier in allowed for identifier in normalized):
                 claim.citations = list(dict.fromkeys(normalized))
+        candidate_validation = (validator.validate(draft=candidate, context=context, question=question)
+                                if candidate != original else validation)
         if (candidate != original and not direct_answer_errors(question, candidate)
-                and validator.validate(draft=candidate, context=context, question=question).valid):
+                and candidate_validation.valid):
             record_rag_event(dict(kind="repair", outcome="local_repaired", model_calls=0))
             return candidate
-        errors = validator.validate(draft=candidate, context=context, question=question).errors
+        errors = list(candidate_validation.errors)
         if decision_mode:
             errors.extend(direct_answer_errors(question, candidate))
         numeric_binding = numeric_binding_supported(candidate, errors, validator, context, question)
@@ -152,14 +158,14 @@ class AnswerRepair:
             prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
             schema = AnswerClaim if decision_mode else type(draft)
             prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
-            if prompt_bytes > getattr(self.settings, "rag_repair_prompt_bytes", 24000):
+            if prompt_bytes > self.settings.rag_repair_prompt_bytes:
                 record_rag_event(dict(kind="repair", outcome="prompt_budget", model_calls=0))
                 return original
-            output = getattr(self.settings, "rag_repair_output_tokens", 1536)
+            output = self.settings.rag_repair_output_tokens
             with budget.model_attempt(prompt_bytes=prompt_bytes, output_tokens=output) as remaining:
                 model = self.model_factory(model=self.settings.chat_model, base_url=self.settings.chat_base_url,
                     api_key=self.settings.chat_api_key, temperature=0, reasoning_effort="none", max_retries=0,
-                    timeout=min(getattr(self.settings, "rag_repair_timeout_seconds", 8), remaining), max_tokens=output
+                    timeout=min(self.settings.rag_repair_timeout_seconds, remaining), max_tokens=output
                 ).with_structured_output(schema, include_raw=True)
                 response = invoke_structured(model, messages, stage="answer_repair", model_name=self.settings.chat_model)
                 if decision_mode:
@@ -181,9 +187,7 @@ class AnswerRepair:
                            if calculation_mode else preserves_facts(original, repaired))
             validation_errors = validator.validate(draft=repaired, context=context, question=question).errors
             validation_errors.extend(direct_answer_errors(question, repaired))
-            valid = (current and facts_valid
-                     and not coverage_errors(repaired, question, context)
-                     and not validation_errors)
+            valid = current and facts_valid and not validation_errors
             if not valid:
                 record_rag_event(dict(kind='repair_validation', facts_verified=facts_valid,
                     evidence_current=bool(current), errors=validation_errors,
@@ -199,7 +203,7 @@ class AnswerRepair:
 
     def recover_schema(self, *, messages, scope, session, refresh_context):
         """One fresh generation after an unparsable output, charged as repair."""
-        if not getattr(self.settings, "rag_repair_enabled", False):
+        if not self.settings.rag_repair_enabled:
             return None
         guard, budget = self.guard_factory(session, scope), current_rag_budget()
         if not guard.available or budget is None:
@@ -210,14 +214,14 @@ class AnswerRepair:
                 return None
             prompt_bytes = sum(len(str(message.content).encode('utf-8')) for message in messages)
             prompt_bytes += len(json.dumps(EvidenceFirstAnswerDraft.model_json_schema()).encode('utf-8')) + 256
-            output = getattr(self.settings, 'rag_repair_output_tokens', 1536)
-            if prompt_bytes > getattr(self.settings, 'rag_repair_prompt_bytes', 24000):
+            output = self.settings.rag_repair_output_tokens
+            if prompt_bytes > self.settings.rag_repair_prompt_bytes:
                 record_rag_event(dict(kind='schema_repair', outcome='prompt_budget'))
                 return None
             with budget.model_attempt(prompt_bytes=prompt_bytes, output_tokens=output) as remaining:
                 model = self.model_factory(model=self.settings.chat_model, base_url=self.settings.chat_base_url,
                     api_key=self.settings.chat_api_key, temperature=0, reasoning_effort='none', max_retries=0,
-                    timeout=min(getattr(self.settings, 'rag_repair_timeout_seconds', 8), remaining), max_tokens=output
+                    timeout=min(self.settings.rag_repair_timeout_seconds, remaining), max_tokens=output
                 ).with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
                 result = EvidenceFirstAnswerDraft.model_validate(invoke_structured(
                     model, messages, stage='answer_repair', model_name=self.settings.chat_model))

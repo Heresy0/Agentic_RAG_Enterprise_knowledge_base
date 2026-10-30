@@ -97,6 +97,7 @@ def test_input_planner_and_agent_use_same_real_authorization(scenario):
     from backend.app.knowledge.rag_budget import RagBudget, rag_budget_scope
     session, scope, actor, retrieval, _ = scenario
     settings = SimpleNamespace(rag_planner_mode='auto', agentic_rag_mode='auto', chat_model='fake',
+                               rag_planner_output_tokens=768, rag_planner_timeout_seconds=8,
                                chat_base_url='https://fake.invalid', chat_api_key='fake')
     result = dict(intent='comparison', strategy='agentic', reason='multiple_aspects', subquestions=[
         dict(question='alpha workflow', source_quote='alpha', depends_on=[]),
@@ -126,6 +127,9 @@ def test_new_model_phases_cannot_continue_after_real_grant_revocation(scenario, 
     from backend.app.knowledge.rag_budget import RagBudget, rag_budget_scope
     session, scope, actor, retrieval, _ = scenario
     settings = SimpleNamespace(rag_planner_mode='auto', rag_repair_enabled=True, chat_model='fake',
+                               rag_planner_output_tokens=768, rag_planner_timeout_seconds=8,
+                               rag_repair_prompt_bytes=24000, rag_repair_output_tokens=1536,
+                               rag_repair_timeout_seconds=8,
                                chat_base_url='https://fake.invalid', chat_api_key='fake')
     question = '比较 alpha 与 beta workflow' if phase == 'planner' else 'alpha workflow是什么？'
     context = ContextBuilder().build(retrieval.search(question, scope=scope, session=session), question=question)
@@ -145,5 +149,7 @@ def test_new_model_phases_cannot_continue_after_real_grant_revocation(scenario, 
         if phase == 'planner':
             QueryPlanner(settings, model_factory=factory).plan(question, scope=scope, session=session)
         else:
+            validator = AnswerValidator()
             AnswerRepair(settings, model_factory=factory).repair(draft, question=question, context=context,
-                validator=AnswerValidator(), scope=scope, session=session, refresh_context=lambda: True)
+                validator=validator, validation=validator.validate(draft=draft, context=context, question=question),
+                scope=scope, session=session, refresh_context=lambda: True)

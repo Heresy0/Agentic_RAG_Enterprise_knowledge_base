@@ -2,7 +2,7 @@
 
 本指南使用当前16份中文原件、98题精简回归配置及既有工作台。公开规范放在公共参考库；生产工艺、质量检验库沿用现有角色权限配置。当前没有ERP/MES实时接口，视觉解析待单独配置与实测。
 
-展示发布清单固定在[`demo_release.json`](../evals/manufacturing_zh_lite_v1/demo_release.json)：源码`43aeafc`、稳定镜像ID和r13评分口径分别记录。当前候选问答代码为`868005e`，独立运行于8001；辅助计划收敛、生成诊断及超时调整的验证结果见[收尾记录](../evals/manufacturing_zh_lite_v1/reports/20261030-wrapup-r1/README.md)。稳定展示继续使用8000，两版未合并。
+展示发布清单固定在[`demo_release.json`](../evals/manufacturing_zh_lite_v1/demo_release.json)：稳定展示源码`43aeafc`、镜像ID和r13评分口径分别记录。8001候选容器对应`868005e`，辅助计划收敛、生成诊断及超时调整的验证结果见[收尾记录](../evals/manufacturing_zh_lite_v1/reports/20261030-wrapup-r1/README.md)。相关源码已合入Git主线，但本机容器仍独立保留：8000为稳定展示，8001为候选；合并源码没有更新这些容器。涉及部署时，以实际容器镜像和配置为准。
 
 ## 启动与版本
 
@@ -19,6 +19,20 @@ docker compose -f compose.yaml -f compose.manufacturing.yaml up -d --no-deps --n
 基础服务沿用现有Compose环境。浏览器打开`http://127.0.0.1:8000`，使用本机`tmp/manufacturing-finalize-r1/credentials.json`中的演示账号。该目录被Git忽略，凭据不要放入演示截图或报告。管理员完成复核和评测操作，普通角色用于展示可见知识库范围。16份公开原件并非企业私密生产数据。
 
 镜像按本机已有ID启动，继续使用`--no-build`；镜像标签仅作检索说明。启动命令需要原有数据库、向量、Keycloak等基础服务就绪。上述命令只操作既有稳定版；候选镜像`enterprise-knowledge-manufacturing:timeout-868005e`独立保留，切勿把其局部补跑成绩当成稳定版的新成绩。
+
+## 本机部门与账号
+
+当前本机制造业租户已复用既有演示账号配置三个部门；账号名和密码以忽略目录`tmp/manufacturing-finalize-r1/credentials.json`为准。
+
+| 部门 | 对应角色 | 业务知识库权限 |
+| --- | --- | --- |
+| 工艺部 | 工艺工程师 | 生产工艺可编辑、质量检验只读 |
+| 生产部 | 操作员 | 生产工艺只读 |
+| 质量部 | 质量工程师 | 质量检验可编辑、生产工艺只读 |
+
+三个部门账号均可读公共参考库。知识管理员同时担任三个部门负责人，并保留现有三个知识库的用户级`admin`授权。部门成员通过部门继承业务库权限；负责人身份和知识库管理员权限分别维护。
+
+这些是本机PostgreSQL运行配置，Keycloak身份仍以`sub`映射；新克隆和原初始化脚本不会自动得到这套部门关系。本机配置与接口核验记录分别位于同目录的`department-setup-report.json`和`department-http-verification.json`。原始评测的有效权限范围未改变，凭据和记录均不提交。
 
 ## 固定评分入口
 

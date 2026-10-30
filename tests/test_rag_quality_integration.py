@@ -38,6 +38,7 @@ def test_schema_recovery_real_permission_and_document_boundaries(scenario,monkey
             requirement_id='Q1',aspect='workflow',status='answered',claim_indices=[1],missing_information=None,
             source_quote='alpha workflow approved evidence')]))
     settings=SimpleNamespace(rag_repair_enabled=True,rag_planner_mode='off',agentic_rag_mode='off',
+        rag_repair_prompt_bytes=24000,rag_repair_output_tokens=1536,rag_repair_timeout_seconds=8,
         chat_model='fake',chat_base_url='https://fake.invalid',chat_api_key='fake')
     service=AnswerService(settings=settings,retrieval_service=retrieval)
     service._answer_repair=AnswerRepair(settings,model_factory=lambda **kwargs:

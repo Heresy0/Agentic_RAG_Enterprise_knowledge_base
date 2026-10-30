@@ -234,6 +234,15 @@ def build_service(
         chat_model="test-model",
         chat_base_url="https://example.com/v1",
         chat_api_key="test-key",
+        rag_planner_mode="off",
+        rag_planner_output_tokens=768,
+        rag_planner_timeout_seconds=8,
+        rag_repair_enabled=False,
+        rag_repair_prompt_bytes=24000,
+        rag_repair_output_tokens=1536,
+        rag_repair_timeout_seconds=8,
+        rag_regeneration_output_tokens=2048,
+        rag_regeneration_timeout_seconds=15,
     )
     service = AnswerService(
         settings=settings,

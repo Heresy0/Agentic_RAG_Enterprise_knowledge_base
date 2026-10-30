@@ -88,6 +88,7 @@ def build(feedback_scenario, monkeypatch, *, phase=None):
     factory = lambda **kwargs: SimpleNamespace(with_structured_output=lambda *args, **kwargs:
         SimpleNamespace(invoke=regenerate))
     settings = SimpleNamespace(rag_feedback_enabled=True, agentic_rag_mode='off', rag_planner_mode='off',
+        rag_regeneration_output_tokens=2048, rag_regeneration_timeout_seconds=15,
         rag_repair_enabled=False, chat_model='fake', chat_base_url='https://fake.invalid', chat_api_key='fake')
     service = AnswerService(settings=settings, retrieval_service=retrieval, regeneration_model_factory=factory)
     return service, counters

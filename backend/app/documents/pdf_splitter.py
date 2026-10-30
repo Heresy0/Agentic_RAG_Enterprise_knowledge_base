@@ -566,10 +566,6 @@ def _looks_multicolumn(page) -> bool:
     return len(_split_word_columns(words, float(page.width))) > 1
 
 
-def _normalize_table_rows(rows: list[list[str | None]]) -> list[str]:
-    return clean_table(rows)[0]
-
-
 def _object_inside_box(
     obj: dict,
     box: tuple[float, float, float, float],

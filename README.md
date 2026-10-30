@@ -1,30 +1,23 @@
 # Multi-tenant Long-context RAG Engine
 
-日常面试演示已收敛为[16份资料、98题精简回归集](evals/manufacturing_zh_lite_v1/README.md)：90道非OCR题全部保留，OCR保留5道原先通过题和3道代表性失败题；新增评分修订与原始成绩分开记录。
+[![CI](https://github.com/Heresy0/Agentic_RAG_Enterprise_knowledge_base/actions/workflows/ci.yml/badge.svg)](https://github.com/Heresy0/Agentic_RAG_Enterprise_knowledge_base/actions/workflows/ci.yml)
 
-当前制造业项目的启动、页面操作、真实反馈回归和面试讲述统一见[制造业演示指南](docs/MANUFACTURING_DEMO.md)。
+面向企业内部知识库的多租户 RAG 问答系统，当前以制造业场景验证。使用 Keycloak 完成 OIDC 认证，在 PostgreSQL 维护租户、部门和知识库授权，通过 Milvus/BM25 混合检索、父块回取与引用校验生成可追溯回答，并接入反馈审核和回归评测闭环。
 
-展示版本及r13评分入口已通过[发布清单](evals/manufacturing_zh_lite_v1/demo_release.json)固定。[2026-10-30收尾记录](evals/manufacturing_zh_lite_v1/reports/20261030-wrapup-r1/README.md)归档候选更新、98题复核、三题补跑及剩余13题：派生视图自动74/98、表达等价复核85/98，不称独立准确率。稳定版8000与候选版8001分别保留，暂停围绕已知题局部优化。下文不同批次的120题、98题结果保留各自版本与口径。
+## 阅读入口
 
-制造业演示的最新进展见[完整问答闭环与运行说明](docs/MANUFACTURING_CLOSED_LOOP.md)：普通解析与OCR已接入复核发布、澄清续答、原件追溯、反馈评测和验证关闭；40题开发集与80题留出集按原题保留全部结果。视觉解析待模型配置后单独实测。
+| 需要了解什么 | 从哪里开始 |
+| --- | --- |
+| 新会话接手、源码定位和修改边界 | [AGENTS.md](AGENTS.md) |
+| 当前演示、启动、部门配置与成绩口径 | [制造业演示指南](docs/MANUFACTURING_DEMO.md) |
+| 日常16份资料、98题配置 | [制造业精简集](evals/manufacturing_zh_lite_v1/README.md) |
+| 稳定展示版本与冻结评分 | [发布清单](evals/manufacturing_zh_lite_v1/demo_release.json) |
+| 通用120题历史基线 | [统一评测套件](evals/current/README.md) |
+| 候选98题、超时补跑与剩余问题 | [2026-10-30收尾记录](evals/manufacturing_zh_lite_v1/reports/20261030-wrapup-r1/README.md) |
 
-[![CI](https://github.com/Heresy0/Multi-tenant-long-context-rag-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/Heresy0/Multi-tenant-long-context-rag-engine/actions/workflows/ci.yml)
+源码已合入Git主线，本机8000稳定容器与8001候选容器仍分别保留，源码合并不代表容器更新。普通解析与OCR闭环已实现；视觉解析尚待接入实测，ERP/MES实时接口尚未接入。本机部门、账号及租户是运行配置，详见演示指南。
 
-面向企业内部知识库的多租户 RAG 问答系统。项目使用 Keycloak 完成 OIDC 身份认证，在 PostgreSQL 中维护租户、部门、用户、知识库和授权关系，并通过 Milvus 实现带强制权限范围与当前索引版本过滤的向量检索。
-
-系统已经覆盖文档上传、幂等索引、混合检索、重排、答案生成、引用校验、结构化观测日志和离线评估等核心链路，重点解决企业知识库中“用户是谁、能够查询哪些资料、回答依据来自哪里”的问题。
-
-制造业小规模改造见[实施与验收说明](docs/MANUFACTURING_LITE.md)：提供 17 份四格式资料、20 道独立回归题、制造业示例问题和角色配置工具。[真实 HTTP 首轮验收](evals/manufacturing_lite/reports/20261028-live-r1/README.md)已完成隔离租户、全部入库及 20 题运行，自动评分 14/20、助手非独立复核 18/20，保留 2 题失败与 33 项 HTTP 权限检查。本轮未接 MES/ERP；[完整实施方案](docs/MANUFACTURING_IMPLEMENTATION_PLAN.md)保留后续工单集成设计。
-
-新增[公开资料扩容v2](docs/MANUFACTURING_PUBLIC_V2.md)：60份资料包含20份NIST/NBS原始PDF、24个官方网页条目和16份合成业务资料，配套50道开发题与100道冻结验收题。已全部隔离入库，并完成[50题开发集真实首轮](evals/manufacturing_public_v2/reports/20261028-development-live-r1/README.md)：自动23/50，助手非独立复核32通过、13失败、1待确认、4上下文不完整；100题冻结验收集未运行。
-
-新增[中文公开原文v3](docs/MANUFACTURING_ZH_V3.md)：18份官方中文原文（16份原始PDF、2份网页正文转换），配套120题中文评测集，开发40题、测试80题。[离线检查](evals/manufacturing_zh_v3/reports/20261029-offline-r1/README.md)得到1,290个实际分块，但150处证据锚点仍有44处未连续匹配，1份扫描件正文严重缺失；尚未入库或运行模型问答，既有基线保留原样。
-
-已补充[PDF明确缺陷修复与回归对照](evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/README.md)：`structured-v6`修正误分栏、下标错行和数量开头正文误作标题，并阻断空OCR页的静默入库。原文、题集与首轮报告保留，困难扫描件识别仍需后续处理。
-
-已完成[小规模离线OCR实验](evals/ocr_small_experiment_v1/reports/20261029-offline-r1/README.md)：增加3份独立扫描件，以固定300DPI＋空结果单次PSM6回退对照现有配置。独立检查10/27→11/27，旧扫描证据仍为25/55且有3处退化；收益不足，应用默认保持220DPI、不开启回退。原有语料、题集及报告不变。
-
-中文资料后续已完成[新版本隔离入库与40题开发集真实首轮](evals/manufacturing_zh_v3/reports/20261029-development-live-r1/README.md)：17份就绪、1份空OCR阻断，1,034个分块与向量核验一致；自动30/40，助手非独立复核33/40（普通文档27/30、拒答6/6、澄清0/4）。冻结开发集没有OCR专项题，不报告OCR问答准确率。215个原有基线文件与旧租户资料保留，80题测试集未运行。
+历史演进资料按原批次保留：[17份/20题首版](docs/MANUFACTURING_LITE.md)、[60份公开资料v2](docs/MANUFACTURING_PUBLIC_V2.md)、[18份中文原文v3](docs/MANUFACTURING_ZH_V3.md)、[解析缺陷修复](evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/README.md)、[离线OCR实验](evals/ocr_small_experiment_v1/reports/20261029-offline-r1/README.md)、[原40题开发集](evals/manufacturing_zh_v3/reports/20261029-development-live-r1/README.md)、[原40/80题闭环](docs/MANUFACTURING_CLOSED_LOOP.md)。[最初完整实施方案](docs/MANUFACTURING_IMPLEMENTATION_PLAN.md)包含尚未实施的后续设计。这些历史记录不代表当前待办或最新成绩；不同题集、评分版本、辅助复核与补跑结果分别记录。
 
 ## 核心能力
 

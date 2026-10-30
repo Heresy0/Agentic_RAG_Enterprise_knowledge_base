@@ -210,7 +210,7 @@ class AnswerService:
         try:
             draft = self._generate_draft(question=question, context=context)
         except (ValidationError, OutputParserException) as exc:
-            if not getattr(self._settings, 'rag_repair_enabled', False):
+            if not self._settings.rag_repair_enabled:
                 raise
             errors = ([dict(location=[str(part) for part in error['loc']], type=error['type'])
                        for error in exc.errors(include_input=False, include_context=False, include_url=False)[:12]]
@@ -267,7 +267,6 @@ class AnswerService:
         validation_started = time.perf_counter()
         # Coverage is checked against the original draft, before any supplement.
         # A fallback must not turn an explicit missing requirement into a success.
-        coverage_failures = coverage_errors(draft, question, context)
         calculation_records = []
         for claim in draft.claims:
             if claim.calculation is None:
@@ -285,6 +284,7 @@ class AnswerService:
                                                 proposed=claim.calculation.model_dump()))
         record_calculations(calculation_records)
         first_validation = self._validator.validate(draft=draft, context=context, question=question)
+        coverage_failures = first_validation.coverage_errors
         first_contract_errors = direct_answer_errors(question, draft)
         first_response = (self._render_result(draft=draft, context=context)
                           if first_validation.valid and draft.answerable and not coverage_failures and not first_contract_errors
@@ -296,12 +296,12 @@ class AnswerService:
         first_errors = list(dict.fromkeys([*coverage_failures, *first_validation.errors, *first_contract_errors]))
         repair_started = time.perf_counter()
         repaired = (draft if schema_recovered else self._answer_repair.repair(draft,
-            question=question, context=context, validator=self._validator, scope=scope,
+            question=question, context=context, validator=self._validator, validation=first_validation, scope=scope,
             session=session, refresh_context=refresh_context))
         if repaired != draft:
             draft = repaired
             coverage_failures = coverage_errors(draft, question, context)
-        if getattr(self._settings, "rag_repair_enabled", False) and first_errors:
+        if self._settings.rag_repair_enabled and first_errors:
             timings["answer_repair_ms"] = _elapsed_ms(repair_started)
         decisions = []
         if not coverage_failures:
@@ -457,7 +457,7 @@ class AnswerService:
         messages = self._generation_messages(question, context)
         prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
         prompt_bytes += len(json.dumps(EvidenceFirstAnswerDraft.model_json_schema()).encode("utf-8")) + 256
-        output = getattr(self._settings, "rag_regeneration_output_tokens", 2048)
+        output = self._settings.rag_regeneration_output_tokens
         current_rag_budget().check_model(prompt_bytes=prompt_bytes, output_tokens=output)
         return messages, prompt_bytes, output
 
@@ -468,7 +468,7 @@ class AnswerService:
             model = self._regeneration_model_factory(model=self._settings.chat_model,
                 base_url=self._settings.chat_base_url, api_key=self._settings.chat_api_key, temperature=0,
                 reasoning_effort="none", max_retries=0, max_tokens=output,
-                timeout=min(getattr(self._settings, "rag_regeneration_timeout_seconds", 15), remaining)
+                timeout=min(self._settings.rag_regeneration_timeout_seconds, remaining)
             ).with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
             result = invoke_structured(model, messages, stage="answer_regeneration", model_name=self._settings.chat_model)
             return self._as_generation_draft(result)

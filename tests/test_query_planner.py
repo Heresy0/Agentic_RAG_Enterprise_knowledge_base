@@ -36,8 +36,10 @@ def planner(result, *, hook=None, limits=None):
             return dict(raw=AIMessage(content="", usage_metadata=dict(input_tokens=100, output_tokens=50, total_tokens=150)),
                         parsed=result, parsing_error=None)
         return SimpleNamespace(with_structured_output=lambda *args, **kwargs: SimpleNamespace(invoke=invoke))
-    settings = SimpleNamespace(rag_planner_mode="auto", chat_model="fake", chat_base_url="https://fake.invalid",
-                               chat_api_key="fake", **(limits or {}))
+    settings = SimpleNamespace(**dict(
+        rag_planner_mode="auto", rag_planner_output_tokens=768, rag_planner_timeout_seconds=8,
+        chat_model="fake", chat_base_url="https://fake.invalid", chat_api_key="fake",
+    ) | (limits or {}))
     return QueryPlanner(settings, model_factory=factory, guard_factory=lambda *args: guard), guard, calls
 
 

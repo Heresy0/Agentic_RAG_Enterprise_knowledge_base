@@ -56,15 +56,19 @@ def repair_service(result, *, hook=None):
             selected_schema = schema
             return SimpleNamespace(invoke=invoke)
         return SimpleNamespace(with_structured_output=structured)
-    settings = SimpleNamespace(rag_repair_enabled=True, chat_model="fake", chat_base_url="https://fake.invalid", chat_api_key="fake")
+    settings = SimpleNamespace(rag_repair_enabled=True, rag_repair_prompt_bytes=24000,
+        rag_repair_output_tokens=1536, rag_repair_timeout_seconds=8,
+        chat_model="fake", chat_base_url="https://fake.invalid", chat_api_key="fake")
     return AnswerRepair(settings, model_factory=factory, guard_factory=lambda *args: guard), calls, guard
 
 
-def execute(service, original, *, refresh=lambda: True, budget=None, context=None, question="温度是多少？"):
+def execute(service, original, *, refresh=lambda: True, budget=None, context=None, question="温度是多少？", validator=None):
     context = context or ContextBuilder().build([make_document("温度是80摄氏度。")], question="温度是多少？")
+    validator = validator or AnswerValidator()
+    validation = validator.validate(draft=original, context=context, question=question)
     with usage_context(scope=TEST_SCOPE) as usage, rag_budget_scope(budget or RagBudget()), capture_trace() as trace:
         result = service.repair(original, question=question, context=context,
-            validator=AnswerValidator(), scope=TEST_SCOPE, session=object(), refresh_context=refresh)
+            validator=validator, validation=validation, scope=TEST_SCOPE, session=object(), refresh_context=refresh)
     return result, usage, trace
 
 
@@ -76,6 +80,32 @@ def test_one_model_repair_fixes_coverage_without_changing_facts():
     assert len(calls) == 1 and calls[0]["max_retries"] == 0
     assert usage.events[0]["stage"] == "answer_repair" and usage.events[0]["total_tokens"] == 120
     assert trace.stages["rag_routing"][-1]["outcome"] == "model_repaired"
+
+
+@pytest.mark.parametrize("citation,expected_validations,outcome", [
+    ("资料1", 1, "not_needed"),
+    (" [资料1] ", 2, "local_repaired"),
+])
+def test_repair_reuses_validation_until_the_draft_changes(citation, expected_validations, outcome):
+    class CountingValidator(AnswerValidator):
+        def __init__(self):
+            self.results = []
+
+        def validate(self, **kwargs):
+            result = super().validate(**kwargs)
+            self.results.append((result, list(result.errors)))
+            return result
+
+    original = draft(citation=citation, indices=(1,))
+    service, calls, _ = repair_service(RuntimeError("must not call"))
+    validator = CountingValidator()
+    result, usage, trace = execute(service, original, validator=validator)
+    assert result.answerable and result.claims[0].citations == ["资料1"]
+    assert original.claims[0].citations == [citation]
+    assert len(validator.results) == expected_validations
+    assert all(result.errors == errors for result, errors in validator.results)
+    assert calls == [] and usage.events == []
+    assert trace.stages["rag_routing"][-1]["outcome"] == outcome
 
 
 def test_auxiliary_warning_does_not_block_real_coverage_repair():
