@@ -4,7 +4,7 @@ import json
 import pytest
 from pydantic import ValidationError
 
-from backend.app.knowledge.answer_coverage import coverage_errors, question_requirements, requirement_prompt
+from backend.app.knowledge.answer_coverage import coverage_errors, coverage_snapshot, question_requirements, requirement_prompt
 from backend.app.knowledge.answer_models import AnswerClaim, GenerationAnswerDraft
 
 
@@ -76,3 +76,25 @@ def test_generation_requires_coverage_and_strict_positive_claim_indices():
     for index in (0, -1, True, "1"):
         with pytest.raises(ValidationError):
             draft([row(claim_indices=[index])])
+
+
+@pytest.mark.parametrize('planned_rows', [
+    [], [row('P1', claim_indices=[99])], [row('P1'), row('P1')], [row('P999')],
+    [row('P1', status='insufficient', claim_indices=[], missing_information='辅助项未完成')],
+])
+def test_auxiliary_plan_defects_are_visible_warnings_not_hard_errors(planned_rows):
+    from backend.app.knowledge.query_planner import rule_plan, query_plan_scope
+    question = '谁审批？有什么例外？'
+    with query_plan_scope(rule_plan(question)):
+        saved = coverage_snapshot(draft([row(), row('Q2'), *planned_rows]), question)
+        assert not saved['errors'] and saved['structurally_complete'] and saved['plan_warnings']
+        prompts = json.loads(requirement_prompt(question))
+        assert all(r.get('auxiliary') for r in prompts if r['id'].startswith('P'))
+
+
+@pytest.mark.parametrize('coverage', [[row()], [row(), row('Q2', claim_indices=[99])],
+    [row(), row('Q2'), row('Q999')]])
+def test_auxiliary_plan_never_exempts_missing_original_questions_or_unknown_ids(coverage):
+    from backend.app.knowledge.query_planner import rule_plan, query_plan_scope
+    with query_plan_scope(rule_plan('谁审批？有什么例外？')):
+        assert coverage_errors(draft(coverage), '谁审批？有什么例外？')

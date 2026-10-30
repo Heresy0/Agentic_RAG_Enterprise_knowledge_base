@@ -125,6 +125,51 @@ def test_answer_snapshot_freezes_actual_evidence_and_safe_config(data):
     assert UUID(run_id).hex == saved["request_id"]
 
 
+def test_http_snapshot_persists_visible_generation_without_offline_trace(data, monkeypatch):
+    from backend.app.evaluation.trace import record_answer_generation, record_rag_event
+    original = data.client.app.state.answer_service.answer
+    def instrumented(*args, **kwargs):
+        result = original(*args, **kwargs)
+        claims = [dict(text='首稿需要核对例外条件', citations=['1'])]
+        record_answer_generation(result, claims, dict(plan_warnings=['缺少辅助计划的覆盖记录：P1']),
+            changed=False, validation_errors=[])
+        record_rag_event(dict(kind='repair', outcome='not_needed', model_calls=0))
+        claims.clear()
+        return result
+    monkeypatch.setattr(data.client.app.state.answer_service, 'answer', instrumented)
+    response = data.client.post('/api/qa', json=dict(question='q', knowledge_base_id=str(data.bases[0].id)))
+    assert response.status_code == 200 and 'generation' not in response.json()
+    run_id = response.json()['run_id']
+    saved = data.client.get(f'/api/qa/runs/{run_id}').json()['snapshot']['generation']
+    assert saved['complete']
+    first = saved['stages']['answer_generation'][0]
+    assert first['claims'][0]['text'] == '首稿需要核对例外条件'
+    assert first['coverage']['plan_warnings'] and not first['validation_errors']
+    assert saved['stages']['rag_routing'] == [dict(kind='repair', outcome='not_needed', model_calls=0)]
+    data.current = data.principals[1]
+    assert data.client.get(f'/api/qa/runs/{run_id}').status_code == 404
+
+
+def test_generation_limits_preserve_evidence_and_request_isolation(data):
+    from backend.app.evaluation.trace import record_answer_generation, record_rag_event
+    from backend.app.quality.capture import MAX_DIAGNOSTIC_BYTES, MAX_DIAGNOSTIC_EVENTS
+    scope = RetrievalScope(data.current.tenant_id, data.bases[0].id)
+    with capture_snapshot(scope, 'q') as capture:
+        record_context(BuiltContext('已授权正文', [], 6))
+        result = AnswerResult(answer='回答', answerable=False, citations=[])
+        record_answer_generation(result, [], dict(oversized='中' * MAX_DIAGNOSTIC_BYTES),
+            changed=False, validation_errors=[])
+        for _ in range(MAX_DIAGNOSTIC_EVENTS + 1):
+            record_rag_event(dict(kind='repair', outcome='not_needed', model_calls=0))
+        status, saved = capture.freeze()
+    assert status == 'captured' and saved['context']['rendered_text'] == '已授权正文'
+    assert not saved['generation']['complete']
+    assert 'answer_generation' not in saved['generation']['stages']
+    assert len(saved['generation']['stages']['rag_routing']) == MAX_DIAGNOSTIC_EVENTS
+    with capture_snapshot(scope, 'other') as second:
+        assert second.freeze()[1]['generation']['stages'] == {}
+
+
 def test_feedback_upsert_is_unique_validated_and_audited(data):
     run_id = ask(data)
     first = put(data, run_id)
@@ -260,6 +305,9 @@ def test_capture_rejects_out_of_scope_rendering_and_is_request_local(data):
         knowledge_base_id=str(data.bases[1].id))
     with capture_snapshot(scope, "q") as capture:
         record_context(BuiltContext("foreign-secret", [item], 14))
+        from backend.app.evaluation.trace import record_answer_generation
+        record_answer_generation(AnswerResult(answer='foreign-secret', answerable=False, citations=[]),
+            [], {}, changed=False, validation_errors=[])
         status, saved = capture.freeze()
     assert status == "incomplete" and saved["context"]["items"] == []
     assert "foreign-secret" not in str(saved)

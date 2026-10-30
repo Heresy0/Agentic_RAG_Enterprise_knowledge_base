@@ -13,10 +13,21 @@ from backend.app.model_usage import summarize_usage
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 
+def check_demo_release(pack):
+    """Freeze the report's criteria; this does not add a runtime QA gate."""
+    release=read(pack/'demo_release.json')
+    if release['scorer_version']!=SCORER_VERSION:
+        raise ValueError('评分版本与冻结演示口径不同，请另建版本并保留旧记录')
+    for relative,expected in release['files_sha256_lf'].items():
+        actual=hashlib.sha256((ROOT/relative).read_bytes().replace(b'\r\n',b'\n')).hexdigest()
+        if actual!=expected:
+            raise ValueError('冻结演示文件发生变化：'+relative)
+    return release
+
 def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run-dir',type=Path,required=True)
     p.add_argument('--output-dir',type=Path,required=True);p.add_argument('--collect-ledger',action='store_true');a=p.parse_args(argv)
-    pack=ROOT/'evals/manufacturing_zh_lite_v1';profile=load_profile(pack/'profile.json')
+    pack=ROOT/'evals/manufacturing_zh_lite_v1';release=check_demo_release(pack);profile=load_profile(pack/'profile.json')
     cases=[r for split in profile['splits']for r in map(json.loads,(pack/split/'single_turn.jsonl').read_text(encoding='utf-8').splitlines())]
     reviewed={r['id']:r for r in apply_scoring_rules(cases,pack/'scoring_rules.json')}
     traces={};split_ids={};trace_hashes={}
@@ -42,7 +53,8 @@ def main(argv=None):
     def summary(rows):
         return dict(total=len(rows),complete=sum(r['status']!='error'for r in rows),errors=sum(r['status']=='error'for r in rows),
             original_proxy_passed=sum(r['original_pass']for r in rows),reviewed_proxy_passed=sum(r['reviewed_pass']for r in rows))
-    report=dict(**summary(records),scorer_version=SCORER_VERSION,selection='reviewed_demo_regression_not_blind_test',
+    report=dict(**summary(records),scorer_version=SCORER_VERSION,demo_release=release['id'],
+        release_sha256=sha(pack/'demo_release.json'),selection='reviewed_demo_regression_not_blind_test',
         splits={k:summary([r for r in records if r['id']in ids])for k,ids in split_ids.items()},
         groups={g:summary([r for r in records if r['group']==g])for g in ('ordinary','ocr','behavior')},
         profile_sha256=sha(pack/'profile.json'),rules_sha256=sha(pack/'scoring_rules.json'),trace_sha256=trace_hashes,

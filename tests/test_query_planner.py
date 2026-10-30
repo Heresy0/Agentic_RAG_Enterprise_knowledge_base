@@ -158,7 +158,7 @@ def test_split_pipeline_keeps_original_search_and_adds_coverage_requirements(mon
     assert current_query_plan() is None
 
 
-def test_original_coverage_cannot_silently_omit_split_requirements(monkeypatch):
+def test_original_coverage_can_omit_auxiliary_plan_without_refusal(monkeypatch):
     from test_answer_service import build_service, answer
     from backend.app.knowledge.answer_models import GenerationAnswerDraft
     coverage = [dict(requirement_id=identifier, aspect="标准", status="answered", claim_indices=[1], missing_information=None)
@@ -166,5 +166,9 @@ def test_original_coverage_cannot_silently_omit_split_requirements(monkeypatch):
     service, retrieval, generation, *_ = build_service(monkeypatch, model_result=GenerationAnswerDraft.model_validate(
         dict(answerable=True, response_type='answer', claims=[dict(text="依照服务标准办理", citations=["资料1"])], coverage=coverage, refusal_reason=None)))
     service._settings.rag_planner_mode = "auto"
-    result = answer(service, "费用标准是什么？办理条件是什么？")
-    assert not result.answerable and "P1" in result.refusal_reason and "P2" in result.refusal_reason
+    from backend.app.evaluation.trace import capture_trace
+    with capture_trace() as trace:
+        result = answer(service, "费用标准是什么？办理条件是什么？")
+    assert result.answerable
+    saved = trace.stages['answer_generation'][0]['coverage']
+    assert not saved['errors'] and any('P1' in warning and 'P2' in warning for warning in saved['plan_warnings'])

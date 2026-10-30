@@ -8,6 +8,28 @@ from scripts.build_manufacturing_demo_profile import load_profile,OCR_PASSED,OCR
 
 ROOT=Path(__file__).resolve().parents[1];PACK=ROOT/'evals/manufacturing_zh_lite_v1'
 
+
+def test_demo_release_matches_unchanged_r13_criteria():
+    from scripts.report_manufacturing_demo import check_demo_release
+    release = check_demo_release(PACK)
+    assert release['scorer_version'] == '2026-10-29-r13'
+    assert release['stable']['source_commit'].startswith('43aeafc')
+    assert release['reference_result']['reviewed_proxy_passed'] == 84
+
+
+def test_demo_release_rejects_criterion_drift_but_accepts_checkout_newlines(tmp_path, monkeypatch):
+    from scripts import report_manufacturing_demo as report
+    monkeypatch.setattr(report, 'ROOT', tmp_path)
+    text = tmp_path/'criterion.txt'
+    text.write_bytes(b'fixed\r\n')
+    release = dict(scorer_version=report.SCORER_VERSION,
+        files_sha256_lf={'criterion.txt': hashlib.sha256(b'fixed\n').hexdigest()})
+    (tmp_path/'demo_release.json').write_text(json.dumps(release), encoding='utf-8')
+    assert report.check_demo_release(tmp_path) == release
+    text.write_text('changed\n', encoding='utf-8')
+    with pytest.raises(ValueError, match='criterion.txt'):
+        report.check_demo_release(tmp_path)
+
 def selected():
     return [json.loads(line)for split in ('development','regression')for line in (PACK/split/'single_turn.jsonl').read_text(encoding='utf-8').splitlines()]
 

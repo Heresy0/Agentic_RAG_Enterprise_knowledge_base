@@ -148,14 +148,15 @@ def record_answer_decision(*, stage, answerable, reason=None, temporal=None):
     """Structured outcome only; never collect hidden model reasoning."""
     if stage in {'pre_generation', 'generation_error', 'validation', 'final'} and type(answerable) is bool:
         RAG_TERMINAL_RESULTS.labels(stage, str(answerable).lower()).inc()
+    decision = dict(stage=stage, answerable=answerable, reason=reason, temporal=deepcopy(temporal))
+    observation.observe_diagnostic('answer_decisions', decision)
     trace = _current.get()
     if trace is not None:
-        trace.stages.setdefault("answer_decisions", []).append(dict(
-            stage=stage, answerable=answerable, reason=reason, temporal=deepcopy(temporal),
-        ))
+        trace.stages.setdefault("answer_decisions", []).append(decision)
 
 
 def record_answer_completion(records):
+    observation.observe_diagnostic('answer_completion', dict(decisions=records))
     trace = _current.get()
     if trace is not None:
         trace.stages['answer_completion'] = deepcopy(records)
@@ -163,13 +164,13 @@ def record_answer_completion(records):
 
 def record_answer_generation(response, claims, coverage, *, changed, validation_errors, stage="answer_generation"):
     """Opt-in visible first answer/coverage only, never hidden reasoning or public API fields."""
+    data = dict(response=response.model_dump(mode='json'), claims=deepcopy(claims),
+                coverage=deepcopy(coverage), completion_changed=changed,
+                validation_errors=list(validation_errors))
+    observation.observe_diagnostic(stage, data)
     trace = _current.get()
     if trace is not None:
-        trace.stages[stage] = [dict(
-            response=response.model_dump(mode='json'), claims=deepcopy(claims),
-            coverage=deepcopy(coverage), completion_changed=changed,
-            validation_errors=list(validation_errors),
-        )]
+        trace.stages[stage] = [data]
 
 
 def record_conversation_resolution(question, resolved, history_count):
@@ -196,6 +197,7 @@ def record_agent_event(event):
 
 def record_rag_event(event):
     """Visible plans, strategy transitions and repair outcomes, opt-in only."""
+    observation.observe_diagnostic('rag_routing', event)
     kind = event.get("kind")
     if kind in {"plan", "retrieval_route", "strategy_transition"}:
         strategy = event.get("selected_strategy", event.get("strategy"))

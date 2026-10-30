@@ -15,6 +15,20 @@ from test_answer_repair import repair_service
 TEXT = '设备在室内稳定30min，待温度平衡后进行校准。'
 
 
+def test_actual_answer_service_records_private_first_pass_and_skip_reason(monkeypatch):
+    from test_answer_service import TEST_SCOPE
+    from backend.app.quality.capture import capture_snapshot
+    service, *_ = build_service(monkeypatch, model_result=draft(), documents=[make_document(TEXT)])
+    with capture_snapshot(TEST_SCOPE, '校准前需要什么条件？') as capture:
+        result = answer(service, '校准前需要什么条件？')
+        status, saved = capture.freeze()
+    assert result.answerable and status == 'captured'
+    stages = saved['generation']['stages']
+    assert stages['answer_generation'][0]['claims'][0]['text'] == draft().claims[0].text
+    assert stages['answer_generation'][0]['coverage']['coverage'][0]['source_quote'] == TEXT
+    assert any(e['kind'] == 'repair' and e['outcome'] == 'disabled' for e in stages['rag_routing'])
+
+
 def draft(quote=TEXT, *, text='设备需在室内稳定30min，待温度平衡后进行校准', citations=None):
     return EvidenceFirstAnswerDraft.model_validate(dict(answerable=True, response_type='answer',
         claims=[dict(text=text, citations=citations or ['资料1'])], coverage=[dict(

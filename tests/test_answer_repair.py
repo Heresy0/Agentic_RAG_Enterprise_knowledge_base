@@ -78,6 +78,20 @@ def test_one_model_repair_fixes_coverage_without_changing_facts():
     assert trace.stages["rag_routing"][-1]["outcome"] == "model_repaired"
 
 
+def test_auxiliary_warning_does_not_block_real_coverage_repair():
+    from backend.app.knowledge.query_planner import QueryPlan, query_plan_scope
+    original, fixed = draft(), draft(indices=(1,))
+    for model in (original, fixed):
+        model.coverage.append(model.coverage[0].model_copy(update=dict(requirement_id='P1',
+            status='insufficient', claim_indices=[], missing_information='辅助建议未覆盖')))
+    plan = QueryPlan(intent='fact', strategy='standard', reason='direct_lookup',
+        subquestions=[dict(question='温度是多少？', source_quote='温度是多少？')])
+    service, calls, _ = repair_service(fixed)
+    with query_plan_scope(plan):
+        result, _, _ = execute(service, original)
+    assert result == fixed and len(calls) == 1
+
+
 def test_unambiguous_citation_format_is_repaired_locally():
     original = draft(citation=" [资料1] ", indices=(1,))
     service, calls, _ = repair_service(RuntimeError("must not call"))

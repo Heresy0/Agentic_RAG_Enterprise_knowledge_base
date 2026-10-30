@@ -1,0 +1,26 @@
+{
+  "id": "manufacturing-demo-stable-r13-20261030",
+  "scorer_version": "2026-10-29-r13",
+  "stable": {
+    "source_commit": "43aeafc7656ce3092e41f79392d56762cb7af8d6",
+    "image_tag": "enterprise-knowledge-manufacturing:response-type-33e13b5",
+    "image_id": "sha256:a105a27fae8ed06ff2f1136860594266d79ea7d4ed136e31238f2bdc03358bd8"
+  },
+  "reference_result": {
+    "path": "evals/manufacturing_zh_lite_v1/reports/20261029-r2-scoring/summary.json",
+    "reviewed_proxy_passed": 84,
+    "total": 98,
+    "scope": "historical_r13_rescore_not_current_candidate_result"
+  },
+  "candidate_status": "requires_separate_live_validation_before_promotion",
+  "files_sha256_lf": {
+    "evals/manufacturing_zh_lite_v1/profile.json": "576bf1f6192f155202000f9f84995767a9f7b1b1c27947eecab36e839af0d7ba",
+    "evals/manufacturing_zh_lite_v1/scoring_rules.json": "eea453f5cc414641296aa167492a7f01994c90d0b1df78bb476e0e0838107631",
+    "evals/manufacturing_zh_lite_v1/development/single_turn.jsonl": "c8146eface39d50c3f8f5832c062f8f80855a3641bb6b1ef4dddc8b6e83a014e",
+    "evals/manufacturing_zh_lite_v1/regression/single_turn.jsonl": "85c9f6ed32a462aa65b60cd276d74de1c14413ebf36117594f08d22c7abe97b4",
+    "evals/manufacturing_zh_lite_v1/reports/20261029-r2-scoring/summary.json": "65c937e9d7ecea2f882a1122adcfd0c7c0856f36697faa6007af439aec0c9a00",
+    "backend/app/evaluation/metrics.py": "13eb3b2c348e01f158e92550cf38947a00cd31644aaffb6f73c6181716e20c85",
+    "backend/app/evaluation/assertions.py": "cb8d5b42a0eb982cb0c46623b89e3b3b8fe98975c397b1b14d9953f9f16ba092",
+    "backend/app/evaluation/scoring_rules.py": "bb156c27978bdc9202719b18149cda14ff284f09070d87d6aaacedca77ee2ce2"
+  }
+}

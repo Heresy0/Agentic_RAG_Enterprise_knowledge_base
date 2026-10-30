@@ -2,18 +2,47 @@
 
 本指南使用当前16份中文原件、98题精简回归配置及既有工作台。公开规范放在公共参考库；生产工艺、质量检验库沿用现有角色权限配置。当前没有ERP/MES实时接口，视觉解析待单独配置与实测。
 
+展示发布清单固定在[`demo_release.json`](../evals/manufacturing_zh_lite_v1/demo_release.json)：源码`43aeafc`、稳定镜像ID和r13评分口径分别记录。开发分支上的辅助计划收敛及生成诊断属于候选改动，尚未完成新一轮真实问答验证，不自动替换展示版本或更新成绩。
+
 ## 启动与版本
 
 在项目根目录复用已构建的最终镜像，不重建索引、不重放整套问答：
 
 ```powershell
-$env:MANUFACTURING_IMAGE='enterprise-knowledge-manufacturing:response-type-33e13b5'
+$demoRelease = Get-Content -LiteralPath 'evals/manufacturing_zh_lite_v1/demo_release.json' -Raw | ConvertFrom-Json
+$env:MANUFACTURING_IMAGE=$demoRelease.stable.image_id
 docker compose -f compose.yaml -f compose.manufacturing.yaml up -d --no-deps --no-build api worker quality-worker
 .venv/Scripts/python.exe scripts/manufacturing_workflow.py tokens --run-dir tmp/manufacturing-finalize-r1 --apply
 .venv/Scripts/python.exe scripts/manufacturing_workflow.py status --run-dir tmp/manufacturing-finalize-r1
 ```
 
 基础服务沿用现有Compose环境。浏览器打开`http://127.0.0.1:8000`，使用本机`tmp/manufacturing-finalize-r1/credentials.json`中的演示账号。该目录被Git忽略，凭据不要放入演示截图或报告。管理员完成复核和评测操作，普通角色用于展示可见知识库范围。16份公开原件并非企业私密生产数据。
+
+镜像按本机已有ID启动，继续使用`--no-build`；镜像标签仅作检索说明。启动命令需要原有数据库、向量、Keycloak等基础服务就绪。本次没有更新容器或重建索引。
+
+## 固定评分入口
+
+对一轮已有40＋58题记录统一使用以下命令，输出目录须新建；省略`--collect-ledger`时只读本地回答，不发送HTTP请求或调用模型：
+
+```powershell
+.venv/Scripts/python.exe scripts/report_manufacturing_demo.py --run-dir tmp/某轮完整运行 --output-dir tmp/某轮完整运行/report-r13-new
+```
+
+报告入口核对发布清单中的题集、评分修订和评分程序哈希（文本按LF计算），在报告中保存发布ID与原始文件哈希。该检查只约束离线报告，不增加问答门禁；候选代码可以使用相同口径评测。修改评分口径时须另行更新发布清单并保留旧版本，不能覆盖旧成绩。
+
+84/98对应历史同一批回答的r13重评分；最近候选的自动74/98、表达等价辅助复核82/98属于另一次运行。两者均不能作为本次候选改动的新成绩。辅助复核不是独立语义准确率。
+
+## 候选生成诊断
+
+运行包含本次改动的API后，沿现有owner快照接口`GET /api/qa/runs/{run_id}`查看`snapshot.generation.stages`：
+
+- `answer_generation`、`answer_regeneration`或`answer_schema_recovery`保存可见首稿、claims、覆盖清单、校验错误和后处理是否改变内容；`coverage.plan_warnings`记录辅助P项问题。
+- `rag_routing`保存已有计划、路由、预算及修复事件，包含`not_needed`、`ineligible`、`disabled`、`prompt_budget`等原因；`answer_decisions`保存生成及最终判定。
+- `answer_completion`保存现有补全决策。诊断最多100000字节、64条事件；`generation.complete=false`表示诊断被限制或上下文未完整捕获，不能把缺失记录理解为阶段未执行。
+
+这些内容沿用私有快照的所有者、主动共享、当前权限复核和删除规则，不加入公共问答响应，也不收集原始提示词、密钥或隐藏推理。旧快照没有这些字段，不能恢复历史首稿。新增观测本身不提高问答分数。
+
+2026-10-30实施验证：问答、修复、HTTP私有快照、权限、评分与质量闭环相关438项回归通过，使用替身模型和测试数据库；原98题回答按冻结r13离线重评分仍为74/98，题集、规则和原始trace哈希一致。原始运行及人工等价复核另行保留，不把离线重放当成新模型成绩。本次没有更新容器、重建索引或发送真实模型请求。本机验证产物在忽略目录`tmp/three-item-closure-20261030/`。
 
 ## 一次约7分钟的演示
 

@@ -53,7 +53,8 @@ calculation必须为null。不输出思维过程。候选仍由程序检查事�
 
 def eligible(draft, errors, *, numeric_binding=False):
     return bool(draft.answerable and draft.claims and errors
-                and all(row.status == "answered" for row in draft.coverage)
+                and all(row.status == "answered" for row in draft.coverage
+                        if not row.requirement_id.startswith('P'))
                 and all(any(marker in error for marker in REPAIRABLE + ("计算结论校验失败", "计算结论不是程序生成",)
                             + (("数字或日期缺少证据支持",) if numeric_binding else ()) )
                         for error in errors))
@@ -98,6 +99,7 @@ class AnswerRepair:
 
     def repair(self, draft, *, question, context, validator, scope, session, refresh_context):
         if not getattr(self.settings, "rag_repair_enabled", False):
+            record_rag_event(dict(kind="repair", outcome="disabled", model_calls=0))
             return draft
         errors = validator.validate(draft=draft, context=context, question=question).errors
         # Supplement only a fully valid positive draft; no refusal conversion.
@@ -106,6 +108,7 @@ class AnswerRepair:
             errors = direct_answer_errors(question, draft)
         numeric_binding = numeric_binding_supported(draft, errors, validator, context, question)
         if not eligible(draft, errors, numeric_binding=numeric_binding):
+            record_rag_event(dict(kind="repair", outcome="ineligible" if errors else "not_needed", model_calls=0))
             return draft
         record_rag_event(dict(kind="strategy_transition", selected_strategy="reflective", reason="repairable_validation"))
         original = draft.model_copy(deep=True)

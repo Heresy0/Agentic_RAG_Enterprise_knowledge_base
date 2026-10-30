@@ -36,7 +36,7 @@ def question_requirements(question: str, context=None) -> list[QuestionRequireme
     if len(parts) > 8:
         parts = parts[:7] + ["\n".join(parts[7:])]
     anchors = [QuestionRequirement(f"Q{index}", text) for index, text in enumerate(parts, 1)]
-    # A scoped input plan adds obligations; it never replaces original Q/E anchors.
+    # Planner suggestions remain visible, but never replace Q/E obligations.
     from .query_planner import current_query_plan
     plan = current_query_plan()
     planned = [QuestionRequirement(f"P{index}", row.question)
@@ -47,44 +47,56 @@ def question_requirements(question: str, context=None) -> list[QuestionRequireme
 
 def requirement_prompt(question: str, context=None) -> str:
     return json.dumps([dict(id=row.id, question=row.text,
+                           **({'auxiliary': True} if row.id.startswith('P') else {}),
                            **({'source': row.citation_id} if row.citation_id else {}))
                        for row in question_requirements(question, context)],
                       ensure_ascii=False)
 
 
-def coverage_errors(draft: GenerationAnswerDraft, question: str, context=None) -> list[str]:
+def _coverage_issues(draft: GenerationAnswerDraft, question: str, context=None):
     requirements = {row.id: row for row in question_requirements(question, context)}
-    expected = set(requirements)
+    planned = {key for key in requirements if key.startswith('P')}
+    expected = set(requirements) - planned
     actual = {row.requirement_id for row in draft.coverage}
-    errors = []
+    auxiliary = planned | {key for key in actual if key.startswith('P')}
+    errors, warnings = [], []
     if draft.answerable and draft.evidence_gap is not None:
         errors.append("可回答结果不能同时声明证据缺口")
     if expected - actual:
         errors.append("缺少必答问题的覆盖记录：" + "、".join(sorted(expected - actual)))
-    if actual - expected:
-        errors.append("包含不存在的必答问题编号：" + "、".join(sorted(actual - expected)))
+    if actual - set(requirements) - auxiliary:
+        errors.append("包含不存在的必答问题编号：" + "、".join(sorted(actual - set(requirements) - auxiliary)))
+    if actual & auxiliary - planned:
+        warnings.append("包含不存在的辅助计划编号：" + "、".join(sorted(actual & auxiliary - planned)))
+    if planned - actual:
+        warnings.append("缺少辅助计划的覆盖记录：" + "、".join(sorted(planned - actual)))
     seen = set()
     for row in draft.coverage:
+        issues = warnings if row.requirement_id in auxiliary else errors
         key = (row.requirement_id, re.sub(r"\s+", "", row.aspect))
         if not key[1] or key in seen:
-            errors.append("必答要点为空或重复：" + row.requirement_id)
+            issues.append("必答要点为空或重复：" + row.requirement_id)
         seen.add(key)
         indices = row.claim_indices
         if len(indices) != len(set(indices)) or any(index > len(draft.claims) for index in indices):
-            errors.append("必答要点关联了重复或不存在的结论：" + row.requirement_id)
+            issues.append("必答要点关联了重复或不存在的结论：" + row.requirement_id)
         if row.status == "answered":
             if not indices or not draft.answerable or row.missing_information is not None:
-                errors.append("已回答要点缺少结论或与拒答状态矛盾：" + row.requirement_id)
+                issues.append("已回答要点缺少结论或与拒答状态矛盾：" + row.requirement_id)
             required = requirements.get(row.requirement_id)
             if required and required.citation_id and not any(
                     required.citation_id in draft.claims[index - 1].citations
                     for index in indices if 1 <= index <= len(draft.claims)):
-                errors.append("条件要点缺少对应原文引用：" + row.requirement_id)
+                issues.append("条件要点缺少对应原文引用：" + row.requirement_id)
         elif indices or not (row.missing_information or "").strip():
-            errors.append("未回答要点必须说明缺口且不能关联结论：" + row.requirement_id)
+            issues.append("未回答要点必须说明缺口且不能关联结论：" + row.requirement_id)
         if draft.answerable and row.status != "answered":
-            errors.append("仍有未回答必答要点，不能标为完整可回答：" + row.requirement_id)
-    return errors
+            issues.append("仍有未回答必答要点，不能标为完整可回答：" + row.requirement_id)
+    return errors, warnings
+
+
+def coverage_errors(draft: GenerationAnswerDraft, question: str, context=None) -> list[str]:
+    return _coverage_issues(draft, question, context)[0]
 
 
 def _quote_warnings(draft: GenerationAnswerDraft, context=None) -> list[str]:
@@ -107,9 +119,9 @@ def _quote_warnings(draft: GenerationAnswerDraft, context=None) -> list[str]:
 
 
 def coverage_snapshot(draft: GenerationAnswerDraft, question: str, context=None) -> dict:
-    errors = coverage_errors(draft, question, context)
+    errors, warnings = _coverage_issues(draft, question, context)
     return dict(requirements=json.loads(requirement_prompt(question, context)),
                 coverage=[row.model_dump() for row in draft.coverage], errors=errors,
-                quote_warnings=_quote_warnings(draft, context),
+                plan_warnings=warnings, quote_warnings=_quote_warnings(draft, context),
                 structurally_complete=draft.answerable and not errors,
                 limitation="Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review.")

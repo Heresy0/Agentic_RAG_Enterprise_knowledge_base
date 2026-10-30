@@ -11,6 +11,10 @@ from prometheus_client import Counter
 _current = ContextVar("qa_snapshot", default=None)
 MAX_CONTEXT_CHARACTERS = 100_000
 MAX_CONTEXT_ITEMS = 100
+MAX_DIAGNOSTIC_BYTES = 100_000
+MAX_DIAGNOSTIC_EVENTS = 64
+DIAGNOSTIC_STAGES = frozenset({'answer_generation', 'answer_regeneration', 'answer_schema_recovery',
+    'answer_decisions', 'answer_completion', 'rag_routing'})
 PIPELINE_STAGES = frozenset({"vector", "keyword", "fusion", "rerank_model", "rerank", "expanded_candidates",
     "policy_candidates_raw", "policy_candidates", "parent_context", "authorized_final", "initial_authorized", "agent_evidence", "feedback_evidence"})
 QA_SNAPSHOTS = Counter("enterprise_qa_snapshots", "QA snapshot persistence outcomes", ["outcome"])
@@ -28,6 +32,24 @@ class SnapshotCapture:
     pipeline_rows: int = 0
     pipeline_bytes: int = 0
     pipeline_limited: bool = False
+    diagnostics: dict = field(default_factory=dict)
+    diagnostic_bytes: int = 0
+    diagnostic_events: int = 0
+    diagnostics_limited: bool = False
+
+    def observe_diagnostic(self, stage, payload):
+        if stage not in DIAGNOSTIC_STAGES:
+            return
+        # Only structured, visible answer data and compiler events are accepted.
+        # A diagnostic limit must not discard the usable evidence snapshot.
+        serialized = json.dumps(payload, ensure_ascii=False, default=str)
+        size = len(serialized.encode('utf-8'))
+        if self.diagnostic_events >= MAX_DIAGNOSTIC_EVENTS or self.diagnostic_bytes + size > MAX_DIAGNOSTIC_BYTES:
+            self.diagnostics_limited = True
+            return
+        self.diagnostics.setdefault(stage, []).append(json.loads(serialized))
+        self.diagnostic_bytes += size
+        self.diagnostic_events += 1
 
     def observe_stage(self, stage, documents):
         if stage not in PIPELINE_STAGES:
@@ -94,6 +116,9 @@ class SnapshotCapture:
     def freeze(self):
         status = "incomplete" if self.incomplete else "captured" if self.context is not None else "not_observed"
         return status, dict(schema_version=2, context=self.context, history=self.history,
+            generation=dict(stages=self.diagnostics if not self.incomplete else {},
+                complete=not self.diagnostics_limited and not self.incomplete,
+                limitation="仅保留可见首稿、覆盖记录和有限诊断事件；不记录原始提示词、凭据或隐藏推理。"),
             pipeline=dict(stages=self.pipeline, complete=not self.pipeline_limited,
                           limitation="仅记录有权限候选的ID、名次、分数和正文指纹；不记录候选正文、提示词或隐藏推理。"))
 
@@ -124,6 +149,12 @@ def observe_context(context):
     capture = _current.get()
     if capture is not None:
         capture.observe_context(context)
+
+
+def observe_diagnostic(stage, payload):
+    capture = _current.get()
+    if capture is not None:
+        capture.observe_diagnostic(stage, payload)
 
 
 def observe_history(turns):
