@@ -65,16 +65,18 @@ def main():
             knowledge_base_id=str(scope.knowledge_base_id), chunk_id="synthetic-temperature",
             document_name="合成工艺说明", section_path="温度"))
         context = ContextBuilder().build([doc], question="甲工艺温度是多少？")
-        draft = GenerationAnswerDraft.model_validate(dict(answerable=True, claims=[
+        draft = GenerationAnswerDraft.model_validate(dict(answerable=True, response_type='answer', claims=[
             dict(text="甲工艺的温度为80摄氏度", citations=["资料1"])], refusal_reason=None,
             coverage=[dict(requirement_id="Q1", aspect="工艺温度", status="answered", claim_indices=[2], missing_information=None)]))
         with rag_budget_scope(RagBudget.from_settings(settings)), capture_trace() as trace:
             started, cursor = perf_counter(), len(usage.events)
             try:
+                validator = AnswerValidator()
                 repaired = AnswerRepair(settings, guard_factory=guard_factory).repair(draft,
-                    question="甲工艺温度是多少？", context=context, validator=AnswerValidator(), scope=scope,
+                    question="甲工艺温度是多少？", context=context, validator=validator,
+                    validation=validator.validate(draft=draft, context=context, question="甲工艺温度是多少？"), scope=scope,
                     session=None, refresh_context=lambda: True)
-                valid = AnswerValidator().validate(draft=repaired, context=context, question="甲工艺温度是多少？").valid
+                valid = validator.validate(draft=repaired, context=context, question="甲工艺温度是多少？").valid
                 outcome = trace.stages["rag_routing"][-1].get("outcome")
                 results.append(dict(kind="repair", outcome=outcome,
                     status="passed" if valid and outcome == "model_repaired" else "failed",
