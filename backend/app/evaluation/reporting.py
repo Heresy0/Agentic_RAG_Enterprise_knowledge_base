@@ -71,7 +71,7 @@ def compare_baseline(report, baseline):
     """Only compare like-for-like runs; never turn historical Chroma numbers into current gates."""
     keys = ("schema_version", "scorer_version", "scoring_rules_sha256", "evaluator_version", "quality_policy_sha256", "mode", "dataset_sha256", "selected_case_ids", "requested_conversation_ids",
             "conversation_backend", "conversations_sha256", "corpus_manifest_sha256", "scope_config_sha256",
-            "suite_sha256", "selected_groups")
+            "suite_sha256", "selected_groups", "retrieval_metrics_sha256")
     mismatches = [key for key in keys if report.get(key) != baseline.get(key)]
     if set(report["layers"]) != set(baseline.get("layers", {})):
         mismatches.append("selected_layers")
@@ -89,6 +89,13 @@ def compare_baseline(report, baseline):
             current, old = layer.get("summary", {}).get(metric), previous.get("summary", {}).get(metric)
             if isinstance(current, (int, float)) and isinstance(old, (int, float)):
                 changes.append(dict(layer=name, metric=metric, baseline=old, current=current, delta=current - old))
+        for k, values in metrics.get("at_k", {}).items():
+            old_values = (previous.get("metrics") or {}).get("at_k", {}).get(k, {})
+            for metric in ("hit_rate", "mrr", "evidence_recall", "all_evidence_rate"):
+                current, old = values.get(metric), old_values.get(metric)
+                if isinstance(current, (int, float)) and isinstance(old, (int, float)):
+                    changes.append(dict(layer=name, metric=f"{metric}@{k}", baseline=old,
+                                        current=current, delta=current - old))
     return dict(status="compared", changes=changes, limitation="Deltas are diagnostic, not an automatic deployment gate.")
 
 
@@ -114,6 +121,18 @@ def write_report(report, directory):
     for name, layer in report["layers"].items():
         summary = layer.get("summary", {})
         lines.append(f"| {name} | {layer['status']} | {summary.get('passed', '—')} | {summary.get('failed', '—')} | {summary.get('error', '—')} | {summary.get('skipped', 0) + summary.get('partial', 0) if summary else '—'} | {summary.get('not_applicable', 0) if summary else '—'} |")
+    lines.extend(['', '## 固定K检索指标', '',
+                  'Recall仅针对已标注必要证据，不是全库穷尽相关性召回；缺观察不计为0或通过。', '',
+                  '| 阶段 | K | 已评分题数 | Hit@K | 必要证据Recall@K | MRR@K | 全证据完整率@K |',
+                  '|---|---:|---:|---:|---:|---:|---:|'])
+    for name, layer in report['layers'].items():
+        stages = layer.get('stages', {}) if name == 'retrieval' else {name: layer.get('metrics')}
+        for stage, values in stages.items():
+            for k, metric in (values or {}).get('at_k', {}).items():
+                lines.append(f"| {stage} | {k} | {metric['scored_cases']} | {metric['hit_rate']} | {metric['evidence_recall']} | {metric['mrr']} | {metric['all_evidence_rate']} |")
+    if report.get('timings'):
+        lines.extend(['', '## 耗时', '', 'HTTP问答、后端业务及阶段计时分开；旧轨迹未标明口径的耗时不计入HTTP P95。', '',
+                      '```json', json.dumps(report['timings'], ensure_ascii=False, indent=2), '```'])
     if report.get('group_scores'):
         lines.extend(['','## 单轮分组评分','',
             '各组使用原事实标准；历史100题成绩只属于main组，缺失观察不计为通过。','',

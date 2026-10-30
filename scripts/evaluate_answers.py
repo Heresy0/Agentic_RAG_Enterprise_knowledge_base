@@ -578,6 +578,23 @@ def summarize(results: list[dict]) -> dict:
     }
 
 
+def summarize_trace_timings(records: list[dict]) -> dict:
+    """Separate HTTP QA, local services and backend stages; never relabel old timings."""
+    completed = [row for row in records if not row.get("error_type") and row.get("status") != "error"]
+    def stats(values):
+        return dict(count=len(values), mean_ms=round(sum(values) / len(values), 2) if values else None,
+                    p50_ms=percentile(values, .5), p95_ms=percentile(values, .95))
+    observed = [row for row in completed if isinstance(row.get("latency_ms"), (int, float))]
+    timings = [dict(timings=row["response"]["timings"]) for row in completed
+               if isinstance((row.get("response") or {}).get("timings"), dict)]
+    return dict(percentile_method="linear_interpolation", selected_cases=len(records),
+                execution_errors=len(records) - len(completed),
+                http_qa=stats([row["latency_ms"] for row in observed if row.get("latency_scope") == "http_qa_response"]),
+                local_services=stats([row["latency_ms"] for row in observed if row.get("latency_scope") == "local_backend_services"]),
+                unclassified_trace_timings=sum(not row.get("latency_scope") for row in observed),
+                backend_stages={field: summarize_stage_latency(timings, field) for field in TIMING_FIELDS})
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="通过 /api/qa 运行答案级评估"

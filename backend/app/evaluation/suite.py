@@ -2,7 +2,7 @@
 import hashlib
 import json
 
-from .metrics import summarize_stages
+from .retrieval_metrics import summarize_stages
 from .reporting import quality_layers
 
 

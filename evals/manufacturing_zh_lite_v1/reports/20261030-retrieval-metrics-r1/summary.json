@@ -1,0 +1,177 @@
+{
+  "id": "retrieval-metrics-20261030-r1",
+  "protocol": {
+    "base_commit": "d5cd115",
+    "candidate_application_commit": "868005e",
+    "evaluation": "authenticated_local_initial_retrieval_and_context_not_full_answer_run",
+    "selected_cases": 98,
+    "labelled_positive_cases": 68,
+    "behavior_cases_not_applicable": 30,
+    "cutoffs": [
+      1,
+      3,
+      5,
+      8
+    ],
+    "actual_rerank_top_k": 12,
+    "recall_definition": "macro mean over labelled required evidence; accepted alternatives reselected within each cutoff",
+    "percentile_method": "linear_interpolation",
+    "dataset_sha256": "e9843ac0e25cd6aa105b270b9d452ea4fe0ba1e3f2c17794c6a4376a7c54f99b",
+    "scoring_rules_sha256": "4b9ccdb2a738ed0a19a720c4e58bbad48f7946aa3692e2a5befc9b4c3e94b3da",
+    "retrieval_metrics_sha256": "ed49508bb17ffd8e0273177d75ba19755fd2a61bdf2285809f41b07505e2325c",
+    "models": {
+      "embedding_model": "text-embedding-v4",
+      "rerank_model": "qwen3-rerank",
+      "answer_model": "qwen3.7-flash"
+    }
+  },
+  "live_retrieval": {
+    "executed": 98,
+    "errors": 0,
+    "at_8": {
+      "vector": {
+        "scored_cases": 68,
+        "hit_rate": 0.8970588235294118,
+        "mrr": 0.7552696078431372,
+        "evidence_recall": 0.8799019607843137,
+        "all_evidence_rate": 0.8676470588235294
+      },
+      "keyword": {
+        "scored_cases": 68,
+        "hit_rate": 0.8823529411764706,
+        "mrr": 0.6578781512605042,
+        "evidence_recall": 0.8651960784313726,
+        "all_evidence_rate": 0.8529411764705882
+      },
+      "fusion": {
+        "scored_cases": 68,
+        "hit_rate": 0.9411764705882353,
+        "mrr": 0.6967086834733893,
+        "evidence_recall": 0.9313725490196079,
+        "all_evidence_rate": 0.9264705882352942
+      },
+      "rerank": {
+        "scored_cases": 68,
+        "hit_rate": 0.9264705882352942,
+        "mrr": 0.8835784313725491,
+        "evidence_recall": 0.9093137254901961,
+        "all_evidence_rate": 0.8970588235294118
+      },
+      "context": {
+        "scored_cases": 68,
+        "hit_rate": 0.9705882352941176,
+        "mrr": 0.9134803921568627,
+        "evidence_recall": 0.9534313725490196,
+        "all_evidence_rate": 0.9411764705882353
+      }
+    },
+    "full_list_context": {
+      "scored_cases": 68,
+      "all_evidence_complete": 66,
+      "all_evidence_rate": 0.9705882352941176
+    },
+    "groups": {
+      "ordinary": {
+        "cases": 60,
+        "at_8": {
+          "scored_cases": 60,
+          "hit_rate": 1.0,
+          "mrr": 0.9436111111111111,
+          "evidence_recall": 0.9916666666666667,
+          "all_evidence_rate": 0.9833333333333333
+        },
+        "all_evidence_rate": 1.0
+      },
+      "ocr": {
+        "cases": 8,
+        "at_8": {
+          "scored_cases": 8,
+          "hit_rate": 0.75,
+          "mrr": 0.6875,
+          "evidence_recall": 0.6666666666666666,
+          "all_evidence_rate": 0.625
+        },
+        "all_evidence_rate": 0.75
+      }
+    },
+    "local_service_latency_ms": {
+      "count": 98,
+      "mean_ms": 1495.33,
+      "p50_ms": 1432.99,
+      "p95_ms": 1764.27
+    },
+    "failed_cases_by_stage": {
+      "retrieval": [
+        "MFGZH-Q010",
+        "MFGZH-Q068",
+        "MFGZH-Q077"
+      ],
+      "rerank": [
+        "MFGZH-Q010",
+        "MFGZH-Q025",
+        "MFGZH-Q068",
+        "MFGZH-Q077"
+      ],
+      "context": [
+        "MFGZH-Q068",
+        "MFGZH-Q077"
+      ]
+    }
+  },
+  "historical_original98_replay": {
+    "original_run": "a1d9a5f",
+    "selected_cases": 98,
+    "execution_errors": 3,
+    "unchanged_automatic_passed": 72,
+    "context_at_8": {
+      "scored_cases": 65,
+      "hit_rate": 0.9846153846153847,
+      "mrr": 0.9371794871794872,
+      "evidence_recall": 0.9666666666666667,
+      "all_evidence_rate": 0.9538461538461539
+    },
+    "backend_service_total_ms": {
+      "count": 95,
+      "mean_ms": 4741.21,
+      "p50_ms": 4291.1,
+      "p95_ms": 7431.01
+    },
+    "legacy_latencies_excluded_from_http_p95": 95,
+    "baseline_comparison_zero_delta_metrics": 25
+  },
+  "http_timing_smoke": {
+    "cases": [
+      "MFGZH-Q001",
+      "MFGZH-Q010",
+      "MFGZH-N01"
+    ],
+    "http_errors": 0,
+    "automatic_proxy_passed": 3,
+    "purpose": "validate timing boundary only, not a performance benchmark",
+    "per_case": [
+      {
+        "id": "MFGZH-Q001",
+        "http_qa_ms": 6362.9,
+        "observation_ms": 6548.92,
+        "backend_total_ms": 6156.28
+      },
+      {
+        "id": "MFGZH-Q010",
+        "http_qa_ms": 7281.87,
+        "observation_ms": 7386.99,
+        "backend_total_ms": 7225.61
+      },
+      {
+        "id": "MFGZH-N01",
+        "http_qa_ms": 4744.18,
+        "observation_ms": 4843.5,
+        "backend_total_ms": 4685.07
+      }
+    ]
+  },
+  "tests": {
+    "passed": 154
+  },
+  "baseline_preserved": true,
+  "local_artifacts": "tmp/retrieval-metrics-20261030-r1"
+}

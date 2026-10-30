@@ -14,7 +14,7 @@ from backend.app.evaluation.reporting import LAYERS, compare_baseline, quality_l
 from backend.app.evaluation.runner import evaluate_local, replay
 from backend.app.evaluation.http_runner import evaluate_conversations, evaluate_permissions
 from backend.app.evaluation.conversation_runner import evaluate_local_conversations
-from scripts.evaluate_answers import load_dataset
+from scripts.evaluate_answers import load_dataset, summarize_trace_timings
 from backend.app.evaluation.metrics import SCORER_VERSION
 from backend.app.evaluation.scoring_rules import apply_scoring_rules
 from backend.app.evaluation.suite import load_suite, select_groups, group_scores
@@ -180,6 +180,10 @@ def main(argv=None):
         report["layers"]["semantics"] = quality_layers(quality)["semantics"]
     if suite and quality_requested and quality and quality.get('records') is not None:
         report['group_scores']=group_scores(quality,suite,report['selected_case_ids'],quality_requested)
+    if quality and quality.get("records") is not None:
+        report["timings"] = summarize_trace_timings(quality["records"])
+        report["retrieval_metrics_sha256"] = hashlib.sha256(
+            (ROOT / "backend/app/evaluation/retrieval_metrics.py").read_bytes().replace(b'\r\n', b'\n')).hexdigest()
     if args.baseline_report:
         baseline = json.loads(args.baseline_report.read_text(encoding="utf-8"))
         report["baseline_comparison"] = compare_baseline(report, baseline)

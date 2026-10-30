@@ -11,7 +11,8 @@ import sys
 from pathlib import Path
 from uuid import UUID
 
-from .metrics import evidence_metrics, score_answer, score_generation, summarize_records, summarize_stages
+from .metrics import score_answer, score_generation, summarize_records
+from .retrieval_metrics import evidence_metrics, summarize_stages
 from .trace import capture_trace, record_context
 from .ranking import OBSERVED_STAGES, citation_rows, graded_ranking, rank_diagnostics
 from .semantics import score_semantics
@@ -39,7 +40,8 @@ def score_trace(case, trace, *, include_answer=False):
     metrics["model_usage"]["events"] = stages.get("model_usage", [])
     violations = sum(bool(row.get("scope_violation")) for rows in stages.values() for row in rows)
     if trace.get("error_type"):
-        return dict(id=case["id"], status="error", error_type=trace["error_type"], metrics=metrics)
+        return dict(id=case["id"], status="error", error_type=trace["error_type"], metrics=metrics,
+                    latency_ms=trace.get("latency_ms"), latency_scope=trace.get("latency_scope"))
     status = "partial"
     if case["answerable"] and metrics.get("context", {}).get("scored"):
         status = "passed" if metrics["context"]["all_evidence_present"] and not metrics["context"].get("incomplete_reason") else "failed"
@@ -55,7 +57,7 @@ def score_trace(case, trace, *, include_answer=False):
     return dict(id=case["id"], category=case.get("category"), source_groups=case.get("source_groups", []),
                 difficulty=case.get("difficulty"), status=status,
                 metrics=metrics, scope_violation_count=violations,
-                latency_ms=trace.get("latency_ms"), response=trace.get("response"),
+                latency_ms=trace.get("latency_ms"), latency_scope=trace.get("latency_scope"), response=trace.get("response"),
                 limitation="Automatic proxy results require semantic review; unlabelled negatives have no retrieval score.")
 
 
@@ -196,7 +198,7 @@ def evaluate_local(cases, config, *, include_answer=False, save_traces=None, inc
                                     record_context(builder.build(documents, question=case["question"]))
                                 response = None
                         snapshot = dict(trace.to_dict(), id=case["id"], schema_version=1,
-                                        origin="jwt_verified_local_backend_services",
+                                        origin="jwt_verified_local_backend_services", latency_scope="local_backend_services",
                                         latency_ms=round((time.perf_counter() - started) * 1000, 2),
                                         question_hash=hashlib.sha256(case["question"].encode()).hexdigest())
                         if response is not None:

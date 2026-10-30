@@ -7,7 +7,9 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from scripts.build_manufacturing_demo_profile import load_profile
 from scripts.run_manufacturing_http_acceptance import LocalKeycloakSession
 from backend.app.evaluation.scoring_rules import apply_scoring_rules
-from backend.app.evaluation.metrics import score_answer,SCORER_VERSION,evidence_metrics
+from backend.app.evaluation.metrics import score_answer,SCORER_VERSION
+from backend.app.evaluation.retrieval_metrics import evidence_metrics, summarize_stages
+from scripts.evaluate_answers import summarize_trace_timings
 from backend.app.model_usage import summarize_usage
 
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
@@ -59,6 +61,11 @@ def main(argv=None):
         groups={g:summary([r for r in records if r['group']==g])for g in ('ordinary','ocr','behavior')},
         profile_sha256=sha(pack/'profile.json'),rules_sha256=sha(pack/'scoring_rules.json'),trace_sha256=trace_hashes,
         qa_retries=0,reviewer='assistant_non_independent_automatic_proxy_not_semantic_accuracy')
+    report['timings']=summarize_trace_timings(list(traces.values()))
+    report['retrieval_metrics_sha256']=hashlib.sha256((ROOT/'backend/app/evaluation/retrieval_metrics.py').read_bytes().replace(b'\r\n',b'\n')).hexdigest()
+    report['context_metrics']=summarize_stages([
+        dict(metrics=dict(context=row['final_context_evidence'])) for row in records
+        if 'final_context_evidence' in row])['context']
     if a.collect_ledger:
         config=read(a.run_dir/'system_config.json');http=LocalKeycloakSession(a.run_dir/'tokens.json');events={}
         for kb in config['knowledge_bases'].values():

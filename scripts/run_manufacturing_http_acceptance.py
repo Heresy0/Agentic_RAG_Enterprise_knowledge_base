@@ -26,6 +26,14 @@ class SourceUnavailable(ValueError):
     """A frozen case remains in the denominator but sends no paid QA request."""
 
 
+def timed_qa_request(http, base, payload):
+    if isinstance(http, LocalKeycloakSession):
+        http.refresh_if_needed()
+    started = perf_counter()
+    response = http.post(base + "/api/qa", json=payload, timeout=180)
+    return response, round((perf_counter() - started) * 1000, 2)
+
+
 def local_api_base(value):
     """Allow an isolated candidate port while retaining a literal loopback target."""
     base = value.rstrip('/')
@@ -53,7 +61,7 @@ class LocalKeycloakSession(requests.Session):
         self.expires_at = json.loads(base64.urlsafe_b64decode(token.split(".")[1] + "=="))["exp"]
         self.headers["Authorization"] = "Bearer " + token
 
-    def request(self, method, url, **kwargs):
+    def refresh_if_needed(self):
         if self.expires_at - time.time() < 240:
             refresh = self.admin_tokens.get("refresh_token")
             if not refresh:
@@ -73,6 +81,9 @@ class LocalKeycloakSession(requests.Session):
             if self.expires_at - time.time() < 240:
                 raise ValueError("Renewed local token lifetime is too short for the bounded request")
             self.auth_refreshes += 1
+
+    def request(self, method, url, **kwargs):
+        self.refresh_if_needed()
         return super().request(method, url, **kwargs)
 
 
@@ -280,6 +291,7 @@ def main(argv=None):
     with (args.output_dir / "traces.jsonl").open("x", encoding="utf-8") as stream:
         for case in cases:
             started = perf_counter()
+            qa_latency_ms = None
             request_sent = False
             kb = kb_map.get(case["expected_scope"])
             scope_ids = {kb} if kb else set(kb_map.values())
@@ -287,7 +299,7 @@ def main(argv=None):
                 if unavailable.intersection(case["required_source_documents"]):
                     raise SourceUnavailable()
                 request_sent = True
-                answer = http.post(base + "/api/qa", json=dict(question=case["question"], knowledge_base_id=kb), timeout=180)
+                answer, qa_latency_ms = timed_qa_request(http, base, dict(question=case["question"], knowledge_base_id=kb))
                 answer.raise_for_status()
                 response = answer.json()
                 (args.output_dir / (case["id"] + "-response.json")).write_text(
@@ -298,18 +310,21 @@ def main(argv=None):
                 (args.output_dir / (case["id"] + "-snapshot.json")).write_text(
                     json.dumps(observed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
                 trace = snapshot_trace(case, response, observed, tenant_id=config["tenant_id"],
-                                       knowledge_base_ids=scope_ids, latency_ms=(perf_counter() - started) * 1000)
+                                       knowledge_base_ids=scope_ids, latency_ms=qa_latency_ms)
+                trace["latency_scope"] = "http_qa_response"
                 trace["stages"]["model_usage"] = usage_observation(http, base, sorted(scope_ids)[0], observed["request_id"])
             except Exception as exc:
                 errors += 1
                 trace = dict(id=case["id"], origin="real_http_qa_and_owner_snapshot_api",
                              error_type=type(exc).__name__, question_hash=hashlib.sha256(case["question"].encode()).hexdigest(),
-                             latency_ms=round((perf_counter() - started) * 1000, 2))
+                             latency_ms=qa_latency_ms,
+                             latency_scope="http_qa_response" if qa_latency_ms is not None else "no_completed_qa_response")
                 if isinstance(exc, requests.HTTPError) and exc.response is not None:
                     trace["http_status"] = exc.response.status_code
                     trace["request_id"] = exc.response.headers.get("X-Request-ID")
                 if isinstance(exc, SourceUnavailable):
                     trace["blocked_sources"] = sorted(unavailable.intersection(case["required_source_documents"]))
+            trace["observation_latency_ms"] = round((perf_counter() - started) * 1000, 2)
             trace["request_sent"] = request_sent
             stream.write(json.dumps(trace, ensure_ascii=False) + "\n")
             stream.flush()

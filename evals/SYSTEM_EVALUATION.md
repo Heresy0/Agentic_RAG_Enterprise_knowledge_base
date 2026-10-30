@@ -1,5 +1,7 @@
 # 企业知识库分层评估体系
 
+2026-10-30补齐固定K（1/3/5/8）的Hit、必要证据Recall及MRR，新增分离口径的HTTP/本地业务/阶段耗时汇总；保持r13答案评分和冻结基线不变。当前制造业98题检索分层、旧记录回放及3题HTTP计时验证见[本轮测量记录](manufacturing_zh_lite_v1/reports/20261030-retrieval-metrics-r1/README.md)。
+
 当前入口为`python scripts/evaluate.py`，默认使用[统一120题套件](current/README.md)，按main100题、multihop12题、completeness8题保留分组评分。原多轮8组24轮、权限12项及压测复用负载独立统计。旧数据和事实标准原样归档，历史报告不移动、不重评分。新增`--group`筛选及`group_scores`报告；完整运行、回放和迁移说明以当前套件README为准。
 
 下文带日期的60/80/100题描述和实验结论保留其历史范围；旧子脚本继续兼容，默认目录已迁到当前套件。历史100题结果不代表整合后120题的新实测。
