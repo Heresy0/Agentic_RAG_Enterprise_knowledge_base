@@ -7,6 +7,7 @@
 - 多租户企业知识库问答系统，当前以制造业资料进行演示和评测。
 - 普通解析和 OCR 已接入审核发布、权限问答、原件追溯、反馈审核及回归验证闭环。
 - ERP/MES 实时接口尚未接入；视觉解析尚未完成接入实测。历史实施方案中的这些内容属于后续设计。
+- 首期工单集成在 `codex/manufacturing-phase1` 分阶段实施；M1 已完成只读模拟 MES、连接器、业务授权与隔离迁移验证，制造选版、问答和页面仍待 M2/M3 接入。详见阶段进度，不把模拟服务视为真实工厂接口。
 - 制造业相关源码已合入主线；本机 8000 稳定版与 8001 候选版容器仍独立保留。Git 合并不代表容器已更新。
 - 先用 `git status --short`、`git log -1` 确认源码状态；涉及部署时再检查实际容器及镜像，不从旧提交号推断运行版本。
 
@@ -31,6 +32,7 @@
 | --- | --- |
 | API、浏览器工作台 | `backend/app/api/`、`backend/app/static/` |
 | Keycloak 认证、租户与知识库授权 | `backend/app/security/` |
+| 工单上下文、MES 连接与独立模拟服务 | `backend/app/manufacturing/`、`backend/app/integrations/`、`services/mock_mes/` |
 | 文档解析、清洗、审核发布 | `backend/app/documents/` |
 | 异步索引 | `backend/app/indexing/` |
 | 检索、上下文、问答、路由及修复 | `backend/app/knowledge/` |
