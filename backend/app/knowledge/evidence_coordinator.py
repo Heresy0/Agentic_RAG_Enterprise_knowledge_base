@@ -21,6 +21,7 @@ from ..model_usage import current_usage_context, invoke_structured
 from ..security.authorization import AuthorizationDenied, AuthorizationService
 from ..security.principal import Principal
 from ..manufacturing.scope import ManufacturingScopeChanged
+from ..security.business_scope import BusinessAuthorizationDenied
 from .evidence_selection import select_evidence
 from .request_budget import evidence_deadline
 from .rag_budget import current_rag_budget, RagBudgetExceeded
@@ -310,7 +311,7 @@ class EvidenceCoordinator:
                     if self.clock() >= deadline:
                         outcome = "time_budget"
                         break
-        except (AuthorizationDenied, SQLAlchemyError, ManufacturingScopeChanged):
+        except (AuthorizationDenied, SQLAlchemyError, ManufacturingScopeChanged, BusinessAuthorizationDenied):
             raise
         except RagBudgetExceeded:
             outcome = "shared_budget"

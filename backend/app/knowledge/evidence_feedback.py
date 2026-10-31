@@ -16,6 +16,7 @@ from .answer_validation import AnswerValidator
 from .evidence_coordinator import EvidenceAccess
 from .evidence_selection import select_evidence
 from ..manufacturing.scope import ManufacturingScopeChanged
+from ..security.business_scope import BusinessAuthorizationDenied
 from .rag_budget import current_rag_budget, query_key, RagBudgetExceeded
 from .request_budget import evidence_deadline
 from .temporal import future_certainty_gap
@@ -158,7 +159,7 @@ class EvidenceFeedback:
             if not all(item in context_signature(enlarged) for item in context_signature(context)):
                 record_rag_event(dict(kind="feedback", outcome="required_evidence_lost"))
                 return result
-            if future_certainty_gap(question, enlarged.items):
+            if not enlarged.business_items and future_certainty_gap(question, enlarged.items):
                 record_rag_event(dict(kind="feedback", outcome="future_policy_gap"))
                 return result
             existing_content = {_content_key(item.content) for item in context.items}
@@ -190,7 +191,7 @@ class EvidenceFeedback:
             result.regenerated = True
             record_rag_event(dict(kind="feedback", outcome="regenerated"))
             return result
-        except (AuthorizationDenied, SQLAlchemyError, ManufacturingScopeChanged):
+        except (AuthorizationDenied, SQLAlchemyError, ManufacturingScopeChanged, BusinessAuthorizationDenied):
             raise
         except RagBudgetExceeded:
             guard.require()

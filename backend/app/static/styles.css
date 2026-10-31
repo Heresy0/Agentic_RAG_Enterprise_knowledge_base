@@ -229,3 +229,4 @@ h1{font-size:24px}
 .evaluation-limits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;font-size:12px}
 .evaluation-limits input{width:100%;box-sizing:border-box;padding:9px;border:1px solid #cbd5cf;border-radius:8px}
 @media(max-width:800px){.evaluation-limits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mode-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0}.mode-toolbar select{max-width:100%;padding:9px 12px;border:1px solid #d8ddd9;border-radius:8px;background:#fff;color:#283e32}.manufacturing-panel{margin:16px 0;padding:0 18px 18px;border:1px solid #dce6de;border-radius:12px;background:#f6faf7}.manufacturing-panel[hidden]{display:none}.source-card{padding:14px 16px;border:1px solid #e0e8e1;border-radius:10px;background:white;margin-top:12px;overflow-wrap:anywhere}.source-card h3{margin:0 0 10px;font-size:15px}.source-card p{margin:6px 0;font-size:13px}.source-card[hidden]{display:none}

@@ -47,7 +47,9 @@ class ReviewStore:
         self.feedback_store = FeedbackStore(session, principal)
 
     def require_run(self, run_id, *, lock=False):
+        from ..manufacturing.history_access import run_business_allowed
         statement = select(QARun).where(QARun.id == run_id,
+            run_business_allowed(self.principal, review=True),
             *self.feedback_store.scope_predicates(self.feedback_store.allowed_ids(admin=True)))
         if lock:
             statement = statement.with_for_update()
@@ -153,6 +155,10 @@ class ReviewStore:
         return case, run, feedback
 
     def eligibility(self, case, run, feedback):
+        from ..db.business_models import QARunBusinessScope
+        if self.session.scalar(select(QARunBusinessScope.run_id).where(QARunBusinessScope.tenant_id == run.tenant_id,
+                QARunBusinessScope.run_id == run.id).limit(1)) is not None:
+            return False, "manufacturing_review_requires_M4"
         if case is None or case.sample_status != "approved" or case.review_status != "confirmed":
             return False, "not_approved"
         if case.source_binding != source_binding(run, feedback):

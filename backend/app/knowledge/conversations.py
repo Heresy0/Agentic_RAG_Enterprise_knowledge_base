@@ -7,6 +7,7 @@ from sqlalchemy import delete, func, or_, select, update
 from sqlalchemy.orm import Session
 
 from ..db.conversation_models import Conversation, ConversationTurn
+from ..db import business_models  # Register the tables used by historical access predicates.
 from ..security.principal import Principal
 from ..security.retrieval_scope import RetrievalScope
 from .answer_models import AnswerResult
@@ -26,16 +27,20 @@ class ConversationBusy(Exception):
 
 
 class ConversationStore:
-    def __init__(self, session: Session, principal: Principal, scope: RetrievalScope):
+    def __init__(self, session: Session, principal: Principal, scope: RetrievalScope, *, manufacturing=False):
         if principal.tenant_id != scope.tenant_id:
             raise ConversationNotFound("对话不存在。")
         self.session, self.principal, self.scope = session, principal, scope
+        self.manufacturing = manufacturing
 
     def _owner(self):
+        from ..manufacturing.history_access import conversation_allowed, conversation_binding_exists
         return (
             Conversation.tenant_id == self.scope.tenant_id,
             Conversation.user_id == self.principal.user_id,
             Conversation.knowledge_base_id == self.scope.knowledge_base_id,
+            (conversation_binding_exists() & conversation_allowed(self.principal)
+             if self.manufacturing else ~conversation_binding_exists()),
         )
 
     def get(self, conversation_id: UUID) -> Conversation:

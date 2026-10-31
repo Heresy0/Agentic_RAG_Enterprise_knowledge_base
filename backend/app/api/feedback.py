@@ -124,6 +124,9 @@ def list_feedback(view: Literal["mine", "shared"] = "mine", knowledge_base_id: U
         except AuthorizationDenied:
             raise HTTPException(403, "没有权限查看该知识库的反馈。") from None
     predicates = store.scope_predicates(store.allowed_ids(admin=view == "shared"))
+    if view == "shared":
+        from ..manufacturing.history_access import run_business_allowed
+        predicates.append(run_business_allowed(store.principal, review=True))
     predicates += [QAFeedback.tenant_id == store.principal.tenant_id,
                    QAFeedback.share_with_admins.is_(True) if view == "shared" else QAFeedback.user_id == store.principal.user_id]
     if knowledge_base_id is not None:

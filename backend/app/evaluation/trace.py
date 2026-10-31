@@ -74,6 +74,18 @@ def record_manufacturing_selection(decision):
             catalog_sha256=decision.scope.manufacturing.catalog_sha256)]
 
 
+def record_business_source(context, *, stage):
+    """Only a validated, authorized whitelist; never transport headers or bodies."""
+    diagnostic = dict(stage=stage, source_system_id=context.record.source_system_id,
+        work_order_id=context.record.work_order_id, source_revision=context.record.source_revision,
+        payload_sha256=context.payload_sha256, last_verified_at=context.last_verified_at.isoformat())
+    observation.observe_diagnostic("manufacturing_business", diagnostic)
+    trace = _current.get()
+    if trace is not None:
+        trace.stages.setdefault("manufacturing_business", []).append(
+            dict(**diagnostic, business_context=context.model_dump(mode="json")))
+
+
 def _in_scope(trace, metadata):
     return (str(metadata.get("tenant_id")) == trace.scope.get("tenant_id")
             and str(metadata.get("knowledge_base_id")) in trace.scope.get("knowledge_base_ids", [])

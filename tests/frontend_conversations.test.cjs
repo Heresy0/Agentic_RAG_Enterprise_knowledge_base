@@ -517,3 +517,118 @@ test("late improvement dialog response after logout cannot restore private conte
   run("resetWorkspace()");finish(jsonResponse({items:[]}));await pending;
   assert.equal($("verification-dialog").open,false);assert.equal($("verification-detail").children.length,0);
 });
+
+function manufacturingSetup() {
+  const h = setup(), original = h.sandbox.fetch, records = new Map(), saved = [];
+  for (const id of ["WO-017", "WO-018"]) records.set(id, { work_order_id: id, product_model: "HC-A17", operation_code: "OP-20",
+    actual_started_at: id === "WO-018" ? "2026-09-28" : "2026-10-26T08:10:00+08:00", actual_start_precision: id === "WO-018" ? "date" : "datetime",
+    route_revision: null, source_revision: "r1", source_system_id: "mock-mes-hc", payload_sha256: "fixture-hash-"+id, last_verified_at: "2026-10-31T08:00:00+08:00" });
+  const citation = id => ({ citation_id: "业务2", field_name: "product_model", value: "HC-A17", work_order_id: id,
+    source_system_id: "mock-mes-hc", source_record_id: "record-"+id, source_revision: "r1", payload_sha256: records.get(id).payload_sha256, last_verified_at: records.get(id).last_verified_at });
+  let sequence = 0;
+  const response = body => ({ answer: "本轮工单来源事实 <script>只作文本</script>", answerable: true, citations: [],
+    business_citations: [citation(body.work_order_id)], run_id: "mfg-run", work_order_context: records.get(body.work_order_id),
+    applicability: { state: "applicable", business_revision: "1.0", document_code: "HC-WI-A17-020", documents: [], evidence: [] } });
+  h.sandbox.fetch = async (url, options = {}) => {
+    if (!url.startsWith("/api/manufacturing") && !url.startsWith("/api/qa/runs/mfg-run")) return original(url, options);
+    const body = options.body ? JSON.parse(options.body) : null;
+    h.requests.push({ url, method: options.method || "GET", body });
+    if (url.startsWith("/api/manufacturing/work-orders/")) return jsonResponse(records.get(decodeURIComponent(url.split("/")[4])));
+    if (url.startsWith("/api/manufacturing/work-orders")) return jsonResponse({ items: [...records.values()], next_cursor: null });
+    if (url === "/api/manufacturing/qa") return jsonResponse(response(body));
+    if (url === "/api/manufacturing/conversations" && options.method === "POST") {
+      const item = { id: "mfg-"+(++sequence), title: body.work_order_id, binding: { work_order_id: body.work_order_id, source_revision: "r1" } };
+      saved.push(item); return jsonResponse(item);
+    }
+    if (url.startsWith("/api/manufacturing/conversations/")) return jsonResponse({ id: "history", binding: { work_order_id: "WO-018", source_revision: "r1" },
+      turns: [{ question: "之前的问题", result: response({ work_order_id: "WO-018" }), run_id: "mfg-run" }] });
+    if (url.startsWith("/api/manufacturing/conversations")) return jsonResponse({ items: saved });
+    return jsonResponse({ response: { business_citations: [citation("WO-018")] }, snapshot: {} });
+  };
+  h.run('state.mode = "manufacturing"; $("qa-mode").value = "manufacturing"; updateControls()');
+  return { ...h, records, citation };
+}
+function treeText(node) { return [node.textContent, ...node.children.map(treeText)].join(" "); }
+
+test("M3 U01: work-order list and read-only source card preserve precision, revision and unknown route", async () => {
+  const { $, run } = manufacturingSetup();
+  await run("refreshManufacturingOrders()");
+  assert.equal($("manufacturing-order").children.length, 3);
+  await run('selectManufacturingOrder("WO-018")');
+  const text = treeText($("manufacturing-context"));
+  assert.match(text, /2026-09-28/); assert.match(text, /date/); assert.match(text, /路线修订：未知/); assert.match(text, /r1/);
+  assert.equal($("user-work-conditions").hidden, true); assert.equal($("manufacturing-context").children.some(n => n.tag === "input"), false);
+});
+
+test("M3 U02/U03: same order reuses binding, changed order creates a new conversation without client facts", async () => {
+  const { $, run, ask, requests } = manufacturingSetup();
+  await run('selectManufacturingOrder("WO-018")'); $("work-model").value = "UNTRUSTED-OVERRIDE";
+  await ask("型号是什么？"); await ask("那工序呢？");
+  let calls = requests.filter(row => row.url === "/api/manufacturing/qa");
+  assert.equal(calls[0].body.conversation_id, calls[1].body.conversation_id);
+  assert.equal(calls[0].body.work_order_id, "WO-018"); assert.equal(calls[0].body.expected_source_revision, "r1");
+  assert(!JSON.stringify(calls[0].body).includes("UNTRUSTED"));
+  await run('selectManufacturingOrder("WO-017")'); await ask("首件要求？");
+  calls = requests.filter(row => row.url === "/api/manufacturing/qa");
+  assert.notEqual(calls[0].body.conversation_id, calls[2].body.conversation_id); assert.equal(calls[2].body.work_order_id, "WO-017");
+});
+
+test("M3 U04: source change clears pending answer, source card and conversation binding", async () => {
+  const { $, run, ask, sandbox } = manufacturingSetup(); await run('selectManufacturingOrder("WO-018")');
+  const original = sandbox.fetch;
+  sandbox.fetch = async (url, options) => url === "/api/manufacturing/qa" ? jsonResponse({ detail: { error_code: "mes_context_changed", message: "工单已变化，请重新查询。" } }, 409) : original(url, options);
+  await ask("型号是什么？");
+  assert.equal(run("state.conversationId"), null); assert.equal(run("state.manufacturing.context"), null);
+  assert(!treeText($("manufacturing-context")).includes("2026-09-28")); assert.match(treeText($("answer-area")), /重新查询/);
+});
+
+test("M3 U05: changing to ordinary mode clears the manufacturing binding and never calls MES for ordinary QA", async () => {
+  const { $, run, ask, requests } = manufacturingSetup(); await run('selectManufacturingOrder("WO-018")'); await ask("型号？");
+  const before = requests.filter(row => row.url.startsWith("/api/manufacturing/work-orders")).length;
+  await $("qa-mode").listeners.change({ target: { value: "knowledge" } });
+  assert.equal(run("state.conversationId"), null); assert.equal(run("state.manufacturing.context"), null);
+  await ask("普通制度问题");
+  assert.equal(requests.filter(row => row.url.startsWith("/api/manufacturing/work-orders")).length, before);
+  assert.equal(requests.at(-1).url.includes("/api/manufacturing"), false);
+});
+
+test("M3 U06: late manufacturing answer after order switch cannot refill old facts or unlock a newer request", async () => {
+  const { $, run, ask, sandbox } = manufacturingSetup(); await run('selectManufacturingOrder("WO-018")');
+  const original = sandbox.fetch; let finish, begin;
+  const started = new Promise(resolve => { begin = resolve; });
+  sandbox.fetch = async (url, options) => { if (url === "/api/manufacturing/qa") { begin(); return new Promise(resolve => { finish = resolve; }); } return original(url, options); };
+  const pending = ask("旧工单问题"); await started; await run('selectManufacturingOrder("WO-017")');
+  finish(jsonResponse({ answer: "OLD-PRIVATE-ANSWER", work_order_context: { work_order_id: "WO-018" } })); await pending;
+  assert.equal(run("state.manufacturing.context.work_order_id"), "WO-017"); assert(!treeText($("answer-area")).includes("OLD-PRIVATE"));
+});
+
+test("M3 U06: late source context after logout cannot restore the old card", async () => {
+  const { $, run, sandbox } = manufacturingSetup(); let finish, begin;
+  const started = new Promise(resolve => { begin = resolve; });
+  sandbox.fetch = async () => { begin(); return new Promise(resolve => { finish = resolve; }); };
+  const pending = run('selectManufacturingOrder("WO-018")'); await started;
+  run('state.auth.authenticated = false; resetWorkspace()'); finish(jsonResponse({ work_order_id: "PRIVATE-OLD-ORDER" })); await pending;
+  assert.equal(run("state.manufacturing.context"), null); assert(!treeText($("manufacturing-context")).includes("PRIVATE-OLD"));
+});
+
+test("M3 U07: business reference is reauthorized and shows field, source revision and time without a PDF page", async () => {
+  const { $, run, citation } = manufacturingSetup();
+  run('globalThis.testCitation = '+JSON.stringify(citation("WO-018")));
+  await run('previewBusinessCitation(testCitation, "mfg-run")');
+  assert.match($("citation-title").textContent, /product_model/); assert.match($("citation-meta").textContent, /r1/);
+  assert.match($("citation-meta").textContent, /2026-10-31/); assert.equal($("citation-content").textContent, '"HC-A17"');
+  assert(!$("citation-meta").textContent.includes("物理页"));
+});
+
+test("M3 U08: denied history clears previous order and late business preview after scope change stays closed", async () => {
+  const { $, run, sandbox, citation } = manufacturingSetup(); await run('selectManufacturingOrder("WO-018")');
+  sandbox.fetch = async () => jsonResponse({ detail: { message: "当前不可访问" } }, 404);
+  await run('restoreConversation("denied")'); assert.equal(run("state.manufacturing.context"), null);
+  assert(!treeText($("manufacturing-context")).includes("2026-09-28"));
+  run('globalThis.testCitation = '+JSON.stringify(citation("WO-018"))); let finish, begin;
+  const started = new Promise(resolve => { begin = resolve; });
+  sandbox.fetch = async () => { begin(); return new Promise(resolve => { finish = resolve; }); };
+  const pending = run('previewBusinessCitation(testCitation, "mfg-run")'); await started;
+  run('state.revision += 1; clearConversation()'); finish(jsonResponse({ response: { business_citations: [{ ...citation("WO-018"), value: "LATE-PRIVATE-VALUE" }] } })); await pending;
+  assert.equal($("citation-dialog").open, false); assert.equal($("citation-content").textContent, "");
+});

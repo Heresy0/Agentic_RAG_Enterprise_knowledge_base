@@ -62,6 +62,8 @@ def list_cases(review_status: ReviewStatus | None = None, knowledge_base_id: UUI
         raise HTTPException(422, "游标须同时提供带时区的 before 和 before_id。")
     access = store.feedback_store
     predicates = access.scope_predicates(access.allowed_ids(admin=True))
+    from ..manufacturing.history_access import run_business_allowed
+    predicates.append(run_business_allowed(store.principal, review=True))
     predicates += [QAFeedback.tenant_id == store.principal.tenant_id, QAFeedback.share_with_admins.is_(True)]
     if knowledge_base_id is not None:
         predicates.append(QARun.id.in_(select(QARunScope.run_id).where(

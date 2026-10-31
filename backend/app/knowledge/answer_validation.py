@@ -70,6 +70,27 @@ def interaction_errors(draft):
 
 
 class AnswerValidator:
+    @classmethod
+    def _manufacturing_quantities(cls, text):
+        """Keep units bound to quantities; revision 2.0 cannot prove two pieces."""
+        digits = {char: index for index, char in enumerate("零一二三四五六七八九")}
+        digits["两"] = 2
+        quantities = set()
+        for match in re.finditer(r"(?<![\d.零一二两三四五六七八九十百千])([0-9]+(?:\.[0-9]+)?|[零一二两三四五六七八九十百千]+)\s*(件|次)", text):
+            value, unit = match.groups()
+            if value[0].isdigit():
+                number = cls._normalize_decimal(value)
+            else:
+                total = current = 0
+                for char in value:
+                    if char in digits: current = digits[char]
+                    else:
+                        total += (current or 1) * {"十": 10, "百": 100, "千": 1000}[char]
+                        current = 0
+                number = str(total + current)
+            quantities.add((unit, number))
+        return quantities
+
     def validate(
         self,
         *,
@@ -82,13 +103,14 @@ class AnswerValidator:
                              if isinstance(draft, GenerationAnswerDraft) else [])
         errors.extend(coverage_failures)
 
+        all_items = [*context.items, *context.business_items]
         allowed_ids = {
             item.citation_id
-            for item in context.items
+            for item in all_items
         }
         item_map = {
             item.citation_id: item
-            for item in context.items
+            for item in all_items
         }
         question_facts = self._extract_numeric_facts(
             expand_omitted_years(question)
@@ -134,6 +156,66 @@ class AnswerValidator:
                 )
                 continue
 
+            if context.business_items:
+                from ..manufacturing.answer_context import current_manufacturing_context
+                active = current_manufacturing_context()
+                business = {item.citation_id: item for item in context.business_items}
+                document_ids = {item.citation_id for item in context.items}
+                cited_business = [business[key] for key in claim.citations if key in business]
+                cited_documents = [item_map[key] for key in claim.citations if key in document_ids]
+                if active is not None and active.facts_only and claim.claim_kind != "business_fact":
+                    errors.append(f"第{claim_index}个工单字段查询不能用文档条件代替业务事实")
+                    continue
+                if claim.claim_kind == "business_fact":
+                    if (len(claim.citations) != 1 or len(cited_business) != 1
+                            or claim.text.rstrip("。") != cited_business[0].content or claim.calculation is not None):
+                        errors.append(f"第{claim_index}个工单事实必须逐字对应单个业务字段")
+                    continue
+                if claim.claim_kind == "applicability":
+                    required_docs = {str(row.document_id) for row in active.decision.scope.manufacturing.documents
+                        if row.document_role == "change_notice" or row.document_role == "instruction"
+                        and row.business_revision == active.decision.selected_business_revision} if active else set()
+                    if (active is None or active.decision.state != "applicable" or active.facts_only
+                            or claim.text.rstrip("。") != active.applicability_text
+                            or not active.required_fields <= {item.field_name for item in cited_business}
+                            or not required_docs <= {str(item.document_id) for item in cited_documents}
+                            or not cited_documents or claim.calculation is not None):
+                        errors.append(f"第{claim_index}个选版结论缺少后端结论或两类来源绑定")
+                    continue
+                if claim.claim_kind == "work_order_evidence":
+                    events = [item for item in cited_documents if item.document_role in ("event_record", "inspection_record")]
+                    sentences = {sentence.strip().strip("。！？；; \n") for item in events
+                        for sentence in re.split(r"[。！？；;\n]+", item.content)}
+                    if (not events or len(cited_business) != 1 or cited_business[0].field_name != "work_order_id"
+                            or claim.text.strip().strip("。！？；; \n") not in sentences or claim.calculation is not None):
+                        errors.append(f"第{claim_index}个工单记录结论须保留完整原句并绑定工单编号")
+                    continue
+                comparing = claim.claim_kind == "version_comparison"
+                guides = [item for item in cited_documents if item.document_role == "instruction"]
+                if comparing and (active is None or not active.comparison or not guides
+                        or len({item.business_revision for item in guides}) != 1
+                        or any(item.business_revision not in claim.text for item in guides)):
+                    errors.append(f"第{claim_index}个版本对比未明确绑定单个业务修订")
+                    continue
+                if (claim.claim_kind not in ("work_requirement", "version_comparison") or not cited_documents or cited_business
+                        or re.search(r"该工单|本工单|此工单|这张工单|WO-[A-Za-z0-9-]+", claim.text)):
+                    errors.append(f"第{claim_index}个作业要求必须以文档为据，工单适用结论需单独绑定")
+                    continue
+                if not comparing and (not any(item.document_role in ("instruction", "inspection", "change_notice", "reference", "route") for item in cited_documents)
+                        or re.search(r"系统.*(?:已|完成|成功).*(?:放行|执行|修改|提交|下发)|已(?:放行|下发)|已恢复(?:生产|作业)", claim.text)):
+                    errors.append(f"第{claim_index}个作业要求不能冒充执行记录或系统操作结果")
+                    continue
+                if not comparing and active is not None and any(item.business_revision != active.decision.selected_business_revision for item in guides):
+                    errors.append(f"第{claim_index}个作业要求引用了仅供对比的非适用指导书")
+                    continue
+                quantity_sources = guides if guides and re.search(r"首件|连续.*件", claim.text) else cited_documents
+                missing_quantities = self._manufacturing_quantities(claim.text) - self._manufacturing_quantities(
+                    "\n".join(item.content for item in quantity_sources))
+                if missing_quantities:
+                    errors.append(f"第{claim_index}个结论中的件数或次数缺少对应文档数量支持")
+                # Business IDs and question numbers cannot legitimize process limits.
+                question_facts = set()
+
             if claim.calculation is not None:
                 try:
                     calculation = compute(claim, context, question)
@@ -156,6 +238,8 @@ class AnswerValidator:
             evidence_facts = self._extract_numeric_facts(
                 cited_text
             )
+            if context.business_items:
+                evidence_facts |= {"number:" + number for _, number in self._manufacturing_quantities(cited_text)}
 
             unsupported_facts = sorted(
                 claim_facts
@@ -174,6 +258,15 @@ class AnswerValidator:
                     f"缺少证据支持：{readable_facts}"
                 )
 
+        if context.business_items:
+            from ..manufacturing.answer_context import current_manufacturing_context
+            active = current_manufacturing_context()
+            if active is not None and active.comparison and draft.answerable:
+                revisions = {item_map[key].business_revision for claim in draft.claims
+                    if claim.claim_kind == "version_comparison" for key in claim.citations
+                    if key in item_map and getattr(item_map[key], "document_role", None) == "instruction"}
+                if len(revisions) < 2:
+                    errors.append("版本比较必须分别引用至少两个业务修订")
         return ValidationResult(
             valid=not errors,
             errors=errors,

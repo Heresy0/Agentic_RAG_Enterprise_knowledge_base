@@ -11,6 +11,7 @@ from sqlalchemy import exists, select
 from ..db.conversation_models import ConversationTurn
 from ..db.models import KnowledgeDocument
 from ..db.quality_models import QARun, QARunScope, QAFeedback
+from ..db.business_models import QARunBusinessScope
 from ..security.authorization import AuthorizationService
 
 
@@ -29,8 +30,10 @@ def pipeline_fingerprint():
     return dict(code_sha256=digest.hexdigest(), prompts_sha256=hashlib.sha256((root / "knowledge/prompts.py").read_bytes()).hexdigest())
 
 
-def save_run(session, *, run_id, request_id, principal, scope, question, result, capture, settings, conversation_id=None, model_usage=()):
+def save_run(session, *, run_id, request_id, principal, scope, question, result, capture, settings, conversation_id=None, model_usage=(), manufacturing=None):
     status, snapshot = capture.freeze()
+    if manufacturing is not None:
+        snapshot.update(schema_version=3, manufacturing=manufacturing)
     config = {name: getattr(settings, name, None) for name in (
         "chat_model", "embedding_model", "rerank_model", "agentic_rag_mode", "rag_planner_mode",
         "rag_feedback_enabled", "rag_repair_enabled", "rag_max_searches", "rag_rerank_top_k",
@@ -59,6 +62,10 @@ def save_run(session, *, run_id, request_id, principal, scope, question, result,
         session.flush()
         session.add_all([QARunScope(tenant_id=scope.tenant_id, run_id=run_id, knowledge_base_id=kb)
                          for kb in scope.knowledge_base_ids])
+        if manufacturing is not None:
+            record = manufacturing["business_context"]["record"]
+            session.add(QARunBusinessScope(tenant_id=scope.tenant_id, run_id=run_id,
+                source_system_id=record["source_system_id"], plant_code=record["plant_code"], work_order_id=record["work_order_id"]))
         session.flush()
     return row
 
@@ -74,9 +81,12 @@ class FeedbackStore:
             principal=self.principal, knowledge_base_id=kb) == "admin"}
 
     def scope_predicates(self, allowed):
+        from ..manufacturing.history_access import run_business_allowed
         scoped = QARunScope
         same_run = (scoped.tenant_id == QARun.tenant_id, scoped.run_id == QARun.id)
         return [QARun.tenant_id == self.principal.tenant_id,
+                run_business_allowed(self.principal),
+                (QARun.user_id == self.principal.user_id) | run_business_allowed(self.principal, review=True),
                 exists(select(scoped.run_id).where(*same_run)),
                 ~exists(select(scoped.run_id).where(*same_run, scoped.knowledge_base_id.not_in(allowed)))]
 

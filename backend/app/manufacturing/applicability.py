@@ -44,7 +44,7 @@ def _matches(data, record, *, ignore_route=False):
 
 class ApplicabilityResolver:
     def resolve(self, *, context: WorkOrderContext, scope: RetrievalScope,
-                business_scope: BusinessScope, session) -> ApplicabilityDecision:
+                business_scope: BusinessScope, session, include_other_revisions=False) -> ApplicabilityDecision:
         record = context.record
         if scope.manufacturing is not None:
             raise ValueError("适用性判断必须从知识库授权范围开始。")
@@ -55,7 +55,14 @@ class ApplicabilityResolver:
         fingerprint = catalog_fingerprint(rows)
 
         def finish(state, reason, *, selected=None, rules=(), documents=(), required=(), gaps=()):
-            fence = ManufacturingFence(state, fingerprint, tuple(documents), tuple(required))
+            explanation_docs, explanation = (), ()
+            if state == "conflict" and rules:
+                explanation_docs = tuple({entry.binding.document_id: entry.binding for entry, _ in rules}.values())
+                explanation = tuple(RequiredEvidence(entry.binding.document_id, rule.anchor) for entry, rule in rules)
+                if len(explanation_docs) > 32 or len(explanation) > 24:
+                    state, reason, gaps = "needs_context", "evidence_budget_exceeded", ("catalog_scope",)
+                    explanation_docs, explanation = (), ()
+            fence = ManufacturingFence(state, fingerprint, tuple(documents), tuple(required), explanation_docs, explanation)
             decision = ApplicabilityDecision(state, reason, replace(scope, manufacturing=fence),
                 selected.metadata.document_code if selected else None,
                 selected.metadata.business_revision if selected else None,
@@ -175,6 +182,10 @@ class ApplicabilityResolver:
         allowed = {entry.binding.document_id: entry for entry in
                    (selected, *supporting, *(entry for entry, _ in deciding))}
         required = [RequiredEvidence(selected.binding.document_id, anchor) for anchor in selected.metadata.source_anchors]
+        if include_other_revisions:
+            for entry in instructions:
+                allowed[entry.binding.document_id] = entry
+                required.extend(RequiredEvidence(entry.binding.document_id, anchor) for anchor in entry.metadata.source_anchors)
         required.extend(RequiredEvidence(entry.binding.document_id, rule.anchor) for entry, rule in deciding)
         required.extend(RequiredEvidence(entry.binding.document_id, anchor) for entry in supporting
                         if entry.metadata.document_role == "inspection" for anchor in entry.metadata.source_anchors)

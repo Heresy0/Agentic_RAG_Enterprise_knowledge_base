@@ -42,11 +42,15 @@ class DocumentBinding:
     manufacturing_revision: int
     manufacturing_digest: str
     anchors: tuple[SourceAnchor, ...]
+    document_code: str | None = None
+    business_revision: str | None = None
+    document_role: str | None = None
 
     @classmethod
     def reviewed(cls, doc, review):
         return cls(doc.id, doc.knowledge_base_id, doc.version, doc.content_hash,
-                   review.revision, review.data_sha256, review.data.anchors)
+                   review.revision, review.data_sha256, review.data.anchors,
+                   review.data.document_code, review.data.business_revision, review.data.document_role)
 
     def predicate(self):
         m = KnowledgeDocument.metadata_json["manufacturing"]
@@ -73,16 +77,22 @@ class ManufacturingFence:
     catalog_sha256: str
     documents: tuple[DocumentBinding, ...] = ()
     required_evidence: tuple[RequiredEvidence, ...] = ()
+    explanation_documents: tuple[DocumentBinding, ...] = ()
+    explanation_evidence: tuple[RequiredEvidence, ...] = ()
 
     def __post_init__(self):
         object.__setattr__(self, "documents", tuple(self.documents))
         object.__setattr__(self, "required_evidence", tuple(self.required_evidence))
+        object.__setattr__(self, "explanation_documents", tuple(self.explanation_documents))
+        object.__setattr__(self, "explanation_evidence", tuple(self.explanation_evidence))
         if self.state not in ("applicable", "needs_context", "no_evidence", "conflict"):
             raise ValueError("无效的制造适用性状态。")
         if self.state != "applicable" and (self.documents or self.required_evidence):
             raise ValueError("不确定的适用性不能开放正文检索。")
         if len(self.documents) > 32 or len(self.required_evidence) > 24:
             raise ValueError("制造证据超过首期处理上限。")
+        if len(self.explanation_documents) > 32 or len(self.explanation_evidence) > 24:
+            raise ValueError("制造冲突说明超过首期处理上限。")
         if len(self.document_ids) != len(self.documents):
             raise ValueError("制造文档绑定不能重复。")
         if any(row.document_id not in self.document_ids for row in self.required_evidence):
@@ -113,7 +123,7 @@ class ManufacturingFence:
         if catalog_fingerprint(rows) != self.catalog_sha256:
             raise ManufacturingScopeChanged("制造目录或发布状态已变化，请重新判断适用性。")
         by_id = {doc.id: doc for doc in rows}
-        for binding in self.documents:
+        for binding in (*self.documents, *self.explanation_documents):
             doc = by_id.get(binding.document_id)
             review = current_review(doc) if doc is not None else None
             if doc is None or doc.status != "ready" or not is_published(doc) or review is None:

@@ -32,6 +32,9 @@ def read_milvus_token_file(filename: str) -> str:
 
 class Settings:
     def __init__(self, *, milvus_access="read"):
+        source_file = os.getenv("MANUFACTURING_SOURCES_FILE", "").strip()
+        self.manufacturing_sources_file = (Path(source_file) if Path(source_file).is_absolute()
+                                          else PROJECT_ROOT / source_file) if source_file else None
         snapshots = os.getenv("QA_SNAPSHOTS_ENABLED", "true").strip().lower()
         if snapshots not in {"true", "false"}:
             raise RuntimeError("QA_SNAPSHOTS_ENABLED 必须为 true 或 false")

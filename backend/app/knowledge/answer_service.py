@@ -99,6 +99,7 @@ class AnswerService:
         self._structured_llm = (
             llm.with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
         )
+        self._base_llm = llm
 
     @audited_scope
     def answer(
@@ -117,7 +118,10 @@ class AnswerService:
                 parent_selection_scope(scope=scope, session=session):
             try:
                 planning_started = time.perf_counter()
-                plan = self._query_planner.plan(question, scope=scope, session=session)
+                from ..manufacturing.answer_context import current_manufacturing_context
+                business = current_manufacturing_context()
+                plan = (None if business is not None and business.facts_only else
+                        self._query_planner.plan(question, scope=scope, session=session))
                 planning_ms = _elapsed_ms(planning_started) if plan is not None else None
                 with query_plan_scope(plan):
                     return self._answer(question, scope=scope, session=session, plan=plan,
@@ -139,7 +143,10 @@ class AnswerService:
         }
 
         search_started = time.perf_counter()
-        collected = self._evidence_coordinator.collect(
+        from ..manufacturing.answer_context import current_manufacturing_context
+        from .evidence_coordinator import CollectedEvidence
+        business = current_manufacturing_context()
+        collected = CollectedEvidence([]) if business is not None and business.facts_only else self._evidence_coordinator.collect(
             question,
             scope=scope,
             session=session,
@@ -149,9 +156,7 @@ class AnswerService:
         timings["agent_decision_ms"] = collected.decision_ms
         timings["agent_tool_ms"] = collected.tool_ms
         # 防御性校验：缺少来源范围或越权的分块不得进入上下文/生成模型。
-        documents = [document for document in documents if scope.contains(
-            document.metadata.get("tenant_id"), document.metadata.get("knowledge_base_id"),
-        )]
+        documents = [document for document in documents if scope.contains_document(document.metadata)]
         record_documents("authorized_final", documents)
         timings["search_total_ms"] = _elapsed_ms(
             search_started
@@ -179,8 +184,11 @@ class AnswerService:
             context_started
         )
 
-        future_gap = bool(context.items) and future_certainty_gap(question, context.items)
-        if not context.items or future_gap or context.incomplete_reason:
+        if business is not None and business.before_generation is not None:
+            business.before_generation()
+
+        future_gap = bool(context.items) and not context.business_items and future_certainty_gap(question, context.items)
+        if not (context.items or context.business_items) or future_gap or context.incomplete_reason:
             render_started = time.perf_counter()
             result = self._refusal(
                 "上下文预算不足以完整保留相关条款及限制条件，请缩小问题范围后重试。"
@@ -304,7 +312,7 @@ class AnswerService:
         if self._settings.rag_repair_enabled and first_errors:
             timings["answer_repair_ms"] = _elapsed_ms(repair_started)
         decisions = []
-        if not coverage_failures:
+        if not coverage_failures and not context.business_items:
             before_conditions = [claim.model_dump() for claim in draft.claims]
             complete_cited_table_conditions(question, draft, context)
             if before_conditions != [claim.model_dump() for claim in draft.claims] or draft.answerable != first_answerable:
@@ -430,7 +438,12 @@ class AnswerService:
         question: str,
         context: BuiltContext,
     ) -> GenerationAnswerDraft:
-        result = invoke_structured(self._structured_llm, self._generation_messages(question, context),
+        model = self._structured_llm
+        if context.business_items:
+            from ..manufacturing.generation_models import ManufacturingGenerationDraft
+            model = getattr(self, "_manufacturing_llm", None) or self._base_llm.with_structured_output(
+                ManufacturingGenerationDraft, include_raw=True)
+        result = invoke_structured(model, self._generation_messages(question, context),
                                    stage="answer_generation", model_name=self._settings.chat_model)
         return self._as_generation_draft(result)
 
@@ -439,6 +452,9 @@ class AnswerService:
         # Only server-selected fixed guidance and compiler-owned IDs go into
         # the system message. Original questions and source text remain data.
         contract = answer_contract(question, json.loads(requirements))
+        if context.business_items:
+            from ..manufacturing.answer_context import MANUFACTURING_PROMPT
+            contract += MANUFACTURING_PROMPT
         return [
             SystemMessage(
                 content=ANSWER_SYSTEM_PROMPT + "\n本次回答要求（不改变必答项、权限与最终校验）：\n" + contract
@@ -456,7 +472,11 @@ class AnswerService:
     def _regeneration_preflight(self, question, context):
         messages = self._generation_messages(question, context)
         prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
-        prompt_bytes += len(json.dumps(EvidenceFirstAnswerDraft.model_json_schema()).encode("utf-8")) + 256
+        schema = EvidenceFirstAnswerDraft
+        if context.business_items:
+            from ..manufacturing.generation_models import ManufacturingGenerationDraft
+            schema = ManufacturingGenerationDraft
+        prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
         output = self._settings.rag_regeneration_output_tokens
         current_rag_budget().check_model(prompt_bytes=prompt_bytes, output_tokens=output)
         return messages, prompt_bytes, output
@@ -465,20 +485,29 @@ class AnswerService:
         messages, prompt_bytes, output = self._regeneration_preflight(question, context)
         with current_rag_budget().model_attempt(prompt_bytes=prompt_bytes, output_tokens=output,
                                                 purpose="regeneration") as remaining:
+            schema = EvidenceFirstAnswerDraft
+            if context.business_items:
+                from ..manufacturing.generation_models import ManufacturingGenerationDraft
+                schema = ManufacturingGenerationDraft
             model = self._regeneration_model_factory(model=self._settings.chat_model,
                 base_url=self._settings.chat_base_url, api_key=self._settings.chat_api_key, temperature=0,
                 reasoning_effort="none", max_retries=0, max_tokens=output,
                 timeout=min(self._settings.rag_regeneration_timeout_seconds, remaining)
-            ).with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
+            ).with_structured_output(schema, include_raw=True)
             result = invoke_structured(model, messages, stage="answer_regeneration", model_name=self._settings.chat_model)
             return self._as_generation_draft(result)
 
     @staticmethod
     def _as_generation_draft(result):
-        if not isinstance(result, EvidenceFirstAnswerDraft):
+        from ..manufacturing.answer_context import current_manufacturing_context
+        schema = EvidenceFirstAnswerDraft
+        if current_manufacturing_context() is not None:
+            from ..manufacturing.generation_models import ManufacturingGenerationDraft
+            schema = ManufacturingGenerationDraft
+        if not isinstance(result, schema):
             if isinstance(result, (AnswerDraft, GenerationAnswerDraft)):
                 result = result.model_dump()
-            result = EvidenceFirstAnswerDraft.model_validate(result)
+            result = schema.model_validate(result)
         # An unanswered item makes no cited assertion. Like the redundant
         # retrieval request below, its unused quote must not turn clarification
         # into refusal. Keep the original model object untouched for callers.
@@ -525,6 +554,8 @@ class AnswerService:
         citations = []
 
         for citation_id in used_citations:
+            if citation_id not in item_map:
+                continue  # Business citations have their own namespace and schema.
             item = item_map[citation_id]
             citations.append(
                 Citation(
@@ -536,14 +567,30 @@ class AnswerService:
                     parent_id=item.parent_id,
                     knowledge_base_id=item.knowledge_base_id,
                     knowledge_base_name=item.knowledge_base_name,
+                    document_version=item.document_version,
+                    business_revision=item.business_revision,
                 )
             )
 
+        business_citations, bindings = [], []
+        if context.business_items:
+            from ..manufacturing.answer_context import current_manufacturing_context, business_citation
+            active = current_manufacturing_context()
+            business_map = {item.citation_id: item for item in context.business_items}
+            for key in used_citations:
+                if key in business_map:
+                    item = business_map[key]
+                    business_citations.append(business_citation(item, active.context))
+            bindings = [dict(claim_index=index, text=claim.text, claim_kind=claim.claim_kind,
+                document_citations=[key for key in claim.citations if key in item_map],
+                business_citations=[key for key in claim.citations if key in business_map])
+                for index, claim in enumerate(draft.claims, 1)]
         return AnswerResult(
             answer="\n".join(answer_parts),
             answerable=True,
             citations=citations,
             response_type="answer",
+            business_citations=business_citations, claim_bindings=bindings,
         )
 
     @staticmethod

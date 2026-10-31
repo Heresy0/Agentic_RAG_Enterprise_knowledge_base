@@ -32,6 +32,9 @@ class ContextItem:
     cleaning_version: str | None = None
     matched_incident_ids: tuple[str, ...] = ()
     parent_id: str | None = None
+    document_version: int | None = None
+    business_revision: str | None = None
+    document_role: str | None = None
 
 
 @dataclass(frozen=True)
@@ -40,6 +43,7 @@ class BuiltContext:
     items: list[ContextItem]
     total_characters: int
     incomplete_reason: str | None = None
+    business_items: tuple = ()
 
     @classmethod
     def empty(cls) -> "BuiltContext":
@@ -72,6 +76,12 @@ class ContextBuilder:
         self.parent_selector = parent_selector
 
     def build(
+        self, documents: list[Document], *, question: str = "",
+    ) -> BuiltContext:
+        from ..manufacturing.answer_context import attach_business_context
+        return attach_business_context(self._build_documents(documents, question=question))
+
+    def _build_documents(
         self,
         documents: list[Document],
         *,
@@ -139,6 +149,10 @@ class ContextBuilder:
             policy = metadata.get("policy", {})
             label = policy_label(policy)
             policy_header = f"适用性：{label}\n" if label else ""
+            manufacturing = metadata.get("manufacturing") or {}
+            if manufacturing:
+                policy_header += (f"制造文件：{manufacturing.get('document_code')}；业务版本：{manufacturing.get('business_revision')}；"
+                                  f"技术版本：{metadata.get('document_version')}；角色：{manufacturing.get('document_role')}\n")
             prefix = (
                 f"[{citation_id}]\n"
                 f"{knowledge_base_label}"
@@ -225,6 +239,9 @@ class ContextBuilder:
                 cleaning_version=metadata.get("cleaning_version"),
                 matched_incident_ids=tuple(metadata.get('matched_incident_ids') or ()),
                 parent_id=metadata.get('parent_id'),
+                document_version=metadata.get('document_version') if manufacturing else None,
+                business_revision=manufacturing.get('business_revision'),
+                document_role=manufacturing.get('document_role'),
             )
             rendered_block = f"{prefix}{content}"
 

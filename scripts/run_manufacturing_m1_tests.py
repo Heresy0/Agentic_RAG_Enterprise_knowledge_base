@@ -15,7 +15,8 @@ from sqlalchemy.engine import make_url
 ROOT=Path(__file__).resolve().parents[1]
 TEST_NAME=r"manufacturing_m1_test_[0-9a-f]{12}"
 STAGE_TESTS = {"m1": ("tests/test_business_migration_postgres.py", "tests/test_quality_verification_postgres.py"),
-               "m2": ("tests/test_manufacturing_m2_postgres.py",)}
+               "m2": ("tests/test_manufacturing_m2_postgres.py",),
+               "m3": ("tests/test_manufacturing_m3_postgres.py",)}
 
 
 def checked_test_url(value, *, phase="m1"):
@@ -75,7 +76,7 @@ def main(argv=None, *, phase="m1"):
                 head=connection.scalar(text("SELECT version_num FROM alembic_version"))
                 version=connection.scalar(text("SHOW server_version_num"))
         finally: engine.dispose()
-        if head!="d8f0b2c43569": raise RuntimeError("独立测试数据库迁移头不符。")
+        if head!="e9a1c3d54670": raise RuntimeError("独立测试数据库迁移头不符。")
         tests=subprocess.run([sys.executable,"-m","pytest",*STAGE_TESTS[phase],"-q","-o","addopts=",
             f"--junitxml={junit}"],cwd=ROOT,env=env)
         exit_code=tests.returncode

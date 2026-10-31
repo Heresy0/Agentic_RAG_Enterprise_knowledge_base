@@ -131,6 +131,12 @@ class MESConnector:
             raise MESError() from None
         if not scope.contains_record(record) or record.plant_code not in plants:
             raise MESError()
+        # Even a schema-valid upstream record must not reflect the service
+        # credential into user responses, snapshots or model inputs.
+        secret = self.config.token.get_secret_value()
+        for value in record.model_dump(mode="json").values():
+            if isinstance(value, str) and secret in value or isinstance(value, list) and any(secret in item for item in value):
+                raise MESError()
         if len(record.model_dump_json(ensure_ascii=False)) > self.config.max_context_characters:
             raise MESError()
         return record

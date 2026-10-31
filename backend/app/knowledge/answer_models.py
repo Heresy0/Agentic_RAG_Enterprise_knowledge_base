@@ -2,6 +2,9 @@ from uuid import UUID
 from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic.json_schema import SkipJsonSchema
+
+ClaimKind = Literal["business_fact", "applicability", "work_requirement", "version_comparison", "work_order_evidence"]
 
 
 class CalculationOperand(BaseModel):
@@ -19,6 +22,8 @@ class CalculationRequest(BaseModel):
 
 
 class AnswerClaim(BaseModel):
+    claim_kind: SkipJsonSchema[ClaimKind | None] = Field(
+        default=None, exclude_if=lambda value: value is None)
     text: str = Field(
         min_length=1,
         description=(
@@ -120,6 +125,8 @@ class EvidenceFirstAnswerDraft(GenerationAnswerDraft):
 
 
 class Citation(BaseModel):
+    document_version: int | None = Field(default=None, exclude_if=lambda v: v is None)
+    business_revision: str | None = Field(default=None, exclude_if=lambda v: v is None)
     citation_id: str
     document_id: UUID | None = None
     document_name: str
@@ -148,6 +155,11 @@ class AnswerTimings(BaseModel):
 
 
 class AnswerResult(BaseModel):
+    manufacturing_timings: dict | None = Field(default=None, exclude_if=lambda v: v is None)
+    work_order_context: dict | None = Field(default=None, exclude_if=lambda v: v is None)
+    applicability: dict | None = Field(default=None, exclude_if=lambda v: v is None)
+    business_citations: list[dict] = Field(default_factory=list, exclude_if=lambda v: not v)
+    claim_bindings: list[dict] = Field(default_factory=list, exclude_if=lambda v: not v)
     answer: str
     answerable: bool
     citations: list[Citation]

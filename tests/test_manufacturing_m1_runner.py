@@ -35,3 +35,9 @@ def test_m2_runner_cannot_reuse_m1_or_business_database():
         runner.checked_test_url("postgresql+psycopg://localhost/manufacturing_m1_test_123456abcdef", phase="m2")
     assert runner.checked_test_url("postgresql+psycopg://localhost/manufacturing_m2_test_123456abcdef", phase="m2").database.startswith("manufacturing_m2_test_")
     with pytest.raises(ValueError): runner.checked_test_url("postgresql+psycopg://localhost/postgres", phase="m2")
+
+
+def test_m3_runner_rejects_business_remote_and_other_stage_databases():
+    for name in ("postgres", "manufacturing_m1_test_123456abcdef", "manufacturing_m2_test_123456abcdef"):
+        with pytest.raises(ValueError): runner.checked_test_url("postgresql+psycopg://localhost/"+name, phase="m3")
+    with pytest.raises(ValueError): runner.checked_test_url("postgresql+psycopg://example.invalid/manufacturing_m3_test_123456abcdef", phase="m3")

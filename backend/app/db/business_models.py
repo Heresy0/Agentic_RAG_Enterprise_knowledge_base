@@ -39,6 +39,7 @@ class ConversationBusinessBinding(Base):
     work_order_id: Mapped[str] = mapped_column(String(64), nullable=False)
     source_revision: Mapped[str] = mapped_column(String(64), nullable=False)
     payload_sha256: Mapped[str] = mapped_column(String(64), nullable=False)
+    invalidated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     __table_args__ = (
         ForeignKeyConstraint(["tenant_id", "conversation_id"], ["conversations.tenant_id", "conversations.id"],

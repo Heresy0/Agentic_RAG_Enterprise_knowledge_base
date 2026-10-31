@@ -11,6 +11,8 @@ from ..config import Settings
 from ..evaluation.trace import record_rag_event
 from ..model_usage import invoke_structured
 from ..security.authorization import AuthorizationDenied
+from ..security.business_scope import BusinessAuthorizationDenied
+from ..manufacturing.scope import ManufacturingScopeChanged
 from .answer_models import AnswerClaim, AnswerDraft, EvidenceFirstAnswerDraft, GenerationAnswerDraft
 from .answer_coverage import requirement_prompt
 from .answer_contract import direct_answer_errors
@@ -120,7 +122,7 @@ class AnswerRepair:
         calculation_mode = not decision_mode and any(claim.calculation is not None for claim in draft.claims)
         if calculation_mode:
             candidate = normalize_calculations(candidate, context, question)
-        allowed = {item.citation_id for item in context.items}
+        allowed = {item.citation_id for item in [*context.items, *context.business_items]}
         # Normalize only uniquely recognizable formatting; never guess a new ID.
         for claim in candidate.claims:
             normalized = [identifier.strip().strip("[]【】").strip() for identifier in claim.citations]
@@ -150,13 +152,19 @@ class AnswerRepair:
                 record_rag_event(dict(kind="repair", outcome="evidence_changed", model_calls=0))
                 return original
             data = dict(question=question, requirements=json.loads(requirement_prompt(question, context)),
-                        evidence=[dict(citation_id=item.citation_id, content=item.content) for item in context.items],
+                        evidence=[dict(citation_id=item.citation_id, content=item.content) for item in [*context.items, *context.business_items]],
                         draft=deepcopy(candidate.model_dump()), errors=errors)
-            messages = [SystemMessage(content=DECISION_PROMPT if decision_mode else
-                                     CALCULATION_PROMPT if calculation_mode else REPAIR_PROMPT),
+            system = DECISION_PROMPT if decision_mode else CALCULATION_PROMPT if calculation_mode else REPAIR_PROMPT
+            if context.business_items:
+                from ..manufacturing.answer_context import MANUFACTURING_PROMPT
+                system += MANUFACTURING_PROMPT
+            messages = [SystemMessage(content=system),
                         HumanMessage(content=json.dumps(data, ensure_ascii=False, separators=(",", ":")))]
             prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
             schema = AnswerClaim if decision_mode else type(draft)
+            if context.business_items and decision_mode:
+                from ..manufacturing.generation_models import ManufacturingClaim
+                schema = ManufacturingClaim
             prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
             if prompt_bytes > self.settings.rag_repair_prompt_bytes:
                 record_rag_event(dict(kind="repair", outcome="prompt_budget", model_calls=0))
@@ -194,7 +202,7 @@ class AnswerRepair:
                     candidate_claims=[claim.model_dump() for claim in repaired.claims]))
             record_rag_event(dict(kind="repair", outcome="model_repaired" if valid else "rejected", model_calls=1))
             return repaired if valid else original
-        except (AuthorizationDenied, SQLAlchemyError):
+        except (AuthorizationDenied, SQLAlchemyError, BusinessAuthorizationDenied, ManufacturingScopeChanged):
             raise
         except Exception as exc:
             logger.warning("rag.repair_failed error_type=%s", type(exc).__name__)
@@ -213,7 +221,12 @@ class AnswerRepair:
             if not refresh_context():
                 return None
             prompt_bytes = sum(len(str(message.content).encode('utf-8')) for message in messages)
-            prompt_bytes += len(json.dumps(EvidenceFirstAnswerDraft.model_json_schema()).encode('utf-8')) + 256
+            from ..manufacturing.answer_context import current_manufacturing_context
+            schema = EvidenceFirstAnswerDraft
+            if current_manufacturing_context() is not None:
+                from ..manufacturing.generation_models import ManufacturingGenerationDraft
+                schema = ManufacturingGenerationDraft
+            prompt_bytes += len(json.dumps(schema.model_json_schema()).encode('utf-8')) + 256
             output = self.settings.rag_repair_output_tokens
             if prompt_bytes > self.settings.rag_repair_prompt_bytes:
                 record_rag_event(dict(kind='schema_repair', outcome='prompt_budget'))
@@ -222,15 +235,15 @@ class AnswerRepair:
                 model = self.model_factory(model=self.settings.chat_model, base_url=self.settings.chat_base_url,
                     api_key=self.settings.chat_api_key, temperature=0, reasoning_effort='none', max_retries=0,
                     timeout=min(self.settings.rag_repair_timeout_seconds, remaining), max_tokens=output
-                ).with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
-                result = EvidenceFirstAnswerDraft.model_validate(invoke_structured(
+                ).with_structured_output(schema, include_raw=True)
+                result = schema.model_validate(invoke_structured(
                     model, messages, stage='answer_repair', model_name=self.settings.chat_model))
             guard.require()
             if not refresh_context():
                 return None
             record_rag_event(dict(kind='schema_repair', outcome='generated'))
             return result
-        except (AuthorizationDenied, SQLAlchemyError):
+        except (AuthorizationDenied, SQLAlchemyError, BusinessAuthorizationDenied, ManufacturingScopeChanged):
             raise
         except Exception as exc:
             record_rag_event(dict(kind='schema_repair', outcome='fallback', error_type=type(exc).__name__))

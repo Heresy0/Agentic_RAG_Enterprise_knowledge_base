@@ -19,6 +19,8 @@ from pydantic import BaseModel, ConfigDict, Field
 from sqlalchemy.exc import SQLAlchemyError
 
 from ..model_usage import invoke_structured
+from ..security.business_scope import BusinessAuthorizationDenied
+from ..manufacturing.scope import ManufacturingScopeChanged
 from ..security.authorization import AuthorizationDenied
 from .evidence_coordinator import EvidenceAccess
 from .query_planner import current_query_plan
@@ -200,7 +202,7 @@ class BudgetedParentSelector:
                     else:
                         selection = {name: value for name, value in candidate.metadata["parent_selection"].items()
                                      if name in ("reason", "spans", "protected_ids", "restored_ids")}
-        except (AuthorizationDenied, SQLAlchemyError):
+        except (AuthorizationDenied, SQLAlchemyError, BusinessAuthorizationDenied, ManufacturingScopeChanged):
             raise
         except Exception as exc:
             logger.warning("context.selection_failed error_type=%s", type(exc).__name__)

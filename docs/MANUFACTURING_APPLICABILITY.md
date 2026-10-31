@@ -1,6 +1,6 @@
 # 制造适用性目录与选版（M2）
 
-M2 提供可审核的制造文件目录、确定性选版和检索范围。入口为 `backend/app/manufacturing/metadata.py`、`applicability.py`、`scope.py`。制造用户端问答、MES 事实复核、会话绑定、两类引用和页面由 M3 接入；普通 `/api/qa` 当前不会自动查询 MES。
+M2 提供可审核的制造文件目录、确定性选版和检索范围。入口为 `backend/app/manufacturing/metadata.py`、`applicability.py`、`scope.py`。制造用户端问答、MES 事实复核、会话绑定、两类引用和页面已由 [M3](MANUFACTURING_QA.md) 接入；普通 `/api/qa` 不会自动查询 MES。
 
 本阶段未向既有演示库导入标注、批准规则、迁移数据、重建索引或更新容器。M0 清单中的五条规则仍是离线草稿；不能将题集、标准答案或评测脚本作为运行期规则来源。
 
@@ -92,7 +92,9 @@ M2 提供可审核的制造文件目录、确定性选版和检索范围。入�
 | `applicable` | 返回选定文件、业务版本、规则 ID、带制造约束的 `RetrievalScope` |
 | `needs_context` | 明确缺字段、待处理复核或处理上限；正文范围为空 |
 | `no_evidence` | 无匹配指导书或无已复核的选版依据；正文范围为空 |
-| `conflict` | 无法消解的规则或文件身份冲突；正文范围为空 |
+| `conflict` | 无法消解的规则或文件身份冲突；正文范围为空，可保留不可检索的冲突依据解释拒答 |
+
+M3 仅在明确版本对比问题中启用后端 `include_other_revisions`，补入同家族已复核的其他业务修订，标记为 `comparison_only`；不得将其作为当前工单作业依据。冲突依据单独保存为解释依赖，也参与目录及来源刷新检查，不开放普通作业检索。
 
 首期工作量上限为：一个授权目录 256 份制造资料、一次判断 64 条相关有效规则、32 份适用文件、24 个必需原文锚点、32 个证据分块。达到上限要求缩小范围或复核，不静默丢弃决定性依据。
 
@@ -104,7 +106,7 @@ M2 提供可审核的制造文件目录、确定性选版和检索范围。入�
 - 必需指导书锚点、决定选版的 ECN/通知和检验依据直接从 SQL 获取，标记为 `manufacturing_required`，不参加 top-k 竞争；Agent 丢失它们时刷新会重新补齐。
 - 制造模式不再按问题日期套用普通时间过滤，因此能保留“旧版指导书＋后来发布的在制沿用 ECN”。普通问答仍使用原有时间处理。
 - 每次取证复查整个授权制造目录指纹与必需来源。目录新增、审核变化、撤回、换版、原文或锚点变化都会抛出 `ManufacturingScopeChanged`，要求重新选版；不能只删掉决定性通知后继续使用旧指导书。
-- 该异常穿透 Agent 和反馈补查，不降级复用旧答案。M3 的制造 HTTP 入口需将它转换为可理解的重新查询提示。
+- 该异常穿透 Agent 和反馈补查，不降级复用旧答案。M3 的制造 HTTP 入口将它转换为可理解的重新查询提示。
 
 Trace 分开记录 `manufacturing_selection` 和 `manufacturing_rule_evidence`，之后再记录普通向量、关键词、融合、重排及补查。Trace 不赋予访问权限。
 
@@ -120,6 +122,6 @@ $env:PYTEST_DISABLE_PLUGIN_AUTOLOAD = '1'
 .venv/Scripts/python.exe scripts/evaluate.py check
 ```
 
-PostgreSQL 入口复用 M1 的独立库保护和脱敏记录逻辑，但严格要求 `manufacturing_m2_test_<12位十六进制>` 名称，不能复用 M1 或业务库。显式创建时从空库迁移，验证完成清理；已有报告不能覆盖。M2 使用现有 JSON 容器，不新增迁移，迁移 head 仍为 `d8f0b2c43569`。
+PostgreSQL 入口复用 M1 的独立库保护和脱敏记录逻辑，但严格要求 `manufacturing_m2_test_<12位十六进制>` 名称，不能复用 M1 或业务库。显式创建时从空库迁移，验证完成清理；已有报告不能覆盖。M2 使用现有 JSON 容器，不新增迁移；M2 当轮验证 head 为 `d8f0b2c43569`，当前入口随源码验证最新迁移 head，M3 新增迁移见[制造问答说明](MANUFACTURING_QA.md)。
 
 单元测试用本地 SQL 原文和假向量/模型验证逻辑；PostgreSQL 测试验证真实 JSON 过滤、pg_search 查询、行锁并发与跨会话失效。具体轮次及结果见[阶段进度](MANUFACTURING_PHASE1_PROGRESS.md)。这些结果不代表 40 题正式问答质量或整期验收；付费问答、业务样本回归和部署留待后续已定义阶段。

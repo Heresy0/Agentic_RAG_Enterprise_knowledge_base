@@ -14,6 +14,8 @@ from sqlalchemy.exc import SQLAlchemyError
 from ..config import Settings
 from ..evaluation.trace import record_rag_event
 from ..model_usage import invoke_structured
+from ..security.business_scope import BusinessAuthorizationDenied
+from ..manufacturing.scope import ManufacturingScopeChanged
 from ..security.authorization import AuthorizationDenied
 from .evidence_coordinator import EvidenceAccess
 from .rag_budget import current_rag_budget
@@ -136,7 +138,7 @@ class QueryPlanner:
                     candidate = QueryPlan.model_validate(candidate).validate_question(question)
                 guard.require()
                 fallback, source = candidate, "model"
-            except (AuthorizationDenied, SQLAlchemyError):
+            except (AuthorizationDenied, SQLAlchemyError, BusinessAuthorizationDenied, ManufacturingScopeChanged):
                 raise
             except Exception as exc:
                 source = "fallback"
