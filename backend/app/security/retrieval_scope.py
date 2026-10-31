@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 from uuid import UUID
+from sqlalchemy import true
+from ..manufacturing.scope import ManufacturingFence
 
 
 @dataclass(frozen=True, slots=True)
@@ -10,6 +12,7 @@ class RetrievalScope:
     knowledge_base_id: UUID | None = None
     knowledge_base_ids: frozenset[UUID] = frozenset()
     knowledge_base_names: tuple[tuple[UUID, str], ...] = ()
+    manufacturing: ManufacturingFence | None = None
 
     def __post_init__(self):
         ids = frozenset(self.knowledge_base_ids)
@@ -31,3 +34,14 @@ class RetrievalScope:
             return UUID(str(tenant_id)) == self.tenant_id and UUID(str(knowledge_base_id)) in self.knowledge_base_ids
         except (TypeError, ValueError):
             return False
+
+    def document_filter(self):
+        return self.manufacturing.predicate() if self.manufacturing is not None else true()
+
+    def require_current_manufacturing(self, session):
+        if self.manufacturing is not None:
+            self.manufacturing.require_current(session, self)
+
+    def contains_document(self, metadata):
+        return (self.contains(metadata.get("tenant_id"), metadata.get("knowledge_base_id"))
+                and (self.manufacturing is None or self.manufacturing.contains_metadata(metadata)))

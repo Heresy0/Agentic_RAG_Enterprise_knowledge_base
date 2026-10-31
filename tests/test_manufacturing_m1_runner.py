@@ -28,3 +28,10 @@ def test_output_path_is_checked_before_database_access(tmp_path,monkeypatch):
     monkeypatch.setattr(runner,"create_engine",unexpected)
     with pytest.raises(ValueError,match="tmp"):
         runner.main(["--create-test-database","--output-dir",str(tmp_path)])
+
+
+def test_m2_runner_cannot_reuse_m1_or_business_database():
+    with pytest.raises(ValueError):
+        runner.checked_test_url("postgresql+psycopg://localhost/manufacturing_m1_test_123456abcdef", phase="m2")
+    assert runner.checked_test_url("postgresql+psycopg://localhost/manufacturing_m2_test_123456abcdef", phase="m2").database.startswith("manufacturing_m2_test_")
+    with pytest.raises(ValueError): runner.checked_test_url("postgresql+psycopg://localhost/postgres", phase="m2")

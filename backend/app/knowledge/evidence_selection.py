@@ -10,12 +10,17 @@ from .evidence_expansion import (incident_identifiers, incident_source_matches,
                                  asks_incident_cause, incident_cause_quote)
 
 
-def select_evidence(question, documents):
+def select_evidence(question, documents, *, scope=None):
     """Remove only explicitly inapplicable policies; preserve unknown/conflicts.
 
     Supersession requires explicit ``supersedes`` document codes plus matching
     ``rule_scope`` administrator metadata; neither date nor filename implies it.
     """
+    if scope is not None and scope.manufacturing is not None:
+        return [Document(page_content=doc.page_content, id=getattr(doc, "id", None),
+                         metadata={**doc.metadata, "policy_selection": "reviewed_manufacturing_scope",
+                                   "evidence_role": evidence_role(doc)})
+                for doc in documents if scope.contains_document(doc.metadata)]
     period = query_period(question)
     selected = []
     by_source = {}

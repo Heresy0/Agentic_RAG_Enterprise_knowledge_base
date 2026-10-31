@@ -78,6 +78,14 @@ def execute(service):
     return result, trace
 
 
+def test_manufacturing_scope_change_during_supplement_search_aborts_old_draft(monkeypatch):
+    from backend.app.manufacturing.scope import ManufacturingScopeChanged
+    def hook(guard, count):
+        if count == 2: raise ManufacturingScopeChanged("选版依据已撤回")
+    service, *_ = setup(monkeypatch, search_hook=hook)
+    with pytest.raises(ManufacturingScopeChanged): execute(service)
+
+
 def budget(trace):
     return next(row for row in trace.stages["rag_routing"] if row["kind"] == "budget")
 

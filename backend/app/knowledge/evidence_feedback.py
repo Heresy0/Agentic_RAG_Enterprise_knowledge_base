@@ -15,6 +15,7 @@ from .answer_models import AnswerDraft
 from .answer_validation import AnswerValidator
 from .evidence_coordinator import EvidenceAccess
 from .evidence_selection import select_evidence
+from ..manufacturing.scope import ManufacturingScopeChanged
 from .rag_budget import current_rag_budget, query_key, RagBudgetExceeded
 from .request_budget import evidence_deadline
 from .temporal import future_certainty_gap
@@ -149,7 +150,7 @@ class EvidenceFeedback:
                 return result
             merged = self.coordinator._merge(current, extra, scope, interleave=True)
             merged = self.retrieval.refresh_evidence(merged, scope=scope, session=session)
-            merged = select_evidence(question, merged)
+            merged = select_evidence(question, merged, scope=scope)
             enlarged = self.builder.build(merged, question=question)
             if enlarged.incomplete_reason:
                 record_rag_event(dict(kind="feedback", outcome="context_budget_incomplete"))
@@ -189,7 +190,7 @@ class EvidenceFeedback:
             result.regenerated = True
             record_rag_event(dict(kind="feedback", outcome="regenerated"))
             return result
-        except (AuthorizationDenied, SQLAlchemyError):
+        except (AuthorizationDenied, SQLAlchemyError, ManufacturingScopeChanged):
             raise
         except RagBudgetExceeded:
             guard.require()

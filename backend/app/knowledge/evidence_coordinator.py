@@ -20,6 +20,7 @@ from ..evaluation.trace import capture_trace, record_agent_event, record_agent_r
 from ..model_usage import current_usage_context, invoke_structured
 from ..security.authorization import AuthorizationDenied, AuthorizationService
 from ..security.principal import Principal
+from ..manufacturing.scope import ManufacturingScopeChanged
 from .evidence_selection import select_evidence
 from .request_budget import evidence_deadline
 from .rag_budget import current_rag_budget, RagBudgetExceeded
@@ -159,7 +160,7 @@ class EvidenceCoordinator:
                     sequence.append(additional[index])
         pool = {}
         for doc in sequence:
-            if scope.contains(doc.metadata.get("tenant_id"), doc.metadata.get("knowledge_base_id")):
+            if scope.contains_document(doc.metadata):
                 pool.setdefault(_key(doc), doc)
         return list(pool.values())[:self._limit("agent_max_evidence", 24)]
 
@@ -309,7 +310,7 @@ class EvidenceCoordinator:
                     if self.clock() >= deadline:
                         outcome = "time_budget"
                         break
-        except (AuthorizationDenied, SQLAlchemyError):
+        except (AuthorizationDenied, SQLAlchemyError, ManufacturingScopeChanged):
             raise
         except RagBudgetExceeded:
             outcome = "shared_budget"
@@ -319,7 +320,7 @@ class EvidenceCoordinator:
         # Authorization failures must not silently fall back to old evidence.
         guard.require()
         pool = self.retrieval.refresh_evidence(pool, scope=scope, session=session)
-        pool = select_evidence(question, pool)
+        pool = select_evidence(question, pool, scope=scope)
         record_scope(question, scope)
         record_documents("agent_evidence", pool)
         record_agent_event(dict(kind="summary", outcome=outcome, route=route or "always",

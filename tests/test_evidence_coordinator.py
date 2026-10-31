@@ -78,6 +78,12 @@ def collect(scope, coordinator, question="两个流程有什么不同？"):
     return result, trace.to_dict()
 
 
+def test_manufacturing_scope_change_is_never_swallowed_as_agent_fallback():
+    from backend.app.manufacturing.scope import ManufacturingScopeChanged
+    scope, retrieval, guard, decider, coordinator = setup(actions=(ManufacturingScopeChanged("制造选版失效"),))
+    with pytest.raises(ManufacturingScopeChanged): collect(scope, coordinator)
+
+
 def test_ordinary_question_has_no_agent_call_or_extra_retrieval():
     scope, retrieval, guard, decider, coordinator = setup(mode="auto")
     result, trace = collect(scope, coordinator, "年假有几天？")

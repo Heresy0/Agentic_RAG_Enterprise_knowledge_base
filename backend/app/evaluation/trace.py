@@ -59,11 +59,26 @@ def record_scope(query, scope):
         trace.query = query
         trace.scope = dict(tenant_id=str(scope.tenant_id),
                            knowledge_base_ids=sorted(map(str, scope.knowledge_base_ids)))
+        if getattr(scope, "manufacturing", None) is not None:
+            trace.scope["manufacturing_state"] = scope.manufacturing.state
+            trace.scope["manufacturing_document_ids"] = sorted(map(str, scope.manufacturing.document_ids))
+
+
+def record_manufacturing_selection(decision):
+    trace = _current.get()
+    if trace is not None:
+        trace.stages["manufacturing_selection"] = [dict(state=decision.state, reason=decision.reason,
+            selected_document_code=decision.selected_document_code,
+            selected_business_revision=decision.selected_business_revision,
+            rule_ids=list(decision.rule_ids), gaps=list(decision.gaps),
+            catalog_sha256=decision.scope.manufacturing.catalog_sha256)]
 
 
 def _in_scope(trace, metadata):
     return (str(metadata.get("tenant_id")) == trace.scope.get("tenant_id")
-            and str(metadata.get("knowledge_base_id")) in trace.scope.get("knowledge_base_ids", []))
+            and str(metadata.get("knowledge_base_id")) in trace.scope.get("knowledge_base_ids", [])
+            and ("manufacturing_document_ids" not in trace.scope
+                 or str(metadata.get("document_id")) in trace.scope["manufacturing_document_ids"]))
 
 
 def record_documents(stage, documents):
