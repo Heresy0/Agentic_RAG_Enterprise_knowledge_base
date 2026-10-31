@@ -36,3 +36,7 @@ sample_docs/ocr_independent_v1/documents/** -text -whitespace
 evals/ocr_small_experiment_v1/** -text whitespace=cr-at-eol
 scripts/run_ocr_small_experiment.py text eol=lf
 evals/document_cleaning_v1/** -text whitespace=cr-at-eol
+
+# M0's new work-order pack is byte-hashed independently of historical suites.
+sample_docs/manufacturing_workorder_v1/** -text whitespace=cr-at-eol
+evals/manufacturing_workorder_v1/** -text whitespace=cr-at-eol

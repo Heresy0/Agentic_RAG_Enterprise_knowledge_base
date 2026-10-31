@@ -15,7 +15,8 @@
 | 任务 | 入口 |
 | --- | --- |
 | 当前演示、启动、评分口径 | `docs/MANUFACTURING_DEMO.md` |
-| 首期工单集成改造方案与验收标准（规划） | `docs/MANUFACTURING_PHASE1_PLAN.md` |
+| 首期工单集成改造方案与验收标准 | `docs/MANUFACTURING_PHASE1_PLAN.md` |
+| 首期分阶段实施进度与复现入口 | `docs/MANUFACTURING_PHASE1_PROGRESS.md` |
 | 制造业 98 题配置 | `evals/manufacturing_zh_lite_v1/README.md` |
 | 稳定展示版本与冻结评分文件 | `evals/manufacturing_zh_lite_v1/demo_release.json` |
 | 通用 120 题套件 | `evals/current/README.md` |

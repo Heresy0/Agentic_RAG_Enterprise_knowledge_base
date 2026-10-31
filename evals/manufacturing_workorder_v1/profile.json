@@ -1,0 +1,129 @@
+{
+  "acceptance": {
+    "access_checks": 20,
+    "all_behavior_cases_required": true,
+    "all_numeric_conditions_required": true,
+    "critical_cases": {
+      "C01": "MFGWO-Q007",
+      "C02": "MFGWO-Q008",
+      "C03": "MFGWO-Q009",
+      "C04": "MFGWO-Q031",
+      "C05": "MFGWO-Q036",
+      "C06": "MFGWO-Q035",
+      "C07": "MFGWO-Q017",
+      "C08": "MFGWO-Q025",
+      "C09": "MFGWO-Q018",
+      "C10": "MFGWO-Q037",
+      "C11": "MFGWO-Q010",
+      "C12": "MFGWO-Q016"
+    },
+    "expected_behavior_counts": {
+      "answer": 30,
+      "clarify": 4,
+      "refuse": 6
+    },
+    "expected_category_counts": {
+      "clarify": 4,
+      "cross_document": 8,
+      "facts": 6,
+      "numeric_conditions": 6,
+      "refuse": 6,
+      "version": 10
+    },
+    "failure_checks": 12,
+    "minimum_proxy_passed": 36,
+    "minimum_review_passed": 36,
+    "minimum_split_passed": {
+      "development": 14,
+      "regression": 22
+    },
+    "total": 40,
+    "ui_conversation_checks": 8
+  },
+  "baseline_ref": "9846c4e",
+  "corpus_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json",
+  "files_sha256": {
+    "evals/manufacturing_workorder_v1/contracts.schema.json": "fb4af7df08b1cdca36dca32529f112131ec80346b0152e785a2aab9c359e2c25",
+    "evals/manufacturing_workorder_v1/development/single_turn.jsonl": "31bcf5d05c987ba2579b53cddfaa229dfaaa6c159c0d05d0bf9c129841a54739",
+    "evals/manufacturing_workorder_v1/regression/single_turn.jsonl": "f9ab87755a6bcd6832ce73d1e3ad7077a9dc11ab8fcc3c3e367dca308cf1b67d",
+    "sample_docs/manufacturing_workorder_v1/documents/生产工艺/01_WO019书面切换通知.md": "43a90c111f1117895d3933ccf39ff4440c37c8ec11855f8cb417311477e158a6",
+    "sample_docs/manufacturing_workorder_v1/documents/生产工艺/02_WO024书面指示A.md": "2332f98f9c6b0e54e0a0c0602c5b00f802608a7195135cfe4d79f2f3262fa497",
+    "sample_docs/manufacturing_workorder_v1/documents/生产工艺/03_WO024书面指示B.md": "f773f6704aa53f8d06170474f0e06517c8729bd27d944285621eef99c608efad",
+    "sample_docs/manufacturing_workorder_v1/manifest.json": "15e8c18664c24a79912f963c011de1fa2e0ed32e08a5d3a779cc09e27907de87",
+    "sample_docs/manufacturing_workorder_v1/rules.json": "390620d62112dbe45b018efc91edab9342b68911f493d8a4642f3358cbd1d638",
+    "sample_docs/manufacturing_workorder_v1/work_orders.json": "b37390b3338fe559d34e397735e1c371d355d7f810fccf92660bd91005270f2e"
+  },
+  "fixtures_file": "sample_docs/manufacturing_workorder_v1/work_orders.json",
+  "preserved_files_sha256_lf": {
+    "backend/app/evaluation/assertions.py": "cb8d5b42a0eb982cb0c46623b89e3b3b8fe98975c397b1b14d9953f9f16ba092",
+    "backend/app/evaluation/metrics.py": "13eb3b2c348e01f158e92550cf38947a00cd31644aaffb6f73c6181716e20c85",
+    "backend/app/evaluation/scoring_rules.py": "bb156c27978bdc9202719b18149cda14ff284f09070d87d6aaacedca77ee2ce2",
+    "evals/manufacturing_zh_lite_v1/demo_release.json": "53d4a0294a600e52494133343430795d481e25499e8c2bb9dbeadb46fca2ffc2",
+    "evals/manufacturing_zh_lite_v1/development/single_turn.jsonl": "c8146eface39d50c3f8f5832c062f8f80855a3641bb6b1ef4dddc8b6e83a014e",
+    "evals/manufacturing_zh_lite_v1/profile.json": "576bf1f6192f155202000f9f84995767a9f7b1b1c27947eecab36e839af0d7ba",
+    "evals/manufacturing_zh_lite_v1/regression/single_turn.jsonl": "85c9f6ed32a462aa65b60cd276d74de1c14413ebf36117594f08d22c7abe97b4",
+    "evals/manufacturing_zh_lite_v1/reports/20261029-r2-scoring/summary.json": "65c937e9d7ecea2f882a1122adcfd0c7c0856f36697faa6007af439aec0c9a00",
+    "evals/manufacturing_zh_lite_v1/scoring_rules.json": "eea453f5cc414641296aa167492a7f01994c90d0b1df78bb476e0e0838107631"
+  },
+  "purpose": "合成工单场景回归集；非独立企业盲测",
+  "rules_file": "sample_docs/manufacturing_workorder_v1/rules.json",
+  "schema_file": "evals/manufacturing_workorder_v1/contracts.schema.json",
+  "schema_version": "manufacturing-workorder-profile-v1",
+  "splits": {
+    "development": {
+      "count": 16,
+      "file": "evals/manufacturing_workorder_v1/development/single_turn.jsonl",
+      "ids": [
+        "MFGWO-Q001",
+        "MFGWO-Q002",
+        "MFGWO-Q006",
+        "MFGWO-Q007",
+        "MFGWO-Q013",
+        "MFGWO-Q016",
+        "MFGWO-Q017",
+        "MFGWO-Q018",
+        "MFGWO-Q023",
+        "MFGWO-Q025",
+        "MFGWO-Q026",
+        "MFGWO-Q030",
+        "MFGWO-Q031",
+        "MFGWO-Q032",
+        "MFGWO-Q033",
+        "MFGWO-Q034"
+      ],
+      "sha256": "31bcf5d05c987ba2579b53cddfaa229dfaaa6c159c0d05d0bf9c129841a54739"
+    },
+    "regression": {
+      "count": 24,
+      "file": "evals/manufacturing_workorder_v1/regression/single_turn.jsonl",
+      "ids": [
+        "MFGWO-Q003",
+        "MFGWO-Q004",
+        "MFGWO-Q005",
+        "MFGWO-Q008",
+        "MFGWO-Q009",
+        "MFGWO-Q010",
+        "MFGWO-Q011",
+        "MFGWO-Q012",
+        "MFGWO-Q014",
+        "MFGWO-Q015",
+        "MFGWO-Q019",
+        "MFGWO-Q020",
+        "MFGWO-Q021",
+        "MFGWO-Q022",
+        "MFGWO-Q024",
+        "MFGWO-Q027",
+        "MFGWO-Q028",
+        "MFGWO-Q029",
+        "MFGWO-Q035",
+        "MFGWO-Q036",
+        "MFGWO-Q037",
+        "MFGWO-Q038",
+        "MFGWO-Q039",
+        "MFGWO-Q040"
+      ],
+      "sha256": "f9ab87755a6bcd6832ce73d1e3ad7077a9dc11ab8fcc3c3e367dca308cf1b67d"
+    }
+  },
+  "version": "manufacturing-workorder-v1-r1"
+}

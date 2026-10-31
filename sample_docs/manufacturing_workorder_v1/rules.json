@@ -1,0 +1,79 @@
+{
+  "rules": [
+    {
+      "cutoff_date": "2026-10-01",
+      "kind": "start_before",
+      "operation_code": "OP-20",
+      "product_model": "HC-A17",
+      "review_state": "draft",
+      "rule_id": "HC-START-OLD",
+      "source_document_id": "MFG-09",
+      "source_quote": "2026年9月30日及以前已经开工的工单继续沿用1.0版，即使在10月报工也不自动切换。",
+      "source_quote_sha256": "cb79f01c5c6ab444d576558ceef1cd32e5c932c0a3ead6a95fb6cac8afb35ad5",
+      "target_business_revision": "1.0",
+      "target_document_code": "HC-WI-A17-020"
+    },
+    {
+      "cutoff_date": "2026-10-01",
+      "kind": "start_on_or_after",
+      "operation_code": "OP-20",
+      "product_model": "HC-A17",
+      "review_state": "draft",
+      "rule_id": "HC-START-NEW",
+      "source_document_id": "MFG-09",
+      "source_quote": "2026年10月1日起新开工工单由指导书1.0版切换为2.0版。",
+      "source_quote_sha256": "1a199b1ed430a82c0d352e15545827f0c07373dd0b46d6780767199f3dcfed6e",
+      "target_business_revision": "2.0",
+      "target_document_code": "HC-WI-A17-020"
+    },
+    {
+      "effective_from": "2026-10-03",
+      "kind": "work_order_override",
+      "operation_code": "OP-20",
+      "product_model": "HC-A17",
+      "review_state": "draft",
+      "rule_id": "HC-SW-019",
+      "source_document_id": "MFGWO-01",
+      "source_quote": "本通知仅针对HC-P01工厂的WO-019工单，产品HC-A17、工序OP-20。该工单于2026年9月25日实际开工，自2026年10月3日起改用HC-WI-A17-020的2.0版。本通知是ECN-2026-018所述的具体工单书面切换，不代表其他9月开工工单也已切换。",
+      "source_quote_sha256": "caf4c67ed6ce60d456b5a148c71857e9eb38feff7a58a1aca4b85c230198b62d",
+      "target_business_revision": "2.0",
+      "target_document_code": "HC-WI-A17-020",
+      "work_order_ids": [
+        "WO-019"
+      ]
+    },
+    {
+      "effective_from": "2026-10-03",
+      "kind": "work_order_override",
+      "operation_code": "OP-20",
+      "product_model": "HC-A17",
+      "review_state": "draft",
+      "rule_id": "HC-SW-024-A",
+      "source_document_id": "MFGWO-02",
+      "source_quote": "本通知仅针对HC-P01工厂的WO-024工单，产品HC-A17、工序OP-20。自2026年10月3日起，该工单改用HC-WI-A17-020的2.0版。本通知未声明替代其他具体工单通知。",
+      "source_quote_sha256": "a20866c1fa4cffcf3d13dae73690bc0c6a4a4a4d55f595bbccb95b9e6ee60f14",
+      "target_business_revision": "2.0",
+      "target_document_code": "HC-WI-A17-020",
+      "work_order_ids": [
+        "WO-024"
+      ]
+    },
+    {
+      "effective_from": "2026-10-03",
+      "kind": "work_order_override",
+      "operation_code": "OP-20",
+      "product_model": "HC-A17",
+      "review_state": "draft",
+      "rule_id": "HC-SW-024-B",
+      "source_document_id": "MFGWO-03",
+      "source_quote": "本通知仅针对HC-P01工厂的WO-024工单，产品HC-A17、工序OP-20。自2026年10月3日起，该工单继续使用HC-WI-A17-020的1.0版。本通知未声明替代其他具体工单通知。",
+      "source_quote_sha256": "7c4926cc2b2e3adae5cbdfaa770090e09d284883da437cfc3bf5a1d832773ebf",
+      "target_business_revision": "1.0",
+      "target_document_code": "HC-WI-A17-020",
+      "work_order_ids": [
+        "WO-024"
+      ]
+    }
+  ],
+  "schema_version": "manufacturing-rules-v1"
+}
