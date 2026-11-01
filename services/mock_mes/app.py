@@ -112,6 +112,12 @@ def create_app(fixtures: WorkOrderFixtures, credentials: tuple[SourceCredential,
             next_cursor = payload + "." + signature
         return WorkOrderPage(items=tuple(selected), next_cursor=next_cursor)
 
+    @app.get("/v1/fixture")
+    def fixture(response: Response, scope=Depends(authorized)):
+        response.headers["Cache-Control"] = "no-store"
+        return dict(schema_version="mes-fixture-v1", fixture_version=fixtures.fixture_version,
+            fixture_sha256=fixtures_hash, tenant_id=str(fixtures.tenant_id), source_system_id=fixtures.source_system_id)
+
     @app.get("/v1/work-orders/{work_order_id}/context")
     def context(work_order_id: Identifier, response: Response, scope=Depends(authorized)):
         credential, plants = scope

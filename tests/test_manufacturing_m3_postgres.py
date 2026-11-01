@@ -32,12 +32,12 @@ from backend.app.quality.service import ObservationNotFound
 pytestmark = pytest.mark.integration
 
 
-@pytest.fixture
-def pg_harness(monkeypatch):
+def pg_context(monkeypatch, *, phase="m3"):
     value = os.environ.get("MANUFACTURING_TEST_DATABASE_URL")
     if not value: pytest.skip("explicit independent M3 database not configured")
     url = make_url(value)
-    assert url.host in ("127.0.0.1", "localhost", "::1") and re.fullmatch(r"manufacturing_m3_test_[a-f0-9]{12}", url.database or "")
+    assert phase in ("m3", "m4")
+    assert url.host in ("127.0.0.1", "localhost", "::1") and re.fullmatch(r"manufacturing_" + phase + r"_test_[a-f0-9]{12}", url.database or "")
     engine = create_engine(url, connect_args={"connect_timeout": 5})
     factory = sessionmaker(engine, expire_on_commit=False)
     tenant, kb, user, viewer = uuid4(), uuid4(), uuid4(), uuid4()
@@ -59,6 +59,11 @@ def pg_harness(monkeypatch):
         if h is not None: asyncio.run(h.connector.aclose())
         with engine.begin() as connection: connection.execute(delete(Tenant).where(Tenant.id == tenant))
         engine.dispose()
+
+
+@pytest.fixture
+def pg_harness(monkeypatch):
+    yield from pg_context(monkeypatch, phase="m3")
 
 
 def test_postgres_head_has_nullable_invalidation_and_old_business_bindings_stay_readable(pg_harness):
@@ -151,7 +156,7 @@ def test_shared_snapshot_requires_business_review_as_well_as_kb_admin(pg_harness
         with h.c.session_factory() as session:
             store = ReviewStore(session, h.c.viewer)
             run, feedback = store.require_run(UUID(run_id))
-            assert store.eligibility(None, run, feedback) == (False, "manufacturing_review_requires_M4")
+            assert store.eligibility(None, run, feedback) == (False, "not_approved")
             session.execute(delete(BusinessScopeGrant).where(BusinessScopeGrant.user_id == h.c.viewer.user_id,
                 BusinessScopeGrant.permission == "view")); session.commit()
         assert client.get(f"/api/qa/runs/{run_id}").status_code == 404

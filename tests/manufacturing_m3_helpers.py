@@ -120,5 +120,5 @@ def configure(c, monkeypatch):
 
 
 def qa_input(h, wo="WO-018", question="这张工单的型号是什么？", conversation_id=None, **extra):
-    return dict(work_order_id=wo, question=question, knowledge_base_id=str(h.c.knowledge_base_id),
-                conversation_id=str(conversation_id) if conversation_id else None, **extra)
+    return {**dict(work_order_id=wo, question=question, knowledge_base_id=str(h.c.knowledge_base_id),
+                conversation_id=str(conversation_id) if conversation_id else None), **extra}

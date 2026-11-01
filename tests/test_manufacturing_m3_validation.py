@@ -26,6 +26,18 @@ def evidence(catalog, *, comparison=False):
     return active, [stored_chunk_to_document(row) for row in rows], docs
 
 
+def test_change_notice_with_both_quantities_cannot_replace_current_instruction(catalog):
+    active,rows,_=evidence(catalog)
+    with manufacturing_answer_context(active):
+        built=ContextBuilder().build(rows)
+        notice=next(item for item in built.items if item.document_role=='change_notice')
+        built=replace(built,items=tuple(replace(item,content=item.content+'\n首件由连续2件改为连续3件。')
+            if item.citation_id==notice.citation_id else item for item in built.items))
+        claim=AnswerClaim(text='首件须连续检查3件',citations=[notice.citation_id],claim_kind='work_requirement')
+        result=AnswerValidator().validate(draft=AnswerDraft(answerable=True,claims=[claim]),context=built)
+        assert not result.valid and any('当前适用指导书' in error for error in result.errors)
+
+
 @pytest.mark.parametrize("kind", ["wrong_field", "extra_claim", "mixed_requirement", "business_only_requirement", "missing_kind", "question_number"])
 def test_business_values_never_exempt_unsupported_process_facts_or_identity(catalog, kind):
     active, rows, docs = evidence(catalog)
@@ -95,6 +107,40 @@ def test_work_order_record_requires_whole_original_sentence_and_business_identit
         event = next(item.citation_id for item in built.items if item.document_id == str(docs["event18"][0].id))
         draft = AnswerDraft(answerable=True, claims=[AnswerClaim(text=text, citations=[event, "业务1"], claim_kind="work_order_evidence")])
         assert AnswerValidator().validate(draft=draft, context=built).valid is valid
+
+
+def test_record_compiler_preserves_consecutive_original_sentences_and_coverage(catalog):
+    from backend.app.manufacturing.generation_models import ManufacturingGenerationDraft, compile_applicability_bindings
+    active, rows, docs = evidence(catalog)
+    with manufacturing_answer_context(active):
+        built = ContextBuilder().build(rows)
+        event = next(item for item in built.items if item.document_id == str(docs['event18'][0].id))
+        built = replace(built, items=tuple(replace(item, content='更换前记录不能证明更换后已完成。现有记录未载明后续实际完成时间。') if item == event else item for item in built.items))
+        draft = ManufacturingGenerationDraft.model_validate(dict(answerable=True, response_type='answer', claims=[
+            dict(text=active.applicability_text, citations=['业务1'], claim_kind='business_fact'),
+            dict(text='更换前记录不能证明更换后已完成。现有记录未载明后续实际完成时间。', citations=[event.citation_id], claim_kind='work_order_evidence')],
+            coverage=[dict(requirement_id='Q1', aspect='记录边界', status='answered', claim_indices=[1,2], missing_information=None)]))
+        result = compile_applicability_bindings(draft, built)
+        assert result.claims[0].claim_kind == 'applicability'
+        assert [c.text for c in result.claims[1:]] == ['更换前记录不能证明更换后已完成', '现有记录未载明后续实际完成时间']
+        assert all('业务1' in c.citations for c in result.claims[1:])
+        assert result.coverage[0].claim_indices == [1,2,3]
+        assert draft.coverage[0].claim_indices == [1,2] and draft.claims[1].citations == [event.citation_id]
+        assert AnswerValidator().validate(draft=result, context=built, question='记录边界？').valid
+
+
+@pytest.mark.parametrize('text,business', [('已完成', []), ('更换后已完成', []), ('现有记录未载明后续实际完成时间', ['业务2']), ('现有记录未载明后续实际完成时间。更换前记录不能证明更换后已完成', [])])
+def test_record_compiler_does_not_authorize_fragments_foreign_fields_or_reordered_sentences(catalog, text, business):
+    from backend.app.manufacturing.generation_models import compile_applicability_bindings
+    active, rows, docs = evidence(catalog)
+    with manufacturing_answer_context(active):
+        built = ContextBuilder().build(rows)
+        event = next(item for item in built.items if item.document_id == str(docs['event18'][0].id))
+        built = replace(built, items=tuple(replace(item, content='更换前记录不能证明更换后已完成。现有记录未载明后续实际完成时间。') if item == event else item for item in built.items))
+        draft = AnswerDraft(answerable=True, claims=[AnswerClaim(text=text, citations=[event.citation_id,*business],claim_kind='work_order_evidence')])
+        result=compile_applicability_bindings(draft,built)
+        assert result.claims[0] == draft.claims[0]
+        assert not AnswerValidator().validate(draft=result,context=built).valid
 
 
 def test_denied_business_guard_prevents_every_structured_model_attempt(catalog):

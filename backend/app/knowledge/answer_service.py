@@ -273,6 +273,9 @@ class AnswerService:
                     reason=draft.refusal_reason, temporal=temporal_evidence_context(question, context.items))
 
         validation_started = time.perf_counter()
+        if schema_recovered and context.business_items:
+            from ..manufacturing.generation_models import compile_applicability_bindings
+            draft = compile_applicability_bindings(draft, context)
         # Coverage is checked against the original draft, before any supplement.
         # A fallback must not turn an explicit missing requirement into a success.
         calculation_records = []
@@ -440,12 +443,19 @@ class AnswerService:
     ) -> GenerationAnswerDraft:
         model = self._structured_llm
         if context.business_items:
-            from ..manufacturing.generation_models import ManufacturingGenerationDraft
+            from ..manufacturing.generation_models import ManufacturingGenerationDraft, precision_projection
+            projection = precision_projection(question, context)
+            if projection is not None:
+                return projection
             model = getattr(self, "_manufacturing_llm", None) or self._base_llm.with_structured_output(
                 ManufacturingGenerationDraft, include_raw=True)
         result = invoke_structured(model, self._generation_messages(question, context),
                                    stage="answer_generation", model_name=self._settings.chat_model)
-        return self._as_generation_draft(result)
+        draft = self._as_generation_draft(result)
+        if context.business_items:
+            from ..manufacturing.generation_models import compile_applicability_bindings
+            draft = compile_applicability_bindings(draft, context)
+        return draft
 
     def _generation_messages(self, question, context):
         requirements = requirement_prompt(question, context)

@@ -209,6 +209,10 @@ class AnswerValidator:
                     errors.append(f"第{claim_index}个作业要求引用了仅供对比的非适用指导书")
                     continue
                 quantity_sources = guides if guides and re.search(r"首件|连续.*件", claim.text) else cited_documents
+                if (not comparing and self._manufacturing_quantities(claim.text)
+                        and re.search(r"首件|连续.*件", claim.text) and not guides):
+                    errors.append(f"第{claim_index}个首件数量须引用当前适用指导书正文，不能仅引用并列新旧数量的通知")
+                    continue
                 missing_quantities = self._manufacturing_quantities(claim.text) - self._manufacturing_quantities(
                     "\n".join(item.content for item in quantity_sources))
                 if missing_quantities:

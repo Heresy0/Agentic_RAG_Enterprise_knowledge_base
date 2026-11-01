@@ -49,6 +49,7 @@ class ReviewInput(BaseModel):
     citation_requirement: Literal["none", "all_supporting_sources"] | None = None
     forbidden_claims: list[str] = Field(default_factory=list, max_length=32)
     evidence: list[EvidenceInput] = Field(default_factory=list, max_length=32)
+    business_evidence: list["BusinessEvidenceInput"] = Field(default_factory=list, max_length=16)
 
     @field_validator("review_reason", "reference_answer", "evaluation_question")
     @classmethod
@@ -84,13 +85,27 @@ class ReviewInput(BaseModel):
         if self.sample_status == "approved":
             if self.review_status != "confirmed" or self.expected_answerable is None or not self.reference_answer or not self.evaluation_question:
                 raise ValueError("样本通过须先确认问题，并填写可独立理解的回归问题、预期可回答性和参考答案。")
-            if self.expected_answerable and (not self.required_facts or not self.evidence):
+            if self.expected_answerable and (not self.required_facts or not (self.evidence or self.business_evidence)):
                 raise ValueError("可回答样本须有必答事实和来源证据。")
-            if not self.expected_answerable and (self.required_facts or self.evidence):
+            if not self.expected_answerable and (self.required_facts or self.evidence or self.business_evidence):
                 raise ValueError("资料不足样本不填写必答事实或支持答案的证据。")
         if len({item.citation_id for item in self.evidence}) != len(self.evidence):
             raise ValueError("证据编号不可重复。")
         return self
+
+
+class BusinessEvidenceInput(BaseModel):
+    model_config = ConfigDict(extra="forbid", hide_input_in_errors=True)
+    citation_id: str = Field(min_length=1, max_length=64)
+    field_name: str = Field(min_length=1, max_length=64)
+    value: Annotated[str, Field(strict=True, max_length=4000)] | Annotated[list[Annotated[str, Field(strict=True, max_length=100)]], Field(max_length=16)] | None
+    source_system_id: str = Field(min_length=1, max_length=100)
+    source_record_id: str = Field(min_length=1, max_length=100)
+    source_revision: str = Field(min_length=1, max_length=100)
+    payload_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+
+
+ReviewInput.model_rebuild()
 
 
 class OpenCaseInput(BaseModel):

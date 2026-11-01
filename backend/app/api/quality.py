@@ -3,7 +3,7 @@ from contextlib import contextmanager
 from datetime import datetime
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Response
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
@@ -20,8 +20,8 @@ from ..security.principal import Principal
 router = APIRouter(prefix="/api/quality", tags=["quality-review"], dependencies=[Depends(no_store)])
 
 
-def get_store(session: Session = Depends(get_database_session), principal: Principal = Depends(get_current_principal)):
-    return ReviewStore(session, principal)
+def get_store(request: Request, session: Session = Depends(get_database_session), principal: Principal = Depends(get_current_principal)):
+    return ReviewStore(session, principal, request.app.state.settings)
 
 
 @contextmanager
@@ -40,6 +40,11 @@ def checked(store):
 
 
 def detail(store, case, run, feedback, *, history_before=None, history_limit=20):
+    from ..quality.manufacturing import is_manufacturing, evidence_options
+    business = []
+    if is_manufacturing(store, run) and run.snapshot_status == "captured":
+        try: business = evidence_options(store, run)
+        except ReviewConflict: pass
     query = select(QualityCaseRevision).where(QualityCaseRevision.tenant_id == case.tenant_id,
                                             QualityCaseRevision.case_id == case.id)
     if history_before is not None:
@@ -48,7 +53,7 @@ def detail(store, case, run, feedback, *, history_before=None, history_limit=20)
     return dict(case=store.case_data(case, run, feedback), review=store.revision(case).payload_json,
         source=dict(run_id=run.id, question=run.question, retrieval_question=run.retrieval_question,
                     response=run.response_json, snapshot=run.snapshot_json, snapshot_status=run.snapshot_status,
-                    feedback=feedback_snapshot(feedback)),
+                    feedback=feedback_snapshot(feedback), business_evidence_options=business),
         history=[dict(revision=r.revision, reviewer_user_id=r.reviewer_user_id, created_at=utc(r.created_at),
                       review=r.payload_json, source_binding=r.source_binding) for r in revisions],
         next_history_before=revisions[-1].revision if len(revisions) == history_limit else None)

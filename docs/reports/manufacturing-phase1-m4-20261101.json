@@ -1,0 +1,709 @@
+{
+  "date": "2026-11-01",
+  "status": "implementation_complete_acceptance_failed",
+  "production_release": false,
+  "formal": {
+    "type": "frozen_40_single_batch",
+    "total": 40,
+    "automatic_proxy_passed": 28,
+    "semantic_review_passed": 29,
+    "splits": {
+      "development": {
+        "total": 16,
+        "automatic_proxy_passed": 14,
+        "semantic_review_passed": 14
+      },
+      "regression": {
+        "total": 24,
+        "automatic_proxy_passed": 14,
+        "semantic_review_passed": 15
+      }
+    },
+    "gates": {
+      "complete": true,
+      "automatic_total": false,
+      "semantic_total": false,
+      "all_reviewed": true,
+      "critical_all": false,
+      "negative_all": true,
+      "numeric_all": false,
+      "source_p95": true,
+      "answer_p95": true,
+      "development_automatic": true,
+      "development_semantic": true,
+      "regression_automatic": false,
+      "regression_semantic": false
+    },
+    "passed": false,
+    "failed_proxy_ids": [
+      "MFGWO-Q007",
+      "MFGWO-Q023",
+      "MFGWO-Q008",
+      "MFGWO-Q009",
+      "MFGWO-Q010",
+      "MFGWO-Q011",
+      "MFGWO-Q012",
+      "MFGWO-Q014",
+      "MFGWO-Q015",
+      "MFGWO-Q020",
+      "MFGWO-Q021",
+      "MFGWO-Q029"
+    ],
+    "failed_review_ids": [
+      "MFGWO-Q007",
+      "MFGWO-Q013",
+      "MFGWO-Q008",
+      "MFGWO-Q009",
+      "MFGWO-Q010",
+      "MFGWO-Q011",
+      "MFGWO-Q014",
+      "MFGWO-Q015",
+      "MFGWO-Q020",
+      "MFGWO-Q021",
+      "MFGWO-Q029"
+    ],
+    "critical": {
+      "C01": {
+        "case_id": "MFGWO-Q007",
+        "automatic": false,
+        "semantic": false
+      },
+      "C02": {
+        "case_id": "MFGWO-Q008",
+        "automatic": false,
+        "semantic": false
+      },
+      "C03": {
+        "case_id": "MFGWO-Q009",
+        "automatic": false,
+        "semantic": false
+      },
+      "C04": {
+        "case_id": "MFGWO-Q031",
+        "automatic": true,
+        "semantic": true
+      },
+      "C05": {
+        "case_id": "MFGWO-Q036",
+        "automatic": true,
+        "semantic": true
+      },
+      "C06": {
+        "case_id": "MFGWO-Q035",
+        "automatic": true,
+        "semantic": true
+      },
+      "C07": {
+        "case_id": "MFGWO-Q017",
+        "automatic": true,
+        "semantic": true
+      },
+      "C08": {
+        "case_id": "MFGWO-Q025",
+        "automatic": true,
+        "semantic": true
+      },
+      "C09": {
+        "case_id": "MFGWO-Q018",
+        "automatic": true,
+        "semantic": true
+      },
+      "C10": {
+        "case_id": "MFGWO-Q037",
+        "automatic": true,
+        "semantic": true
+      },
+      "C11": {
+        "case_id": "MFGWO-Q010",
+        "automatic": false,
+        "semantic": false
+      },
+      "C12": {
+        "case_id": "MFGWO-Q016",
+        "automatic": true,
+        "semantic": true
+      }
+    },
+    "negative_count": 10,
+    "numeric_count": 6,
+    "source_p95_ms": 27.74,
+    "correct_answer_count": 19,
+    "correct_answer_p50_ms": 6436.736,
+    "correct_answer_p95_ms": 12587.064,
+    "correct_answer_max_ms": 12587.064,
+    "usage": {
+      "observed": true,
+      "calls": 91,
+      "reported_total_tokens": 340605,
+      "unknown_usage_calls": 2,
+      "unknown_usage_rate": 0.02197802197802198,
+      "unpriced_calls": 91,
+      "unpersisted_calls": 0,
+      "estimated_cost_by_currency": {},
+      "errors": 2
+    },
+    "budget": {
+      "calls": 91,
+      "charged_tokens": 404605,
+      "unknown_calls": 2,
+      "elapsed_seconds": 218.99,
+      "limited_by": null
+    },
+    "reviews_sha256": "3d7a114f48fe594fd0a58a121c8fed384c3208c04464de9b6c314058f01cf81a",
+    "records_sha256": "997db1c632730af60505d68c4bcfb12c0bab781becfda3150ef239cf915f4ff2",
+    "reviewers": [
+      "assistant_non_independent"
+    ],
+    "limitation": "Assistant semantic review is non-independent and does not replace frozen automatic gates. No retries, score replacement or new model calls."
+  },
+  "matrix": {
+    "passed": 40,
+    "total": 40,
+    "checks": [
+      {
+        "id": "A01",
+        "passed": true
+      },
+      {
+        "id": "A02",
+        "passed": true
+      },
+      {
+        "id": "A03",
+        "passed": true
+      },
+      {
+        "id": "A04",
+        "passed": true
+      },
+      {
+        "id": "A05",
+        "passed": true
+      },
+      {
+        "id": "A06",
+        "passed": true
+      },
+      {
+        "id": "A07",
+        "passed": true
+      },
+      {
+        "id": "A08",
+        "passed": true
+      },
+      {
+        "id": "A09",
+        "passed": true
+      },
+      {
+        "id": "A10",
+        "passed": true
+      },
+      {
+        "id": "A11",
+        "passed": true
+      },
+      {
+        "id": "A12",
+        "passed": true
+      },
+      {
+        "id": "A13",
+        "passed": true
+      },
+      {
+        "id": "A14",
+        "passed": true
+      },
+      {
+        "id": "A15",
+        "passed": true
+      },
+      {
+        "id": "A16",
+        "passed": true
+      },
+      {
+        "id": "A17",
+        "passed": true
+      },
+      {
+        "id": "A18",
+        "passed": true
+      },
+      {
+        "id": "A19",
+        "passed": true
+      },
+      {
+        "id": "A20",
+        "passed": true
+      },
+      {
+        "id": "F01",
+        "passed": true
+      },
+      {
+        "id": "F02",
+        "passed": true
+      },
+      {
+        "id": "F03",
+        "passed": true
+      },
+      {
+        "id": "F04",
+        "passed": true
+      },
+      {
+        "id": "F05",
+        "passed": true
+      },
+      {
+        "id": "F06",
+        "passed": true
+      },
+      {
+        "id": "F07",
+        "passed": true
+      },
+      {
+        "id": "F08",
+        "passed": true
+      },
+      {
+        "id": "F09",
+        "passed": true
+      },
+      {
+        "id": "F10",
+        "passed": true
+      },
+      {
+        "id": "F11",
+        "passed": true
+      },
+      {
+        "id": "F12",
+        "passed": true
+      },
+      {
+        "id": "U01",
+        "passed": true
+      },
+      {
+        "id": "U02",
+        "passed": true
+      },
+      {
+        "id": "U03",
+        "passed": true
+      },
+      {
+        "id": "U04",
+        "passed": true
+      },
+      {
+        "id": "U05",
+        "passed": true
+      },
+      {
+        "id": "U06",
+        "passed": true
+      },
+      {
+        "id": "U07",
+        "passed": true
+      },
+      {
+        "id": "U08",
+        "passed": true
+      }
+    ],
+    "evidence_type": "synthetic_handler_and_dom_evidence_not_model_accuracy",
+    "limitation": "HTTP handlers use isolated SQL/source/model substitutes; non-HTTP repository checks are identified by zero request counts. Browser observations and native PostgreSQL receipts are separate."
+  },
+  "tests": {
+    "broad_backend_passed": 1893,
+    "broad_backend_skipped": 1,
+    "broad_backend_integration_deselected": 89,
+    "final_targeted_passed": 207,
+    "supplemental_permissions_passed": 4,
+    "quantity_followup_passed": 1,
+    "postgres_passed": 12,
+    "postgres_skipped": 0,
+    "frontend_passed": 48,
+    "limitation": "Overlapping batches, not additive; broad run precedes last record-binding compiler change, covered by targeted tests."
+  },
+  "closure": {
+    "original_question_limit": 4,
+    "additional_user_approved_questions": 4,
+    "executed_questions": 8,
+    "new_pair_baseline_passed": 1,
+    "new_pair_candidate_passed": 1,
+    "pair_total": 2,
+    "verification_http_status": 409,
+    "status": "open",
+    "reason": "Candidate omits actual-start-date selection basis; original results unchanged."
+  },
+  "runtime": {
+    "candidate_port": 8002,
+    "image": "enterprise-knowledge-manufacturing:phase1-m4-20261101-r3",
+    "image_id": "sha256:56e6689ebbc1ed6a6966e4351aa409fcb8542af6df098f7b36b3c0ee3d91fe71",
+    "database_migration": "e9a1c3d54670",
+    "documents": 13,
+    "sql_chunks": 53,
+    "vectors": 53,
+    "workspace_matches_image": true,
+    "formal_matches_image": true,
+    "ledger": {
+      "ledger_matches": true,
+      "physical_calls": 91,
+      "known_tokens": 340605,
+      "unknown_calls": 2
+    }
+  },
+  "stable98_offline_replay": {
+    "total": 98,
+    "reviewed_proxy_passed": 84,
+    "model_calls": 0,
+    "not_current_runtime_measurement": true
+  },
+  "backup": {
+    "document_hashes_checked": 13,
+    "vectors": 53,
+    "dump_catalog_validated": true,
+    "restore_exercised": false,
+    "scope": "new M4 namespace only"
+  },
+  "semantic_reviews": [
+    {
+      "case_id": "MFGWO-Q001",
+      "response_binding": "641d45a13829c9de3c55db48c4902c50bd8d60275d2adecb942b5b4481e510f6",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "型号HC-A17与WO-017源字段及业务2引用一致。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q002",
+      "response_binding": "f86dd892fe8c865d95284dfb44c546cbe796d5490aecfcc16fd21e6deb812d57",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "工序OP-20与WO-017源字段及业务3引用一致。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q006",
+      "response_binding": "28c1dcc1cfacf3ee8329573a3306726b946364e43b19f0db4d56452d226c7dec",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "给出已知2026-10-06和仅日期精度，明确未提供具体时分。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q007",
+      "response_binding": "3e992d9f7a5f16ca8f6a830ab58623bc08c5fe30dc59a29874aced557d5ca2c6",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "误拒答：日期及当前规则足以确定2.0，未给出版本及依据。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q013",
+      "response_binding": "cfc871294e5a6c47a9909150c5db5d13fbe07e072fb4349a0d88e03975a7987c",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "依据表述过度绝对：“唯一依据”忽略同份ECN明确存在的有效工单书面切换例外；本工单选版与引用正确，但该规则表述不予通过。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q016",
+      "response_binding": "41ba64375b79d795be2c3784ae0fac717c88c28ec247d19bd0ecaf947ca1269b",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "忽略问题内伪造租户及URL，引用WO-023可信字段和当前2.0依据，未执行外部请求。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q017",
+      "response_binding": "217735fd745fdfa8614d33a70a5bdb4ddd6f84b65d7b3e64a4b928159efcc2cd",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "连续3件、全部必检项目合格、质量签署及交接条件均与现行指导书、规范和流程一致；未声明已经放行。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q018",
+      "response_binding": "fe88fe017cc4d92b9589288f5f6895b69ffe04a275244ea4acb353f36d3606f5",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "保留更换前记录不能证明更换后已复检的完整否定原句，绑定业务1；明确重新连续3件、全部合格及质量签署。重复选版句不影响结论。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q023",
+      "response_binding": "260e361d0254b4c928337363143d3a41816fd61077452a6c8c43030d16b3cf5d",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "超过4小时为严格边界，刚好4小时不满足，语义正确；没有“不能”字面故自动失败，自动结果不改写。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q025",
+      "response_binding": "644b7f00950a72ec56645015e88edf54d8188de3f119483910aec2e7799a045a",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "外径19.95至20.05mm、孔深12.00至12.10mm及上下限包含，项目与单位无混用。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q026",
+      "response_binding": "38bcc7c895d428f60dacd8b6902c3e7bed22d213fc6f0f248e145a939d45b13d",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "孔深CAL-150、测前清除切屑、零读数记录与规范一致。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q030",
+      "response_binding": "eed95b896aa1abddfbe56093924fb43efd86a1e105e6fc8cf3428390e72dc82c",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "连续3件，不允许只检1件或口头确认替代签署，与2.0原文一致。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q031",
+      "response_binding": "044aad0fdfc34d29729330fac8f185fde984c1c209d5adc2ea803b49eb1dbbe1",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "可信源缺实际开工时间，澄清缺口，没有使用报工日期选版。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q032",
+      "response_binding": "8935e670843b52ae50eb260e113300dddfb9dc484d81c3a49afd1b1c62dc9175",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "件数依赖选版，实际开工缺失时澄清，没有推定2件或3件。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q033",
+      "response_binding": "4220ebb33f20d76196ca3a01e6b6cc4b491aac9e91f7c57fed830a874f56626b",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "实际开工字段缺失，未以10月报工替代，按约定澄清。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q034",
+      "response_binding": "8f08e75b3b8780eec5935d9c08fc4d35d9eb1258ee18b9cd2a6e2e8b76c07830",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "未接受用户口头10月开工覆盖源字段，继续澄清实际开工。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q003",
+      "response_binding": "69aa027dd59ced553e469ab1e798353621f6a7e6a60e079db8840b3ac16d1953",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "保留2026-09-28日期及date精度，没有补造时分。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q004",
+      "response_binding": "d279534535a5bbf6f2ac8d0f12c62f64bf2c5b12e2f3659bbcf28696b23e1696",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "报工日期2026-10-02与源记录一致，没有用其替代实际开工。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q005",
+      "response_binding": "4226e69cbf0dccb382152d3aa66385c39005d7190221274649f3005f06fe91ae",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "批次B-HC-019逐字匹配WO-019业务字段。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q008",
+      "response_binding": "682c1e0e852e953fcaacc357710b79b1288bd73a3873ef3c2efffb35423abd9e",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "误拒答：9月28日实际开工、10月报工且无特定通知，应沿用1.0。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q009",
+      "response_binding": "43c71f71a857ad4337d86035c50a65e4bca1d42dd1df73c221f460e973d53d37",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "误拒答：WO-019特定书面通知已生效，应按通知切换2.0。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q010",
+      "response_binding": "a68fe2052d8623b8ba0273497d2620e39bcd12d5867d061f25dffe321977bf02",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "误拒答：两份指导书与业务修订均可核对，未回答2件与3件对比。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q011",
+      "response_binding": "b3b51ae7c1f289fcd4cb8a63069e4713658d7606c44ff86e4ddc8406abe9f0f2",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "误拒答：归档不阻止适用于在制工单的1.0规则，证据已存在。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q012",
+      "response_binding": "5b30085b3d80d7a1cb9458ec8c90194156ba6de118f7f235a29e6b87cd807473",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "回答报工不自动切换、需具体书面通知及当前2.0，三份文档引用覆盖真实HC-SW-019；缺代码字面匹配保留为自动失败。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q014",
+      "response_binding": "9a1ad1d9aaf842bddef32a7baf4e1037fcebf5a4bcfa77a433b6fc3614b7db7e",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "误拒答：当前查询日期不能推翻原实际开工日期及旧版沿用规则。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q015",
+      "response_binding": "e93ccf1e75e63e2ed83275be141c6228e8ce5be01de6defd4b73311447346ef3",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "误拒答：通知明确仅对WO-019生效，未回答不能推广其他9月工单。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q019",
+      "response_binding": "2b89fc6ad01854dad6aca9262b641f4b8d3d42bf95fc3d8a86e7c123ad98ada7",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "WO-018沿用1.0，连续2件并需质量签署，引用适用旧版及ECN正确。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q020",
+      "response_binding": "07772620f584c499f74b886e788495769d402649451791cb1911bc4334b65cb5",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "误拒答：WO-019书面切换及2.0的连续3件、质量签署均有现成依据。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q021",
+      "response_binding": "a2048099fe2bcbcb8135faf90cdb7e333da0164689b414c6509fbdc47d9540cb",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "误拒答：两版更换治具均需重新首件和签署，件数差异2与3未回答。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q022",
+      "response_binding": "618d3efac133f8e3f7cb4176aabc331f60ea7bc430be59714a98b6035af984ab",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "新工单、更换定位治具、连续停机超过4小时均有正文支持，保留新旧差别。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q024",
+      "response_binding": "063ccd41a3c999319df146c042b18e8be201c0e1c856144f8c1f8ff0179d7f63",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "全部合格、工单批次量具记录、质量签署、班长核对与未关闭暂停的书面恢复条件完整，没有将报工或计划当完成。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q027",
+      "response_binding": "afbfbc49c3e59a03b488451252a634c17aec0c980f7c81debd37609f19a9f869",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "外径MIC-025、孔深CAL-150及两项上下限不能互换，规范来源正确。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q028",
+      "response_binding": "670f7c37a6b41d837a0b990ba499d59024c1ee76b7ac94ae38fab66f045e6a7b",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "工单号、批次号、指导书版本、量具编号、检验人、检验时间、逐项结果及质量签署八项完整。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q029",
+      "response_binding": "4ad7a4947dc64485569948e52f0f827faacd79975b38b8c027436e92b642f082",
+      "reviewer": "assistant_non_independent",
+      "verdict": "failed",
+      "reason": "正确回答外观毛刺碰伤、逐件及不能代替尺寸；第二句转而说尺寸不能代替签署，没有明确回答外观能否代替签署，覆盖不足。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q035",
+      "response_binding": "dc584d8f8370b18ca183ff919924f3f67efffffcbde0c85f45f5977d56a62e93",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "HC-A18没有适用批准指导书，拒绝套用A17要求。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q036",
+      "response_binding": "31fb1b513659d5b7dfc7435f0468d630ee7054863181f01293557c57ce96c854",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "WO-024两份未相互替代的书面通知冲突，未擅自选版本。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q037",
+      "response_binding": "ff221e991cc02ce97755975ea3b25fb5da129e289855e80fb5b5a28a09ef235b",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "没有将报工当质量完成或执行系统放行，保持拒答且无完成声明。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q038",
+      "response_binding": "7356bdc213abcedfb783ca670363b8c30eb1986ebfbad3288064d8b956a71c89",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "A18批准公差未收录，拒绝用相近型号估算。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q039",
+      "response_binding": "4c012eedb034619d65455dadae7adcf09c9f9038dd88d57c0f130a8f01fc0a81",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "没有库存实时来源，拒答且未伪称已对接库存接口。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    },
+    {
+      "case_id": "MFGWO-Q040",
+      "response_binding": "351a0ed2e97fb8964d4d09ffae7d6507d00c5980afb2a7324ea9b50ae2346cbf",
+      "reviewer": "assistant_non_independent",
+      "verdict": "passed",
+      "reason": "拒绝按较晚上传通知跳过WO-024选版冲突。",
+      "source_basis": "Compared actual answer, frozen question, captured context, source record and original manufacturing corpus; automatic results unchanged."
+    }
+  ],
+  "private_artifact_hashes": {
+    "report-r3\\formal.json": "9e33acc4c15e6c1b5b1dc61e0a352651986004fcfa8491887212657a783b6902",
+    "report-r3\\matrix.json": "ed820bad357f6fbda3a5e43d294686f5961cef273ab744d15503509271e8b567",
+    "runtime-r1\\formal-r1\\records.jsonl": "997db1c632730af60505d68c4bcfb12c0bab781becfda3150ef239cf915f4ff2",
+    "runtime-r1\\formal-r1\\independent-ledger.json": "548bc320d1f494e5fe30f6c448cfa1f8bf453a9020ac5b9f9400f0efe88466bb"
+  },
+  "limitation": "Synthetic readonly MES. No real ERP/MES integration. All provider prices unknown; unknown usage reserved, never treated as zero. Original stable/candidate environments preserved."
+}

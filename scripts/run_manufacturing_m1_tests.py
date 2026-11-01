@@ -16,7 +16,8 @@ ROOT=Path(__file__).resolve().parents[1]
 TEST_NAME=r"manufacturing_m1_test_[0-9a-f]{12}"
 STAGE_TESTS = {"m1": ("tests/test_business_migration_postgres.py", "tests/test_quality_verification_postgres.py"),
                "m2": ("tests/test_manufacturing_m2_postgres.py",),
-               "m3": ("tests/test_manufacturing_m3_postgres.py",)}
+               "m3": ("tests/test_manufacturing_m3_postgres.py",),
+               "m4": ("tests/test_manufacturing_m4_postgres.py",)}
 
 
 def checked_test_url(value, *, phase="m1"):

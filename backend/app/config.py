@@ -35,6 +35,9 @@ class Settings:
         source_file = os.getenv("MANUFACTURING_SOURCES_FILE", "").strip()
         self.manufacturing_sources_file = (Path(source_file) if Path(source_file).is_absolute()
                                           else PROJECT_ROOT / source_file) if source_file else None
+        evaluation_file = os.getenv("MANUFACTURING_EVALUATION_REGISTRY", "").strip()
+        self.manufacturing_evaluation_registry = (Path(evaluation_file) if Path(evaluation_file).is_absolute()
+            else PROJECT_ROOT / evaluation_file) if evaluation_file else None
         snapshots = os.getenv("QA_SNAPSHOTS_ENABLED", "true").strip().lower()
         if snapshots not in {"true", "false"}:
             raise RuntimeError("QA_SNAPSHOTS_ENABLED 必须为 true 或 false")

@@ -70,6 +70,27 @@ function setup() {
   return { $, requests, run, ask, sandbox };
 }
 
+test("manufacturing review selects immutable business fields separately from document quotes", async () => {
+  const { $, run, sandbox } = setup(); admin(run);
+  const data = qualityData(); data.source.snapshot.context.items = [];
+  const evidence = {citation_id:"业务2",field_name:"product_model",value:"<script>型号</script>",source_system_id:"mock-mes-hc",source_record_id:"source-1",source_revision:"r1",payload_sha256:"a".repeat(64),last_verified_at:"2026-11-01T00:00:00Z"};
+  data.source.business_evidence_options = [evidence];
+  let submitted;
+  sandbox.fetch = async (url, options = {}) => {
+    if(options.method === "PUT") { submitted=JSON.parse(options.body); return jsonResponse(data); }
+    if(options.method === "POST") return jsonResponse(data);
+    return jsonResponse({items:[],next_cursor:null});
+  };
+  await run('qualityWorkspace.open("run1")');
+  const row=$("quality-detail").querySelector(".quality-evidence");
+  assert.match(row.children[0].children[1].textContent, /<script>型号<\/script>/);
+  assert.equal(row.children.filter(node=>node.tag==="textarea").length,0);
+  row.children[0].children[0].checked=true;
+  await $("quality-detail").querySelector(".quality-form").listeners.submit({preventDefault(){}});
+  assert.deepEqual(submitted.evidence,[]);
+  assert.deepEqual(submitted.business_evidence,[Object.fromEntries(["citation_id","field_name","value","source_system_id","source_record_id","source_revision","payload_sha256"].map(key=>[key,evidence[key]]))]);
+});
+
 test("first question creates a conversation, followup reuses it, new conversation resets it", async () => {
   const { $, requests, run, ask } = setup();
   await ask("令牌有效期？"); await ask("它过期怎么办？");

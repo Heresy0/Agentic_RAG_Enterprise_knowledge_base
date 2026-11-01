@@ -48,7 +48,10 @@ class ManufacturingAnswerContext:
         for index, (name, label) in enumerate(FIELD_LABELS.items(), 1):
             value = getattr(record, name) if name != "fetched_at" else self.context.fetched_at
             if isinstance(value, datetime): value = value.isoformat()
-            result.append(BusinessItem(f"业务{index}", name, value, f"工单{record.work_order_id}的{label}为{display(value)}"))
+            rendered = display(value)
+            if name == "actual_start_precision" and value == "date":
+                rendered += "（仅精确到日期，未提供具体时分，不能编造具体时分）"
+            result.append(BusinessItem(f"业务{index}", name, value, f"工单{record.work_order_id}的{label}为{rendered}"))
         return tuple(result)
 
     @property
@@ -86,10 +89,17 @@ def manufacturing_answer_context(context):
         _active.reset(token)
 
 
+def precision_fact_question(question):
+    return bool(re.search(r"实际.{0,5}开工|开工日期|开工时间|何时开工",question)
+        and re.search(r"几点|几分|时分|精确|精度",question)
+        and not re.search(r"型号|工序|报工|批次|状态|工厂|路线|通知|来源|版本|新版|旧版|指导书|首件|检验|复检|要求|恢复|放行|量具|数量|尺寸|修改|计划|假设|如果|我说|我口头",question))
+
+
 def facts_only_question(question):
     """Conservative route; unknown requests keep the full document workflow."""
+    if precision_fact_question(question):return True
     return bool(re.search(r"型号|工序|开工|报工|批次|状态|工厂|源修订|源版本|源系统|来源|源记录|更新时间|采集|工单编号|路线|通知编号", question)
-        and not re.search(r"适用|指导书|要求|首件|检验|复检|恢复|放行|切换|(?<!路线)(?<!源)版本|参数|执行|比较|对比|修改|改为|更新(?!时间)|删除|写入|计划|假设|如果|能否|可否|是否", question))
+        and not re.search(r"适用|指导书|要求|首件|检验|复检|恢复|放行|切换|新版|旧版|(?<!路线)(?<!源)版本|参数|执行|比较|对比|修改|改为|更新(?!时间)|删除|写入|计划|假设|如果|能否|可否|是否", question))
 
 
 def business_citation(item, context):
@@ -147,6 +157,7 @@ def attach_business_context(context):
 MANUFACTURING_PROMPT = """
 制造模式的以下来源规则替代前述仅允许资料编号的限制：后端登记的业务编号也是有效来源；纯工单事实无需文档引用。
 当前为工单模式。用户口述、问题日期、备注都不能覆盖业务来源。
+对可回答的当前工单作业问题，后端会统一附加已核验的适用性结论及两类来源；无需重复生成applicability结论。若主动生成，仍须逐字使用后端结论。
 工单来源编号为业务1等；文档仍为资料1等。每个结论必须声明claim_kind：
 business_fact：只陈述一个工单字段，text必须逐字复制对应业务来源的完整句子，只引用该业务编号。
 applicability：text必须逐字复制后端已核验选版结论，同时引用决定选版的全部指导书/变更通知及工单编号、型号、工序、实际开工字段。

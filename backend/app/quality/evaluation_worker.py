@@ -1,5 +1,6 @@
 """Fenced, non-retrying evaluation worker; no JWTs or commands are stored in jobs."""
 from datetime import datetime, timedelta, timezone
+import asyncio
 import math
 from time import perf_counter
 from uuid import UUID, uuid4
@@ -110,22 +111,54 @@ class QualityEvaluationWorker:
             scope = RetrievalScope(tenant_id=job.tenant_id, knowledge_base_ids=ids, knowledge_base_names=names)
             request_id = uuid4().hex
             started = perf_counter()
+            business_observation = {}
             with usage_context(scope=scope, session=session, settings=self.settings, request_id=request_id,
                                actor_user_id=principal.user_id, job_id=job.id) as usage, capture_snapshot(scope, sample["question"]) as capture:
-                response = self.answer.answer(sample["question"], scope=scope, session=session)
+                if sample.get("input_kind", "document") == "manufacturing":
+                    from ..manufacturing.evaluation_sources import registry_for
+                    from ..manufacturing.contracts import ManufacturingQuestion
+                    from ..manufacturing.service import ManufacturingService
+                    registry = registry_for(self.settings)
+                    async def manufacturing_answer():
+                        config, binding = registry.registered(principal.tenant_id)
+                        if binding != sample["business_context_binding"]["source"]:
+                            raise ReviewConflict("活跃制造夹具已变化。")
+                        async with registry.connector_factory(config) as connector:
+                            def guard(): self.guard(job_id, token, sample)
+                            service = ManufacturingService(session=session, principal=principal, connector=connector, answer_service=self.answer)
+                            payload = ManufacturingQuestion(question=sample["question"],
+                                work_order_id=sample["business_context_binding"]["context"]["record"]["work_order_id"])
+                            response, _ = await service.answer(payload, scope=scope, observation=capture,
+                                commit_success=lambda result, selected, observed: business_observation.update(observed),
+                                check_lease=guard, frozen_input=sample)
+                            return response
+                    # Model guards run in synchronous generation threads. Source
+                    # checks use their own client; the shared service owns its loop.
+                    response = asyncio.run(manufacturing_answer())
+                elif sample.get("input_kind", "document") == "document":
+                    response = self.answer.answer(sample["question"], scope=scope, session=session)
+                else:
+                    raise ReviewConflict("未知评测输入类型。")
             elapsed = (perf_counter() - started) * 1000
-            reported = response.timings.total_ms if response.timings is not None else elapsed
+            reported = elapsed if sample.get("input_kind") == "manufacturing" else response.timings.total_ms if response.timings is not None else elapsed
             latency = reported if math.isfinite(reported) and reported >= 0 else elapsed
             status, snapshot = capture.freeze()
             context = (snapshot.get("context") or {}).get("items", [])
             answer = response.model_dump(mode="json")
-            metrics = score_answer(sample, answer, context)
+            if sample.get("input_kind") == "manufacturing":
+                from ..evaluation.manufacturing_metrics import score_manufacturing
+                metrics = score_manufacturing(sample, answer, context)
+            else:
+                metrics = score_answer(sample, answer, context)
             forbidden = [claim for claim in sample.get("forbidden_claims", []) if normalize(claim) in normalize(answer["answer"])]
             record = dict(sample=sample, request_id=request_id, response=answer, context=context,
                 observations_complete=status == "captured", metrics=metrics, forbidden_matches=forbidden,
                 proxy_pass=bool(metrics["automatic_proxy_pass"] and not forbidden and status == "captured"),
                 latency_ms=latency, usage_events=usage.events)
+            if business_observation:
+                record["manufacturing_observation"] = business_observation
             record["response_binding"] = digest(dict(sample=sample, response=answer, context=context,
+                **({"manufacturing_observation": business_observation} if business_observation else {}),
                 runtime=runtime_config(self.settings)))
             session.rollback()  # Evaluation never writes QA/conversation business state.
             return record

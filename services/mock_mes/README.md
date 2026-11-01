@@ -1,8 +1,8 @@
 # 首期只读模拟 MES
 
-本服务属于 M1，使用[首期工单夹具](../../sample_docs/manufacturing_workorder_v1/README.md)提供经过源调用凭据、租户和工厂校验的只读列表与工单上下文。它独立于 8000 稳定展示及 8001 候选，不提供生产执行、报工、质量放行或公开数据修改接口。
+本服务从 M1 开始实现，使用[首期工单夹具](../../sample_docs/manufacturing_workorder_v1/README.md)提供经过源调用凭据、租户和工厂校验的只读列表与工单上下文。M4 独立候选部署在 8002；8000 稳定展示及 8001 旧候选保留。本服务不提供生产执行、报工、质量放行或公开数据修改接口。
 
-M1 同时提供 `MESConnector`、`BusinessAuthorizationService` 和 `WorkOrderAccessService`。用户端制造问答、工单选择页面及历史业务证据的读写将在 M3 接入；当前普通知识问答不会自动调用本服务。
+M1 提供 `MESConnector`、`BusinessAuthorizationService` 和 `WorkOrderAccessService`。M3 已接入用户端制造问答、工单选择页面及历史业务证据；M4 增加活跃夹具登记核验和冻结业务输入评测。普通问答不会自动调用本服务。独立部署与实测边界见[M4 记录](../../docs/MANUFACTURING_M4_ACCEPTANCE.md)。
 
 ## 本机启动
 
@@ -26,6 +26,7 @@ $env:MOCK_MES_FIXTURES_FILE = (Resolve-Path sample_docs/manufacturing_workorder_
 | `GET /health` | 仅返回服务状态和合成只读模式 |
 | `GET /v1/work-orders?limit=20&cursor=...` | 授权后分页，最多 20 条；不返回全库总数 |
 | `GET /v1/work-orders/{id}/context` | 返回白名单工单字段；未知或不可见工单统一 404 |
+| `GET /v1/fixture` | M4 活跃夹具身份、契约、版本及规范化哈希；不返回题集、答案或全部工单 |
 
 业务读取需要 `Authorization: Bearer ...`、`X-MES-Tenant` 和 `X-MES-Plants`。这些是平台服务端产生的源调用信息，不向普通用户暴露。源服务独立检查凭据的最大租户和工厂范围，再按本次请求范围过滤数据，最后分页。
 

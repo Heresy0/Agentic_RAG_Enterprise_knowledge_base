@@ -61,7 +61,7 @@ class ManufacturingService:
         if not scope.knowledge_base_ids or not scope.knowledge_base_ids <= allowed:
             raise AuthorizationDenied("知识库访问权限已变化，请重新查询。")
 
-    async def answer(self, payload, *, scope, observation, commit_success, check_lease=lambda: None):
+    async def answer(self, payload, *, scope, observation, commit_success, check_lease=lambda: None, frozen_input=None):
         started = perf_counter()
         timings = {}
         store = ManufacturingConversationStore(self.session, self.principal, scope)
@@ -74,6 +74,12 @@ class ManufacturingService:
             stage = perf_counter()
             context = await self.access.read_context(principal=self.principal, work_order_id=payload.work_order_id,
                 expected_source_revision=payload.expected_source_revision)
+            if frozen_input is not None:
+                bound = frozen_input["business_context_binding"]["context"]
+                if (context.payload_sha256 != bound["payload_sha256"] or context.record.model_dump(mode="json") != bound["record"]):
+                    raise MESError()
+                from .contracts import WorkOrderContext
+                context = context.model_copy(update={"fetched_at": WorkOrderContext.model_validate(bound).fetched_at})
             timings["work_order_fetch_ms"] = round((perf_counter()-stage)*1000, 2)
             record_business_source(context, stage="fetched")
             if token:
@@ -104,6 +110,12 @@ class ManufacturingService:
             stage = perf_counter()
             decision = ApplicabilityResolver().resolve(context=context, scope=scope,
                 business_scope=self.access.scope(self.principal), session=self.session, include_other_revisions=comparison)
+            if frozen_input is not None:
+                from .scope import ManufacturingScopeChanged
+                binding = frozen_input["applicability_binding"]
+                if (decision.scope.manufacturing.catalog_sha256 != binding["catalog_sha256"] or
+                        public_applicability(decision) != binding["applicability"]):
+                    raise ManufacturingScopeChanged("冻结的制造适用性已变化。")
             if observation is not None:
                 observation.scope = decision.scope
             timings["applicability_ms"] = round((perf_counter()-stage)*1000, 2)

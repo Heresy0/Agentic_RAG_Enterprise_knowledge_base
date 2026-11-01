@@ -42,8 +42,9 @@ def source_binding(run, feedback):
 
 
 class ReviewStore:
-    def __init__(self, session, principal):
+    def __init__(self, session, principal, settings=None):
         self.session, self.principal = session, principal
+        self.settings = settings
         self.feedback_store = FeedbackStore(session, principal)
 
     def require_run(self, run_id, *, lock=False):
@@ -72,8 +73,11 @@ class ReviewStore:
             KnowledgeDocument.content_hash, KnowledgeDocument.status, KnowledgeDocument.metadata_json).where(
                 KnowledgeDocument.tenant_id == run.tenant_id, KnowledgeDocument.knowledge_base_id.in_(ids))
             .order_by(KnowledgeDocument.id)).all()
+        from .manufacturing import is_manufacturing
+        manufacturing = is_manufacturing(self, run)
         return digest([[str(row.id), row.version, row.content_hash, row.status] +
-            ([row.metadata_json["publication"]] if (row.metadata_json or {}).get("publication") is not None else []) for row in rows])
+            ([row.metadata_json["publication"]] if (row.metadata_json or {}).get("publication") is not None else []) +
+            ([(row.metadata_json or {}).get("manufacturing")] if manufacturing else []) for row in rows])
 
     def audit(self, action, resource_id):
         AuditService(self.session).add(tenant_id=self.principal.tenant_id,
@@ -142,7 +146,13 @@ class ReviewStore:
         if payload.sample_status == "approved" and run.snapshot_status != "captured":
             raise ReviewConflict("快照不完整或未采集，不能批准回归样本。")
         evidence = self.resolve_evidence(run, payload.evidence, require_current=payload.sample_status == "approved")
-        values = payload.model_dump(exclude={"expected_revision", "evidence"})
+        from .manufacturing import is_manufacturing, resolve_business_evidence, current_binding, approval_evidence
+        business = resolve_business_evidence(self, run, payload.business_evidence)
+        values = payload.model_dump(exclude={"expected_revision", "evidence", "business_evidence"})
+        if is_manufacturing(self, run) and payload.sample_status == "approved":
+            approval_evidence(run, payload, evidence, business)
+            values.update(current_binding(self, run, verify_record=True))
+        values["business_evidence"] = business
         values.update(evidence=evidence, feedback_snapshot=feedback_snapshot(feedback), corpus_sha256=self.corpus_binding(run))
         case.revision += 1
         case.review_status, case.sample_status, case.root_cause = payload.review_status, payload.sample_status, payload.root_cause
@@ -155,10 +165,6 @@ class ReviewStore:
         return case, run, feedback
 
     def eligibility(self, case, run, feedback):
-        from ..db.business_models import QARunBusinessScope
-        if self.session.scalar(select(QARunBusinessScope.run_id).where(QARunBusinessScope.tenant_id == run.tenant_id,
-                QARunBusinessScope.run_id == run.id).limit(1)) is not None:
-            return False, "manufacturing_review_requires_M4"
         if case is None or case.sample_status != "approved" or case.review_status != "confirmed":
             return False, "not_approved"
         if case.source_binding != source_binding(run, feedback):
@@ -168,6 +174,12 @@ class ReviewStore:
         revision = self.revision(case)
         if revision is None or revision.payload_json.get("corpus_sha256") != self.corpus_binding(run):
             return False, "corpus_changed"
+        from .manufacturing import is_manufacturing, current_binding
+        if is_manufacturing(self, run):
+            try:
+                current_binding(self, run, previous=revision.payload_json)
+            except ReviewConflict:
+                return False, "business_source_changed"
         return True, None
 
     def case_data(self, case, run, feedback):
@@ -180,7 +192,12 @@ class ReviewStore:
     def sample(self, case, run):
         payload = self.revision(case).payload_json
         group = str(run.conversation_id) if run.conversation_id else " ".join(payload["evaluation_question"].split())
-        return dict(id="FB-" + str(case.id), question=payload["evaluation_question"], original_question=run.question,
+        if payload.get("input_kind") == "manufacturing":
+            record = payload["business_context_binding"]["context"]["record"]
+            group = canonical(["manufacturing", record["source_system_id"], record["work_order_id"]])
+        return dict(**{key: payload[key] for key in ("input_kind", "business_context_binding", "applicability_binding", "business_scopes") if key in payload},
+            **({"expected_business_evidence": payload["business_evidence"]} if payload.get("input_kind") == "manufacturing" else {}),
+            id="FB-" + str(case.id), question=payload["evaluation_question"], original_question=run.question,
             answerable=payload["expected_answerable"], reference_answer=payload["reference_answer"],
             **({"expected_behavior": payload["expected_behavior"]} if payload.get("expected_behavior") else {}),
             required_facts=payload["required_facts"], forbidden_claims=payload["forbidden_claims"],

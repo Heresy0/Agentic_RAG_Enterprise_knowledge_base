@@ -7,7 +7,7 @@
 - 多租户企业知识库问答系统，当前以制造业资料进行演示和评测。
 - 普通解析和 OCR 已接入审核发布、权限问答、原件追溯、反馈审核及回归验证闭环。
 - ERP/MES 实时接口尚未接入；视觉解析尚未完成接入实测。历史实施方案中的这些内容属于后续设计。
-- 首期工单集成在 `codex/manufacturing-phase1` 分阶段实施；M1 只读模拟 MES、连接器与业务授权，M2 可审核适用性目录与受约束检索，M3 制造问答、两类引用、工单会话与页面已完成源码及隔离验证，M4 闭环与正式验收待实施。详见阶段进度，不把模拟服务视为真实工厂接口。
+- 首期工单集成在 `codex/manufacturing-phase1` 分阶段实施；M1～M3 已完成源码及隔离验证，M4 业务证据审核、冻结 Worker、矩阵与独立 8002 环境已实现，2026-11-01 正式 40 题自动 28/40、助手非独立复核 29/40，未达验收门槛，真实闭环仍待改进。详见阶段进度，不把模拟服务视为真实工厂接口。
 - 制造业相关源码已合入主线；本机 8000 稳定版与 8001 候选版容器仍独立保留。Git 合并不代表容器已更新。
 - 先用 `git status --short`、`git log -1` 确认源码状态；涉及部署时再检查实际容器及镜像，不从旧提交号推断运行版本。
 
@@ -20,6 +20,8 @@
 | 首期分阶段实施进度与复现入口 | `docs/MANUFACTURING_PHASE1_PROGRESS.md` |
 | 制造适用性审核、选版与检索边界 | `docs/MANUFACTURING_APPLICABILITY.md` |
 | 制造问答、两类引用、工单会话与页面 | `docs/MANUFACTURING_QA.md` |
+| 制造业务证据审核、冻结 Worker 与预算 | `docs/MANUFACTURING_QUALITY.md` |
+| M4 实测结果、未通过项与隔离运行交付 | `docs/MANUFACTURING_M4_ACCEPTANCE.md` |
 | 制造业 98 题配置 | `evals/manufacturing_zh_lite_v1/README.md` |
 | 稳定展示版本与冻结评分文件 | `evals/manufacturing_zh_lite_v1/demo_release.json` |
 | 通用 120 题套件 | `evals/current/README.md` |
