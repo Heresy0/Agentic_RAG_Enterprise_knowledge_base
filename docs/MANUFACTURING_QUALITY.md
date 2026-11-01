@@ -79,7 +79,7 @@ node --test tests/frontend_conversations.test.cjs tests/frontend/auth.test.mjs
 
 备份、运行镜像及源码指纹、正式成绩、逐题复核、矩阵覆盖和关闭结果按本轮实际证据登记。回滚优先停止本期实例或切回兼容镜像，保留数据库、文档卷、向量和原批次；不默认执行数据库降级或删除卷。
 
-2026 年 11 月 1 日实际正式结果为自动 28/40、助手非独立复核 29/40，**未通过发布门槛**；真实闭环保持待改进，详见[M4 实测与交付](MANUFACTURING_M4_ACCEPTANCE.md)。已执行付费范围不能自动重跑。离线报告入口不会调用模型，例如：
+2026 年 11 月 1 日 r3 首轮为自动 28/40、助手非独立复核 29/40；提示修正后的 r4 新一轮自动及复核均 31/40，仍**未通过发布门槛**，条件性闭环未启动。详见[首轮交付](MANUFACTURING_M4_ACCEPTANCE.md)及[新批次复验](MANUFACTURING_M4_REVALIDATION.md)。已执行付费范围不能自动重跑。离线报告入口不会调用模型，例如：
 
 ```powershell
 .venv/Scripts/python.exe scripts/report_manufacturing_phase1.py --logic-evidence tmp/本轮逻辑/cases tmp/补充权限/cases --frontend-junit tmp/前端.xml --formal-dir tmp/正式40题 --reviews tmp/逐题复核.jsonl --output-dir tmp/新的离线汇总
