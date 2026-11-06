@@ -446,7 +446,8 @@ class AnswerService:
             from ..manufacturing.generation_models import ManufacturingGenerationDraft, precision_projection
             projection = precision_projection(question, context)
             if projection is not None:
-                return projection
+                from ..manufacturing.generation_models import compile_applicability_bindings
+                return compile_applicability_bindings(projection, context)
             model = getattr(self, "_manufacturing_llm", None) or self._base_llm.with_structured_output(
                 ManufacturingGenerationDraft, include_raw=True)
         result = invoke_structured(model, self._generation_messages(question, context),
@@ -505,7 +506,11 @@ class AnswerService:
                 timeout=min(self._settings.rag_regeneration_timeout_seconds, remaining)
             ).with_structured_output(schema, include_raw=True)
             result = invoke_structured(model, messages, stage="answer_regeneration", model_name=self._settings.chat_model)
-            return self._as_generation_draft(result)
+            draft = self._as_generation_draft(result)
+            if context.business_items:
+                from ..manufacturing.generation_models import compile_applicability_bindings
+                draft = compile_applicability_bindings(draft, context)
+            return draft
 
     @staticmethod
     def _as_generation_draft(result):

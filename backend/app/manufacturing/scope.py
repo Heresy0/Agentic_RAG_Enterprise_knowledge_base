@@ -5,8 +5,8 @@ from uuid import UUID
 from sqlalchemy import and_, false, or_, select
 
 from ..db.models import KnowledgeDocument
-from ..documents.publication import is_published, publication
-from .contracts import canonical_digest
+from ..documents.publication import is_published, publication, published_predicate
+from .contracts import WorkOrderRecord, canonical_digest
 from .metadata import SourceAnchor, current_review, validate_anchors
 
 
@@ -14,16 +14,34 @@ class ManufacturingScopeChanged(RuntimeError):
     pass
 
 
-def catalog_rows(session, scope):
+def matches_record(data, record, *, ignore_route=False):
+    return ((not data.product_models or record.product_model in data.product_models)
+        and (not data.operation_codes or record.operation_code in data.operation_codes)
+        and (not data.plant_codes or record.plant_code in data.plant_codes)
+        and (ignore_route or not data.route_revisions or record.route_revision in data.route_revisions)
+        and (not data.work_order_ids or record.work_order_id in data.work_order_ids))
+
+
+def catalog_rows(session, scope, *, record=None):
+    # Drafts cannot affect selection. Newly published documents still enter this
+    # query on every check, including notices absent from the original evidence.
     rows = list(session.scalars(select(KnowledgeDocument).where(
         KnowledgeDocument.tenant_id == scope.tenant_id,
         scope.knowledge_base_filter(KnowledgeDocument.knowledge_base_id),
-        KnowledgeDocument.status != "deleted",
+        KnowledgeDocument.status == "ready", published_predicate(),
         KnowledgeDocument.metadata_json["manufacturing"].as_string().is_not(None),
     ).limit(257).execution_options(populate_existing=True)))
     rows = [doc for doc in rows if "manufacturing" in (doc.metadata_json or {})]
     if len(rows) > 256:
         raise ManufacturingScopeChanged("制造目录超过首期单次处理上限，请缩小知识库范围。")
+    if record is not None:
+        def relevant(doc):
+            review = current_review(doc)
+            # An invalid review cannot establish that a published source is
+            # unrelated. Keep it in the fence so the resolver fails closed.
+            return (review is None or review.data.document_code in record.change_notice_refs
+                or matches_record(review.data, record, ignore_route=record.route_revision is None))
+        rows = [doc for doc in rows if relevant(doc)]
     return sorted(rows, key=lambda doc: str(doc.id))
 
 
@@ -79,6 +97,7 @@ class ManufacturingFence:
     required_evidence: tuple[RequiredEvidence, ...] = ()
     explanation_documents: tuple[DocumentBinding, ...] = ()
     explanation_evidence: tuple[RequiredEvidence, ...] = ()
+    catalog_record: WorkOrderRecord | None = None
 
     def __post_init__(self):
         object.__setattr__(self, "documents", tuple(self.documents))
@@ -114,12 +133,12 @@ class ManufacturingFence:
             and row.manufacturing_digest == metadata.get("manufacturing_digest") for row in self.documents)
 
     def require_current(self, session, scope):
-        """Recheck the full authorized catalog, including newly published notices.
+        """Recheck the relevant published catalog, including new notices.
 
         Losing a deciding ECN must invalidate the whole selection; it cannot just
         disappear while the old instruction continues to authorize an answer.
         """
-        rows = catalog_rows(session, scope)
+        rows = catalog_rows(session, scope, record=self.catalog_record)
         if catalog_fingerprint(rows) != self.catalog_sha256:
             raise ManufacturingScopeChanged("制造目录或发布状态已变化，请重新判断适用性。")
         by_id = {doc.id: doc for doc in rows}

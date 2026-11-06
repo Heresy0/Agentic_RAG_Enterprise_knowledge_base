@@ -11,13 +11,13 @@ from sqlalchemy import create_engine, delete, select
 from sqlalchemy.engine import make_url
 from sqlalchemy.orm import sessionmaker
 
-from manufacturing_m2_helpers import add_source, context, scopes, seed_catalog
+from manufacturing_m2_helpers import add_source, context, scopes, seed_catalog, reviewed_update
 from backend.app.api.document_review import update_manufacturing_metadata, update_publication, PublicationInput
 from backend.app.db.models import AuditEvent, KnowledgeBase, KnowledgeBaseUserGrant, KnowledgeDocument, Tenant, User
 from backend.app.knowledge.chunk_repository import ChunkRepository
 from backend.app.knowledge.keyword_repository import PgKeywordRepository
 from backend.app.manufacturing.applicability import ApplicabilityResolver
-from backend.app.manufacturing.metadata import MetadataInput
+from backend.app.manufacturing.metadata import MetadataInput, ManufacturingMetadata
 from backend.app.manufacturing.scope import ManufacturingScopeChanged
 from backend.app.security.principal import Principal
 
@@ -133,3 +133,46 @@ def test_postgres_save_review_publication_use_current_revision(pg):
             expected_revision=reviewed["document"]["publication"]["revision"], state="published", review_note="批准发布"),
             Request({"type": "http"}), Response(), principal, session)
         assert selection(pg, session).selected_business_revision == "1.0"
+
+
+def test_postgres_draft_changes_are_ignored_until_relevant_source_is_published(pg):
+    factory, tenant, kb, _, _ = pg
+    with factory() as writer:
+        doc, _, data = add_source(writer, tenant=tenant, kb=kb, code="DRAFT-NOTICE",
+            role="change_notice", published=False)
+        writer.commit()
+        doc_id = doc.id
+    with factory() as reader:
+        decision = selection(pg, reader)
+        assert decision.state == "applicable"
+        with factory() as writer:
+            doc = writer.get(KnowledgeDocument, doc_id)
+            reviewed_update(writer, doc, ManufacturingMetadata.model_validate({**data.model_dump(), "archived": True}))
+        decision.scope.require_current_manufacturing(reader)
+        with factory() as writer:
+            doc = writer.get(KnowledgeDocument, doc_id)
+            doc.metadata_json = {**doc.metadata_json, "publication": {"state": "published", "revision": 2}}
+            writer.commit()
+        with pytest.raises(ManufacturingScopeChanged):
+            decision.scope.require_current_manufacturing(reader)
+
+
+def test_postgres_unrelated_scope_update_is_ignored_but_becoming_relevant_invalidates(pg):
+    factory, tenant, kb, _, _ = pg
+    with factory() as writer:
+        doc, _, data = add_source(writer, tenant=tenant, kb=kb, code="OTHER-PRODUCT",
+            product_models=("OTHER-MODEL",))
+        writer.commit()
+        doc_id = doc.id
+    with factory() as reader:
+        decision = selection(pg, reader)
+        assert decision.state == "applicable"
+        with factory() as writer:
+            doc = writer.get(KnowledgeDocument, doc_id)
+            reviewed_update(writer, doc, ManufacturingMetadata.model_validate({**data.model_dump(), "archived": True}))
+        decision.scope.require_current_manufacturing(reader)
+        with factory() as writer:
+            doc = writer.get(KnowledgeDocument, doc_id)
+            reviewed_update(writer, doc, ManufacturingMetadata.model_validate({**data.model_dump(), "product_models": ("HC-A17",)}))
+        with pytest.raises(ManufacturingScopeChanged):
+            decision.scope.require_current_manufacturing(reader)

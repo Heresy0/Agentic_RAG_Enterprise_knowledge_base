@@ -188,6 +188,9 @@ class AnswerRepair:
                         if isinstance(response, GenerationAnswerDraft) else response)
             guard.require()
             current = refresh_context()
+            if context.business_items:
+                from ..manufacturing.generation_models import compile_applicability_bindings
+                repaired = compile_applicability_bindings(repaired, context)
             if calculation_mode:
                 repaired = normalize_calculations(repaired, context, question)
             facts_valid = (preserves_decision_addition(original, repaired) if decision_mode else

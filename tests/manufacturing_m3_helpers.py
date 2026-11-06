@@ -62,12 +62,9 @@ class LocalGeneration:
         body = messages[1].content
         sources = re.findall(r"\[(资料\d+)\]\n(.*?)(?=\n\n\[资料|\n\n工单字段来源|\Z)", body.split("知识库资料：\n", 1)[1], re.S)
         if self.mode == "fact":
-            item = next(item for item in active.items if item.field_name == self.field)
-            claims = [dict(text=item.content, citations=[item.citation_id], claim_kind="business_fact")]
+            claims = [dict(business_field=self.field, claim_kind="business_fact")]
         elif self.mode == "applicability":
-            documents = [key for key, content in sources if "角色：change_notice" in content or
-                f"业务版本：{active.decision.selected_business_revision}；" in content and "角色：instruction" in content]
-            claims = [dict(text=active.applicability_text, citations=documents+["业务1", "业务2", "业务3", "业务4"], claim_kind="applicability")]
+            claims = [dict(claim_kind="applicability")]
         elif self.mode == "comparison":
             claims = [dict(text=f"业务版本{revision}要求连续{number}件首件合格", citations=[next(key for key, content in sources
                 if f"业务版本：{revision}；" in content and "角色：instruction" in content)], claim_kind="version_comparison")

@@ -14,7 +14,7 @@ from ..security.retrieval_scope import RetrievalScope
 from .contracts import WorkOrderContext, source_time
 from .metadata import ManufacturingMetadata, current_review, validate_anchors
 from .scope import (DocumentBinding, ManufacturingFence, RequiredEvidence,
-                    catalog_fingerprint, catalog_rows)
+                    catalog_fingerprint, catalog_rows, matches_record as _matches)
 
 
 @dataclass(frozen=True, slots=True)
@@ -34,14 +34,6 @@ class ApplicabilityDecision:
     gaps: tuple[str, ...] = ()
 
 
-def _matches(data, record, *, ignore_route=False):
-    return ((not data.product_models or record.product_model in data.product_models)
-        and (not data.operation_codes or record.operation_code in data.operation_codes)
-        and (not data.plant_codes or record.plant_code in data.plant_codes)
-        and (ignore_route or not data.route_revisions or record.route_revision in data.route_revisions)
-        and (not data.work_order_ids or record.work_order_id in data.work_order_ids))
-
-
 class ApplicabilityResolver:
     def resolve(self, *, context: WorkOrderContext, scope: RetrievalScope,
                 business_scope: BusinessScope, session, include_other_revisions=False) -> ApplicabilityDecision:
@@ -51,7 +43,7 @@ class ApplicabilityResolver:
         if (scope.tenant_id != record.tenant_id or business_scope.tenant_id != scope.tenant_id
                 or not business_scope.contains_record(record)):
             raise BusinessAuthorizationDenied()
-        rows = catalog_rows(session, scope)
+        rows = catalog_rows(session, scope, record=record)
         fingerprint = catalog_fingerprint(rows)
 
         def finish(state, reason, *, selected=None, rules=(), documents=(), required=(), gaps=()):
@@ -62,7 +54,8 @@ class ApplicabilityResolver:
                 if len(explanation_docs) > 32 or len(explanation) > 24:
                     state, reason, gaps = "needs_context", "evidence_budget_exceeded", ("catalog_scope",)
                     explanation_docs, explanation = (), ()
-            fence = ManufacturingFence(state, fingerprint, tuple(documents), tuple(required), explanation_docs, explanation)
+            fence = ManufacturingFence(state, fingerprint, tuple(documents), tuple(required), explanation_docs,
+                                       explanation, catalog_record=record)
             decision = ApplicabilityDecision(state, reason, replace(scope, manufacturing=fence),
                 selected.metadata.document_code if selected else None,
                 selected.metadata.business_revision if selected else None,

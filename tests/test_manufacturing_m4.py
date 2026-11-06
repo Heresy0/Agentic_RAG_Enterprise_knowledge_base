@@ -284,7 +284,7 @@ def test_backend_selection_compiles_complete_source_bindings_even_if_model_omits
     original=h.generation.invoke
     def invoke(messages):
         result=original(messages)
-        if mode=='applicability':result['parsed']['claims'][0]['citations']=[key for key in result['parsed']['claims'][0]['citations'] if key!='业务1']
+        if mode=='applicability':result['parsed']['claims'][0]['citations']=[]
         return result
     h.generation.invoke=invoke
     with TestClient(h.c.app) as client:
@@ -300,7 +300,10 @@ def test_backend_selection_compiles_complete_source_bindings_even_if_model_omits
 def test_backend_selection_compiler_does_not_rewrite_false_model_conclusions(m4):
     h=m4;h.generation.mode='applicability';original=h.generation.invoke
     def invoke(messages):
-        result=original(messages);result['parsed']['claims'][0]['text']+='，并已自动放行';return result
+        from backend.app.manufacturing.answer_context import current_manufacturing_context
+        result=original(messages)
+        result['parsed']['claims'][0]['text']=current_manufacturing_context().applicability_text+'，并已自动放行'
+        return result
     h.generation.invoke=invoke
     with TestClient(h.c.app) as client:
         response=client.post('/api/manufacturing/qa',json=qa_input(h,question='当前工单应按哪版指导书作业？'))
