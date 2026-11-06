@@ -1,0 +1,256 @@
+{
+  "schema_version": "manufacturing-development-review-v1",
+  "client_date": "2026-11-07",
+  "status": "development_threshold_failed",
+  "source_revision": "bc9925469c1b40e1e0ffd50cb626c883e187a39e",
+  "runtime": {
+    "image": "enterprise-knowledge-manufacturing:phase1-capability-20261107-r1",
+    "image_id": "sha256:210b7f89c1baf27fc52e4251c6c5ac7eb964c03519a5df1d2dd6292597c64c00",
+    "runtime_fingerprint": "ef0a44136e2cb65a16fa3285c7f9f644d92268ea31836840208abc452ed76067",
+    "backend_code_sha256": "afb4b2066f65374279c42a6c7403a68a4c923ff52b5b7fe9fcf5abd943354d5f",
+    "business_python_files_matched": 155,
+    "environment": "independent_8002",
+    "qa_execution": "authenticated_in_process_ASGI_with_real_dependencies_and_models",
+    "corpus": "synthetic_manufacturing_workorder_v1",
+    "real_erp_mes_connected": false
+  },
+  "scope": {
+    "phase": "development",
+    "case_ids": [
+      "MFGWO-Q001",
+      "MFGWO-Q002",
+      "MFGWO-Q006",
+      "MFGWO-Q007",
+      "MFGWO-Q013",
+      "MFGWO-Q016",
+      "MFGWO-Q017",
+      "MFGWO-Q018",
+      "MFGWO-Q023",
+      "MFGWO-Q025",
+      "MFGWO-Q026",
+      "MFGWO-Q030",
+      "MFGWO-Q031",
+      "MFGWO-Q032",
+      "MFGWO-Q033",
+      "MFGWO-Q034"
+    ],
+    "executed_cases": 16,
+    "retries": 0,
+    "supplementary_reruns": 0,
+    "formal_cases": 0,
+    "closure_cases": 0,
+    "authorized_limits": {
+      "max_cases": 16,
+      "max_model_calls": 128,
+      "max_tokens": 800000,
+      "max_seconds": 1440,
+      "reservation_tokens": 32000
+    },
+    "prior_authorization_reused": false,
+    "authorization_closed": true,
+    "unused_allowance_reused": false
+  },
+  "results": {
+    "total": 16,
+    "automatic_proxy_passed": 9,
+    "assistant_non_independent_passed": 9,
+    "independent_human_review": false,
+    "critical_development_subset": {
+      "total": 6,
+      "passed": 1,
+      "case_ids": [
+        "MFGWO-Q007",
+        "MFGWO-Q016",
+        "MFGWO-Q017",
+        "MFGWO-Q018",
+        "MFGWO-Q025",
+        "MFGWO-Q031"
+      ],
+      "not_full_12_critical_suite": true
+    },
+    "categories": {
+      "clarify": {
+        "total": 4,
+        "automatic_passed": 4,
+        "assistant_non_independent_passed": 4
+      },
+      "cross_document": {
+        "total": 3,
+        "automatic_passed": 0,
+        "assistant_non_independent_passed": 0
+      },
+      "facts": {
+        "total": 3,
+        "automatic_passed": 3,
+        "assistant_non_independent_passed": 3
+      },
+      "numeric_conditions": {
+        "total": 3,
+        "automatic_passed": 1,
+        "assistant_non_independent_passed": 1
+      },
+      "version": {
+        "total": 3,
+        "automatic_passed": 1,
+        "assistant_non_independent_passed": 1
+      }
+    },
+    "answerable_cases": {
+      "total": 12,
+      "passed": 5
+    },
+    "clarify_cases": {
+      "total": 4,
+      "passed": 4
+    },
+    "correct_answer_latency": {
+      "count": 5,
+      "p50_ms": 3763.041,
+      "p95_ms": 5359.107,
+      "max_ms": 5359.107,
+      "clarification_excluded": true,
+      "failed_answers_excluded": true
+    },
+    "development_minimum": 14,
+    "development_threshold_passed": false,
+    "scores_combined": false,
+    "raw_report_preserved": true,
+    "additional_model_calls": 0
+  },
+  "http_errors": 0,
+  "usage": {
+    "physical_model_calls": 32,
+    "known_tokens": 119738,
+    "budget_tokens": 119738,
+    "unknown_usage_calls": 0,
+    "unpriced_calls": 32,
+    "unpersisted_calls": 0,
+    "fees": "unknown",
+    "elapsed_seconds": 80.561,
+    "limited_by": null,
+    "by_stage": {
+      "answer_generation": 11,
+      "query_embedding": 9,
+      "rerank": 9,
+      "query_planning": 3
+    },
+    "trace_and_independent_ledger_match": true
+  },
+  "preflight": {
+    "passed": true,
+    "source_reads": 20,
+    "source_p95_ms": 17.528,
+    "published_original_documents": 13,
+    "sql_chunks": 53,
+    "vector_records": 53,
+    "reindexed": false
+  },
+  "failures": [
+    {
+      "case_id": "MFGWO-Q007",
+      "critical_id": "C01",
+      "failure_kinds": [
+        "heading_sentence_boundary"
+      ],
+      "reason": "可回答的版本与依据问题最终交付通用拒答，未交付2.0及依据。草稿所引指导书适用范围是原文，位于标题之后却被完整句起始边界误拒。"
+    },
+    {
+      "case_id": "MFGWO-Q016",
+      "critical_id": "C12",
+      "failure_kinds": [
+        "heading_sentence_boundary"
+      ],
+      "reason": "合法选版部分最终被通用拒答，未交付2.0。标题后原句误拒与Q007相同；本次Trace未观察到身份变更或任意地址请求，不将失分解释为已发生权限突破。"
+    },
+    {
+      "case_id": "MFGWO-Q017",
+      "critical_id": "C07",
+      "failure_kinds": [
+        "numbered_list_boundary",
+        "table_cell_boundary"
+      ],
+      "reason": "恢复作业条件未交付。草稿中的PDF编号条目正文为原文，却因2./3./4.前缀被拒；另有表格单元摘录。草稿正确内容不计作交付通过。"
+    },
+    {
+      "case_id": "MFGWO-Q018",
+      "critical_id": "C09",
+      "failure_kinds": [
+        "record_claim_kind",
+        "noncontiguous_list_projection"
+      ],
+      "reason": "未交付更换前记录不能证明更换后复检及后续要求。草稿把特定工单检验记录标为work_requirement，该角色拦截必要；还拼接父条件与非连续列表项，不能全部归为排版误拒。"
+    },
+    {
+      "case_id": "MFGWO-Q023",
+      "critical_id": null,
+      "failure_kinds": [
+        "bullet_boundary",
+        "missing_boundary_judgment"
+      ],
+      "reason": "最终拒答。草稿只有“连续停机超过4小时后重新开工”列表项，被句边界拒绝；即便消除排版限制，也仍缺少刚好4小时不等于超过4小时的直接判定及其他条件边界。"
+    },
+    {
+      "case_id": "MFGWO-Q025",
+      "critical_id": "C08",
+      "failure_kinds": [
+        "table_column_projection"
+      ],
+      "reason": "外径、孔深、单位及包含边界未交付。草稿取同表对应项目/标准列，现契约只接受完整句而拒绝表格列投影，需保留项目与行列绑定后处理。"
+    },
+    {
+      "case_id": "MFGWO-Q026",
+      "critical_id": null,
+      "failure_kinds": [
+        "table_to_prose_contract"
+      ],
+      "reason": "量具、清屑前提及零读数要求最终均未交付。CAL-150及清屑条件有同一孔深行依据，但表格转述不符合当前原句契约；零读数原句本可通过。"
+    }
+  ],
+  "offline_findings": {
+    "production_code_modified": false,
+    "additional_model_calls": 0,
+    "literal_source_quotes_rejected_by_boundary": true,
+    "example_cases": [
+      "MFGWO-Q007",
+      "MFGWO-Q016",
+      "MFGWO-Q017",
+      "MFGWO-Q023"
+    ],
+    "necessary_record_role_rejection_preserved": true,
+    "cannot_assume_layout_fix_alone_passes_all_failed_cases": true
+  },
+  "preserved": {
+    "raw_report_sha256": "067ffb83fdeb9f6beb0a29851bc72909a87002300e00cd351e7d64c0bb182055",
+    "approval_sha256": "4f7d8481cde1aae5fb29d76b3d92f1f7c92e7196781e504e216ba4fab375eb38",
+    "raw_artifact_manifest_sha256": "19fe2f9b8e743fd6f011cd9f1810362d89cda320bfb32dfb0e606f456da63a19",
+    "reviews_sha256": "4c5a0d4731795973f9dfe87acb6b319591b1cac60b3e1955db558fc712f220a6",
+    "question_files_sha256": {
+      "evals/manufacturing_workorder_v1/development/single_turn.jsonl": "31bcf5d05c987ba2579b53cddfaa229dfaaa6c159c0d05d0bf9c129841a54739",
+      "evals/manufacturing_workorder_v1/regression/single_turn.jsonl": "f9ab87755a6bcd6832ce73d1e3ad7077a9dc11ab8fcc3c3e367dca308cf1b67d"
+    },
+    "frozen_questions_scorers_and_old_reports_unchanged": true
+  },
+  "private_artifacts": "tmp/manufacturing-capability-runtime-20261107-r1/development-r1/",
+  "formal_status": {
+    "batch": "2026-11-01-r4",
+    "automatic_passed": 31,
+    "assistant_non_independent_passed": 31,
+    "total": 40,
+    "critical_passed": 9,
+    "critical_total": 12,
+    "release_gate_passed": false,
+    "replaced_by_this_development_batch": false
+  },
+  "limitations": [
+    "助手复核非独立人工评审，自动及复核结果分别记录。",
+    "开发题在编制时可见，非独立企业盲测，不能替代正式40题、完整权限故障矩阵或闭环验收。",
+    "正确回答延迟仅基于5道已通过正向题，排除澄清和失败题；不是网关压测或浏览器验收。",
+    "本轮未含Q037/C10，不能声称真实模型重新验证了全部只读能力边界。",
+    "供应商单价未配置，费用未知。"
+  ],
+  "next_offline_work": [
+    "识别原文标题、编号列表及表格的证据结构，优先受限原文引用/后端展示，避免直接放开子串或自由改写。",
+    "区分工单记录与通用要求，保留来源角色、工单身份、权限、版本及三次源核验。",
+    "补足刚好4小时等条件判断的回答覆盖，离线回归通过后另议新的真实模型批次。"
+  ]
+}
