@@ -13,11 +13,12 @@ from .access import WorkOrderAccessService
 from .answer_context import (ManufacturingAnswerContext, facts_only_question, comparison_question,
                              manufacturing_answer_context, verified_business_citations, manufacturing_model_guard)
 from .applicability import ApplicabilityResolver
+from .capabilities import READ_ONLY_REFUSAL, requests_operation
 from .errors import ManufacturingInputError
 from .conversations import ManufacturingConversationStore
 from .history_access import invalidate_binding
 from ..security.business_scope import BusinessAuthorizationDenied
-from ..evaluation.trace import record_business_source
+from ..evaluation.trace import record_business_source, record_rag_event
 
 GAP_LABELS = {"product_model": "产品型号", "operation_code": "工序", "actual_started_at": "实际开工时间",
     "route_revision": "工艺路线修订", "change_notice_refs": "引用的书面通知", "manufacturing_review": "制造资料适用性审核",
@@ -92,17 +93,19 @@ class ManufacturingService:
                     raise BusinessAuthorizationDenied()
                 check_lease()
             question = payload.question.strip()
+            operation_requested = requests_operation(question)
             stage = perf_counter()
             if token:
                 state = store.context_memory(payload.conversation_id, token=token)
                 store.check_binding(payload.conversation_id, context)
                 turns = store.turns(payload.conversation_id, limit=HISTORY_TURNS, for_context=True)
-                if self.resolver is not None and turns:
+                if self.resolver is not None and turns and not operation_requested:
                     with manufacturing_model_guard(current_access):
                         question = await run_in_threadpool(self.resolver.resolve, question, turns)
                 # Resolving a followup cannot replace trusted work-order facts.
                 if not isinstance(question, str) or not question.strip() or len(question) > 2000:
                     raise ManufacturingInputError("追问解析未形成有效问题，请写明本轮条件。")
+                operation_requested = operation_requested or requests_operation(question)
             if observation is not None:
                 observation.retrieval_question = question
             timings["conversation_context_ms"] = round((perf_counter()-stage)*1000, 2)
@@ -133,13 +136,16 @@ class ManufacturingService:
             def model_access():
                 current_access(); decision.scope.require_current_manufacturing(self.session)
             stage = perf_counter()
-            if decision.state != "applicable" and not facts_only:
+            if operation_requested or decision.state != "applicable" and not facts_only:
                 await before_generation()
-                clarify = decision.state == "needs_context"
-                gaps = [GAP_LABELS.get(name, name) for name in decision.gaps]
-                reason = ("请补齐或复核来源字段：" + "、".join(gaps) if clarify else
+                clarify = not operation_requested and decision.state == "needs_context"
+                gaps = [] if operation_requested else [GAP_LABELS.get(name, name) for name in decision.gaps]
+                reason = (READ_ONLY_REFUSAL if operation_requested else
+                          "请补齐或复核来源字段：" + "、".join(gaps) if clarify else
                           "当前可见资料存在未解决的选版冲突。" if decision.state == "conflict" else
                           "当前授权且已复核的资料不足，不能给出工单作业要求。")
+                if operation_requested:
+                    record_rag_event(dict(kind="manufacturing_capability", outcome="unsupported_operation"))
                 result = AnswerResult(answer=reason, answerable=False, citations=[], refusal_reason=None if clarify else reason,
                     response_type="clarify" if clarify else "refuse", missing_fields=gaps if clarify else [],
                     clarification_questions=["请先补齐来源记录或完成资料复核，再重新查询。"] if clarify else [])

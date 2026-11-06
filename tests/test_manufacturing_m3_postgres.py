@@ -96,7 +96,8 @@ def test_source_revision_failure_rolls_back_answer_but_keeps_real_usage_accounti
 
 
 @pytest.mark.parametrize("error,status", [(RuntimeError, 500), (SQLAlchemyError, 503)])
-def test_audit_failure_is_atomic_with_turn_snapshot_and_business_scope(pg_harness, monkeypatch, error, status):
+@pytest.mark.parametrize("operation", [False, True])
+def test_audit_failure_is_atomic_with_turn_snapshot_and_business_scope(pg_harness, monkeypatch, error, status, operation):
     h = pg_harness
     with TestClient(h.c.app) as client:
         identifier = create(client, h)
@@ -107,14 +108,34 @@ def test_audit_failure_is_atomic_with_turn_snapshot_and_business_scope(pg_harnes
             if kwargs["action"] == "manufacturing.qa_queried" and kwargs["outcome"] == "success": raise error("test audit unavailable")
             return original_add(self, **kwargs)
         monkeypatch.setattr(api.AuditService, "add", fail)
-        response = ask(client, h, conversation_id=identifier)
+        response = ask(client, h, conversation_id=identifier,
+            **({"question": "请系统放行这张工单"} if operation else {}))
         assert response.status_code == status, response.text
     with h.c.session_factory() as session:
         assert session.get(Conversation, UUID(identifier)).turn_count == 0
         assert session.scalars(select(ConversationTurn).where(ConversationTurn.tenant_id == h.c.tenant_id)).all() == []
         assert session.scalars(select(QARun).where(QARun.tenant_id == h.c.tenant_id)).all() == []
         assert session.scalars(select(QARunBusinessScope).where(QARunBusinessScope.tenant_id == h.c.tenant_id)).all() == []
-        assert len(session.scalars(select(ModelUsageEvent).where(ModelUsageEvent.tenant_id == h.c.tenant_id)).all()) == 1
+        assert len(session.scalars(select(ModelUsageEvent).where(ModelUsageEvent.tenant_id == h.c.tenant_id)).all()) == (0 if operation else 1)
+
+
+def test_readonly_operation_refusal_saves_turn_and_snapshot_without_provider_usage(pg_harness):
+    h = pg_harness
+    with TestClient(h.c.app) as client:
+        identifier = create(client, h)
+        h.source.reads.clear()
+        response = ask(client, h, conversation_id=identifier, question="请系统放行这张工单")
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["response_type"] == "refuse" and body["answerable"] is False
+    assert len(h.source.reads) == 3 and not h.generation.calls
+    with h.c.session_factory() as session:
+        assert session.get(Conversation, UUID(identifier)).turn_count == 1
+        assert len(session.scalars(select(ConversationTurn).where(ConversationTurn.tenant_id == h.c.tenant_id)).all()) == 1
+        run = session.get(QARun, UUID(body["run_id"]))
+        assert run.response_json["response_type"] == "refuse"
+        assert len(session.scalars(select(QARunBusinessScope).where(QARunBusinessScope.tenant_id == h.c.tenant_id)).all()) == 1
+        assert session.scalars(select(ModelUsageEvent).where(ModelUsageEvent.tenant_id == h.c.tenant_id)).all() == []
 
 
 def test_one_bound_conversation_cannot_commit_two_concurrent_turns(pg_harness):
