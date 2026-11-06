@@ -64,14 +64,14 @@ def test_mixed_field_and_requirement_keep_coverage_and_single_applicability_bind
         built = ContextBuilder().build(rows)
         guide = next(item.citation_id for item in built.items if item.document_role == "instruction")
         original = draft_for(dict(claim_kind="business_fact", business_field="actual_started_at"),
-            dict(claim_kind="work_requirement", text="该工单的首件须连续两件合格", citations=[guide]))
+            dict(claim_kind="work_requirement", text=next(item.content for item in built.items if item.citation_id == guide), citations=[guide]))
         compiled = compile_applicability_bindings(original, built)
-        assert compiled.claims[1].text == "首件须连续两件合格"
+        assert compiled.claims[1].text == original.claims[1].text
         assert compiled.coverage[0].claim_indices == [1, 2]
         assert [claim.claim_kind for claim in compiled.claims] == ["business_fact", "work_requirement", "applicability"]
         assert AnswerValidator().validate(draft=compiled, context=built, question="首件要求和开工日期？").valid
         assert compile_applicability_bindings(compiled, built) == compiled
-        assert original.claims[1].text.startswith("该工单")
+        assert compiled.claims[1].text.startswith("1.0：实际开工在切换前")
 
 
 def test_applicability_selector_is_rendered_and_bound_by_server(catalog):

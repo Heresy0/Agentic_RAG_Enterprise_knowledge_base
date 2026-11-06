@@ -506,8 +506,18 @@ class AnswerService:
                 for citation_id in claim.citations
             )
 
+            text = claim.text.rstrip('。')
+            if context.business_items:
+                if claim.claim_kind == "work_requirement":
+                    text = "作业要求：" + text
+                elif claim.claim_kind == "work_order_evidence":
+                    text = "工单记录：" + text
+                elif claim.claim_kind == "version_comparison":
+                    guide = next(item_map[key] for key in claim.citations
+                                 if item_map[key].document_role == "instruction")
+                    text = f"业务版本{guide.business_revision}：" + text
             answer_parts.append(
-                f"{claim.text.rstrip('。')}。"
+                f"{text}。"
                 f"{citation_text}"
             )
 

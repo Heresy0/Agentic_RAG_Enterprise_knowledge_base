@@ -157,7 +157,7 @@ class AnswerValidator:
                 continue
 
             if context.business_items:
-                from ..manufacturing.answer_context import current_manufacturing_context
+                from ..manufacturing.answer_context import current_manufacturing_context, complete_source_statement
                 active = current_manufacturing_context()
                 business = {item.citation_id: item for item in context.business_items}
                 document_ids = {item.citation_id for item in context.items}
@@ -184,25 +184,22 @@ class AnswerValidator:
                     continue
                 if claim.claim_kind == "work_order_evidence":
                     events = [item for item in cited_documents if item.document_role in ("event_record", "inspection_record")]
-                    sentences = {sentence.strip().strip("。！？；; \n") for item in events
-                        for sentence in re.split(r"[。！？；;\n]+", item.content)}
                     if (not events or len(cited_business) != 1 or cited_business[0].field_name != "work_order_id"
-                            or claim.text.strip().strip("。！？；; \n") not in sentences or claim.calculation is not None):
+                            or not complete_source_statement(claim.text, events) or claim.calculation is not None):
                         errors.append(f"第{claim_index}个工单记录结论须保留完整原句并绑定工单编号")
                     continue
                 comparing = claim.claim_kind == "version_comparison"
                 guides = [item for item in cited_documents if item.document_role == "instruction"]
                 if comparing and (active is None or not active.comparison or not guides
-                        or len({item.business_revision for item in guides}) != 1
-                        or any(item.business_revision not in claim.text for item in guides)):
+                        or len({item.business_revision for item in guides}) != 1):
                     errors.append(f"第{claim_index}个版本对比未明确绑定单个业务修订")
                     continue
-                if (claim.claim_kind not in ("work_requirement", "version_comparison") or not cited_documents or cited_business
-                        or re.search(r"该工单|本工单|此工单|这张工单|WO-[A-Za-z0-9-]+", claim.text)):
+                if claim.claim_kind not in ("work_requirement", "version_comparison") or not cited_documents or cited_business:
                     errors.append(f"第{claim_index}个作业要求必须以文档为据，工单适用结论需单独绑定")
                     continue
-                if not comparing and (not any(item.document_role in ("instruction", "inspection", "change_notice", "reference", "route") for item in cited_documents)
-                        or re.search(r"系统.*(?:已|完成|成功).*(?:放行|执行|修改|提交|下发)|已(?:放行|下发)|已恢复(?:生产|作业)", claim.text)):
+                rule_documents = [item for item in cited_documents if item.document_role in
+                    ("instruction", "inspection", "change_notice", "reference", "route")]
+                if not comparing and not rule_documents:
                     errors.append(f"第{claim_index}个作业要求不能冒充执行记录或系统操作结果")
                     continue
                 if not comparing and active is not None and any(item.business_revision != active.decision.selected_business_revision for item in guides):
@@ -217,6 +214,8 @@ class AnswerValidator:
                     "\n".join(item.content for item in quantity_sources))
                 if missing_quantities:
                     errors.append(f"第{claim_index}个结论中的件数或次数缺少对应文档数量支持")
+                if claim.calculation is None and not complete_source_statement(claim.text, guides if comparing else rule_documents):
+                    errors.append(f"第{claim_index}个作业要求或版本对比须保留所引规则的完整原句，不能改写为执行状态或反转条件")
                 # Business IDs and question numbers cannot legitimize process limits.
                 question_facts = set()
 

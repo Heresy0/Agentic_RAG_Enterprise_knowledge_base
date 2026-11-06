@@ -3,7 +3,6 @@ from typing import Literal
 from pydantic import Field, model_validator
 from ..knowledge.answer_models import AnswerClaim, ClaimKind, EvidenceFirstAnswerDraft
 import json
-import re
 
 
 BusinessField = Literal[
@@ -55,7 +54,7 @@ def compile_applicability_bindings(draft, context):
     Field selectors carry no model-provided value or assertion. All other model
     conclusions still pass the original per-claim source and numeric validation.
     """
-    from .answer_context import current_manufacturing_context
+    from .answer_context import current_manufacturing_context, complete_source_statement
     from ..evaluation.trace import record_rag_event
     active = current_manufacturing_context()
     if active is None or not draft.answerable or not draft.claims:
@@ -88,16 +87,6 @@ def compile_applicability_bindings(draft, context):
         if claim.claim_kind == "applicability" and not claim.text.strip() and claim.calculation is None:
             claim = claim.model_copy(update=dict(text=active.applicability_text))
             changed.append(dict(origin="server_applicability_selection", compiled_citations=citations))
-        # A current-order subject is presentation, not a new applicability
-        # decision. Normalize only an explicit requirement, never an execution
-        # record or a statement about a different order.
-        if claim.claim_kind == "work_requirement" and claim.calculation is None:
-            subject = re.match(r"^(?:该工单|本工单|此工单|这张工单|工单" + re.escape(active.context.record.work_order_id)
-                + r"(?![A-Za-z0-9_.:-]))(?:的)?[：:，,]?\s*(.+)$", claim.text.strip())
-            if (subject and re.search(r"须|必须|应当|不得|不能|需要|要求", subject[1])
-                    and not re.search(r"已经|已完成|已检|已放行|已恢复|实际完成|实际检验", subject[1])):
-                claim = claim.model_copy(update=dict(text=subject[1]))
-                changed.append(dict(origin="current_work_order_subject", compiled_citations=claim.citations))
         if (claim.claim_kind in ("applicability", "business_fact") and claim.text.rstrip("。") == active.applicability_text
                 and claim.calculation is None and (claim.citations != citations or claim.claim_kind != "applicability")):
             changed.append(dict(original_citations=claim.citations,compiled_citations=citations))
@@ -107,13 +96,12 @@ def compile_applicability_bindings(draft, context):
             # Only compile complete, consecutive original sentences. A fragment,
             # paraphrase or other business field remains invalid for the validator.
             business_refs = set(claim.citations) & {item.citation_id for item in active.items}
-            requested = [part.strip().strip("。！？；; \n") for part in re.split(r"[。！？；;\n]+", claim.text) if part.strip()]
+            requested = [part.strip() for part in claim.text.split("。") if part.strip()]
             if business_refs <= {work_order} and requested:
                 for item in context.items:
                     if item.citation_id not in claim.citations or item.document_role not in ("event_record", "inspection_record"):
                         continue
-                    original = [part.strip().strip("。！？；; \n") for part in re.split(r"[。！？；;\n]+", item.content) if part.strip()]
-                    if any(original[offset:offset+len(requested)] == requested for offset in range(len(original))):
+                    if complete_source_statement(claim.text, [item]):
                         parts = requested
                         break
         if parts:

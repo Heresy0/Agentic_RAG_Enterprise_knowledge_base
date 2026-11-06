@@ -20,6 +20,7 @@ from ..governance.tenant_concurrency_limiter import (ConcurrencyLimiterUnavailab
 from ..integrations.mes import MESError, MESNotFound, MESUnavailable
 from ..knowledge.answer_models import AnswerResult
 from ..knowledge.generation_errors import RECOVERABLE_GENERATION_ERRORS
+from ..knowledge.milvus_store import VectorStoreUnavailable
 from ..knowledge.conversations import ConversationBusy, ConversationNotFound
 from ..manufacturing.access import WorkOrderAccessService
 from ..manufacturing.contracts import Contract, Identifier, ManufacturingQuestion
@@ -95,6 +96,8 @@ def fail(exc, request_id):
         code, name, message = 422, "manufacturing_input_invalid", "请求或追问条件无法验证，请重新查询。"
     elif isinstance(exc, EvaluationStopped):
         code, name, message = 503, "manufacturing_evaluation_stopped", "本次验证已停止，请检查任务状态。"
+    elif isinstance(exc, VectorStoreUnavailable):
+        code, name, message = 503, "manufacturing_retrieval_unavailable", "检索服务暂不可用，请稍后重新查询。"
     elif isinstance(exc, RECOVERABLE_GENERATION_ERRORS):
         code, name, message = 503, "manufacturing_generation_unavailable", "生成服务暂不可用，请稍后重新查询。"
     elif isinstance(exc, SQLAlchemyError):

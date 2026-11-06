@@ -16,6 +16,7 @@ from backend.app.evaluation.trace import capture_trace
 from backend.app.integrations.mes import MESError, MESUnavailable
 from backend.app.manufacturing.errors import ManufacturingInputError
 from backend.app.manufacturing.scope import ManufacturingScopeChanged
+from backend.app.knowledge.milvus_store import VectorStoreUnavailable
 from backend.app.quality.eval_budget import EvaluationStopped
 from backend.app.security.authorization import AuthorizationDenied
 from backend.app.security.business_scope import BusinessAuthorizationDenied
@@ -33,6 +34,7 @@ PRIVATE = "synthetic-provider-secret-must-not-be-logged"
     (TimeoutError, 503, "manufacturing_generation_unavailable"),
     (SQLAlchemyError, 503, "manufacturing_storage_unavailable"),
     (EvaluationStopped, 503, "manufacturing_evaluation_stopped"),
+    (VectorStoreUnavailable, 503, "manufacturing_retrieval_unavailable"),
     (ValueError, 500, "manufacturing_internal_error"),
     (TypeError, 500, "manufacturing_internal_error"),
     (RuntimeError, 500, "manufacturing_internal_error"),

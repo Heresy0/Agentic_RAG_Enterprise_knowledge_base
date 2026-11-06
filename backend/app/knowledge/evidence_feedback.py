@@ -14,6 +14,7 @@ from .answer_validation import AnswerValidator
 from .evidence_coordinator import EvidenceAccess
 from .evidence_selection import select_evidence
 from .generation_errors import RECOVERABLE_GENERATION_ERRORS
+from .milvus_store import VectorStoreUnavailable
 from .rag_budget import current_rag_budget, query_key, RagBudgetExceeded
 from .request_budget import evidence_deadline
 from .temporal import future_certainty_gap
@@ -192,7 +193,7 @@ class EvidenceFeedback:
             guard.require()
             record_rag_event(dict(kind="feedback", outcome="shared_budget"))
             return result
-        except RECOVERABLE_GENERATION_ERRORS as exc:
+        except (VectorStoreUnavailable, *RECOVERABLE_GENERATION_ERRORS) as exc:
             guard.require()
             logger.warning("rag.feedback_failed error_type=%s", type(exc).__name__)
             record_rag_event(dict(kind="feedback", outcome="fallback", error_type=type(exc).__name__))

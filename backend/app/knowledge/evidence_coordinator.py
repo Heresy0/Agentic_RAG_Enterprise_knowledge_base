@@ -20,6 +20,7 @@ from ..model_usage import current_usage_context, invoke_structured
 from ..security.authorization import AuthorizationDenied, AuthorizationService
 from ..security.principal import Principal
 from .generation_errors import RECOVERABLE_GENERATION_ERRORS
+from .milvus_store import VectorStoreUnavailable
 from .evidence_selection import select_evidence
 from .request_budget import evidence_deadline
 from .rag_budget import current_rag_budget, RagBudgetExceeded
@@ -311,7 +312,7 @@ class EvidenceCoordinator:
                         break
         except RagBudgetExceeded:
             outcome = "shared_budget"
-        except RECOVERABLE_GENERATION_ERRORS as exc:
+        except (VectorStoreUnavailable, *RECOVERABLE_GENERATION_ERRORS) as exc:
             outcome = "fallback"
             logger.warning("agent.collection_failed error_type=%s", type(exc).__name__)
         # Authorization failures must not silently fall back to old evidence.

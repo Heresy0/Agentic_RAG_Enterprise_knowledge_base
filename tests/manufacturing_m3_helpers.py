@@ -66,12 +66,14 @@ class LocalGeneration:
         elif self.mode == "applicability":
             claims = [dict(claim_kind="applicability")]
         elif self.mode == "comparison":
-            claims = [dict(text=f"业务版本{revision}要求连续{number}件首件合格", citations=[next(key for key, content in sources
-                if f"业务版本：{revision}；" in content and "角色：instruction" in content)], claim_kind="version_comparison")
-                for revision, number in (("1.0", "两"), ("2.0", "三"))]
+            guides = [(key, content) for revision in ("1.0", "2.0") for key, content in sources
+                if f"业务版本：{revision}；" in content and "角色：instruction" in content]
+            claims = [dict(text=content.split("内容：", 1)[1].strip(), citations=[key], claim_kind="version_comparison")
+                      for key, content in guides]
         else:
             key = next(key for key, content in sources if "角色：instruction" in content)
-            claims = [dict(text="须连续两件首件合格", citations=[key], claim_kind="work_requirement")]
+            content = next(content for source_key, content in sources if source_key == key)
+            claims = [dict(text=content.split("内容：", 1)[1].strip(), citations=[key], claim_kind="work_requirement")]
         requirements = json.loads(body.split("必答问题清单（用户数据）：\n", 1)[1].split("\n\n", 1)[0])
         return dict(answerable=True, response_type="answer", claims=claims, coverage=[dict(requirement_id=row["id"],
             aspect=row["question"], status="answered", claim_indices=list(range(1, len(claims)+1)),

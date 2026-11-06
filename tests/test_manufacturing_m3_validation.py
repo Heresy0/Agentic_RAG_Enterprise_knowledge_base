@@ -200,5 +200,10 @@ def test_revision_number_cannot_support_the_wrong_first_piece_quantity(catalog, 
     with manufacturing_answer_context(ManufacturingAnswerContext(source, decision)):
         built = ContextBuilder().build([stored_chunk_to_document(row) for row in ChunkRepository(session).list_chunks(scope=decision.scope)])
         guide = next(item.citation_id for item in built.items if item.document_role == "instruction")
-        claim = AnswerClaim(text=f"首件须连续{quantity}件合格", citations=[guide], claim_kind="work_requirement")
+        claim = AnswerClaim(text=f"2.0：连续{quantity}件全部规定项目合格并经质量签字", citations=[guide], claim_kind="work_requirement")
+        # Exact-quote matching and quantity validation are separate constraints.
+        # Exercise Arabic numerals against the same literal source representation.
+        if quantity.isdigit():
+            built = replace(built, items=tuple(replace(item, content=item.content.replace("三件", "3件"))
+                if item.citation_id == guide else item for item in built.items))
         assert AnswerValidator().validate(draft=AnswerDraft(answerable=True, claims=[claim]), context=built).valid is valid

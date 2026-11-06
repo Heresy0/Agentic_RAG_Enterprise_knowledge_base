@@ -24,6 +24,18 @@ def display(value):
     return "未知" if value is None else json.dumps(value, ensure_ascii=False) if isinstance(value, (tuple, list)) else str(value)
 
 
+def complete_source_statement(text, items):
+    """Match complete source sentences, retaining comma/semicolon conditions.
+
+    Only layout whitespace and a terminal Chinese full stop are ignored.
+    Question/exclamation punctuation remains part of the quoted statement.
+    Numbers or matching substrings cannot support a rewritten business claim.
+    """
+    target = re.sub(r"\s+", "", text).rstrip("。")
+    return bool(target and any(re.search(r"(?:^|。)" + re.escape(target) + r"(?:$|。)",
+        re.sub(r"\s+", "", item.content)) for item in items))
+
+
 @dataclass(frozen=True, slots=True)
 class BusinessItem:
     citation_id: str
@@ -161,14 +173,14 @@ MANUFACTURING_PROMPT = """
 工单来源编号为业务1等；文档仍为资料1等。每个结论必须声明claim_kind：
 business_fact：只选择business_field中的一个字段名，text留空、citations=[]、calculation=null。后端从已核验工单生成值、展示文字和业务引用，不能自行编写或改写字段事实。
 applicability：text留空、citations=[]、business_field=null。后端生成已核验选版结论，并绑定指导书/变更通知及必要工单字段。
-work_requirement：只陈述有文档依据的一般作业要求，必须引用资料，不能使用业务引用支持数量、尺寸或放行要求。
-version_comparison：仅在用户明确比较版本时使用；每条结论只引用一个业务版本的指导书，文本写明该业务版本。至少分别陈述两版；对比资料不能作为当前工单执行要求。
+work_requirement：text逐字摘录规则资料的一句或连续完整原句，保留同句前提、否定和分号后的条件；不得改写为实际已检验或已完成。必须引用规则资料，不能使用业务引用支持数量、尺寸或放行要求。
+version_comparison：仅在用户明确比较版本时使用；每条只引用一个业务版本的指导书，text逐字摘录其完整原句。版本标识由后端展示，不自行添加或改写。至少分别陈述两版；对比资料不能作为当前工单执行要求。
 work_order_evidence：陈述本工单事件或检验记录时，text逐字使用对应记录的一句完整原文，保留前置条件和否定；引用该记录及工单编号业务来源。不能截取“不能证明已完成”中的“已完成”作为结论。
 输出前核对结构，避免把有依据的回答写成校验器无法接受的形式：
 1. business_fact示例：{"claim_kind":"business_fact","business_field":"actual_started_at","text":"","citations":[],"calculation":null}。未知值由后端如实展示；文档中的事实不能标成business_fact。
-2. work_requirement写有资料支持的要求或规则，不混入实际业务字段或已执行事实。开头的当前工单代词由后端整理，适用性由后端单独绑定，不能借此陈述检验已经完成。
+2. work_requirement保留规则原句，不混入实际业务字段或已执行事实，不添加“该工单”等原文没有的主语；后端单独标注作业要求和适用性。实际检验状态只允许使用work_order_evidence及对应工单记录。
 3. 回答版本及其依据时，除文档规则外，选择actual_started_at字段；存在登记通知时再选择change_notice_refs字段。不要把带工单身份的整段书面通知误标为一般作业要求。
-4. version_comparison每条只讨论一个业务版本，只引用这个版本的指导书，分别写全各版本的数量或条件。不要把两版放进同一条结论，不用含新旧两组数字的ECN代替两份指导书，不把文档业务修订称为上传次数。
+4. version_comparison逐字保留每版指导书的完整数量和条件，后端从引用生成版本标识。不要把两版放进同一条结论，不用含新旧两组数字的ECN代替两份指导书，不把文档业务修订称为上传次数。
 5. 引用数组只写来源中实际登记的编号，编号本身不要加方括号。记录原文多句时拆成多条work_order_evidence，每条保留一句完整原文和工单编号业务引用。
 6. 逐项回答问题中的否定、边界和替代关系，保留所引原文的完整含义；不要把有书面例外的一般规则称为“唯一依据”，不要省略通知限定对象或有效条件。
 要求、计划、源记录状态不能证明实际已检验合格或已放行；本系统不执行生产操作。
