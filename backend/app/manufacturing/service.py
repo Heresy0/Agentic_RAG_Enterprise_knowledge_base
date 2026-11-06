@@ -13,6 +13,7 @@ from .access import WorkOrderAccessService
 from .answer_context import (ManufacturingAnswerContext, facts_only_question, comparison_question,
                              manufacturing_answer_context, verified_business_citations, manufacturing_model_guard)
 from .applicability import ApplicabilityResolver
+from .errors import ManufacturingInputError
 from .conversations import ManufacturingConversationStore
 from .history_access import invalidate_binding
 from ..security.business_scope import BusinessAuthorizationDenied
@@ -101,7 +102,7 @@ class ManufacturingService:
                         question = await run_in_threadpool(self.resolver.resolve, question, turns)
                 # Resolving a followup cannot replace trusted work-order facts.
                 if not isinstance(question, str) or not question.strip() or len(question) > 2000:
-                    raise ValueError("追问解析未形成有效问题，请写明本轮条件。")
+                    raise ManufacturingInputError("追问解析未形成有效问题，请写明本轮条件。")
             if observation is not None:
                 observation.retrieval_question = question
             timings["conversation_context_ms"] = round((perf_counter()-stage)*1000, 2)

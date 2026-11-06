@@ -5,18 +5,15 @@ import time
 import unicodedata
 from dataclasses import dataclass
 
-from sqlalchemy.exc import SQLAlchemyError
 
 from ..evaluation.trace import (capture_trace, record_feedback_retrieval, record_documents,
                                 record_rag_event, record_scope)
-from ..security.authorization import AuthorizationDenied
 from .answer_coverage import coverage_errors, question_requirements
 from .answer_models import AnswerDraft
 from .answer_validation import AnswerValidator
 from .evidence_coordinator import EvidenceAccess
 from .evidence_selection import select_evidence
-from ..manufacturing.scope import ManufacturingScopeChanged
-from ..security.business_scope import BusinessAuthorizationDenied
+from .generation_errors import RECOVERABLE_GENERATION_ERRORS
 from .rag_budget import current_rag_budget, query_key, RagBudgetExceeded
 from .request_budget import evidence_deadline
 from .temporal import future_certainty_gap
@@ -191,13 +188,11 @@ class EvidenceFeedback:
             result.regenerated = True
             record_rag_event(dict(kind="feedback", outcome="regenerated"))
             return result
-        except (AuthorizationDenied, SQLAlchemyError, ManufacturingScopeChanged, BusinessAuthorizationDenied):
-            raise
         except RagBudgetExceeded:
             guard.require()
             record_rag_event(dict(kind="feedback", outcome="shared_budget"))
             return result
-        except Exception as exc:
+        except RECOVERABLE_GENERATION_ERRORS as exc:
             guard.require()
             logger.warning("rag.feedback_failed error_type=%s", type(exc).__name__)
             record_rag_event(dict(kind="feedback", outcome="fallback", error_type=type(exc).__name__))

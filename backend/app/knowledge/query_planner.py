@@ -9,14 +9,11 @@ from typing import Annotated, Literal
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
-from sqlalchemy.exc import SQLAlchemyError
 
 from ..config import Settings
 from ..evaluation.trace import record_rag_event
 from ..model_usage import invoke_structured
-from ..security.business_scope import BusinessAuthorizationDenied
-from ..manufacturing.scope import ManufacturingScopeChanged
-from ..security.authorization import AuthorizationDenied
+from .generation_errors import RECOVERABLE_GENERATION_ERRORS, InvalidGenerationOutput
 from .evidence_coordinator import EvidenceAccess
 from .rag_budget import current_rag_budget
 
@@ -69,9 +66,9 @@ class QueryPlan(BaseModel):
         facts = set(re.findall(r"[A-Za-z0-9]+(?:[-_.:/][A-Za-z0-9]+)*", question))
         for item in self.subquestions:
             if item.source_quote not in question:
-                raise ValueError("子问题锚点不在原问题中")
+                raise InvalidGenerationOutput("子问题锚点不在原问题中")
             if not set(re.findall(r"[A-Za-z0-9]+(?:[-_.:/][A-Za-z0-9]+)*", item.question)) <= facts:
-                raise ValueError("子问题引入了新编号或数值")
+                raise InvalidGenerationOutput("子问题引入了新编号或数值")
         return self
 
 
@@ -138,9 +135,7 @@ class QueryPlanner:
                     candidate = QueryPlan.model_validate(candidate).validate_question(question)
                 guard.require()
                 fallback, source = candidate, "model"
-            except (AuthorizationDenied, SQLAlchemyError, BusinessAuthorizationDenied, ManufacturingScopeChanged):
-                raise
-            except Exception as exc:
+            except RECOVERABLE_GENERATION_ERRORS as exc:
                 source = "fallback"
                 logger.warning("rag.planning_failed error_type=%s", type(exc).__name__)
         record_rag_event(dict(kind="plan", source=source, **fallback.model_dump()))

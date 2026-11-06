@@ -15,6 +15,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, delete, inspect, select, text
 from sqlalchemy.engine import make_url
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import sessionmaker
 
 from manufacturing_m3_helpers import configure
@@ -94,7 +95,8 @@ def test_source_revision_failure_rolls_back_answer_but_keeps_real_usage_accounti
         assert all(event.status != "pending" for event in events)
 
 
-def test_audit_failure_is_atomic_with_turn_snapshot_and_business_scope(pg_harness, monkeypatch):
+@pytest.mark.parametrize("error,status", [(RuntimeError, 500), (SQLAlchemyError, 503)])
+def test_audit_failure_is_atomic_with_turn_snapshot_and_business_scope(pg_harness, monkeypatch, error, status):
     h = pg_harness
     with TestClient(h.c.app) as client:
         identifier = create(client, h)
@@ -102,11 +104,11 @@ def test_audit_failure_is_atomic_with_turn_snapshot_and_business_scope(pg_harnes
         from backend.app.api import manufacturing as api
         original_add = api.AuditService.add
         def fail(self, **kwargs):
-            if kwargs["action"] == "manufacturing.qa_queried" and kwargs["outcome"] == "success": raise RuntimeError("test audit unavailable")
+            if kwargs["action"] == "manufacturing.qa_queried" and kwargs["outcome"] == "success": raise error("test audit unavailable")
             return original_add(self, **kwargs)
         monkeypatch.setattr(api.AuditService, "add", fail)
         response = ask(client, h, conversation_id=identifier)
-        assert response.status_code == 503, response.text
+        assert response.status_code == status, response.text
     with h.c.session_factory() as session:
         assert session.get(Conversation, UUID(identifier)).turn_count == 0
         assert session.scalars(select(ConversationTurn).where(ConversationTurn.tenant_id == h.c.tenant_id)).all() == []

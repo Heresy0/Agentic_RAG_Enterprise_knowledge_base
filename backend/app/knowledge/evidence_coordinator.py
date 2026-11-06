@@ -13,15 +13,13 @@ from langchain_openai import ChatOpenAI
 from prometheus_client import Counter, Histogram
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from sqlalchemy import select
-from sqlalchemy.exc import SQLAlchemyError
 
 from ..db.models import User
 from ..evaluation.trace import capture_trace, record_agent_event, record_agent_retrieval, record_documents, record_scope, record_rag_event
 from ..model_usage import current_usage_context, invoke_structured
 from ..security.authorization import AuthorizationDenied, AuthorizationService
 from ..security.principal import Principal
-from ..manufacturing.scope import ManufacturingScopeChanged
-from ..security.business_scope import BusinessAuthorizationDenied
+from .generation_errors import RECOVERABLE_GENERATION_ERRORS
 from .evidence_selection import select_evidence
 from .request_budget import evidence_deadline
 from .rag_budget import current_rag_budget, RagBudgetExceeded
@@ -311,11 +309,9 @@ class EvidenceCoordinator:
                     if self.clock() >= deadline:
                         outcome = "time_budget"
                         break
-        except (AuthorizationDenied, SQLAlchemyError, ManufacturingScopeChanged, BusinessAuthorizationDenied):
-            raise
         except RagBudgetExceeded:
             outcome = "shared_budget"
-        except Exception as exc:
+        except RECOVERABLE_GENERATION_ERRORS as exc:
             outcome = "fallback"
             logger.warning("agent.collection_failed error_type=%s", type(exc).__name__)
         # Authorization failures must not silently fall back to old evidence.

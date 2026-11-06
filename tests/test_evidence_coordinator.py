@@ -239,7 +239,7 @@ def test_prompt_budget_refuses_to_truncate_question():
 
 
 def test_deadline_error_and_model_failure_keep_valid_evidence_and_sanitize_logs(caplog):
-    scope, retrieval, _, _, coordinator = setup(actions=[RuntimeError("private key must not enter logs")])
+    scope, retrieval, _, _, coordinator = setup(actions=[TimeoutError("private key must not enter logs")])
     result, trace = collect(scope, coordinator)
     assert [(doc.id, doc.page_content) for doc in result.documents] == [(doc.id, doc.page_content) for doc in retrieval.initial]
     assert "private key" not in caplog.text

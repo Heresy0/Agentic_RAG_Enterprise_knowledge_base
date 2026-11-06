@@ -1,7 +1,6 @@
 import time
 import json
 from pydantic import ValidationError
-from .answer_validation import interaction_errors
 from langchain_core.exceptions import OutputParserException
 
 from langchain_core.messages import (
@@ -32,7 +31,8 @@ from .prompts import ANSWER_SYSTEM_PROMPT
 from .answer_constraints import complete_cited_table_conditions, generation_constraints, temporal_evidence_context
 from .answer_completion import complete_answer
 from .answer_coverage import coverage_errors, coverage_snapshot, requirement_prompt
-from .answer_contract import answer_contract, direct_answer_errors
+from .answer_contract import answer_contract
+from .output_contract import generation_schema, prepare_draft, validate_output, with_manufacturing_rules
 from .temporal import future_certainty_gap
 from .retrieval_service import RetrievalService
 from .evidence_coordinator import EvidenceCoordinator
@@ -230,7 +230,7 @@ class AnswerService:
                 changed=False, validation_errors=['结构化输出解析失败'])
             schema_started = time.perf_counter()
             draft = self._answer_repair.recover_schema(messages=self._generation_messages(question, context),
-                scope=scope, session=session, refresh_context=refresh_context)
+                scope=scope, session=session, refresh_context=refresh_context, context=context)
             timings['answer_repair_ms'] = _elapsed_ms(schema_started)
             schema_recovered = True
             if draft is None:
@@ -262,7 +262,7 @@ class AnswerService:
                 record_answer_generation(self._refusal(original_draft.refusal_reason or "知识库资料不足。"),
                     [claim.model_dump() for claim in original_draft.claims],
                     coverage_snapshot(original_draft, question, original_context), changed=False,
-                    validation_errors=self._validator.validate(draft=original_draft,
+                    validation_errors=validate_output(original_draft, validator=self._validator,
                         context=original_context, question=question).errors,
                     stage='answer_schema_recovery' if schema_recovered else 'answer_generation')
                 draft, documents, context = feedback.draft, feedback.documents, feedback.context
@@ -273,9 +273,8 @@ class AnswerService:
                     reason=draft.refusal_reason, temporal=temporal_evidence_context(question, context.items))
 
         validation_started = time.perf_counter()
-        if schema_recovered and context.business_items:
-            from ..manufacturing.generation_models import compile_applicability_bindings
-            draft = compile_applicability_bindings(draft, context)
+        if schema_recovered:
+            draft = prepare_draft(draft, context)
         # Coverage is checked against the original draft, before any supplement.
         # A fallback must not turn an explicit missing requirement into a success.
         calculation_records = []
@@ -294,17 +293,16 @@ class AnswerService:
                 calculation_records.append(dict(operation=claim.calculation.operation, status="rejected", reason=str(exc),
                                                 proposed=claim.calculation.model_dump()))
         record_calculations(calculation_records)
-        first_validation = self._validator.validate(draft=draft, context=context, question=question)
+        first_validation = validate_output(draft, validator=self._validator, context=context, question=question)
         coverage_failures = first_validation.coverage_errors
-        first_contract_errors = direct_answer_errors(question, draft)
         first_response = (self._render_result(draft=draft, context=context)
-                          if first_validation.valid and draft.answerable and not coverage_failures and not first_contract_errors
+                          if first_validation.valid and draft.answerable
                           else (self._unanswerable(draft) if first_validation.valid and not draft.answerable
                                 else self._refusal(draft.refusal_reason or "首次生成未通过证据与必答项校验。")))
         first_claims = [claim.model_dump() for claim in draft.claims]
         first_answerable = draft.answerable
         first_coverage = coverage_snapshot(draft, question, context)
-        first_errors = list(dict.fromkeys([*coverage_failures, *first_validation.errors, *first_contract_errors]))
+        first_errors = first_validation.errors
         repair_started = time.perf_counter()
         repaired = (draft if schema_recovered else self._answer_repair.repair(draft,
             question=question, context=context, validator=self._validator, validation=first_validation, scope=scope,
@@ -331,19 +329,8 @@ class AnswerService:
         )
         # Coverage describes first-pass claims. Existing citation/calculation checks
         # validate the final supplement too, without relabelling it as first-pass coverage.
-        validation = self._validator.validate(
-            draft=AnswerDraft.model_validate(draft.model_dump(exclude={"coverage"})),
-            context=context,
-            question=question,
-        )
-        if coverage_failures:
-            validation.valid = False
-            validation.errors.extend(coverage_failures)
-        contract_failures = direct_answer_errors(question, draft)
-        contract_failures.extend(interaction_errors(draft))
-        if contract_failures:
-            validation.valid = False
-            validation.errors.extend(contract_failures)
+        validation = validate_output(draft, validator=self._validator, context=context,
+                                     question=question, coverage=coverage_failures)
         timings["validation_ms"] = _elapsed_ms(
             validation_started
         )
@@ -443,29 +430,22 @@ class AnswerService:
     ) -> GenerationAnswerDraft:
         model = self._structured_llm
         if context.business_items:
-            from ..manufacturing.generation_models import ManufacturingGenerationDraft, precision_projection
+            from ..manufacturing.generation_models import precision_projection
             projection = precision_projection(question, context)
             if projection is not None:
-                from ..manufacturing.generation_models import compile_applicability_bindings
-                return compile_applicability_bindings(projection, context)
+                return prepare_draft(projection, context)
             model = getattr(self, "_manufacturing_llm", None) or self._base_llm.with_structured_output(
-                ManufacturingGenerationDraft, include_raw=True)
+                generation_schema(context), include_raw=True)
         result = invoke_structured(model, self._generation_messages(question, context),
                                    stage="answer_generation", model_name=self._settings.chat_model)
-        draft = self._as_generation_draft(result)
-        if context.business_items:
-            from ..manufacturing.generation_models import compile_applicability_bindings
-            draft = compile_applicability_bindings(draft, context)
-        return draft
+        return self._as_generation_draft(result, context)
 
     def _generation_messages(self, question, context):
         requirements = requirement_prompt(question, context)
         # Only server-selected fixed guidance and compiler-owned IDs go into
         # the system message. Original questions and source text remain data.
         contract = answer_contract(question, json.loads(requirements))
-        if context.business_items:
-            from ..manufacturing.answer_context import MANUFACTURING_PROMPT
-            contract += MANUFACTURING_PROMPT
+        contract = with_manufacturing_rules(contract, context)
         return [
             SystemMessage(
                 content=ANSWER_SYSTEM_PROMPT + "\n本次回答要求（不改变必答项、权限与最终校验）：\n" + contract
@@ -483,10 +463,7 @@ class AnswerService:
     def _regeneration_preflight(self, question, context):
         messages = self._generation_messages(question, context)
         prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
-        schema = EvidenceFirstAnswerDraft
-        if context.business_items:
-            from ..manufacturing.generation_models import ManufacturingGenerationDraft
-            schema = ManufacturingGenerationDraft
+        schema = generation_schema(context)
         prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
         output = self._settings.rag_regeneration_output_tokens
         current_rag_budget().check_model(prompt_bytes=prompt_bytes, output_tokens=output)
@@ -496,46 +473,18 @@ class AnswerService:
         messages, prompt_bytes, output = self._regeneration_preflight(question, context)
         with current_rag_budget().model_attempt(prompt_bytes=prompt_bytes, output_tokens=output,
                                                 purpose="regeneration") as remaining:
-            schema = EvidenceFirstAnswerDraft
-            if context.business_items:
-                from ..manufacturing.generation_models import ManufacturingGenerationDraft
-                schema = ManufacturingGenerationDraft
+            schema = generation_schema(context)
             model = self._regeneration_model_factory(model=self._settings.chat_model,
                 base_url=self._settings.chat_base_url, api_key=self._settings.chat_api_key, temperature=0,
                 reasoning_effort="none", max_retries=0, max_tokens=output,
                 timeout=min(self._settings.rag_regeneration_timeout_seconds, remaining)
             ).with_structured_output(schema, include_raw=True)
             result = invoke_structured(model, messages, stage="answer_regeneration", model_name=self._settings.chat_model)
-            draft = self._as_generation_draft(result)
-            if context.business_items:
-                from ..manufacturing.generation_models import compile_applicability_bindings
-                draft = compile_applicability_bindings(draft, context)
-            return draft
+            return self._as_generation_draft(result, context)
 
     @staticmethod
-    def _as_generation_draft(result):
-        from ..manufacturing.answer_context import current_manufacturing_context
-        schema = EvidenceFirstAnswerDraft
-        if current_manufacturing_context() is not None:
-            from ..manufacturing.generation_models import ManufacturingGenerationDraft
-            schema = ManufacturingGenerationDraft
-        if not isinstance(result, schema):
-            if isinstance(result, (AnswerDraft, GenerationAnswerDraft)):
-                result = result.model_dump()
-            result = schema.model_validate(result)
-        # An unanswered item makes no cited assertion. Like the redundant
-        # retrieval request below, its unused quote must not turn clarification
-        # into refusal. Keep the original model object untouched for callers.
-        if any(row.status != 'answered' and row.source_quote is not None for row in result.coverage):
-            result = result.model_copy(update={'coverage': [
-                row.model_copy(update={'source_quote': None}) if row.status != 'answered' else row
-                for row in result.coverage]})
-        # A user condition cannot be supplied by another search. A declared
-        # clarification takes precedence over a redundant retrieval request;
-        # claims, answerability and the actual questions still undergo validation.
-        if result.response_type == "clarify" and result.evidence_gap is not None:
-            result = result.model_copy(update={"evidence_gap": None})
-        return result
+    def _as_generation_draft(result, context=None):
+        return prepare_draft(result, context)
 
     def _render_result(
         self,
