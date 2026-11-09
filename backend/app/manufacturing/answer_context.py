@@ -169,6 +169,7 @@ MANUFACTURING_PROMPT = """
 优先选择标记为[原文条目 资料1#1]的source_unit：仅填写条目标识，text留空、citations=[]、calculation=null、business_field=null。后端直接生成该条目的完整原文和引用，并从资料角色区分作业要求与工单记录。每条claim只选择一个条目；不要自行摘取表格列或拼接列表项。条目标识不能当作citations编号。
 表格问题选择包含表头及完整行的条目，另选必要的表外共同条件；编号列表选择保留引导语和全部条件的完整条目。多个要点可以分别选择多个条目，不必重复同一条目。
 条目选择示例：{"claim_kind":"work_requirement","source_unit":"资料3#2","text":"","citations":[],"calculation":null}。下面关于text和citations的手写摘录规则只适用于未选择source_unit的旧格式。
+明确选择business_field或source_unit时，附带text和citations均不作为事实输入；后端完全重建文字、角色及引用。不要同时选择两种来源，也不要混入calculation。未选择来源的旧格式仍严格核验全部自写断言。
 business_fact：只选择business_field中的一个字段名，text留空、citations=[]、calculation=null。后端从已核验工单生成值、展示文字和业务引用，不能自行编写或改写字段事实。
 applicability：text留空、citations=[]、business_field=null。后端生成已核验选版结论，并绑定指导书/变更通知及必要工单字段。
 work_requirement：text逐字摘录规则资料的一句或连续完整原句，保留同句前提、否定和分号后的条件；不得改写为实际已检验或已完成。必须引用规则资料，不能使用业务引用支持数量、尺寸或放行要求。

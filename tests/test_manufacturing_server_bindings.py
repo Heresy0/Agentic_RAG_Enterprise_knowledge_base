@@ -42,14 +42,27 @@ def test_field_selector_renders_verified_value_and_citation_without_model_prose(
         assert compile_applicability_bindings(compiled, built) == compiled
 
 
+@pytest.mark.parametrize("extra", [dict(business_field="password")])
+def test_field_selection_rejects_unknown_fields(extra):
+    with pytest.raises(ValidationError):
+        ManufacturingClaim.model_validate(dict(claim_kind="business_fact", business_field="actual_started_at") | extra)
+
+
 @pytest.mark.parametrize("extra", [
     dict(text="开工日期为2030-01-01"), dict(citations=["资料1"]),
     dict(citations=["业务4"]), dict(claim_kind="work_requirement"),
-    dict(business_field="password"),
 ])
-def test_field_selection_rejects_values_foreign_references_and_unknown_fields(extra):
-    with pytest.raises(ValidationError):
-        ManufacturingClaim.model_validate(dict(claim_kind="business_fact", business_field="actual_started_at") | extra)
+def test_field_selection_uses_only_verified_field_not_model_display(catalog, extra):
+    active, rows, _ = evidence(catalog)
+    with manufacturing_answer_context(active):
+        built = ContextBuilder().build(rows)
+        draft = draft_for(dict(claim_kind="business_fact", business_field="actual_started_at") | extra)
+        compiled = compile_applicability_bindings(draft, built)
+        fact = next(item for item in active.items if item.field_name == "actual_started_at")
+        assert compiled.claims[0].text == fact.content
+        assert compiled.claims[0].claim_kind == "business_fact"
+        assert compiled.claims[0].citations == [fact.citation_id]
+        assert AnswerValidator().validate(draft=compiled, context=built, question="实际开工日期？").valid
 
 
 def test_empty_text_requires_a_server_owned_selector():

@@ -41,11 +41,36 @@ def test_structural_boundaries_keep_original_conditions(source, quote, valid):
     assert complete_source_statement(quote, [SimpleNamespace(content=source)]) is valid
 
 
-@pytest.mark.parametrize("extra", [dict(text="已完成复检"), dict(citations=["资料2"]),
-    dict(business_field="status"), dict(source_unit="")])
+@pytest.mark.parametrize("extra", [dict(business_field="status"), dict(source_unit="")])
 def test_source_selector_cannot_carry_model_assertions(extra):
     with pytest.raises(ValidationError):
         ManufacturingClaim.model_validate(dict(claim_kind="work_requirement", source_unit="资料1#1") | extra)
+
+
+@pytest.mark.parametrize('hint', ['business_fact', 'applicability', 'work_requirement', 'work_order_evidence'])
+def test_source_selection_ignores_display_but_unknown_selector_never_falls_back(catalog, hint):
+    from backend.app.knowledge.output_contract import validate_output
+    active, built, citation = built_source(catalog, TABLE)
+    with manufacturing_answer_context(active):
+        original = draft_for(dict(claim_kind="work_requirement", source_unit=citation+'#1',
+            text="该工单已完成检验并放行", citations=['资料999','业务999']))
+        compiled = compile_applicability_bindings(original, built)
+        assert compiled.claims[0].text == TABLE and compiled.claims[0].citations == [citation]
+        assert AnswerValidator().validate(draft=compiled, context=built, question='检验规范？').valid
+        unknown = draft_for(dict(claim_kind=hint, source_unit='资料999#1', text=TABLE, citations=[citation]))
+        unresolved = compile_applicability_bindings(unknown, built)
+        assert unresolved.claims[0].text == '' and unresolved.claims[0].citations == []
+        with pytest.raises(ValidationError):
+            validate_output(unresolved, validator=AnswerValidator(), context=built, question='检验规范？', coverage=[])
+
+
+@pytest.mark.parametrize('selector', [dict(business_field='product_model'), dict(source_unit='资料1#1')])
+def test_selector_cannot_also_request_a_calculation(selector):
+    calculation=dict(operation='money_sum', inputs=[dict(source='问题', quote='1元', value='1', unit='元'),
+        dict(source='资料1', quote='2元', value='2', unit='元')])
+    with pytest.raises(ValidationError) as failure:
+        ManufacturingClaim.model_validate(dict(claim_kind='work_requirement', calculation=calculation) | selector)
+    assert failure.value.errors(include_input=False)[0]['type'] == 'manufacturing_selector_calculation'
 
 
 @pytest.mark.parametrize("blank", ["", " ", "\n\t"])

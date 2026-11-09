@@ -1,6 +1,7 @@
 """Manufacturing-only generation schema; the ordinary schema stays unchanged."""
 from typing import Literal
 from pydantic import Field, field_validator, model_validator
+from pydantic_core import PydanticCustomError
 from ..knowledge.answer_models import AnswerClaim, ClaimKind, EvidenceFirstAnswerDraft
 import json
 
@@ -15,7 +16,7 @@ BusinessField = Literal[
 class ManufacturingClaim(AnswerClaim):
     claim_kind: ClaimKind = Field(..., description="区分字段、适用性、一般要求、版本对比及记录。选择source_unit时除明确版本对比外，实际角色由后端按资料确定。")
     business_field: BusinessField | None = Field(default=None, exclude_if=lambda value: value is None,
-        description="business_fact只选择一个字段名，text留空、citations为空数组；文字、值及业务引用由后端生成。其他类型为null。")
+        description="只选择一个工单字段名，文字、值、角色及业务引用完全由后端生成；附带的text/citations不作为事实输入。不能与source_unit或calculation混用。")
     text: str = Field(default="", description="business_field、source_unit选择及applicability留空，由后端生成；仅旧格式填写完整原文结论。")
     citations: list[str] = Field(default_factory=list,
         description="business_field、source_unit选择及applicability均填写[]，引用由后端生成；仅旧格式填写支持原文的资料编号。")
@@ -31,15 +32,13 @@ class ManufacturingClaim(AnswerClaim):
 
     @model_validator(mode="after")
     def field_selection(self):
-        if self.source_unit is not None:
-            if (self.business_field is not None or self.text.strip() or self.citations or self.calculation is not None):
-                raise ValueError("原文条目只接受标识，不接受自写文字、引用、业务字段或计算。")
-        elif self.business_field is not None:
-            if (self.claim_kind != "business_fact" or self.text.strip() or self.citations
-                    or self.calculation is not None):
-                raise ValueError("业务字段选择只接受字段名，不接受模型提供的值、文字、引用或计算。")
-        elif not self.text.strip() and (self.claim_kind != "applicability" or self.calculation is not None):
-            raise ValueError("非字段结论必须有文字，只有后端适用性结论可留空。")
+        selected = self.source_unit is not None or self.business_field is not None
+        if self.source_unit is not None and self.business_field is not None:
+            raise PydanticCustomError("manufacturing_selector_conflict", "业务字段和文档原文条目不能同时选择。")
+        if selected and self.calculation is not None:
+            raise PydanticCustomError("manufacturing_selector_calculation", "来源选择不能与计算混用。")
+        if not selected and not self.text.strip() and (self.claim_kind != "applicability" or self.calculation is not None):
+            raise PydanticCustomError("manufacturing_empty_claim", "非字段结论必须有文字，只有后端适用性结论可留空。")
         return self
 
 
@@ -65,8 +64,8 @@ def precision_projection(question, context):
 def compile_applicability_bindings(draft, context):
     """Compile the backend's exact selection as scoped answer context.
 
-    Field selectors carry no model-provided value or assertion. All other model
-    conclusions still pass the original per-claim source and numeric validation.
+    Explicit selectors never use model-provided display text or references as
+    facts. Legacy assertions still pass the per-claim source/numeric validator.
     """
     from .answer_context import current_manufacturing_context, complete_source_statement
     from .source_statements import source_units
@@ -79,6 +78,7 @@ def compile_applicability_bindings(draft, context):
     field_bindings, rendered = [], []
     for claim in draft.claims:
         selected_unit = getattr(claim, "source_unit", None)
+        ignored_display = [name for name in ("text", "citations") if getattr(claim, name)]
         if selected_unit in units:
             item, original = units[selected_unit]
             is_record = item.document_role in ("event_record", "inspection_record")
@@ -87,16 +87,23 @@ def compile_applicability_bindings(draft, context):
             claim = claim.model_copy(update=dict(text=original, citations=[item.citation_id],
                 claim_kind=kind, source_unit=None))
             field_bindings.append(dict(source_unit=selected_unit, compiled_citations=[item.citation_id],
-                claim_kind=kind, origin="server_source_unit"))
+                claim_kind=kind, ignored_display_fields=ignored_display, origin="server_source_unit"))
+        elif selected_unit is not None:
+            # An unresolved selector must never fall back to any accompanying
+            # model assertion, including during final base-schema validation.
+            claim = claim.model_copy(update=dict(text="", citations=[]))
         field = getattr(claim, "business_field", None)
         if field is not None:
             # The selected field must exist in this exact generation context.
             item = fields[field]
-            claim = claim.model_copy(update=dict(text=item.content, citations=[item.citation_id], business_field=None))
-            field_bindings.append(dict(field=field, compiled_citations=[item.citation_id], origin="server_business_field"))
+            claim = claim.model_copy(update=dict(text=item.content, citations=[item.citation_id],
+                business_field=None, claim_kind="business_fact"))
+            field_bindings.append(dict(field=field, compiled_citations=[item.citation_id],
+                ignored_display_fields=ignored_display, origin="server_business_field"))
         rendered.append(claim)
     if field_bindings:
         record_rag_event(dict(kind="manufacturing_binding_compilation", bindings=field_bindings, model_calls=0))
+    if rendered != draft.claims:
         draft = draft.model_copy(update=dict(claims=rendered))
     if active.facts_only or active.decision.state != "applicable":
         return draft
@@ -110,6 +117,10 @@ def compile_applicability_bindings(draft, context):
     work_order = next((item.citation_id for item in active.items if item.field_name == "work_order_id"), None)
     for index, claim in enumerate(draft.claims, 1):
         start = len(claims) + 1
+        if getattr(claim, "source_unit", None) is not None:
+            claims.append(claim)  # Unresolved selection stays invalid for every role hint.
+            indices[index] = [start]
+            continue
         if claim.claim_kind == "applicability" and not claim.text.strip() and claim.calculation is None:
             claim = claim.model_copy(update=dict(text=active.applicability_text))
             changed.append(dict(origin="server_applicability_selection", compiled_citations=citations))
