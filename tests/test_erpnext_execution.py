@@ -230,6 +230,15 @@ def test_invalid_selection_body_is_rejected_before_source_read(execution_harness
     assert response.status_code == 422 and graph.calls == []
 
 
+@pytest.mark.parametrize('question', ['请把所选作业卡登记为已经开工。', '请更新所选作业卡的开工时间。', '请直接暂停所选工序。'])
+def test_selected_entity_execution_is_refused_without_generation(execution_harness, question):
+    h = execution_harness
+    response = h.client.post('/api/manufacturing/qa', json=dict(work_order_id='WO-017',
+        operation_id='ROW-A', job_card_id='JC-A', question=question))
+    assert response.status_code == 200 and response.json()['response_type'] == 'refuse'
+    assert len(h.graph.calls) == 9 and not h.generation.calls
+
+
 def test_unselected_card_change_does_not_invalidate_selected_context():
     graph = ERPGraph()
     async def scenario(connector):
