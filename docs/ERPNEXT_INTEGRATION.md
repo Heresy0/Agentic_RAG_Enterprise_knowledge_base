@@ -1,6 +1,6 @@
 # ERPNext 首期只读接入
 
-本次在 `codex/erpnext-readonly-phase1` 分阶段实施：E0 独立部署；E1 只读适配与来源映射；E2 当前平台集成和权限/来源验证；E3 具体工序和作业卡选择。范围为工单、工序、作业卡实际开工及支持这些事实的源身份；不开放修改、报工、放行或执行工具，不发起付费问答评测。
+本次在 `codex/erpnext-readonly-phase1` 分阶段实施：E0 独立部署；E1 只读适配与来源映射；E2 当前平台集成和权限/来源验证；E3 具体工序和作业卡选择；E4 实时来源质量审核与冻结验证。范围为工单、工序、作业卡实际开工及支持这些事实的源身份；不开放修改、报工、放行或执行工具，不发起付费问答评测。
 
 ## E0 独立环境
 
@@ -114,13 +114,19 @@ E3 已在独立 8003 部署。最终业务提交 `024011d4424688069923f0fec95610
 
 完整结构化记录见 [E3 验收报告](reports/erpnext-execution-20261109-r1.json)，私有原始响应、Trace、源码归档、101 项产物哈希清单及备份位于 `tmp/erpnext-execution-20261109-r1/`。API 密钥、登录令牌和备份不提交。ERP 质量审核/冻结样本仍未开放，开发 13/16、正式 31/40 的失败状态不变。
 
+## E4 质量审核与冻结验证
+
+工单、所选工序和作业卡现已接入共享反馈、质量审核、不可变版本导出及冻结 Worker。实时来源使用鉴权 `/v1/source` 与 v2 服务端登记，未伪造 `/v1/fixture`；批准、导出及执行前复读对应记录。字段证据保留各自实体和记录编号，会话选择、权限、时间层级及三次来源核验继续生效。
+
+最终 `2680ce0` 的 `erpnext-quality-20261109-r2` 已在 8003 实测；完成三个零模型任务，正式 CLI 仅领取零预算任务。18 个可观测请求 ID 及三个任务的独立账本新增模型调用 0，旧来源变更样本仍失效并另建当前版本。使用步骤、部署指纹、限制及完整验证详见 [E4 说明](ERPNEXT_QUALITY.md)和[报告](reports/erpnext-quality-20261109-r1.json)。这是自建 ERP 工程接入验证，旧模型质量失败状态不变。
+
 ## 运行、复现与回滚
 
-E3 当前本机配置如下；E0～E2 的旧配置仍保留供追溯，启动当前候选时使用 E3 配置：
+E4 当前本机配置如下；E0～E3 的旧配置仍保留供追溯，启动当前候选时使用 E4 配置：
 
 ```powershell
-docker compose --env-file tmp/erpnext-execution-20261109-r1/deployment.env -f deploy/erpnext/compose.yaml -f deploy/erpnext/adapter.compose.yaml ps
-docker compose -f tmp/erpnext-execution-20261109-r1/compose.json ps
+docker compose --env-file tmp/erpnext-quality-20261109-r1/deployment.env -f deploy/erpnext/compose.yaml -f deploy/erpnext/adapter.compose.yaml ps
+docker compose -f tmp/erpnext-quality-20261109-r1/compose.json ps
 ```
 
 新环境先完成 E0 的新站点初始化，再用 ERP 页面建立公司和制造数据，或在本次专用 `erpnext.localhost` 站点使用[演示初始化脚本](../services/erpnext_adapter/provision_demo.py)。该脚本在 ERP 容器内通过 Frappe 正常文档 insert/submit 创建公司、BOM、工单、作业卡和只读用户；输入文件是私有 JSON，仅包含随机生成的 `api_key` / `api_secret`，复制至 `/tmp/erpnext-seed-input.json` 后执行：

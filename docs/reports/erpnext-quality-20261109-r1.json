@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "stage": "ERPNext E4 quality review and frozen verification",
+  "created_at": "2026-11-09T13:02:42.124202+00:00",
+  "status": "engineering_integration_passed",
+  "branch": "codex/erpnext-readonly-phase1",
+  "source_commit": "2680ce0662111cb0e23a68a702a54c3b5f9ee76b",
+  "image": {
+    "source_revision": "2680ce0662111cb0e23a68a702a54c3b5f9ee76b",
+    "image": "enterprise-knowledge-manufacturing:erpnext-quality-20261109-r2",
+    "image_id": "sha256:3633d9b774c14e19cd199e526ff46248fc25084e9877cddeff4bd832c1484381",
+    "backend_code_sha256": "05f8a38ab6271a50d64162214d4c868010c71978f83df25de9ff329fa1293252",
+    "business_python_files": 160,
+    "all_files_match": true,
+    "verified_files": 194
+  },
+  "environment": {
+    "candidate_url": "http://127.0.0.1:8003",
+    "erp_url": "http://127.0.0.1:18080",
+    "erpnext": "16.54.0",
+    "frappe": "16.55.2",
+    "candidate_database": "erpnext_readonly_phase1",
+    "migration_head": "f2b8c0a961d3",
+    "new_database_migration": false,
+    "baselines_8000_8001_8002_unchanged": true,
+    "erp_account_privileges_unchanged": true,
+    "platform_review_grants_added": 1,
+    "review_plant": "HC-P01",
+    "knowledge_permissions_elevated": false,
+    "documents": 13,
+    "chunks": 53,
+    "vectors": 53,
+    "reindexed": false,
+    "continuous_quality_worker": false
+  },
+  "scope": {
+    "erp_read_only": true,
+    "source_kind": "live",
+    "source_descriptor": "erpnext-live-source-v1",
+    "connector_contract": "erpnext-read-only-v1:execution-v1",
+    "evaluation_registry": "manufacturing-evaluation-registry-v2",
+    "fixture_endpoint_added": false,
+    "approval_and_export_reread_exact_record": true,
+    "frozen_operation_and_job_card": true,
+    "work_order_operation_job_card_times_separate": true,
+    "version_basis": "Work Order.actual_start_date",
+    "business_evidence_entity_and_record_ids_checked": true,
+    "worker_keeps_selection_and_three_rechecks": true,
+    "execution_scorer": "manufacturing-execution-v1",
+    "legacy_scorer_and_frozen_inputs_preserved": true,
+    "same_work_order_grouping_preserved": true
+  },
+  "zero_mode": {
+    "api_allow_model_calls": false,
+    "max_model_calls": 0,
+    "max_tokens": 0,
+    "cli": "scripts/run_quality_worker.py --once --zero-model-calls",
+    "only_zero_budget_jobs_claimed": true,
+    "process_budget_also_forced_zero": true,
+    "model_enabled_jobs_not_claimed": true
+  },
+  "validation": {
+    "nonintegration": {
+      "tests": 2266,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 2265,
+      "deselected_integration": 96
+    },
+    "targeted": {
+      "tests": 79,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 79
+    },
+    "frontend": {
+      "passed": 55,
+      "failures": 0,
+      "dom_and_auth": true,
+      "visual_review": false
+    },
+    "postgres": {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "database_removed": true,
+      "server_version_num": "160015"
+    },
+    "frozen_integrity": {
+      "general_cases": 120,
+      "manufacturing_cases": 40,
+      "passed": true
+    },
+    "live_phases": {
+      "live-healthy-r2": {
+        "passed": 32,
+        "checks": [
+          {
+            "case": "libraries",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "multi-operations",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "multi-job-cards",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "fixed-qa",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "fixed-feedback",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "fixed-open",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "forged-card-origin",
+            "status": 409,
+            "expected": 409,
+            "passed": true
+          },
+          {
+            "case": "fixed-approve",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "fixed-freeze",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "fixed-export",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "feedback-qa",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "feedback-feedback",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "feedback-open",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "feedback-approve",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "feedback-freeze",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "feedback-export",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "nonzero-without-consent",
+            "status": 422,
+            "expected": 422,
+            "passed": true
+          },
+          {
+            "case": "queue-zero",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "zero-job",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "unauthorized-review",
+            "status": 404,
+            "expected": 404,
+            "passed": true
+          },
+          {
+            "case": "review-revoked-export",
+            "status": 404,
+            "expected": 404,
+            "passed": true
+          },
+          {
+            "case": "review-revoked-view-still-readable",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "review-restored",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "same-order-card-qa",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "same-order-card-feedback",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "same-order-card-open",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "same-order-card-approve",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "same-order-card-freeze",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "same-order-card-export",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "same-order-split-rejected",
+            "status": 409,
+            "expected": 409,
+            "passed": true
+          },
+          {
+            "case": "revoke-export-consent",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "consent-revoked-export",
+            "status": 404,
+            "expected": 404,
+            "passed": true
+          }
+        ],
+        "real_authentication": true,
+        "real_postgresql": true,
+        "real_erp_http": true,
+        "generation_double": false
+      },
+      "live-registration-r1": {
+        "passed": 1,
+        "checks": [
+          {
+            "case": "registration-export",
+            "status": 409,
+            "expected": 409,
+            "passed": true
+          }
+        ],
+        "real_authentication": true,
+        "real_postgresql": true,
+        "real_erp_http": true,
+        "generation_double": false
+      },
+      "live-unavailable-r1": {
+        "passed": 2,
+        "checks": [
+          {
+            "case": "unavailable-export",
+            "status": 409,
+            "expected": 409,
+            "passed": true
+          },
+          {
+            "case": "unavailable-source-context",
+            "status": 503,
+            "expected": 503,
+            "passed": true
+          }
+        ],
+        "real_authentication": true,
+        "real_postgresql": true,
+        "real_erp_http": true,
+        "generation_double": false
+      },
+      "live-changed-r1": {
+        "passed": 2,
+        "checks": [
+          {
+            "case": "changed-export",
+            "status": 409,
+            "expected": 409,
+            "passed": true
+          },
+          {
+            "case": "changed-card-current",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          }
+        ],
+        "real_authentication": true,
+        "real_postgresql": true,
+        "real_erp_http": true,
+        "generation_double": false
+      },
+      "live-healthy-r3": {
+        "passed": 21,
+        "checks": [
+          {
+            "case": "libraries",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "multi-operations",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "multi-job-cards",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "restored-value-old-sample-still-stale",
+            "status": 409,
+            "expected": 409,
+            "passed": true
+          },
+          {
+            "case": "fixed-qa",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "fixed-feedback",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "fixed-open",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "forged-card-origin",
+            "status": 409,
+            "expected": 409,
+            "passed": true
+          },
+          {
+            "case": "fixed-approve",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "fixed-freeze",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "fixed-export",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "feedback-qa",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "feedback-feedback",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "feedback-open",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "feedback-approve",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "feedback-freeze",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "feedback-export",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "nonzero-without-consent",
+            "status": 422,
+            "expected": 422,
+            "passed": true
+          },
+          {
+            "case": "queue-zero",
+            "status": 201,
+            "expected": 201,
+            "passed": true
+          },
+          {
+            "case": "zero-job",
+            "status": 200,
+            "expected": 200,
+            "passed": true
+          },
+          {
+            "case": "unauthorized-review",
+            "status": 404,
+            "expected": 404,
+            "passed": true
+          }
+        ],
+        "real_authentication": true,
+        "real_postgresql": true,
+        "real_erp_http": true,
+        "generation_double": false
+      }
+    },
+    "cli": {
+      "checks": [
+        {
+          "case": "final_frozen_export_0",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "final_frozen_export_1",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "final_zero_queue",
+          "status": 201,
+          "passed": true
+        },
+        {
+          "case": "cli_zero_job",
+          "status": 200,
+          "passed": true
+        }
+      ],
+      "passed": 4,
+      "worker_cases": 2,
+      "current_runtime_fingerprint_verified": true
+    },
+    "host_http": {
+      "checks": [
+        {
+          "case": "host-api-ready",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-erp-ready",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-frozen-0",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-frozen-1",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-final-zero-job",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-index",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-quality-ui",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-verification-ui",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-app-ui",
+          "status": 200,
+          "passed": true
+        }
+      ],
+      "passed": 9,
+      "page_assets_match_archive": true,
+      "visual_review": false
+    },
+    "test_groups_overlap": true
+  },
+  "model_usage": {
+    "physical_calls": 0,
+    "known_tokens": 0,
+    "unknown_calls": 0,
+    "trace_model_events": 0,
+    "independent_request_ids": 18,
+    "independent_jobs": 3,
+    "ledger_rows": 0,
+    "deterministic_job_runs": 3,
+    "cases_per_job": 2,
+    "generation_double": false,
+    "initial_401_has_no_request_id": true,
+    "initial_401_stopped_at_authentication": true,
+    "overlapping_deterministic_checks_are_not_model_accuracy": true
+  },
+  "preserved_history": {
+    "old_versions_not_overwritten": true,
+    "changed_card_value_restored_but_revision_changed": true,
+    "old_frozen_version_remains_stale": true,
+    "new_current_versions_created": true,
+    "old_consent_revoked_version_not_exportable": true,
+    "initial_401": {
+      "retained": true,
+      "root_cause_not_conclusively_identified": true,
+      "original_verifier_later_accepted_same_token": true,
+      "added_token_effective_time_precheck": true,
+      "oidc_validation_weakened": false
+    },
+    "cli_preflight_utf8_failure": {
+      "retained": true,
+      "quality_jobs_created_before_failure": 0,
+      "physical_model_calls": 0,
+      "fix": "explicit UTF-8 for Windows receipt reading"
+    }
+  },
+  "backups": {
+    "before_and_after": true,
+    "erp_site": true,
+    "candidate_postgresql": true,
+    "postgres_catalog_verified": true,
+    "full_restore_exercised": false
+  },
+  "limitations": [
+    "Self-hosted ERP demonstration, not real factory evidence.",
+    "Assistant-authored feedback/review is marked non-independent integration acceptance, not employee feedback.",
+    "No paid model evaluation, baseline/candidate improvement closure, or release accuracy claim.",
+    "Existing full development 13/16 critical 4/6 and formal 31/40 critical 9/12 remain failed.",
+    "No browser visual review in this stage."
+  ],
+  "evidence": {
+    "private_root": "tmp/erpnext-quality-20261109-r1/",
+    "artifact_count": 109,
+    "manifest_sha256": "5b1cd16dd4a74eb4178023abc788b275a5b398bd522327c97a7d812f71d4ae1c",
+    "files": {
+      "backup-before-manifest.json": "47e607cf74db1fc574fdb334f8e77bb060fe55cafc4db355bacd3ca49a216db1",
+      "backup-final-manifest-r2.json": "f8a116024dbea41940d98b96c921c52b1e9544fbd9e7d4f4060fe955833f7f71",
+      "backup-final-manifest.json": "f431d6a6e167e530170704a4304f86eede101bc70d8951536c2cbfefcfe5e364",
+      "candidate-r2/image-verification.json": "67d255d96df16fea72352f8299a1007237ac6748d307191c4d80e394fe478ac3",
+      "candidate-r2/source-manifest.json": "43143654eab5a624ce55a6aba56767c8b415cc15702cc2dbf5871eaf78d8e2e1",
+      "card-change.log": "d40a7269524501ee93e4e1e34b35c3cbd2abf94e37256eba6014c1c91da5ee0a",
+      "card-restore.log": "8991014768614c5bbc39eb853c712b7e49bf75bb24502b7d69bfd8680c4cc86f",
+      "cli-final-queue.json": "a0cb8adcbab0f11fb0e57b77a24dd967632e6a7c4e9b75b7aed773ad6db3272c",
+      "cli-final-summary.json": "ba9687d9118f7945fdd0c653f2929a38b0cef833ead4abee92c18697ea6a89d1",
+      "cli-final-worker.log": "51aed4e399f65713e833e0bcaaa365846137728a3f0c192b4b26767706e5761f",
+      "cli-final-zero-job.json": "fbc450a2d99717c0c4880eee70d02ec4b98f08e6fe3918029c38b5893ec63653",
+      "cli-preflight-r1-failure.json": "5c87713cda8cdface7fbb46ad4f1e9d84e77b06721e64135763c57118e0d5eec",
+      "final-runtime-verification-r2.json": "ee394ae5722310af2113131541769e84670d0bc2e9d89c4279ce0ebbe16d6090",
+      "final-runtime-verification.json": "85d658ccdfc4e747b1959f2cba6ce7b6adbd4bfa37b499b3d95ac307b7a9279d",
+      "frontend-r2.log": "4e21b1d26860083594e9f6752e466d0abdaba0fd39847a6182caded813d5b963",
+      "host-r2/host-api-ready.json": "4f9a85d036b218deff40200197fea7b19471bbf56185ca8019f4261a5798f990",
+      "host-r2/host-erp-ready.json": "78f56e091915bbb5e3a746009a62caed0b36616f5e369cadf65ec3982f73044f",
+      "host-r2/host-final-zero-job.json": "9c9de2d13b7cdfd7addacf96b9bf1ba5c538eed47f97993e4a40bfea73c440e6",
+      "host-r2/host-frozen-0.json": "fc236bd42d1cd860d5156d2717d7794fb9ccaa47d8c53d6c727b69be34bd225a",
+      "host-r2/host-frozen-1.json": "6dea38c919b2456f402cc5e6de3b13339bba249f36664ded74fd0b3b38eb880a",
+      "image-verification.json": "da732fa8645a34d77c6a2e9b1198e24561a1ab1b92f0e7ce73b65d08dc7c5325",
+      "images-before.json": "e6794ae28482034b41f5ecadc330242e8e6f21a8d0791a47fb3ce31f7bb24c73",
+      "independent-model-ledger-r2.json": "a2680e48b5ee9a4597c81ca845d8da73d42b50425cd43498d63d09f29bf07597",
+      "independent-model-ledger.json": "d18fba1d10ad6ca419d28c3a2a823926128f355558f1a9aec38bcf4e02b0d803",
+      "live-changed-r1/changed-card-current.json": "04cb8aeec581df448db5557d9a805d9eaf832d92d544798a30865e2522b6b1da",
+      "live-changed-r1/changed-export.json": "736619d1902dad255e8605538ed292eff06eae5fa923476e9bb1ab356519be85",
+      "live-changed-r1/summary.json": "5d64cd7fd71c358dab14f3fad5f3b8b2b8ced301984b9d75c5dbc3ff1d8aa032",
+      "live-healthy-r1/libraries.json": "c55f8f43718a7f322166c8c9e88084a2643a856e0d97c4fdf9a14449820cca44",
+      "live-healthy-r1/observer-failure.json": "3c336181c68bd085ed382639790a82d2111a207c20980cd0b56ec8a05f4feeb1",
+      "live-healthy-r2/consent-revoked-export.json": "a72152635d4ceb16f5af5df6e847387f75671297b593b54e8ea77f80810bfe73",
+      "live-healthy-r2/feedback-approve.json": "8650481d852413327bd19d397fefdc430fa476adf291db497d11046a054d15b3",
+      "live-healthy-r2/feedback-export.json": "e067bb26d16607994fb2a51d284060c8123e7adfa8891068364f819ee7874ecd",
+      "live-healthy-r2/feedback-feedback.json": "2d77a53d2c33b93d60f8594748c0c3af7e09892734c271c8bc548cee47686902",
+      "live-healthy-r2/feedback-freeze.json": "fbcf6a1ab263fe6fa4d69f2ee125a14214b4a369c4f69592ab7e1ebfcf7f6a4d",
+      "live-healthy-r2/feedback-open.json": "d3e4eda9cc4559b01b0c7c8a54da65eb5ce0e1ea1c7d9591b6b6f3cc4f96298d",
+      "live-healthy-r2/feedback-qa.json": "82a11d20801c15147c8d15ad40382e7e1389a7544aae9a8892b67ebbd7c00ae3",
+      "live-healthy-r2/fixed-approve.json": "ac95123ebf693219e4fcecb2e0701da414dffb7c6cc874bc184ddbaf15d7ced6",
+      "live-healthy-r2/fixed-export.json": "2f4a89fffbb120d9b12490bc06a51479dd4e636f023e72e2df342da6fb449306",
+      "live-healthy-r2/fixed-feedback.json": "7f9c33c8533cb5204a1103f0e9c660c6d5a49fab249245d6a1e3f5eee56f54c7",
+      "live-healthy-r2/fixed-freeze.json": "c3f7a9244f9b2d7ed08c3f7ea4f9d0fe815b0c19b1018ee9aa8064927ec492fa",
+      "live-healthy-r2/fixed-open.json": "c8fc5d759cd65a96da38551093de5751d4a358ad308b761b99fe389fe3bc2f58",
+      "live-healthy-r2/fixed-qa.json": "370e547463fbdc944dc74799146ad08f7fe69fbf542e405340a9cc26a7429581",
+      "live-healthy-r2/forged-card-origin.json": "bf6fc9a1e6be3f1de077529212da51b02c4697aa096bb7eff409c91536050577",
+      "live-healthy-r2/libraries.json": "0dbffdc8c0828aa43a5e20ce290f3cb5716146d62175496920d534003ae2adfc",
+      "live-healthy-r2/multi-job-cards.json": "169b66605b23bbe18539a1850b749adf8665794cf7e458ffcdc6ad012b54820b",
+      "live-healthy-r2/multi-operations.json": "4b3b2c198d25fd7d5fddb38b7134ae3051796fd82bc55aeee7711ac0c7535102",
+      "live-healthy-r2/nonzero-without-consent.json": "a8c556886b7f652f9c7ffb136212bf0196f0a9fb589a4d763c4d62e8b8df7edd",
+      "live-healthy-r2/queue-zero.json": "f7c19a010a645d7deaad8fd7aa18ddbd2d3bb296918612c855380b108b29c1a8",
+      "live-healthy-r2/receipt.json": "d3f666f430d69ad1c8d28ab9e47a0a0f8e1eee315e49f5fb60b391a17d8a434b",
+      "live-healthy-r2/review-restored.json": "d32245740e189f75c5bfea3aaf19cea8608584eb1fd59cf6094267be6cb23b39",
+      "live-healthy-r2/review-revoked-export.json": "9ed5a69709c18992ef46d6832873a5ebf39acfa375129338491a15b5df554bb8",
+      "live-healthy-r2/review-revoked-view-still-readable.json": "3d0c0ad063f16cadbe28647b29aa63d7dea8db0260dc548d919408a2909a8054",
+      "live-healthy-r2/revoke-export-consent.json": "617d136986eea4f34961fff7043c0f57698e7519eb388aee2911a1c6c8df0f02",
+      "live-healthy-r2/same-order-card-approve.json": "7e494a3786dbbd8c9ec9c8748e80eb30fab8ea709b84db0346c990758fd00a43",
+      "live-healthy-r2/same-order-card-export.json": "ae283f35cd71ac08ba9be35b0992f525742f8d50260624a31cfb2a8ef7636398",
+      "live-healthy-r2/same-order-card-feedback.json": "f81df5b8fa8ebd4cd1cc8fb639d7177b2c6a088e9b254eeb52743dbb72443e37",
+      "live-healthy-r2/same-order-card-freeze.json": "faec7b29173a809ad87108e64e4fb9ef3f180e246947c07522a638652d2cb2e0",
+      "live-healthy-r2/same-order-card-open.json": "f720a43e2f3f0f18c8aa4f6951bf5cc2b5726e8fbd5d9e4960b255865ac8072b",
+      "live-healthy-r2/same-order-card-qa.json": "8dba0d52d2b3d5cb899a9edd3f53e2e9999e932a8503697712a8f46fbe9d72ab",
+      "live-healthy-r2/same-order-split-rejected.json": "efaf2540d3923ffd94e9c79637418410a0a6edd81da019622003a43722e3cc79",
+      "live-healthy-r2/summary.json": "815e65862c2290972d328f948f683be9b208ac775402227d6863bf3cf4732e69",
+      "live-healthy-r2/unauthorized-review.json": "83e21fae279b396485fadccab7ff23ac22f46a4afacb39651b82b3912b40aa43",
+      "live-healthy-r2/worker-trace.json": "f379c2a0dbdf4cac1a6eac66cb011db1d6b9c2c6c3f87da8627ce316e769aa97",
+      "live-healthy-r2/zero-job.json": "33a1a0abf83bc84a4dd46a425735c79fcc86c5421a529d6e2e74e7c0214c4afa",
+      "live-healthy-r3/feedback-approve.json": "37e46453505ba85370b8394ab5971464d70cf1d54c1ddb048f5add943ecbe3fe",
+      "live-healthy-r3/feedback-export.json": "2fa9751ec2b795529a52d43ed9cd3f700aab7787c896d1c22cc789f33b39dfd4",
+      "live-healthy-r3/feedback-feedback.json": "59442cefd57d0707e024216e37415cd09aff7cdc3d7efbfba4ef1b09a3da2d7e",
+      "live-healthy-r3/feedback-freeze.json": "88b57cb07fa56934c3750d45c14b1bedfb2af8381d9bf02bf374704cfb9c7bec",
+      "live-healthy-r3/feedback-open.json": "30c521dcc9c56c0734c1cb1ce33659f8405d02a4a5e80c2cbd26f8c4511aeca3",
+      "live-healthy-r3/feedback-qa.json": "bbf119b099b8c7d216e7b7f0129b7ead7035ef8518e058c016be6e7ea0af94c1",
+      "live-healthy-r3/fixed-approve.json": "4b68674e095f0067eb4bf5d3033cd995123adca105e58532aa5e4f992d7bf59e",
+      "live-healthy-r3/fixed-export.json": "cbef16d90bae7716ccae00e868444abb98d1a65b2a64baf2bdc69f0446207d68",
+      "live-healthy-r3/fixed-feedback.json": "20dd985154e64567ecf3bd0d540f67c8f073aa74e81621c533db613dfa966ce2",
+      "live-healthy-r3/fixed-freeze.json": "03079e3efca5aa53a3c49a8d929d2a95381d72e061dea46cf60f406131883168",
+      "live-healthy-r3/fixed-open.json": "2a07da1159d098ce1e7b575f3b69754dcd96f65a30b19dc102bc7e2110e9345e",
+      "live-healthy-r3/fixed-qa.json": "634862e2260906a15b08b9da276400f19d73135fcda90dcf370d386d74bbde39",
+      "live-healthy-r3/forged-card-origin.json": "7d83fede19b1fbe3e9991dccaea4f2a022bebde7df1d01339ee797deb2c0ab61",
+      "live-healthy-r3/libraries.json": "0dbffdc8c0828aa43a5e20ce290f3cb5716146d62175496920d534003ae2adfc",
+      "live-healthy-r3/multi-job-cards.json": "d49480388c8894ef507371a53e26ba191bb400e16ca23d7c341d7088c656dc49",
+      "live-healthy-r3/multi-operations.json": "2bace6764d694de492fa18eabc6e5876d6b47b2eb3ac4f6b2e5856f39869b062",
+      "live-healthy-r3/nonzero-without-consent.json": "0a6440a7542b8e16d5dbcb377f4e59dc2c330d2219c5c545c8dbce62d551136e",
+      "live-healthy-r3/queue-zero.json": "10fd533b21172efd77608def28e3bec601ece761eeae64f722327fbb1e1b1b44",
+      "live-healthy-r3/receipt.json": "9c4cd5d7a39fee4cb32c0a3de3d89a41762632bd3b4ee125c7d708581ea871ee",
+      "live-healthy-r3/restored-value-old-sample-still-stale.json": "26981bf68863e299b42aabec268ad7c3af62fd2f755b4afa81ec4d49a88d3694",
+      "live-healthy-r3/summary.json": "f266a28e797f372849bb4a523b71b41cbca1d13f93e468f80e3277d15a65dcfd",
+      "live-healthy-r3/unauthorized-review.json": "8c4dbd14c7b37124c3a20dc0ccc429254b5fb6ea4fdac0f29946b79608f93de0",
+      "live-healthy-r3/worker-trace.json": "c50d24c1ccc51182dbe898d098dfb2fdbebf53332dba643895de77fe40f8049b",
+      "live-healthy-r3/zero-job.json": "9ffb8050ad8145b39b83a48f18823dec069cd6be4879451e83be7e0d879b971c",
+      "live-registration-r1/registration-export.json": "86b55ee63450f1433b9530b05abc684e3a5d240703fc80bd5bf88d8b35da1a7c",
+      "live-registration-r1/summary.json": "0cd8549cd11c8d952aa42632b30402c235d28a40e0f5bcbaf304ee3928d2540a",
+      "live-unavailable-r1/summary.json": "f5781716bec78a1707e59a446277796dfd92b2d6307dac2bdd1c3fd5ba76c6ec",
+      "live-unavailable-r1/unavailable-export.json": "ad452a70cd51aea30d42a86f2cbc8db7df9cfa495c13e8bcdb5815b756139b53",
+      "live-unavailable-r1/unavailable-source-context.json": "176f6c3bf2d3ef9832d3800721a221fb9f5eec6a4cc6509b321746730de126f6",
+      "nonintegration-r1.xml": "511220ce33eede4c3039c654a323cf20aa511e2ae419fd3c4141108d91223d69",
+      "nonintegration-r2.xml": "18e36556c4e7af5eb7022c2665122f8f13fe68031394ca95ab6a459ef15d41c9",
+      "nonintegration-r3.xml": "2b6af55ff0fb77eb46a594ecf2355cdaae1d1cad6a6fe75b7d73b94d0760880b",
+      "postgres-m4-r1/database-verification.json": "538256222d071115548a8d69f462f3d618e3bbbcf1512a4698c4d57ec2e54cd3",
+      "postgres-m4-r1/postgres-tests.xml": "01f5321f63ceac40c6929b1b49cf97631f22b94384af5abe5f5acad0a084c5ca",
+      "postgres-m4-r2/database-verification.json": "d76a389f2fe23957f486cefbee0ca22cb61b6adde8c5f5212c062ae3c310b9ac",
+      "postgres-m4-r2/postgres-tests.xml": "c902811abc8bb1b3fd18a60ab4c1d356aa3a648d1f651fe3901d2fa3281d41d9",
+      "quality-r1.xml": "c775b39c3b8b810c9b332118db52c096fd1432721bd7737b65f23ed3002f41a6",
+      "quality-r2.xml": "7b47bfa936e30a037bfa63e891169129d05dd9b6fbfdba1e9959890e02034a8b",
+      "quality-r4.xml": "484f4a9ac5bde9d11956013e4475b69a67d9c789be84e63ef028f4d9c24e41e0",
+      "runtime-config-r2.json": "5872b72f6c6fc19fabb514a6eb44dc38f7c0c37b6cae8fa20ef4195c78a992cc",
+      "runtime-config.json": "c73cf460dd8d919a876cad6b9bc26ec69290d767976189a84c8cd3139da22e8e",
+      "source-manifest.json": "906ea38cf4db6dc17a471594c9c1514815ce50858d542d7fc3029370c5571a06",
+      "source-secret-check.json": "1294f04c0a78d3d4f5a65318c2e90f00c982812fd6bcb6be87d77b5c0f60d758",
+      "targeted-r3.xml": "de1d7fb79ad50c7d7ff841965116316e89a3aa7b8011c6ed62db91058724edd2",
+      "zero-worker-r5.xml": "0e431ea88717640873ba02e28a2cb3f8a53f9abdee29b9ea77724b00bde820e6"
+    }
+  }
+}
