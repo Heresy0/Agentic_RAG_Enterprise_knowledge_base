@@ -33,7 +33,9 @@ ERPNext 通过固定的 Work Order REST 资源读取；专用 API 用户只具�
 
 ERPNext 的 `Work Order.actual_start_date` 由其作业卡流程回写；首期仅读取这个已登记的工单字段。作业卡计时已经开始但尚未回写工单时，仍按源工单的空值处理，不把计划时间、当前时间或未提交的作业卡时间补为工单实际开工。
 
-适配服务入口为 `services.erpnext_adapter.main:app`，配置样例见[字段与公司映射](../config/erpnext_adapter.example.json)，部署覆盖文件见[适配服务 Compose](../deploy/erpnext/adapter.compose.yaml)。`ERPNEXT_API_KEY`、`ERPNEXT_API_SECRET`、`ERP_ADAPTER_READ_TOKEN` 只进入本机私有环境文件。平台源配置使用 `http://erpnext-adapter:8011`，仅候选 API 加入该私有网络。适配服务没有写路由，不暴露通用 ERP REST 代理，也不提供伪造的冻结夹具接口；ERPNext 来源尚未登记冻结评测时，质量样本审核/导出仍停止。
+适配服务入口为 `services.erpnext_adapter.main:app`，配置样例见[字段与公司映射](../config/erpnext_adapter.example.json)、[平台源配置](../config/erpnext_sources.example.json)，部署覆盖文件见[适配服务 Compose](../deploy/erpnext/adapter.compose.yaml)。`ERPNEXT_API_KEY`、`ERPNEXT_API_SECRET`、`ERP_ADAPTER_READ_TOKEN` 只进入本机私有环境文件。平台源配置使用 `http://erpnext-adapter:8011`，仅候选 API 加入该私有网络。适配服务没有写路由，不暴露通用 ERP REST 代理，也不提供伪造的冻结夹具接口；ERPNext 来源尚未登记冻结评测时，质量样本审核/导出仍停止。
+
+源配置的租户须与平台数据库映射一致；给 `erpnext-hc` 单独配置业务 `view` 授权，ERP 账号不能替代 Keycloak 身份和知识库权限。首期不授予该来源的质量 `review` 权限，不将模拟夹具登记复制成真实 ERP 登记。
 
 ## E2 验收要求
 
@@ -44,4 +46,49 @@ ERPNext 的 `Work Order.actual_start_date` 由其作业卡流程回写；首期�
 - 端到端使用独立候选端口和数据库；原 8000/8001/8002、冻结资料、评测结果及停止的质量/索引 Worker 保留。
 - 实际模型调用为 0；模型替身与零预算验证明确标注，不宣称修复现有开发 13/16 或正式 31/40 的失败。
 
-实际阶段结果与复现证据完成后补记，不以本方案代替验收。
+## 2026-11-09 分阶段交付与实测结果
+
+E0～E2 已完成。结构化记录见[本轮报告](reports/erpnext-readonly-20261109-r1.json)；本机私有产物位于 `tmp/erpnext-phase1-20261109-r1/`，包括实际 API 响应、源码归档、各轮测试、故障夹具记录、零模型账本和备份。
+
+| 阶段 | 实际完成情况 |
+| --- | --- |
+| E0 独立部署 | ERPNext 16.54.0 / Frappe 16.55.2，网页 `http://127.0.0.1:18080`；独立 MariaDB、Redis、站点卷与网络；前端单独配置本机端口网络，数据服务不暴露宿主端口 |
+| E1 只读适配 | 通过真实 ERP API 读取 4 张演示工单，读取账号可见授权公司内 3 张；另一个公司的工单返回 403；创建、修改、删除请求均返回 403 |
+| E2 当前项目集成 | 独立工作台 `http://127.0.0.1:8003`，新数据库 `erpnext_readonly_phase1`、独立文档副本、Redis 和 PKCE 客户端；沿用原演示登录身份，业务范围只在新库配置 |
+
+ERPNext 管理员为 `Administrator`，随机密码保留在本机 `tmp/erpnext-phase1-20261109-r1/deployment/secrets/admin-password`；读取账号的 API 凭据仅在私有配置中。不要将这些文件提交到 Git。ERP 中创建的是演示数据，工单实际开工来自正常提交的作业卡流程，不能称为真实工厂执行记录。
+
+演示工单包括 `ERP-WO-STARTED`（HC-A17 / OP-20，实际开工有值）、`ERP-WO-NOTSTARTED`（计划时间有值、实际开工为空）、`ERP-WO-MULTI`（多工序，平台不擅选）及另一公司的 `ERP-WO-OTHER`（读取账号不可访问）。网页可由管理员查看和维护原系统记录，平台适配服务只发 GET 请求。
+
+平台末轮正常/权限检查 **16 项通过**，包括实际字段投影、业务引用、三次来源核验、快照、缺字段澄清、多工序澄清、执行请求拒绝，以及生成后撤销业务授权使交付返回 404。额外验证真实源修订变化返回 **409**、适配服务停机返回 **503**，故障夹具和授权均已恢复；部署后直接访问 8003 的上下文也与 ERP 原始记录一致，连续读取的源修订和哈希稳定。
+
+问答环节明确使用确定性生成替身和零模型硬预算；真实的是认证、数据库、ERP HTTP 及来源/权限/快照链路。各轮保存了 51 条同进程 HTTP 观察，另有 2 条部署端口的上下文观察；对其中 41 个可观测请求 ID 核对数据库独立账本，全部观察 Trace 均无模型用量，新物理模型调用 **0**。无独立请求 ID 的记录是未认证请求和快照读取，不作为新增问答计数。这不是模型准确率或外部网关压测，不把接入检查合并到旧开发/正式成绩。
+
+最终业务提交 `a5174272d86e1940317b3ff254d2ac28464f2659` 的候选镜像为 `enterprise-knowledge-manufacturing:erpnext-readonly-20261109-r3`，ID 为 `sha256:d7984272ce0c8042c554c28950e2b3eec832d75127c553204c08f3d5e1ed5082`。157 个业务 Python 文件及 4 个适配服务文件与 Git 归档一致；业务代码哈希 `9336ac89f58a3666918ec192ab7946f49c339ce793c1d9d325e72b4b434847e0`。原 8000/8001/8002 镜像保持，候选使用复制后的 13 份原件/53 个 SQL 分块，并以已有只读凭据访问同一演示集合的 53 个向量；未重建索引或启动候选知识库索引/质量 Worker。ERPNext 自己的队列 Worker 与调度器正常运行。
+
+工程验证末轮为 **2213 项通过、1 项既有 PostgreSQL 开关测试跳过、95 项集成测试排除**；定向 69 项通过，通用 120 题与首期 40 题冻结完整性通过。部署使用真实 MariaDB/ERPNext，平台观察与撤权验证使用独立 PostgreSQL 候选库；本轮没有重跑旧的全部 PostgreSQL 集成测试。各轮重叠测试不相加作为样本数。
+
+初次缺 ERP 主数据、前端内部网络端口与队列参数，以及验证脚本误用授权表主键/Bench 布尔参数的失败记录均保留。已通过官方初始化函数、部署配置和验证脚本修正，不放宽生产权限/来源规则，不覆盖旧结果。最终 ERP 后端重启后记录仍可读取；ERP 站点及候选 PostgreSQL 已备份，备份目录核对通过，未做完整恢复演练。
+
+## 运行、复现与回滚
+
+本机 ERP 启动参数在私有 `deployment/deployment.env`，候选 API 参数在私有 `candidate/compose.json`：
+
+```powershell
+docker compose --env-file tmp/erpnext-phase1-20261109-r1/deployment/deployment.env -f deploy/erpnext/compose.yaml -f deploy/erpnext/adapter.compose.yaml ps
+docker compose -f tmp/erpnext-phase1-20261109-r1/candidate/compose.json ps
+```
+
+新环境先完成 E0 的新站点初始化，再用 ERP 页面建立公司和制造数据，或在本次专用 `erpnext.localhost` 站点使用[演示初始化脚本](../services/erpnext_adapter/provision_demo.py)。该脚本在 ERP 容器内通过 Frappe 正常文档 insert/submit 创建公司、BOM、工单、作业卡和只读用户；输入文件是私有 JSON，仅包含随机生成的 `api_key` / `api_secret`，复制至 `/tmp/erpnext-seed-input.json` 后执行：
+
+```powershell
+# 本机参数示例；新环境替换目录并准备新的私有输入文件，不覆盖已有数据。
+$erpComposeArgs = @('--env-file', 'tmp/erpnext-phase1-20261109-r1/deployment/deployment.env', '-f', 'deploy/erpnext/compose.yaml')
+docker compose @erpComposeArgs cp services/erpnext_adapter/provision_demo.py backend:/home/frappe/frappe-bench/apps/frappe/frappe/_knowledge_demo_setup.py
+docker compose @erpComposeArgs cp tmp/erpnext-phase1-20261109-r1/erpnext-seed-input.json backend:/tmp/erpnext-seed-input.json
+docker compose @erpComposeArgs exec -T backend bench --site erpnext.localhost execute frappe._knowledge_demo_setup.run
+```
+
+接入适配服务时，以实际租户/公司替换样例，配置专用只读用户凭据和平台源授权。新克隆的资料发布、Keycloak 映射与库授权仍须按[首期独立初始化说明](MANUFACTURING_QUALITY.md)建立；本机候选通过已审核演示库的一致性副本启动，不把私有 `tmp` 当作仓库默认数据或通用自动安装器。
+
+回滚可停止 `erpnext-readonly` 候选和 `manufacturing-erpnext` 项目，保留新数据库、卷与记录；或将新候选的私有配置切回保留镜像。原 8000/8001/8002 不需要回滚，本轮未更新它们。最近真实模型开发 **13/16、关键 4/6** 和正式 **31/40、关键 9/12** 的失败状态仍保留，后续模型复验需另有明确范围。
