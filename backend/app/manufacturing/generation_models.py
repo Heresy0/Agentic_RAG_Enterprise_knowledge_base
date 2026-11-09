@@ -1,6 +1,6 @@
 """Manufacturing-only generation schema; the ordinary schema stays unchanged."""
 from typing import Literal
-from pydantic import Field, model_validator
+from pydantic import Field, field_validator, model_validator
 from ..knowledge.answer_models import AnswerClaim, ClaimKind, EvidenceFirstAnswerDraft
 import json
 
@@ -13,18 +13,26 @@ BusinessField = Literal[
 
 
 class ManufacturingClaim(AnswerClaim):
-    claim_kind: ClaimKind = Field(..., description="区分工单字段、适用判断、一般要求、版本对比及工单原文记录。")
+    claim_kind: ClaimKind = Field(..., description="区分字段、适用性、一般要求、版本对比及记录。选择source_unit时除明确版本对比外，实际角色由后端按资料确定。")
     business_field: BusinessField | None = Field(default=None, exclude_if=lambda value: value is None,
         description="business_fact只选择一个字段名，text留空、citations为空数组；文字、值及业务引用由后端生成。其他类型为null。")
     text: str = Field(default="", description="business_field、source_unit选择及applicability留空，由后端生成；仅旧格式填写完整原文结论。")
-    source_unit: str | None = Field(default=None, min_length=1, max_length=80, exclude_if=lambda value: value is None,
-        description="优先选择上下文标记的完整原文条目，如资料1#2。仅选择标识，text留空、citations=[]、calculation=null；后端生成原文、引用和要求/工单记录角色。")
+    citations: list[str] = Field(default_factory=list,
+        description="business_field、source_unit选择及applicability均填写[]，引用由后端生成；仅旧格式填写支持原文的资料编号。")
+    source_unit: str | None = Field(default=None, max_length=80, exclude_if=lambda value: value is None,
+        description="优先选择上下文标记的完整原文条目，如资料1#2。仅选择标识，text留空、citations=[]、calculation=null；未使用时填null或空字符串。后端生成原文、引用及来源角色。")
+
+    @field_validator("source_unit", mode="before")
+    @classmethod
+    def unused_source_unit(cls, value):
+        # A blank optional selector makes no assertion and grants no source.
+        # Required prose/field selection is still checked below.
+        return None if isinstance(value, str) and not value.strip() else value
 
     @model_validator(mode="after")
     def field_selection(self):
         if self.source_unit is not None:
-            if (self.claim_kind not in ("work_requirement", "work_order_evidence", "version_comparison")
-                    or self.business_field is not None or self.text.strip() or self.citations or self.calculation is not None):
+            if (self.business_field is not None or self.text.strip() or self.citations or self.calculation is not None):
                 raise ValueError("原文条目只接受标识，不接受自写文字、引用、业务字段或计算。")
         elif self.business_field is not None:
             if (self.claim_kind != "business_fact" or self.text.strip() or self.citations

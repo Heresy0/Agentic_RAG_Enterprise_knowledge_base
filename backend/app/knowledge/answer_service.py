@@ -501,8 +501,14 @@ class AnswerService:
 
         answer_parts: list[str] = []
         used_citations: list[str] = []
+        displayed_excerpts = set()
 
         for claim in draft.claims:
+            if context.business_items and claim.calculation is None:
+                identity = (claim.claim_kind, claim.text, tuple(claim.citations))
+                if identity in displayed_excerpts:
+                    continue
+                displayed_excerpts.add(identity)
             citation_text = "".join(
                 f"[{citation_id}]"
                 for citation_id in claim.citations

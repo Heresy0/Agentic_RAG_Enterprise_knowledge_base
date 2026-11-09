@@ -42,10 +42,30 @@ def test_structural_boundaries_keep_original_conditions(source, quote, valid):
 
 
 @pytest.mark.parametrize("extra", [dict(text="已完成复检"), dict(citations=["资料2"]),
-    dict(business_field="status"), dict(claim_kind="business_fact"), dict(source_unit="")])
+    dict(business_field="status"), dict(source_unit="")])
 def test_source_selector_cannot_carry_model_assertions(extra):
     with pytest.raises(ValidationError):
         ManufacturingClaim.model_validate(dict(claim_kind="work_requirement", source_unit="资料1#1") | extra)
+
+
+@pytest.mark.parametrize("blank", ["", " ", "\n\t"])
+def test_unused_selector_does_not_reject_a_real_field_or_backend_applicability(blank):
+    field = ManufacturingClaim(claim_kind="business_fact", business_field="product_model", source_unit=blank)
+    selection = ManufacturingClaim(claim_kind="applicability", source_unit=blank)
+    assert field.source_unit is selection.source_unit is None
+    with pytest.raises(ValidationError):
+        ManufacturingClaim(claim_kind="work_requirement", source_unit=blank)
+
+
+@pytest.mark.parametrize("hint", ["business_fact", "applicability", "work_requirement", "work_order_evidence"])
+def test_source_only_selector_role_comes_from_document_not_model_hint(catalog, hint):
+    active, built, citation = built_source(catalog, TABLE)
+    with manufacturing_answer_context(active):
+        compiled = compile_applicability_bindings(draft_for(dict(claim_kind=hint, source_unit=citation + "#1")), built)
+        assert compiled.claims[0].claim_kind == "work_requirement"
+        assert compiled.claims[0].citations == [citation]
+        assert compiled.claims[0].text == TABLE
+        assert AnswerValidator().validate(draft=compiled, context=built, question="检验规范是什么？").valid
 
 
 def built_source(catalog, content, role="instruction"):
@@ -68,6 +88,17 @@ def test_table_selector_copies_complete_rows_header_units_and_conditions(catalog
         assert compile_applicability_bindings(compiled, built) == compiled
         assert original.claims[0].text == "" and not original.claims[0].citations
         assert set(source_units(built)) >= {citation + "#1", citation + "#2"}
+
+
+def test_repeated_table_selection_displays_once_without_changing_claim_coverage(catalog):
+    active, built, citation = built_source(catalog, TABLE)
+    with manufacturing_answer_context(active):
+        original = draft_for(*[dict(claim_kind='work_requirement', source_unit=citation + '#1') for _ in range(3)])
+        compiled = compile_applicability_bindings(original, built)
+        result = AnswerService._render_result(None, draft=compiled, context=built)
+        assert result.answer.count(TABLE) == 1
+        assert compiled.coverage[0].claim_indices == [1, 2, 3]
+        assert len(result.claim_bindings) == 4  # Three original claims plus server applicability.
 
 
 def test_record_selector_derives_role_and_binds_current_work_order(catalog):

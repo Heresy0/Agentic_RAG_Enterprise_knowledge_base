@@ -1,0 +1,181 @@
+{
+  "schema_version": "manufacturing-development-review-v1",
+  "client_date": "2026-11-09",
+  "batch": "development-r2",
+  "status": "development_gate_failed",
+  "source_revision": "4c49f07bbdd72602850c6d77722a06be9a8c22f7",
+  "image_id": "sha256:3919d60e457c16e5fd67d36880e639259d8556ffb4286e68d2259acdd236dda2",
+  "runtime_fingerprint": "2ee6a4b1fb6a4d0e77d56423bcace4804d47db098828c1a49ced56374d214e9b",
+  "backend_code_sha256": "48c7106f4616a2a5ace7219eab6183c83fce8b8465e3aa2bb08bafba3484f70e",
+  "business_python_files_matched": 156,
+  "results": {
+    "total": 16,
+    "executed_http_requests": 16,
+    "http_errors": 1,
+    "automatic_proxy_passed": 11,
+    "assistant_non_independent_passed": 11,
+    "independent_human_review": false,
+    "development_minimum": 14,
+    "development_gate_passed": false,
+    "critical_subset": {
+      "total": 6,
+      "passed": 4
+    },
+    "categories": {
+      "clarify": {
+        "total": 4,
+        "automatic_passed": 4,
+        "assistant_non_independent_passed": 4
+      },
+      "cross_document": {
+        "total": 3,
+        "automatic_passed": 3,
+        "assistant_non_independent_passed": 3
+      },
+      "facts": {
+        "total": 3,
+        "automatic_passed": 1,
+        "assistant_non_independent_passed": 1
+      },
+      "numeric_conditions": {
+        "total": 3,
+        "automatic_passed": 3,
+        "assistant_non_independent_passed": 3
+      },
+      "version": {
+        "total": 3,
+        "automatic_passed": 0,
+        "assistant_non_independent_passed": 0
+      }
+    },
+    "answerable_cases": {
+      "total": 12,
+      "passed": 7
+    },
+    "clarify_cases": {
+      "total": 4,
+      "passed": 4
+    },
+    "correct_positive_answer_latency": {
+      "count": 7,
+      "p50_ms": 7283.26,
+      "p95_ms": 13705.394,
+      "max_ms": 13705.394
+    },
+    "scores_combined": false,
+    "formal_cases": 0,
+    "closure_cases": 0,
+    "source_p95_ms": 31.408
+  },
+  "usage": {
+    "status": "reconciled",
+    "physical_calls": 33,
+    "known_tokens": 99933,
+    "unknown_usage_calls": 6,
+    "unknown_reservation_per_call": 32000,
+    "budget_tokens": 291933,
+    "by_stage": {
+      "answer_generation": 11,
+      "query_embedding": 9,
+      "rerank": 9,
+      "query_planning": 3,
+      "agent_decision": 1
+    },
+    "errors": 6,
+    "unpriced_calls": 33,
+    "trace_and_ledger_match": true,
+    "runtime_matches_verified_image": true,
+    "additional_model_calls": 0,
+    "ledger_sha256": "6f2a24c410a7d28e8330a7779b0371831280281762d98882d8692b8c17c57c7c",
+    "raw_report_sha256": "52f456cad80c2145734385db404327993b57a46e7c18c9e80101c8d876eb0df0",
+    "elapsed_seconds": 211.023,
+    "fees": "unknown"
+  },
+  "limits": {
+    "max_cases": 16,
+    "max_model_calls": 128,
+    "max_tokens": 800000,
+    "max_seconds": 1440,
+    "reservation_tokens": 32000
+  },
+  "approval_text": "允许新建这16题验证",
+  "authorization_closed": true,
+  "prior_authorization_reused": false,
+  "failures": [
+    {
+      "case_id": "MFGWO-Q001",
+      "reason": "未使用source_unit为空字符串，Trace明确string_too_short，最终通用拒答未交付型号。"
+    },
+    {
+      "case_id": "MFGWO-Q002",
+      "reason": "模型请求超时后HTTP503，未交付工序事实，不能计为正确答案。"
+    },
+    {
+      "case_id": "MFGWO-Q007",
+      "reason": "空source_unit及一条claim级value_error导致结构化草稿未形成，最终未交付版本和依据；claim级错误细节不足以断言唯一原因。"
+    },
+    {
+      "case_id": "MFGWO-Q013",
+      "reason": "空source_unit导致结构化解析失败，未交付上传时间不决定适用版本的答案。"
+    },
+    {
+      "case_id": "MFGWO-Q016",
+      "reason": "空source_unit导致解析失败，未交付合法选版部分；不据此声称权限或源地址被篡改。"
+    }
+  ],
+  "prior_attempt": {
+    "batch": "development-r1",
+    "http_requests": 16,
+    "model_calls": 0,
+    "tokens": 0,
+    "quality_score": null,
+    "status": "infrastructure_failure_not_quality_score",
+    "original_records_preserved": true,
+    "initiating_cause_fully_established": false
+  },
+  "engineering_at_evaluated_revision": {
+    "nonintegration_passed": 2168,
+    "skipped": 1,
+    "integration_deselected": 95,
+    "targeted_final": 186,
+    "new_source_unit_tests": 35,
+    "postgres_m3": 11,
+    "postgres_m4": 12,
+    "frontend": 48,
+    "checks_overlap": true,
+    "paid_accuracy_claimed": false
+  },
+  "preflight": {
+    "published_documents": 13,
+    "sql_chunks": 53,
+    "vector_records": 53,
+    "source_reads": 20,
+    "reindexed": false
+  },
+  "raw_report_sha256": "52f456cad80c2145734385db404327993b57a46e7c18c9e80101c8d876eb0df0",
+  "reviews_sha256": "d5e185c2c5604e3926dd9c13c8557009e620effdeb507cd73cda0df9a5cc5294",
+  "raw_manifest_sha256": "e1c06c3f9569ea5775f813d9a477dcf4210bbff84615c92726bb7aaf2f5d3caf",
+  "frozen_question_files_sha256": {
+    "evals/manufacturing_workorder_v1/development/single_turn.jsonl": "31bcf5d05c987ba2579b53cddfaa229dfaaa6c159c0d05d0bf9c129841a54739",
+    "evals/manufacturing_workorder_v1/regression/single_turn.jsonl": "f9ab87755a6bcd6832ce73d1e3ad7077a9dc11ab8fcc3c3e367dca308cf1b67d"
+  },
+  "private_artifacts": "tmp/manufacturing-source-units-runtime-20261109-r1/development-r2/",
+  "formal_status": {
+    "batch": "2026-11-01-r4",
+    "automatic_passed": 31,
+    "assistant_non_independent_passed": 31,
+    "total": 40,
+    "critical_passed": 9,
+    "critical_total": 12,
+    "release_gate_passed": false
+  },
+  "limitations": [
+    "助手复核非独立人工评审，开发题非企业盲测。",
+    "不与2026-11-07的9/16或旧正式24题拼分。",
+    "Q002为HTTP503，无成功快照，单独以原始响应绑定复核失败。",
+    "Q025/Q026重复表格作为表达缺陷保留，不覆盖原响应。",
+    "本报告只代表4c49f07镜像；后续空字段/角色提示/展示修正须另据验证记录，不倒改本批。",
+    "原始report.json的pending状态保持原字节，复核另存派生视图。",
+    "供应商单价未配置，费用未知；未知用量按每次32000计预算。"
+  ]
+}
