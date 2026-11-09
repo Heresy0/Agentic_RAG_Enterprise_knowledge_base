@@ -1,0 +1,350 @@
+{
+  "schema_version": "manufacturing-development-review-v1",
+  "client_date": "2026-11-09",
+  "batch": "development-r3",
+  "status": "development_gate_failed",
+  "workspace_revision": "69f2be5b2ad163e2434f7c0c06318d64a79951ac",
+  "source_revision": "8bec4d9f4efe26a7a3c3a7f3a06f2c104fbe6c6e",
+  "image_id": "sha256:1d891cbb1a655384370c81920c2a26b5e96440fc19cd76ec151e16aebac27de9",
+  "runtime_fingerprint": "b6458d822713e76728415dfd399d65d3e193f58d4b76c2759232f879ba3faafa",
+  "backend_code_sha256": "70916bbd964f5f5c609729284667c4173e83545bf86e9b41437cbc5b6377fe1a",
+  "business_python_files_matched": 156,
+  "source_archive_sha256": "46a592e985fbb192a40bd459ee636e5925745a6a26a0c81bbbcbf6dd6c63ca4e",
+  "results": {
+    "total": 16,
+    "executed_http_requests": 16,
+    "http_errors": 1,
+    "automatic_proxy_passed": 13,
+    "assistant_non_independent_passed": 13,
+    "independent_human_review": false,
+    "development_minimum": 14,
+    "development_gate_passed": false,
+    "critical_subset": {
+      "total": 6,
+      "passed": 4
+    },
+    "categories": {
+      "clarify": {
+        "total": 4,
+        "automatic_passed": 4,
+        "assistant_non_independent_passed": 4
+      },
+      "cross_document": {
+        "total": 3,
+        "automatic_passed": 1,
+        "assistant_non_independent_passed": 1
+      },
+      "facts": {
+        "total": 3,
+        "automatic_passed": 3,
+        "assistant_non_independent_passed": 3
+      },
+      "numeric_conditions": {
+        "total": 3,
+        "automatic_passed": 3,
+        "assistant_non_independent_passed": 3
+      },
+      "version": {
+        "total": 3,
+        "automatic_passed": 2,
+        "assistant_non_independent_passed": 2
+      }
+    },
+    "answerable_cases": {
+      "total": 12,
+      "passed": 9
+    },
+    "clarify_cases": {
+      "total": 4,
+      "passed": 4
+    },
+    "correct_positive_answer_latency": {
+      "count": 9,
+      "p50_ms": 6019.913,
+      "p95_ms": 10606.244,
+      "max_ms": 10606.244
+    },
+    "scores_combined": false,
+    "formal_cases": 0,
+    "closure_cases": 0,
+    "source_p95_ms": 30.523
+  },
+  "usage": {
+    "status": "reconciled",
+    "physical_calls": 32,
+    "known_tokens": 130845,
+    "unknown_usage_calls": 1,
+    "budget_tokens": 162845,
+    "by_stage": {
+      "answer_generation": 10,
+      "query_embedding": 9,
+      "rerank": 9,
+      "query_planning": 3,
+      "agent_decision": 1
+    },
+    "trace_and_ledger_match": true,
+    "unpriced_calls": 32,
+    "unpersisted_calls": 0,
+    "model_error_events": 1,
+    "fees": "unknown",
+    "additional_model_calls": 0,
+    "all_limits_respected": true,
+    "prior_files_sha256_verified": 119,
+    "ledger_sha256": "25a7b674de4c1d25f2b1e9335709612fefd32c02190601638789968ba3d4d314",
+    "elapsed_seconds": 87.483
+  },
+  "limits": {
+    "max_cases": 16,
+    "max_model_calls": 128,
+    "max_tokens": 800000,
+    "max_seconds": 1440,
+    "reservation_tokens": 32000
+  },
+  "approval_text": "用当前版本重新跑一轮完整16题真实模型开发验证，最多128次调用、80万预算Token、1440秒，不重试、不补跑。保留旧结果、不拼分，整理报告后用中文提交并推送。",
+  "authorization_closed": true,
+  "prior_authorization_reused": false,
+  "retries": 0,
+  "supplementary_reruns": 0,
+  "failures": [
+    {
+      "case_id": "MFGWO-Q007",
+      "validation_errors": [
+        "第3个工单记录结论须保留完整原句并绑定工单编号"
+      ],
+      "model_stages": [
+        "query_embedding",
+        "rerank",
+        "answer_generation"
+      ],
+      "failure_condition_established": true,
+      "reason": "最终通用拒答，未交付合法选版答案。草稿新增work_order_evidence，将多个工单字段拼成一段，却只引用实际开工业务字段；Trace明确记录第3条记录结论未满足完整原句及工单绑定，不能用内部正确选版草稿代替交付评分。"
+    },
+    {
+      "case_id": "MFGWO-Q018",
+      "validation_errors": [
+        "第1个工单记录结论须保留完整原句并绑定工单编号",
+        "第2个结论包含不存在的引用：['资料6#5']",
+        "第3个结论包含不存在的引用：['资料6#6']"
+      ],
+      "model_stages": [
+        "query_planning",
+        "query_embedding",
+        "rerank",
+        "agent_decision",
+        "answer_generation"
+      ],
+      "failure_condition_established": true,
+      "reason": "最终通用拒答。草稿记录结论误引业务4，另将资料6#5/资料6#6条目标识直接填入citations，Trace明确拒绝错误来源；草稿也未完整交付连续3件及质量签署，不能只归因于格式。"
+    },
+    {
+      "case_id": "MFGWO-Q023",
+      "validation_errors": [],
+      "model_stages": [
+        "query_embedding",
+        "rerank"
+      ],
+      "failure_condition_established": false,
+      "reason": "HTTP503 manufacturing_generation_invalid，没有成功快照或交付答案。Trace已构建完整上下文，只有成功的查询嵌入与重排两次调用，无答案生成事件；当前脱敏记录不足以定位具体ValidationError栈，不能归因为模型生成失败或阈值结论错误。"
+    }
+  ],
+  "case_reviews": [
+    {
+      "case_id": "MFGWO-Q001",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "交付当前WO-017的型号HC-A17，唯一业务引用绑定product_model及一致来源哈希。",
+      "category": "facts",
+      "critical_id": null,
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q002",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "交付当前WO-017的工序OP-20，唯一业务引用绑定operation_code及一致来源哈希。",
+      "category": "facts",
+      "critical_id": null,
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q006",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "交付WO-023实际开工日期2026-10-06，并明确只有日期精度、不能编造时分，两项业务字段引用完整。",
+      "category": "facts",
+      "critical_id": null,
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q007",
+      "independent_human_review": false,
+      "verdict": "failed",
+      "reason": "最终通用拒答，未交付合法选版答案。草稿新增work_order_evidence，将多个工单字段拼成一段，却只引用实际开工业务字段；Trace明确记录第3条记录结论未满足完整原句及工单绑定，不能用内部正确选版草稿代替交付评分。",
+      "category": "version",
+      "critical_id": "C01",
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q013",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "交付2.0选版及ECN原文，明确实际开工日期决定适用版本，不能按报工日期或文档上传时间选版；两类引用完整。",
+      "category": "version",
+      "critical_id": null,
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q016",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "合法选版部分交付当前WO-023的2.0及ECN依据，工单与来源一致；未观察到身份或源地址被问题中的指令改变，不据此声称覆盖全部权限测试。",
+      "category": "version",
+      "critical_id": "C12",
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q017",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "完整保留连续3件、所有必检项目合格、质量人员签署、记录齐全及未关闭暂停要求的书面恢复条件；区分作业要求与已经满足条件。",
+      "category": "cross_document",
+      "critical_id": "C07",
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q018",
+      "independent_human_review": false,
+      "verdict": "failed",
+      "reason": "最终通用拒答。草稿记录结论误引业务4，另将资料6#5/资料6#6条目标识直接填入citations，Trace明确拒绝错误来源；草稿也未完整交付连续3件及质量签署，不能只归因于格式。",
+      "category": "cross_document",
+      "critical_id": "C09",
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q023",
+      "independent_human_review": false,
+      "verdict": "failed",
+      "reason": "HTTP503 manufacturing_generation_invalid，没有成功快照或交付答案。Trace已构建完整上下文，只有成功的查询嵌入与重排两次调用，无答案生成事件；当前脱敏记录不足以定位具体ValidationError栈，不能归因为模型生成失败或阈值结论错误。",
+      "category": "cross_document",
+      "critical_id": null,
+      "http_error_without_snapshot": true
+    },
+    {
+      "case_id": "MFGWO-Q025",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "同一完整表格分别绑定外径19.95至20.05 mm与孔深12.00至12.10 mm，均包含上下限；表格本轮只展示一次，未混用数值。",
+      "category": "numeric_conditions",
+      "critical_id": "C08",
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q026",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "完整表格保留孔深CAL-150及清洁孔内切屑的前提，表外原文另明确零读数也必须记录；未把尺寸或外观合格当质量签署。",
+      "category": "numeric_conditions",
+      "critical_id": null,
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q030",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "完整规则明确连续3件、全部必检项目合格及质量人员签署；不允许只检1件，不允许口头确认替代签署，保留共同前提。",
+      "category": "numeric_conditions",
+      "critical_id": null,
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q031",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "缺源实际开工字段时要求补齐或复核，没有猜测适用版本。",
+      "category": "clarify",
+      "critical_id": "C04",
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q032",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "缺源实际开工字段时保持澄清，没有在2件和3件中擅自选择。",
+      "category": "clarify",
+      "critical_id": null,
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q033",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "没有用报工日期覆盖缺失的实际开工字段，要求补齐或复核。",
+      "category": "clarify",
+      "critical_id": null,
+      "http_error_without_snapshot": false
+    },
+    {
+      "case_id": "MFGWO-Q034",
+      "independent_human_review": false,
+      "verdict": "passed",
+      "reason": "没有用口述覆盖源字段或擅自采用新版，要求补齐或复核。",
+      "category": "clarify",
+      "critical_id": null,
+      "http_error_without_snapshot": false
+    }
+  ],
+  "prior_complete_development": {
+    "batch": "2026-11-09-development-r2",
+    "passed": 11,
+    "total": 16,
+    "critical_passed": 4,
+    "critical_total": 6,
+    "gate_passed": false,
+    "original_preserved": true,
+    "scores_combined": false
+  },
+  "engineering_at_evaluated_revision": {
+    "nonintegration_passed": 2183,
+    "skipped": 1,
+    "integration_deselected": 95,
+    "targeted_final": 232,
+    "original_artifacts": "tmp/manufacturing-source-units-20261109/",
+    "previously_executed": true,
+    "rerun_for_this_report": false,
+    "paid_accuracy_claimed": false
+  },
+  "preflight": {
+    "published_documents": 13,
+    "sql_chunks": 53,
+    "vector_records": 53,
+    "source_reads": 20,
+    "reindexed": false,
+    "workers_stopped": true
+  },
+  "raw_report_sha256": "ed93dae9d197e7def9251363c213c6252ab2f0f6d7eb46ac3e8698d39990a863",
+  "reviews_sha256": "11ebc95b3f18d454063d00d9abc82f22235b0c69da663f2e6cc3fec7898a340c",
+  "raw_manifest_sha256": "c14703a64a0118660902b2ef6f1de64656a7d73c537cc2795836f1736ba20be9",
+  "frozen_question_files_sha256": {
+    "evals/manufacturing_workorder_v1/development/single_turn.jsonl": "31bcf5d05c987ba2579b53cddfaa229dfaaa6c159c0d05d0bf9c129841a54739",
+    "evals/manufacturing_workorder_v1/regression/single_turn.jsonl": "f9ab87755a6bcd6832ce73d1e3ad7077a9dc11ab8fcc3c3e367dca308cf1b67d"
+  },
+  "prior_preservation_sha256": "f4341045da9a5dd24c49993e6307cc3a59855d2d588c6439789461a828cf6b09",
+  "private_artifacts": "tmp/manufacturing-development-20261109-r3/development-r1/",
+  "formal_status": {
+    "batch": "2026-11-01-r4",
+    "automatic_passed": 31,
+    "assistant_non_independent_passed": 31,
+    "total": 40,
+    "critical_passed": 9,
+    "critical_total": 12,
+    "release_gate_passed": false
+  },
+  "limitations": [
+    "本轮完整16题独立记录，不与旧批次或定向确认拼分。助手语义复核非独立人工评审，也非工厂盲测。",
+    "当前工作区69f2be5与镜像来源8bec4d9的业务源码完全一致；之后仅有文档提交，本轮未重新部署。",
+    "Q023为HTTP503，无成功快照和答案生成事件；只记录现有证据，具体异常栈未确定，没有发起额外诊断问答。",
+    "原始report.json的pending状态和原字节保留，复核另存派生视图。旧报告、题集、评分文件及来源均保留。",
+    "使用相同应用和真实依赖的认证同进程ASGI HTTP，非外部网关压测。",
+    "供应商单价未配置，费用未知；一次未知用量按32000计入预算。没有新的正式40题或真实闭环验证。"
+  ]
+}
