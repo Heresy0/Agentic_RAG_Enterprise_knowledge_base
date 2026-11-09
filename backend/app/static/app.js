@@ -7,7 +7,8 @@ const statuses = { ready: "已就绪", pending: "等待索引", queued: "排队�
 const permissions = { viewer: "只读", editor: "可编辑", admin: "管理员" };
 const state = { auth: null, config: null, bases: [], kb: null, documents: [], jobs: [], conversations: [], conversationId: null, revision: 0, tab: "qa", asking: false, uploading: false, loading: false, polling: null, deleting: null, feedbackCursor: null, feedbackEpoch: 0, snapshotEpoch: 0 };
 state.mode = "knowledge";
-state.manufacturing = { orders: [], nextCursor: null, orderId: null, context: null, epoch: 0, listEpoch: 0 };
+state.manufacturing = { orders: [], nextCursor: null, orderId: null, context: null, epoch: 0, listEpoch: 0,
+  selectionSupported: false, operationId: null, jobCardId: null, operations: [], jobCards: [], jobCursor: null, cardListEpoch: 0 };
 const feedbackReasons = { incorrect: "答案错误", incomplete: "遗漏条件或要点", citation: "引用不正确", false_refusal: "不该拒答", outdated: "资料过期", other: "其他问题" };
 const qualityWorkspace = createQualityWorkspace({ $, element, api, state, sameContext, errorNotice, onImprovement: id => verificationWorkspace.createForCase(id) });
 const verificationWorkspace = createVerificationWorkspace({ $, element, api, state, sameContext, errorNotice });
@@ -35,6 +36,10 @@ function updateControls() {
   $("user-work-conditions").hidden = state.mode === "manufacturing";
   $("qa-mode").disabled = !state.auth?.authenticated;
   for (const id of ["manufacturing-order", "manufacturing-refresh", "manufacturing-more"]) $(id).disabled = !canAsk() || state.loading;
+  $("manufacturing-selection").hidden = !state.manufacturing.selectionSupported;
+  $("manufacturing-operation").disabled = !canAsk() || state.loading || !state.manufacturing.orderId || !state.manufacturing.operations.length;
+  $("manufacturing-job-card").disabled = !canAsk() || state.loading || !state.manufacturing.operationId;
+  $("manufacturing-job-cards-more").disabled = !canAsk() || state.loading;
   qualityWorkspace.updateControls();
   verificationWorkspace.updateControls();
   $("question").disabled = !canAsk() || state.asking || state.loading;
@@ -165,6 +170,9 @@ function resetManufacturing() {
   state.manufacturing.listEpoch += 1;
   state.manufacturing.epoch += 1; state.manufacturing.orders = []; state.manufacturing.nextCursor = null;
   state.manufacturing.orderId = null; state.manufacturing.context = null;
+  state.manufacturing.selectionSupported = false; state.manufacturing.operationId = null; state.manufacturing.jobCardId = null;
+  state.manufacturing.operations = []; state.manufacturing.jobCards = []; state.manufacturing.jobCursor = null;
+  state.manufacturing.cardListEpoch += 1; renderManufacturingSelectors();
   const first = element("option", "选择有权访问的工单"); first.value = ""; $("manufacturing-order").replaceChildren(first);
   $("manufacturing-order").value = ""; $("manufacturing-more").hidden = true;
   $("manufacturing-context").replaceChildren(element("p", "选择工单后查看可信来源字段。"));
@@ -183,6 +191,7 @@ async function refreshManufacturingOrders(more = false) {
     if (!sameContext(revision) || epoch !== state.manufacturing.listEpoch || state.mode !== "manufacturing") return;
     state.manufacturing.orders = more ? [...state.manufacturing.orders, ...data.items] : data.items;
     state.manufacturing.nextCursor = data.next_cursor;
+    state.manufacturing.selectionSupported = data.selection_supported === true;
     const first = element("option", "选择有权访问的工单"); first.value = "";
     $("manufacturing-order").replaceChildren(first);
     for (const order of state.manufacturing.orders) {
@@ -191,26 +200,89 @@ async function refreshManufacturingOrders(more = false) {
     }
     $("manufacturing-order").value = state.manufacturing.orderId || "";
     $("manufacturing-more").hidden = !data.next_cursor;
+    renderManufacturingSelectors(); updateControls();
     return true;
   } catch (error) { if (sameContext(revision) && epoch === state.manufacturing.listEpoch) { invalidateManufacturingView("工单来源或权限无法确认，请重新查询。"); errorNotice(error); } return false; }
 }
 function renderWorkOrder(context, historical = false) {
   const target = $("manufacturing-context"); target.replaceChildren();
   target.append(element("h3", `${historical ? "历史工单快照" : "已核验工单"} · ${context.work_order_id}`));
-  for (const [name, label] of [["product_model", "型号"], ["operation_code", "工序"], ["actual_started_at", "实际开工"], ["actual_start_precision", "时间精度"], ["route_revision", "路线修订"], ["source_system_id", "来源"], ["source_revision", "源修订"], ["last_verified_at", "最后核验时间"]]) {
+  for (const [name, label] of [["product_model", "型号"], ["operation_code", "工序"], ["actual_started_at", context.execution ? "工单实际开工（选版依据）" : "实际开工"], ["actual_start_precision", "工单时间精度"], ["route_revision", "路线修订"], ["source_system_id", "来源"], ["source_revision", "源修订"], ["last_verified_at", "最后核验时间"]]) {
     target.append(element("p", `${label}：${context[name] ?? "未知"}`));
+  }
+  if (context.execution) {
+    const execution = context.execution;
+    target.append(element("h3", `所选工序记录 · ${execution.operation_id}`));
+    for (const [key, label] of [["operation_actual_started_at", "工序实际开工"], ["operation_start_precision", "工序时间精度"], ["operation_status", "工序状态"]]) target.append(element("p", `${label}：${execution[key] ?? "未知"}`));
+    target.append(element("h3", execution.job_card_id ? `所选作业卡 · ${execution.job_card_id}` : "尚未选择具体作业卡"));
+    if (execution.job_card_id) for (const [key, label] of [["job_card_actual_started_at", "作业卡实际开工"], ["job_card_start_precision", "作业卡时间精度"], ["job_card_status", "作业卡状态"]]) target.append(element("p", `${label}：${execution[key] ?? "未知"}`));
+    target.append(element("p", "工单、工序、作业卡的实际开工分别保留；未知值不从其他层级补齐。", "answer-meta"));
   }
   target.append(element("p", historical ? "本卡片为当次快照；下一轮会重新核验来源。" : "字段来自工单系统，不能在此改写；核验后来源仍可能变化。", "answer-meta"));
 }
 async function selectManufacturingOrder(id) {
+  state.manufacturing.orderId = id || null; state.manufacturing.operationId = null; state.manufacturing.jobCardId = null;
+  state.manufacturing.operations = []; state.manufacturing.jobCards = []; state.manufacturing.jobCursor = null;
+  renderManufacturingSelectors();
+  return loadManufacturingSelection(true, false);
+}
+function manufacturingSelection(value = state.manufacturing) {
+  return { ...(value.operationId ? { operation_id: value.operationId } : {}), ...(value.jobCardId ? { job_card_id: value.jobCardId } : {}) };
+}
+function renderManufacturingSelectors() {
+  const value = state.manufacturing;
+  $("manufacturing-selection").hidden = !value.selectionSupported;
+  const op = element("option", "工单级（未选择工序）"); op.value = ""; $("manufacturing-operation").replaceChildren(op);
+  for (const row of value.operations) { const option = element("option", `${row.operation_code} · ${row.operation_id} · ${row.status}`); option.value = row.operation_id; $("manufacturing-operation").append(option); }
+  if (value.operationId && !value.operations.some(row => row.operation_id === value.operationId)) { const selected = element("option", `历史选择 · ${value.operationId}`); selected.value = value.operationId; $("manufacturing-operation").append(selected); }
+  $("manufacturing-operation").value = value.operationId || "";
+  const card = element("option", "未选择作业卡（工序级）"); card.value = ""; $("manufacturing-job-card").replaceChildren(card);
+  for (const row of value.jobCards) { const option = element("option", `${row.job_card_id} · ${row.status} · ${row.actual_started_at ?? "实际开工未登记"}`); option.value = row.job_card_id; $("manufacturing-job-card").append(option); }
+  if (value.jobCardId && !value.jobCards.some(row => row.job_card_id === value.jobCardId)) { const selected = element("option", `已选作业卡 · ${value.jobCardId}`); selected.value = value.jobCardId; $("manufacturing-job-card").append(selected); }
+  $("manufacturing-job-card").value = value.jobCardId || ""; $("manufacturing-job-cards-more").hidden = !value.jobCursor;
+}
+async function selectManufacturingOperation(id) {
+  state.manufacturing.operationId = id || null; state.manufacturing.jobCardId = null;
+  state.manufacturing.jobCards = []; state.manufacturing.jobCursor = null; renderManufacturingSelectors();
+  return loadManufacturingSelection(false, true);
+}
+async function selectManufacturingJobCard(id) {
+  state.manufacturing.jobCardId = id || null;
+  return loadManufacturingSelection(false, false);
+}
+async function moreManufacturingJobCards() {
+  const value = state.manufacturing, revision = state.revision, epoch = ++value.cardListEpoch;
+  if (!value.orderId || !value.operationId || !value.jobCursor) return;
+  try {
+    const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(value.orderId)}/operations/${encodeURIComponent(value.operationId)}/job-cards?cursor=${encodeURIComponent(value.jobCursor)}`);
+    if (!sameContext(revision) || epoch !== state.manufacturing.cardListEpoch) return;
+    value.jobCards = [...value.jobCards, ...data.items]; value.jobCursor = data.next_cursor; renderManufacturingSelectors(); updateControls();
+  } catch (error) { if (sameContext(revision) && epoch === state.manufacturing.cardListEpoch) { invalidateManufacturingView("作业卡来源或权限无法确认，请重新查询。"); errorNotice(error); } }
+}
+async function loadManufacturingSelection(loadOperations, loadCards) {
+  const id = state.manufacturing.orderId;
   const revision = ++state.revision, epoch = ++state.manufacturing.epoch;
-  state.asking = false; clearConversation(); state.manufacturing.orderId = id || null; state.manufacturing.context = null;
+  state.manufacturing.cardListEpoch += 1;
+  state.asking = false; clearConversation(); state.manufacturing.context = null;
   clearCitationPreview(); $("manufacturing-context").replaceChildren(element("p", id ? "正在核验工单…" : "请选择工单。")); updateControls();
   if (!id) return;
   try {
-    const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(id)}/context`);
+    const value = state.manufacturing, selected = manufacturingSelection(value);
+    if (!value.selectionSupported && Object.keys(selected).length) throw new Error("当前来源不支持工序和作业卡选择，请重新选择工单。");
+    if (value.selectionSupported && loadOperations) {
+      const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(id)}/operations`);
+      if (!sameContext(revision) || epoch !== state.manufacturing.epoch) return;
+      value.operations = data.items;
+    }
+    if (value.selectionSupported && loadCards && value.operationId) {
+      const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(id)}/operations/${encodeURIComponent(value.operationId)}/job-cards`);
+      if (!sameContext(revision) || epoch !== state.manufacturing.epoch) return;
+      value.jobCards = data.items; value.jobCursor = data.next_cursor;
+    }
+    const params = new URLSearchParams(selected).toString();
+    const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(id)}/context${params ? `?${params}` : ""}`);
     if (!sameContext(revision) || epoch !== state.manufacturing.epoch || state.mode !== "manufacturing") return;
-    state.manufacturing.context = data; renderWorkOrder(data);
+    state.manufacturing.context = data; renderManufacturingSelectors(); renderWorkOrder(data);
   } catch (error) { if (sameContext(revision) && epoch === state.manufacturing.epoch) { invalidateManufacturingView("工单来源或权限无法确认，请重新查询。"); errorNotice(error); } }
   finally { if (sameContext(revision)) updateControls(); }
 }
@@ -444,9 +516,10 @@ async function previewBusinessCitation(citation, runId) {
       const { data } = await api(`/api/qa/runs/${encodeURIComponent(runId)}`);
       verified = data.response?.business_citations?.find(item => item.citation_id === citation.citation_id);
     } else {
-      const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(citation.work_order_id)}/context`);
+      const params = new URLSearchParams({ ...(citation.operation_id ? { operation_id: citation.operation_id } : {}), ...(citation.job_card_id ? { job_card_id: citation.job_card_id } : {}) }).toString();
+      const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(citation.work_order_id)}/context${params ? `?${params}` : ""}`);
       if (data.source_revision !== citation.source_revision || data.payload_sha256 !== citation.payload_sha256) throw new Error("来源已变化，请重新查询；旧值不再作为当前事实展示。");
-      verified = { ...citation, value: data[citation.field_name] };
+      verified = { ...citation, value: data.execution && Object.prototype.hasOwnProperty.call(data.execution, citation.field_name) ? data.execution[citation.field_name] : data[citation.field_name] };
     }
     if (!sameContext(revision) || preview !== previewRevision) return;
     if (!verified) throw new Error("当前快照中没有这条业务引用。");
@@ -470,6 +543,8 @@ async function restoreConversation(id) {
     }
     if (state.mode === "manufacturing" && data.binding) {
       state.manufacturing.orderId = data.binding.work_order_id;
+      state.manufacturing.operationId = data.binding.operation_id || null; state.manufacturing.jobCardId = data.binding.job_card_id || null;
+      state.manufacturing.operations = []; state.manufacturing.jobCards = []; state.manufacturing.jobCursor = null; renderManufacturingSelectors();
       state.manufacturing.context = data.turns.at(-1)?.result?.work_order_context || { work_order_id: data.binding.work_order_id, source_revision: data.binding.source_revision };
       $("manufacturing-order").value = data.binding.work_order_id;
       renderWorkOrder(state.manufacturing.context, true);
@@ -689,7 +764,7 @@ $("feedback-refresh").addEventListener("click", () => refreshFeedback());
 $("feedback-view").addEventListener("change", () => refreshFeedback());
 $("feedback-rating").addEventListener("change", () => refreshFeedback());
 $("feedback-more").addEventListener("click", () => refreshFeedback(true));
-$("new-conversation").addEventListener("click", async () => { if (state.mode === "manufacturing" && state.manufacturing.orderId) await selectManufacturingOrder(state.manufacturing.orderId); else clearConversation(); updateControls(); notice("已开始新对话，发送问题后自动保存。追问使用最近 6 轮上下文。"); });
+$("new-conversation").addEventListener("click", async () => { if (state.mode === "manufacturing" && state.manufacturing.orderId) await loadManufacturingSelection(true, true); else clearConversation(); updateControls(); notice("已开始新对话，发送问题后自动保存。追问使用最近 6 轮上下文。"); });
 $("conversation-list").addEventListener("change", event => restoreConversation(event.target.value));
 $("delete-conversation").addEventListener("click", async () => {
   if (!state.conversationId || state.asking || !window.confirm("删除这段对话及其全部历史？此操作无法撤销。")) return;
@@ -749,14 +824,14 @@ $("question-form").addEventListener("submit", async event => {
   pending.querySelector(".message-text").classList.add("loading");
   try {
     if (!state.conversationId) {
-      const body = manufacturing ? JSON.stringify({ work_order_id: state.manufacturing.orderId, knowledge_base_id: state.kb?.id || null, expected_source_revision: state.manufacturing.context.source_revision }) : undefined;
+      const body = manufacturing ? JSON.stringify({ work_order_id: state.manufacturing.orderId, knowledge_base_id: state.kb?.id || null, expected_source_revision: state.manufacturing.context.source_revision, ...manufacturingSelection() }) : undefined;
       const { data } = await api(conversationPath(), { method: "POST", ...(body ? { body } : {}) });
       if (!sameContext(revision)) return;
       state.conversationId = data.id;
       state.conversations.unshift(data); renderConversations();
     }
     const input = { knowledge_base_id: state.kb?.id || null, question, conversation_id: state.conversationId };
-    if (manufacturing) { input.work_order_id = state.manufacturing.orderId; input.expected_source_revision = state.manufacturing.context.source_revision; }
+    if (manufacturing) { input.work_order_id = state.manufacturing.orderId; input.expected_source_revision = state.manufacturing.context.source_revision; Object.assign(input, manufacturingSelection()); }
     const { data, requestId } = await api(manufacturing ? "/api/manufacturing/qa" : "/api/qa", { method: "POST", body: JSON.stringify(input) });
     if (!sameContext(revision)) return;
     renderAnswer(pending, data, requestId);
@@ -777,8 +852,11 @@ $("qa-mode").addEventListener("change", async event => {
   await Promise.all([refreshConversations(), state.mode === "manufacturing" ? refreshManufacturingOrders() : Promise.resolve()]);
 });
 $("manufacturing-order").addEventListener("change", event => selectManufacturingOrder(event.target.value));
-$("manufacturing-refresh").addEventListener("click", async () => { const id = state.manufacturing.orderId; if (await refreshManufacturingOrders() && id && state.mode === "manufacturing") await selectManufacturingOrder(id); });
+$("manufacturing-refresh").addEventListener("click", async () => { const id = state.manufacturing.orderId; if (await refreshManufacturingOrders() && id && state.mode === "manufacturing") await loadManufacturingSelection(true, true); });
 $("manufacturing-more").addEventListener("click", () => refreshManufacturingOrders(true));
+$("manufacturing-operation").addEventListener("change", event => selectManufacturingOperation(event.target.value));
+$("manufacturing-job-card").addEventListener("change", event => selectManufacturingJobCard(event.target.value));
+$("manufacturing-job-cards-more").addEventListener("click", () => moreManufacturingJobCards());
 for (const id of ["work-model", "work-process", "work-date", "work-order"]) $(id).addEventListener("change", () => {
   if (state.conversationId && !state.asking) {
     const question = $("question").value;

@@ -105,5 +105,6 @@ def test_manufacturing_request_cannot_downgrade_schema_with_an_empty_context():
     from backend.app.manufacturing.answer_context import manufacturing_answer_context
     from backend.app.manufacturing.generation_models import ManufacturingGenerationDraft
     context = ContextBuilder().build([])
-    with manufacturing_answer_context(SimpleNamespace()):
+    # The request carries a legacy record while the rendered evidence is empty.
+    with manufacturing_answer_context(SimpleNamespace(context=SimpleNamespace(record=None))):
         assert generation_schema(context) is ManufacturingGenerationDraft

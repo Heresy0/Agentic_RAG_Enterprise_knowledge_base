@@ -16,6 +16,7 @@ from .applicability import ApplicabilityResolver
 from .capabilities import READ_ONLY_REFUSAL, requests_operation
 from .errors import ManufacturingInputError
 from .conversations import ManufacturingConversationStore
+from .execution_contracts import selection_kwargs, context_from_payload
 from .history_access import invalidate_binding
 from ..security.business_scope import BusinessAuthorizationDenied
 from ..evaluation.trace import record_business_source, record_rag_event
@@ -75,13 +76,12 @@ class ManufacturingService:
                 token = store.acquire(payload.conversation_id)
             stage = perf_counter()
             context = await self.access.read_context(principal=self.principal, work_order_id=payload.work_order_id,
-                expected_source_revision=payload.expected_source_revision)
+                expected_source_revision=payload.expected_source_revision, **selection_kwargs(payload))
             if frozen_input is not None:
                 bound = frozen_input["business_context_binding"]["context"]
                 if (context.payload_sha256 != bound["payload_sha256"] or context.record.model_dump(mode="json") != bound["record"]):
                     raise MESError()
-                from .contracts import WorkOrderContext
-                context = context.model_copy(update={"fetched_at": WorkOrderContext.model_validate(bound).fetched_at})
+                context = context.model_copy(update={"fetched_at": context_from_payload(bound).fetched_at})
             timings["work_order_fetch_ms"] = round((perf_counter()-stage)*1000, 2)
             record_business_source(context, stage="fetched")
             if token:

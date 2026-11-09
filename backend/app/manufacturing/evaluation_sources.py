@@ -9,6 +9,7 @@ from uuid import UUID
 from pydantic import Field
 
 from .contracts import Contract, Digest, Identifier, canonical_digest
+from .execution_contracts import selection_kwargs
 from ..integrations.mes import MESConnector, MESError
 from ..integrations.mes_contracts import load_source_configs
 from ..security.business_scope import BusinessAuthorizationService
@@ -68,7 +69,7 @@ class EvaluationSources:
             await self.verify_fixture(connector, scope, binding)
             if context is not None:
                 current = await connector.read_context(context.record.work_order_id, scope=scope,
-                    expected_source_revision=context.record.source_revision)
+                    expected_source_revision=context.record.source_revision, **selection_kwargs(context.record))
                 if current.payload_sha256 != context.payload_sha256:
                     raise MESError()
                 await self.verify_fixture(connector, scope, binding)

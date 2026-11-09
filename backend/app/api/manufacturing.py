@@ -24,6 +24,7 @@ from ..knowledge.milvus_store import VectorStoreUnavailable
 from ..knowledge.conversations import ConversationBusy, ConversationNotFound
 from ..manufacturing.access import WorkOrderAccessService
 from ..manufacturing.contracts import Contract, Identifier, ManufacturingQuestion
+from ..manufacturing.execution_contracts import ExecutionSelection, ManufacturingExecutionQuestion, selection_kwargs
 from ..manufacturing.errors import ManufacturingInputError
 from ..manufacturing.conversations import ManufacturingConversationStore
 from ..manufacturing.history_access import invalidate_binding, invalidate_revoked_conversations, invalidate_scope_bindings
@@ -44,7 +45,7 @@ router = APIRouter(prefix="/api/manufacturing", tags=["manufacturing"])
 logger = logging.getLogger(__name__)
 
 
-class ConversationInput(Contract):
+class ConversationInput(ExecutionSelection):
     work_order_id: Identifier
     knowledge_base_id: UUID | None = None
     expected_source_revision: Identifier | None = None
@@ -137,19 +138,42 @@ async def work_orders(request: Request, response: Response, limit: int = Query(2
         principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
     identifier = uuid4().hex; response.headers.update({"Cache-Control": "no-store", "X-Request-ID": identifier})
     with manufacturing_operation(session, identifier):
-        page = await WorkOrderAccessService(session, connector_for(request, principal)).list_work_orders(
+        connector = connector_for(request, principal)
+        page = await WorkOrderAccessService(session, connector).list_work_orders(
             principal=principal, cursor=cursor, limit=limit)
         return dict(items=[row.model_dump(mode="json", exclude={"tenant_id", "schema_version"}) for row in page.items],
-                    next_cursor=page.next_cursor)
+                    next_cursor=page.next_cursor, **({'selection_supported': True} if connector.config.execution_selection else {}))
+
+
+@router.get('/work-orders/{work_order_id}/operations')
+async def work_order_operations(work_order_id: Identifier, request: Request, response: Response,
+        principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
+    identifier = uuid4().hex; response.headers.update({'Cache-Control': 'no-store', 'X-Request-ID': identifier})
+    with manufacturing_operation(session, identifier):
+        return await WorkOrderAccessService(session, connector_for(request, principal)).list_operations(
+            principal=principal, work_order_id=work_order_id)
+
+
+@router.get('/work-orders/{work_order_id}/operations/{operation_id}/job-cards')
+async def operation_job_cards(work_order_id: Identifier, operation_id: Identifier, request: Request, response: Response,
+        limit: int = Query(20, ge=1, le=20), cursor: str | None = Query(None, min_length=1, max_length=1024),
+        principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
+    identifier = uuid4().hex; response.headers.update({'Cache-Control': 'no-store', 'X-Request-ID': identifier})
+    with manufacturing_operation(session, identifier):
+        return await WorkOrderAccessService(session, connector_for(request, principal)).list_job_cards(
+            principal=principal, work_order_id=work_order_id, operation_id=operation_id, cursor=cursor, limit=limit)
 
 
 @router.get("/work-orders/{work_order_id}/context")
 async def work_order_context(work_order_id: Identifier, request: Request, response: Response,
+        operation_id: Identifier | None = None, job_card_id: Identifier | None = None,
         principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
+    if job_card_id is not None and operation_id is None:
+        raise HTTPException(422, '选择作业卡时必须指定所属工序。')
     identifier = uuid4().hex; response.headers.update({"Cache-Control": "no-store", "X-Request-ID": identifier})
     with manufacturing_operation(session, identifier):
         context = await WorkOrderAccessService(session, connector_for(request, principal)).read_context(
-            principal=principal, work_order_id=work_order_id)
+            principal=principal, work_order_id=work_order_id, operation_id=operation_id, job_card_id=job_card_id)
         return public_context(context)
 
 
@@ -169,7 +193,8 @@ def conversation_summary(store, row):
     return dict(id=row.id, knowledge_base_id=row.knowledge_base_id, title=title,
         turn_count=row.turn_count, created_at=row.created_at, updated_at=row.updated_at,
         binding=dict(work_order_id=binding.work_order_id, source_system_id=binding.source_system_id,
-            source_revision=binding.source_revision, invalidated=binding.invalidated_at is not None))
+            source_revision=binding.source_revision, invalidated=binding.invalidated_at is not None,
+            **selection_kwargs(binding)))
 
 
 @router.post("/conversations", status_code=201)
@@ -180,7 +205,7 @@ async def create_conversation(payload: ConversationInput, request: Request, resp
         store = conversation_store(session, principal, payload.knowledge_base_id)
         access = WorkOrderAccessService(session, connector_for(request, principal))
         context = await access.read_context(principal=principal, work_order_id=payload.work_order_id,
-            expected_source_revision=payload.expected_source_revision)
+            expected_source_revision=payload.expected_source_revision, **selection_kwargs(payload))
         # Reauthorize after the source await before storing a business binding.
         AuthorizationService(session).require_retrieval_scope(principal=principal, knowledge_base_id=payload.knowledge_base_id)
         row = store.create_bound(context)
@@ -246,7 +271,7 @@ def qa_failure(session, principal, payload, request_id, exc):
 
 
 @router.post("/qa", response_model=ManufacturingResponse)
-async def manufacturing_qa(payload: ManufacturingQuestion, request: Request, response: Response,
+async def manufacturing_qa(payload: ManufacturingExecutionQuestion, request: Request, response: Response,
         principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
     identifier = uuid4().hex; response.headers.update({"Cache-Control": "no-store", "X-Request-ID": identifier})
     lease = None

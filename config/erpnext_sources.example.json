@@ -5,6 +5,7 @@
     "source_system_id": "erpnext-hc",
     "base_url": "http://erpnext-adapter:8011",
     "allowed_plants": ["HC-P01"],
-    "token_env": "ERP_ADAPTER_READ_TOKEN"
+    "token_env": "ERP_ADAPTER_READ_TOKEN",
+    "execution_selection": true
   }]
 }

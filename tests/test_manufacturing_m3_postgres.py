@@ -15,7 +15,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, delete, inspect, select, text
 from sqlalchemy.engine import make_url
-from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from sqlalchemy.orm import sessionmaker
 
 from manufacturing_m3_helpers import configure
@@ -70,7 +70,7 @@ def pg_harness(monkeypatch):
 def test_postgres_head_has_nullable_invalidation_and_old_business_bindings_stay_readable(pg_harness):
     h = pg_harness
     with h.engine.connect() as connection:
-        assert connection.scalar(text("SELECT version_num FROM alembic_version")) == "e9a1c3d54670"
+        assert connection.scalar(text("SELECT version_num FROM alembic_version")) == "f2b8c0a961d3"
         column = next(row for row in inspect(connection).get_columns("conversation_business_bindings") if row["name"] == "invalidated_at")
         assert column["nullable"]
     with TestClient(h.c.app) as client:
@@ -78,6 +78,28 @@ def test_postgres_head_has_nullable_invalidation_and_old_business_bindings_stay_
         with h.c.session_factory() as session:
             binding = session.get(ConversationBusinessBinding, (h.c.tenant_id, UUID(identifier)))
             assert binding.invalidated_at is None and binding.source_revision == "r1"
+            assert binding.operation_id is None and binding.job_card_id is None
+
+
+def test_postgres_execution_binding_constraints_and_downgrade_preserve_selection(pg_harness):
+    h = pg_harness
+    with TestClient(h.c.app) as client:
+        identifier = create(client, h)
+    with h.engine.begin() as connection:
+        params = dict(tenant=h.c.tenant_id, conversation=UUID(identifier))
+        for expression in ("job_card_id='JC-A'", "operation_id=''", "operation_id=' ROW-A '", "operation_id='ROW-A', job_card_id=' '"):
+            with pytest.raises(IntegrityError), connection.begin_nested():
+                connection.execute(text('UPDATE conversation_business_bindings SET ' + expression +
+                    ' WHERE tenant_id=:tenant AND conversation_id=:conversation'), params)
+        connection.execute(text("UPDATE conversation_business_bindings SET operation_id='ROW-A', job_card_id='JC-A' "
+            'WHERE tenant_id=:tenant AND conversation_id=:conversation'), params)
+        migration = importlib.import_module('migrations.versions.f2b8c0a961d3_execution_selection_binding')
+        with Operations.context(MigrationContext.configure(connection)):
+            with pytest.raises(RuntimeError, match='拒绝丢失业务边界'):
+                migration.downgrade()
+        row = connection.execute(text('SELECT operation_id, job_card_id FROM conversation_business_bindings '
+            'WHERE tenant_id=:tenant AND conversation_id=:conversation'), params).one()
+        assert tuple(row) == ('ROW-A', 'JC-A')
 
 
 @pytest.mark.parametrize("at,status", [(2, 409), (3, 409)])

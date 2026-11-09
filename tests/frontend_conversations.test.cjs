@@ -571,6 +571,72 @@ function manufacturingSetup() {
 }
 function treeText(node) { return [node.textContent, ...node.children.map(treeText)].join(" "); }
 
+function executionSetup() {
+  const h = manufacturingSetup(), original = h.sandbox.fetch;
+  const operations = [{operation_id:"ROW-A",operation_code:"OP-20",status:"Completed"},{operation_id:"ROW-B",operation_code:"OP-30",status:"Pending"}];
+  function context(orderId, operationId, cardId) {
+    const base = {...h.records.get(orderId),source_revision:`r-${operationId||"wo"}-${cardId||"op"}`,payload_sha256:`hash-${operationId||"wo"}-${cardId||"op"}`};
+    if (operationId) base.execution = {operation_id:operationId,operation_status:"Pending",operation_actual_started_at:null,operation_start_precision:null,
+      job_card_id:cardId||null,job_card_actual_started_at:cardId==="CARD-A"?"2026-10-27T09:30:00+08:00":null,job_card_start_precision:cardId==="CARD-A"?"datetime":null,job_card_status:cardId?"Open":null};
+    return base;
+  }
+  h.sandbox.fetch = async (url, options={}) => {
+    const body = options.body ? JSON.parse(options.body) : null;
+    if (url === "/api/manufacturing/work-orders") { h.requests.push({url,method:"GET",body}); return jsonResponse({items:[...h.records.values()],next_cursor:null,selection_supported:true}); }
+    if (url.endsWith("/operations")) { h.requests.push({url,method:"GET",body}); return jsonResponse({items:operations}); }
+    if (url.includes("/job-cards")) { h.requests.push({url,method:"GET",body}); return jsonResponse({items:[{job_card_id:"CARD-A",status:"Open",actual_started_at:"2026-10-27T09:30:00+08:00"},{job_card_id:"CARD-A2",status:"Open",actual_started_at:null}],next_cursor:null}); }
+    if (url.includes("/context")) { h.requests.push({url,method:"GET",body}); const query=new URLSearchParams(url.split("?")[1]||""); return jsonResponse(context(decodeURIComponent(url.split("/")[4]),query.get("operation_id"),query.get("job_card_id"))); }
+    if (url === "/api/manufacturing/qa") { h.requests.push({url,method:"POST",body}); return jsonResponse({answer:"当前选择的来源事实",answerable:true,citations:[],business_citations:[],run_id:"execution-run",work_order_context:context(body.work_order_id,body.operation_id,body.job_card_id)}); }
+    if (url === "/api/manufacturing/conversations" && options.method === "POST") { const response=await original(url,options); const data=await response.json(); return jsonResponse({...data,binding:{...data.binding,operation_id:body.operation_id,job_card_id:body.job_card_id}}); }
+    if (url.startsWith("/api/manufacturing/conversations/selected-history")) { h.requests.push({url,method:"GET",body}); return jsonResponse({id:"selected-history",binding:{work_order_id:"WO-018",source_revision:"r-ROW-A-CARD-A",operation_id:"ROW-A",job_card_id:"CARD-A"},turns:[{question:"之前的问题",result:{answer:"历史答案",answerable:true,citations:[],work_order_context:context("WO-018","ROW-A","CARD-A")}}]}); }
+    return original(url,options);
+  };
+  return {...h,context};
+}
+
+test("ERP selection: explicit operation/card flow preserves all three start scopes and sends only selectors", async () => {
+  const {$,run,ask,requests}=executionSetup(); await run("refreshManufacturingOrders()"); await run('selectManufacturingOrder("WO-018")');
+  await run('selectManufacturingOperation("ROW-A")'); await run('selectManufacturingJobCard("CARD-A")');
+  const text=treeText($("manufacturing-context"));
+  assert.match(text,/工单实际开工（选版依据）/); assert.match(text,/2026-09-28/); assert.match(text,/工序实际开工：未知/); assert.match(text,/2026-10-27/);
+  await ask("所选作业卡实际开工时间是什么？");
+  const body=requests.find(row=>row.url==="/api/manufacturing/qa").body;
+  assert.equal(body.operation_id,"ROW-A"); assert.equal(body.job_card_id,"CARD-A"); assert(!("actual_started_at" in body));
+  assert.equal(requests.find(row=>row.method==="POST"&&row.url==="/api/manufacturing/conversations").body.job_card_id,"CARD-A");
+});
+
+test("ERP selection: card or operation changes clear conversation binding and child selection", async () => {
+  const {run,ask,requests}=executionSetup(); await run("refreshManufacturingOrders()"); await run('selectManufacturingOrder("WO-018")');
+  await run('selectManufacturingOperation("ROW-A")'); await run('selectManufacturingJobCard("CARD-A")'); await ask("型号？");
+  await run('selectManufacturingJobCard("CARD-A2")'); assert.equal(run("state.conversationId"),null); await ask("型号？");
+  assert.equal(requests.filter(row=>row.method==="POST"&&row.url==="/api/manufacturing/conversations").length,2);
+  await run('selectManufacturingOperation("ROW-B")'); assert.equal(run("state.manufacturing.jobCardId"),null); assert.equal(run("state.conversationId"),null);
+  assert.equal(run("state.manufacturing.context.execution.operation_id"),"ROW-B");
+});
+
+test("ERP selection: late card context cannot replace a newer card selection", async () => {
+  const {run,sandbox}=executionSetup(); await run("refreshManufacturingOrders()"); await run('selectManufacturingOrder("WO-018")'); await run('selectManufacturingOperation("ROW-A")');
+  const original=sandbox.fetch; let finish,begin; const started=new Promise(resolve=>{begin=resolve;});
+  sandbox.fetch=async(url,options)=>{if(url.includes("job_card_id=CARD-A")&&!url.includes("CARD-A2")){begin();return new Promise(resolve=>{finish=()=>original(url,options).then(resolve);});}return original(url,options);};
+  const pending=run('selectManufacturingJobCard("CARD-A")'); await started; await run('selectManufacturingJobCard("CARD-A2")'); finish(); await pending;
+  assert.equal(run("state.manufacturing.context.execution.job_card_id"),"CARD-A2");
+});
+
+test("ERP selection: history and new-conversation refresh retain the explicit selection", async () => {
+  const {run,ask,requests}=executionSetup(); await run("refreshManufacturingOrders()"); await run('restoreConversation("selected-history")');
+  assert.equal(run("state.manufacturing.operationId"),"ROW-A"); assert.equal(run("state.manufacturing.jobCardId"),"CARD-A");
+  await ask("型号？"); assert.equal(requests.find(row=>row.url==="/api/manufacturing/qa").body.job_card_id,"CARD-A");
+  await run("loadManufacturingSelection(true,true)"); assert.equal(run("state.manufacturing.context.execution.job_card_id"),"CARD-A"); assert.equal(run("state.conversationId"),null);
+});
+
+test("ERP selection: current business citation rechecks the same card and nested source field", async () => {
+  const {$,run,context}=executionSetup(); await run("refreshManufacturingOrders()"); await run('selectManufacturingOrder("WO-018")');
+  const source=context("WO-018","ROW-A","CARD-A");
+  const citation={citation_id:"业务22",field_name:"job_card_actual_started_at",work_order_id:"WO-018",operation_id:"ROW-A",job_card_id:"CARD-A",source_revision:source.source_revision,payload_sha256:source.payload_sha256,source_system_id:"erpnext-hc",source_record_id:"CARD-A"};
+  await run(`previewBusinessCitation(${JSON.stringify(citation)})`);
+  assert.match($("citation-content").textContent,/2026-10-27/);
+});
+
 test("M3 U01: work-order list and read-only source card preserve precision, revision and unknown route", async () => {
   const { $, run } = manufacturingSetup();
   await run("refreshManufacturingOrders()");

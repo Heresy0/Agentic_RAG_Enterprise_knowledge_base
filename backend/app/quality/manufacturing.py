@@ -8,6 +8,7 @@ from ..db.business_models import QARunBusinessScope
 from ..manufacturing.answer_context import ManufacturingAnswerContext, business_citation, comparison_question, facts_only_question
 from ..manufacturing.applicability import ApplicabilityResolver
 from ..manufacturing.contracts import WorkOrderContext
+from ..manufacturing.execution_contracts import context_from_payload
 from ..manufacturing.evaluation_sources import registry_for
 from ..manufacturing.service import public_applicability
 from ..security.business_scope import BusinessAuthorizationService
@@ -32,7 +33,7 @@ def observed_context(store, run):
         if data["validation"] != dict(source_verified=True, document_scope_verified=True,
                 business_citations_verified=True, mes_reads=3):
             raise ValueError()
-        context = WorkOrderContext.model_validate(data["business_context"])
+        context = context_from_payload(data["business_context"])
         rows = business_rows(store, run)
         if (context.record.tenant_id != run.tenant_id or len(rows) != 1 or
                 (rows[0].source_system_id, rows[0].plant_code, rows[0].work_order_id) !=

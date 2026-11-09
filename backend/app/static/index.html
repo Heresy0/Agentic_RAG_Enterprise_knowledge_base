@@ -33,6 +33,7 @@
         <div class="mode-toolbar"><label for="qa-mode">查询模式</label><select id="qa-mode"><option value="knowledge">普通知识查询</option><option value="manufacturing">工单作业指导</option></select><span class="answer-meta">工单模式使用来源系统核验的条件</span></div>
         <section id="manufacturing-panel" class="manufacturing-panel" aria-label="工单作业指导" hidden>
           <div class="mode-toolbar"><label for="manufacturing-order">当前工单</label><select id="manufacturing-order"><option value="">选择有权访问的工单</option></select><button id="manufacturing-refresh" class="secondary" type="button">重新查询</button><button id="manufacturing-more" class="secondary" type="button" hidden>加载更多工单</button></div>
+          <div id="manufacturing-selection" class="mode-toolbar" hidden><label for="manufacturing-operation">工序记录</label><select id="manufacturing-operation"><option value="">工单级（未选择工序）</option></select><label for="manufacturing-job-card">作业卡</label><select id="manufacturing-job-card"><option value="">未选择作业卡</option></select><button id="manufacturing-job-cards-more" class="secondary" type="button" hidden>加载更多作业卡</button></div>
           <div id="manufacturing-context" class="source-card" role="status">选择工单后查看可信来源字段。</div>
           <div id="manufacturing-applicability" class="source-card" hidden></div>
         </section>

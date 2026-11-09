@@ -10,7 +10,10 @@ import httpx
 from pydantic import Field, SecretStr, ValidationError, model_validator
 
 from ..manufacturing.contracts import Contract, Identifier, Text, WorkOrderRecord, canonical_digest
-from .mes import MESError, MESNotFound, MESUnavailable
+from .mes import MESError, MESNotFound, MESUnavailable, contains_credential
+from .mes import MESContextChanged
+from ..manufacturing.execution_contracts import (ExecutionContext, ExecutionWorkOrderRecord,
+    OperationChoice, OperationPage, JobCardChoice)
 
 
 class ERPNextConfig(Contract):
@@ -57,6 +60,13 @@ def source_timestamp(value, timezone, *, allow_date=False):
     return parsed.isoformat(), 'datetime'
 
 
+def safe_projection(value, config):
+    for secret in (config.api_key, config.api_secret, config.read_token):
+        if contains_credential(value.model_dump(mode='json'), secret.get_secret_value()):
+            raise MESError()
+    return value
+
+
 def project_work_order(raw, config, plants):
     """Use only actual_start_date; no plan/report/first-operation fallback."""
     if not isinstance(raw, dict):
@@ -83,10 +93,61 @@ def project_work_order(raw, config, plants):
             source_revision='erp-' + revision[:60], source_updated_at=modified)
     except (KeyError, TypeError, ValueError, ValidationError):
         raise MESError() from None
-    for secret in (config.api_key, config.api_secret, config.read_token):
-        if secret.get_secret_value() in record.model_dump_json():
-            raise MESError()
-    return record
+    return safe_projection(record, config)
+
+
+def operation_choices(raw):
+    try:
+        result = []
+        for row in raw['operations']:
+            start = row.get('actual_start_time')
+            value, precision = source_timestamp(start, 'Asia/Shanghai', allow_date=True) if start not in (None, '') else (None, None)
+            result.append(OperationChoice(operation_id=row['name'], operation_code=row['operation'], status=row['status'],
+                actual_started_at=value, actual_start_precision=precision))
+        return tuple(result)
+    except (KeyError, TypeError, ValueError):
+        raise MESError() from None
+
+
+def selected_operation(raw, operation_id):
+    # Child row identity, not operation code: an operation may occur twice.
+    choices = operation_choices(raw)
+    matches = [row for row in choices if row.operation_id == operation_id]
+    if len(matches) != 1:
+        raise MESNotFound()
+    return matches[0]
+
+
+def job_card_choice(raw, work_order, operation, config):
+    if not isinstance(raw, dict):
+        raise MESError()
+    if (raw.get('work_order'), raw.get('operation_id'), raw.get('operation'), raw.get('company'), raw.get('production_item')) != (
+            work_order['name'], operation.operation_id, operation.operation_code, work_order['company'], work_order.get('production_item')):
+        raise MESNotFound()
+    if type(raw.get('docstatus')) is not int or raw.get('docstatus') not in (0, 1) or raw.get('status') == 'Cancelled':
+        raise MESNotFound()
+    try:
+        start = raw.get('actual_start_date')
+        value, precision = source_timestamp(start, config.site_timezone, allow_date=True) if start not in (None, '') else (None, None)
+        modified, _ = source_timestamp(raw['modified'], config.site_timezone)
+        return safe_projection(JobCardChoice(job_card_id=raw['name'], work_order_id=raw['work_order'], operation_id=raw['operation_id'],
+            operation_code=raw['operation'], status=raw['status'], actual_started_at=value, actual_start_precision=precision,
+            source_updated_at=modified), config)
+    except (KeyError, TypeError, ValueError):
+        raise MESError() from None
+
+
+def execution_record(base, operation, card=None):
+    execution = ExecutionContext(operation_id=operation.operation_id,
+        operation_actual_started_at=operation.actual_started_at, operation_start_precision=operation.actual_start_precision,
+        operation_status=operation.status, **(dict(job_card_id=card.job_card_id, job_card_actual_started_at=card.actual_started_at,
+        job_card_start_precision=card.actual_start_precision, job_card_status=card.status, job_card_updated_at=card.source_updated_at) if card else {}))
+    revision = canonical_digest(dict(work_order_revision=base.source_revision, operation=operation.model_dump(mode='json'),
+        job_card=card.model_dump(mode='json') if card else None))
+    values = base.model_dump(exclude={'schema_version'})
+    values.update(operation_code=operation.operation_code, execution=execution, source_revision='erp-' + revision[:60],
+        source_updated_at=max(base.source_updated_at, card.source_updated_at) if card else base.source_updated_at)
+    return ExecutionWorkOrderRecord(**values)
 
 
 class ERPNextClient:
@@ -124,12 +185,56 @@ class ERPNextClient:
         except (ValueError, RecursionError):
             raise MESError() from None
 
-    async def read(self, work_order_id, plants):
+    async def _work_order(self, work_order_id, plants):
         data = await self._get('/api/resource/Work%20Order/' + quote(work_order_id, safe=''))
         record = project_work_order(data, self.config, plants)
         if record.work_order_id != work_order_id:
             raise MESError()
-        return record
+        return data, record
+
+    async def read(self, work_order_id, plants, *, operation_id=None, job_card_id=None):
+        data, base = await self._work_order(work_order_id, plants)
+        if operation_id is None:
+            if job_card_id is not None:
+                raise MESError()
+            return base
+        operation = selected_operation(data, operation_id)
+        if job_card_id is None:
+            return safe_projection(execution_record(base, operation), self.config)
+        raw = await self._get('/api/resource/Job%20Card/' + quote(job_card_id, safe=''))
+        card = job_card_choice(raw, data, operation, self.config)
+        if card.job_card_id != job_card_id:
+            raise MESError()
+        # Parent and child are separate REST reads. Recheck the parent once,
+        # without retries, before presenting the combined source revision.
+        fresh, current = await self._work_order(work_order_id, plants)
+        if execution_record(base, operation).payload_sha256 != execution_record(current, selected_operation(fresh, operation_id)).payload_sha256:
+            raise MESContextChanged()
+        return safe_projection(execution_record(base, operation, card), self.config)
+
+    async def operations(self, work_order_id, plants):
+        data, base = await self._work_order(work_order_id, plants)
+        try:
+            return safe_projection(OperationPage(work_order_id=work_order_id, source_revision=base.source_revision, items=operation_choices(data)), self.config)
+        except ValidationError:
+            raise MESError() from None
+
+    async def job_cards(self, work_order_id, operation_id, plants, *, after='', limit=20, parent_revision=None):
+        data, base = await self._work_order(work_order_id, plants)
+        operation = selected_operation(data, operation_id)
+        revision = execution_record(base, operation).source_revision
+        if parent_revision is not None and parent_revision != revision:
+            raise MESContextChanged()
+        fields = ['name','work_order','operation_id','operation','company','production_item','actual_start_date','status','modified','docstatus']
+        filters = [['work_order','=',work_order_id],['operation_id','=',operation_id],['docstatus','<',2],['name','>',after]]
+        raw = await self._get('/api/resource/Job%20Card', dict(fields=json.dumps(fields), filters=json.dumps(filters),
+            order_by='name asc', limit_page_length=limit + 1))
+        if not isinstance(raw, list) or len(raw) > limit + 1:
+            raise MESError()
+        cards = [job_card_choice(row, data, operation, self.config) for row in raw]
+        if len({row.job_card_id for row in cards}) != len(cards) or any(row.job_card_id == after for row in cards):
+            raise MESError()
+        return cards[:limit], cards[limit-1].job_card_id if len(cards) > limit else None, revision
 
     async def page(self, plants, *, after, limit):
         companies = sorted(company for company, plant in self.config.company_plants.items() if plant in plants)

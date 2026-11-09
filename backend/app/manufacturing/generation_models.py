@@ -44,11 +44,65 @@ class ManufacturingGenerationDraft(EvidenceFirstAnswerDraft):
     claims: list[ManufacturingClaim] = Field(default_factory=list)
 
 
+ExecutionBusinessField = Literal[BusinessField, 'operation_id', 'operation_actual_started_at', 'operation_start_precision',
+    'operation_status', 'job_card_id', 'job_card_actual_started_at', 'job_card_start_precision', 'job_card_status', 'job_card_updated_at']
+
+
+class ExecutionManufacturingClaim(ManufacturingClaim):
+    business_field: ExecutionBusinessField | None = Field(default=None, exclude_if=lambda value: value is None,
+        description=ManufacturingClaim.model_fields['business_field'].description)
+
+    @model_validator(mode='after')
+    def selected_field_exists(self):
+        from .answer_context import current_manufacturing_context
+        active = current_manufacturing_context()
+        if active is not None and self.business_field is not None and self.business_field not in {row.field_name for row in active.items}:
+            raise PydanticCustomError('manufacturing_execution_field_unavailable', '当前选择没有该业务字段来源。')
+        return self
+
+
+class ExecutionManufacturingGenerationDraft(ManufacturingGenerationDraft):
+    claims: list[ExecutionManufacturingClaim] = Field(default_factory=list)
+
+
+def execution_start_projection(question, context, active):
+    """Project a simple selected-entity start query; never change selection policy."""
+    import re
+    from ..knowledge.answer_coverage import requirement_prompt
+    execution = getattr(active.context.record, 'execution', None)
+    if (execution is None or not active.facts_only or not re.search(r'实际.*开工|开工时间|开工日期|何时开工|几点.*开工', question)
+            or re.search(r'型号|批次|状态|路线|通知|来源|更新时间|采集|分别|比较|对比|先后|最早|以及|和|与', question)):
+        return None
+    if '作业卡' in question:
+        prefix = 'job_card'
+    elif '工序' in question:
+        prefix = 'operation'
+    elif '工单' in question:
+        prefix = ''
+    else:
+        prefix = 'job_card' if execution.job_card_id else 'operation'
+    requirements = json.loads(requirement_prompt(question, context))
+    if prefix == 'job_card' and execution.job_card_id is None:
+        return ExecutionManufacturingGenerationDraft.model_validate(dict(answerable=False, response_type='clarify',
+            missing_fields=['作业卡'], clarification_questions=['请先选择所属工序下的具体作业卡。'],
+            coverage=[dict(requirement_id=row['id'], aspect=row['question'], status='insufficient', claim_indices=[],
+                missing_information='尚未选择具体作业卡') for row in requirements]))
+    names = [prefix + '_actual_started_at', prefix + '_start_precision'] if prefix else ['actual_started_at', 'actual_start_precision']
+    return ExecutionManufacturingGenerationDraft.model_validate(dict(answerable=True, response_type='answer',
+        claims=[dict(business_field=name, claim_kind='business_fact') for name in names],
+        coverage=[dict(requirement_id=row['id'], aspect=row['question'], status='answered', claim_indices=[1, 2], missing_information=None)
+            for row in requirements]))
+
+
 def precision_projection(question, context):
     """Known date + known precision answers a clock question without inventing a time."""
     from .answer_context import current_manufacturing_context, precision_fact_question
     from ..knowledge.answer_coverage import requirement_prompt
     active = current_manufacturing_context()
+    if active is not None:
+        projected = execution_start_projection(question, context, active)
+        if projected is not None:
+            return projected
     if (active is None or not active.facts_only or active.context.record.actual_start_precision != "date"
             or not precision_fact_question(question)):
         return None

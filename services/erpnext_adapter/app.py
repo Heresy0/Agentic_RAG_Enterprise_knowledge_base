@@ -13,6 +13,7 @@ from backend.app.integrations.erpnext import ERPNextClient
 from backend.app.integrations.mes import MESError
 from backend.app.integrations.mes_contracts import WorkOrderPage
 from backend.app.manufacturing.contracts import Identifier, canonical_digest
+from backend.app.manufacturing.execution_contracts import JobCardPage
 
 
 def create_app(config, *, transport=None):
@@ -52,35 +53,65 @@ def create_app(config, *, transport=None):
     def health():
         return dict(status='ok', mode='erpnext_read_only')
 
+    def cursor_binding(plants, limit, **selection):
+        return canonical_digest(dict(tenant=str(config.tenant_id), source=config.source_system_id,
+            endpoint=config.base_url, companies=config.company_plants, timezone=config.site_timezone,
+            plants=sorted(plants), limit=limit, **selection))
+
+    def decode_cursor(cursor, binding):
+        if cursor is None:
+            return '', None
+        try:
+            payload, signature = cursor.split('.')
+            expected = hmac.new(config.read_token.get_secret_value().encode(), payload.encode(), hashlib.sha256).hexdigest()
+            if not hmac.compare_digest(signature, expected):
+                raise ValueError()
+            row = json.loads(base64.b64decode(payload + '=' * (-len(payload) % 4), altchars=b'-_', validate=True))
+            if row['binding'] != binding or not isinstance(row['last'], str):
+                raise ValueError()
+            return row['last'], row.get('parent_revision')
+        except (ValueError, KeyError, TypeError, UnicodeError):
+            raise HTTPException(422, '分页游标无效或业务范围已变化。') from None
+
+    def encode_cursor(last, binding, parent_revision=None):
+        if last is None:
+            return None
+        data = dict(binding=binding, last=last)
+        if parent_revision is not None:
+            data['parent_revision'] = parent_revision
+        payload = base64.urlsafe_b64encode(json.dumps(data, sort_keys=True).encode()).decode().rstrip('=')
+        return payload + '.' + hmac.new(config.read_token.get_secret_value().encode(), payload.encode(), hashlib.sha256).hexdigest()
+
     @app.get('/v1/work-orders', response_model=WorkOrderPage)
     async def page(response: Response, plants=Depends(authorized), limit: int = Query(20, ge=1, le=20),
                    cursor: str | None = Query(None, min_length=1, max_length=1024)):
         response.headers['Cache-Control'] = 'no-store'
-        binding = canonical_digest(dict(tenant=str(config.tenant_id), source=config.source_system_id,
-            endpoint=config.base_url, companies=config.company_plants, timezone=config.site_timezone, plants=sorted(plants), limit=limit))
-        after = ''
-        if cursor is not None:
-            try:
-                payload, signature = cursor.split('.')
-                expected = hmac.new(config.read_token.get_secret_value().encode(), payload.encode(), hashlib.sha256).hexdigest()
-                if not hmac.compare_digest(signature, expected):
-                    raise ValueError()
-                row = json.loads(base64.b64decode(payload + '=' * (-len(payload) % 4), altchars=b'-_', validate=True))
-                if row['binding'] != binding or not isinstance(row['last'], str):
-                    raise ValueError()
-                after = row['last']
-            except (ValueError, KeyError, TypeError, UnicodeError):
-                raise HTTPException(422, '分页游标无效或业务范围已变化。') from None
+        binding = cursor_binding(plants, limit)
+        after, _ = decode_cursor(cursor, binding)
         records, last = await bounded(client.page(plants, after=after, limit=limit))
-        next_cursor = None
-        if last is not None:
-            payload = base64.urlsafe_b64encode(json.dumps(dict(binding=binding, last=last), sort_keys=True).encode()).decode().rstrip('=')
-            next_cursor = payload + '.' + hmac.new(config.read_token.get_secret_value().encode(), payload.encode(), hashlib.sha256).hexdigest()
-        return WorkOrderPage(items=tuple(records), next_cursor=next_cursor)
+        return WorkOrderPage(items=tuple(records), next_cursor=encode_cursor(last, binding))
+
+    @app.get('/v1/work-orders/{work_order_id}/operations')
+    async def operations(work_order_id: Identifier, response: Response, plants=Depends(authorized)):
+        response.headers['Cache-Control'] = 'no-store'
+        return await bounded(client.operations(work_order_id, plants))
+
+    @app.get('/v1/work-orders/{work_order_id}/operations/{operation_id}/job-cards', response_model=JobCardPage)
+    async def job_cards(work_order_id: Identifier, operation_id: Identifier, response: Response, plants=Depends(authorized),
+                        limit: int = Query(20, ge=1, le=20), cursor: str | None = Query(None, min_length=1, max_length=1024)):
+        response.headers['Cache-Control'] = 'no-store'
+        binding = cursor_binding(plants, limit, kind='job-cards', work_order_id=work_order_id, operation_id=operation_id)
+        after, revision = decode_cursor(cursor, binding)
+        cards, last, current = await bounded(client.job_cards(work_order_id, operation_id, plants, after=after, limit=limit, parent_revision=revision))
+        return JobCardPage(work_order_id=work_order_id, operation_id=operation_id, source_revision=current,
+            items=tuple(cards), next_cursor=encode_cursor(last, binding, current))
 
     @app.get('/v1/work-orders/{work_order_id}/context')
-    async def context(work_order_id: Identifier, response: Response, plants=Depends(authorized)):
+    async def context(work_order_id: Identifier, response: Response, plants=Depends(authorized),
+                      operation_id: Identifier | None = None, job_card_id: Identifier | None = None):
         response.headers['Cache-Control'] = 'no-store'
-        return await bounded(client.read(work_order_id, plants))
+        if job_card_id is not None and operation_id is None:
+            raise HTTPException(422, '选择作业卡时必须指定所属工序。')
+        return await bounded(client.read(work_order_id, plants, operation_id=operation_id, job_card_id=job_card_id))
 
     return app

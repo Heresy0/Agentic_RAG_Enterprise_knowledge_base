@@ -124,3 +124,74 @@ def change_demo_plan(restore=False):
     doc.save()
     frappe.db.commit()
     return dict(status='restored' if restore else 'changed', demo_only=True)
+
+
+def execution_demo(output_path='/tmp/erpnext-execution-result.json'):
+    """Extend the dedicated lab through normal documents; no runtime write API."""
+    import frappe
+    from erpnext.manufacturing.doctype.work_order.work_order import create_job_card
+
+    if frappe.local.site != 'erpnext.localhost':
+        raise ValueError('Not the dedicated integration site.')
+    frappe.set_user('Administrator')
+    if frappe.db.exists('Work Order', 'ERP-WO-EXECUTION'):
+        raise ValueError('Execution demo already exists; do not overwrite its evidence.')
+    source = frappe.get_doc('Work Order', 'ERP-WO-MULTI')
+    doc = frappe.get_doc(dict(doctype='Work Order', production_item=source.production_item,
+        company=source.company, qty=9, bom_no=source.bom_no, use_multi_level_bom=0,
+        skip_transfer=1, from_wip_warehouse=0, planned_start_date='2026-09-27 08:00:00',
+        source_warehouse=source.source_warehouse, wip_warehouse=source.wip_warehouse, fg_warehouse=source.fg_warehouse))
+    doc.get_items_and_operations_from_bom()
+    doc.insert(set_name='ERP-WO-EXECUTION')
+    doc.submit()
+    first, second = doc.operations
+    cards = frappe.get_all('Job Card', filters=dict(work_order=doc.name, operation_id=first.name, docstatus=0), pluck='name')
+    if len(cards) != 1:
+        raise ValueError('Unexpected initial job cards.')
+    submitted = frappe.get_doc('Job Card', cards[0])
+    submitted.for_quantity = 3
+    submitted.append('time_logs', dict(from_time='2026-09-28 08:10:00', to_time='2026-09-28 08:40:00', completed_qty=3))
+    submitted.save()
+    submitted.submit()
+    doc.reload()
+    first = next(row for row in doc.operations if row.name == first.name)
+    # ERPNext's factory expects a transient job_card_qty on a mapping, not a
+    # persisted Work Order Operation document.
+    row = frappe._dict(first.as_dict())
+    row.job_card_qty = 3
+    later = create_job_card(doc, row)
+    later.pending_qty = 2
+    later.append('time_logs', dict(from_time='2026-10-26 09:30:00', to_time='2026-10-26 10:00:00', completed_qty=1))
+    later.insert()
+    unknown = create_job_card(doc, row)
+    unknown.insert()
+    role = 'Knowledge Work Order Reader'
+    if not frappe.db.exists('Custom DocPerm', dict(parent='Job Card', role=role, permlevel=0)):
+        frappe.get_doc(dict(doctype='Custom DocPerm', parent='Job Card', parenttype='DocType', parentfield='permissions',
+            role=role, permlevel=0, read=1, select=1, write=0, create=0, delete=0, submit=0, cancel=0, amend=0,
+            export=0, share=0)).insert()
+    frappe.clear_cache()
+    doc.reload()
+    result = dict(work_order=doc.name, operation_ids={row.operation: row.name for row in doc.operations},
+        submitted_card=submitted.name, later_card=later.name, unknown_card=unknown.name,
+        work_order_actual=str(doc.actual_start_date), operation_actual=str(first.actual_start_time),
+        later_card_actual=str(later.actual_start_date), demo_only=True)
+    with Path(output_path).open('x', encoding='utf-8') as stream:
+        json.dump(result, stream, indent=2)
+    frappe.db.commit()
+    return dict(status='provisioned', work_orders=1, operations=2, demo_only=True)
+
+
+def change_execution_card(job_card_id, restore=False):
+    """Administrator-only change to a draft demo time log for source checks."""
+    import frappe
+    if frappe.local.site != 'erpnext.localhost':
+        raise ValueError('Not the dedicated integration site.')
+    frappe.set_user('Administrator')
+    doc = frappe.get_doc('Job Card', job_card_id)
+    if doc.work_order != 'ERP-WO-EXECUTION' or doc.docstatus != 0 or len(doc.time_logs) != 1:
+        raise ValueError('Only the dedicated draft time-log fixture can change.')
+    doc.time_logs[0].from_time = '2026-10-26 09:30:00' if restore else '2026-10-26 09:31:00'
+    doc.save()
+    frappe.db.commit()
+    return dict(status='restored' if restore else 'changed', demo_only=True)

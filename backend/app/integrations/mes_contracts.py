@@ -22,6 +22,7 @@ class MESSourceConfig(Contract):
     base_url: Annotated[str, StringConstraints(strict=True, max_length=500)]
     allowed_plants: tuple[Identifier, ...] = Field(min_length=1, max_length=100)
     token: SecretStr = Field(repr=False)
+    execution_selection: bool = False
     connect_timeout: float = Field(default=2, gt=0, le=2)
     call_timeout: float = Field(default=5, gt=0, le=5)
     max_response_bytes: int = Field(default=65536, ge=128, le=65536, strict=True)
@@ -51,6 +52,7 @@ class MESSourceSpec(Contract):
     base_url: Annotated[str, StringConstraints(strict=True, max_length=500)]
     allowed_plants: tuple[Identifier, ...] = Field(min_length=1, max_length=100)
     token_env: Annotated[str, StringConstraints(strict=True, pattern=r"^[A-Z][A-Z0-9_]{2,79}$")]
+    execution_selection: bool = False
 
 
 class MESSourcesFile(Contract):

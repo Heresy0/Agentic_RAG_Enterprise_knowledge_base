@@ -10,7 +10,12 @@ def generation_schema(context=None, *, claim=False):
     from ..manufacturing.answer_context import current_manufacturing_context
     manufacturing = current_manufacturing_context() is not None or context is not None and bool(context.business_items)
     if manufacturing:
-        from ..manufacturing.generation_models import ManufacturingClaim, ManufacturingGenerationDraft
+        from ..manufacturing.generation_models import (ManufacturingClaim, ManufacturingGenerationDraft,
+            ExecutionManufacturingClaim, ExecutionManufacturingGenerationDraft)
+        active = current_manufacturing_context()
+        if (active is not None and getattr(active.context.record, 'execution', None) is not None or
+                context is not None and any(row.field_name == 'operation_id' for row in context.business_items)):
+            return ExecutionManufacturingClaim if claim else ExecutionManufacturingGenerationDraft
         return ManufacturingClaim if claim else ManufacturingGenerationDraft
     return AnswerClaim if claim else EvidenceFirstAnswerDraft
 

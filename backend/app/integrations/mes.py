@@ -8,6 +8,8 @@ import httpx
 from pydantic import TypeAdapter, ValidationError
 
 from ..manufacturing.contracts import Identifier, WorkOrderContext, WorkOrderRecord
+from ..manufacturing.execution_contracts import (ExecutionSelection, OperationPage, JobCardPage,
+    record_from_payload, observed_context, selection_kwargs)
 from ..security.business_scope import BusinessAuthorizationDenied, BusinessScope
 from .mes_contracts import MESSourceConfig, WorkOrderPage
 
@@ -45,6 +47,12 @@ class MESInvalidCursor(MESError):
     message = "分页游标无效或业务范围已变化，请重新查询。"
 
 
+class MESSelectionUnavailable(MESError):
+    status_code = 422
+    error_code = 'execution_selection_unavailable'
+    message = '当前业务来源不支持工序或作业卡选择。'
+
+
 def _reject_constant(_):
     raise ValueError("non-finite JSON number")
 
@@ -56,6 +64,16 @@ def _unique_object(pairs):
             raise ValueError("duplicate source JSON field")
         result[key] = value
     return result
+
+
+def contains_credential(value, secret):
+    if isinstance(value, str):
+        return secret in value
+    if isinstance(value, dict):
+        return any(contains_credential(item, secret) for item in value.values())
+    if isinstance(value, (list, tuple)):
+        return any(contains_credential(item, secret) for item in value)
+    return False
 
 
 class MESConnector:
@@ -96,7 +114,9 @@ class MESConnector:
                         raise MESNotFound()
                     if response.status_code in (401, 403, 429) or response.status_code >= 500:
                         raise MESUnavailable()
-                    if response.status_code == 422 and path == "/v1/work-orders" and params and params.get("cursor"):
+                    if response.status_code == 409:
+                        raise MESContextChanged()
+                    if response.status_code == 422 and params and params.get("cursor"):
                         raise MESInvalidCursor()
                     if response.status_code != 200:
                         raise MESError()
@@ -126,7 +146,7 @@ class MESConnector:
 
     def _validate_record(self, raw, scope, plants):
         try:
-            record = WorkOrderRecord.model_validate(raw)
+            record = record_from_payload(raw)
         except ValidationError:
             raise MESError() from None
         if not scope.contains_record(record) or record.plant_code not in plants:
@@ -134,37 +154,69 @@ class MESConnector:
         # Even a schema-valid upstream record must not reflect the service
         # credential into user responses, snapshots or model inputs.
         secret = self.config.token.get_secret_value()
-        for value in record.model_dump(mode="json").values():
-            if isinstance(value, str) and secret in value or isinstance(value, list) and any(secret in item for item in value):
-                raise MESError()
+        if contains_credential(record.model_dump(mode='json'), secret):
+            raise MESError()
         if len(record.model_dump_json(ensure_ascii=False)) > self.config.max_context_characters:
             raise MESError()
         return record
 
     async def read_context(self, work_order_id: str, *, scope: BusinessScope,
-                           expected_source_revision=None) -> WorkOrderContext:
+                           expected_source_revision=None, operation_id=None, job_card_id=None) -> WorkOrderContext:
         TypeAdapter(Identifier).validate_python(work_order_id)
         if expected_source_revision is not None:
             TypeAdapter(Identifier).validate_python(expected_source_revision)
-        payload, plants = await self._get(f"/v1/work-orders/{quote(work_order_id, safe='')}/context", scope=scope)
+        selection = selection_kwargs(ExecutionSelection(operation_id=operation_id, job_card_id=job_card_id))
+        if selection and not self.config.execution_selection:
+            raise MESSelectionUnavailable()
+        payload, plants = await self._get(f"/v1/work-orders/{quote(work_order_id, safe='')}/context", scope=scope, params=selection or None)
         record = self._validate_record(payload, scope, plants)
-        if record.work_order_id != work_order_id:
+        if record.work_order_id != work_order_id or selection_kwargs(record) != selection:
             raise MESError()
         if expected_source_revision is not None and record.source_revision != expected_source_revision:
             raise MESContextChanged()
         now = datetime.now(timezone.utc)
-        return WorkOrderContext(record=record, fetched_at=now, last_verified_at=now,
-                                payload_sha256=record.payload_sha256)
+        return observed_context(record, fetched_at=now, last_verified_at=now)
 
     async def verify_context(self, previous: WorkOrderContext, *, scope: BusinessScope) -> WorkOrderContext:
         if not scope.contains_record(previous.record):
             raise BusinessAuthorizationDenied()
         current = await self.read_context(previous.record.work_order_id, scope=scope,
-                                           expected_source_revision=previous.record.source_revision)
+            expected_source_revision=previous.record.source_revision, **selection_kwargs(previous.record))
         if current.payload_sha256 != previous.payload_sha256:
             raise MESError()
-        return WorkOrderContext(record=current.record, fetched_at=previous.fetched_at,
-            last_verified_at=current.last_verified_at, payload_sha256=current.payload_sha256)
+        return current.model_copy(update={'fetched_at': previous.fetched_at})
+
+    async def list_operations(self, work_order_id, *, scope):
+        if not self.config.execution_selection:
+            raise MESSelectionUnavailable()
+        TypeAdapter(Identifier).validate_python(work_order_id)
+        raw, _ = await self._get(f'/v1/work-orders/{quote(work_order_id, safe="")}/operations', scope=scope)
+        try:
+            page = OperationPage.model_validate(raw)
+        except ValidationError:
+            raise MESError() from None
+        if page.work_order_id != work_order_id:
+            raise MESError()
+        return page
+
+    async def list_job_cards(self, work_order_id, operation_id, *, scope, cursor=None, limit=20):
+        if not self.config.execution_selection:
+            raise MESSelectionUnavailable()
+        for value in (work_order_id, operation_id):
+            TypeAdapter(Identifier).validate_python(value)
+        if type(limit) is not int or not 1 <= limit <= 20:
+            raise ValueError('Invalid page limit.')
+        params = dict(limit=limit)
+        if cursor is not None:
+            params['cursor'] = cursor
+        raw, _ = await self._get(f'/v1/work-orders/{quote(work_order_id, safe="")}/operations/{quote(operation_id, safe="")}/job-cards', scope=scope, params=params)
+        try:
+            page = JobCardPage.model_validate(raw)
+        except ValidationError:
+            raise MESError() from None
+        if (page.work_order_id, page.operation_id) != (work_order_id, operation_id) or len(page.items) > limit:
+            raise MESError()
+        return page
 
     async def list_work_orders(self, *, scope: BusinessScope, cursor=None, limit=20) -> WorkOrderPage:
         if type(limit) is not int or not 1 <= limit <= 20:
