@@ -8,8 +8,10 @@
 
 执行前只读解析工序子行编号和作业卡身份，按完整源记录、修订/哈希、实时登记、已审核资料及运行指纹冻结输入。工序代码必须唯一，不能随意取第一项。真实源、审核原文与标签不符时，预检停止且不调用模型。执行过程中每次物理模型调用前重新检查授权、资料及对应来源。
 
-[`accept_erpnext_development.py`](../../scripts/accept_erpnext_development.py)分两步运行：先 `--prepare`，再显式 `--execute --allow-model-calls`。两个步骤都需要 `--suite`、私有 `--tokens` 和新的私有 `--run-dir`；令牌文件包含 `admin` 与无业务授权的 `unauthorized`，身份仍由原 OIDC 验证器验证。已有冻结或执行标记不覆盖，不提供 `--unexecuted-from` 或单题重发选项。
+[`accept_erpnext_development.py`](../../scripts/accept_erpnext_development.py)分两步运行：先 `--prepare`，再显式 `--execute --allow-model-calls`。两个步骤都需要 `--suite`、原始制造资料的 `--corpus-manifest`、私有 `--tokens` 和新的私有 `--run-dir`；令牌文件包含 `admin` 与无业务授权的 `unauthorized`，身份仍由原 OIDC 验证器验证。已有冻结或执行标记不覆盖，不提供 `--unexecuted-from` 或单题重发选项。
 
 参考答案、事实标签、case ID 和评分标准不进入 QA 请求。请求仅含原问题、工单/工序/卡编号、知识库范围及预期源修订。成功响应先落盘再取快照和离线评分；获取/核验时间是每次请求的观察元数据，评分仅允许将这两个时间与快照对齐，完整业务记录和答案标准保持冻结。
 
 开发门槛预先定为至少 14/16、6 道关键题全部通过，且权限与只读题全部通过。自动代理与助手非独立逐题复核分别报告，不合并成绩；不通过后不在本轮改标准、修改业务源码或追加模型确认。价格未配置时费用未知，不能将未知用量或费用记为零。
+
+2026-11-09 r1 一次执行完成：自动及助手非独立复核均 10/16，关键题 2/6，未通过门槛；36 次调用、146493 已知及预算 Token、92.545 秒，无重试补跑。完整记录见[本轮报告](../../docs/reports/erpnext-development-20261109-r1.md)与[结构化结果](../../docs/reports/erpnext-development-20261109-r1.json)，旧成绩保留且不拼分。该批次授权已收尾，新的执行仍需新的明确授权。

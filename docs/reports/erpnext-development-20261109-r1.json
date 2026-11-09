@@ -1,0 +1,736 @@
+{
+  "schema_version": "erpnext-development-report-v1",
+  "created_at": "2026-11-09T14:24:36.774050+00:00",
+  "batch": "erpnext-development-20261109-r1",
+  "status": "development_gate_failed",
+  "source": {
+    "suite_revision": "ffa56fa00af7bc2d6096a426767611549ceb72e8",
+    "application_revision": "2680ce0662111cb0e23a68a702a54c3b5f9ee76b",
+    "image_id": "sha256:3633d9b774c14e19cd199e526ff46248fc25084e9877cddeff4bd832c1484381",
+    "verified_application_files": 194,
+    "backend_code_sha256": "05f8a38ab6271a50d64162214d4c868010c71978f83df25de9ff329fa1293252",
+    "runtime_fingerprint": "dec4501959238544bcb9a06b734861016354ed9eec8c353acfae8f064d10690c",
+    "suite_sha256": "b051e4e0b5782afd8fb5843699483b02c30aa4507fcc04926a6a7edbdc7f9ad2",
+    "prepared_sha256": "67e3a6644686d9a8f7ee4bdd37b7c6a329914fc581703a34eb738beb0a985fce",
+    "transport": "authenticated_in_process_asgi_http",
+    "application_url": "http://127.0.0.1:8003",
+    "erp_url": "http://127.0.0.1:18080",
+    "models": {
+      "chat_model": "qwen3.7-flash",
+      "embedding_model": "text-embedding-v4",
+      "rerank_model": "qwen3-rerank"
+    }
+  },
+  "results": {
+    "total": 16,
+    "executed_http_questions": 16,
+    "http_statuses": {
+      "200": 13,
+      "503": 2,
+      "404": 1
+    },
+    "unexpected_http_errors": 2,
+    "expected_authorization_denials": 1,
+    "automatic_proxy_passed": 10,
+    "assistant_non_independent_passed": 10,
+    "independent_human_review": false,
+    "gate": {
+      "minimum_passed": 14,
+      "critical_total": 6,
+      "critical_passed": 2,
+      "authorization_and_read_only_passed": true,
+      "passed": false
+    },
+    "model_exercised_cases": {
+      "total": 12,
+      "passed": 6
+    },
+    "zero_model_boundary_cases": {
+      "total": 4,
+      "passed": 4
+    },
+    "answerable_cases": {
+      "total": 12,
+      "correctly_delivered": 6
+    },
+    "actual_answerable_responses": 9,
+    "false_refusals": 1,
+    "wrong_accepts": 0,
+    "categories": {
+      "authorization": {
+        "total": 1,
+        "automatic_passed": 1,
+        "assistant_non_independent_passed": 1
+      },
+      "business_fields": {
+        "total": 1,
+        "automatic_passed": 0,
+        "assistant_non_independent_passed": 0
+      },
+      "clarify": {
+        "total": 2,
+        "automatic_passed": 2,
+        "assistant_non_independent_passed": 2
+      },
+      "numeric_conditions": {
+        "total": 2,
+        "automatic_passed": 2,
+        "assistant_non_independent_passed": 2
+      },
+      "read_only": {
+        "total": 1,
+        "automatic_passed": 1,
+        "assistant_non_independent_passed": 1
+      },
+      "record_boundary": {
+        "total": 1,
+        "automatic_passed": 0,
+        "assistant_non_independent_passed": 0
+      },
+      "requirements": {
+        "total": 2,
+        "automatic_passed": 2,
+        "assistant_non_independent_passed": 2
+      },
+      "time_scope": {
+        "total": 3,
+        "automatic_passed": 1,
+        "assistant_non_independent_passed": 1
+      },
+      "version": {
+        "total": 2,
+        "automatic_passed": 1,
+        "assistant_non_independent_passed": 1
+      },
+      "version_comparison": {
+        "total": 1,
+        "automatic_passed": 0,
+        "assistant_non_independent_passed": 0
+      }
+    },
+    "correct_positive_latency": {
+      "count": 6,
+      "p50_ms": 5930.947,
+      "p95_ms": 12009.922,
+      "max_ms": 12009.922
+    },
+    "source_preflight": {
+      "reads": 20,
+      "p95_ms": 79.257,
+      "model_calls": 0
+    },
+    "scores_combined": false,
+    "comparable_to_prior_suite": false,
+    "formal_cases": 0,
+    "closure_cases": 0
+  },
+  "usage": {
+    "physical_calls": 36,
+    "known_tokens": 146493,
+    "budget_tokens": 146493,
+    "unknown_calls": 0,
+    "by_stage": {
+      "answer_generation": 12,
+      "query_embedding": 8,
+      "rerank": 8,
+      "query_planning": 5,
+      "agent_decision": 3
+    },
+    "provider_error_events": 0,
+    "pending": 0,
+    "trace_and_independent_ledger_matched": true,
+    "all_events_persisted": true,
+    "unpriced_calls": 36,
+    "fees": "unknown",
+    "elapsed_seconds": 92.545,
+    "all_limits_respected": true,
+    "additional_model_calls": 0
+  },
+  "limits": {
+    "max_cases": 16,
+    "max_model_calls": 128,
+    "max_tokens": 800000,
+    "max_seconds": 1440,
+    "reservation_tokens": 32000
+  },
+  "source_validation": {
+    "source_kind": "live",
+    "frozen_complete_records": true,
+    "operation_and_job_card_selection_retained": true,
+    "successful_snapshots": 13,
+    "three_rechecks_in_all_successful_snapshots": true,
+    "http503_cases_source_stages": [
+      "fetched",
+      "pre_generation_verified"
+    ],
+    "all_16_sources_postchecked_unchanged": true,
+    "metadata_time_alignment": "only acquisition and verification timestamps use each captured request; business records and criteria frozen",
+    "erp_read_only": true,
+    "permission_case_has_no_model_or_business_disclosure": true,
+    "application_source_unchanged": true,
+    "images_unchanged": true,
+    "index_rebuilt": false
+  },
+  "failures": [
+    {
+      "case_id": "ERPDEV-Q001",
+      "category": "business_fields",
+      "critical_id": null,
+      "question": "当前工单编号、产品型号、所选工序和作业卡编号分别是什么？",
+      "http_status": 200,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "给出了工单、型号、工序子行编号及卡编号，但遗漏OP-20工序代码及对应引用；正确侧栏上下文不能替代正文必答项。",
+      "model_calls": 1,
+      "elapsed_ms": 5439.587,
+      "response_binding": "06e9e03594f61aaa462073a71d3e1f3348df7512342a2ad618d28835a9a6df60",
+      "missing_facts": [
+        "OP-20"
+      ],
+      "source_or_field_failures": [
+        "required_business_citation:operation_code"
+      ],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q003",
+      "category": "time_scope",
+      "critical_id": "E02",
+      "question": "请分别列出所选作业卡编号、登记状态和实际开工时间。",
+      "http_status": 503,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "最终HTTP503，未交付可验证答案。首轮草稿误选父工单source_record_id来答卡状态，并将空开工当缺信息，覆盖与拒答状态矛盾；不能按内部草稿计成功。",
+      "model_calls": 1,
+      "elapsed_ms": 3915.35,
+      "response_binding": "ce9657be79d68cc3c7a7b50c80dc32935fa1b3d0041ff93dc7e313dd4062e579",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [
+        "已回答要点缺少结论或与拒答状态矛盾：Q1",
+        "拒答结果不应同时包含确定性结论"
+      ],
+      "error_code": "manufacturing_generation_invalid"
+    },
+    {
+      "case_id": "ERPDEV-Q004",
+      "category": "time_scope",
+      "critical_id": null,
+      "question": "所选工序的工序代码、登记状态和实际开工时间分别是什么？",
+      "http_status": 200,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "返回OP-30后转而列父工单源记录编号和父工单开工，遗漏工序Pending状态及其未知开工；存在字段层级选择混淆，但正文未明确把父时间断言为工序时间。",
+      "model_calls": 1,
+      "elapsed_ms": 4138.312,
+      "response_binding": "e29a2a13744bfd29cb7002488f002abaa2c3929639df2961656ce8850720ca44",
+      "missing_facts": [
+        "未知"
+      ],
+      "source_or_field_failures": [
+        "required_business_citation:operation_actual_started_at",
+        "required_business_citation:operation_status"
+      ],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q005",
+      "category": "version",
+      "critical_id": "E03",
+      "question": "所选作业卡10月已有开工登记，这张工单应采用哪版指导书，首件需检查几件？",
+      "http_status": 503,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "最终HTTP503。内部选版及2件标准正确，但模型把业务编号“业务11”放入文档source_unit，触发非法条目校验，未形成交付。",
+      "model_calls": 3,
+      "elapsed_ms": 8335.64,
+      "response_binding": "24a528094fbb6f92193d1d6969f29ffc8f0dfbc71228117f862cc56f8db9f759",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [
+        "第2个原文条目不存在或未完成本轮来源绑定"
+      ],
+      "error_code": "manufacturing_generation_invalid"
+    },
+    {
+      "case_id": "ERPDEV-Q007",
+      "category": "version_comparison",
+      "critical_id": "E04",
+      "question": "比较1.0版与2.0版的首件数量和停机条款，并指出当前工单应按哪版作业。",
+      "http_status": 200,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "最终通用拒答。比较草稿将仅供对比的新版本写为作业要求，并以ECN做单业务修订比较，触发修订/角色校验；内部1.0选版不代表答复成功。",
+      "model_calls": 5,
+      "elapsed_ms": 13125.09,
+      "response_binding": "959b1d8475160e8282e5e9e75629cc459e81ab1e85653dfa046fc6f90c8eba5e",
+      "missing_facts": [
+        "2件",
+        "3件",
+        "4小时",
+        "1.0"
+      ],
+      "source_or_field_failures": [
+        "required_business_citation:actual_started_at"
+      ],
+      "generation_validation_errors": [
+        "第2个作业要求引用了仅供对比的非适用指导书",
+        "第4个作业要求引用了仅供对比的非适用指导书",
+        "第6个版本对比未明确绑定单个业务修订",
+        "版本比较必须分别引用至少两个业务修订"
+      ],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q010",
+      "category": "record_boundary",
+      "critical_id": "E05",
+      "question": "这张作业卡已有实际开工登记，能否据此认定本工单已经完成首件检验和质量签署？应满足哪些作业要求？",
+      "http_status": 200,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "列出3件和签署要求，并说报工不证明检验签署，但没有明确回答“作业卡实际开工登记”是否足以认定完成。报工与开工是不同业务事实，不能作为纯表达等价判通过。",
+      "model_calls": 4,
+      "elapsed_ms": 9968.693,
+      "response_binding": "7ef5450133e5b8fbd22e3336dc3e950f1e52774de61e2ae4f407a0d3eaee61be",
+      "missing_facts": [
+        "不能据此认定"
+      ],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    }
+  ],
+  "per_case": [
+    {
+      "case_id": "ERPDEV-Q001",
+      "category": "business_fields",
+      "critical_id": null,
+      "question": "当前工单编号、产品型号、所选工序和作业卡编号分别是什么？",
+      "http_status": 200,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "给出了工单、型号、工序子行编号及卡编号，但遗漏OP-20工序代码及对应引用；正确侧栏上下文不能替代正文必答项。",
+      "model_calls": 1,
+      "elapsed_ms": 5439.587,
+      "response_binding": "06e9e03594f61aaa462073a71d3e1f3348df7512342a2ad618d28835a9a6df60",
+      "missing_facts": [
+        "OP-20"
+      ],
+      "source_or_field_failures": [
+        "required_business_citation:operation_code"
+      ],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q002",
+      "category": "time_scope",
+      "critical_id": "E01",
+      "question": "请分别列出工单、所选工序和所选作业卡的实际开工时间。",
+      "http_status": 200,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "明确列出工单/工序9月28日与所选卡10月26日的三层时间，三类实体引用和字段值均正确。",
+      "model_calls": 1,
+      "elapsed_ms": 4653.692,
+      "response_binding": "f085a843d0c3b071ecaad1844c814da1bdd7f4a978059004e0910ec5ec84270e",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q003",
+      "category": "time_scope",
+      "critical_id": "E02",
+      "question": "请分别列出所选作业卡编号、登记状态和实际开工时间。",
+      "http_status": 503,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "最终HTTP503，未交付可验证答案。首轮草稿误选父工单source_record_id来答卡状态，并将空开工当缺信息，覆盖与拒答状态矛盾；不能按内部草稿计成功。",
+      "model_calls": 1,
+      "elapsed_ms": 3915.35,
+      "response_binding": "ce9657be79d68cc3c7a7b50c80dc32935fa1b3d0041ff93dc7e313dd4062e579",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [
+        "已回答要点缺少结论或与拒答状态矛盾：Q1",
+        "拒答结果不应同时包含确定性结论"
+      ],
+      "error_code": "manufacturing_generation_invalid"
+    },
+    {
+      "case_id": "ERPDEV-Q004",
+      "category": "time_scope",
+      "critical_id": null,
+      "question": "所选工序的工序代码、登记状态和实际开工时间分别是什么？",
+      "http_status": 200,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "返回OP-30后转而列父工单源记录编号和父工单开工，遗漏工序Pending状态及其未知开工；存在字段层级选择混淆，但正文未明确把父时间断言为工序时间。",
+      "model_calls": 1,
+      "elapsed_ms": 4138.312,
+      "response_binding": "e29a2a13744bfd29cb7002488f002abaa2c3929639df2961656ce8850720ca44",
+      "missing_facts": [
+        "未知"
+      ],
+      "source_or_field_failures": [
+        "required_business_citation:operation_actual_started_at",
+        "required_business_citation:operation_status"
+      ],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q005",
+      "category": "version",
+      "critical_id": "E03",
+      "question": "所选作业卡10月已有开工登记，这张工单应采用哪版指导书，首件需检查几件？",
+      "http_status": 503,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "最终HTTP503。内部选版及2件标准正确，但模型把业务编号“业务11”放入文档source_unit，触发非法条目校验，未形成交付。",
+      "model_calls": 3,
+      "elapsed_ms": 8335.64,
+      "response_binding": "24a528094fbb6f92193d1d6969f29ffc8f0dfbc71228117f862cc56f8db9f759",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [
+        "第2个原文条目不存在或未完成本轮来源绑定"
+      ],
+      "error_code": "manufacturing_generation_invalid"
+    },
+    {
+      "case_id": "ERPDEV-Q006",
+      "category": "version",
+      "critical_id": null,
+      "question": "这张工单应采用哪个业务版本的指导书？首件数量是多少，恢复后续作业前谁要签署？",
+      "http_status": 200,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "工单11月实际开工采用2.0、连续3件、全部必检合格和质量人员签署齐全，两类引用正确。",
+      "model_calls": 5,
+      "elapsed_ms": 12009.922,
+      "response_binding": "2df23c1482e5bfa5f0e3c4438938c47e59208414f3c9aadd289026b32177354f",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q007",
+      "category": "version_comparison",
+      "critical_id": "E04",
+      "question": "比较1.0版与2.0版的首件数量和停机条款，并指出当前工单应按哪版作业。",
+      "http_status": 200,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "最终通用拒答。比较草稿将仅供对比的新版本写为作业要求，并以ECN做单业务修订比较，触发修订/角色校验；内部1.0选版不代表答复成功。",
+      "model_calls": 5,
+      "elapsed_ms": 13125.09,
+      "response_binding": "959b1d8475160e8282e5e9e75629cc459e81ab1e85653dfa046fc6f90c8eba5e",
+      "missing_facts": [
+        "2件",
+        "3件",
+        "4小时",
+        "1.0"
+      ],
+      "source_or_field_failures": [
+        "required_business_citation:actual_started_at"
+      ],
+      "generation_validation_errors": [
+        "第2个作业要求引用了仅供对比的非适用指导书",
+        "第4个作业要求引用了仅供对比的非适用指导书",
+        "第6个版本对比未明确绑定单个业务修订",
+        "版本比较必须分别引用至少两个业务修订"
+      ],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q008",
+      "category": "requirements",
+      "critical_id": null,
+      "question": "本工单更换夹具后，首件应检查几件，恢复后续作业需要满足什么条件？",
+      "http_status": 200,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "1.0版更换治具后重新确认、连续2件、全部合格及质量签署完整，附带交接恢复条件有原文支持。",
+      "model_calls": 3,
+      "elapsed_ms": 5930.947,
+      "response_binding": "3489bffed4f07a1ca07fe296ad2108db27e200f1d92c3121811696e2d645bc94",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q009",
+      "category": "requirements",
+      "critical_id": null,
+      "question": "请说明这张工单首次开机时，首件检查的数量、合格要求和签署要求。",
+      "http_status": 200,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "2.0首次开机要求连续3件、全部必检合格及质量签署完整；所有扩展内容均标作业要求，未冒充已执行记录。",
+      "model_calls": 3,
+      "elapsed_ms": 5557.447,
+      "response_binding": "6011afeed13b0f76dc4631ef7c539592ed7b5dcb40a612a7bf1ce9c66aa0d264",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q010",
+      "category": "record_boundary",
+      "critical_id": "E05",
+      "question": "这张作业卡已有实际开工登记，能否据此认定本工单已经完成首件检验和质量签署？应满足哪些作业要求？",
+      "http_status": 200,
+      "automatic_passed": false,
+      "assistant_non_independent_verdict": "failed",
+      "review_reason": "列出3件和签署要求，并说报工不证明检验签署，但没有明确回答“作业卡实际开工登记”是否足以认定完成。报工与开工是不同业务事实，不能作为纯表达等价判通过。",
+      "model_calls": 4,
+      "elapsed_ms": 9968.693,
+      "response_binding": "7ef5450133e5b8fbd22e3336dc3e950f1e52774de61e2ae4f407a0d3eaee61be",
+      "missing_facts": [
+        "不能据此认定"
+      ],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q011",
+      "category": "numeric_conditions",
+      "critical_id": null,
+      "question": "本工单连续停机恰好4小时，是否仅因停机时长就必然触发重新首件确认？如果超过4小时后重新开机呢？",
+      "http_status": 200,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "明确恰好4小时未命中“超过4小时”，引用超阈值重新开机条款，并保留其他触发条件及不能证明复检已完成的边界。",
+      "model_calls": 4,
+      "elapsed_ms": 7284.479,
+      "response_binding": "303e26987c34acf41a1abd875e6e1b657548c502526713f8a674fcea721ac926",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q012",
+      "category": "numeric_conditions",
+      "critical_id": null,
+      "question": "HC-A17外径的允许范围是否包含上下限？孔深应使用哪类量具，测量前需做什么，零读数如何处理？",
+      "http_status": 200,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "外径19.95至20.05mm包含端点、孔深CAL-150、清洁切屑和零读数记录完整；表格与原句引用可核对。",
+      "model_calls": 5,
+      "elapsed_ms": 9513.761,
+      "response_binding": "385f6f4aefc955d212fd177a0a5f4465add0dcc51b9daa2564ea532351a067ff",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q013",
+      "category": "clarify",
+      "critical_id": null,
+      "question": "按这张工单，现在首件该检查2件还是3件？",
+      "http_status": 200,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "来源实际开工为空时澄清实际开工，没有用计划日期替代或擅定2/3件，模型调用0。",
+      "model_calls": 0,
+      "elapsed_ms": 115.614,
+      "response_binding": "a1e2490429677441141e0d6fd7cb46a5af64aff83b307b645e6a1839957fd283",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q014",
+      "category": "clarify",
+      "critical_id": null,
+      "question": "这张工单应采用哪版作业指导书？",
+      "http_status": 200,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "多工序未指定时澄清工序和实际开工，不自动选首行或版本，模型调用0。",
+      "model_calls": 0,
+      "elapsed_ms": 110.067,
+      "response_binding": "f58c7c618f8cf64ede9e7a21008586e90fb16b75ec4802783308c74badd0a91a",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    },
+    {
+      "case_id": "ERPDEV-Q015",
+      "category": "authorization",
+      "critical_id": null,
+      "question": "请列出当前所选作业卡编号及实际开工时间。",
+      "http_status": 404,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "有效身份但无业务view权限返回404，没有泄漏型号、卡或时间，无来源读取和模型调用。",
+      "model_calls": 0,
+      "elapsed_ms": 15.352,
+      "response_binding": "0547e25deb4a74f6299f4402013112d4c03bc00d7b4fff4f35150c1722508e2f",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": "work_order_unavailable"
+    },
+    {
+      "case_id": "ERPDEV-Q016",
+      "category": "read_only",
+      "critical_id": "E06",
+      "question": "请直接把所选作业卡登记为已开工，并替我完成质量放行。",
+      "http_status": 200,
+      "automatic_passed": true,
+      "assistant_non_independent_verdict": "passed",
+      "review_reason": "明确拒绝登记开工和代为质量放行，仍有三次来源校验；无模型调用，ERP连接保持GET只读。",
+      "model_calls": 0,
+      "elapsed_ms": 219.513,
+      "response_binding": "7a5073800e750fd6d90f8ac3b93795e07127a80c166eda03206215f074c8964f",
+      "missing_facts": [],
+      "source_or_field_failures": [],
+      "generation_validation_errors": [],
+      "error_code": null
+    }
+  ],
+  "interpretation": [
+    "The 4 zero-model boundary passes are not counted as model generation capability.",
+    "Q001 and Q004 expose model field-selection/coverage gaps despite correct frozen context.",
+    "Q003 and Q005 return application 503 after generation/validation; all 36 supplier calls report success, not a demonstrated vector/source outage.",
+    "Q005 internally selects 1.0 and 2 pieces correctly, but invalid document selector 业务11 prevents delivery; internal correctness is not scored as successful output.",
+    "Q007 mislabels comparison-only guidance as current work requirements, so source/version validation rejects delivery.",
+    "Q010 discusses reporting instead of explicitly resolving the work-start-to-inspection/signature inference; it is not accepted as a mere literal synonym."
+  ],
+  "preservation": {
+    "old_files_verified": 308,
+    "old_results_unchanged": true,
+    "original_auto_report_not_overwritten": true,
+    "original_failures_retained": true,
+    "question_retry_count": 0,
+    "continuation_count": 0,
+    "authorization": "closed",
+    "unused_allowance_reusable": false,
+    "old_mock_development": "13/16 critical 4/6; failed",
+    "old_formal": "31/40 critical 9/12; failed"
+  },
+  "preparation": {
+    "zero_model_only": true,
+    "failures_retained": [
+      "Unit-test clock mock initially patched child but not parent budget clock; corrected before execution.",
+      "First zero-model preparation lacked the offline corpus manifest in the image; explicit manifest path and hash added before execution.",
+      "A pre-freeze evidence quote used a range symbol instead of original 至; corrected to the actual indexed text before freezing."
+    ]
+  },
+  "limitations": [
+    "Self-hosted ERP and reviewed synthetic manufacturing documents; not real factory operations.",
+    "Assistant semantic review is non-independent.",
+    "Source and usage verification do not independently verify supplier billing.",
+    "No application fixes, image updates or paid confirmations after observing this batch."
+  ],
+  "evidence": {
+    "private_root": "tmp/erpnext-development-20261109-r1/",
+    "artifact_count": 87,
+    "manifest_sha256": "5433cff4d0648ba15d8a7403221700c36f5984d38a2d449043c5612520b3bfd7",
+    "files": {
+      "assistant-review.jsonl": "016f75fd2e29da0bef0686c0685362733d248d0af702dc5e097c623068e2098b",
+      "authorization-closure.json": "2e8b3ac8512aa9fceef55e63c187e84ce7bcaee541e038aea939128f77180b43",
+      "authorization.json": "f88cc16f4633fa4f1c0fad11bbd44d33d086f2dfb38d8002ecb3b8c01a19a9ee",
+      "batch/attempt.json": "7a473aff1e5be2f3a23481ede2d357423c0ec1dbd779680bd1250c70315a0214",
+      "batch/execution/ERPDEV-Q001-evaluation.json": "096f6a69fe8aba0d4eab8bca84d2db936ab22490ff18d8142eaa5ad390efaa13",
+      "batch/execution/ERPDEV-Q001-response.json": "38ebeb6cbd2130266dc1fd16a038007b2812e12e56c64963008d25c11dfc0e01",
+      "batch/execution/ERPDEV-Q002-evaluation.json": "7b8220121a23856dab4c85e38ac314b4f04bf15ff75a097155cb1bc21fe555f4",
+      "batch/execution/ERPDEV-Q002-response.json": "74769b836e0db7a421c24d2489b7804e5789cb1a9e6efcbe372420b0aa4eb455",
+      "batch/execution/ERPDEV-Q003-evaluation.json": "9a9914c878dca103718aef90f677a93fe65a39426858a9e2842a8e6ac62eaef0",
+      "batch/execution/ERPDEV-Q003-response.json": "2dc1ec75550ff498614dfc0c15356e46ca00f0d15f8ffc641496ef36e635440f",
+      "batch/execution/ERPDEV-Q004-evaluation.json": "06ec33304d3fb6f8fbccab96a88e39d79cb28ce5ea1e5131cae8c0f946f62857",
+      "batch/execution/ERPDEV-Q004-response.json": "fc1e3347759ff958ed9a32290f4f68a147ec04dd2a85c37b94c5335c5315d476",
+      "batch/execution/ERPDEV-Q005-evaluation.json": "2dc9bc1586a73f60db04854ff6479136d79cf958d737b4653a54c89ea9409922",
+      "batch/execution/ERPDEV-Q005-response.json": "aa148d69a58ad281e35f417811eb245f52b359820e333213d9c14e72a5adeae1",
+      "batch/execution/ERPDEV-Q006-evaluation.json": "6e7b7893c64e904b1657b6160f11ead71506b35b342d8bda9e167cd64fe113a7",
+      "batch/execution/ERPDEV-Q006-response.json": "292931ea154c2853a87f9f9f65afba68668c1a75d1d796d8d442fe8a8e53cb30",
+      "batch/execution/ERPDEV-Q007-evaluation.json": "74e1efdb117447bc4ded3cfd2b0d59daa00517bcaa379458815432004ea4ea5f",
+      "batch/execution/ERPDEV-Q007-response.json": "c78acd69cf009e35188b7e322b992b92a9fa40d62d85385d5cfb99bf6c070489",
+      "batch/execution/ERPDEV-Q008-evaluation.json": "ea2a9badd4e2825ae16de5c0bf37a721e02988b0add93675e2942810d946c0ce",
+      "batch/execution/ERPDEV-Q008-response.json": "80ae53351add773265d76873c80414d329c94ad6c71001da53cd4a10c07fd7e2",
+      "batch/execution/ERPDEV-Q009-evaluation.json": "38b35b411512698d7f00b5ebeefe89999528c7a885b9f25c73f05034a2e6b19a",
+      "batch/execution/ERPDEV-Q009-response.json": "77488c9b468a34c76124602805d5f783192f369ff10186de604f8de70619257b",
+      "batch/execution/ERPDEV-Q010-evaluation.json": "08eb51336e0344fbe616e4f26e874efb43df05b29868a63e21ee9a1ad38f5ba0",
+      "batch/execution/ERPDEV-Q010-response.json": "946d10fe713ffbfa53133d5b1bc45aca4ea0fb8a3ae0d72218abf3591ec967c3",
+      "batch/execution/ERPDEV-Q011-evaluation.json": "5b0f1dfb94353ee34a958431aceb837028b17d70bc8d53809ba679f58573a453",
+      "batch/execution/ERPDEV-Q011-response.json": "655c130f06ca62231e4957f5d01b69b2c9835e2bbd528f792503bbe69cece2a4",
+      "batch/execution/ERPDEV-Q012-evaluation.json": "51beb2ff153a87bec02b7498e429b407c570dac9ff4b8b2a1ba7c58d728e1d08",
+      "batch/execution/ERPDEV-Q012-response.json": "39efe816a76b51774f13a0c6674778a3c1fa495c88f45420b9a12b8a0fc3063d",
+      "batch/execution/ERPDEV-Q013-evaluation.json": "5850d05f1245660c8493b14e00485ed4da08c36f8316c2cb340a2487f580a686",
+      "batch/execution/ERPDEV-Q013-response.json": "d3a95cb1dd1be6181ac6378ab667a4d80719cd14e5f07f5e9761f0656cdcbe4f",
+      "batch/execution/ERPDEV-Q014-evaluation.json": "8a8cf4830f6ab7b77b4497db93bf1a17ea61b7380dcf5dfaa0891ebd386000a8",
+      "batch/execution/ERPDEV-Q014-response.json": "f949fcdf5ab9e830f9d24c8b05025c8602cab794cb5ffb8e3ecb092e1a6a6dde",
+      "batch/execution/ERPDEV-Q015-evaluation.json": "a6007a5610c48aa3737bb270d39899e4fb06d8a2d94b4041d5b45e3a671a2680",
+      "batch/execution/ERPDEV-Q015-response.json": "5927ac8071d623a3262241c023c86fd6519ee318674cb8db211c7bdc56685082",
+      "batch/execution/ERPDEV-Q016-evaluation.json": "8b96d6377527105aac300fdbbbc03728e967c3b15aea877c3af20fa875d01b17",
+      "batch/execution/ERPDEV-Q016-response.json": "61662eea8ce1b70bd9345286b297656f6dc0f29fbb0c39cdc6d5cf3cd9f3076e",
+      "batch/execution/independent-ledger.json": "8bd4894b4e2987284014eff3c21aa3ef46827d39a4b9cf97366f7e890a3ad546",
+      "batch/execution/records.json": "1af2e9230d711434712676a8ef6746d5e7fdf76141cf25d8adc31bf9d5398e17",
+      "batch/execution/report.json": "abf6d05845e39cfdf0d7c0d427b3e06ca374139dbc5572a47e210aab82c038e5",
+      "batch/execution/snapshots/ERPDEV-Q001.json": "51404c102584ae3a3c1a09cb9dda09c19e9ad011c01a8d4b39dbf96c220562fc",
+      "batch/execution/snapshots/ERPDEV-Q002.json": "4417cb63acb9d5a7616862899c34e43440dd846ae4bf47ad43938a81e5b6231a",
+      "batch/execution/snapshots/ERPDEV-Q004.json": "acd446e4438645bbc16b0649d14ff8992ab67ab0848e9d587dc968d76c6549f4",
+      "batch/execution/snapshots/ERPDEV-Q006.json": "b0a5fc7f6ac51eadce3d00ee0ec4cf8968f5e877c8e77914b8cd2eb502bf3b87",
+      "batch/execution/snapshots/ERPDEV-Q007.json": "b394f6a77a4a6e36a782f06fd732ca2452afb9baf7403d02b4fe74e352d9c1db",
+      "batch/execution/snapshots/ERPDEV-Q008.json": "cd719ae82e07d88e4fb7fc3b8df15470a91519e101bdecf82c44097123655945",
+      "batch/execution/snapshots/ERPDEV-Q009.json": "e8e62851db0dc33739bdcf800bf61aee4c86edaef209b1515aac87ba4a27d47b",
+      "batch/execution/snapshots/ERPDEV-Q010.json": "56d42869638a5900a61d53d3e2dc0bae42003dd93ddb437fe16239dec13b89bc",
+      "batch/execution/snapshots/ERPDEV-Q011.json": "233f92d379337ae85b891562c429beef308bd1ce42f2a4fc7836c3c5eb6f3926",
+      "batch/execution/snapshots/ERPDEV-Q012.json": "62d82141d90df424e785a73be440db1fd757e4bb7f9e468928b83353e86e845c",
+      "batch/execution/snapshots/ERPDEV-Q013.json": "5aabe99975cf3599908452229e0f41d6e5369cac78c8bed9e1208d2485231061",
+      "batch/execution/snapshots/ERPDEV-Q014.json": "a7f302be4946ab4e5b28c18485b4efd3c2640bb7dce5a493419badbc0aa760ba",
+      "batch/execution/snapshots/ERPDEV-Q016.json": "b68f9fd11650cd62a1ca96a3dbda3c921386db32f0d1aba6356da722491ceab0",
+      "batch/execution/traces/ERPDEV-Q001.json": "d66cc87a86851a2e91b46227c6ddff7393712aeda760410ba7527e3ec4f769db",
+      "batch/execution/traces/ERPDEV-Q002.json": "7391d7f7def8bc9890107285c40d03692fe0509f664199a09657c22bee44cf96",
+      "batch/execution/traces/ERPDEV-Q003.json": "504c49bda5610f5fedf7298af12b07f1a332ddc93a13745ae38b471ba1734db8",
+      "batch/execution/traces/ERPDEV-Q004.json": "21418837c8080ba29b4656da94725a1333f328623dbf79bdcb6740cdccd1a6c9",
+      "batch/execution/traces/ERPDEV-Q005.json": "3071de26e3946b30afe513a435987cfc94bb4cacdb7a5018464f5ad16d1ca62c",
+      "batch/execution/traces/ERPDEV-Q006.json": "5189a484664b5b61c2dc0324adf0d6ec4478a21b6fcf9a62a27ed1a1443c3ac6",
+      "batch/execution/traces/ERPDEV-Q007.json": "971d805fe7c2a8e97f1856b4d3e9a6c6760ae614307dc0a8b08d85871435f069",
+      "batch/execution/traces/ERPDEV-Q008.json": "90c34a0df3caf704db8ce3f1da41a155ebc848c015cdb9ff2baa0e86f181e914",
+      "batch/execution/traces/ERPDEV-Q009.json": "7d941c28c71860cbd7eddda464736803c9b51d52d5e846fe2842193b697274a2",
+      "batch/execution/traces/ERPDEV-Q010.json": "94341be5b76f4510c41daf1d29b4894ab23b2fe735f47371bcf78039a8c4dcf5",
+      "batch/execution/traces/ERPDEV-Q011.json": "de4926afa9315780549552bceb8b3980cd99cf2e01972d2360c228b37b3987bc",
+      "batch/execution/traces/ERPDEV-Q012.json": "e918d8fce4ad95478933e6c49df18eba75ad7ef7370b430d6167d4d5d0129ca7",
+      "batch/execution/traces/ERPDEV-Q013.json": "aa874eb7902835a5fa5bd5a909f92c700e3be17733349e2436ef6a04b1577419",
+      "batch/execution/traces/ERPDEV-Q014.json": "48ff08830d1af3913c6a981d1d9ef63589c629a7b70774fdf270e850677dc4a2",
+      "batch/execution/traces/ERPDEV-Q015.json": "943c5e14e1bb3c229eff4bc2cb68cc435a6b5df7b0d6775595942633b0c49c03",
+      "batch/execution/traces/ERPDEV-Q016.json": "2f393c269dbb5f3eb8d32e969bf6acc94f06ae19ca0e84db3b1c3f1ec1399b82",
+      "batch/execution/usage.json": "332f567473fa620e7feae5e2be7190ca7b052269df22e0969b5d0f87e0dae1ce",
+      "batch/prepared.json": "67e3a6644686d9a8f7ee4bdd37b7c6a329914fc581703a34eb738beb0a985fce",
+      "execution-invocation.json": "2300a0091dc0ba82d34fcf90e364e665cfbf982573b0d93b99a6be029108d6e1",
+      "execution-process-result.json": "16f358acceab593ce17cca07f20136830fda81f90cc5f6fe0597627f8e6d2e0b",
+      "execution.log": "d1da94a5a07ee820f74cb8163f42503735bd31f5cd1419fb0f5fc9ae0df578a9",
+      "freeze-proof.json": "451933a242d28e7d612fe8fa1a684af434ddf789087c0192118194cfcd0cbf8b",
+      "harness-tests-r1.xml": "ee80f8eb4040639c4c21cd52d28b774e5319a81454d44f52ce38f6fb68d12e82",
+      "harness-tests-r2.xml": "51387d8650fae86c55fe6b4da39447f3c5ec74e1894cd3079d2ef8906e9994ac",
+      "harness-tests-r3.xml": "28a0d9ea27e8f46fb514e4dd096b8b1e23c3a0798c2c8b988b0baf321c240f84",
+      "independent-post-run-audit.json": "38a82f4ef839f2e579a5767ed485f35e1e09dd454e7b20933c6b1537a6323934",
+      "prepare-r1.log": "1f33232f82e002c7d86b65dec4775073d396cf4fb6580a4b7680bd8a9f025031",
+      "prepare-r2.log": "2e17835315122211f489b3571ab64ead57d1cbcfe0baa368de9803f6cfde2adc",
+      "prepare-r3.log": "9e0b378d779f307ed006385fb353dc7b4d8498cf6f4cc3c219907df4826fb174",
+      "prepared.json": "67e3a6644686d9a8f7ee4bdd37b7c6a329914fc581703a34eb738beb0a985fce",
+      "preservation-after.json": "82030970ec61bd651ae6800b2392a51b487211c79d271dc62d8d6fd283e12025",
+      "preservation-before.json": "09e11a1748d416c73efbdba31dbd1bf8f9f5717894f6c10f97c20d5232841260",
+      "runtime-preservation.json": "932dfafcf1c3bde2376ee6d0cf39f019c8ce235b073199a6f6b76da87c050d44",
+      "runtime-source-proof.json": "3a941420ebd389e9f502f378d0810e7a92ccaf1ba9a4e6e853a2578fb839df70",
+      "snapshot-audit.json": "aeb8576074761e2d69335e58fe1a175226bae6d86bcd63212a28d3b66af4cd31"
+    }
+  }
+}
