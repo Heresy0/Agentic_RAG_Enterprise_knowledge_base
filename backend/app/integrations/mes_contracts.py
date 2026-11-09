@@ -35,8 +35,8 @@ class MESSourceConfig(Contract):
                 parts.path not in ("", "/") or "\\" in self.base_url or any(c.isspace() for c in self.base_url)):
             raise ValueError("invalid source URL")
         _ = parts.port
-        if parts.scheme == "http" and parts.hostname not in ("127.0.0.1", "localhost", "::1", "mock-mes"):
-            raise ValueError("plain HTTP is limited to loopback and the mock-mes service")
+        if parts.scheme == "http" and parts.hostname not in ("127.0.0.1", "localhost", "::1", "mock-mes", "erpnext-adapter"):
+            raise ValueError("plain HTTP is limited to loopback and the explicit local source services")
         token = self.token.get_secret_value()
         if not 32 <= len(token) <= 512 or any(ord(c) < 33 or ord(c) > 126 for c in token):
             raise ValueError("invalid source credential")

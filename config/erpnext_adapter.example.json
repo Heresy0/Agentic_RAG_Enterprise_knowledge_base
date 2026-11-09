@@ -1,0 +1,7 @@
+{
+  "tenant_id": "00000000-0000-0000-0000-000000000001",
+  "source_system_id": "erpnext-hc",
+  "base_url": "http://frontend:8080",
+  "company_plants": {"Hengchuan ERPNext Lab": "HC-P01"},
+  "site_timezone": "Asia/Shanghai"
+}
