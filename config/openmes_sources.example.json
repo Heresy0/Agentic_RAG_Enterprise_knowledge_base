@@ -1,0 +1,11 @@
+{
+  "schema_version": "mes-sources-v1",
+  "sources": [{
+    "tenant_id": "00000000-0000-0000-0000-000000000001",
+    "source_system_id": "openmes-hc",
+    "base_url": "http://openmes-adapter:8012",
+    "allowed_plants": ["HC-P01"],
+    "token_env": "OPENMES_ADAPTER_READ_TOKEN",
+    "batch_step_selection": true
+  }]
+}

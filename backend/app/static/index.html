@@ -35,6 +35,12 @@
           <div class="mode-toolbar"><label for="manufacturing-order">当前工单</label><select id="manufacturing-order"><option value="">选择有权访问的工单</option></select><button id="manufacturing-refresh" class="secondary" type="button">重新查询</button><button id="manufacturing-more" class="secondary" type="button" hidden>加载更多工单</button></div>
           <div id="manufacturing-selection" class="mode-toolbar" hidden><label for="manufacturing-operation">工序记录</label><select id="manufacturing-operation"><option value="">工单级（未选择工序）</option></select><label for="manufacturing-job-card">作业卡</label><select id="manufacturing-job-card"><option value="">未选择作业卡</option></select><button id="manufacturing-job-cards-more" class="secondary" type="button" hidden>加载更多作业卡</button></div>
           <div id="manufacturing-context" class="source-card" role="status">选择工单后查看可信来源字段。</div>
+          <section id="openmes-execution" class="source-card" aria-label="MES批次与步骤查询" hidden>
+            <h3>MES 执行记录 · 只读查询</h3>
+            <p class="answer-meta">按批次和步骤查看实际记录；下方知识问答仍按工单范围查询。</p>
+            <div class="feedback-filters"><label>生产批次<select id="openmes-batch" disabled></select></label><label>工序步骤<select id="openmes-step" disabled></select></label><button id="openmes-refresh" class="secondary" type="button">重新核验</button></div>
+            <div id="openmes-context" role="status" aria-live="polite"></div>
+          </section>
           <div id="manufacturing-applicability" class="source-card" hidden></div>
         </section>
         <div class="conversation-toolbar"><label for="conversation-list">最近对话</label><select id="conversation-list" disabled><option value="">新对话</option></select><button id="new-conversation" class="secondary" disabled>＋ 新对话</button><button id="delete-conversation" class="secondary" disabled>删除对话</button></div>

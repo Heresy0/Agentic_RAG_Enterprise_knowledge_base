@@ -23,6 +23,7 @@ from ..knowledge.generation_errors import RECOVERABLE_GENERATION_ERRORS
 from ..knowledge.milvus_store import VectorStoreUnavailable
 from ..knowledge.conversations import ConversationBusy, ConversationNotFound
 from ..manufacturing.access import WorkOrderAccessService
+from ..manufacturing.batch_access import BatchExecutionAccess, public_execution
 from ..manufacturing.contracts import Contract, Identifier, ManufacturingQuestion
 from ..manufacturing.execution_contracts import ExecutionSelection, ManufacturingExecutionQuestion, selection_kwargs
 from ..manufacturing.errors import ManufacturingInputError
@@ -142,7 +143,37 @@ async def work_orders(request: Request, response: Response, limit: int = Query(2
         page = await WorkOrderAccessService(session, connector).list_work_orders(
             principal=principal, cursor=cursor, limit=limit)
         return dict(items=[row.model_dump(mode="json", exclude={"tenant_id", "schema_version"}) for row in page.items],
-                    next_cursor=page.next_cursor, **({'selection_supported': True} if connector.config.execution_selection else {}))
+                    next_cursor=page.next_cursor, **({'selection_supported': True} if connector.config.execution_selection else {}),
+                    **({'execution_kind': 'batch-step'} if connector.config.batch_step_selection else {}))
+
+
+@router.get('/work-orders/{work_order_id}/batches')
+async def work_order_batches(work_order_id: Identifier, request: Request, response: Response,
+        principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
+    identifier=uuid4().hex; response.headers.update({'Cache-Control':'no-store','X-Request-ID':identifier})
+    with manufacturing_operation(session,identifier):
+        return await BatchExecutionAccess(session,connector_for(request,principal)).batches(principal,work_order_id)
+
+
+@router.get('/work-orders/{work_order_id}/batches/{batch_id}/steps')
+async def batch_steps(work_order_id: Identifier, batch_id: Identifier, request: Request, response: Response,
+        principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
+    identifier=uuid4().hex; response.headers.update({'Cache-Control':'no-store','X-Request-ID':identifier})
+    with manufacturing_operation(session,identifier):
+        return await BatchExecutionAccess(session,connector_for(request,principal)).steps(principal,work_order_id,batch_id)
+
+
+@router.get('/work-orders/{work_order_id}/execution-context')
+async def batch_execution_context(work_order_id: Identifier, request: Request, response: Response,
+        batch_id: Identifier | None = None, step_id: Identifier | None = None, expected_source_revision: Identifier | None = None,
+        principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
+    if step_id is not None and batch_id is None:
+        raise HTTPException(422,'选择步骤时必须指定所属批次。')
+    identifier=uuid4().hex; response.headers.update({'Cache-Control':'no-store','X-Request-ID':identifier})
+    with manufacturing_operation(session,identifier):
+        value=await BatchExecutionAccess(session,connector_for(request,principal)).context(principal,work_order_id,
+            batch_id=batch_id,step_id=step_id,expected_source_revision=expected_source_revision)
+        return public_execution(value)
 
 
 @router.get('/work-orders/{work_order_id}/operations')

@@ -23,6 +23,7 @@ class MESSourceConfig(Contract):
     allowed_plants: tuple[Identifier, ...] = Field(min_length=1, max_length=100)
     token: SecretStr = Field(repr=False)
     execution_selection: bool = False
+    batch_step_selection: bool = False
     connect_timeout: float = Field(default=2, gt=0, le=2)
     call_timeout: float = Field(default=5, gt=0, le=5)
     max_response_bytes: int = Field(default=65536, ge=128, le=65536, strict=True)
@@ -36,13 +37,15 @@ class MESSourceConfig(Contract):
                 parts.path not in ("", "/") or "\\" in self.base_url or any(c.isspace() for c in self.base_url)):
             raise ValueError("invalid source URL")
         _ = parts.port
-        if parts.scheme == "http" and parts.hostname not in ("127.0.0.1", "localhost", "::1", "mock-mes", "erpnext-adapter"):
+        if parts.scheme == "http" and parts.hostname not in ("127.0.0.1", "localhost", "::1", "mock-mes", "erpnext-adapter", "openmes-adapter"):
             raise ValueError("plain HTTP is limited to loopback and the explicit local source services")
         token = self.token.get_secret_value()
         if not 32 <= len(token) <= 512 or any(ord(c) < 33 or ord(c) > 126 for c in token):
             raise ValueError("invalid source credential")
         if len(set(self.allowed_plants)) != len(self.allowed_plants):
             raise ValueError("duplicate configured plant")
+        if self.execution_selection and self.batch_step_selection:
+            raise ValueError('A source must declare its actual execution hierarchy.')
         return self
 
 
@@ -53,6 +56,7 @@ class MESSourceSpec(Contract):
     allowed_plants: tuple[Identifier, ...] = Field(min_length=1, max_length=100)
     token_env: Annotated[str, StringConstraints(strict=True, pattern=r"^[A-Z][A-Z0-9_]{2,79}$")]
     execution_selection: bool = False
+    batch_step_selection: bool = False
 
 
 class MESSourcesFile(Contract):

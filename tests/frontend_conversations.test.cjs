@@ -61,7 +61,8 @@ function setup() {
   vm.createContext(sandbox);
   const qualitySource = fs.readFileSync(path.join(__dirname, "../backend/app/static/quality.js"), "utf8").replace("export function", "function");
   const verificationSource = fs.readFileSync(path.join(__dirname, "../backend/app/static/verification.js"), "utf8").replace("export function", "function");
-  const source = qualitySource + "\n" + verificationSource + "\n" + fs.readFileSync(path.join(__dirname, "../backend/app/static/app.js"), "utf8")
+  const openmesSource = fs.readFileSync(path.join(__dirname, "../backend/app/static/openmes.js"), "utf8").replace("export function", "function");
+  const source = qualitySource + "\n" + verificationSource + "\n" + openmesSource + "\n" + fs.readFileSync(path.join(__dirname, "../backend/app/static/app.js"), "utf8")
     .replace(/^import .*;\r?\n/gm, "").replace(/init\(\);\s*$/, "");
   vm.runInContext(source, sandbox);
   vm.runInContext('state.auth = { authenticated: true, epoch: 0, name: "Alice", token: async () => "test" }; state.kb = { id: "kb1", permission: "viewer" };', sandbox);
@@ -69,6 +70,56 @@ function setup() {
   const ask = async question => { $("question").value = question; await $("question-form").listeners.submit({ preventDefault() {} }); };
   return { $, requests, run, ask, sandbox };
 }
+
+function openmesSetup() {
+  const h = setup();
+  const record = { source_system_id: "openmes-hc", source_record_id: "1", status: "IN_PROGRESS", actual_started_at: null };
+  h.context = { record: { work_order: record, work_order_number: "MES-WO-1", batch: null, step: null }, business_citations: [], last_verified_at: "2026-11-09T08:00:00Z" };
+  h.sandbox.fetch = async (url, options = {}) => {
+    h.requests.push({ url, method: options.method || "GET" });
+    let data = h.context;
+    if (url.endsWith("/batches")) data = { items: [{ batch_id: "10", batch_number: 1, status: "IN_PROGRESS" }] };
+    if (url.endsWith("/steps")) data = { items: [{ step_id: "101", step_number: 1, name: "<img src=x>", status: "PENDING" }] };
+    return { status: 200, ok: true, headers: new Headers(), json: async () => data };
+  };
+  h.run("state.mode = 'manufacturing'; state.manufacturing.orderId = '1';");
+  return h;
+}
+
+test("OpenMES selects real batch/step IDs with GET-only requests and renders names as text", async () => {
+  const h = openmesSetup();
+  await h.run("openmesWorkspace.select('1')");
+  h.$("openmes-batch").value = "10"; await h.$("openmes-batch").listeners.change();
+  assert.equal(h.$("openmes-step").children[1].textContent, "1. <img src=x> · PENDING");
+  h.$("openmes-step").value = "101"; await h.$("openmes-step").listeners.change();
+  await new Promise(resolve => setTimeout(resolve, 0));
+  assert.ok(h.requests.some(x => x.url.includes("batch_id=10&step_id=101")));
+  assert.ok(h.requests.every(x => x.method === "GET"));
+  assert.equal(h.$("openmes-execution").hidden, false);
+});
+
+test("OpenMES late responses after a scope change cannot restore execution data", async () => {
+  const h = openmesSetup(); let release;
+  h.sandbox.fetch = () => new Promise(resolve => { release = resolve; });
+  const pending = h.run("openmesWorkspace.select('1')");
+  await new Promise(resolve => setTimeout(resolve, 0));
+  h.run("state.revision += 1; openmesWorkspace.clear();");
+  release({ status: 200, ok: true, headers: new Headers(), json: async () => ({ items: [{ batch_id: "private" }] }) });
+  await pending;
+  assert.equal(h.$("openmes-execution").hidden, true);
+  assert.equal(h.$("openmes-context").children.length, 0);
+});
+
+test("OpenMES authorization failure clears parent and selected execution data", async () => {
+  const h = openmesSetup(); await h.run("openmesWorkspace.select('1')");
+  h.sandbox.fetch = async () => ({ status: 404, ok: false, headers: new Headers(), json: async () => ({ detail: { message: "不可访问" } }) });
+  h.$("openmes-refresh").listeners.click();
+  await new Promise(resolve => setTimeout(resolve, 0));
+  assert.equal(h.$("openmes-execution").hidden, true);
+  assert.equal(h.$("openmes-context").children.length, 0);
+  assert.equal(h.run("state.manufacturing.context"), null);
+  assert.equal(h.run("state.manufacturing.orderId"), null);
+});
 
 for (const execution of [false, true]) test(`manufacturing review preserves ${execution ? "execution" : "legacy"} source identity`, async () => {
   const { $, run, sandbox } = setup(); admin(run);

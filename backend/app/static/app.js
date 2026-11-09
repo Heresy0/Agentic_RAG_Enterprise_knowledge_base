@@ -1,6 +1,7 @@
 import { AuthSession } from "./auth.js";
 import { createQualityWorkspace } from "./quality.js";
 import { createVerificationWorkspace } from "./verification.js";
+import { createOpenMESWorkspace } from "./openmes.js";
 
 const $ = id => document.getElementById(id);
 const statuses = { ready: "已就绪", pending: "等待索引", queued: "排队中", running: "索引中", succeeded: "已完成", failed: "失败", cancelled: "已取消" };
@@ -12,6 +13,7 @@ state.manufacturing = { orders: [], nextCursor: null, orderId: null, context: nu
 const feedbackReasons = { incorrect: "答案错误", incomplete: "遗漏条件或要点", citation: "引用不正确", false_refusal: "不该拒答", outdated: "资料过期", other: "其他问题" };
 const qualityWorkspace = createQualityWorkspace({ $, element, api, state, sameContext, errorNotice, onImprovement: id => verificationWorkspace.createForCase(id) });
 const verificationWorkspace = createVerificationWorkspace({ $, element, api, state, sameContext, errorNotice });
+const openmesWorkspace = createOpenMESWorkspace({ $, element, api, state, sameContext, errorNotice, invalidate: invalidateManufacturingView });
 
 function element(tag, text, className) {
   const node = document.createElement(tag);
@@ -167,6 +169,7 @@ function conversationPath() { return state.mode === "manufacturing" ? "/api/manu
 function conversationUrl(id = "") { return conversationPath() + (id ? `/${encodeURIComponent(id)}` : "") + (state.mode === "manufacturing" && state.kb ? `?knowledge_base_id=${encodeURIComponent(state.kb.id)}` : ""); }
 
 function resetManufacturing() {
+  openmesWorkspace.clear(); state.manufacturing.batchStepSupported = false;
   state.manufacturing.listEpoch += 1;
   state.manufacturing.epoch += 1; state.manufacturing.orders = []; state.manufacturing.nextCursor = null;
   state.manufacturing.orderId = null; state.manufacturing.context = null;
@@ -192,6 +195,7 @@ async function refreshManufacturingOrders(more = false) {
     state.manufacturing.orders = more ? [...state.manufacturing.orders, ...data.items] : data.items;
     state.manufacturing.nextCursor = data.next_cursor;
     state.manufacturing.selectionSupported = data.selection_supported === true;
+    state.manufacturing.batchStepSupported = data.execution_kind === "batch-step";
     const first = element("option", "选择有权访问的工单"); first.value = "";
     $("manufacturing-order").replaceChildren(first);
     for (const order of state.manufacturing.orders) {
@@ -205,6 +209,7 @@ async function refreshManufacturingOrders(more = false) {
   } catch (error) { if (sameContext(revision) && epoch === state.manufacturing.listEpoch) { invalidateManufacturingView("工单来源或权限无法确认，请重新查询。"); errorNotice(error); } return false; }
 }
 function renderWorkOrder(context, historical = false) {
+  if (historical) openmesWorkspace.clear();
   const target = $("manufacturing-context"); target.replaceChildren();
   target.append(element("h3", `${historical ? "历史工单快照" : "已核验工单"} · ${context.work_order_id}`));
   for (const [name, label] of [["product_model", "型号"], ["operation_code", "工序"], ["actual_started_at", context.execution ? "工单实际开工（选版依据）" : "实际开工"], ["actual_start_precision", "工单时间精度"], ["route_revision", "路线修订"], ["source_system_id", "来源"], ["source_revision", "源修订"], ["last_verified_at", "最后核验时间"]]) {
@@ -260,6 +265,7 @@ async function moreManufacturingJobCards() {
   } catch (error) { if (sameContext(revision) && epoch === state.manufacturing.cardListEpoch) { invalidateManufacturingView("作业卡来源或权限无法确认，请重新查询。"); errorNotice(error); } }
 }
 async function loadManufacturingSelection(loadOperations, loadCards) {
+  openmesWorkspace.clear();
   const id = state.manufacturing.orderId;
   const revision = ++state.revision, epoch = ++state.manufacturing.epoch;
   state.manufacturing.cardListEpoch += 1;
@@ -283,6 +289,7 @@ async function loadManufacturingSelection(loadOperations, loadCards) {
     const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(id)}/context${params ? `?${params}` : ""}`);
     if (!sameContext(revision) || epoch !== state.manufacturing.epoch || state.mode !== "manufacturing") return;
     state.manufacturing.context = data; renderManufacturingSelectors(); renderWorkOrder(data);
+    if (state.manufacturing.batchStepSupported) await openmesWorkspace.select(id);
   } catch (error) { if (sameContext(revision) && epoch === state.manufacturing.epoch) { invalidateManufacturingView("工单来源或权限无法确认，请重新查询。"); errorNotice(error); } }
   finally { if (sameContext(revision)) updateControls(); }
 }
