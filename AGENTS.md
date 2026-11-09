@@ -6,7 +6,7 @@
 
 - 多租户企业知识库问答系统，当前以制造业资料进行演示和评测。
 - 普通解析和 OCR 已接入审核发布、权限问答、原件追溯、反馈审核及回归验证闭环。
-- 已完成自建 ERPNext 独立环境的工单、单工序及工单实际开工只读联调；实际工厂 ERP/MES 尚未接入，视觉解析尚未完成接入实测。自建 ERP 的演示记录不视为真实工厂执行证据。
+- 已完成自建 ERPNext 的工单、工序及作业卡只读接入，以及自建 OpenMES 的工单、批次及步骤只读查询；实际工厂 ERP/MES 尚未接入，视觉解析尚未完成接入实测。自建 ERP/MES 的演示记录不视为真实工厂执行证据。
 - 首期工单集成在 `codex/manufacturing-phase1` 分阶段实施；M1～M3 已完成源码及隔离验证，M4 业务证据审核、冻结 Worker、矩阵与独立 8002 环境已实现。2026-11-01 r4 正式复验自动及助手非独立复核均 31/40，关键项 9/12，未达门槛，真实闭环仍待改进；r3 首轮 28/40、29/40 分别保留。详见阶段进度，不把模拟服务视为真实工厂接口。
 - 制造业相关源码已合入主线；本机 8000 稳定版与 8001 候选版容器仍独立保留。Git 合并不代表容器已更新。
 - M4 提示修正已在独立 8002 的 r4 镜像实测。用户新增授权最多 44 题，实际正式 40 题失败，条件性闭环 4 题未启动，不得挪作补跑；未自动扩大预算。
@@ -24,6 +24,7 @@
 - 同日 ERPNext E3 支持按工单选择具体工序子行及作业卡，使用新增 `work-order-execution-v1`，冻结 v1 不变；会话保存两个选择编号，三次来源校验始终保留选择。工单、工序、卡实际开工分别读取，不互补，选版仍按工单时间；卡引用指向真实卡编号及时间精度。`024011d` 已部署至独立 8003 与 ERP 适配服务的 `erpnext-execution-20261109-r2`，候选数据库迁移至 `f2b8c0a961d3`，158 个业务文件及页面等共 192 个文件与 Git 归档一致；原 8000/8001/8002 保留。完整非集成 2249 通过、1 既有跳过、96 集成排除，专项 134、前端 53、独立 PostgreSQL M1/M3/M4 为 9/12/12 通过；真实 ERP API 9、平台 33、来源变化 2、停机 1、部署端口 9 项通过。开工问答使用真实后端投影及硬零模型预算，包含失败首轮的 57 个请求 ID 独立账本新增调用 0。首轮命令识别缺口、夹具与断言失败保留，执行拒绝已补齐并复验，未做浏览器视觉检查；备份已核验目录但未做完整恢复。详见[报告](docs/reports/erpnext-execution-20261109-r1.json)；当前私有配置/产物在 `tmp/erpnext-execution-20261109-r1/`。自建演示卡不是真实工厂证据，ERP 质量审核/冻结仍未开放；旧开发 13/16 和正式 31/40 的失败状态不变。
 - 同日 ERPNext E4 已接入质量审核和冻结验证：实时来源用鉴权 `/v1/source` 与 v2 登记，不伪造夹具；审核/导出/Worker 复读对应工单、工序及作业卡，字段证据保留各实体及记录编号，同工单不同卡仍同组。仅候选现有管理员增加 HC-P01 的业务 review，ERP 与知识库权限未提升。`2680ce0` 已部署到 8003 与适配服务的 `erpnext-quality-20261109-r2`，160 个业务 Python 文件及页面等共 194 文件匹配 Git 归档，无新迁移；原 8000/8001/8002 保持。默认零模型任务和 `--zero-model-calls` CLI 均有硬零预算，零调用 Worker 不领取模型任务。完整回归 2265 通过、1 既有跳过、96 集成排除，专项79、前端55、独立PG12通过。真实链路32项、登记/停机/卡变化1/2/2项、重采样21项、正式CLI4项及端口9项通过；三个两题确定性任务有重叠，不计模型准确率。18个可观测请求ID和3个任务独立账本新增模型调用0；首轮认证401及Windows脚本读取失败分别保留，未放宽认证。恢复卡值不恢复旧修订，旧版本保持失效并另建当前版本；原始反馈均标助手非独立验收。无常驻质量Worker、未重建索引，备份目录通过但未恢复演练、未视觉检查。详见[E4说明](docs/ERPNEXT_QUALITY.md)及[报告](docs/reports/erpnext-quality-20261109-r1.json)，当前私有配置/产物为 `tmp/erpnext-quality-20261109-r1/`。本轮无付费模型评测，旧开发13/16与正式31/40失败状态不变。
 - 同日 ERPNext E5 独立 16 题真实模型开发验证完成：题集与入口先在 `ffa56fa` 冻结，业务仍为 E4 `2680ce0` / 8003 的 `erpnext-quality-20261109-r2`，未改业务源码、容器或索引。自动及助手非独立复核均 10/16，关键 2/6，未达门槛；12 道调用模型题通过 6 道，4 道零模型边界题全过。Q001/Q004 字段选择或覆盖错误，Q003/Q005 输出校验后 503，Q007 比较角色/修订校验拒答，Q010 未明确回答开工登记与检验签署边界。36 次物理调用、146493 已知及预算 Token、未知 0、92.545 秒，独立账本一致，费用未知；授权已关闭，无重试补跑、正式题或闭环。13 个成功快照保留三次来源校验，16 个来源复读不变，308 份旧产物/报告哈希一致；ERP 继续只读，权限未提升。详见[完整报告](docs/reports/erpnext-development-20261109-r1.md)和[结构化结果](docs/reports/erpnext-development-20261109-r1.json)，私有产物在 `tmp/erpnext-development-20261109-r1/`。本轮不与旧模拟开发13/16或正式31/40拼分，各失败状态保留。
+- 同日 OpenMES O0～O2 在 `codex/openmes-readonly-phase1` 完成独立部署和工单/批次/步骤只读查询：固定 OpenMES 0.28.0 / `eb184a2` 和官方镜像摘要，18081 为 MES，8004 为独立候选；原 ERPNext 18080/8003 及旧应用保留。专用 Sanctum 令牌新增上游只读限制，不能依靠普通 Operator 角色冒充只读；平台保持业务 view 及来源校验。该版本没有工单级实际开工，显示未知，批次/步骤分别读 `started_at`，不互补、不伪装成 ERP 作业卡。业务 `af1c767` 已部署，API/适配器 298 文件与归档一致（后端163个Python），仅新候选现有管理员有 HC-P01 view，无新 review。完整非集成2305通过、1既有跳过，专项113、最终OpenMES23、前端58通过；上游8项、平台25项、两项硬零预算问答、端口4项和页面字节4项通过。执行拒绝/澄清问答各保留三次来源读取，确定性执行视图为两次完整来源比较；22个可观测请求ID及独立账本新增模型调用0。来源/权限故障已恢复，恢复值不回填旧修订；原8容器和15旧报告不变，未重建索引或启动新候选Worker。首轮测试、TLS构建、候选凭据挂载及脚本契约错误保留；备份目录核验通过但未恢复演练、未视觉检查。详见[接入说明](docs/OPENMES_INTEGRATION.md)及[报告](docs/reports/openmes-readonly-20261109-r1.json)，私有产物在 `tmp/openmes-phase1-20261109-r1/`。本期不含批次/步骤模型问答、会话绑定、质量冻结或ERP-MES同步；旧ERPNext10/16、模拟开发13/16及正式31/40失败状态不变。
 - 先用 `git status --short`、`git log -1` 确认源码状态；涉及部署时再检查实际容器及镜像，不从旧提交号推断运行版本。
 
 ## 按需阅读
@@ -36,6 +37,7 @@
 | ERPNext 独立部署、只读接入与验证 | `docs/ERPNEXT_INTEGRATION.md` |
 | ERPNext 实时来源质量审核、冻结及零调用 Worker | `docs/ERPNEXT_QUALITY.md` |
 | ERPNext 独立 16 题真实模型开发验证 | `evals/erpnext_zh_v1/README.md`、`docs/reports/erpnext-development-20261109-r1.md` |
+| OpenMES 独立部署及工单、批次、步骤只读查询 | `docs/OPENMES_INTEGRATION.md` |
 | 制造适用性审核、选版与检索边界 | `docs/MANUFACTURING_APPLICABILITY.md` |
 | 制造问答、两类引用、工单会话与页面 | `docs/MANUFACTURING_QA.md` |
 | 制造业务证据审核、冻结 Worker 与预算 | `docs/MANUFACTURING_QUALITY.md` |
@@ -55,7 +57,7 @@
 | --- | --- |
 | API、浏览器工作台 | `backend/app/api/`、`backend/app/static/` |
 | Keycloak 认证、租户与知识库授权 | `backend/app/security/` |
-| 工单上下文、MES 连接与独立模拟服务 | `backend/app/manufacturing/`、`backend/app/integrations/`、`services/mock_mes/` |
+| 工单上下文、ERP/MES 连接与独立服务 | `backend/app/manufacturing/`、`backend/app/integrations/`、`services/mock_mes/`、`services/erpnext_adapter/`、`services/openmes_adapter/` |
 | 文档解析、清洗、审核发布 | `backend/app/documents/` |
 | 异步索引 | `backend/app/indexing/` |
 | 检索、上下文、问答、路由及修复 | `backend/app/knowledge/` |

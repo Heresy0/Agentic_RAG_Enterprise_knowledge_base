@@ -66,3 +66,29 @@ node --test tests/frontend_conversations.test.cjs tests/frontend/auth.test.mjs
 ```
 
 在允许本机回环连接的环境执行异步测试。集成验收须记录真实源响应、上游写入拒绝、平台撤权、父子身份错配、源修订变化和来源停机；不以单元测试代替实际部署验证，也不以零模型字段查询计算模型准确率。本阶段不发起付费评测，不改变旧 ERPNext 10/16 或旧模拟开发/正式失败状态。
+
+## 2026-11-09 实测与交付
+
+O0～O2 已完成。OpenMES 位于 [18081](http://127.0.0.1:18081/)，新平台位于 [8004](http://127.0.0.1:8004/)，使用独立数据库 `openmes_readonly_phase1`、文档卷、Redis 和浏览器 PKCE 客户端；原 ERPNext 的 18080 / 8003 及原 8000 / 8001 / 8002 保留。候选仅给现有知识管理员配置 `openmes-hc / HC-P01 / view`，未增加业务 review、知识库或 ERPNext 权限。
+
+业务提交 `af1c767f2d5a1b9f20cc4a8f3a6038c83aad02a4` 已从 Git 归档构建为 `enterprise-knowledge-manufacturing:openmes-readonly-20261109-r1`，镜像 ID `sha256:987e85406dabc57cabca4a7a33e5eba7a33daa0fe296640788654823fba49e94`；API 和适配器的 298 个文件逐字节匹配归档，其中后端 Python 163 个。OpenMES 增强镜像 ID 为 `sha256:171e1a452a5e22dbb6a53d944bb59e8b7a81a170fe759e9149a8df90229d1969`，11 个上游关键文件及扩展与固定源码核对一致，bootstrap 只增加专用令牌限制。
+
+通过正常上游模型和业务服务创建 3 张演示工单、6 个批次、12 个步骤；读取用户仅分配一条产线，可见其中 2 张工单。首张工单第一批次第一步骤已开始，第二步骤和其他批次实际开始保持未知；工单级实际开工始终未知。演示管理员初始化和故障夹具维护与平台只读链路分别记录，不称为真实工厂数据。
+
+上游 HTTP **8 项**、平台 HTTP **25 项**通过，包括跨产线/工单/批次/步骤拒绝、令牌写入/刷新拒绝、平台撤权、来源修订变化和来源停机。故障期间返回 409 / 503 / 404，恢复字段值仍保留新修订，不回填原更新时间。两项硬零预算问答分别验证执行请求拒绝及缺条件澄清，均有三次来源读取与快照；新增物理模型调用和 Token **0**，22 个可观测请求 ID 及整个独立候选用量账本核对一致。
+
+完整非外部集成回归 **2305 通过、1 既有跳过**；专项 **113 通过**。之后补充字段引用清单，最终 OpenMES 定向 **23 通过**并完成上述真实链路验证；前端 **58 通过**。原 120 题及 40 题契约完整性通过，4 项新旧端口健康和 4 项页面资源字节检查通过。8 个原容器的 ID / 镜像 / 启动时间不变，15 份旧报告哈希一致；仍为 13 份原件、53 分块，未重建索引，未启动新候选索引或质量 Worker，质量任务 0。
+
+首轮 Windows 沙箱异步 socket 阻塞、测试模块加载遗漏、来源摘要 UUID 序列化错误、TLS 依赖下载失败、新候选缺少只读向量凭据挂载，以及验收脚本误取旧扁平响应均保留对应记录。最终没有关闭 TLS、放宽认证或修改旧结果。新平台和 MES 数据库已备份且目录核验通过，未做完整恢复演练；本轮未做浏览器视觉检查。
+
+当前私有配置、源码归档、备份、原始响应和 67 项证据清单在 `tmp/openmes-phase1-20261109-r1/`，凭据不提交。检查与停止入口：
+
+```powershell
+docker compose --env-file tmp/openmes-phase1-20261109-r1/deployment/deployment.env -f deploy/openmes/compose.yaml -f deploy/openmes/adapter.compose.yaml ps
+docker compose -f tmp/openmes-phase1-20261109-r1/candidate/compose.json ps
+# 需要回滚时只停止新候选/新 MES，保留卷和数据库。
+docker compose -f tmp/openmes-phase1-20261109-r1/candidate/compose.json stop
+docker compose --env-file tmp/openmes-phase1-20261109-r1/deployment/deployment.env -f deploy/openmes/compose.yaml -f deploy/openmes/adapter.compose.yaml stop
+```
+
+完整结构化结果见[OpenMES 首期验收报告](reports/openmes-readonly-20261109-r1.json)。以上为工程接入验收通过，旧 ERPNext 开发 **10/16、关键2/6**、旧模拟开发 **13/16、关键4/6** 和正式 **31/40、关键9/12** 的失败状态分别保留；本轮没有模型准确率、模型改进收益或真实改进闭环通过的结论。

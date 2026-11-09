@@ -1,0 +1,379 @@
+{
+  "schema_version": "openmes-readonly-acceptance-v1",
+  "status": "passed",
+  "scope": "O0 independent deployment; O1 read-only adapter; O2 deterministic order/batch/step views",
+  "source": {
+    "application_revision": "af1c767f2d5a1b9f20cc4a8f3a6038c83aad02a4",
+    "platform_image": "enterprise-knowledge-manufacturing:openmes-readonly-20261109-r1",
+    "platform_image_id": "sha256:987e85406dabc57cabca4a7a33e5eba7a33daa0fe296640788654823fba49e94",
+    "verified_application_files": 298,
+    "backend_python_files": 163,
+    "upstream_revision": "eb184a2984b74d685e65ee24df9b8c7b34c765f6",
+    "upstream_version": "0.28.0",
+    "upstream_image": "ghcr.io/mes-open/openmes@sha256:0b64934615eaa60697777ed9d18423eb91bc38b27ea1e0cbba3e326f74cc94fe",
+    "upstream_extension_image_id": "sha256:171e1a452a5e22dbb6a53d944bb59e8b7a81a170fe759e9149a8df90229d1969",
+    "verified_upstream_source_files": 11
+  },
+  "environment": {
+    "openmes_url": "http://127.0.0.1:18081",
+    "workspace_url": "http://127.0.0.1:8004",
+    "platform_database": "openmes_readonly_phase1",
+    "isolated_openmes_database_and_volumes": true,
+    "platform_documents": 13,
+    "sql_chunks": 53,
+    "index_rebuilt": false,
+    "candidate_index_worker": false,
+    "candidate_quality_worker": false,
+    "active_quality_jobs": 0,
+    "read_only_view_grants": 1,
+    "review_grants": 0,
+    "erpnext_preserved": [
+      "http://127.0.0.1:18080",
+      "http://127.0.0.1:8003"
+    ]
+  },
+  "semantics": {
+    "source_hierarchy": [
+      "Work Order",
+      "Batch",
+      "Batch Step"
+    ],
+    "work_order_actual_start": "unknown; no upstream field in this pinned version",
+    "batch_actual_start": "Batch.started_at",
+    "step_actual_start": "BatchStep.started_at",
+    "unknown_times_backfilled": false,
+    "selection_parentage_verified": true,
+    "context_source_checks": 2,
+    "legacy_qa_source_checks": 3,
+    "writes_allowed": false,
+    "read_only_token_enforced_upstream": true,
+    "source_revision_changed_on_restoration": true
+  },
+  "tests": {
+    "full_nonintegration": {
+      "tests": 2306,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 2305
+    },
+    "targeted": {
+      "tests": 113,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 113
+    },
+    "final_openmes": {
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 23
+    },
+    "frontend": {
+      "passed": 58,
+      "failed": 0
+    },
+    "upstream_http": {
+      "passed": 8,
+      "checks": [
+        {
+          "name": "upstream-orders",
+          "status": 200
+        },
+        {
+          "name": "upstream-order",
+          "status": 200
+        },
+        {
+          "name": "upstream-batch",
+          "status": 200
+        },
+        {
+          "name": "upstream-forbidden-line",
+          "status": 403
+        },
+        {
+          "name": "upstream-forbidden-start",
+          "status": 403
+        },
+        {
+          "name": "upstream-forbidden-update",
+          "status": 403
+        },
+        {
+          "name": "upstream-forbidden-refresh",
+          "status": 403
+        },
+        {
+          "name": "upstream-forbidden-other-read",
+          "status": 403
+        }
+      ]
+    },
+    "platform_http": {
+      "passed": 25,
+      "checks": [
+        {
+          "name": "unauthenticated",
+          "status": 401
+        },
+        {
+          "name": "orders",
+          "status": 200
+        },
+        {
+          "name": "parent-context",
+          "status": 200
+        },
+        {
+          "name": "batches",
+          "status": 200
+        },
+        {
+          "name": "steps",
+          "status": 200
+        },
+        {
+          "name": "execution",
+          "status": 200
+        },
+        {
+          "name": "unknown-step",
+          "status": 200
+        },
+        {
+          "name": "unknown-batch",
+          "status": 200
+        },
+        {
+          "name": "foreign-order",
+          "status": 404
+        },
+        {
+          "name": "foreign-batch",
+          "status": 404
+        },
+        {
+          "name": "foreign-step",
+          "status": 404
+        },
+        {
+          "name": "step-without-batch",
+          "status": 422
+        },
+        {
+          "name": "unauthorized-orders",
+          "status": 404
+        },
+        {
+          "name": "unauthorized-execution",
+          "status": 404
+        },
+        {
+          "name": "platform-write",
+          "status": 405
+        },
+        {
+          "name": "qa-does-not-accept-batch-context",
+          "status": 422
+        },
+        {
+          "name": "page",
+          "status": 200
+        },
+        {
+          "name": "module",
+          "status": 200
+        },
+        {
+          "name": "configuration",
+          "status": 200
+        },
+        {
+          "name": "revoked-during-session",
+          "status": 404
+        },
+        {
+          "name": "grant-restored",
+          "status": 200
+        },
+        {
+          "name": "stale-source",
+          "status": 409
+        },
+        {
+          "name": "source-value-restored",
+          "status": 200
+        },
+        {
+          "name": "source-unavailable",
+          "status": 503
+        },
+        {
+          "name": "source-recovered",
+          "status": 200
+        }
+      ]
+    },
+    "zero_budget_qa": {
+      "passed": 2,
+      "trace_model_calls": 0,
+      "ledger_model_calls": 0,
+      "source_checks_per_question": 3
+    },
+    "deployment_ports": {
+      "passed": 4
+    },
+    "page_assets": {
+      "passed": 4
+    },
+    "frozen_integrity": [
+      {
+        "name": "general-suite",
+        "status": "passed",
+        "model_calls": 0
+      },
+      {
+        "name": "phase1-contract",
+        "status": "passed",
+        "model_calls": 0
+      }
+    ]
+  },
+  "usage": {
+    "new_physical_model_calls": 0,
+    "new_tokens": 0,
+    "independent_ledger_unchanged": true,
+    "observable_request_ids": 22,
+    "paid_evaluation": false
+  },
+  "preservation": {
+    "old_containers_unchanged": 8,
+    "old_reports_unchanged": 15,
+    "source_and_permission_faults_restored": true,
+    "erpnext_modified": false,
+    "old_erpnext_development": "10/16 critical 2/6; failed",
+    "old_mock_development": "13/16 critical 4/6; failed",
+    "old_formal": "31/40 critical 9/12; failed",
+    "scores_combined": false
+  },
+  "failures_retained": [
+    {
+      "stage": "Windows sandbox tests",
+      "reason": "asyncio socketpair blocked before test business execution; hung processes stopped; reran with loopback available"
+    },
+    {
+      "stage": "first frontend harness",
+      "reason": "new module missing in VM test loader; loader corrected; real module exercised in final tests"
+    },
+    {
+      "stage": "unit-r3",
+      "reason": "UUID in source digest was not JSON serializable; corrected before source commit; original XML retained"
+    },
+    {
+      "stage": "platform-build-r1",
+      "reason": "dependency download TLS failure; certificate checks retained; reused an existing manifest-identical dependency image"
+    },
+    {
+      "stage": "candidate startup / live-r1",
+      "reason": "missing read-only Milvus credential mount; copied private credential without changing source permissions; new candidate recreated"
+    },
+    {
+      "stage": "live-r2",
+      "reason": "acceptance script expected nested parent context; corrected to the existing flattened public contract; response retained"
+    }
+  ],
+  "limitations": [
+    "self-hosted demonstration records, not real factory evidence",
+    "batch/step fields are deterministic queries, not model QA or frozen quality samples",
+    "one business source per tenant remains; no ERPNext-to-MES synchronization",
+    "no independent human acceptance or browser visual inspection",
+    "backup catalogs checked; no full restore drill",
+    "full regression preceded final citation-field list addition; final OpenMES targeted and live checks cover that addition"
+  ],
+  "evidence": {
+    "private_root": "tmp/openmes-phase1-20261109-r1/",
+    "artifacts": 67,
+    "files": {
+      "adapter.json": "6739920f4d5e12cddf4f5eb35bcf953040131fa7ea2bcc24b4255054efa9a3f1",
+      "baseline-runtime.json": "fc8f4e2a32a14cfea622206a6d480a413e2ac3d02a201e684ae2d7fead925565",
+      "candidate-startup-fix.json": "29921e4e7a2b985550aa64ae40d6da928cda52e03e8e03c124b78714c93e98eb",
+      "candidate-startup-r1.log": "99597c7949cdaba810b4141c86ff14b26a33a5f03364f0c2111f4aba27b2d461",
+      "dependency-reuse-proof.json": "6c0f2571ff093ca8d932cafca6e5395ccd8e5ce9c1a9ed0d42987279ebef5791",
+      "deployment-health-r1.json": "73079391754bfce099275c76bd949e2477b3c166d262fc88757e48c600d6b9c3",
+      "frontend-r3.log": "a66b34db28cb7e99703c44249ed5912d8b49936be7710be24e5c834649a8fcb2",
+      "full-regression-r1.log": "5fd45e97e260f18b4705164f81bb516ede00520dff7eb6e4d5ec27d7d27d6088",
+      "full-regression-r1.xml": "ccf2b4449abf18fc587c5acf497950f50773dc2ef7be145f056bbd6e718968c6",
+      "general-suite-check.log": "9dbaf359cd39f09972cb61fdc535b3bc052e5b3e6d0622cd665d72b2f308d519",
+      "independent-final-audit.json": "f3dc03c27db9846c406a1ec565389b44b16b714fedcd7c31a59bbb15aa726e47",
+      "initial-db-probe.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "integrity-checks.json": "e719970c1d7f010b89a31fb39b9465a68b3b338353a7c8b505282391a8fa5e74",
+      "live-r1/ledger-before.json": "6bde640237bf52e471cc8d6f98f3ff3a264474d963e974f83fb0fb1f3dbb6f3d",
+      "live-r2/ledger-before.json": "6bde640237bf52e471cc8d6f98f3ff3a264474d963e974f83fb0fb1f3dbb6f3d",
+      "live-r2/orders.json": "01ae2ec341d2276dc1275ae9eab1ec856b64c5efb97889718bb9ee010e0406a7",
+      "live-r2/parent-context.json": "d16f65a40fd296755cc987d0872fc00d8031ab1a67bf2e5a7094da06417fd7db",
+      "live-r2/unauthenticated.json": "3a63515a5f4d224d23c2c5efda51606bfc5c522c8ca7abeef5eb9dbeada6bf93",
+      "live-r3/batches.json": "91995c953002f837b12117e5c48e3b4f8c5104bbe020165b3ccacdbb1e574f93",
+      "live-r3/configuration.json": "0761dbfa3ca9238b268929435911610a28d91878e6b47660e4055d1a8391a4b5",
+      "live-r3/execution.json": "306146b8837465a6c590cf549782f1c0cc75bf263054bab605e8b172ea3d00dc",
+      "live-r3/foreign-batch.json": "54712ad2bd4ca02412dc8a98c5edf72e0520a86085299b0a5b532565295648d0",
+      "live-r3/foreign-order.json": "c06d9f9b1467269549daaa7fce1c24f285c4f953fee3ac892926040964876437",
+      "live-r3/foreign-step.json": "87a3abd92dc833b0a19d2d43d0271c82abee035df970087b590ff423b5a52dd7",
+      "live-r3/grant-restored.json": "3543c4a16ff8eb7c755fdce317e892bc07dcf4dffe14ca15c8f9ff0231cb555b",
+      "live-r3/ledger-after.json": "e725b61efdf47097afa4eaca1559512edc15cc9aa95256633e7876cd8732c549",
+      "live-r3/ledger-before.json": "6bde640237bf52e471cc8d6f98f3ff3a264474d963e974f83fb0fb1f3dbb6f3d",
+      "live-r3/module.json": "d8f19d1788351c7dc7f0b10c73e6e2c2cbe1014b496ff89da9840243121c5899",
+      "live-r3/orders.json": "f495fc06cc6e7ff70cf1374d5baed06de73ba5fb712468209485747218479881",
+      "live-r3/page.json": "d8f19d1788351c7dc7f0b10c73e6e2c2cbe1014b496ff89da9840243121c5899",
+      "live-r3/parent-context.json": "087e0cfa7e573085ab76a85413a4df7130ebdcde313b56758f084aef0a6c80b5",
+      "live-r3/platform-write.json": "ddde725761526c406573ba712300111a037fa4a98c7bf91da149d5dad059f34e",
+      "live-r3/qa-does-not-accept-batch-context.json": "6c943268b85818ba05ece24da8d626cbf2f28590c3dd1c9ca3e7415c0686e298",
+      "live-r3/revoked-during-session.json": "c6e5272d6915af2f97b890d398ab8c8d5e4ec33b3ee1b1881eeccc4a601cc467",
+      "live-r3/source-change-original.json": "6e5cb22cc7ba118c581b3830299484268ef1468ff656aa11036bad739703626e",
+      "live-r3/source-recovered.json": "068235be613b1e07daaa4f45c892cfcadda9a6b1f30fcdbaabc428f9ba0f9220",
+      "live-r3/source-unavailable.json": "3a7650fd6328d0c5614107e8bd24ec74de587537cf8b65a8f7433ef99c59b794",
+      "live-r3/source-value-restored.json": "13228061d605b55811ec1fb1017e2c569110370b448ab1df0950ded8e7fd30f0",
+      "live-r3/stale-source.json": "5fe97f23bccf68949a347eb2b09f5972626e3c47d01a0870b8e45f225a0b65f8",
+      "live-r3/step-without-batch.json": "4c9975e4ed25ea64ef2f0a53aa8216e4c816ebf288f1d4430d0da97f872f264a",
+      "live-r3/steps.json": "d728001b495b78b4779af95970cdb545a38d47b188417e9d5ef5c9327791fa70",
+      "live-r3/summary.json": "43dee8310993246b1d9aef5db68b782350f31a9361896f3e036211cc0cec84fd",
+      "live-r3/unauthenticated.json": "3a63515a5f4d224d23c2c5efda51606bfc5c522c8ca7abeef5eb9dbeada6bf93",
+      "live-r3/unauthorized-execution.json": "157f520803686a57c57dc44779fac2e8b1445d8253a5a58cc0d5a036661dfbfc",
+      "live-r3/unauthorized-orders.json": "02f4ccdfc8a0295a4daeefd06d6a6825c6f41d1f703efd7dd07925345bfbd330",
+      "live-r3/unknown-batch.json": "978a536d4660bd83cf75377f3b4e816fcc8eac8927059782ddc3af4701b3a596",
+      "live-r3/unknown-step.json": "0037136e54057cc36e67bf8057b582de776e0d2f947e815e0c4fb0a5c16c394f",
+      "old-report-hashes.json": "de1508a2911e7f265622feed12b49bd3145c26bf58c321736e19f19448cdb615",
+      "phase1-contract-check.log": "c818baf4594a65136ee9365512827700de90aafd135d93e327c5f45ea72ee5b3",
+      "platform-build-r1.log": "7d9a82081f36434663e9dee4a29bce242c0471efd11574417bd4eb11cf1d5775",
+      "platform-build-r2.log": "3ece90bc84314add959b62853f15819453e3ab4eeb2bd4e4d3369c5025f0e838",
+      "platform-build-r3.log": "c2b16a0eb67ce0b49beae8500464abe0e5ad08db5fd8b2c439773b9b24a1cada",
+      "runtime-source-proof.json": "395066b712332913afb9419ea9f03d1844e42fb0a8d09cef8157bedfe71930e9",
+      "unit-r3.xml": "77aabeae6456311a0db67e4c2aecacd6a2ac427680cf056cd867dabbe90440ff",
+      "unit-r4.xml": "b51d363d821db4b0bc5eab42c285f344da6661a8184fd106f584beb713c58997",
+      "unit-r5.xml": "8cf04c3c106653f9a4a53101855666742218a848252380973560cf08a6b82191",
+      "upstream-acceptance-r1.json": "b59dad37abc5d99f47d516dbcbcae1ca52dad8d527840ff8a4388369a3a991f7",
+      "upstream-batch-response.json": "0354635c58cb35cb0cfda96576881e6ca4e89ae913deae722f3fea0d71626696",
+      "upstream-forbidden-line-response.json": "a9f0cd294fc6ef879131b5405219ecef6b5e173fa08bb8eddd22f53d94adf3c5",
+      "upstream-forbidden-other-read-response.json": "b8b10144ddb8d5997e00c8c2fd56291b644002028f778aed82d2b2569c54312c",
+      "upstream-forbidden-refresh-response.json": "b8b10144ddb8d5997e00c8c2fd56291b644002028f778aed82d2b2569c54312c",
+      "upstream-forbidden-start-response.json": "b8b10144ddb8d5997e00c8c2fd56291b644002028f778aed82d2b2569c54312c",
+      "upstream-forbidden-update-response.json": "b8b10144ddb8d5997e00c8c2fd56291b644002028f778aed82d2b2569c54312c",
+      "upstream-order-response.json": "db017b5166a9e363ef806f398b0f1d2eb8b7e69baff935d3467a22df82a06138",
+      "upstream-orders-response.json": "fe2ede9daf18a9b1ba97826cb466c06b0930daf8d2c536e8e6ed4dc127a7d9cf",
+      "upstream-source-proof.json": "fe481f606d3b9e19b44dfff415353f91628ecc851862cadc44c66b5a44e8273b",
+      "zero-model-qa-r1.json": "dad5171d8d914dc6507929166c693106b77083ca1f16844cc30dc5121fdb4ad4"
+    },
+    "backups": {
+      "openmes.dump": {
+        "bytes": 687118,
+        "sha256": "04d558960cfd1bfa0e1967a9ef78ba9f760ceaa7ad458569e5f1e3330d983724"
+      },
+      "platform.dump": {
+        "bytes": 204845,
+        "sha256": "142bb75c5d5e8ebeafde43efd43bc4306cdf994fc7d0b05a3d21dc4389c7147e"
+      }
+    }
+  }
+}
