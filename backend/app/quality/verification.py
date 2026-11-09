@@ -49,6 +49,9 @@ def runtime_config(settings):
     from ..manufacturing.evaluation_sources import CONNECTOR_CONTRACT
     from ..evaluation.manufacturing_metrics import SCORER_VERSION as MANUFACTURING_SCORER
     values["manufacturing"] = dict(connector_contract=CONNECTOR_CONTRACT, scorer=MANUFACTURING_SCORER)
+    from ..manufacturing.source_registration import LIVE_SOURCE_CONTRACT
+    from ..evaluation.manufacturing_execution_metrics import SCORER_VERSION as EXECUTION_SCORER
+    values['manufacturing'].update(live_connector_contract=LIVE_SOURCE_CONTRACT, execution_scorer=EXECUTION_SCORER)
     for name in ("manufacturing_evaluation_registry", "manufacturing_sources_file"):
         path = getattr(settings, name, None)
         try:

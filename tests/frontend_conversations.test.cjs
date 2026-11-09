@@ -70,10 +70,11 @@ function setup() {
   return { $, requests, run, ask, sandbox };
 }
 
-test("manufacturing review selects immutable business fields separately from document quotes", async () => {
+for (const execution of [false, true]) test(`manufacturing review preserves ${execution ? "execution" : "legacy"} source identity`, async () => {
   const { $, run, sandbox } = setup(); admin(run);
   const data = qualityData(); data.source.snapshot.context.items = [];
   const evidence = {citation_id:"业务2",field_name:"product_model",value:"<script>型号</script>",source_system_id:"mock-mes-hc",source_record_id:"source-1",source_revision:"r1",payload_sha256:"a".repeat(64),last_verified_at:"2026-11-01T00:00:00Z"};
+  if (execution) Object.assign(evidence, { field_name:"job_card_status", source_entity:"Job Card", source_record_id:"JC-A", operation_id:"ROW-A", job_card_id:"JC-A", actual_start_precision:"datetime" });
   data.source.business_evidence_options = [evidence];
   let submitted;
   sandbox.fetch = async (url, options = {}) => {
@@ -88,7 +89,7 @@ test("manufacturing review selects immutable business fields separately from doc
   row.children[0].children[0].checked=true;
   await $("quality-detail").querySelector(".quality-form").listeners.submit({preventDefault(){}});
   assert.deepEqual(submitted.evidence,[]);
-  assert.deepEqual(submitted.business_evidence,[Object.fromEntries(["citation_id","field_name","value","source_system_id","source_record_id","source_revision","payload_sha256"].map(key=>[key,evidence[key]]))]);
+  assert.deepEqual(submitted.business_evidence,[Object.fromEntries(["citation_id","field_name","value","source_system_id","source_record_id","source_revision","payload_sha256",...(execution?["source_entity","operation_id","job_card_id","actual_start_precision"]:[])].map(key=>[key,evidence[key]]))]);
 });
 
 test("first question creates a conversation, followup reuses it, new conversation resets it", async () => {
@@ -718,4 +719,18 @@ test("M3 U08: denied history clears previous order and late business preview aft
   const pending = run('previewBusinessCitation(testCitation, "mfg-run")'); await started;
   run('state.revision += 1; clearConversation()'); finish(jsonResponse({ response: { business_citations: [{ ...citation("WO-018"), value: "LATE-PRIVATE-VALUE" }] } })); await pending;
   assert.equal($("citation-dialog").open, false); assert.equal($("citation-content").textContent, "");
+});
+
+
+test("zero-call evaluation sends hard zero budgets and resets consent on mode changes", async () => {
+  const { $, run, sandbox } = setup(); admin(run); let submitted;
+  sandbox.fetch = async (url, options={}) => { if(options.method==="POST") submitted=JSON.parse(options.body); return jsonResponse({items:[]}); };
+  $("evaluation-fixed").value="fixed"; $("evaluation-feedback").value="feedback";
+  $("evaluation-max-cases").value="2"; $("evaluation-max-seconds").value="120";
+  $("evaluation-mode").value="zero"; $("evaluation-mode").listeners.change();
+  assert.equal($("evaluation-max-calls").disabled,true);assert.equal($("evaluation-consent").checked,false);
+  $("evaluation-consent").checked=true; await $("evaluation-form").listeners.submit({preventDefault(){}});
+  assert.equal(submitted.allow_model_calls,false);assert.equal(submitted.max_model_calls,0);assert.equal(submitted.max_tokens,0);
+  $("evaluation-consent").checked=true;$("evaluation-mode").value="model";$("evaluation-mode").listeners.change();
+  assert.equal($("evaluation-consent").checked,false);assert.equal($("evaluation-max-calls").disabled,false);
 });

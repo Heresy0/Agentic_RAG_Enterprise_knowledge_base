@@ -14,6 +14,7 @@ from backend.app.integrations.mes import MESError
 from backend.app.integrations.mes_contracts import WorkOrderPage
 from backend.app.manufacturing.contracts import Identifier, canonical_digest
 from backend.app.manufacturing.execution_contracts import JobCardPage
+from backend.app.manufacturing.source_registration import erpnext_source_descriptor
 
 
 def create_app(config, *, transport=None):
@@ -52,6 +53,11 @@ def create_app(config, *, transport=None):
     @app.get('/health')
     def health():
         return dict(status='ok', mode='erpnext_read_only')
+
+    @app.get('/v1/source')
+    def source(response: Response, plants=Depends(authorized)):
+        response.headers['Cache-Control'] = 'no-store'
+        return erpnext_source_descriptor(config)
 
     def cursor_binding(plants, limit, **selection):
         return canonical_digest(dict(tenant=str(config.tenant_id), source=config.source_system_id,

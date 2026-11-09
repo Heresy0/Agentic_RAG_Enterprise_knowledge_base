@@ -11,9 +11,12 @@ from ..manufacturing.contracts import WorkOrderContext
 from ..manufacturing.execution_contracts import context_from_payload
 from ..manufacturing.evaluation_sources import registry_for
 from ..manufacturing.service import public_applicability
-from ..security.business_scope import BusinessAuthorizationService
+from ..manufacturing.scope import ManufacturingScopeChanged
+from ..integrations.mes import MESError
+from ..security.business_scope import BusinessAuthorizationService, BusinessAuthorizationDenied
 from ..security.retrieval_scope import RetrievalScope
 from .reviews import ReviewConflict
+from .review_schemas import ExecutionBusinessEvidenceInput
 
 
 def business_rows(store, run):
@@ -63,7 +66,9 @@ def resolve_business_evidence(store, run, selected):
     result = []
     for chosen in selected:
         expected = options.get(chosen.citation_id)
-        if expected is None or any(expected[key] != value for key, value in chosen.model_dump().items()):
+        if (expected is None or expected.get('source_entity') and not isinstance(chosen, ExecutionBusinessEvidenceInput)
+                or expected.get('source_entity') and chosen.job_card_id != expected.get('job_card_id')
+                or any(expected.get(key) != value for key, value in chosen.model_dump().items())):
             raise ReviewConflict("工单字段、值、来源身份、修订或哈希与当次快照不一致。")
         result.append(expected)
     return result
@@ -73,9 +78,10 @@ def current_binding(store, run, *, previous=None, verify_record=False):
     context = observed_context(store, run)
     try:
         registry = registry_for(store.settings)
+        _, registered = registry.registered(store.principal.tenant_id)
         source = registry.check(store.session, store.principal,
             expected=previous["business_context_binding"]["source"] if previous else None,
-            context=context if verify_record else None)
+            context=context if verify_record or registered.get('source_kind') == 'live' else None)
         business_scope = BusinessAuthorizationService(store.session).require_scope(principal=store.principal,
             source_system_id=context.record.source_system_id, permission="review")
         scope = RetrievalScope(tenant_id=run.tenant_id, knowledge_base_ids=frozenset(
@@ -96,12 +102,17 @@ def current_binding(store, run, *, previous=None, verify_record=False):
         if previous is not None and any(previous.get(key) != value for key, value in result.items()):
             raise ValueError()
         return result
-    except Exception:
+    except (ValueError, MESError, BusinessAuthorizationDenied, ManufacturingScopeChanged):
         # Neither source URLs/credentials nor upstream response text may enter a review error.
         raise ReviewConflict("活跃工单夹具、来源或适用性已变化或不可验证，请重新采集并审核。") from None
 
 
 def approval_evidence(run, payload, documents, business):
+    execution = run.snapshot_json['manufacturing']['business_context']['record'].get('execution')
+    if payload.expected_answerable and execution:
+        required = {'operation_id'} | ({'job_card_id'} if execution.get('job_card_id') else set())
+        if not required <= {row['field_name'] for row in business}:
+            raise ReviewConflict('所选工序/作业卡样本须选择对应身份字段，不能丢失选择边界。')
     if not payload.expected_answerable or facts_only_question(payload.evaluation_question):
         return
     fields = {row["field_name"] for row in business}

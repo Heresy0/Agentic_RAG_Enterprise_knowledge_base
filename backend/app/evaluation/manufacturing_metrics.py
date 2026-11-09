@@ -14,6 +14,9 @@ def same_value(field, left, right):
 
 
 def score_manufacturing(case, response, context=None):
+    if case['business_context_binding']['context']['record']['schema_version'] == 'work-order-execution-v1':
+        from .manufacturing_execution_metrics import score_execution
+        return score_execution(case, response, context)
     result = score_answer(case, response, context)
     expected = case["business_context_binding"]["context"]
     record = expected["record"]

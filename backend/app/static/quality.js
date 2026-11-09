@@ -83,7 +83,7 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
         choose.checked = (review.business_evidence || []).some(row => row.citation_id === evidence.citation_id);
         const label = element("label", undefined, "feedback-consent");
         label.append(choose, element("span", `[${evidence.citation_id}] ${evidence.field_name}：${JSON.stringify(evidence.value)}`));
-        section.append(label, element("p", `${evidence.source_system_id} / ${evidence.source_record_id} · 修订 ${evidence.source_revision}`, "answer-meta"),
+        section.append(label, element("p", `${evidence.source_entity || "工单"} · ${evidence.source_system_id} / ${evidence.source_record_id} · 修订 ${evidence.source_revision}`, "answer-meta"),
           element("p", `来源哈希 ${evidence.payload_sha256}`, "answer-meta"));
         source.append(section); businessInputs.push({ choose, evidence });
       }
@@ -97,7 +97,8 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
       const lines = node => node.value.split("\n").map(value => value.trim()).filter(Boolean);
       const payload = { expected_revision: data.case.revision, review_status: status.value, sample_status: sample.value, root_cause: cause.value || null,
         ...(businessInputs.length ? { business_evidence: businessInputs.filter(item => item.choose.checked).map(item => Object.fromEntries(
-          ["citation_id", "field_name", "value", "source_system_id", "source_record_id", "source_revision", "payload_sha256"].map(key => [key, item.evidence[key]]))) } : {}),
+          ["citation_id", "field_name", "value", "source_system_id", "source_record_id", "source_revision", "payload_sha256",
+            ...(item.evidence.source_entity ? ["source_entity", "operation_id", "actual_start_precision", ...(item.evidence.job_card_id ? ["job_card_id"] : [])] : [])].map(key => [key, item.evidence[key]]))) } : {}),
         ...Object.fromEntries(["fact_alternatives", "fact_assertions", "accepted_behaviors", "citation_requirement"].filter(key => review[key] != null).map(key => [key, review[key]])),
         review_reason: reason.value, expected_answerable: answerable.value === "" ? null : answerable.value === "true", reference_answer: reference.value.trim() || null,
         ...(answerable.value ? { expected_behavior: answerable.value === "clarify" ? "clarify" : answerable.value === "true" ? "answer" : "refuse" } : {}),

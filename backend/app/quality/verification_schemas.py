@@ -12,18 +12,20 @@ class EvaluationInput(StrictInput):
     feedback_dataset_id: UUID
     allow_model_calls: bool = False
     max_cases: int = Field(default=40, ge=2, le=200, strict=True)
-    max_model_calls: int = Field(default=200, ge=1, le=2000, strict=True)
-    max_tokens: int = Field(default=1_000_000, ge=1000, le=10_000_000, strict=True)
+    max_model_calls: int = Field(default=200, ge=0, le=2000, strict=True)
+    max_tokens: int = Field(default=1_000_000, ge=0, le=10_000_000, strict=True)
     reservation_tokens: int = Field(default=16000, ge=1000, le=65536, strict=True)
     max_seconds: int = Field(default=600, ge=10, le=3600, strict=True)
 
     @model_validator(mode="after")
     def explicit_calls(self):
-        if not self.allow_model_calls:
-            raise ValueError("创建评测任务须明确允许模型调用。")
+        if not self.allow_model_calls and (self.max_model_calls != 0 or self.max_tokens != 0):
+            raise ValueError('未允许模型调用时，调用和 Token 预算必须均为 0。')
+        if self.allow_model_calls and (self.max_model_calls < 1 or self.max_tokens < self.reservation_tokens):
+            raise ValueError('允许模型调用须提供有效调用和 Token 预算。')
         if self.fixed_dataset_id == self.feedback_dataset_id:
             raise ValueError("固定集与反馈回归集必须是两份不同版本。")
-        if self.reservation_tokens > self.max_tokens:
+        if self.allow_model_calls and self.reservation_tokens > self.max_tokens:
             raise ValueError("单次调用预留量不能超过任务 Token 预算。")
         return self
 

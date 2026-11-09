@@ -71,8 +71,9 @@
         <form id="evaluation-form" class="quality-form evaluation-form">
           <label class="quality-field">固定基线集版本<select id="evaluation-fixed" required></select></label>
           <label class="quality-field">反馈回归集版本<select id="evaluation-feedback" required></select></label>
+          <label class="quality-field">验证方式<select id="evaluation-mode"><option value="zero">来源与确定性字段验证（0 次模型调用）</option><option value="model">允许模型调用（按预算执行）</option></select></label>
           <div class="evaluation-limits"><label>最大题数<input id="evaluation-max-cases" type="number" min="2" max="200" value="40" required></label><label>最大模型调用次数<input id="evaluation-max-calls" type="number" min="1" max="2000" value="200" required></label><label>Token 预算<input id="evaluation-max-tokens" type="number" min="16000" max="10000000" value="1000000" required></label><label>最长执行秒数<input id="evaluation-max-seconds" type="number" min="10" max="3600" value="600" required></label></div>
-          <label class="feedback-consent"><input id="evaluation-consent" type="checkbox">允许本次任务调用模型并产生用量。Token 使用含保守预留，实际费用以供应商账单为准。</label>
+          <label class="feedback-consent"><input id="evaluation-consent" type="checkbox">确认使用所选验证方式与预算。零调用模式遇到需要模型的问题会停止；允许模型模式会产生用量，实际费用以供应商账单为准。</label>
           <button id="evaluation-submit" class="primary" type="submit" disabled>创建评测任务</button>
           <p class="answer-meta">任务由独立评测 Worker 执行。取消会阻止后续调用，已发送的请求仍可能完成并产生用量。</p>
         </form>

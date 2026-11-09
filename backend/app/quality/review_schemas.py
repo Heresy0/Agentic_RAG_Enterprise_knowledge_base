@@ -49,7 +49,7 @@ class ReviewInput(BaseModel):
     citation_requirement: Literal["none", "all_supporting_sources"] | None = None
     forbidden_claims: list[str] = Field(default_factory=list, max_length=32)
     evidence: list[EvidenceInput] = Field(default_factory=list, max_length=32)
-    business_evidence: list["BusinessEvidenceInput"] = Field(default_factory=list, max_length=16)
+    business_evidence: list["BusinessEvidenceInput | ExecutionBusinessEvidenceInput"] = Field(default_factory=list, max_length=32)
 
     @field_validator("review_reason", "reference_answer", "evaluation_question")
     @classmethod
@@ -103,6 +103,13 @@ class BusinessEvidenceInput(BaseModel):
     source_record_id: str = Field(min_length=1, max_length=100)
     source_revision: str = Field(min_length=1, max_length=100)
     payload_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+
+
+class ExecutionBusinessEvidenceInput(BusinessEvidenceInput):
+    source_entity: Literal['Work Order', 'Work Order Operation', 'Job Card']
+    operation_id: str = Field(min_length=1, max_length=64)
+    job_card_id: str | None = Field(default=None, min_length=1, max_length=64, exclude_if=lambda value: value is None)
+    actual_start_precision: Literal['date', 'datetime'] | None
 
 
 ReviewInput.model_rebuild()

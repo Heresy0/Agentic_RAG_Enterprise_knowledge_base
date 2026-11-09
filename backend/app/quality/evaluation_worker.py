@@ -116,7 +116,7 @@ class QualityEvaluationWorker:
                                actor_user_id=principal.user_id, job_id=job.id) as usage, capture_snapshot(scope, sample["question"]) as capture:
                 if sample.get("input_kind", "document") == "manufacturing":
                     from ..manufacturing.evaluation_sources import registry_for
-                    from ..manufacturing.contracts import ManufacturingQuestion
+                    from ..manufacturing.execution_contracts import ManufacturingExecutionQuestion, context_from_payload, selection_kwargs
                     from ..manufacturing.service import ManufacturingService
                     registry = registry_for(self.settings)
                     async def manufacturing_answer():
@@ -126,8 +126,9 @@ class QualityEvaluationWorker:
                         async with registry.connector_factory(config) as connector:
                             def guard(): self.guard(job_id, token, sample)
                             service = ManufacturingService(session=session, principal=principal, connector=connector, answer_service=self.answer)
-                            payload = ManufacturingQuestion(question=sample["question"],
-                                work_order_id=sample["business_context_binding"]["context"]["record"]["work_order_id"])
+                            frozen_record = context_from_payload(sample['business_context_binding']['context']).record
+                            payload = ManufacturingExecutionQuestion(question=sample["question"],
+                                work_order_id=frozen_record.work_order_id, **selection_kwargs(frozen_record))
                             response, _ = await service.answer(payload, scope=scope, observation=capture,
                                 commit_success=lambda result, selected, observed: business_observation.update(observed),
                                 check_lease=guard, frozen_input=sample)
