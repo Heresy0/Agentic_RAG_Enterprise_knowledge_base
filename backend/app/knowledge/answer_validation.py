@@ -137,6 +137,9 @@ class AnswerValidator:
             draft.claims,
             start=1,
         ):
+            if getattr(claim, "source_unit", None) is not None:
+                errors.append(f"第{claim_index}个原文条目不存在或未完成本轮来源绑定")
+                continue
             if not claim.citations:
                 errors.append(
                     f"第{claim_index}个结论没有引用"
@@ -263,6 +266,9 @@ class AnswerValidator:
 
         if context.business_items:
             from ..manufacturing.answer_context import current_manufacturing_context
+            from ..manufacturing.source_statements import duration_question, duration_verdict
+            if duration_question(question) is not None and not any(duration_verdict(question, claim, context) for claim in draft.claims):
+                errors.append("停机时长判定缺少带完整引导语和阈值的适用指导书原文，不能仅重复阈值或推断其他触发条件")
             active = current_manufacturing_context()
             if active is not None and active.comparison and draft.answerable:
                 revisions = {item_map[key].business_revision for claim in draft.claims

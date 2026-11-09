@@ -295,7 +295,7 @@ class AnswerService:
         record_calculations(calculation_records)
         first_validation = validate_output(draft, validator=self._validator, context=context, question=question)
         coverage_failures = first_validation.coverage_errors
-        first_response = (self._render_result(draft=draft, context=context)
+        first_response = (self._render_result(draft=draft, context=context, question=question)
                           if first_validation.valid and draft.answerable
                           else (self._unanswerable(draft) if first_validation.valid and not draft.answerable
                                 else self._refusal(draft.refusal_reason or "首次生成未通过证据与必答项校验。")))
@@ -372,6 +372,7 @@ class AnswerService:
         result = self._render_result(
             draft=draft,
             context=context,
+            question=question,
         )
         record_answer_decision(stage="final", answerable=True)
         if regenerated:
@@ -491,6 +492,7 @@ class AnswerService:
         *,
         draft: AnswerDraft | GenerationAnswerDraft,
         context: BuiltContext,
+        question: str = "",
     ) -> AnswerResult:
         item_map = {
             item.citation_id: item
@@ -510,6 +512,10 @@ class AnswerService:
             if context.business_items:
                 if claim.claim_kind == "work_requirement":
                     text = "作业要求：" + text
+                    from ..manufacturing.source_statements import duration_verdict
+                    verdict = duration_verdict(question, claim, context)
+                    if verdict is not None:
+                        text = "条件判断：" + verdict + "。\n" + text
                 elif claim.claim_kind == "work_order_evidence":
                     text = "工单记录：" + text
                 elif claim.claim_kind == "version_comparison":
@@ -559,6 +565,11 @@ class AnswerService:
                 document_citations=[key for key in claim.citations if key in item_map],
                 business_citations=[key for key in claim.citations if key in business_map])
                 for index, claim in enumerate(draft.claims, 1)]
+            from ..manufacturing.source_statements import duration_verdict
+            for claim, binding in zip(draft.claims, bindings):
+                verdict = duration_verdict(question, claim, context)
+                if verdict is not None:
+                    binding["derived_condition"] = dict(question=question, rendered_text=verdict, origin="server_duration_comparison")
         return AnswerResult(
             answer="\n".join(answer_parts),
             answerable=True,

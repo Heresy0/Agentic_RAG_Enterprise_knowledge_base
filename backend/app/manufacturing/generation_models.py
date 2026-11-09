@@ -16,11 +16,17 @@ class ManufacturingClaim(AnswerClaim):
     claim_kind: ClaimKind = Field(..., description="区分工单字段、适用判断、一般要求、版本对比及工单原文记录。")
     business_field: BusinessField | None = Field(default=None, exclude_if=lambda value: value is None,
         description="business_fact只选择一个字段名，text留空、citations为空数组；文字、值及业务引用由后端生成。其他类型为null。")
-    text: str = Field(default="", description="工单字段选择及applicability留空，由后端生成；其他类型填写有来源的结论。")
+    text: str = Field(default="", description="business_field、source_unit选择及applicability留空，由后端生成；仅旧格式填写完整原文结论。")
+    source_unit: str | None = Field(default=None, min_length=1, max_length=80, exclude_if=lambda value: value is None,
+        description="优先选择上下文标记的完整原文条目，如资料1#2。仅选择标识，text留空、citations=[]、calculation=null；后端生成原文、引用和要求/工单记录角色。")
 
     @model_validator(mode="after")
     def field_selection(self):
-        if self.business_field is not None:
+        if self.source_unit is not None:
+            if (self.claim_kind not in ("work_requirement", "work_order_evidence", "version_comparison")
+                    or self.business_field is not None or self.text.strip() or self.citations or self.calculation is not None):
+                raise ValueError("原文条目只接受标识，不接受自写文字、引用、业务字段或计算。")
+        elif self.business_field is not None:
             if (self.claim_kind != "business_fact" or self.text.strip() or self.citations
                     or self.calculation is not None):
                 raise ValueError("业务字段选择只接受字段名，不接受模型提供的值、文字、引用或计算。")
@@ -55,13 +61,25 @@ def compile_applicability_bindings(draft, context):
     conclusions still pass the original per-claim source and numeric validation.
     """
     from .answer_context import current_manufacturing_context, complete_source_statement
+    from .source_statements import source_units
     from ..evaluation.trace import record_rag_event
     active = current_manufacturing_context()
     if active is None or not draft.answerable or not draft.claims:
         return draft
     fields = {item.field_name: item for item in context.business_items}
+    units = source_units(context)
     field_bindings, rendered = [], []
     for claim in draft.claims:
+        selected_unit = getattr(claim, "source_unit", None)
+        if selected_unit in units:
+            item, original = units[selected_unit]
+            is_record = item.document_role in ("event_record", "inspection_record")
+            kind = ("version_comparison" if claim.claim_kind == "version_comparison" else
+                    "work_order_evidence" if is_record else "work_requirement")
+            claim = claim.model_copy(update=dict(text=original, citations=[item.citation_id],
+                claim_kind=kind, source_unit=None))
+            field_bindings.append(dict(source_unit=selected_unit, compiled_citations=[item.citation_id],
+                claim_kind=kind, origin="server_source_unit"))
         field = getattr(claim, "business_field", None)
         if field is not None:
             # The selected field must exist in this exact generation context.
