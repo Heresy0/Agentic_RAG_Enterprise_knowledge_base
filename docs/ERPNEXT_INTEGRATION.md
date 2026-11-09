@@ -1,6 +1,6 @@
 # ERPNext 首期只读接入
 
-本次在 `codex/erpnext-readonly-phase1` 分阶段实施：E0 独立部署；E1 只读适配与来源映射；E2 当前平台集成和权限/来源验证。范围为工单、工序、实际开工及支持这些事实的源身份；不开放修改、报工、放行或执行工具，不发起付费问答评测。
+本次在 `codex/erpnext-readonly-phase1` 分阶段实施：E0 独立部署；E1 只读适配与来源映射；E2 当前平台集成和权限/来源验证；E3 具体工序和作业卡选择。范围为工单、工序、作业卡实际开工及支持这些事实的源身份；不开放修改、报工、放行或执行工具，不发起付费问答评测。
 
 ## E0 独立环境
 
@@ -100,15 +100,27 @@ GET /api/manufacturing/work-orders/{work_order_id}/context?operation_id=...&job_
 
 在已完成 E0～E2 的专用站点，可复制最新[演示脚本](../services/erpnext_adapter/provision_demo.py)，调用 `frappe._knowledge_demo_setup.execution_demo` 创建新的 `ERP-WO-EXECUTION`，不重复初始化旧资料。此管理员工具只用于本机演示夹具，适配服务没有通往它的路由。新工单包含 OP-20、OP-30；OP-20 有一张已提交卡、一张较晚计时的草稿卡和一张时间未知的卡，供验证三层时间及来源变更。ERP 来源的质量审核/冻结评测仍未开放，旧开发和正式问答失败状态不变。
 
-本轮实际部署版本、测试与零模型账本见后续实测记录；不能将上述功能范围当作模型准确率验收。
+### 2026-11-09 E3 实测与交付
+
+E3 已在独立 8003 部署。最终业务提交 `024011d4424688069923f0fec9561005882212df`，镜像 `enterprise-knowledge-manufacturing:erpnext-execution-20261109-r2`，ID `sha256:f1b9027d536168f51b336798b9f1cf8c02a7dbd7c209364f6188c5fe0e0dd195`；158 个业务 Python 文件及适配服务、迁移、页面等共 192 个文件与 Git 归档一致，业务源码哈希 `7f7bf9aba2930f42666ee62da2bee531c9a0348b8445ac2da0fa6c1826d45dc6`。仅新候选数据库迁移至 `f2b8c0a961d3`，原 8000/8001/8002 镜像保持。
+
+在 [8003 工作台](http://127.0.0.1:8003/) 登录原演示账号，进入“工单问答”，选择 `ERP-WO-EXECUTION` → OP-20 的具体工序记录 → `PO-JOB00008`，可见作业卡开工为 `2026-10-26 09:30 +08:00`，工单/该工序均为 `2026-09-28 08:10 +08:00`，知识选版仍按工单开工采用 1.0。`PO-JOB00009` 未登记实际开工；OP-30 也未登记工序实际开工。上述均为管理员通过正常 ERP 文档及计时流程创建的演示记录，较晚计时的卡仍为草稿，不代表已提交报工或真实工厂执行。
+
+真实 ERP API **9 项**、平台末轮 **33 项**、作业卡修订变化 **2 项**、来源停机 **1 项**及部署端口 **9 项**检查通过。平台核验真实 Keycloak、PostgreSQL、ERP HTTP 和三次来源/权限链路；简单开工问答使用实际后端投影，**没有生成替身**。错卡/错工序/跨工单/跨公司拒绝，游标不可跨工序，会话不可换卡；交付前撤权阻止返回，单独修改选中草稿卡使旧修订返回 409，停机返回 503，故障夹具及权限已恢复。
+
+模型硬预算为 0 次调用/0 Token，全部观察 Trace 无模型用量；包括失败首轮在内的 **57 个**可观测请求 ID 经数据库独立账本核对，新增物理模型调用 **0**。这些接入检查不是模型质量评分。完整非集成末轮 **2249 通过、1 个既有跳过、96 个集成排除**，专项末轮 **134 通过**；独立 PostgreSQL M1/M3/M4 分别 **9/12/12** 项通过，测试库均已移除；前端 DOM/认证 **53 项通过**，部署页面与资源逐字节匹配归档，本轮未做浏览器视觉检查。重叠检查不相加作为样本数，冻结 120/40 题完整性通过。
+
+首轮联调暴露“把作业卡登记为已开工”的命令识别缺口，零预算在模型调用前拦截，既未调用模型也未写 ERP；随后补齐新对象的只读拒绝边界并复验。两项公开上下文断言误读内部版本字段、初始化工厂函数参数及测试替身问题的失败记录也保留。部署前后均有 ERP 站点与候选数据库备份，PostgreSQL 备份目录校验通过，未做完整恢复演练。原模型结果与所有旧报告保留。
+
+完整结构化记录见 [E3 验收报告](reports/erpnext-execution-20261109-r1.json)，私有原始响应、Trace、源码归档、101 项产物哈希清单及备份位于 `tmp/erpnext-execution-20261109-r1/`。API 密钥、登录令牌和备份不提交。ERP 质量审核/冻结样本仍未开放，开发 13/16、正式 31/40 的失败状态不变。
 
 ## 运行、复现与回滚
 
-本机 ERP 启动参数在私有 `deployment/deployment.env`，候选 API 参数在私有 `candidate/compose.json`：
+E3 当前本机配置如下；E0～E2 的旧配置仍保留供追溯，启动当前候选时使用 E3 配置：
 
 ```powershell
-docker compose --env-file tmp/erpnext-phase1-20261109-r1/deployment/deployment.env -f deploy/erpnext/compose.yaml -f deploy/erpnext/adapter.compose.yaml ps
-docker compose -f tmp/erpnext-phase1-20261109-r1/candidate/compose.json ps
+docker compose --env-file tmp/erpnext-execution-20261109-r1/deployment.env -f deploy/erpnext/compose.yaml -f deploy/erpnext/adapter.compose.yaml ps
+docker compose -f tmp/erpnext-execution-20261109-r1/compose.json ps
 ```
 
 新环境先完成 E0 的新站点初始化，再用 ERP 页面建立公司和制造数据，或在本次专用 `erpnext.localhost` 站点使用[演示初始化脚本](../services/erpnext_adapter/provision_demo.py)。该脚本在 ERP 容器内通过 Frappe 正常文档 insert/submit 创建公司、BOM、工单、作业卡和只读用户；输入文件是私有 JSON，仅包含随机生成的 `api_key` / `api_secret`，复制至 `/tmp/erpnext-seed-input.json` 后执行：
