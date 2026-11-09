@@ -41,10 +41,26 @@ def test_structural_boundaries_keep_original_conditions(source, quote, valid):
     assert complete_source_statement(quote, [SimpleNamespace(content=source)]) is valid
 
 
-@pytest.mark.parametrize("extra", [dict(business_field="status"), dict(source_unit="")])
+@pytest.mark.parametrize("extra", [dict(source_unit="")])
 def test_source_selector_cannot_carry_model_assertions(extra):
     with pytest.raises(ValidationError):
         ManufacturingClaim.model_validate(dict(claim_kind="work_requirement", source_unit="资料1#1") | extra)
+
+
+@pytest.mark.parametrize('secondary', ['资料1#1', '资料999#1', '业务2'])
+def test_explicit_business_field_is_the_only_source_even_with_a_document_pointer(catalog, secondary):
+    active, rows, _ = evidence(catalog)
+    with manufacturing_answer_context(replace(active, facts_only=True)):
+        built = ContextBuilder().build([])
+        draft = draft_for(dict(claim_kind='work_requirement', business_field='product_model',
+            source_unit=secondary, text='伪造值HC-OTHER并已放行', citations=['资料999']))
+        compiled = compile_applicability_bindings(draft, built)
+        fact = next(item for item in active.items if item.field_name=='product_model')
+        assert len(compiled.claims)==1
+        assert compiled.claims[0].text==fact.content and compiled.claims[0].citations==[fact.citation_id]
+        assert compiled.claims[0].source_unit is None and compiled.claims[0].business_field is None
+        assert compiled.claims[0].claim_kind=='business_fact'
+        assert AnswerValidator().validate(draft=compiled, context=built, question='产品型号是什么？').valid
 
 
 @pytest.mark.parametrize('hint', ['business_fact', 'applicability', 'work_requirement', 'work_order_evidence'])

@@ -16,7 +16,7 @@ BusinessField = Literal[
 class ManufacturingClaim(AnswerClaim):
     claim_kind: ClaimKind = Field(..., description="区分字段、适用性、一般要求、版本对比及记录。选择source_unit时除明确版本对比外，实际角色由后端按资料确定。")
     business_field: BusinessField | None = Field(default=None, exclude_if=lambda value: value is None,
-        description="只选择一个工单字段名，文字、值、角色及业务引用完全由后端生成；附带的text/citations不作为事实输入。不能与source_unit或calculation混用。")
+        description="选择一个工单字段名时，该字段是本条唯一事实来源，文字、值、角色及引用完全由后端生成；附带的text/citations/source_unit不参与取证。不能与calculation混用。")
     text: str = Field(default="", description="business_field、source_unit选择及applicability留空，由后端生成；仅旧格式填写完整原文结论。")
     citations: list[str] = Field(default_factory=list,
         description="business_field、source_unit选择及applicability均填写[]，引用由后端生成；仅旧格式填写支持原文的资料编号。")
@@ -33,8 +33,6 @@ class ManufacturingClaim(AnswerClaim):
     @model_validator(mode="after")
     def field_selection(self):
         selected = self.source_unit is not None or self.business_field is not None
-        if self.source_unit is not None and self.business_field is not None:
-            raise PydanticCustomError("manufacturing_selector_conflict", "业务字段和文档原文条目不能同时选择。")
         if selected and self.calculation is not None:
             raise PydanticCustomError("manufacturing_selector_calculation", "来源选择不能与计算混用。")
         if not selected and not self.text.strip() and (self.claim_kind != "applicability" or self.calculation is not None):
@@ -78,8 +76,9 @@ def compile_applicability_bindings(draft, context):
     field_bindings, rendered = [], []
     for claim in draft.claims:
         selected_unit = getattr(claim, "source_unit", None)
+        field = getattr(claim, "business_field", None)
         ignored_display = [name for name in ("text", "citations") if getattr(claim, name)]
-        if selected_unit in units:
+        if field is None and selected_unit in units:
             item, original = units[selected_unit]
             is_record = item.document_role in ("event_record", "inspection_record")
             kind = ("version_comparison" if claim.claim_kind == "version_comparison" else
@@ -88,18 +87,18 @@ def compile_applicability_bindings(draft, context):
                 claim_kind=kind, source_unit=None))
             field_bindings.append(dict(source_unit=selected_unit, compiled_citations=[item.citation_id],
                 claim_kind=kind, ignored_display_fields=ignored_display, origin="server_source_unit"))
-        elif selected_unit is not None:
+        elif field is None and selected_unit is not None:
             # An unresolved selector must never fall back to any accompanying
             # model assertion, including during final base-schema validation.
             claim = claim.model_copy(update=dict(text="", citations=[]))
-        field = getattr(claim, "business_field", None)
         if field is not None:
             # The selected field must exist in this exact generation context.
             item = fields[field]
             claim = claim.model_copy(update=dict(text=item.content, citations=[item.citation_id],
-                business_field=None, claim_kind="business_fact"))
+                business_field=None, source_unit=None, claim_kind="business_fact"))
             field_bindings.append(dict(field=field, compiled_citations=[item.citation_id],
-                ignored_display_fields=ignored_display, origin="server_business_field"))
+                ignored_display_fields=ignored_display, ignored_document_selector=selected_unit is not None,
+                origin="server_business_field"))
         rendered.append(claim)
     if field_bindings:
         record_rag_event(dict(kind="manufacturing_binding_compilation", bindings=field_bindings, model_calls=0))
