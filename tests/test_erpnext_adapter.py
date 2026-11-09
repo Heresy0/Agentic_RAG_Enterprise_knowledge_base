@@ -177,6 +177,19 @@ def test_revision_is_stable_and_tracks_actual_facts_and_upstream_modification():
         assert project_work_order(raw | change, config(), {'HC-P01'}).source_revision != first.source_revision
 
 
+def test_page_preserves_erp_database_order_for_mixed_case_names():
+    names = ['a-WO', 'B-WO']
+    def upstream(request):
+        if request.url.path == '/api/resource/Work Order':
+            assert request.url.params['order_by'] == 'name asc'
+            return httpx.Response(200, json={'data': [{'name': name} for name in names]})
+        return httpx.Response(200, json={'data': order(name=request.url.path.rsplit('/', 1)[1])})
+    async def scenario(connector, _):
+        page = await connector.list_work_orders(scope=scope(), limit=2)
+        assert [item.work_order_id for item in page.items] == names
+    run_with_source(upstream, scenario)
+
+
 def test_endpoint_configuration_is_server_only_and_http_is_narrow():
     values = config().model_dump()
     for change in [dict(base_url='http://public.example.com'), dict(base_url='https://erp.invalid/?url=x'),

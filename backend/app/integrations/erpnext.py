@@ -140,7 +140,9 @@ class ERPNextClient:
             raise MESError()
         try:
             names = [row['name'] for row in data]
-            if names != sorted(set(names)) or any(not isinstance(name, str) or name <= after for name in names):
+            # ERPNext orders/filters with its database collation; Python's
+            # case-sensitive ordering would reject valid mixed-case names.
+            if len(names) != len(set(names)) or after in names:
                 raise ValueError()
         except (KeyError, TypeError, ValueError):
             raise MESError() from None
