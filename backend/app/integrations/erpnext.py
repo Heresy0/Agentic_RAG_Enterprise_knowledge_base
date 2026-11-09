@@ -17,7 +17,7 @@ class ERPNextConfig(Contract):
     model_config = dict(extra='forbid', frozen=True, hide_input_in_errors=True)
     tenant_id: UUID
     source_system_id: Identifier
-    base_url: str
+    base_url: str = Field(min_length=1, max_length=500)
     company_plants: dict[Text, Identifier] = Field(min_length=1, max_length=20)
     # This first integration is provisioned with this exact site timezone.
     site_timezone: Literal['Asia/Shanghai'] = 'Asia/Shanghai'
@@ -28,7 +28,7 @@ class ERPNextConfig(Contract):
     @model_validator(mode='after')
     def configured_endpoint(self):
         u = urlsplit(self.base_url)
-        if (u.scheme not in ('http', 'https') or not u.hostname or u.username or u.password or
+        if (u.scheme not in ('http', 'https') or not u.hostname or u.username is not None or u.password is not None or
                 u.path not in ('', '/') or u.query or u.fragment or '\\' in self.base_url or
                 any(c.isspace() for c in self.base_url)):
             raise ValueError('Invalid configured ERPNext endpoint.')

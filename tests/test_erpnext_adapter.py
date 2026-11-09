@@ -180,6 +180,6 @@ def test_revision_is_stable_and_tracks_actual_facts_and_upstream_modification():
 def test_endpoint_configuration_is_server_only_and_http_is_narrow():
     values = config().model_dump()
     for change in [dict(base_url='http://public.example.com'), dict(base_url='https://erp.invalid/?url=x'),
-                   dict(base_url='https://user:pass@erp.invalid'), dict(site_timezone='UTC')]:
+                   dict(base_url='https://user:pass@erp.invalid'), dict(base_url='http://@frontend'), dict(site_timezone='UTC')]:
         with pytest.raises(ValidationError):
             ERPNextConfig.model_validate(values | change)

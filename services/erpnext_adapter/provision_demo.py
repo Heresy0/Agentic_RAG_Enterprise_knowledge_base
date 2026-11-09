@@ -17,6 +17,8 @@ def run(input_path='/tmp/erpnext-seed-input.json', output_path='/tmp/erpnext-see
     if frappe.local.site != 'erpnext.localhost':
         raise ValueError('Demo bootstrap is restricted to the dedicated integration site.')
     frappe.set_user('Administrator')
+    from erpnext.setup.setup_wizard.operations.install_fixtures import install
+    install(country='China')
     frappe.db.set_single_value('System Settings', 'time_zone', 'Asia/Shanghai')
     frappe.clear_cache()
 
@@ -109,3 +111,16 @@ def run(input_path='/tmp/erpnext-seed-input.json', output_path='/tmp/erpnext-see
     with Path(output_path).open('x', encoding='utf-8') as stream:
         json.dump(result, stream, indent=2)
     return dict(status='provisioned', work_orders=4, demo_only=True)
+
+
+def change_demo_plan(restore=False):
+    """Administrator-only fixture mutation for stale-source verification."""
+    import frappe
+    if frappe.local.site != 'erpnext.localhost':
+        raise ValueError('Not the dedicated integration site.')
+    frappe.set_user('Administrator')
+    doc = frappe.get_doc('Work Order', 'ERP-WO-STARTED')
+    doc.planned_start_date = '2026-10-01 08:00:00' if restore else '2026-10-01 08:01:00'
+    doc.save()
+    frappe.db.commit()
+    return dict(status='restored' if restore else 'changed', demo_only=True)

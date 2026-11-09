@@ -85,7 +85,7 @@ services:
       configurator: {condition: service_completed_successfully}
   worker:
     <<: *app
-    command: [bench, worker, --queue, long,default,short]
+    command: [bench, worker, --queue, "long,default,short"]
     mem_limit: 512m
     depends_on:
       configurator: {condition: service_completed_successfully}
@@ -97,6 +97,7 @@ services:
       configurator: {condition: service_completed_successfully}
   frontend:
     <<: *app
+    networks: [default, web]
     command: [nginx-entrypoint.sh]
     environment:
       BACKEND: backend:8000
@@ -126,3 +127,4 @@ secrets:
 networks:
   default:
     internal: true
+  web: {}
