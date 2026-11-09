@@ -94,7 +94,7 @@ def test_live_erp_review_export_and_zero_budget_worker_keep_selection(erp_qualit
         queued=client.post('/api/quality/evaluations',json=dict(fixed_dataset_id=versions[0], feedback_dataset_id=versions[1],
             allow_model_calls=False,max_cases=2,max_model_calls=0,max_tokens=0,max_seconds=120))
         assert queued.status_code==201,queued.text
-        assert QualityEvaluationWorker(h.c.session_factory,h.settings,h.answer).run_once()
+        assert QualityEvaluationWorker(h.c.session_factory,h.settings,h.answer,allow_model_calls=False).run_once()
         job=client.get('/api/quality/evaluations/'+queued.json()['id']).json()
         assert job['status']=='succeeded',job
         assert len(job['records'])==2 and all(row['proxy_pass'] for row in job['records']),job
@@ -104,6 +104,21 @@ def test_live_erp_review_export_and_zero_budget_worker_keep_selection(erp_qualit
             assert row['manufacturing_observation']['validation']['mes_reads']==3
             assert row['manufacturing_observation']['business_context']['record']['execution']['job_card_id'].endswith('JC-A')
         with h.c.session_factory() as db:assert db.scalar(select(func.count()).select_from(QARun))==before
+
+
+def test_zero_only_worker_does_not_claim_model_enabled_job(erp_quality):
+    from backend.app.db.verification_models import QualityEvaluationJob
+    h=erp_quality
+    with TestClient(h.c.app) as client:
+        versions=[]
+        for suffix in ('','2-'):
+            case,body,saved=approve(client,h,suffix);assert saved.status_code==200,saved.text
+            versions.append(dataset(client,case))
+        queued=client.post('/api/quality/evaluations',json=dict(fixed_dataset_id=versions[0],feedback_dataset_id=versions[1],allow_model_calls=True))
+        assert queued.status_code==201,queued.text
+        assert QualityEvaluationWorker(h.c.session_factory,h.settings,h.answer,allow_model_calls=False).run_once() is False
+        with h.c.session_factory() as db:assert db.get(QualityEvaluationJob,UUID(queued.json()['id'])).status=='queued'
+        assert not h.generation.calls
 
 
 @pytest.mark.parametrize('field,value',[('source_entity','Work Order'),('source_record_id','JC-B'),('operation_id','ROW-B'),('job_card_id','JC-B'),('job_card_id',None),('actual_start_precision','date')])

@@ -26,6 +26,14 @@ Worker 复用制造问答服务，把冻结的工序及卡编号原样传入三�
 
 模型验证仍须明确选择允许模型、确认预算并提供正调用额度及有效 Token 预留。任务创建不等于本会话批准任何付费运行；本阶段验收只使用零调用任务。固定集与反馈集仍须是两份不同版本且无同工单重叠，原任务租约、取消、授权及独立用量账本继续生效。
 
+候选不常驻运行质量 Worker。页面创建零调用任务后，用当前候选配置单次启动：
+
+```powershell
+docker compose -f tmp/erpnext-quality-20261109-r1/compose.json run --rm --no-deps api python scripts/run_quality_worker.py --once --zero-model-calls
+```
+
+该入口只领取未允许模型且调用/Token 预算均为零的排队任务，并在进程内再次强制零预算；不会领取允许模型的任务。`--allow-model-calls` 与 `--zero-model-calls` 互斥，常规模型 Worker 的明确授权要求保留。
+
 源码测试入口：
 
 ```powershell

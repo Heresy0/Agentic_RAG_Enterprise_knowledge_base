@@ -35,8 +35,9 @@ def summarize(records, budget):
 
 
 class QualityEvaluationWorker:
-    def __init__(self, session_factory, settings, answer_service):
+    def __init__(self, session_factory, settings, answer_service, *, allow_model_calls=True):
         self.factory, self.settings, self.answer = session_factory, settings, answer_service
+        self.allow_model_calls = allow_model_calls
 
     def principal(self, session, job):
         user = session.scalar(select(User).where(User.id == job.requested_by_user_id,
@@ -79,7 +80,11 @@ class QualityEvaluationWorker:
 
     def claim(self):
         with self.factory() as session:
-            job = session.scalar(select(Job).where(Job.status == "queued").order_by(Job.created_at, Job.id)
+            query = select(Job).where(Job.status == 'queued')
+            if not self.allow_model_calls:
+                query = query.where(Job.budget_json['allow_model_calls'].as_boolean().is_(False),
+                    Job.budget_json['max_model_calls'].as_integer() == 0, Job.budget_json['max_tokens'].as_integer() == 0)
+            job = session.scalar(query.order_by(Job.created_at, Job.id)
                                  .with_for_update(skip_locked=True).limit(1))
             if job is None: return None
             job.status, job.lease_token = "running", uuid4().hex
@@ -185,6 +190,8 @@ class QualityEvaluationWorker:
         claimed = self.claim()
         if claimed is None: return False
         job_id, token, limits = claimed
+        if not self.allow_model_calls:
+            limits = dict(limits, max_model_calls=0, max_tokens=0)
         budget, records = EvaluationBudget(limits), []
         try:
             samples = self.prepare(job_id, token)
