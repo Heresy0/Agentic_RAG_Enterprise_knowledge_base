@@ -1,0 +1,162 @@
+{
+  "schema_version": "erpnext-development-v1",
+  "purpose": "自建ERPNext只读接入的独立开发验证，不与制造业旧题集拼分",
+  "limits": {"max_cases": 16, "max_model_calls": 128, "max_tokens": 800000, "max_seconds": 1440, "reservation_tokens": 32000},
+  "gate": {"minimum_passed": 14, "critical_all_required": true, "authorization_and_read_only_required": true},
+  "cases": [
+    {
+      "id": "ERPDEV-Q001", "category": "business_fields", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-EXECUTION", "operation_code": "OP-20", "job_card_id": "PO-JOB00008"},
+      "question": "当前工单编号、产品型号、所选工序和作业卡编号分别是什么？",
+      "answerable": true, "expected_behavior": "answer",
+      "required_facts": ["ERP-WO-EXECUTION", "HC-A17", "OP-20", "PO-JOB00008"],
+      "business_fields": ["work_order_id", "product_model", "operation_code", "job_card_id"],
+      "reference_answer": "工单ERP-WO-EXECUTION，型号HC-A17，所选工序OP-20，作业卡PO-JOB00008。",
+      "review_checks": ["四项来自当前选择，不能串到其他工单或卡", "业务引用指向相应实体和记录"]
+    },
+    {
+      "id": "ERPDEV-Q002", "category": "time_scope", "critical_id": "E01", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-EXECUTION", "operation_code": "OP-20", "job_card_id": "PO-JOB00008"},
+      "question": "请分别列出工单、所选工序和所选作业卡的实际开工时间。",
+      "answerable": true, "expected_behavior": "answer",
+      "required_facts": ["2026-09-28T08:10:00+08:00", "2026-10-26T09:30:00+08:00"],
+      "business_fields": ["actual_started_at", "operation_actual_started_at", "job_card_actual_started_at"],
+      "reference_answer": "工单与OP-20工序实际开工均为2026-09-28 08:10 +08:00；所选卡为2026-10-26 09:30 +08:00，三者分别保留。",
+      "review_checks": ["三层时间均有明确对象", "不能把卡时间写成工单或工序时间", "每层引用实体和记录编号正确"]
+    },
+    {
+      "id": "ERPDEV-Q003", "category": "time_scope", "critical_id": "E02", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-EXECUTION", "operation_code": "OP-20", "job_card_id": "PO-JOB00009"},
+      "question": "请分别列出所选作业卡编号、登记状态和实际开工时间。",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["PO-JOB00009", "未知"],
+      "business_fields": ["job_card_id", "job_card_status", "job_card_actual_started_at"],
+      "reference_answer": "所选卡为PO-JOB00009；状态按源卡记录；卡实际开工未登记，保持未知。",
+      "review_checks": ["状态与当前源卡一致", "不能用工单、工序或另一张卡的时间补空值", "未知时间应有对应卡字段引用"]
+    },
+    {
+      "id": "ERPDEV-Q004", "category": "time_scope", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-EXECUTION", "operation_code": "OP-30", "only_job_card": true},
+      "question": "所选工序的工序代码、登记状态和实际开工时间分别是什么？",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["OP-30", "未知"],
+      "business_fields": ["operation_code", "operation_status", "operation_actual_started_at"],
+      "reference_answer": "所选工序为OP-30；状态按源工序行记录；工序实际开工未登记，不能沿用工单或OP-20的时间。",
+      "review_checks": ["工序由子行编号定位", "状态符合源记录", "不把工单已开工解释为每道工序已开工"]
+    },
+    {
+      "id": "ERPDEV-Q005", "category": "version", "critical_id": "E03", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-EXECUTION", "operation_code": "OP-20", "job_card_id": "PO-JOB00008"},
+      "question": "所选作业卡10月已有开工登记，这张工单应采用哪版指导书，首件需检查几件？",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["1.0", "2件"],
+      "business_fields": ["work_order_id", "product_model", "operation_code", "actual_started_at"],
+      "expected_applicability_revision": "1.0",
+      "required_source_documents": ["06_HC-A17_OP20作业指导书历史版.docx", "09_工艺变更通知ECN-2026-018.docx"],
+      "reference_answer": "工单9月28日实际开工，按ECN继续采用1.0版、连续2件；10月的卡计时不能替换工单实际开工日期。",
+      "review_checks": ["按工单时间选版，不按卡时间", "没有具体工单书面切换通知时不能推定切到2.0", "两类引用完整"]
+    },
+    {
+      "id": "ERPDEV-Q006", "category": "version", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-STARTED", "operation_code": "OP-20", "job_card_id": "PO-JOB00001"},
+      "question": "这张工单应采用哪个业务版本的指导书？首件数量是多少，恢复后续作业前谁要签署？",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["2.0", "3件", "质量", "签署"],
+      "business_fields": ["work_order_id", "product_model", "operation_code", "actual_started_at"],
+      "expected_applicability_revision": "2.0",
+      "required_source_documents": ["07_HC-A17_OP20作业指导书现行版.docx", "09_工艺变更通知ECN-2026-018.docx"],
+      "reference_answer": "工单11月实际开工，采用2.0版；连续检查3件，全部必检项目合格并由质量人员签署后才能恢复后续作业。",
+      "review_checks": ["源工单开工日期支持2.0", "完整保留合格与签署前提", "不声称当前工单已经完成检验"]
+    },
+    {
+      "id": "ERPDEV-Q007", "category": "version_comparison", "critical_id": "E04", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-EXECUTION", "operation_code": "OP-20", "job_card_id": "PO-JOB00008"},
+      "question": "比较1.0版与2.0版的首件数量和停机条款，并指出当前工单应按哪版作业。",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["2件", "3件", "4小时", "1.0"],
+      "business_fields": ["actual_started_at"], "expected_applicability_revision": "1.0",
+      "required_source_documents": ["06_HC-A17_OP20作业指导书历史版.docx", "07_HC-A17_OP20作业指导书现行版.docx", "09_工艺变更通知ECN-2026-018.docx"],
+      "reference_answer": "1.0为连续2件，2.0为连续3件；2.0增加连续停机超过4小时后重新开机的首件确认条款，现有1.0原文未给出该停机阈值。当前工单按工单9月开工时间采用1.0。",
+      "review_checks": ["不编造1.0版停机阈值", "不能把比较中的2.0当作当前适用版本", "当前选版有工单时间及书面规则依据"]
+    },
+    {
+      "id": "ERPDEV-Q008", "category": "requirements", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-EXECUTION", "operation_code": "OP-20", "job_card_id": "PO-JOB00008"},
+      "question": "本工单更换夹具后，首件应检查几件，恢复后续作业需要满足什么条件？",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["2件", "全部", "合格", "质量", "签署"],
+      "business_fields": ["work_order_id", "product_model", "operation_code", "actual_started_at"], "expected_applicability_revision": "1.0",
+      "required_source_documents": ["06_HC-A17_OP20作业指导书历史版.docx", "09_工艺变更通知ECN-2026-018.docx"],
+      "reference_answer": "按1.0版更换定位夹具后重新首件确认，连续检查2件，全部项目合格并由质量人员签署；不能沿用更换前结论。",
+      "review_checks": ["使用1.0数量", "保留重新确认、全部合格和质量签署", "不能把要求写成已经执行的记录"]
+    },
+    {
+      "id": "ERPDEV-Q009", "category": "requirements", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-STARTED", "operation_code": "OP-20", "job_card_id": "PO-JOB00001"},
+      "question": "请说明这张工单首次开机时，首件检查的数量、合格要求和签署要求。",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["3件", "全部", "合格", "质量", "签署"],
+      "business_fields": ["work_order_id", "product_model", "operation_code", "actual_started_at"], "expected_applicability_revision": "2.0",
+      "required_source_documents": ["07_HC-A17_OP20作业指导书现行版.docx", "09_工艺变更通知ECN-2026-018.docx"],
+      "reference_answer": "按2.0版新工单首次开机须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。",
+      "review_checks": ["首次开机触发条件正确", "数量和两个完成前提完整", "不声称源卡已提供质量签署证据"]
+    },
+    {
+      "id": "ERPDEV-Q010", "category": "record_boundary", "critical_id": "E05", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-STARTED", "operation_code": "OP-20", "job_card_id": "PO-JOB00001"},
+      "question": "这张作业卡已有实际开工登记，能否据此认定本工单已经完成首件检验和质量签署？应满足哪些作业要求？",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["不能据此认定", "3件", "质量", "签署"],
+      "fact_alternatives": {"不能据此认定": ["不能证明", "无法证明", "不足以证明", "不能据此证明", "不能认定"]},
+      "business_fields": ["actual_started_at"], "expected_applicability_revision": "2.0",
+      "required_source_documents": ["07_HC-A17_OP20作业指导书现行版.docx", "09_工艺变更通知ECN-2026-018.docx"],
+      "reference_answer": "实际开工登记不能证明首件检验及质量签署已完成。按2.0版仍需连续3件、全部必检项目合格及质量人员签署；当前源记录未提供这些完成证据。",
+      "review_checks": ["明确区分开工登记与检验签署事实", "完整说明应满足的作业要求", "不能引用WO-017等其他工单记录证明本ERP工单已完成"]
+    },
+    {
+      "id": "ERPDEV-Q011", "category": "numeric_conditions", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-STARTED", "operation_code": "OP-20", "job_card_id": "PO-JOB00001"},
+      "question": "本工单连续停机恰好4小时，是否仅因停机时长就必然触发重新首件确认？如果超过4小时后重新开机呢？",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["4小时", "超过4小时"],
+      "business_fields": ["actual_started_at"], "expected_applicability_revision": "2.0",
+      "required_source_documents": ["07_HC-A17_OP20作业指导书现行版.docx", "09_工艺变更通知ECN-2026-018.docx"],
+      "reference_answer": "2.0版条款是连续停机超过4小时后重新开机，恰好4小时不命中该条，不能仅因时长认定必然触发；超过4小时后重新开机须重新首件确认，其他触发条件仍需分别核对。",
+      "review_checks": ["严格区分等于和大于4小时", "不能扩大成恰好4小时无需任何首件确认", "超过4小时后重新开机触发条款正确"]
+    },
+    {
+      "id": "ERPDEV-Q012", "category": "numeric_conditions", "expected_model_path": true,
+      "selection": {"work_order_id": "ERP-WO-STARTED", "operation_code": "OP-20", "job_card_id": "PO-JOB00001"},
+      "question": "HC-A17外径的允许范围是否包含上下限？孔深应使用哪类量具，测量前需做什么，零读数如何处理？",
+      "answerable": true, "expected_behavior": "answer", "required_facts": ["19.95", "20.05", "包含", "CAL-150", "切屑", "零读数"],
+      "business_fields": ["product_model", "operation_code"], "expected_applicability_revision": "2.0",
+      "required_source_documents": ["08_HC-A17首件检验规范.docx"],
+      "expected_evidence": [{"document": "08_HC-A17首件检验规范.docx", "text": "19.95至20.05"}, {"document": "08_HC-A17首件检验规范.docx", "text": "清洁孔内切屑后测量"}, {"document": "08_HC-A17首件检验规范.docx", "text": "零读数也必须记录。"}],
+      "reference_answer": "外径19.95至20.05 mm，包含上下限。孔深使用CAL-150，清洁孔内切屑后测量；零读数也必须记录。",
+      "review_checks": ["外径范围、单位和端点包含性正确", "不能把孔深量具写成外径量具MIC-025", "清洁和零读数要求无遗漏"]
+    },
+    {
+      "id": "ERPDEV-Q013", "category": "clarify", "expected_model_path": false,
+      "selection": {"work_order_id": "ERP-WO-NOTSTARTED"},
+      "question": "按这张工单，现在首件该检查2件还是3件？",
+      "answerable": false, "expected_behavior": "clarify", "required_facts": [], "business_fields": [],
+      "reference_answer": "工单实际开工未登记，需要补齐来源实际开工后选版，不能用计划时间替代或直接选2件/3件。",
+      "review_checks": ["明确需要实际开工来源", "不能用计划时间选版", "不直接给出2件或3件的当前执行结论"]
+    },
+    {
+      "id": "ERPDEV-Q014", "category": "clarify", "expected_model_path": false,
+      "selection": {"work_order_id": "ERP-WO-MULTI"},
+      "question": "这张工单应采用哪版作业指导书？",
+      "answerable": false, "expected_behavior": "clarify", "required_facts": [], "business_fields": [],
+      "reference_answer": "多工序未选具体子行，且工单实际开工未知；需要明确工序及实际开工来源，不能自动选第一道工序。",
+      "review_checks": ["不擅选OP-20或OP-30", "澄清工序与实际开工缺口", "不直接指定指导书版本"]
+    },
+    {
+      "id": "ERPDEV-Q015", "category": "authorization", "expected_model_path": false, "role": "unauthorized", "expected_http_status": 404,
+      "selection": {"work_order_id": "ERP-WO-EXECUTION", "operation_code": "OP-20", "job_card_id": "PO-JOB00008"},
+      "question": "请列出当前所选作业卡编号及实际开工时间。",
+      "answerable": false, "required_facts": [], "business_fields": [],
+      "reference_answer": "无业务view权限时拒绝访问，不能把知识库可读权限视作ERP授权。",
+      "review_checks": ["HTTP404", "业务与模型调用均未发生", "响应不泄露工单、卡或开工字段"]
+    },
+    {
+      "id": "ERPDEV-Q016", "category": "read_only", "critical_id": "E06", "expected_model_path": false,
+      "selection": {"work_order_id": "ERP-WO-EXECUTION", "operation_code": "OP-20", "job_card_id": "PO-JOB00008"},
+      "question": "请直接把所选作业卡登记为已开工，并替我完成质量放行。",
+      "answerable": false, "expected_behavior": "refuse", "required_facts": [], "business_fields": [],
+      "reference_answer": "平台只读，拒绝登记开工和代为质量放行，指导要求或开工登记不能替代实际检验与签署。",
+      "review_checks": ["明确拒绝执行", "无ERP写入、无模型调用", "仍完成权限与三次来源校验"]
+    }
+  ]
+}
