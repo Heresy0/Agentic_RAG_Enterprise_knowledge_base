@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "batch": "frontend-deploy-20261110-r1",
+  "date": "2026-11-10",
+  "status": "passed",
+  "ui_revision": "f6a53ca59fc48519e32ba0ae84334f0281ff0979",
+  "reviewer": "助手非独立部署与浏览器冒烟",
+  "scope": "仅部署已经验证的三项页面修复；各平台保留各自后端业务版本",
+  "targets": {
+    "erpnext": {
+      "port": 8003,
+      "previous_image": "enterprise-knowledge-manufacturing:erpnext-quality-20261109-r2",
+      "previous_image_id": "sha256:3633d9b774c14e19cd199e526ff46248fc25084e9877cddeff4bd832c1484381",
+      "image": "enterprise-knowledge-manufacturing:erpnext-ui-20261110-r1",
+      "image_id": "sha256:0e68adb51aad2b3389e8989b09fca188223d550db9172bc5319ab46e911e72ea",
+      "ui_revision": "f6a53ca59fc48519e32ba0ae84334f0281ff0979",
+      "health": "healthy",
+      "app_source_files_checked": 167,
+      "changed_files": [
+        "static/app.js",
+        "static/styles.css"
+      ],
+      "backend_and_other_assets_unchanged": true,
+      "environment_command_mounts_networks_ports_unchanged": true,
+      "asset_sha256": {
+        "app.js": "d93d200e8a1b4b032899d96a14040319743cff5e9532d281b642336d722c4db7",
+        "styles.css": "7a9abd9cc6ca196e94194767436aa6c561c758a03a3734c3a581261433afa492"
+      },
+      "http_checks": {
+        "/health": 200,
+        "/": 200,
+        "/ui/config": 200,
+        "/api/manufacturing/work-orders": 401
+      },
+      "database": "erpnext_readonly_phase1",
+      "migration": "f2b8c0a961d3",
+      "new_model_events": 0,
+      "old_model_events_preserved": true,
+      "business_grants_unchanged": true
+    },
+    "openmes": {
+      "port": 8004,
+      "previous_image": "enterprise-knowledge-manufacturing:openmes-guidance-quality-20261110-r2",
+      "previous_image_id": "sha256:035737a9a4e4412ec1e28e281863139fe2bc2035ebeaaba62faa9e6eac801a61",
+      "image": "enterprise-knowledge-manufacturing:openmes-ui-20261110-r1",
+      "image_id": "sha256:ad80ca58d66ac344dd1d929a16071c4a84cf46f76e4b86c0347570059b305e6f",
+      "ui_revision": "f6a53ca59fc48519e32ba0ae84334f0281ff0979",
+      "health": "healthy",
+      "app_source_files_checked": 175,
+      "changed_files": [
+        "static/app.js",
+        "static/styles.css"
+      ],
+      "backend_and_other_assets_unchanged": true,
+      "environment_command_mounts_networks_ports_unchanged": true,
+      "asset_sha256": {
+        "app.js": "78148a0f0a90e1414d9a822615b824c200df339279fdfc2a9c9f78bbfbf40118",
+        "styles.css": "7a9abd9cc6ca196e94194767436aa6c561c758a03a3734c3a581261433afa492"
+      },
+      "http_checks": {
+        "/health": 200,
+        "/": 200,
+        "/ui/config": 200,
+        "/api/manufacturing/work-orders": 401
+      },
+      "database": "openmes_readonly_phase1",
+      "migration": "e9b2d4f60713",
+      "new_model_events": 0,
+      "old_model_events_preserved": true,
+      "business_grants_unchanged": true
+    }
+  },
+  "preservation": {
+    "baseline_containers": 53,
+    "changed_containers": [
+      "erpnext-readonly-api",
+      "openmes-readonly-api"
+    ],
+    "unchanged_containers": 51,
+    "upstream_adapters_and_data_services_unchanged": true,
+    "prior_reports_checked": 22,
+    "prior_report_changes": [],
+    "database_migrations": false,
+    "source_or_permission_changes": false,
+    "index_rebuild": false,
+    "new_model_events": 0,
+    "active_quality_jobs": 0
+  },
+  "browser": {
+    "openmes": {
+      "answers": [
+        "你所选步骤的实际开工时间是什么？",
+        "✧ 知序 · 知识助手工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z。[业务29]\n工单1的批次1的步骤1的开工时间精度为datetime。[业务30][业务29] 工单字段 · step_actual_started_at ↗[业务30] 工单字段 · step_start_precision ↗0.1 秒 · 文档引用 0 条 · 业务引用 2 条赞 · 有帮助踩 · 待改进查看问答快照",
+        "你请把这个步骤登记为已开工。",
+        "✧ 知序 · 知识助手本平台仅提供只读查询与作业指导，不能代为执行质量放行、质量签署、恢复生产或修改 MES/ERP 记录。报工、规则和登记状态不能代替实际检验、质量签署或恢复批准；请由有权限的人员核验记录并在业务系统办理。文档引用 0 条 · 业务引用 0 条赞 · 有帮助踩 · 待改进查看问答快照"
+      ],
+      "refusalOccurrences": 1,
+      "citation": "×\n[业务29] 1 · step_actual_started_at\n\nopenmes-hc / 1 · 源修订 mes-e9f616c0e2fe9b67394d83f8d8caa8be70442998ba1179ffddf54f6a8eb9 · 最后核验 2026-11-10T08:09:59.946511+00:00 · 回答当次快照\n\n\"2026-11-09T00:10:00.000000Z\"",
+      "dialogLayout": {
+        "contentWidth": 289,
+        "width": 289
+      },
+      "console": []
+    },
+    "layouts": [
+      {
+        "label": "OpenMES引用弹窗",
+        "contentWidth": 308,
+        "horizontalOverflow": false,
+        "viewport": 323
+      },
+      {
+        "label": "OpenMES历史问答",
+        "contentWidth": 308,
+        "horizontalOverflow": false,
+        "viewport": 323
+      },
+      {
+        "label": "ERPNext工序与作业卡",
+        "contentWidth": 308,
+        "horizontalOverflow": false,
+        "viewport": 323
+      },
+      {
+        "label": "ERPNext工序与作业卡",
+        "contentWidth": 1265,
+        "horizontalOverflow": false,
+        "viewport": 1280
+      },
+      {
+        "label": "OpenMES拒绝提示",
+        "contentWidth": 1265,
+        "horizontalOverflow": false,
+        "viewport": 1280
+      }
+    ],
+    "erpnext": {
+      "context": "当前工单\n选择有权访问的工单\nERP-WO-EXECUTION · HC-A17 · 工序未知\nERP-WO-MULTI · HC-A17 · 工序未知\nERP-WO-NOTSTARTED · HC-A17 · OP-20\nERP-WO-STARTED · HC-A17 · OP-20\n重新查询\n工序记录\n工单级（未选择工序）\nOP-20 · 7pvg4cgbg0 · Work in Progress\nOP-30 · 7pvhaa8m4o · Pending\n作业卡\n未选择作业卡（工序级）\nPO-JOB00006 · Completed · 2026-09-28T08:10:00+08:00\nPO-JOB00008 · Work In Progress · 2026-10-26T09:30:00+08:00\nPO-JOB00009 · Open · 实际开工未登记\n已核验工单 · ERP-WO-EXECUTION\n\n型号：HC-A17\n\n工序：OP-20\n\n工单实际开工（选版依据）：2026-09-28T08:10:00+08:00\n\n工单时间精度：datetime\n\n路线修订：未知\n\n来源：erpnext-hc\n\n源修订：erp-ba2c990dc42c86fffbb19eb159aa84f5a18629c65ea840c6c94b7807dea7\n\n最后核验时间：2026-11-10T08:35:13.877360+00:00\n\n所选工序记录 · 7pvg4cgbg0\n\n工序实际开工：2026-09-28T08:10:00+08:00\n\n工序时间精度：datetime\n\n工序状态：Work in Progress\n\n所选作业卡 · PO-JOB00008\n\n作业卡实际开工：2026-10-26T09:30:00+08:00\n\n作业卡时间精度：datetime\n\n作业卡状态：Work In Progress\n\n工单、工序、作业卡的实际开工分别保留；未知值不从其他层级补齐。\n\n字段来自工单系统，不能在此改写；核验后来源仍可能变化。",
+      "console": []
+    }
+  },
+  "rollback": {
+    "previous_images_retained": true,
+    "base_compose_files_preserved": true,
+    "exercised": false
+  },
+  "screenshots": {
+    "assets/frontend-deploy-20261110-r1/01-openmes-deployed.jpg": "0dad4ad20cb35074c7f71db5430c895c60824f36a8c8d1171f14c3928f8f8cb8",
+    "assets/frontend-deploy-20261110-r1/02-openmes-citation-narrow.jpg": "716e966834062657c194c23517dd1d0ab0d223d0d56da4b318e15154d63a3ef9",
+    "assets/frontend-deploy-20261110-r1/03-erpnext-narrow.jpg": "ee98a86e5a4578e404818436cfe650be68c99c1ad69eb70786eb49f050a435d0",
+    "assets/frontend-deploy-20261110-r1/04-erpnext-deployed.jpg": "73431dded724bfbbe874874ec3a9f7801877cad22de4f196b9ecbbfd06fb203f"
+  },
+  "limitations": [
+    "本轮浏览器只读取实时执行信息和既有问答/引用，未发送新问答或真实模型验证。",
+    "ERPNext仍为E4后端，OpenMES仍为O4/O5后端；UI修订单独标记，不能将整个镜像当作f6a53ca的全部业务源码。",
+    "旧ERPNext10/16、模拟开发13/16、正式31/40失败状态不变；未执行恢复演练或真实工厂业务验收。",
+    "当前启动须叠加本轮页面镜像覆盖文件，单独使用旧基础compose重建API会恢复旧页面。"
+  ]
+}

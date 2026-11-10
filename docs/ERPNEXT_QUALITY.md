@@ -60,6 +60,8 @@ ERP 账号权限未增加；仅给 8003 现有知识管理员增加 `erpnext-hc 
 
 ## 后续 E5：独立 16 题真实模型开发验证
 
+> 2026-11-10页面部署补充：8003当前镜像为 `enterprise-knowledge-manufacturing:erpnext-ui-20261110-r1`，仅将三项页面修复应用到E4静态文件，后端仍为2680ce0。当前启动须在本文件原compose基础上叠加 `tmp/frontend-deploy-20261110-r1/erpnext-override.json`；完整命令、镜像校验及回滚入口见[页面部署记录](reports/frontend-deploy-20261110-r1.md)。下述E5模型结果未随页面更新重测。
+
 用户另行批准的新批次已在同一 E4 业务镜像一次执行完成；不是前述零模型 Worker 任务的追加调用，也不是固定集/反馈集改进闭环。事先冻结的独立题集、预算和执行方式见[套件说明](../evals/erpnext_zh_v1/README.md)。
 
 自动及助手非独立复核均 **10/16、关键2/6，开发门槛未通过**。12道调用模型题中6道通过，4道零模型边界题全过；36次物理调用、146493已知及预算Token、未知0、92.545秒，独立账本一致，费用未知。字段选择、非法原文指针、版本对比角色及开工记录边界仍有缺口，完整逐题原因见[E5报告](reports/erpnext-development-20261109-r1.md)和[结构化结果](reports/erpnext-development-20261109-r1.json)。

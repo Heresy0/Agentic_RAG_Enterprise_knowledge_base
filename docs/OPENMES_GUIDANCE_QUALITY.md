@@ -69,3 +69,7 @@ docker compose -f tmp/openmes-guidance-quality-20261110-r1/compose.json run --rm
 ```
 
 完整结构化结果见[本轮报告](reports/openmes-guidance-quality-20261110-r1.json)。这是工程接入通过，真实模型问答质量仍待独立验证，旧ERPNext10/16、模拟开发13/16及正式31/40失败状态不变。
+
+## 2026-11-10 页面修复部署补充
+
+8004当前镜像为 `enterprise-knowledge-manufacturing:openmes-ui-20261110-r1`，只更新引用计数、重复拒绝及窄屏布局，后端仍为609d23d，权限和来源校验不变。重建API时，在上述基础compose之后叠加 `-f tmp/frontend-deploy-20261110-r1/openmes-override.json`；上游及适配器沿用原配置。当前完整启动命令、镜像校验和回滚入口见[页面部署记录](reports/frontend-deploy-20261110-r1.md)。本轮未新建零模型任务或更新旧模型成绩。
