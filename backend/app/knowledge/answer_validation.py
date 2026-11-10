@@ -97,10 +97,15 @@ class AnswerValidator:
         draft: AnswerDraft | GenerationAnswerDraft,
         context: BuiltContext,
         question: str = "",
+        coverage: list[str] | None = None,
     ) -> ValidationResult:
         errors = interaction_errors(draft)
-        coverage_failures = (coverage_errors(draft, question, context)
-                             if isinstance(draft, GenerationAnswerDraft) else [])
+        # Delivery keeps the first-pass coverage verdict without converting
+        # manufacturing selectors into the ordinary prose-only draft schema.
+        if coverage is not None:
+            coverage_failures = list(coverage)
+        else:
+            coverage_failures = coverage_errors(draft, question, context) if isinstance(draft, GenerationAnswerDraft) else []
         errors.extend(coverage_failures)
 
         all_items = [*context.items, *context.business_items]

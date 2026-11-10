@@ -4,6 +4,7 @@ from pydantic import Field, field_validator, model_validator
 from pydantic_core import PydanticCustomError
 from ..knowledge.answer_models import AnswerClaim, ClaimKind, EvidenceFirstAnswerDraft
 import json
+import re
 
 
 BusinessField = Literal[
@@ -35,6 +36,8 @@ class ManufacturingClaim(AnswerClaim):
         selected = self.source_unit is not None or self.business_field is not None
         if selected and self.calculation is not None:
             raise PydanticCustomError("manufacturing_selector_calculation", "来源选择不能与计算混用。")
+        if self.business_field is None and self.source_unit is not None and not re.fullmatch(r"[^#\s]+#[1-9][0-9]*", self.source_unit):
+            raise PydanticCustomError("manufacturing_source_unit_format", "原文条目标识须为上下文中的资料编号#条目序号；业务字段请使用business_field。")
         if not selected and not self.text.strip() and (self.claim_kind != "applicability" or self.calculation is not None):
             raise PydanticCustomError("manufacturing_empty_claim", "非字段结论必须有文字，只有后端适用性结论可留空。")
         return self

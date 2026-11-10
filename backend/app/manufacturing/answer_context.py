@@ -212,7 +212,7 @@ def attach_business_context(context):
     if active is None:
         return context
     items = active.items
-    text = "\n\n".join(f"[{item.citation_id}]\n{item.content}" for item in items)
+    text = "\n\n".join(f"[{item.citation_id}] business_field={item.field_name}\n{item.content}" for item in items)
     if len(text) > 4000:
         from ..integrations.mes import MESError
         raise MESError()
@@ -229,7 +229,10 @@ def attach_business_context(context):
     if getattr(active.context.record, 'execution', None) is not None:
         rendered += ('\n已选择具体工序/作业卡：actual_started_at始终是工单级开工和选版依据；'
             'operation_actual_started_at是所选工序的实际开工，job_card_actual_started_at是所选作业卡的实际开工。'
-            '按问题明确的对象选择字段，未明确对象时使用当前最具体的选择。不得用工单或其他作业卡的时间补空值。')
+            'operation_code是工序代码，operation_id是工序子行记录编号；job_card_id是作业卡编号。'
+            'status是工单状态，operation_status和job_card_status分别是所选工序和作业卡状态。'
+            '逐项回答问题要求的对象与字段，未明确对象时使用当前最具体的选择。'
+            '字段值为未知时仍可选择该字段并回答未知，不应将整个问题判为证据不足。不得用工单或其他作业卡的时间补空值。')
     if active.context.record.schema_version == 'openmes-work-order-v1':
         mapping=active.decision.scope.manufacturing.step_mapping
         if mapping is not None and mapping.selected:

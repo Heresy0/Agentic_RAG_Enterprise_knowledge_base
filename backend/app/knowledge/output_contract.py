@@ -2,7 +2,7 @@
 from pydantic import BaseModel
 
 from .answer_contract import direct_answer_errors
-from .answer_models import AnswerClaim, AnswerDraft, EvidenceFirstAnswerDraft
+from .answer_models import AnswerClaim, EvidenceFirstAnswerDraft
 from .answer_validation import interaction_errors
 
 
@@ -51,10 +51,7 @@ def prepare_draft(result, context=None, *, schema=None):
 
 def validate_output(draft, *, validator, context, question, coverage=None):
     # Final supplements must not replace the first-pass coverage verdict.
-    checked = draft if coverage is None else AnswerDraft.model_validate(draft.model_dump(exclude={"coverage"}))
-    result = validator.validate(draft=checked, context=context, question=question)
-    if coverage is not None:
-        result.coverage_errors = list(coverage)
+    result = validator.validate(draft=draft, context=context, question=question, coverage=coverage)
     result.errors = list(dict.fromkeys([
         *result.errors, *result.coverage_errors,
         *direct_answer_errors(question, draft), *interaction_errors(draft),

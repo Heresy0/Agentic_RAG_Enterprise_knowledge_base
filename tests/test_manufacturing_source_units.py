@@ -76,8 +76,8 @@ def test_source_selection_ignores_display_but_unknown_selector_never_falls_back(
         unknown = draft_for(dict(claim_kind=hint, source_unit='资料999#1', text=TABLE, citations=[citation]))
         unresolved = compile_applicability_bindings(unknown, built)
         assert unresolved.claims[0].text == '' and unresolved.claims[0].citations == []
-        with pytest.raises(ValidationError):
-            validate_output(unresolved, validator=AnswerValidator(), context=built, question='检验规范？', coverage=[])
+        result = validate_output(unresolved, validator=AnswerValidator(), context=built, question='检验规范？', coverage=[])
+        assert not result.valid and any('条目不存在' in error for error in result.errors)
 
 
 @pytest.mark.parametrize('selector', [dict(business_field='product_model'), dict(source_unit='资料1#1')])
@@ -87,6 +87,17 @@ def test_selector_cannot_also_request_a_calculation(selector):
     with pytest.raises(ValidationError) as failure:
         ManufacturingClaim.model_validate(dict(claim_kind='work_requirement', calculation=calculation) | selector)
     assert failure.value.errors(include_input=False)[0]['type'] == 'manufacturing_selector_calculation'
+
+
+@pytest.mark.parametrize('selector', ['业务11', '资料1#0', '资料1#-1', '资料1#1#2'])
+def test_malformed_document_selector_is_a_recoverable_schema_error(selector):
+    with pytest.raises(ValidationError) as failure:
+        ManufacturingClaim(claim_kind='work_requirement', source_unit=selector)
+    assert failure.value.errors(include_input=False)[0]['type'] == 'manufacturing_source_unit_format'
+
+
+def test_document_selector_keeps_arbitrary_registered_citation_names():
+    assert ManufacturingClaim(claim_kind='work_requirement', source_unit='manual-A#2').source_unit == 'manual-A#2'
 
 
 @pytest.mark.parametrize("blank", ["", " ", "\n\t"])
@@ -222,11 +233,10 @@ def test_http_source_selection_keeps_source_checks_and_stops_unknown_unit(harnes
     body = response.json()
     assert len(h.generation.calls) == 1
     if unknown:
-        # Unknown IDs have no compiled prose. The existing generation-contract
-        # boundary rejects them before delivery, rather than emitting an answer.
-        assert response.status_code == 503, response.text
-        assert body['detail']['error_code'] == 'manufacturing_generation_invalid'
-        assert len(h.source.reads) == 2
+        assert response.status_code == 200, response.text
+        assert not body['answerable'] and body['response_type'] == 'refuse'
+        assert not body.get('claim_bindings') and not body['citations'] and not body['business_citations']
+        assert len(h.source.reads) == 3
     else:
         assert response.status_code == 200, response.text
         assert body['answerable']

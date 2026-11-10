@@ -192,6 +192,27 @@ def test_http_selected_time_uses_card_source_and_keeps_work_order_version_basis(
     assert snapshot.status_code == 200 and snapshot.json()['snapshot']['manufacturing']['business_context']['record']['execution']['job_card_id'] == 'JC-A'
 
 
+def test_selected_erp_fields_have_explicit_selector_names_and_keep_unknown_values():
+    from types import SimpleNamespace
+    from backend.app.manufacturing.answer_context import ManufacturingAnswerContext, manufacturing_answer_context
+    from backend.app.knowledge.context_builder import ContextBuilder
+    graph = ERPGraph()
+    async def scenario(connector):
+        selected = await connector.read_context(graph.order['name'], scope=scope(), operation_id='ROW-A', job_card_id='JC-A2')
+        active = ManufacturingAnswerContext(selected, SimpleNamespace(state='unknown'), facts_only=True)
+        with manufacturing_answer_context(active):
+            built = ContextBuilder().build([])
+        by_field = {item.field_name: item for item in built.business_items}
+        assert by_field['operation_code'].value == 'OP-20'
+        assert by_field['operation_id'].value == 'ROW-A'
+        assert by_field['job_card_id'].value == 'JC-A2'
+        assert by_field['job_card_actual_started_at'].value is None
+        for item in built.business_items:
+            assert f'[{item.citation_id}] business_field={item.field_name}\n{item.content}' in built.text
+        assert built.total_characters == len(built.text)
+    run_graph(graph, scenario)
+
+
 def test_http_missing_start_and_missing_card_do_not_fall_back_to_work_order_time(execution_harness):
     harness = execution_harness
     common = dict(work_order_id='WO-017', operation_id='ROW-B')

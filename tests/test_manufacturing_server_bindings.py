@@ -205,6 +205,67 @@ def test_http_schema_recovery_compiles_selected_field(harness, monkeypatch):
     assert len(h.source.reads) == 3
 
 
+def test_http_contradictory_refusal_with_empty_field_text_does_not_raise_503(harness, monkeypatch):
+    h = harness
+    original = h.generation.invoke
+    def contradictory(messages):
+        value = original(messages)
+        value.update(answerable=False, response_type='refuse',
+            claims=[dict(claim_kind='business_fact', business_field='source_record_id')])
+        return value
+    monkeypatch.setattr(h.generation, 'invoke', contradictory)
+    with TestClient(h.c.app) as client:
+        response = ask(client, h, question='工单的来源编号是什么？')
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert not body['answerable'] and body['response_type'] == 'refuse'
+    assert not body.get('claim_bindings') and not body['business_citations']
+    assert len(h.source.reads) == 3 and len(h.generation.calls) == 1
+
+
+def test_final_validation_preserves_coverage_errors_without_retyping_selectors(catalog):
+    from backend.app.knowledge.output_contract import validate_output
+    active, _, _ = evidence(catalog)
+    with manufacturing_answer_context(replace(active, facts_only=True)):
+        built = ContextBuilder().build([])
+        draft = compile_applicability_bindings(draft_for(
+            dict(claim_kind='business_fact', business_field='product_model')), built)
+        result = validate_output(draft, validator=AnswerValidator(), context=built,
+            question='产品型号？', coverage=['第一遍缺少用户要求的字段'])
+    assert not result.valid and result.coverage_errors == ['第一遍缺少用户要求的字段']
+
+
+@pytest.mark.parametrize('recovery_valid', [True, False])
+def test_malformed_source_unit_uses_only_one_existing_schema_recovery(harness, monkeypatch, recovery_valid):
+    from backend.app.evaluation.trace import capture_trace
+    h = harness
+    h.settings.rag_repair_enabled = True
+    monkeypatch.setattr(h.answer._retrieval_service, 'refresh_evidence', lambda documents, **_: documents)
+    h.settings.rag_repair_prompt_bytes = 48000
+    h.settings.rag_max_optional_tokens = 64000
+    original = h.generation.invoke
+    def malformed(messages):
+        value = original(messages)
+        value['claims'] = [dict(claim_kind='work_requirement', source_unit='业务11')]
+        return value
+    monkeypatch.setattr(h.generation, 'invoke', malformed)
+    calls = []
+    def recover(messages):
+        calls.append(messages)
+        value = draft_for(dict(claim_kind='business_fact', business_field='product_model')).model_dump()
+        if not recovery_valid:
+            value['claims'] = [dict(claim_kind='work_requirement', source_unit='业务11')]
+        return value
+    h.answer._answer_repair.model_factory = lambda **_: SimpleNamespace(
+        with_structured_output=lambda *a, **kw: SimpleNamespace(invoke=recover))
+    with capture_trace() as trace, TestClient(h.c.app) as client:
+        response = ask(client, h, question='产品型号是什么？')
+    assert response.status_code == 200, response.text
+    assert len(calls) == 1 and len(h.generation.calls) == 1, trace.stages.get('rag_routing')
+    assert response.json()['answerable'] is recovery_valid, response.json()
+    assert len(h.source.reads) == 3
+
+
 @pytest.mark.parametrize("change,status", [("draft", 200), ("other_order", 200), ("new_notice", 409)])
 def test_http_delivery_rechecks_relevant_catalog_without_blocking_unrelated_edits(harness, change, status):
     from copy import deepcopy
