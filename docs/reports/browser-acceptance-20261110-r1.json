@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "batch": "browser-acceptance-20261110-r1",
+  "date": "2026-11-10",
+  "verdict": "engineering_flow_passed_with_ui_findings",
+  "reviewer": "助手非独立浏览器验收",
+  "scope": "自建演示环境浏览器工程链路；不是模型质量、真实工厂业务或完整生产验收",
+  "workspace_commit": "d3f70c7efc91aa398f044ed0fcc10b15e2dec415",
+  "runtime": {
+    "openmes": {
+      "port": 8004,
+      "source_commit": "609d23d2095cc1324192a67be08c33f29dcf745b",
+      "image": "enterprise-knowledge-manufacturing:openmes-guidance-quality-20261110-r2",
+      "image_id": "sha256:035737a9a4e4412ec1e28e281863139fe2bc2035ebeaaba62faa9e6eac801a61"
+    },
+    "erpnext": {
+      "port": 8003,
+      "source_commit": "2680ce0",
+      "image": "enterprise-knowledge-manufacturing:erpnext-quality-20261109-r2",
+      "image_id": "sha256:3633d9b774c14e19cd199e526ff46248fc25084e9877cddeff4bd832c1484381"
+    },
+    "temporary_entry": {
+      "port": 8005,
+      "same_openmes_image": true,
+      "all_requests_max_model_calls": 0,
+      "all_requests_max_tokens": 0,
+      "authenticated": true,
+      "stopped_after_acceptance": true,
+      "original_services_updated_or_restarted": false
+    }
+  },
+  "checks": [
+    {
+      "id": "B01",
+      "name": "8004和8003企业账号OIDC登录及知识库加载",
+      "result": "passed"
+    },
+    {
+      "id": "B02",
+      "name": "OpenMES工单、批次、步骤选择及分层开工未知边界",
+      "result": "passed"
+    },
+    {
+      "id": "B03",
+      "name": "步骤指导书映射草稿修订6、启用修订7和历史保留",
+      "result": "passed"
+    },
+    {
+      "id": "B04",
+      "name": "步骤开工字段答案及回答当次业务引用预览",
+      "result": "passed"
+    },
+    {
+      "id": "B05",
+      "name": "适用指导书2.0和选版依据原文预览",
+      "result": "passed",
+      "limit": "没有生成新的模型作业指导答案"
+    },
+    {
+      "id": "B06",
+      "name": "主动共享反馈、导出同意、业务证据选择和审核新修订",
+      "result": "passed"
+    },
+    {
+      "id": "B07",
+      "name": "创建冻结版本和旧版本变更后失效显示",
+      "result": "passed"
+    },
+    {
+      "id": "B08",
+      "name": "浏览器创建零调用任务、正式单次CLI执行、页面回读及两条非独立复核",
+      "result": "passed",
+      "limit": "首个多实体改写问题因需要模型被硬零预算停止，历史保留；另建原问题版本完成两题，不计模型准确率"
+    },
+    {
+      "id": "B09",
+      "name": "恢复历史会话绑定、重新核验开始新对话、切换步骤后不沿用已知时间",
+      "result": "passed"
+    },
+    {
+      "id": "B10",
+      "name": "登记开工请求在生成前被只读能力边界拒绝",
+      "result": "passed"
+    },
+    {
+      "id": "B11",
+      "name": "仅参考资料账号只见公共参考、无审核入口、工单读取404且无旧数据",
+      "result": "passed"
+    },
+    {
+      "id": "B12",
+      "name": "ERPNext工单、具体工序与作业卡独立开工信息展示",
+      "result": "passed",
+      "limit": "仅查询页面，未发送ERPNext模型问题"
+    }
+  ],
+  "ui_findings": [
+    {
+      "id": "UI01",
+      "priority": "P2",
+      "name": "业务引用未计入来源数量",
+      "evidence": "两条业务引用存在，但答案底部显示0个来源",
+      "source": "backend/app/static/app.js:358",
+      "status": "open"
+    },
+    {
+      "id": "UI02",
+      "priority": "P3",
+      "name": "只读拒绝文字重复展示",
+      "evidence": "answer和refusal_reason相同，页面分别渲染导致重复",
+      "source": "backend/app/static/app.js:343",
+      "status": "open"
+    },
+    {
+      "id": "UI03",
+      "priority": "P2",
+      "name": "窄窗口横向溢出",
+      "evidence": {
+        "inner_width": 323,
+        "document_scroll_width": 375,
+        "horizontal_overflow": true
+      },
+      "desktop_check": {
+        "inner_width": 1280,
+        "document_scroll_width": 1265,
+        "horizontal_overflow": false
+      },
+      "status": "open",
+      "limit": "未执行全尺寸响应式矩阵；未据此推断所有手机尺寸失败"
+    }
+  ],
+  "evidence": {
+    "mapping_revisions_added": [
+      {
+        "revision": 6,
+        "state": "draft",
+        "work_order_id": "1",
+        "batch_id": "1",
+        "step_id": "1"
+      },
+      {
+        "revision": 7,
+        "state": "reviewed",
+        "work_order_id": "1",
+        "batch_id": "1",
+        "step_id": "1"
+      }
+    ],
+    "quality_case_id": "ebd62007-af2e-4eed-83cc-96fa10df44b3",
+    "frozen_versions": [
+      {
+        "id": "da520116-836c-4734-9e3c-5722b912128f",
+        "name": "浏览器验收20261110-步骤开工-助手非独立"
+      },
+      {
+        "id": "0e4e60e9-e4a3-4d7f-997e-8578c4030ff0",
+        "name": "浏览器验收20261110-r2-原问题与步骤绑定-助手非独立"
+      }
+    ],
+    "jobs": [
+      {
+        "id": "de283df6-17b8-445f-9750-c56c54e45302",
+        "status": "failed",
+        "fixed_dataset_id": "da520116-836c-4734-9e3c-5722b912128f",
+        "feedback_dataset_id": "b36ea631-a968-4642-a01c-0ccbe38db1d4",
+        "budget": {
+          "allow_model_calls": false,
+          "max_cases": 2,
+          "max_model_calls": 0,
+          "max_tokens": 0,
+          "reservation_tokens": 16000,
+          "max_seconds": 120
+        },
+        "summary": {
+          "partitions": {
+            "fixed": {
+              "total": 0,
+              "proxy_passed": 0,
+              "false_refusals": 0,
+              "wrong_accepts": 0
+            },
+            "feedback": {
+              "total": 0,
+              "proxy_passed": 0,
+              "false_refusals": 0,
+              "wrong_accepts": 0
+            }
+          },
+          "p95_ms": null,
+          "usage": {
+            "observed": true,
+            "calls": 0,
+            "reported_total_tokens": 0,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": null,
+            "unpriced_calls": 0,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          },
+          "budget": {
+            "calls": 0,
+            "charged_tokens": 0,
+            "unknown_calls": 0,
+            "elapsed_seconds": 1.807,
+            "limited_by": "calls"
+          },
+          "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+        },
+        "error_type": "EvaluationStopped"
+      },
+      {
+        "id": "78501462-49d2-4a1c-8de0-526ef6532453",
+        "status": "succeeded",
+        "fixed_dataset_id": "0e4e60e9-e4a3-4d7f-997e-8578c4030ff0",
+        "feedback_dataset_id": "b36ea631-a968-4642-a01c-0ccbe38db1d4",
+        "budget": {
+          "allow_model_calls": false,
+          "max_cases": 2,
+          "max_model_calls": 0,
+          "max_tokens": 0,
+          "reservation_tokens": 16000,
+          "max_seconds": 120
+        },
+        "summary": {
+          "partitions": {
+            "fixed": {
+              "total": 1,
+              "proxy_passed": 1,
+              "false_refusals": 0,
+              "wrong_accepts": 0
+            },
+            "feedback": {
+              "total": 1,
+              "proxy_passed": 1,
+              "false_refusals": 0,
+              "wrong_accepts": 0
+            }
+          },
+          "p95_ms": 748.8867659994867,
+          "usage": {
+            "observed": true,
+            "calls": 0,
+            "reported_total_tokens": 0,
+            "unknown_usage_calls": 0,
+            "unknown_usage_rate": null,
+            "unpriced_calls": 0,
+            "unpersisted_calls": 0,
+            "estimated_cost_by_currency": {},
+            "errors": 0
+          },
+          "budget": {
+            "calls": 0,
+            "charged_tokens": 0,
+            "unknown_calls": 0,
+            "elapsed_seconds": 2.354,
+            "limited_by": null
+          },
+          "limitation": "本地服务单次运行；字面代理须结合人工复核。失败任务用量为已完成记录小计，完整账本按 job_id 查询。"
+        },
+        "error_type": null
+      }
+    ],
+    "answer_reviews": [
+      {
+        "sample_id": "FB-ebd62007-af2e-4eed-83cc-96fa10df44b3",
+        "revision": 1,
+        "verdict": "passed"
+      },
+      {
+        "sample_id": "FB-233702d8-63e4-4658-bc58-96d30531df90",
+        "revision": 1,
+        "verdict": "passed"
+      }
+    ],
+    "qa": [
+      {
+        "request_id": "69edc73be057411e9454518283d43971",
+        "conversation_id": "79a3e7d2-c592-4eef-a866-bee7e5f387e4",
+        "question": "所选步骤的实际开工时间是什么？",
+        "response_type": "answer",
+        "validation": {
+          "source_verified": true,
+          "document_scope_verified": true,
+          "business_citations_verified": true,
+          "mes_reads": 3
+        }
+      },
+      {
+        "request_id": "c427a6a2a69646edb142bd7b357d1118",
+        "conversation_id": "64127d5d-71e7-493c-8eb7-6c6ed0f7d042",
+        "question": "所选步骤的实际开工时间是什么？",
+        "response_type": "answer",
+        "validation": {
+          "source_verified": true,
+          "document_scope_verified": true,
+          "business_citations_verified": true,
+          "mes_reads": 3
+        }
+      },
+      {
+        "request_id": "a346ac368f01467c8631edd99eb503db",
+        "conversation_id": "64127d5d-71e7-493c-8eb7-6c6ed0f7d042",
+        "question": "请把这个步骤登记为已开工。",
+        "response_type": "refuse",
+        "validation": {
+          "source_verified": true,
+          "document_scope_verified": true,
+          "business_citations_verified": true,
+          "mes_reads": 3
+        }
+      }
+    ],
+    "temporary_entry_telemetry": {
+      "request_count": 119,
+      "statuses": {
+        "200": 111,
+        "201": 7,
+        "404": 1
+      },
+      "model_calls": 0,
+      "charged_tokens": 0
+    },
+    "independent_ledgers": {
+      "erpnext-readonly-api": {
+        "database": "erpnext_readonly_phase1",
+        "migration": "f2b8c0a961d3",
+        "new_events": 0,
+        "missing_old_events": 0
+      },
+      "openmes-readonly-api": {
+        "database": "openmes_readonly_phase1",
+        "migration": "e9b2d4f60713",
+        "new_events": 0,
+        "missing_old_events": 0
+      }
+    },
+    "original_container_count": 19,
+    "original_container_changes": [],
+    "old_report_count": 7,
+    "old_report_changes": [],
+    "active_quality_jobs": 0,
+    "document_count": 13,
+    "chunk_count": 53,
+    "screenshots": {
+      "assets/browser-acceptance-20261110-r1/03-business-citation.jpg": "4d4c177b5675c38b53dbcb3bd21ab1c8eb0e0bbf9fb366f3d3f3385e91bdb999",
+      "assets/browser-acceptance-20261110-r1/04-guidance-source.jpg": "cc71904c4b934d0dcde8aa3c1cf795f79a68ffca9f5c140f9a15043069e88e4d",
+      "assets/browser-acceptance-20261110-r1/08-unknown-step.jpg": "cae50c29631026f0f777aaef29ce1a1e135c39ba63dc6e899cc34ab2f36fe6ef",
+      "assets/browser-acceptance-20261110-r1/09-readonly-refusal.jpg": "643ae55707479aa24679895ded56f327d898b658770166e9a0f609c6501932e3",
+      "assets/browser-acceptance-20261110-r1/11-erpnext-full-selection.jpg": "18dfdeab916aebefc6268b143d748789151de509aa46e58c2a5a3a5d643c6aef",
+      "assets/browser-acceptance-20261110-r1/12-permission-boundary.jpg": "9a7c720c92db48672220f1f081301f88cdb0684285075a9ab8279d6705f1c7c8",
+      "assets/browser-acceptance-20261110-r1/13-original-job-result.jpg": "1b8fc78c59bbadfec2929f87bd32c667d86d94c6638cdd8071d328e854fe2507"
+    }
+  },
+  "limitations": [
+    "本轮没有真实模型生成、付费问答、重建索引、应用镜像更新或常驻质量Worker。",
+    "旧ERPNext10/16、模拟开发13/16、正式31/40失败状态保留，不与两题确定性检查拼分。",
+    "映射、反馈和样本写入现有平台演示数据库，均注明助手非独立验收；没有向ERPNext/OpenMES写执行记录。",
+    "首个任务失败和两份样本版本全部保留；第二条复核首次未保存成功，最终在原8004重新提交并回读，数据库确认两条passed。",
+    "未执行完整生产验收、真实工厂接口、视觉解析或备份恢复演练；本轮未覆盖全部页面和全部浏览器。"
+  ]
+}
