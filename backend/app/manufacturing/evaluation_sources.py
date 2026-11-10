@@ -10,7 +10,7 @@ from pydantic import Field
 
 from .contracts import Contract, Digest, Identifier, canonical_digest
 from .execution_contracts import selection_kwargs
-from .source_registration import LIVE_SOURCE_CONTRACT, LiveSourceDescriptor
+from .source_registration import LIVE_SOURCE_CONTRACT, OPENMES_SOURCE_CONTRACT, LiveSourceDescriptor, OpenMESSourceDescriptor
 from ..integrations.mes import MESConnector, MESError
 from ..integrations.mes_contracts import load_source_configs
 from ..security.business_scope import BusinessAuthorizationService
@@ -34,7 +34,7 @@ class LiveSourceEntry(Contract):
     tenant_id: UUID
     source_system_id: Identifier
     source_kind: Literal['live']
-    source_contract: Literal['erpnext-read-only-v1:execution-v1']
+    source_contract: Literal['erpnext-read-only-v1:execution-v1', 'openmes-read-only-v1:qa-v1']
     source_sha256: Digest
 
 
@@ -61,9 +61,10 @@ class EvaluationSources:
             config = load_source_configs(Path(self.settings.manufacturing_sources_file))[tenant_id]
             if config.source_system_id != entry.source_system_id:
                 raise ValueError()
-            if isinstance(entry, LiveSourceEntry) and not config.execution_selection:
-                raise ValueError()
-            binding = dict(**entry.model_dump(mode="json"), connector_contract=LIVE_SOURCE_CONTRACT if isinstance(entry, LiveSourceEntry) else CONNECTOR_CONTRACT,
+            if isinstance(entry, LiveSourceEntry):
+                if not (config.batch_step_selection if entry.source_contract==OPENMES_SOURCE_CONTRACT else config.execution_selection):
+                    raise ValueError()
+            binding = dict(**entry.model_dump(mode="json"), connector_contract=entry.source_contract if isinstance(entry, LiveSourceEntry) else CONNECTOR_CONTRACT,
                 endpoint_sha256=canonical_digest(config.base_url))
             return config, binding
         except (OSError, ValueError, TypeError, AttributeError, StopIteration, KeyError):
@@ -72,7 +73,8 @@ class EvaluationSources:
     async def verify_source(self, connector, scope, binding):
         if binding.get('source_kind') == 'live':
             payload, _ = await connector._get('/v1/source', scope=scope)
-            expected = LiveSourceDescriptor(tenant_id=binding['tenant_id'], source_system_id=binding['source_system_id'],
+            model=OpenMESSourceDescriptor if binding['source_contract']==OPENMES_SOURCE_CONTRACT else LiveSourceDescriptor
+            expected = model(tenant_id=binding['tenant_id'], source_system_id=binding['source_system_id'],
                 source_contract=binding['source_contract'], configuration_sha256=binding['source_sha256'])
             if payload != expected.model_dump(mode='json'):
                 raise MESError()

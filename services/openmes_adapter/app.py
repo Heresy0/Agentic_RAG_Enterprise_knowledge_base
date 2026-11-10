@@ -63,7 +63,8 @@ def create_app(config,*,transport=None):
     @app.get('/v1/source')
     async def source(response: Response,plants=Depends(authorized)):
         response.headers['Cache-Control']='no-store'
-        return dict(source_kind='live',source_contract='openmes-read-only-v1:batch-step-v1',tenant_id=config.tenant_id,
+        from backend.app.manufacturing.source_registration import OpenMESSourceDescriptor
+        return OpenMESSourceDescriptor(tenant_id=config.tenant_id,
             source_system_id=config.source_system_id,configuration_sha256=client.configuration_sha256)
 
     @app.get('/v1/work-orders')

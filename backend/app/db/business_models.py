@@ -1,8 +1,8 @@
 """Business grants and immutable access bindings, separate from document grants."""
 from datetime import datetime
-from uuid import UUID
+from uuid import UUID, uuid4
 
-from sqlalchemy import CheckConstraint, DateTime, ForeignKeyConstraint, Index, String, Uuid, func
+from sqlalchemy import CheckConstraint, DateTime, ForeignKeyConstraint, Index, String, Uuid, func, Integer, JSON, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .base import Base
@@ -44,6 +44,7 @@ class ConversationBusinessBinding(Base):
     job_card_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
     batch_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
     step_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    step_guidance_sha256: Mapped[str | None] = mapped_column(String(64),nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     __table_args__ = (
         ForeignKeyConstraint(["tenant_id", "conversation_id"], ["conversations.tenant_id", "conversations.id"],
@@ -55,6 +56,7 @@ class ConversationBusinessBinding(Base):
         *bounded_columns('business_binding', ('batch_id', 'step_id')),
         CheckConstraint('step_id IS NULL OR batch_id IS NOT NULL',name='ck_business_binding_batch_parent'),
         CheckConstraint('batch_id IS NULL OR operation_id IS NULL',name='ck_business_binding_execution_kind'),
+        CheckConstraint('step_guidance_sha256 IS NULL OR length(step_guidance_sha256)=64',name='ck_business_binding_guidance_hash'),
     )
 
 
@@ -72,4 +74,32 @@ class QARunBusinessScope(Base):
         *bounded_columns("business_scope", ("source_system_id", "plant_code", "work_order_id")),
         Index("ix_qa_run_business_scope_access", "tenant_id", "source_system_id", "plant_code", "run_id"),
         # No FK to grants: revocation must never erase a historical restriction.
+    )
+
+
+class StepGuidanceRevision(Base):
+    """Append-only reviewed assignments; upstream records are never edited."""
+    __tablename__='step_guidance_revisions'
+    id: Mapped[UUID]=mapped_column(Uuid,primary_key=True,default=uuid4)
+    tenant_id: Mapped[UUID]=mapped_column(Uuid,nullable=False)
+    knowledge_base_id: Mapped[UUID]=mapped_column(Uuid,nullable=False)
+    source_system_id: Mapped[str]=mapped_column(String(64),nullable=False)
+    plant_code: Mapped[str]=mapped_column(String(64),nullable=False)
+    work_order_id: Mapped[str]=mapped_column(String(64),nullable=False)
+    batch_id: Mapped[str]=mapped_column(String(64),nullable=False)
+    step_id: Mapped[str]=mapped_column(String(64),nullable=False)
+    revision: Mapped[int]=mapped_column(Integer,nullable=False)
+    state: Mapped[str]=mapped_column(String(12),nullable=False)
+    payload_json: Mapped[dict]=mapped_column(JSON,nullable=False)
+    payload_sha256: Mapped[str]=mapped_column(String(64),nullable=False)
+    actor_user_id: Mapped[UUID]=mapped_column(Uuid,nullable=False)
+    created_at: Mapped[datetime]=mapped_column(DateTime(timezone=True),server_default=func.now(),nullable=False)
+    __table_args__=(
+        ForeignKeyConstraint(['tenant_id','knowledge_base_id'],['knowledge_bases.tenant_id','knowledge_bases.id'],ondelete='CASCADE'),
+        ForeignKeyConstraint(['tenant_id','actor_user_id'],['users.tenant_id','users.id']),
+        UniqueConstraint('tenant_id','knowledge_base_id','source_system_id','plant_code','work_order_id','batch_id','step_id','revision',name='uq_step_guidance_revision'),
+        CheckConstraint('revision > 0',name='ck_step_guidance_revision'),
+        CheckConstraint("state IN ('draft','reviewed','withdrawn')",name='ck_step_guidance_state'),
+        CheckConstraint('length(payload_sha256)=64',name='ck_step_guidance_digest'),
+        *bounded_columns('step_guidance',('source_system_id','plant_code','work_order_id','batch_id','step_id')),
     )

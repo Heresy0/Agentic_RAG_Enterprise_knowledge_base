@@ -49,7 +49,7 @@ class ReviewInput(BaseModel):
     citation_requirement: Literal["none", "all_supporting_sources"] | None = None
     forbidden_claims: list[str] = Field(default_factory=list, max_length=32)
     evidence: list[EvidenceInput] = Field(default_factory=list, max_length=32)
-    business_evidence: list["BusinessEvidenceInput | ExecutionBusinessEvidenceInput"] = Field(default_factory=list, max_length=32)
+    business_evidence: list["BusinessEvidenceInput | ExecutionBusinessEvidenceInput | BatchBusinessEvidenceInput"] = Field(default_factory=list, max_length=32)
 
     @field_validator("review_reason", "reference_answer", "evaluation_question")
     @classmethod
@@ -110,6 +110,14 @@ class ExecutionBusinessEvidenceInput(BusinessEvidenceInput):
     operation_id: str = Field(min_length=1, max_length=64)
     job_card_id: str | None = Field(default=None, min_length=1, max_length=64, exclude_if=lambda value: value is None)
     actual_start_precision: Literal['date', 'datetime'] | None
+
+
+class BatchBusinessEvidenceInput(BusinessEvidenceInput):
+    source_entity: Literal['Work Order', 'Batch', 'Batch Step']
+    batch_id: str | None = Field(default=None,min_length=1,max_length=64,exclude_if=lambda value:value is None)
+    step_id: str | None = Field(default=None,min_length=1,max_length=64,exclude_if=lambda value:value is None)
+    actual_start_precision: Literal['date','datetime'] | None
+    value: Annotated[str, Field(strict=True,max_length=4000)] | Annotated[int, Field(strict=True)] | Annotated[list[Annotated[str, Field(strict=True,max_length=100)]],Field(max_length=16)] | None
 
 
 ReviewInput.model_rebuild()

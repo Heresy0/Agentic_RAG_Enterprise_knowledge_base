@@ -43,6 +43,11 @@ class ApplicabilityResolver:
         if (scope.tenant_id != record.tenant_id or business_scope.tenant_id != scope.tenant_id
                 or not business_scope.contains_record(record)):
             raise BusinessAuthorizationDenied()
+        if record.schema_version=='openmes-work-order-v1':
+            from .step_guidance import resolve_step_guidance
+            decision=resolve_step_guidance(context,scope,session,include_other_revisions=include_other_revisions)
+            record_manufacturing_selection(decision)
+            return decision
         rows = catalog_rows(session, scope, record=record)
         fingerprint = catalog_fingerprint(rows)
 

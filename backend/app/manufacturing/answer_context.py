@@ -113,11 +113,17 @@ class ManufacturingAnswerContext:
 
     @property
     def applicability_text(self):
+        if self.context.record.schema_version=='openmes-work-order-v1':
+            record=self.context.record
+            return (f'工单{record.work_order_id}的批次{record.batch_id}步骤{record.step_id}经审核指定适用'
+                f'{self.decision.selected_document_code}业务版本{self.decision.selected_business_revision}（步骤映射依据，不代表工单级开工选版）')
         return (f"工单{self.context.record.work_order_id}适用{self.decision.selected_document_code}"
                 f"业务版本{self.decision.selected_business_revision}")
 
     @property
     def required_fields(self):
+        if self.context.record.schema_version=='openmes-work-order-v1':
+            return {'work_order_id','product_model','batch_id','step_id'}
         return {"work_order_id", "product_model", "operation_code", "actual_started_at"}
 
 
@@ -225,6 +231,9 @@ def attach_business_context(context):
             'operation_actual_started_at是所选工序的实际开工，job_card_actual_started_at是所选作业卡的实际开工。'
             '按问题明确的对象选择字段，未明确对象时使用当前最具体的选择。不得用工单或其他作业卡的时间补空值。')
     if active.context.record.schema_version == 'openmes-work-order-v1':
+        mapping=active.decision.scope.manufacturing.step_mapping
+        if mapping is not None and mapping.selected:
+            rendered+='\n当前步骤经平台审核明确指定指导书版本；适用范围仅为所选工单/批次/步骤，依据为步骤映射审核，不是工单开工窗口。审核工艺编码：'+mapping.selected['operation_code']+'；此编码不是上游工单源字段。'
         rendered += ('\nOpenMES来源分别包含工单、生产批次及工序步骤；batch_*只表示所选批次，step_*只表示所选步骤。'
             'actual_started_at始终是工单级字段，本来源没有该字段值及唯一工序代码，不能从批次/步骤或计划时间推定。'
             'work_order_number是原工单编号，work_order_id是源记录身份。步骤名称不是已审核工序代码。'

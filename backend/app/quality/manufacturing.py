@@ -16,7 +16,7 @@ from ..integrations.mes import MESError
 from ..security.business_scope import BusinessAuthorizationService, BusinessAuthorizationDenied
 from ..security.retrieval_scope import RetrievalScope
 from .reviews import ReviewConflict
-from .review_schemas import ExecutionBusinessEvidenceInput
+from .review_schemas import ExecutionBusinessEvidenceInput, BatchBusinessEvidenceInput
 
 
 def business_rows(store, run):
@@ -66,8 +66,11 @@ def resolve_business_evidence(store, run, selected):
     result = []
     for chosen in selected:
         expected = options.get(chosen.citation_id)
-        if (expected is None or expected.get('source_entity') and not isinstance(chosen, ExecutionBusinessEvidenceInput)
-                or expected.get('source_entity') and chosen.job_card_id != expected.get('job_card_id')
+        batch_source=context_from_payload(run.snapshot_json['manufacturing']['business_context']).record.schema_version=='openmes-work-order-v1'
+        model=BatchBusinessEvidenceInput if batch_source else ExecutionBusinessEvidenceInput
+        identities=('batch_id','step_id') if batch_source else ('operation_id','job_card_id')
+        if (expected is None or expected.get('source_entity') and not isinstance(chosen, model)
+                or expected.get('source_entity') and any(getattr(chosen,key,None)!=expected.get(key) for key in identities)
                 or any(expected.get(key) != value for key, value in chosen.model_dump().items())):
             raise ReviewConflict("工单字段、值、来源身份、修订或哈希与当次快照不一致。")
         result.append(expected)
@@ -108,6 +111,11 @@ def current_binding(store, run, *, previous=None, verify_record=False):
 
 
 def approval_evidence(run, payload, documents, business):
+    record=run.snapshot_json['manufacturing']['business_context']['record']
+    if payload.expected_answerable and record['schema_version']=='openmes-work-order-v1':
+        required={'work_order_id'} | ({'batch_id'} if record.get('batch') else set()) | ({'step_id'} if record.get('step') else set())
+        if not required <= {row['field_name'] for row in business}:
+            raise ReviewConflict('批次/步骤样本须选择工单及各层身份字段，不能丢失选择边界。')
     execution = run.snapshot_json['manufacturing']['business_context']['record'].get('execution')
     if payload.expected_answerable and execution:
         required = {'operation_id'} | ({'job_card_id'} if execution.get('job_card_id') else set())
@@ -115,8 +123,12 @@ def approval_evidence(run, payload, documents, business):
             raise ReviewConflict('所选工序/作业卡样本须选择对应身份字段，不能丢失选择边界。')
     if not payload.expected_answerable or facts_only_question(payload.evaluation_question):
         return
+    if record['schema_version']=='openmes-work-order-v1' and not run.snapshot_json['manufacturing']['applicability'].get('step_guidance'):
+        raise ReviewConflict('步骤作业样本须先完成指导书映射审核并重新采集，不能用字段样本代替作业依据。')
     fields = {row["field_name"] for row in business}
-    if not {"work_order_id", "product_model", "operation_code", "actual_started_at"} <= fields:
+    required_fields=({'work_order_id','product_model','batch_id','step_id'} if record['schema_version']=='openmes-work-order-v1'
+        else {"work_order_id", "product_model", "operation_code", "actual_started_at"})
+    if not required_fields <= fields:
         raise ReviewConflict("工单作业样本须选择编号、型号、工序、实际开工四项业务依据。")
     applicable = run.snapshot_json["manufacturing"]["applicability"]
     required = {row["document_id"] for row in applicable["documents"] if row["usage"] == "applicable_evidence"

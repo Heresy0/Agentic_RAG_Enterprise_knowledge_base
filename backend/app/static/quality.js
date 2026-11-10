@@ -98,7 +98,7 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
       const payload = { expected_revision: data.case.revision, review_status: status.value, sample_status: sample.value, root_cause: cause.value || null,
         ...(businessInputs.length ? { business_evidence: businessInputs.filter(item => item.choose.checked).map(item => Object.fromEntries(
           ["citation_id", "field_name", "value", "source_system_id", "source_record_id", "source_revision", "payload_sha256",
-            ...(item.evidence.source_entity ? ["source_entity", "operation_id", "actual_start_precision", ...(item.evidence.job_card_id ? ["job_card_id"] : [])] : [])].map(key => [key, item.evidence[key]]))) } : {}),
+            ...(item.evidence.source_entity ? ["source_entity", "actual_start_precision", ...["operation_id","job_card_id","batch_id","step_id"].filter(key => item.evidence[key] != null)] : [])].map(key => [key, item.evidence[key]]))) } : {}),
         ...Object.fromEntries(["fact_alternatives", "fact_assertions", "accepted_behaviors", "citation_requirement"].filter(key => review[key] != null).map(key => [key, review[key]])),
         review_reason: reason.value, expected_answerable: answerable.value === "" ? null : answerable.value === "true", reference_answer: reference.value.trim() || null,
         ...(answerable.value ? { expected_behavior: answerable.value === "clarify" ? "clarify" : answerable.value === "true" ? "answer" : "refuse" } : {}),

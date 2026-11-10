@@ -77,7 +77,7 @@ def main(argv=None, *, phase="m1"):
                 head=connection.scalar(text("SELECT version_num FROM alembic_version"))
                 version=connection.scalar(text("SHOW server_version_num"))
         finally: engine.dispose()
-        if head!="d7a1c3e5f902": raise RuntimeError("独立测试数据库迁移头不符。")
+        if head!="e9b2d4f60713": raise RuntimeError("独立测试数据库迁移头不符。")
         tests=subprocess.run([sys.executable,"-m","pytest",*STAGE_TESTS[phase],"-q","-o","addopts=",
             f"--junitxml={junit}"],cwd=ROOT,env=env)
         exit_code=tests.returncode

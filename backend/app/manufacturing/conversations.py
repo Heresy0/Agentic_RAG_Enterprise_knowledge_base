@@ -49,3 +49,12 @@ class ManufacturingConversationStore(ConversationStore):
         if binding.payload_sha256 != context.payload_sha256:
             invalidate_binding(self.session, self.principal, identifier)
             raise MESError()
+
+    def bind_step_guidance(self,identifier,context):
+        if context.record.schema_version!='openmes-work-order-v1':return
+        from .step_guidance import mapping_digest,latest_rows
+        current=mapping_digest(latest_rows(self.session,self.scope,context.record)) if context.record.step else mapping_digest([])
+        binding=self.binding(identifier)
+        if binding.step_guidance_sha256 is not None and binding.step_guidance_sha256!=current:
+            raise MESContextChanged()
+        binding.step_guidance_sha256=current

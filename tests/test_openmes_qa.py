@@ -73,7 +73,7 @@ def test_unknown_step_time_missing_selection_and_guidance_do_not_infer_parent_ti
         assert missing['response_type']=='clarify' and '工序步骤' in missing['missing_fields']
         guide=c.post('/api/manufacturing/qa',json=request(h,question='当前步骤应该采用哪版指导书，首件要检查几件？')).json()
         assert guide['response_type']=='clarify' and not guide['answerable']
-        assert '实际开工时间' in guide['missing_fields'] and not h.generation.calls
+        assert '步骤指导书审核映射' in guide['missing_fields'] and not h.generation.calls
 
 
 def test_conversation_binds_exact_selection_and_restores_frozen_context(mes):

@@ -52,6 +52,9 @@ def runtime_config(settings):
     from ..manufacturing.source_registration import LIVE_SOURCE_CONTRACT
     from ..evaluation.manufacturing_execution_metrics import SCORER_VERSION as EXECUTION_SCORER
     values['manufacturing'].update(live_connector_contract=LIVE_SOURCE_CONTRACT, execution_scorer=EXECUTION_SCORER)
+    from ..manufacturing.source_registration import OPENMES_SOURCE_CONTRACT
+    from ..evaluation.openmes_metrics import SCORER_VERSION as OPENMES_SCORER
+    values['manufacturing'].update(openmes_connector_contract=OPENMES_SOURCE_CONTRACT,openmes_scorer=OPENMES_SCORER)
     for name in ("manufacturing_evaluation_registry", "manufacturing_sources_file"):
         path = getattr(settings, name, None)
         try:

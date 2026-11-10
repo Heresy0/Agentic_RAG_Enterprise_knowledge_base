@@ -310,7 +310,8 @@ function renderApplicability(value, runId = null) {
   if (value.document_code) target.append(element("p", `${value.document_code} · 业务版本 ${value.business_revision}`));
   for (const doc of value.documents || []) target.append(element("p", `${doc.usage === "comparison_only" ? "仅供版本对比 · " : doc.usage === "conflict_evidence" ? "冲突依据 · " : ""}${doc.document_code || doc.document_id} · 业务版本 ${doc.business_revision ?? "未知"} · 技术版本 ${doc.document_version} · 制造审核修订 ${doc.manufacturing_revision}`, "answer-meta"));
   if (value.rule_ids?.length) target.append(element("p", `依据规则：${value.rule_ids.join("、")}`));
-  const gaps = { product_model: "产品型号", operation_code: "工序", actual_started_at: "实际开工时间", route_revision: "工艺路线修订", change_notice_refs: "书面通知", manufacturing_review: "制造资料审核", source_anchors: "原文来源", catalog_scope: "目录范围", supersedes_rule_ids: "通知替代关系" };
+  if (value.step_guidance) target.append(element("p", `步骤指导书审核映射 · 修订 ${value.step_guidance.revision} · 工艺编码 ${value.step_guidance.operation_code} · 明确指定版本；未推定工单开工时间。`, "answer-meta"));
+  const gaps = { product_model: "产品型号", operation_code: "工序", actual_started_at: "实际开工时间", route_revision: "工艺路线修订", change_notice_refs: "书面通知", manufacturing_review: "制造资料审核", source_anchors: "原文来源", catalog_scope: "目录范围", supersedes_rule_ids: "通知替代关系", step_selection: "工序步骤", step_guidance_mapping: "步骤指导书审核映射" };
   if (value.gaps?.length) target.append(element("p", `待处理：${value.gaps.map(name => gaps[name] || name).join("、")}`));
   for (const evidence of value.evidence || []) {
     const button = element("button", `查看选版依据 · ${evidence.document_name || evidence.document_id}`, "citation"); button.type = "button";

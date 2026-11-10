@@ -98,6 +98,7 @@ class ManufacturingFence:
     explanation_documents: tuple[DocumentBinding, ...] = ()
     explanation_evidence: tuple[RequiredEvidence, ...] = ()
     catalog_record: WorkOrderRecord | None = None
+    step_mapping: object = None
 
     def __post_init__(self):
         object.__setattr__(self, "documents", tuple(self.documents))
@@ -138,6 +139,7 @@ class ManufacturingFence:
         Losing a deciding ECN must invalidate the whole selection; it cannot just
         disappear while the old instruction continues to authorize an answer.
         """
+        if self.step_mapping is not None:self.step_mapping.require_current(session,scope)
         rows = catalog_rows(session, scope, record=self.catalog_record)
         if catalog_fingerprint(rows) != self.catalog_sha256:
             raise ManufacturingScopeChanged("制造目录或发布状态已变化，请重新判断适用性。")

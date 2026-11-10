@@ -23,7 +23,8 @@ from ..evaluation.trace import record_business_source, record_rag_event
 
 GAP_LABELS = {"product_model": "产品型号", "operation_code": "工序", "actual_started_at": "实际开工时间",
     "route_revision": "工艺路线修订", "change_notice_refs": "引用的书面通知", "manufacturing_review": "制造资料适用性审核",
-    "source_anchors": "原文来源", "catalog_scope": "目录处理范围", "supersedes_rule_ids": "通知替代关系来源"}
+    "source_anchors": "原文来源", "catalog_scope": "目录处理范围", "supersedes_rule_ids": "通知替代关系来源",
+    'step_selection':'工序步骤','step_guidance_mapping':'步骤指导书审核映射'}
 
 
 def public_context(context):
@@ -37,6 +38,7 @@ def public_applicability(decision):
     documents = (*fence.documents, *fence.explanation_documents)
     bindings = {row.document_id: row for row in documents}
     return dict(state=decision.state, reason=decision.reason, document_code=decision.selected_document_code,
+        **({'step_guidance':fence.step_mapping.selected} if fence.step_mapping is not None and fence.step_mapping.selected else {}),
         business_revision=decision.selected_business_revision, rule_ids=list(decision.rule_ids), gaps=list(decision.gaps),
         documents=[dict(document_id=str(row.document_id), knowledge_base_id=str(row.knowledge_base_id),
             document_version=row.document_version, document_content_hash=row.document_content_hash,
@@ -86,6 +88,7 @@ class ManufacturingService:
             record_business_source(context, stage="fetched")
             if token:
                 store.check_binding(payload.conversation_id, context)
+                store.bind_step_guidance(payload.conversation_id,context)
             self.require_documents(scope); check_lease()
             def current_access():
                 self.require_documents(scope)

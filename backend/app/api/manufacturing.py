@@ -358,3 +358,7 @@ async def manufacturing_qa(payload: ManufacturingExecutionQuestion, request: Req
             if lease is not None:
                 try: limiter.release(lease)
                 except ConcurrencyLimiterUnavailable: pass
+
+
+from .step_guidance import router as step_guidance_router
+router.include_router(step_guidance_router)

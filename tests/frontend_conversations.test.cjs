@@ -174,11 +174,12 @@ test("OpenMES restored history preserves frozen selection and current citations 
   assert.equal(h.run("openmesWorkspace.fieldValue({batch_no:null,batch:{lot_number:'LOT'}}, 'batch_no')"), null);
 });
 
-for (const execution of [false, true]) test(`manufacturing review preserves ${execution ? "execution" : "legacy"} source identity`, async () => {
+for (const execution of [false, true, "batch"]) test(`manufacturing review preserves ${execution === "batch" ? "batch/step" : execution ? "execution" : "legacy"} source identity`, async () => {
   const { $, run, sandbox } = setup(); admin(run);
   const data = qualityData(); data.source.snapshot.context.items = [];
   const evidence = {citation_id:"业务2",field_name:"product_model",value:"<script>型号</script>",source_system_id:"mock-mes-hc",source_record_id:"source-1",source_revision:"r1",payload_sha256:"a".repeat(64),last_verified_at:"2026-11-01T00:00:00Z"};
-  if (execution) Object.assign(evidence, { field_name:"job_card_status", source_entity:"Job Card", source_record_id:"JC-A", operation_id:"ROW-A", job_card_id:"JC-A", actual_start_precision:"datetime" });
+  if (execution === true) Object.assign(evidence, { field_name:"job_card_status", source_entity:"Job Card", source_record_id:"JC-A", operation_id:"ROW-A", job_card_id:"JC-A", actual_start_precision:"datetime" });
+  if (execution === "batch") Object.assign(evidence, { field_name:"step_status", source_entity:"Batch Step", source_record_id:"11", batch_id:"1", step_id:"11", actual_start_precision:"datetime" });
   data.source.business_evidence_options = [evidence];
   let submitted;
   sandbox.fetch = async (url, options = {}) => {
@@ -193,7 +194,47 @@ for (const execution of [false, true]) test(`manufacturing review preserves ${ex
   row.children[0].children[0].checked=true;
   await $("quality-detail").querySelector(".quality-form").listeners.submit({preventDefault(){}});
   assert.deepEqual(submitted.evidence,[]);
-  assert.deepEqual(submitted.business_evidence,[Object.fromEntries(["citation_id","field_name","value","source_system_id","source_record_id","source_revision","payload_sha256",...(execution?["source_entity","operation_id","job_card_id","actual_start_precision"]:[])].map(key=>[key,evidence[key]]))]);
+  assert.deepEqual(submitted.business_evidence,[Object.fromEntries(["citation_id","field_name","value","source_system_id","source_record_id","source_revision","payload_sha256",...(execution === "batch" ? ["source_entity","batch_id","step_id","actual_start_precision"] : execution ? ["source_entity","operation_id","job_card_id","actual_start_precision"]:[])].map(key=>[key,evidence[key]]))]);
+});
+
+test("OpenMES mapping review submits the displayed step/source and starts a fresh conversation", async () => {
+  const h = openmesSetup(), original = h.sandbox.fetch; let submitted;
+  h.run("state.kb.permission = 'admin'; state.manufacturing.batchId = '10'; state.manufacturing.stepId = '101'; state.conversationId = 'old';");
+  const mapping = { document_id: "guide-2", document_code: "WI-020", business_revision: "2.0", operation_code: "OP-20", document_version: 1 };
+  h.sandbox.fetch = async (url, options = {}) => {
+    if (url.includes("/guidance-mapping")) {
+      if (options.method === "PUT") { submitted = { url, ...JSON.parse(options.body) }; return jsonResponse({revision:2}); }
+      if (url.includes("/candidates?")) return jsonResponse({items:[mapping],source_revision:"revision-10-101"});
+      return jsonResponse({revision:1,mapping:{state:"draft",data:mapping,review_note:"逐项审核"},history:[]});
+    }
+    return original(url, options);
+  };
+  await h.run("loadManufacturingSelection(false, false)");
+  const target=h.$("openmes-mapping"); assert.equal(target.hidden,false);
+  await target.children[2].listeners.click();
+  const form=target.children[3], enable=form.children.find(row=>row.textContent==="复核并启用");
+  assert.equal(enable.disabled,false); await enable.listeners.click();
+  assert.match(submitted.url,/batches\/10\/steps\/101\/guidance-mapping\?knowledge_base_id=kb1/);
+  assert.equal(submitted.expected_revision,1);assert.equal(submitted.expected_source_revision,"revision-10-101");
+  assert.equal(submitted.state,"reviewed");assert.equal(submitted.document_id,"guide-2");assert.equal(submitted.operation_code,"OP-20");
+  assert.equal(h.run("state.conversationId"),null);
+});
+
+test("OpenMES mapping history never accepts a late response after a scope change", async () => {
+  const h=openmesSetup();h.run("state.kb.permission='admin';state.manufacturing.batchId='10';state.manufacturing.stepId='101';");
+  await h.run("loadManufacturingSelection(false,false)");let release;
+  h.sandbox.fetch=()=>new Promise(resolve=>{release=resolve;});
+  const pending=h.$("openmes-mapping").children[2].listeners.click();await new Promise(resolve=>setTimeout(resolve,0));
+  h.run("state.revision+=1;openmesWorkspace.clear();");release(jsonResponse({revision:1,mapping:{review_note:"PRIVATE-LATE"},history:[]}));await pending;
+  assert.equal(h.$("openmes-mapping").children.length,0);assert.equal(h.$("openmes-mapping").hidden,true);
+});
+
+test("OpenMES mapping permission loss clears the previously loaded review form", async () => {
+  const h=openmesSetup();h.run("state.kb.permission='admin';state.manufacturing.batchId='10';state.manufacturing.stepId='101';");
+  await h.run("loadManufacturingSelection(false,false)");
+  h.sandbox.fetch=async()=>jsonResponse({detail:{message:"无审核权限"}},404);
+  await h.$("openmes-mapping").children[2].listeners.click();
+  assert.equal(h.$("openmes-mapping").children.length,1);assert.match(h.$("openmes-mapping").children[0].textContent,/无法核验/);
 });
 
 test("first question creates a conversation, followup reuses it, new conversation resets it", async () => {
