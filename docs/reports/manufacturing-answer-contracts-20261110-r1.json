@@ -1,0 +1,207 @@
+{
+  "schema_version": "manufacturing-answer-contracts-verification-v1",
+  "date": "2026-11-10",
+  "source_revision": "c025d711802ed122389fa12ae3b09336936baf96",
+  "offline_acceptance_passed": true,
+  "scope": [
+    "explicit_erp_entity_field_lists",
+    "source_owned_reference_purpose",
+    "direct_execution_evidence_boundary",
+    "versioned_execution_array_scoring"
+  ],
+  "tests": {
+    "full": {
+      "tests": 2397,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 2396
+    },
+    "targeted": {
+      "tests": 78,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 78
+    },
+    "postgres_m3": {
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 14
+    },
+    "postgres_m4": {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 12
+    }
+  },
+  "integration_excluded_from_full": 98,
+  "suite_integrity": {
+    "cases": 120,
+    "changed": [],
+    "model_calls": 0
+  },
+  "offline_replay": {
+    "kind": "offline_old_draft_replay_not_model_accuracy",
+    "checks": [
+      {
+        "case_id": "ERPDEV-Q004",
+        "check": "passed",
+        "question": "所选工序的工序代码、登记状态和实际开工时间分别是什么？",
+        "legacy_wrong_object_rejected": true,
+        "rejected_errors": [
+          "缺少问题对象的业务字段：operation_actual_started_at、operation_status"
+        ],
+        "compiled_roles": [
+          "business_fact",
+          "business_fact",
+          "business_fact",
+          "business_fact"
+        ],
+        "business_fields": [
+          "operation_code",
+          "operation_status",
+          "operation_actual_started_at",
+          "operation_start_precision"
+        ],
+        "direct_boundary": null,
+        "old_response_binding": "f84d48b01b09e96a8b3c64e5a144ab223a1ad669d0d3b5800450168699887f55",
+        "snapshot_sha256": "841993e1d4d7f7783afcb7dea9b2bca0f6a418254e8ad96c222e24b1282143cc"
+      },
+      {
+        "case_id": "ERPDEV-Q006",
+        "check": "passed",
+        "question": "这张工单应采用哪个业务版本的指导书？首件数量是多少，恢复后续作业前谁要签署？",
+        "legacy_wrong_object_rejected": false,
+        "rejected_errors": [],
+        "compiled_roles": [
+          "applicability",
+          "work_requirement",
+          "business_fact"
+        ],
+        "business_fields": [
+          "work_order_id",
+          "product_model",
+          "operation_code",
+          "actual_started_at"
+        ],
+        "direct_boundary": null,
+        "old_response_binding": "fa17b17e44a144cc7812646dae7d7ef9e4c712697ad0e94bb32e615590b6a4af",
+        "snapshot_sha256": "d225f561cc6281c08a2a221e21853a4193a7d4baddd6214e4c044cfdf15436cd"
+      },
+      {
+        "case_id": "ERPDEV-Q007",
+        "check": "passed",
+        "question": "比较1.0版与2.0版的首件数量和停机条款，并指出当前工单应按哪版作业。",
+        "legacy_wrong_object_rejected": false,
+        "rejected_errors": [],
+        "compiled_roles": [
+          "version_comparison",
+          "version_comparison",
+          "version_comparison",
+          "version_comparison",
+          "applicability",
+          "business_fact"
+        ],
+        "business_fields": [
+          "work_order_id",
+          "product_model",
+          "operation_code",
+          "actual_started_at"
+        ],
+        "direct_boundary": null,
+        "old_response_binding": "c2d26178174784be8618b0ea0a923cea0ed15add926993526ea2f6de7e375a49",
+        "snapshot_sha256": "0da40c419d82dec3fdc140a90b81890cdabd3af8ec7859116d4cc36911cded6e"
+      },
+      {
+        "case_id": "ERPDEV-Q010",
+        "check": "passed",
+        "question": "这张作业卡已有实际开工登记，能否据此认定本工单已经完成首件检验和质量签署？应满足哪些作业要求？",
+        "legacy_wrong_object_rejected": false,
+        "rejected_errors": [],
+        "compiled_roles": [
+          "work_requirement",
+          "work_requirement",
+          "work_requirement",
+          "work_requirement",
+          "work_requirement",
+          "work_requirement",
+          "work_requirement",
+          "applicability"
+        ],
+        "business_fields": [
+          "job_card_actual_started_at",
+          "work_order_id",
+          "product_model",
+          "operation_code",
+          "actual_started_at"
+        ],
+        "direct_boundary": "仅凭实际开工登记，不能认定首件检验或质量签署已经完成；仍需核验适用指导书要求的检验记录及质量签署。[业务22][资料1]",
+        "old_response_binding": "a63b36b661130c372b9a3661993fe18710013c110d419409fd0b8a72beb3d46d",
+        "snapshot_sha256": "83bfe1ebd0082b83105425a65acafca56cc6aaa002cdb9e1c4aebc05a98a1afd"
+      },
+      {
+        "case_id": "ERPDEV-Q005",
+        "check": "passed",
+        "kind": "single_response_scorer_compatibility_only",
+        "legacy": "manufacturing-execution-v1",
+        "current": "manufacturing-execution-v2",
+        "legacy_result": false,
+        "new_type_check_result": true,
+        "old_response_binding": "2c01e30a623ee4150eca7037f67398e0f7f57fc11821061265b102d53af6fab7",
+        "old_aggregate_unchanged": true
+      }
+    ],
+    "model_calls": 0,
+    "aggregate_accuracy": null
+  },
+  "real_model_calls": 0,
+  "model_accuracy": null,
+  "new_formal_or_closed_loop_cases": 0,
+  "scoring": {
+    "current_quality_execution_scorer": "manufacturing-execution-v2",
+    "legacy_default_execution_scorer": "manufacturing-execution-v1",
+    "generic_scorer_unchanged": true,
+    "openmes_scorer_unchanged": true,
+    "frozen_erpnext_suite_sha256": "b051e4e0b5782afd8fb5843699483b02c30aa4507fcc04926a6a7edbdc7f9ad2",
+    "original_erpnext_runner_unchanged": true,
+    "historical_responses_rescored_in_place": false,
+    "historical_results_combined": false
+  },
+  "correction_to_prior_cause": {
+    "case_id": "ERPDEV-Q006",
+    "actual": "Exact work-order actual-start business field was labelled work_order_evidence.",
+    "prior_notification_description_inaccurate": true,
+    "original_report_preserved": true
+  },
+  "preservation": {
+    "old_files": 97,
+    "hashes_unchanged": true,
+    "runtime": {
+      "baseline": "tmp/erpnext-answer-correctness-20261110-r1/runtime-before.json",
+      "matched": true,
+      "containers": 53,
+      "existing_images_updated": false,
+      "workers_started": false,
+      "index_rebuilt": false
+    },
+    "existing_erpnext_openmes_environments_preserved": true,
+    "existing_grants_modified": false
+  },
+  "runtime_deployed": false,
+  "real_model_gate": "not_reexecuted",
+  "artifacts": {
+    "private_directory": "tmp/manufacturing-answer-contracts-20261110-r1",
+    "files": 20,
+    "manifest_sha256": "250d5dfe3150b4b0f7dc71254f84081c677d3f92420a560bbdd0e00d1b8b6f43"
+  },
+  "limitations": [
+    "Finite explicit field-list grammar; ambiguous/complex requests retain the existing RAG path.",
+    "Evidence boundary derivation requires complete supported source statements and the selected start field.",
+    "Offline draft replay is neither fresh source verification nor new model accuracy."
+  ]
+}

@@ -58,6 +58,10 @@ ERP 账号权限未增加；仅给 8003 现有知识管理员增加 `erpnext-hc 
 
 结构化结果见 [E4 验收报告](reports/erpnext-quality-20261109-r1.json)，109 项私有产物哈希清单、原始响应、Trace、三轮任务、源码归档、配置及备份位于 `tmp/erpnext-quality-20261109-r1/`。密码、令牌、ERP API 密钥和原始反馈不提交。以上为工程接入验收，历史开发 **13/16、关键 4/6** 和正式 **31/40、关键 9/12** 的失败状态不变；没有付费模型复验、模型改进收益或发布门槛通过的结论。
 
+## 执行字段评分 v2（源码改进，尚未部署）
+
+`manufacturing-execution-v2` 修复 HTTP 列表与类型化元组的等价数组比较，保留元素顺序及全部来源、选择和时间校验。新源码的质量 Worker 显式使用 v2，运行指纹记录该版本；旧任务结果和冻结文件不重评。通用 `score_manufacturing` 入口默认继续固定执行 v1，原 16 题脚本不变；新口径需要独立记录，不与旧成绩拼分。实现及零模型回归见[业务约束与评分修正报告](reports/manufacturing-answer-contracts-20261110-r1.md)。现有 8003/8004 运行版本未因此升级。
+
 ## 后续 E5：独立 16 题真实模型开发验证
 
 > 2026-11-10页面部署补充：8003当前镜像为 `enterprise-knowledge-manufacturing:erpnext-ui-20261110-r1`，仅将三项页面修复应用到E4静态文件，后端仍为2680ce0。当前启动须在本文件原compose基础上叠加 `tmp/frontend-deploy-20261110-r1/erpnext-override.json`；完整命令、镜像校验及回滚入口见[页面部署记录](reports/frontend-deploy-20261110-r1.md)。下述E5模型结果未随页面更新重测。
