@@ -502,6 +502,13 @@ class AnswerService:
         answer_parts: list[str] = []
         used_citations: list[str] = []
         displayed_excerpts = set()
+        boundary = None
+        if context.business_items:
+            from ..manufacturing.source_statements import execution_boundary_verdict
+            boundary = execution_boundary_verdict(question, draft, context)
+            if boundary is not None:
+                used_citations.extend(boundary['citations'])
+                answer_parts.append(boundary['text'] + '。' + ''.join(f'[{key}]' for key in boundary['citations']))
 
         for claim in draft.claims:
             if context.business_items and claim.calculation is None:
@@ -576,6 +583,10 @@ class AnswerService:
                 verdict = duration_verdict(question, claim, context)
                 if verdict is not None:
                     binding["derived_condition"] = dict(question=question, rendered_text=verdict, origin="server_duration_comparison")
+            if boundary is not None:
+                bindings[boundary['claim_index']]['derived_condition'] = dict(question=question, rendered_text=boundary['text'],
+                    origin='server_execution_evidence_boundary', document_citations=[key for key in boundary['citations'] if key in item_map],
+                    business_citations=[key for key in boundary['citations'] if key in business_map])
         return AnswerResult(
             answer="\n".join(answer_parts),
             answerable=True,

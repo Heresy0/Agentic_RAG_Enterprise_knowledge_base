@@ -13,13 +13,14 @@ def same_value(field, left, right):
     return left == right
 
 
-def score_manufacturing(case, response, context=None):
+def score_manufacturing(case, response, context=None, *, execution_scorer='manufacturing-execution-v1'):
     if case['business_context_binding']['context']['record']['schema_version']=='openmes-work-order-v1':
         from .openmes_metrics import score_openmes
         return score_openmes(case,response,context)
     if case['business_context_binding']['context']['record']['schema_version'] == 'work-order-execution-v1':
         from .manufacturing_execution_metrics import score_execution
-        return score_execution(case, response, context)
+        # Frozen runners retain their original v1 unless a new job opts in.
+        return score_execution(case, response, context, scorer_version=execution_scorer)
     result = score_answer(case, response, context)
     expected = case["business_context_binding"]["context"]
     record = expected["record"]

@@ -165,6 +165,59 @@ def facts_only_question(question):
         and not re.search(r"适用|指导书|要求|首件|检验|复检|恢复|放行|切换|新版|旧版|(?<!路线)(?<!源)版本|参数|执行|比较|对比|修改|改为|更新(?!时间)|删除|写入|计划|假设|如果|能否|可否|是否", question))
 
 
+def requested_execution_fields(question):
+    """Resolve only plain ERP field lists; ambiguous prose stays on the RAG path."""
+    active = current_manufacturing_context()
+    if active is None or not active.facts_only or getattr(active.context.record, 'execution', None) is None:
+        return ()
+    text = re.sub(r'^(?:请)?(?:分别)?(?:列出|说明|查询)?', '', question.strip())
+    text = re.sub(r'(?:分别|各自)?(?:是什么|是多少|为多少)?[？?。\s]*$', '', text)
+    parts = [part.strip() for part in re.split(r'[、，,]|以及|和|与', text) if part.strip()]
+    entities = ('工单', '工序', '作业卡')
+    def entity_only(part):
+        return re.fullmatch(r'(?:当前|所选|选中的|该|这张)?(工单|工序|作业卡)', part)
+    # A list of entities followed by a common attribute shares that attribute.
+    shared = len(parts) > 1 and all(entity_only(part) for part in parts[:-1])
+    fields, scope = [], None
+    for index, part in enumerate(parts):
+        found = [entity for entity in entities if entity in part]
+        # 工序代码 repeats 工序; distinct entity names remain unambiguous.
+        if len(found) > 1:
+            return ()
+        if found:
+            scope = found[0]
+        if shared and index < len(parts) - 1:
+            continue
+        attribute = re.sub(r'^(?:当前|所选|选中的|该|这张)?(?:工单|工序|作业卡)(?:的)?', '', part)
+        attribute = re.sub(r'^工序', '', attribute)
+        if attribute in ('产品型号', '型号'):
+            fields.append('product_model')
+            continue
+        targets = [entity_only(value)[1] for value in parts[:-1]] + [scope] if shared else [scope]
+        for target in targets:
+            if target is None:
+                return ()
+            prefix = {'工单': '', '工序': 'operation_', '作业卡': 'job_card_'}[target]
+            if attribute in ('编号', '记录编号', '子行编号') or not attribute:
+                if target == '工序' and attribute == '编号' or target == '工单' and attribute == '子行编号':
+                    return ()  # A bare operation number could mean code or row ID.
+                field = {'工单': 'work_order_id', '工序': 'operation_code' if not attribute else 'operation_id', '作业卡': 'job_card_id'}[target]
+                if target == '工单' and attribute == '记录编号':
+                    field = 'source_record_id'
+            elif attribute in ('代码', '编码') and target == '工序':
+                field = 'operation_code'
+            elif attribute in ('状态', '登记状态'):
+                field = prefix + 'status'
+            elif attribute in ('实际开工', '实际开工时间', '实际开工日期', '开工时间', '开工日期'):
+                field = prefix + 'actual_started_at'
+            elif attribute in ('开工时间精度', '开工精度'):
+                field = prefix + ('start_precision' if prefix else 'actual_start_precision')
+            else:
+                return ()
+            fields.append(field)
+    return tuple(dict.fromkeys(fields))
+
+
 def business_citation(item, context):
     from .execution_contracts import selection_kwargs
     precision = context.record.actual_start_precision
@@ -207,7 +260,7 @@ def comparison_question(question):
     return bool(re.search(r"两版|新旧|版本.*(?:比较|对比|差异)|(?:比较|对比).*版本|1\.0.*2\.0|2\.0.*1\.0", question))
 
 
-def attach_business_context(context):
+def attach_business_context(context, *, question=''):
     active = _active.get()
     if active is None:
         return context
@@ -233,6 +286,12 @@ def attach_business_context(context):
             'status是工单状态，operation_status和job_card_status分别是所选工序和作业卡状态。'
             '逐项回答问题要求的对象与字段，未明确对象时使用当前最具体的选择。'
             '字段值为未知时仍可选择该字段并回答未知，不应将整个问题判为证据不足。不得用工单或其他作业卡的时间补空值。')
+    requested = requested_execution_fields(question)
+    if requested:
+        rendered += '\n本题明确要求的业务字段：' + '、'.join(requested) + '。不得用其他实体的同名含义字段代替。'
+    from .source_statements import execution_boundary_question
+    if execution_boundary_question(question):
+        rendered += '\n本题询问开工登记的证据边界：选择包含独立首件检验、全部项目合格及质量签署要求的完整适用指导书原文；后端据此展示边界结论，不推断实际已完成或未完成。'
     if active.context.record.schema_version == 'openmes-work-order-v1':
         mapping=active.decision.scope.manufacturing.step_mapping
         if mapping is not None and mapping.selected:

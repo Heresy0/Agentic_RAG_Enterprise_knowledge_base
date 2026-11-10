@@ -1,0 +1,168 @@
+"""Business contracts over exact, authorized fields and source roles; no models."""
+from copy import deepcopy
+from dataclasses import replace
+from types import SimpleNamespace
+import json
+
+import pytest
+
+from test_document_upload_api import api_context
+from test_manufacturing_applicability import catalog
+from test_manufacturing_m3_validation import evidence
+from test_manufacturing_source_units import built_source
+from test_manufacturing_server_bindings import draft_for
+from test_erpnext_execution import ERPGraph, run_graph, scope, execution_harness
+from test_manufacturing_m3_api import harness
+from backend.app.manufacturing.answer_context import (ManufacturingAnswerContext, manufacturing_answer_context,
+    requested_execution_fields, business_citation)
+from backend.app.manufacturing.generation_models import (ExecutionManufacturingGenerationDraft,
+    compile_applicability_bindings, precision_projection)
+from backend.app.manufacturing.source_statements import execution_boundary_verdict
+from backend.app.knowledge.context_builder import ContextBuilder
+from backend.app.knowledge.answer_service import AnswerService
+from backend.app.knowledge.answer_validation import AnswerValidator
+
+
+@pytest.fixture
+def execution_active():
+    selected = []
+    async def scenario(connector):
+        selected.append(await connector.read_context('MFG-WO-2026-00001', scope=scope(), operation_id='ROW-B', job_card_id='JC-B'))
+    run_graph(ERPGraph(), scenario)
+    return ManufacturingAnswerContext(selected[0], SimpleNamespace(state='unknown'), facts_only=True)
+
+
+@pytest.mark.parametrize('question,fields', [
+    ('当前工单编号、产品型号、所选工序和作业卡编号分别是什么？', ('work_order_id','product_model','operation_code','job_card_id')),
+    ('请分别列出工单、所选工序和所选作业卡的实际开工时间。', ('actual_started_at','operation_actual_started_at','job_card_actual_started_at')),
+    ('请分别列出所选作业卡编号、登记状态和实际开工时间。', ('job_card_id','job_card_status','job_card_actual_started_at')),
+    ('所选工序的工序代码、登记状态和实际开工时间分别是什么？', ('operation_code','operation_status','operation_actual_started_at')),
+    ('工单状态和作业卡状态分别是什么？', ('status','job_card_status')),
+    ('工序记录编号是什么？', ('operation_id',)),
+    ('工序代码是什么？', ('operation_code',)),
+    ('工序编号是什么？', ()),
+    ('工单记录编号是什么？', ('source_record_id',)),
+    ('所选工序的状态为什么异常？', ()),
+    ('工单工序的状态是什么？', ()),
+    ('所选工序开工以后需要什么？', ()),
+])
+def test_explicit_field_lists_resolve_entity_and_attributes_without_guessing(execution_active, question, fields):
+    with manufacturing_answer_context(execution_active):
+        assert requested_execution_fields(question) == fields
+
+
+def test_wrong_parent_fields_fail_even_when_true_and_coverage_says_answered(execution_active):
+    question = '所选工序的工序代码、登记状态和实际开工时间分别是什么？'
+    with manufacturing_answer_context(execution_active):
+        built = ContextBuilder().build([], question=question)
+        original = ExecutionManufacturingGenerationDraft.model_validate(draft_for(*[
+            dict(claim_kind='business_fact',business_field=field) for field in ['operation_code','status','actual_started_at']]).model_dump())
+        wrong = compile_applicability_bindings(original, built)
+        validation = AnswerValidator().validate(draft=wrong, context=built, question=question)
+        assert not validation.valid and any('operation_status' in error for error in validation.errors)
+        assert any('operation_actual_started_at' in error for error in validation.errors)
+        projected = compile_applicability_bindings(precision_projection(question, built), built)
+        assert AnswerValidator().validate(draft=projected, context=built, question=question).valid
+        result = AnswerService.__new__(AnswerService)._render_result(draft=projected,context=built,question=question)
+        assert 'Pending' in result.answer and '未知' in result.answer
+        assert {row['field_name'] for row in result.business_citations} == {'operation_code','operation_status','operation_actual_started_at','operation_start_precision'}
+
+
+def test_http_operation_fields_project_without_model_and_keep_three_source_checks(execution_harness):
+    h = execution_harness
+    response = h.client.post('/api/manufacturing/qa', json=dict(work_order_id='WO-017',operation_id='ROW-B',job_card_id='JC-B',
+        question='所选工序的工序代码、登记状态和实际开工时间分别是什么？'))
+    assert response.status_code == 200 and response.json()['answerable'], response.text
+    assert 'Pending' in response.json()['answer'] and '未知' in response.json()['answer']
+    assert len(h.graph.calls) == 9 and not h.generation.calls
+    snapshot = h.client.get('/api/qa/runs/' + response.json()['run_id']).json()
+    assert snapshot['snapshot']['manufacturing']['validation']['mes_reads'] == 3
+
+
+def test_exact_legacy_field_gets_source_role_but_extra_assertion_cannot(catalog):
+    active, rows, _ = evidence(catalog)
+    with manufacturing_answer_context(active):
+        built = ContextBuilder().build(rows)
+        start = next(item for item in built.business_items if item.field_name=='actual_started_at')
+        for suffix, valid in [('',True), ('，所以已检验合格',False)]:
+            draft = draft_for(dict(claim_kind='work_order_evidence',text=start.content+suffix,citations=[start.citation_id]))
+            compiled = compile_applicability_bindings(draft,built)
+            assert AnswerValidator().validate(draft=compiled,context=built,question='工单实际开工时间？').valid is valid
+            if valid: assert compiled.claims[0].claim_kind=='business_fact'
+
+
+def test_comparison_purpose_comes_from_trusted_mode_and_instruction_metadata(catalog):
+    active, rows, _ = evidence(catalog,comparison=True)
+    with manufacturing_answer_context(active):
+        built = ContextBuilder().build(rows)
+        guides = [item for item in built.items if item.document_role=='instruction']
+        draft = draft_for(*[dict(claim_kind='work_requirement',text=item.content,citations=[item.citation_id]) for item in guides])
+        compiled = compile_applicability_bindings(draft,built)
+        assert all(claim.claim_kind=='version_comparison' for claim in compiled.claims)
+        assert AnswerValidator().validate(draft=compiled,context=built,question='两版指导书有什么差异？').valid
+    active, built, citation = built_source(catalog,'作业要求不能冒充实际完成记录。')
+    with manufacturing_answer_context(active):
+        compiled = compile_applicability_bindings(draft_for(dict(claim_kind='version_comparison',source_unit=citation+'#1')),built)
+        assert compiled.claims[0].claim_kind=='work_requirement'
+
+
+RULE = '首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。'
+BOUNDARY = '这张作业卡已有实际开工登记，能否据此认定本工单已经完成首件检验和质量签署？应满足哪些作业要求？'
+
+
+@pytest.mark.parametrize('question', ['开工登记是否说明首件编号为3？', '开工记录是否说明质量签署人员是谁？',
+    '实际检验记录是否证明已经完成首件检验？', '这张作业卡的实际开工时间是什么？'])
+def test_unrelated_queries_do_not_become_completion_boundary_questions(question):
+    from backend.app.manufacturing.source_statements import execution_boundary_question
+    assert not execution_boundary_question(question)
+
+
+@pytest.mark.parametrize('rule,supported', [(RULE,True),
+    ('每次开工连续检查2件，全部项目合格后由质量人员签署。',True),
+    ('开工记录不能证明首件检验和质量签署已经完成。',True),
+    ('报工完成不证明首件确认或质量签署已经完成。',False),
+    ('首件确认须连续检查3件，所有必检项目全部合格，计划质量人员签署。',False),
+    (RULE+'特殊批次无需检验。',False)])
+def test_boundary_requires_independent_inspection_and_signoff_evidence(catalog,execution_active,rule,supported):
+    active,built,citation = built_source(catalog,rule)
+    active=replace(active,context=execution_active.context)
+    built=replace(built,business_items=active.items)
+    with manufacturing_answer_context(active):
+        original=draft_for(dict(claim_kind='work_requirement',source_unit=citation+'#1'))
+        original.coverage.append(original.coverage[0].model_copy(update=dict(requirement_id='Q2')))
+        compiled=compile_applicability_bindings(original,built)
+        validation=AnswerValidator().validate(draft=compiled,context=built,question=BOUNDARY)
+        assert validation.valid is supported
+        verdict=execution_boundary_verdict(BOUNDARY,compiled,built)
+        assert (verdict is not None) is supported
+        if supported:
+            result=AnswerService.__new__(AnswerService)._render_result(draft=compiled,context=built,question=BOUNDARY)
+            assert result.answer.startswith('仅凭实际开工登记，不能认定首件检验或质量签署已经完成')
+            assert '实际未完成' not in result.answer
+            cited=next(row for row in result.business_citations if row['field_name']=='job_card_actual_started_at')
+            assert cited['source_record_id']=='JC-B' and cited['value'] is None
+            assert any(row.get('derived_condition',{}).get('origin')=='server_execution_evidence_boundary' for row in result.claim_bindings)
+
+
+@pytest.mark.parametrize('refs', [(), ('A','B')])
+@pytest.mark.parametrize('bad_value', [None, '', ['OTHER'], ['B','A']])
+def test_execution_v2_only_normalizes_array_representation(execution_active,bad_value,refs):
+    from backend.app.evaluation.manufacturing_execution_metrics import score_execution,LEGACY_SCORER_VERSION
+    from backend.app.evaluation.manufacturing_metrics import score_manufacturing
+    ctx=execution_active.context
+    ctx=ctx.model_copy(update={'record':ctx.record.model_copy(update={'change_notice_refs':refs})})
+    ctx=ctx.model_copy(update={'payload_sha256':ctx.record.payload_sha256})
+    item=next(item for item in ManufacturingAnswerContext(ctx,None).items if item.field_name=='change_notice_refs')
+    case=dict(answerable=True,business_context_binding=dict(context=ctx.model_dump(mode='json')),
+        applicability_binding=dict(applicability=None),expected_business_evidence=[])
+    response=dict(answerable=True,answer='演示字段',citations=[],work_order_context=ctx.record.model_dump(mode='json',exclude={'tenant_id','schema_version'}),
+        business_citations=[business_citation(item,ctx)],applicability=None)
+    response['work_order_context']['payload_sha256']=ctx.payload_sha256
+    response=json.loads(json.dumps(response))
+    assert score_execution(case,response)['automatic_proxy_pass']
+    assert not score_execution(case,response,scorer_version=LEGACY_SCORER_VERSION)['automatic_proxy_pass']
+    assert score_manufacturing(case,response)['manufacturing_scorer']==LEGACY_SCORER_VERSION
+    changed=deepcopy(response);changed['business_citations'][0]['value']=bad_value
+    assert not score_execution(case,changed)['automatic_proxy_pass']
+    changed=deepcopy(response);changed['business_citations'][0]['source_record_id']='OTHER'
+    assert not score_execution(case,changed)['automatic_proxy_pass']

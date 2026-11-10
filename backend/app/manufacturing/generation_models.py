@@ -15,7 +15,7 @@ BusinessField = Literal[
 
 
 class ManufacturingClaim(AnswerClaim):
-    claim_kind: ClaimKind = Field(..., description="区分字段、适用性、一般要求、版本对比及记录。选择source_unit时除明确版本对比外，实际角色由后端按资料确定。")
+    claim_kind: ClaimKind = Field(..., description="区分字段、适用性、一般要求、版本对比及记录。精确来源绑定后，用途由后端按字段、资料角色及已确认的版本比较模式确定。")
     business_field: BusinessField | None = Field(default=None, exclude_if=lambda value: value is None,
         description="选择一个工单字段名时，该字段是本条唯一事实来源，文字、值、角色及引用完全由后端生成；附带的text/citations/source_unit不参与取证。不能与calculation混用。")
     text: str = Field(default="", description="business_field、source_unit选择及applicability留空，由后端生成；仅旧格式填写完整原文结论。")
@@ -108,31 +108,41 @@ def batch_start_projection(question, context, active):
 
 
 def execution_start_projection(question, context, active):
-    """Project a simple selected-entity start query; never change selection policy."""
+    """Project explicit ERP field lists or a simple start query from verified fields."""
     import re
     from ..knowledge.answer_coverage import requirement_prompt
+    from .answer_context import requested_execution_fields
     execution = getattr(active.context.record, 'execution', None)
-    if (execution is None or not active.facts_only or not re.search(r'实际.*开工|开工时间|开工日期|何时开工|几点.*开工', question)
-            or re.search(r'型号|批次|状态|路线|通知|来源|更新时间|采集|分别|比较|对比|先后|最早|以及|和|与', question)):
+    if execution is None or not active.facts_only:
         return None
-    if '作业卡' in question:
-        prefix = 'job_card'
-    elif '工序' in question:
-        prefix = 'operation'
-    elif '工单' in question:
-        prefix = ''
-    else:
-        prefix = 'job_card' if execution.job_card_id else 'operation'
+    names = list(requested_execution_fields(question))
+    if not names:
+        if (len({word for word in ('工单', '工序', '作业卡') if word in question}) > 1
+                or not re.search(r'实际.*开工|开工时间|开工日期|何时开工|几点.*开工', question)
+                or re.search(r'型号|批次|状态|路线|通知|来源|更新时间|采集|分别|比较|对比|先后|最早|以及|和|与', question)):
+            return None
+        if '作业卡' in question:
+            prefix = 'job_card'
+        elif '工序' in question:
+            prefix = 'operation'
+        elif '工单' in question:
+            prefix = ''
+        else:
+            prefix = 'job_card' if execution.job_card_id else 'operation'
+        names = [prefix + '_actual_started_at' if prefix else 'actual_started_at']
+    for name in list(names):
+        if name.endswith('actual_started_at'):
+            names.append(name.replace('actual_started_at', 'start_precision') if name != 'actual_started_at' else 'actual_start_precision')
+    names = list(dict.fromkeys(names))
     requirements = json.loads(requirement_prompt(question, context))
-    if prefix == 'job_card' and execution.job_card_id is None:
+    if set(names) - {item.field_name for item in context.business_items}:
         return ExecutionManufacturingGenerationDraft.model_validate(dict(answerable=False, response_type='clarify',
             missing_fields=['作业卡'], clarification_questions=['请先选择所属工序下的具体作业卡。'],
             coverage=[dict(requirement_id=row['id'], aspect=row['question'], status='insufficient', claim_indices=[],
                 missing_information='尚未选择具体作业卡') for row in requirements]))
-    names = [prefix + '_actual_started_at', prefix + '_start_precision'] if prefix else ['actual_started_at', 'actual_start_precision']
     return ExecutionManufacturingGenerationDraft.model_validate(dict(answerable=True, response_type='answer',
         claims=[dict(business_field=name, claim_kind='business_fact') for name in names],
-        coverage=[dict(requirement_id=row['id'], aspect=row['question'], status='answered', claim_indices=[1, 2], missing_information=None)
+        coverage=[dict(requirement_id=row['id'], aspect=row['question'], status='answered', claim_indices=list(range(1, len(names)+1)), missing_information=None)
             for row in requirements]))
 
 
@@ -171,7 +181,12 @@ def compile_applicability_bindings(draft, context):
     if active is None or not draft.answerable or not draft.claims:
         return draft
     fields = {item.field_name: item for item in context.business_items}
+    documents = {item.citation_id: item for item in context.items}
     units = source_units(context)
+    def document_kind(item):
+        if item.document_role in ('event_record', 'inspection_record'):
+            return 'work_order_evidence'
+        return 'version_comparison' if active.comparison and item.document_role == 'instruction' else 'work_requirement'
     field_bindings, rendered = [], []
     for claim in draft.claims:
         selected_unit = getattr(claim, "source_unit", None)
@@ -179,9 +194,7 @@ def compile_applicability_bindings(draft, context):
         ignored_display = [name for name in ("text", "citations") if getattr(claim, name)]
         if field is None and selected_unit in units:
             item, original = units[selected_unit]
-            is_record = item.document_role in ("event_record", "inspection_record")
-            kind = ("version_comparison" if claim.claim_kind == "version_comparison" else
-                    "work_order_evidence" if is_record else "work_requirement")
+            kind = document_kind(item)
             claim = claim.model_copy(update=dict(text=original, citations=[item.citation_id],
                 claim_kind=kind, source_unit=None))
             field_bindings.append(dict(source_unit=selected_unit, compiled_citations=[item.citation_id],
@@ -190,6 +203,19 @@ def compile_applicability_bindings(draft, context):
             # An unresolved selector must never fall back to any accompanying
             # model assertion, including during final base-schema validation.
             claim = claim.model_copy(update=dict(text="", citations=[]))
+        elif field is None and claim.calculation is None and len(claim.citations) == 1:
+            # Legacy assertions can use the same source-owned role only when
+            # their complete text already matches the exact cited source.
+            key = claim.citations[0]
+            item = next((item for item in context.business_items if item.citation_id == key), None)
+            kind = None
+            if item is not None and claim.text.rstrip('。') == item.content:
+                kind = 'business_fact'
+            elif key in documents and complete_source_statement(claim.text, [documents[key]]):
+                kind = document_kind(documents[key])
+            if kind is not None and kind != claim.claim_kind:
+                claim = claim.model_copy(update=dict(claim_kind=kind))
+                field_bindings.append(dict(compiled_citations=[key], claim_kind=kind, origin='server_exact_source_role'))
         if field is not None:
             # The selected field must exist in this exact generation context.
             item = fields[field]

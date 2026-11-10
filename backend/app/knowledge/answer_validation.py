@@ -275,6 +275,15 @@ class AnswerValidator:
             if duration_question(question) is not None and not any(duration_verdict(question, claim, context) for claim in draft.claims):
                 errors.append("停机时长判定缺少带完整引导语和阈值的适用指导书原文，不能仅重复阈值或推断其他触发条件")
             active = current_manufacturing_context()
+            from ..manufacturing.answer_context import requested_execution_fields
+            required_fields = set(requested_execution_fields(question))
+            answered_fields = {item_map[key].field_name for claim in draft.claims if claim.claim_kind == 'business_fact'
+                for key in claim.citations if key in item_map and hasattr(item_map[key], 'field_name')}
+            if required_fields - answered_fields:
+                errors.append('缺少问题对象的业务字段：' + '、'.join(sorted(required_fields - answered_fields)))
+            from ..manufacturing.source_statements import execution_boundary_question, execution_boundary_verdict
+            if execution_boundary_question(question) and execution_boundary_verdict(question, draft, context) is None:
+                errors.append('开工登记与检验签署的边界回答缺少适用指导书的独立检验及质量签署要求或对应开工来源')
             if active is not None and active.comparison and draft.answerable:
                 revisions = {item_map[key].business_revision for claim in draft.claims
                     if claim.claim_kind == "version_comparison" for key in claim.citations

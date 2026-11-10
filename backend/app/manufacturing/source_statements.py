@@ -1,4 +1,4 @@
-"""Layout-aware original excerpts and one bounded duration comparison.
+"""Layout-aware original excerpts and bounded source-based comparisons.
 
 Excerpts remain source text. Lists keep their lead-in and all conditions; tables
 keep their headers and complete rows. No semantic rewriting or external calls.
@@ -106,3 +106,49 @@ def duration_verdict(question, claim, context):
     verdict = "已命中" if actual_seconds > limit_seconds else "未命中"
     return (f"问题假设连续停机{value[0]}{value[1]}，{verdict}“超过{limit[0]}{limit[1]}”这一重新首件触发条件；"
             "其他触发条件仍需分别核对，这不能证明实际复检已完成")
+
+
+def execution_boundary_question(question):
+    """A direct inference from start registration to inspection/sign-off, not actual status."""
+    lead = re.split(r'[？?]', question, maxsplit=1)[0]
+    return bool(re.search(r'开工.{0,35}(?:能否|能不能|是否|可以|能).{0,12}(?:认定|证明|说明|意味着).{0,35}(?:首件|检验|质量签署|放行)', lead)
+        and re.search(r'完成|已(?:经)?签署|已(?:经)?放行', lead))
+
+
+def execution_boundary_verdict(question, draft, context):
+    """Derive only the evidence boundary supported by explicit independent requirements."""
+    from .answer_context import current_manufacturing_context, complete_source_statement
+    active = current_manufacturing_context()
+    if (not execution_boundary_question(question) or active is None or not draft.answerable
+            or active.comparison or active.decision.state != 'applicable'):
+        return None
+    premise = question.split('开工', 1)[0]
+    names = {'作业卡': 'job_card_actual_started_at', '工序': 'operation_actual_started_at',
+        '步骤': 'step_actual_started_at', '批次': 'batch_actual_started_at', '工单': 'actual_started_at'}
+    mentioned = [name for name in names if name in premise]
+    if len(mentioned) != 1:
+        return None
+    start = next((item for item in context.business_items if item.field_name == names[mentioned[0]]), None)
+    if start is None:
+        return None
+    sources = {item.citation_id: item for item in context.items}
+    for index, claim in enumerate(draft.claims):
+        guides = [sources[key] for key in claim.citations if key in sources
+            and sources[key].document_role in ('instruction', 'inspection', 'reference')
+            and (sources[key].document_role != 'instruction' or sources[key].business_revision == active.decision.selected_business_revision)]
+        if (claim.claim_kind != 'work_requirement' or claim.calculation is not None
+                or not complete_source_statement(claim.text, guides)):
+            continue
+        # Supported rule forms explicitly require inspection AND quality sign-off.
+        # Exceptions and other wording need a normal evidence-based answer.
+        if re.search(r'除非|除外|无需|不必|免检|豁免', claim.text):
+            continue
+        independent = re.search(r'(?:首件确认(?:须|必须)|每次开工连续检查)[^。；\n]*(?:所有必检项目全部合格|全部项目合格后)[，,]?(?:并)?由质量人员签署', claim.text)
+        direct = re.search(r'开工(?:登记|记录)(?:本身)?(?:不能|无法|不足以)(?:证明|认定)[^。；\n]*首件[^。；\n]*质量签署[^。；\n]*完成', claim.text)
+        if independent or direct:
+            text = '仅凭实际开工登记，不能认定首件检验或质量签署已经完成'
+            if independent:
+                text += '；仍需核验适用指导书要求的检验记录及质量签署'
+            return dict(claim_index=index, text=text,
+                citations=list(dict.fromkeys([start.citation_id, *[item.citation_id for item in guides]])))
+    return None

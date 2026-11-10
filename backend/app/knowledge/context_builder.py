@@ -79,7 +79,7 @@ class ContextBuilder:
         self, documents: list[Document], *, question: str = "",
     ) -> BuiltContext:
         from ..manufacturing.answer_context import attach_business_context
-        return attach_business_context(self._build_documents(documents, question=question))
+        return attach_business_context(self._build_documents(documents, question=question), question=question)
 
     def _build_documents(
         self,
