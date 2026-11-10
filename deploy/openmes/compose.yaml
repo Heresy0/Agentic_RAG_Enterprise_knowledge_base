@@ -1,0 +1,83 @@
+name: manufacturing-openmes
+
+x-app-env: &app-env
+  APP_ENV: production
+  APP_DEBUG: "false"
+  APP_NAME: OpenMES
+  APP_URL: http://127.0.0.1:${OPENMES_PORT:?required}
+  APP_TIMEZONE: Asia/Shanghai
+  APP_KEY: ${OPENMES_APP_KEY:?required}
+  DB_CONNECTION: pgsql
+  DB_HOST: postgres
+  DB_PORT: "5432"
+  DB_DATABASE: openmes
+  DB_USERNAME: openmes
+  DB_PASSWORD: ${OPENMES_DB_PASSWORD:?required}
+  ADMIN_USERNAME: admin
+  ADMIN_EMAIL: admin@openmes.local
+  ADMIN_PASSWORD: ${OPENMES_ADMIN_PASSWORD:?required}
+  OPENMES_TELEMETRY: "false"
+  LOG_LEVEL: warning
+  SESSION_DRIVER: database
+  QUEUE_CONNECTION: database
+  BROADCAST_CONNECTION: reverb
+  REVERB_APP_ID: openmes
+  REVERB_APP_KEY: ${OPENMES_REVERB_KEY:?required}
+  REVERB_APP_SECRET: ${OPENMES_REVERB_SECRET:?required}
+  REVERB_HOST: reverb
+  REVERB_PORT: "8080"
+  REVERB_SCHEME: http
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: openmes
+      POSTGRES_USER: openmes
+      POSTGRES_PASSWORD: ${OPENMES_DB_PASSWORD:?required}
+    volumes: [database:/var/lib/postgresql/data]
+    networks: [default]
+    mem_limit: 256m
+    healthcheck:
+      test: [CMD, pg_isready, -U, openmes, -d, openmes]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+  backend:
+    image: ${OPENMES_IMAGE:?required}
+    environment: *app-env
+    command: [php, artisan, "octane:start", "--server=roadrunner", "--host=0.0.0.0", "--port=8000", "--workers=2", "--max-requests=500"]
+    volumes: [storage:/var/www/html/storage, cache:/var/www/html/bootstrap/cache]
+    networks: [default]
+    depends_on:
+      postgres: {condition: service_healthy}
+    mem_limit: 640m
+    restart: unless-stopped
+  reverb:
+    image: ${OPENMES_IMAGE:?required}
+    environment: *app-env
+    command: [php, artisan, "reverb:start", "--host=0.0.0.0", "--port=8080"]
+    volumes: [storage:/var/www/html/storage]
+    networks: [default]
+    depends_on: [backend]
+    mem_limit: 192m
+    restart: unless-stopped
+  frontend:
+    image: caddy:2-alpine
+    volumes: ["./Caddyfile:/etc/caddy/Caddyfile:ro"]
+    networks: [default, web]
+    ports: ["127.0.0.1:${OPENMES_PORT:?required}:80"]
+    depends_on: [backend, reverb]
+    mem_limit: 64m
+    restart: unless-stopped
+
+volumes:
+  database: {}
+  storage: {}
+  cache: {}
+
+networks:
+  default:
+    internal: true
+  web: {}

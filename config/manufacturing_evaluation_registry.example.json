@@ -1,0 +1,11 @@
+{
+  "schema_version": "manufacturing-evaluation-registry-v1",
+  "active": [
+    {
+      "tenant_id": "e64d4c68-86f2-4b22-997d-37d480f31a01",
+      "source_system_id": "mock-mes-hc",
+      "fixture_version": "manufacturing-workorder-v1-r1",
+      "fixture_sha256": "cf603d0533ed2623a158a53975439beecd82729c4c6765f39ad5b29c44d04fca"
+    }
+  ]
+}

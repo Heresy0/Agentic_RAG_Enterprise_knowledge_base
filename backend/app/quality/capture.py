@@ -14,7 +14,7 @@ MAX_CONTEXT_ITEMS = 100
 MAX_DIAGNOSTIC_BYTES = 100_000
 MAX_DIAGNOSTIC_EVENTS = 64
 DIAGNOSTIC_STAGES = frozenset({'answer_generation', 'answer_regeneration', 'answer_schema_recovery',
-    'answer_decisions', 'answer_completion', 'rag_routing'})
+    'answer_decisions', 'answer_completion', 'rag_routing', 'manufacturing_business'})
 PIPELINE_STAGES = frozenset({"vector", "keyword", "fusion", "rerank_model", "rerank", "expanded_candidates",
     "policy_candidates_raw", "policy_candidates", "parent_context", "authorized_final", "initial_authorized", "agent_evidence", "feedback_evidence"})
 QA_SNAPSHOTS = Counter("enterprise_qa_snapshots", "QA snapshot persistence outcomes", ["outcome"])

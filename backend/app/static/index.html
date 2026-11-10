@@ -30,11 +30,25 @@
       <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
       <section id="qa-panel" aria-label="知识问答">
         <div class="scope-bar"><span class="scope-icon">▣</span><span>检索范围</span><strong id="current-kb">请先登录</strong><span id="permission" class="permission">请先登录</span><span class="scope-hint">答案仅来自有权限的知识库，可按库缩小范围</span></div>
+        <div class="mode-toolbar"><label for="qa-mode">查询模式</label><select id="qa-mode"><option value="knowledge">普通知识查询</option><option value="manufacturing">工单作业指导</option></select><span class="answer-meta">工单模式使用来源系统核验的条件</span></div>
+        <section id="manufacturing-panel" class="manufacturing-panel" aria-label="工单作业指导" hidden>
+          <div class="mode-toolbar"><label for="manufacturing-order">当前工单</label><select id="manufacturing-order"><option value="">选择有权访问的工单</option></select><button id="manufacturing-refresh" class="secondary" type="button">重新查询</button><button id="manufacturing-more" class="secondary" type="button" hidden>加载更多工单</button></div>
+          <div id="manufacturing-selection" class="mode-toolbar" hidden><label for="manufacturing-operation">工序记录</label><select id="manufacturing-operation"><option value="">工单级（未选择工序）</option></select><label for="manufacturing-job-card">作业卡</label><select id="manufacturing-job-card"><option value="">未选择作业卡</option></select><button id="manufacturing-job-cards-more" class="secondary" type="button" hidden>加载更多作业卡</button></div>
+          <div id="manufacturing-context" class="source-card" role="status">选择工单后查看可信来源字段。</div>
+          <section id="openmes-execution" class="source-card" aria-label="MES批次与步骤查询" hidden>
+            <h3>MES 执行记录 · 只读查询</h3>
+            <p class="answer-meta">问答与当前工单、批次和步骤绑定；切换对象后开始新对话，回答附对应字段来源。</p>
+            <div class="feedback-filters"><label>生产批次<select id="openmes-batch" disabled></select></label><label>工序步骤<select id="openmes-step" disabled></select></label><button id="openmes-refresh" class="secondary" type="button">重新核验</button></div>
+            <div id="openmes-context" role="status" aria-live="polite"></div>
+            <section id="openmes-mapping" hidden></section>
+          </section>
+          <div id="manufacturing-applicability" class="source-card" hidden></div>
+        </section>
         <div class="conversation-toolbar"><label for="conversation-list">最近对话</label><select id="conversation-list" disabled><option value="">新对话</option></select><button id="new-conversation" class="secondary" disabled>＋ 新对话</button><button id="delete-conversation" class="secondary" disabled>删除对话</button></div>
         <section id="answer-area" class="answer-area" aria-live="polite">
           <div id="welcome" class="welcome"><div class="welcome-icon">✧</div><h2>你的知识，触手可及。</h2><p>直接提问，自动查找有权限的知识库；查询作业要求时，请写明型号、工序和业务日期。</p><div class="suggestions"><button data-question="2026年10月新开工的HC-A17 OP-20，首件须检查几件，何时才能恢复后续作业？"><span>查询作业要求</span>HC-A17 首件确认有哪些必要条件？ ↗</button><button data-question="HC-A17 OP-20两版指导书的首件数量有什么差异？"><span>核对工艺版本</span>两版指导书的首件数量有什么差异？ ↗</button><button data-question="借用量具需要同时满足哪些条件？"><span>了解检验流程</span>借用量具需要满足哪些条件？ ↗</button></div></div>
         </section>
-        <details class="work-context"><summary>补充作业条件（选填）</summary><p>填写用户已知的条件，帮助定位适用资料；这里不查询ERP或MES实时数据。修改条件后会开始新对话。</p><div class="feedback-filters"><label>产品／设备型号<input id="work-model" maxlength="80"></label><label>工序<input id="work-process" maxlength="60"></label><label>业务日期<input id="work-date" type="date"></label><label>工单编号<input id="work-order" maxlength="60"></label></div></details>
+        <details id="user-work-conditions" class="work-context"><summary>补充作业条件（选填）</summary><p>填写用户已知的条件，帮助定位适用资料；普通模式不查询工单系统。修改条件后会开始新对话。</p><div class="feedback-filters"><label>产品／设备型号<input id="work-model" maxlength="80"></label><label>工序<input id="work-process" maxlength="60"></label><label>业务日期<input id="work-date" type="date"></label><label>工单编号<input id="work-order" maxlength="60"></label></div></details>
         <form id="question-form" class="composer"><label for="question" class="sr-only">向当前知识库提问</label><textarea id="question" rows="2" maxlength="1000" placeholder="例如：2026年10月新开工的 HC-A17 OP-20 应执行哪些首件检查？" disabled></textarea><div class="composer-bottom"><span>✧ 基于资料回答，附带来源引用</span><button id="ask-button" class="primary" type="submit" disabled>发送问题 <span>↑</span></button></div></form>
         <p class="footnote">AI 答案仅供参考，重要事项请核对原始文档。</p>
       </section>
@@ -64,8 +78,9 @@
         <form id="evaluation-form" class="quality-form evaluation-form">
           <label class="quality-field">固定基线集版本<select id="evaluation-fixed" required></select></label>
           <label class="quality-field">反馈回归集版本<select id="evaluation-feedback" required></select></label>
+          <label class="quality-field">验证方式<select id="evaluation-mode"><option value="zero">来源与确定性字段验证（0 次模型调用）</option><option value="model">允许模型调用（按预算执行）</option></select></label>
           <div class="evaluation-limits"><label>最大题数<input id="evaluation-max-cases" type="number" min="2" max="200" value="40" required></label><label>最大模型调用次数<input id="evaluation-max-calls" type="number" min="1" max="2000" value="200" required></label><label>Token 预算<input id="evaluation-max-tokens" type="number" min="16000" max="10000000" value="1000000" required></label><label>最长执行秒数<input id="evaluation-max-seconds" type="number" min="10" max="3600" value="600" required></label></div>
-          <label class="feedback-consent"><input id="evaluation-consent" type="checkbox">允许本次任务调用模型并产生用量。Token 使用含保守预留，实际费用以供应商账单为准。</label>
+          <label class="feedback-consent"><input id="evaluation-consent" type="checkbox">确认使用所选验证方式与预算。零调用模式遇到需要模型的问题会停止；允许模型模式会产生用量，实际费用以供应商账单为准。</label>
           <button id="evaluation-submit" class="primary" type="submit" disabled>创建评测任务</button>
           <p class="answer-meta">任务由独立评测 Worker 执行。取消会阻止后续调用，已发送的请求仍可能完成并产生用量。</p>
         </form>

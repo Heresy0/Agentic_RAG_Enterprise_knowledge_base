@@ -20,9 +20,10 @@ from backend.app.quality.evaluation_worker import QualityEvaluationWorker
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--once", action="store_true")
-    parser.add_argument("--allow-model-calls", action="store_true")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--allow-model-calls", action="store_true")
+    mode.add_argument("--zero-model-calls", action="store_true")
     args = parser.parse_args(argv)
-    if not args.allow_model_calls: parser.error("启动评测 Worker 必须显式指定 --allow-model-calls")
     settings, stopped = Settings(), Event()
     logging.basicConfig(level=settings.log_level, format="%(message)s")
     signal.signal(signal.SIGINT, lambda *_: stopped.set())
@@ -31,7 +32,8 @@ def main(argv=None):
     try:
         vectors = MilvusVectorStore(settings); vectors.verify()
         worker = QualityEvaluationWorker(create_session_factory(engine), settings,
-            AnswerService(settings=settings, retrieval_service=RetrievalService(settings=settings, vector_store=vectors)))
+            AnswerService(settings=settings, retrieval_service=RetrievalService(settings=settings, vector_store=vectors)),
+            allow_model_calls=args.allow_model_calls)
         while not stopped.is_set():
             worker.run_once()
             if args.once: return 0

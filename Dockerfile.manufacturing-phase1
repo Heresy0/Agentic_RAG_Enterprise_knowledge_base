@@ -1,0 +1,14 @@
+# Keep the verified dependency set; this image has a separate tag and deployment.
+ARG BASE_IMAGE=enterprise-knowledge-manufacturing:timeout-868005e
+FROM ${BASE_IMAGE}
+USER root
+COPY requirements.txt /tmp/phase1-requirements.txt
+RUN python -c "from importlib.metadata import version; from packaging.requirements import Requirement; from pathlib import Path; reqs=[Requirement(line.strip()) for line in Path('/tmp/phase1-requirements.txt').read_text().splitlines() if line.strip() and not line.lstrip().startswith('#')]; assert all(req.specifier.contains(version(req.name), prereleases=True) for req in reqs), 'Installed dependencies do not match current pinned requirements'" \
+    && cp /tmp/phase1-requirements.txt /app/requirements.txt && rm /tmp/phase1-requirements.txt
+RUN python -c "import shutil; [shutil.rmtree('/app/'+p, ignore_errors=True) for p in ('backend','scripts','migrations','services')]"
+COPY --chown=app:app backend /app/backend
+COPY --chown=app:app scripts /app/scripts
+COPY --chown=app:app migrations /app/migrations
+COPY --chown=app:app services /app/services
+COPY --chown=app:app alembic.ini /app/alembic.ini
+USER app

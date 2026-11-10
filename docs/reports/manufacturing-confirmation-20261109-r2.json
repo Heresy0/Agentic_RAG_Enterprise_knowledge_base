@@ -1,0 +1,135 @@
+{
+  "schema_version": "manufacturing-targeted-confirmation-v1",
+  "client_date": "2026-11-09",
+  "status": "targeted_confirmation_failed",
+  "source_revision": "ef26f4d50f39ab65d1b8e8779561a40de7e873cc",
+  "image_id": "sha256:53ee79a5d0f20e64f8e114d06739468f41d7024f1cf3f5e5d5fa9bb957f08101",
+  "runtime_fingerprint": "f99a22e26d20b79f59b34af5edc8ad9752fb995f78678e7f0275805c65df22ef",
+  "case_ids": [
+    "MFGWO-Q001",
+    "MFGWO-Q002",
+    "MFGWO-Q016"
+  ],
+  "limits": {
+    "max_cases": 3,
+    "max_model_calls": 24,
+    "max_tokens": 150000,
+    "max_seconds": 450,
+    "reservation_tokens": 32000
+  },
+  "approval_text": "批准这3题确认",
+  "authorization_closed": true,
+  "results": {
+    "total": 3,
+    "automatic_proxy_passed": 1,
+    "assistant_non_independent_passed": 1,
+    "independent_human_review": false,
+    "http_errors": 0,
+    "critical_targeted_subset": {
+      "total": 1,
+      "passed": 1
+    },
+    "not_a_full_development_score": true,
+    "combined_with_previous_batches": false,
+    "confirmation_passed": false,
+    "correct_positive_answer_count": 1,
+    "correct_positive_answer_p95_ms": 9391.327,
+    "source_p95_ms": 23.306
+  },
+  "usage": {
+    "status": "reconciled",
+    "physical_calls": 5,
+    "known_tokens": 13882,
+    "unknown_usage_calls": 2,
+    "budget_tokens": 77882,
+    "by_stage": {
+      "answer_generation": 3,
+      "query_embedding": 1,
+      "rerank": 1
+    },
+    "trace_and_ledger_match": true,
+    "unpriced_calls": 5,
+    "fees": "unknown",
+    "additional_model_calls": 0,
+    "ledger_sha256": "7e2b92d657b9202469e4d56af4ad1842a5a2c81c4e8e372ea388ba2ebdada047",
+    "elapsed_seconds": 24.5
+  },
+  "case_reviews": [
+    {
+      "case_id": "MFGWO-Q001",
+      "verdict": "failed",
+      "reason": "明确错误类型manufacturing_selector_conflict：字段名和原文指针同时出现，在解析时被拒绝，未交付字段事实；不能按已知源值替换评分。",
+      "schema_errors": [
+        {
+          "kind": "schema_error",
+          "error_type": "ValidationError",
+          "errors": [
+            {
+              "location": [
+                "claims",
+                "0"
+              ],
+              "type": "manufacturing_selector_conflict"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "MFGWO-Q002",
+      "verdict": "failed",
+      "reason": "明确错误类型manufacturing_selector_conflict：字段名和原文指针同时出现，在解析时被拒绝，未交付字段事实；不能按已知源值替换评分。",
+      "schema_errors": [
+        {
+          "kind": "schema_error",
+          "error_type": "ValidationError",
+          "errors": [
+            {
+              "location": [
+                "claims",
+                "0"
+              ],
+              "type": "manufacturing_selector_conflict"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "MFGWO-Q016",
+      "verdict": "passed",
+      "reason": "合法版本问题交付当前WO-023的2.0及ECN规则，业务引用绑定实际开工；请求和响应工单一致。未观察到身份或源地址变更。",
+      "schema_errors": []
+    }
+  ],
+  "preserved": {
+    "raw_report_sha256": "f7ed2ee299a240d6b4ca556d53ddeb8549525f0467cc1795c42ca2f5a3bc0bd4",
+    "reviews_sha256": "e1deaadae6eb4f4289a619ce833a5144362914f85f57dbd7788252637980f464",
+    "raw_manifest_sha256": "3af6d69b67fe77799be99b6f65818177d413526e43f954a52ed1c5f018dcd474"
+  },
+  "private_artifacts": "tmp/manufacturing-source-units-runtime-20261109-r3/confirmation-r1/",
+  "prior_complete_development": {
+    "batch": "2026-11-09-development-r2",
+    "passed": 11,
+    "total": 16,
+    "critical_passed": 4,
+    "critical_total": 6,
+    "gate_passed": false
+  },
+  "formal_status": {
+    "batch": "2026-11-01-r4",
+    "passed": 31,
+    "total": 40,
+    "critical_passed": 9,
+    "critical_total": 12,
+    "release_gate_passed": false
+  },
+  "new_full_development_executed": false,
+  "new_formal_executed": false,
+  "new_closure_executed": false,
+  "limitations": [
+    "三题是已失败场景的定向确认，助手复核非独立，不与旧成绩拼分。",
+    "根因已定位到双选择器约束，不能把受保护的拒答算作字段正确。",
+    "供应商单价未配置，费用未知；未知用量每次预留32000。"
+  ]
+}

@@ -1,5 +1,6 @@
 """Inspect and publish an indexed source under the existing editor permission."""
 import hashlib
+from datetime import datetime, timezone
 from typing import Literal
 from urllib.parse import quote
 from uuid import UUID
@@ -11,13 +12,15 @@ from sqlalchemy.orm import Session
 
 from ..audit_service import AuditService
 from ..db.dependencies import get_database_session
-from ..db.models import DocumentChunk, DocumentIndexingJob, KnowledgeDocument, Tenant
+from ..db.models import DocumentChunk, DocumentIndexingJob, DocumentParent, KnowledgeDocument, Tenant
 from ..documents.managed_document_files import ManagedDocumentFileService, ManagedDocumentPathError
 from ..documents.publication import is_published, publication, reviewed_publication
 from ..security.authorization import AuthorizationDenied, AuthorizationService
 from ..security.dependencies import get_current_principal
 from ..security.principal import Principal
 from ..security.retrieval_scope import RetrievalScope
+from ..manufacturing.metadata import (MetadataInput, ManufacturingReview, current_review, validate_anchors)
+from ..documents.publication import require_review
 
 router = APIRouter(prefix="/api/knowledge-bases", tags=["document-review"])
 
@@ -64,6 +67,7 @@ def summary(doc):
 def inspect_document(knowledge_base_id: UUID, document_id: UUID, response: Response,
         after_index: int = Query(-1, ge=-1), limit: int = Query(20, ge=1, le=50),
         expected_version: int | None = Query(None, ge=1),
+        include_parents: bool = Query(False),
         principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
     response.headers["Cache-Control"] = "no-store"
     doc = authorized_document(session, principal, knowledge_base_id, document_id, lock=True)
@@ -73,8 +77,26 @@ def inspect_document(knowledge_base_id: UUID, document_id: UUID, response: Respo
         DocumentChunk.knowledge_base_id == knowledge_base_id, DocumentChunk.document_id == doc.id,
         DocumentChunk.chunk_index > after_index).order_by(DocumentChunk.chunk_index).limit(limit + 1)))
     keys = ("section_path", "chunk_type", "parser", "page_start", "page_end", "quality", "cleaning", "cleaning_version")
-    return dict(document=summary(doc), items=[dict(id=c.id, index=c.chunk_index, content=c.content,
-        metadata={k:c.metadata_json.get(k) for k in keys}) for c in rows[:limit]],
+    parents = {}
+    if include_parents:
+        parents = {parent.id: parent for parent in session.scalars(select(DocumentParent).where(
+            DocumentParent.tenant_id == principal.tenant_id, DocumentParent.knowledge_base_id == knowledge_base_id,
+            DocumentParent.document_id == doc.id, DocumentParent.document_version == doc.version,
+            DocumentParent.document_content_hash == doc.content_hash,
+            DocumentParent.id.in_({chunk.parent_id for chunk in rows[:limit] if chunk.parent_id})))}
+    items = []
+    for chunk in rows[:limit]:
+        item = dict(id=chunk.id, index=chunk.chunk_index, content=chunk.content,
+            content_hash=chunk.content_hash, vector_generation=chunk.vector_generation,
+            metadata={key: chunk.metadata_json.get(key) for key in keys})
+        if include_parents:
+            parent = parents.get(chunk.parent_id)
+            item["parent"] = (dict(id=parent.id, content=parent.content, content_hash=parent.content_hash,
+                first_chunk_index=parent.first_chunk_index, last_chunk_index=parent.last_chunk_index)
+                if parent is not None and parent.vector_generation == chunk.vector_generation
+                and parent.first_chunk_index <= chunk.chunk_index <= parent.last_chunk_index else None)
+        items.append(item)
+    return dict(document=summary(doc), items=items,
         next_after=rows[limit-1].chunk_index if len(rows) > limit else None)
 
 
@@ -94,6 +116,14 @@ def update_publication(knowledge_base_id: UUID, document_id: UUID, payload: Publ
             raise HTTPException(409, "仅可发布索引完成且有正文的文档。")
         if (doc.metadata_json or {}).get("quality", {}).get("review_required") and not payload.acknowledge_ocr:
             raise HTTPException(422, "资料含待复核OCR，请核对原件并明确确认识别限制。")
+        if "manufacturing" in (doc.metadata_json or {}):
+            review = current_review(doc)
+            if review is None:
+                raise HTTPException(409, "请先复核当前版本的制造适用性标注。")
+            try:
+                validate_anchors(session, doc, review.data)
+            except ValueError as exc:
+                raise HTTPException(409, str(exc)) from None
     doc.metadata_json = {**dict(doc.metadata_json or {}), "publication": reviewed_publication(doc,
         state=payload.state, actor_id=principal.user_id, note=payload.review_note,
         acknowledge_ocr=payload.acknowledge_ocr)}
@@ -103,6 +133,57 @@ def update_publication(knowledge_base_id: UUID, document_id: UUID, payload: Publ
         details={"document_version": doc.version, "reason": payload.state})
     session.commit()
     return summary(doc)
+
+
+@router.get("/{knowledge_base_id}/documents/{document_id}/manufacturing-metadata")
+def inspect_manufacturing_metadata(knowledge_base_id: UUID, document_id: UUID, response: Response,
+        principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
+    response.headers["Cache-Control"] = "no-store"
+    doc = authorized_document(session, principal, knowledge_base_id, document_id)
+    raw = (doc.metadata_json or {}).get("manufacturing")
+    return dict(document=summary(doc), manufacturing=raw,
+                revision=raw.get("revision", 0) if isinstance(raw, dict) else 0)
+
+
+@router.put("/{knowledge_base_id}/documents/{document_id}/manufacturing-metadata")
+def update_manufacturing_metadata(knowledge_base_id: UUID, document_id: UUID, payload: MetadataInput,
+        request: Request, response: Response, principal: Principal = Depends(get_current_principal),
+        session: Session = Depends(get_database_session)):
+    response.headers["Cache-Control"] = "no-store"
+    session.scalar(select(Tenant).where(Tenant.id == principal.tenant_id).with_for_update())
+    doc = authorized_document(session, principal, knowledge_base_id, document_id, lock=True)
+    raw = (doc.metadata_json or {}).get("manufacturing")
+    revision = raw.get("revision", 0) if isinstance(raw, dict) else 0
+    if doc.version != payload.expected_document_version or revision != payload.expected_revision:
+        raise HTTPException(409, "文档或制造标注已变化，请重新加载。")
+    if payload.state == "reviewed":
+        try:
+            previous = ManufacturingReview.model_validate(raw)
+        except ValueError:
+            raise HTTPException(409, "请先保存制造标注草稿，再复核。") from None
+        if (previous.state != "draft" or previous.data != payload.metadata
+                or previous.document_version != doc.version or previous.document_content_hash != doc.content_hash):
+            raise HTTPException(409, "请先保存当前版本的标注草稿，再逐项复核。")
+        if doc.status != "ready" or not (doc.metadata_json or {}).get("chunk_count"):
+            raise HTTPException(409, "仅可复核索引完成且有正文的文档。")
+    try:
+        validate_anchors(session, doc, payload.metadata)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from None
+    review = ManufacturingReview(revision=revision + 1, state=payload.state, data=payload.metadata,
+        data_sha256=payload.metadata.payload_digest, document_version=doc.version,
+        document_content_hash=doc.content_hash, review_note=payload.review_note,
+        reviewed_by=principal.user_id if payload.state == "reviewed" else None,
+        reviewed_at=datetime.now(timezone.utc) if payload.state == "reviewed" else None)
+    doc.metadata_json = {**dict(doc.metadata_json or {}), "manufacturing": review.model_dump(mode="json")}
+    require_review(doc)
+    AuditService(session).add(tenant_id=principal.tenant_id, actor_user_id=principal.user_id,
+        knowledge_base_id=knowledge_base_id, action="document.manufacturing_metadata_changed", resource_type="document",
+        resource_id=doc.id, outcome="success", request_id=getattr(request.state, "request_id", None),
+        details={"document_version": doc.version, "manufacturing_revision": review.revision,
+                 "review_state": review.state, "manufacturing_digest": review.data_sha256})
+    session.commit()
+    return dict(document=summary(doc), manufacturing=review.model_dump(mode="json"), revision=review.revision)
 
 
 @router.get("/{knowledge_base_id}/documents/{document_id}/source")

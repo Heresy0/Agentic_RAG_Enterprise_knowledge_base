@@ -13,13 +13,14 @@ from langchain_openai import ChatOpenAI
 from prometheus_client import Counter, Histogram
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from sqlalchemy import select
-from sqlalchemy.exc import SQLAlchemyError
 
 from ..db.models import User
 from ..evaluation.trace import capture_trace, record_agent_event, record_agent_retrieval, record_documents, record_scope, record_rag_event
 from ..model_usage import current_usage_context, invoke_structured
 from ..security.authorization import AuthorizationDenied, AuthorizationService
 from ..security.principal import Principal
+from .generation_errors import RECOVERABLE_GENERATION_ERRORS
+from .milvus_store import VectorStoreUnavailable
 from .evidence_selection import select_evidence
 from .request_budget import evidence_deadline
 from .rag_budget import current_rag_budget, RagBudgetExceeded
@@ -159,7 +160,7 @@ class EvidenceCoordinator:
                     sequence.append(additional[index])
         pool = {}
         for doc in sequence:
-            if scope.contains(doc.metadata.get("tenant_id"), doc.metadata.get("knowledge_base_id")):
+            if scope.contains_document(doc.metadata):
                 pool.setdefault(_key(doc), doc)
         return list(pool.values())[:self._limit("agent_max_evidence", 24)]
 
@@ -309,17 +310,15 @@ class EvidenceCoordinator:
                     if self.clock() >= deadline:
                         outcome = "time_budget"
                         break
-        except (AuthorizationDenied, SQLAlchemyError):
-            raise
         except RagBudgetExceeded:
             outcome = "shared_budget"
-        except Exception as exc:
+        except (VectorStoreUnavailable, *RECOVERABLE_GENERATION_ERRORS) as exc:
             outcome = "fallback"
             logger.warning("agent.collection_failed error_type=%s", type(exc).__name__)
         # Authorization failures must not silently fall back to old evidence.
         guard.require()
         pool = self.retrieval.refresh_evidence(pool, scope=scope, session=session)
-        pool = select_evidence(question, pool)
+        pool = select_evidence(question, pool, scope=scope)
         record_scope(question, scope)
         record_documents("agent_evidence", pool)
         record_agent_event(dict(kind="summary", outcome=outcome, route=route or "always",

@@ -1,0 +1,10 @@
+{
+  "schema_version": "manufacturing-evaluation-registry-v2",
+  "active": [{
+    "tenant_id": "00000000-0000-0000-0000-000000000001",
+    "source_system_id": "openmes-hc",
+    "source_kind": "live",
+    "source_contract": "openmes-read-only-v1:qa-v1",
+    "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  }]
+}

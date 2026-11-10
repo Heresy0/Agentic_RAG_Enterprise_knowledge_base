@@ -1,0 +1,300 @@
+{
+  "documents": [
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 4105,
+      "document_code": "HC-FLOW-001",
+      "document_role": "flow",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_lite/documents/生产工艺/02_首件确认与工序交接流程.pdf",
+      "group": "生产工艺",
+      "id": "MFG-02",
+      "operation_codes": [],
+      "product_models": [],
+      "scope_kind": "company",
+      "sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+      "source_kind": "synthetic_business",
+      "work_order_ids": []
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 37839,
+      "document_code": "HC-WI-A17-020",
+      "document_role": "instruction",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-09-30",
+      "file": "sample_docs/manufacturing_lite/documents/生产工艺/06_HC-A17_OP20作业指导书历史版.docx",
+      "group": "生产工艺",
+      "id": "MFG-06",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "product_operation",
+      "sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+      "source_kind": "synthetic_business",
+      "work_order_ids": []
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "2.0",
+      "bytes": 37995,
+      "document_code": "HC-WI-A17-020",
+      "document_role": "instruction",
+      "effective_from": "2026-10-01",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_lite/documents/生产工艺/07_HC-A17_OP20作业指导书现行版.docx",
+      "group": "生产工艺",
+      "id": "MFG-07",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "product_operation",
+      "sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+      "source_kind": "synthetic_business",
+      "work_order_ids": []
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 38318,
+      "document_code": "HC-QC-A17-001",
+      "document_role": "inspection",
+      "effective_from": "2026-10-01",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_lite/documents/质量检验/08_HC-A17首件检验规范.docx",
+      "group": "质量检验",
+      "id": "MFG-08",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "product_operation",
+      "sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+      "source_kind": "synthetic_business",
+      "work_order_ids": []
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 37983,
+      "document_code": "ECN-2026-018",
+      "document_role": "change_notice",
+      "effective_from": "2026-10-01",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_lite/documents/生产工艺/09_工艺变更通知ECN-2026-018.docx",
+      "group": "生产工艺",
+      "id": "MFG-09",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "product_operation",
+      "sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+      "source_kind": "synthetic_business",
+      "work_order_ids": []
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 774,
+      "document_code": "HC-ROUTE-001",
+      "document_role": "routing",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_lite/documents/公共参考/10_产品工序与文件路由.md",
+      "group": "公共参考",
+      "id": "MFG-10",
+      "operation_codes": [],
+      "product_models": [
+        "HC-A17",
+        "HC-A18"
+      ],
+      "scope_kind": "routing",
+      "sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+      "source_kind": "synthetic_business",
+      "work_order_ids": []
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 792,
+      "document_code": "HC-QC-REC",
+      "document_role": "record_rule",
+      "effective_from": "2026-01-01",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_lite/documents/质量检验/12_检验记录填写与追溯规则.md",
+      "group": "质量检验",
+      "id": "MFG-12",
+      "operation_codes": [],
+      "product_models": [],
+      "scope_kind": "company",
+      "sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+      "source_kind": "synthetic_business",
+      "work_order_ids": []
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 646,
+      "document_code": "HC-HO-017",
+      "document_role": "event_record",
+      "effective_from": "2026-10-26",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_lite/documents/生产工艺/14_工单WO-017班次交接记录.txt",
+      "group": "生产工艺",
+      "id": "MFG-14",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "work_order",
+      "sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+      "source_kind": "synthetic_business",
+      "work_order_ids": [
+        "WO-017"
+      ]
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 513,
+      "document_code": "HC-HO-018",
+      "document_role": "event_record",
+      "effective_from": "2026-10-02",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_lite/documents/生产工艺/15_工单WO-018班次交接记录.txt",
+      "group": "生产工艺",
+      "id": "MFG-15",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "work_order",
+      "sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+      "source_kind": "synthetic_business",
+      "work_order_ids": [
+        "WO-018"
+      ]
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 623,
+      "document_code": "HC-QC-017",
+      "document_role": "inspection_record",
+      "effective_from": "2026-10-26",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_lite/documents/质量检验/16_首件检验记录B-1026-017.txt",
+      "group": "质量检验",
+      "id": "MFG-16",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "work_order",
+      "sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+      "source_kind": "synthetic_business",
+      "work_order_ids": [
+        "WO-017"
+      ]
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 642,
+      "document_code": "HC-SW-019",
+      "document_role": "change_notice",
+      "effective_from": "2026-10-03",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_workorder_v1/documents/生产工艺/01_WO019书面切换通知.md",
+      "group": "生产工艺",
+      "id": "MFGWO-01",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "work_order",
+      "sha256": "43a90c111f1117895d3933ccf39ff4440c37c8ec11855f8cb417311477e158a6",
+      "source_kind": "synthetic_business",
+      "work_order_ids": [
+        "WO-019"
+      ]
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 558,
+      "document_code": "HC-SW-024-A",
+      "document_role": "change_notice",
+      "effective_from": "2026-10-03",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_workorder_v1/documents/生产工艺/02_WO024书面指示A.md",
+      "group": "生产工艺",
+      "id": "MFGWO-02",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "work_order",
+      "sha256": "2332f98f9c6b0e54e0a0c0602c5b00f802608a7195135cfe4d79f2f3262fa497",
+      "source_kind": "synthetic_business",
+      "work_order_ids": [
+        "WO-024"
+      ]
+    },
+    {
+      "applicability_review_state": "draft",
+      "business_revision": "1.0",
+      "bytes": 564,
+      "document_code": "HC-SW-024-B",
+      "document_role": "change_notice",
+      "effective_from": "2026-10-03",
+      "effective_to": null,
+      "file": "sample_docs/manufacturing_workorder_v1/documents/生产工艺/03_WO024书面指示B.md",
+      "group": "生产工艺",
+      "id": "MFGWO-03",
+      "operation_codes": [
+        "OP-20"
+      ],
+      "product_models": [
+        "HC-A17"
+      ],
+      "scope_kind": "work_order",
+      "sha256": "f773f6704aa53f8d06170474f0e06517c8729bd27d944285621eef99c608efad",
+      "source_kind": "synthetic_business",
+      "work_order_ids": [
+        "WO-024"
+      ]
+    }
+  ],
+  "notice": "合成场景；元数据为待审核标注，未导入运行库，非实际生产依据。",
+  "schema_version": "manufacturing-corpus-v1",
+  "source_manifest": {
+    "file": "sample_docs/manufacturing_lite/manifest.json",
+    "sha256": "33008b62e400060907bab2c920240120e34ce40a267869c1805ba7a69acd587a"
+  },
+  "version": "manufacturing-workorder-v1-r1"
+}

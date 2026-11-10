@@ -17,6 +17,7 @@ evals/reports
 sample_docs
 tests
 tmp
+output
 
 *.sqlite
 *.sqlite3

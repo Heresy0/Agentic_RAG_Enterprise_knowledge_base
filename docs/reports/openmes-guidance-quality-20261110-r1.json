@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "report_id": "openmes-guidance-quality-20261110-r1",
+  "date": "2026-11-10",
+  "status": "engineering_acceptance_passed",
+  "reviewer": "助手非独立工程验收",
+  "branch": "codex/openmes-guidance-quality-phase3",
+  "business_git_revision": "609d23d2095cc1324192a67be08c33f29dcf745b",
+  "scope": [
+    "O4：OpenMES具体步骤指导书版本审核分配、修订历史及会话失效",
+    "O5：工单、批次、步骤业务证据审核、不可变样本和零预算Worker"
+  ],
+  "deployment": {
+    "platform_url": "http://127.0.0.1:8004/",
+    "openmes_url": "http://127.0.0.1:18081/",
+    "image": "enterprise-knowledge-manufacturing:openmes-guidance-quality-20261110-r2",
+    "runtime": {
+      "openmes-readonly-api": {
+        "matched_files": 306,
+        "backend_python_files": 167,
+        "image": "sha256:035737a9a4e4412ec1e28e281863139fe2bc2035ebeaaba62faa9e6eac801a61"
+      },
+      "manufacturing-openmes-adapter-1": {
+        "matched_files": 306,
+        "backend_python_files": 167,
+        "image": "sha256:035737a9a4e4412ec1e28e281863139fe2bc2035ebeaaba62faa9e6eac801a61"
+      }
+    },
+    "file_count_includes": [
+      "backend",
+      "services",
+      "scripts",
+      "migrations",
+      "alembic.ini",
+      "requirements.txt"
+    ],
+    "database": "openmes_readonly_phase1",
+    "database_head": "e9b2d4f60713",
+    "upstream_version": "0.28.0",
+    "upstream_source": {
+      "files_matched": 11,
+      "image": "sha256:171e1a452a5e22dbb6a53d944bb59e8b7a81a170fe759e9149a8df90229d1969",
+      "revision": "eb184a2984b74d685e65ee24df9b8c7b34c765f6"
+    },
+    "live_source_contract": "openmes-read-only-v1:qa-v1",
+    "scorer": "manufacturing-openmes-v1",
+    "postdeploy": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "context",
+          "status": 200,
+          "request_id": "9bb7d1db61f04ccbbcf207721015c228"
+        },
+        {
+          "name": "mapping",
+          "status": 200,
+          "request_id": "cae8795c3d564b449f3fb4e37d7f7e7b"
+        },
+        {
+          "name": "current-fixed",
+          "status": 200,
+          "request_id": null
+        },
+        {
+          "name": "current-feedback",
+          "status": 200,
+          "request_id": null
+        },
+        {
+          "name": "current-job",
+          "status": 200,
+          "request_id": null
+        }
+      ],
+      "revision_label": "609d23d2095cc1324192a67be08c33f29dcf745b",
+      "jobs": {
+        "abe47239-38ea-467c-9b1e-aac511d30398": "succeeded",
+        "8c6d09fa-33e6-4217-8a45-a9fbe3918a8e": "succeeded"
+      },
+      "new_model_calls": 0,
+      "active_quality_jobs": 0
+    }
+  },
+  "business_contract": {
+    "mapping_basis": "reviewed_step_assignment",
+    "assignment": "平台审核者为具体源系统/工厂/工单/批次/步骤及知识库明确分配已发布、已复核指导书业务版本，记录工艺编码和依据；不自动从步骤名称匹配，也不代填工单实际开工或套用工单开工窗口。",
+    "review": "需知识库admin及业务view+review；草稿、复核、撤回均追加修订，比较预期修订并复读来源/原文。明确工单例外与分配冲突时拒绝。",
+    "invalidation": "来源、指导书/制造复核/发布状态或对应步骤映射变化后重新采集审核；会话绑定映射摘要，变更在追问模型调用前返回409。",
+    "references": "平台审核工艺编码与上游工单字段分开；applicability.step_guidance保留审核身份、版本及原因，文档引用保留原文与版本。",
+    "quality": "批次/步骤证据保留真实实体和记录编号、父子选择、值、精度、修订与哈希；可回答样本必须有各级身份，作业样本还需有效映射及指导书/通知证据。",
+    "freezing": "活跃实时来源登记及所选完整记录反复核验；同源同工单不同批次/步骤同组，禁止固定集/反馈集泄漏。旧版本不覆盖，来源或映射变化后旧冻结版本失效。",
+    "worker": "沿用现有质量Worker和硬零预算CLI，传回相同批次/步骤并保留三次校验，不新增QA成功记录；新评分与旧ERP/工单评分分开。"
+  },
+  "verification": {
+    "full_nonintegration": {
+      "passed": 2352,
+      "tests": 2353,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "integration_deselected": 98,
+    "frontend": {
+      "passed": 65,
+      "failed": 0
+    },
+    "isolated_postgres": {
+      "m1": {
+        "passed": 9,
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "database_removed": true
+      },
+      "m3": {
+        "passed": 14,
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "database_removed": true
+      },
+      "m4": {
+        "passed": 12,
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "database_removed": true
+      }
+    },
+    "real_live": {
+      "status": "passed",
+      "requests": 71,
+      "includes_snapshot_reads": true,
+      "phases": [
+        {
+          "phase": "prepare",
+          "requests": 31,
+          "model_calls": 0
+        },
+        {
+          "phase": "worker",
+          "requests": 1,
+          "model_calls": 0
+        },
+        {
+          "phase": "withdraw",
+          "requests": 11,
+          "model_calls": 0
+        },
+        {
+          "phase": "source-changed",
+          "requests": 2,
+          "model_calls": 0
+        },
+        {
+          "phase": "source-restored",
+          "requests": 3,
+          "model_calls": 0
+        },
+        {
+          "phase": "review-revoked",
+          "requests": 4,
+          "model_calls": 0
+        },
+        {
+          "phase": "registry-changed",
+          "requests": 1,
+          "model_calls": 0
+        },
+        {
+          "phase": "outage",
+          "requests": 2,
+          "model_calls": 0
+        },
+        {
+          "phase": "final-prepare",
+          "requests": 15,
+          "model_calls": 0
+        },
+        {
+          "phase": "final-worker",
+          "requests": 1,
+          "model_calls": 0
+        }
+      ],
+      "successful_qa_snapshots": 7,
+      "source_checks_per_snapshot": 3,
+      "mapping_revisions": 5,
+      "quality_cases": 5,
+      "frozen_versions": 5,
+      "zero_model_jobs": 2,
+      "cases_per_job": 2,
+      "checks": [
+        "当前步骤映射草稿、复核、过期并发写拒绝、完整历史及再次复核",
+        "真实来源未知工单时间不补齐；明确分配2.0仅作用于所选步骤",
+        "批次单独样本及步骤样本分别审核、冻结、导出",
+        "篡改步骤来源记录编号拒绝；同工单跨批次/步骤拆集拒绝",
+        "映射撤回使旧会话409及相关样本失效，批次单独样本不受该步骤映射影响",
+        "修改所选步骤源字段后冻结导出409，恢复值仍不恢复旧修订",
+        "撤销review后审核及冻结404，业务view正常可查询",
+        "活跃登记改变时导出409；适配器停机时导出409及问答503；全部夹具与配置恢复",
+        "恢复后重新采集并冻结两份当前版本，正式零预算CLI及最终r2部署端口验证通过"
+      ]
+    },
+    "upstream_readonly": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "read",
+          "status": 200
+        },
+        {
+          "name": "start-denied",
+          "status": 403
+        },
+        {
+          "name": "write-denied",
+          "status": 403
+        },
+        {
+          "name": "refresh-denied",
+          "status": 403
+        }
+      ]
+    },
+    "independent_audit": {
+      "status": "passed",
+      "new_model_calls": 0,
+      "tokens": 0,
+      "observed_request_ids": 25,
+      "ledger_unchanged": true,
+      "counts": {
+        "documents": 13,
+        "document_chunks": 53,
+        "quality_evaluation_jobs": 2,
+        "business_scope_grants": 2
+      },
+      "openmes_migration": "e9b2d4f60713",
+      "erpnext_migration": "f2b8c0a961d3",
+      "old_container_ids_and_images_unchanged": 8,
+      "old_container_start_times_unchanged": 8,
+      "restarted_old_containers": [],
+      "old_reports_unchanged": 17,
+      "ports": [
+        {
+          "port": 8004,
+          "status": 200
+        },
+        {
+          "port": 18081,
+          "status": 200
+        },
+        {
+          "port": 8003,
+          "status": 200
+        },
+        {
+          "port": 18080,
+          "status": 200
+        }
+      ],
+      "page_assets_matched": 4,
+      "worker_started": false,
+      "index_rebuilt": false
+    },
+    "frozen_general_120": "passed",
+    "frozen_phase1_40": "passed",
+    "visual_browser_check": false,
+    "backups": {
+      "before": 2,
+      "after": 2,
+      "pg_restore_list": "passed",
+      "full_restore_exercise": false
+    }
+  },
+  "model_usage": {
+    "physical_calls": 0,
+    "known_tokens": 0,
+    "budget_tokens": 0,
+    "unknown_usage": 0,
+    "hard_zero_qa": true,
+    "hard_zero_worker": true,
+    "independent_ledger_unchanged": true,
+    "observed_request_ids": 25,
+    "worker_jobs_verified": 2,
+    "quality_accuracy": null,
+    "paid_evaluation": false,
+    "results_combined": false
+  },
+  "permissions": {
+    "existing_admin_only": true,
+    "added_candidate_review_grants": 1,
+    "source_system_id": "openmes-hc",
+    "plant_code": "HC-P01",
+    "knowledge_base_grants_changed": false,
+    "erpnext_permissions_changed": false,
+    "upstream_integration_readonly_unchanged": true
+  },
+  "preservation": {
+    "original_container_ids_images_and_start_times_unchanged": 8,
+    "original_reports_unchanged": 17,
+    "erpnext_database_head": "f2b8c0a961d3",
+    "erpnext_containers_updated": false,
+    "documents": 13,
+    "chunks": 53,
+    "index_rebuilt": false,
+    "new_candidate_persistent_workers": false,
+    "active_quality_jobs": 0,
+    "source_value_restored": true,
+    "source_revision_rolled_back": false,
+    "original_invalid_versions_retained": true,
+    "registry_restored": true,
+    "review_grant_restored": true,
+    "adapter_recovered": true
+  },
+  "retained_attempts": {
+    "targeted_r1": {
+      "passed": 57,
+      "tests": 58,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "targeted_r2": {
+      "passed": 45,
+      "tests": 45,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "full_r1": {
+      "passed": 2348,
+      "tests": 2349,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "corrected_test": "首轮旧断言仍要求缺工单开工时间；新业务明确缺的是步骤指导书审核映射，按新契约更新断言，保持原工单时间为空。",
+    "image_metadata": "首个依赖复用镜像应用文件正确，但继承旧提交标签7348bfb；保留r1构建记录，r2显式标注609d23d完整提交，源码及数据库无二次改变。r2已核对306文件、源码标签及5项部署端口检查。",
+    "live_failures": 0
+  },
+  "limitations": [
+    "映射是逐具体步骤的显式人工审核分配，不是模板级自动映射或按步骤时间自动选版；审核者须核对在制规则与相关通知。",
+    "本轮自建MES演示映射、反馈及审核均标助手非独立，不是真实工厂执行或独立业务批准。",
+    "指导书回答及相关样本全流程用工程生成替身测试，真实来源链路用后端确定性字段；本轮不产生真实模型准确率或模型改进收益。",
+    "两个零模型任务各2题存在样本场景重叠，不汇总为独立准确率，也未执行真实付费闭环。",
+    "ERP-MES同步、ERP/MES写回、视觉解析实测、完整恢复演练及浏览器视觉检查不在本轮交付。",
+    "旧ERPNext10/16关键2/6、模拟开发13/16关键4/6及正式31/40关键9/12失败状态分别保留。"
+  ],
+  "private_artifacts": "tmp/openmes-guidance-quality-20261110-r1/ (Git忽略；含凭据、备份、原始响应、Trace、故障与恢复记录，不公开)"
+}

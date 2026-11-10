@@ -213,6 +213,8 @@ class ModelCall:
             return False
 
     def __enter__(self):
+        from .manufacturing.answer_context import require_manufacturing_model_access
+        require_manufacturing_model_access()
         from .quality.eval_budget import current_budget
         budget = current_budget()
         if budget is not None:

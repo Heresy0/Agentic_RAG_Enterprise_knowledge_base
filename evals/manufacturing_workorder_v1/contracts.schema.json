@@ -1,0 +1,823 @@
+{
+  "ApplicabilityRule": {
+    "additionalProperties": false,
+    "description": "Auditable source annotation, not a question-specific answer override.",
+    "properties": {
+      "cutoff_date": {
+        "anyOf": [
+          {
+            "format": "date",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Cutoff Date"
+      },
+      "effective_from": {
+        "anyOf": [
+          {
+            "format": "date",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Effective From"
+      },
+      "kind": {
+        "enum": [
+          "start_before",
+          "start_on_or_after",
+          "work_order_override"
+        ],
+        "title": "Kind",
+        "type": "string"
+      },
+      "operation_code": {
+        "maxLength": 80,
+        "minLength": 1,
+        "title": "Operation Code",
+        "type": "string"
+      },
+      "product_model": {
+        "maxLength": 80,
+        "minLength": 1,
+        "title": "Product Model",
+        "type": "string"
+      },
+      "review_state": {
+        "const": "draft",
+        "default": "draft",
+        "title": "Review State",
+        "type": "string"
+      },
+      "rule_id": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Rule Id",
+        "type": "string"
+      },
+      "source_document_id": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Source Document Id",
+        "type": "string"
+      },
+      "source_quote": {
+        "maxLength": 2000,
+        "minLength": 2,
+        "title": "Source Quote",
+        "type": "string"
+      },
+      "source_quote_sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Source Quote Sha256",
+        "type": "string"
+      },
+      "target_business_revision": {
+        "maxLength": 80,
+        "minLength": 1,
+        "title": "Target Business Revision",
+        "type": "string"
+      },
+      "target_document_code": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Target Document Code",
+        "type": "string"
+      },
+      "work_order_ids": {
+        "default": [],
+        "items": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+          "type": "string"
+        },
+        "title": "Work Order Ids",
+        "type": "array"
+      }
+    },
+    "required": [
+      "rule_id",
+      "kind",
+      "target_document_code",
+      "target_business_revision",
+      "product_model",
+      "operation_code",
+      "source_document_id",
+      "source_quote",
+      "source_quote_sha256"
+    ],
+    "title": "ApplicabilityRule",
+    "type": "object"
+  },
+  "ManufacturingQuestion": {
+    "additionalProperties": false,
+    "properties": {
+      "conversation_id": {
+        "anyOf": [
+          {
+            "format": "uuid",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Conversation Id"
+      },
+      "expected_source_revision": {
+        "anyOf": [
+          {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Expected Source Revision"
+      },
+      "knowledge_base_id": {
+        "anyOf": [
+          {
+            "format": "uuid",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Knowledge Base Id"
+      },
+      "question": {
+        "maxLength": 1000,
+        "minLength": 1,
+        "title": "Question",
+        "type": "string"
+      },
+      "work_order_id": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Work Order Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "question",
+      "work_order_id"
+    ],
+    "title": "ManufacturingQuestion",
+    "type": "object"
+  },
+  "WorkOrderContext": {
+    "$defs": {
+      "WorkOrderRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "actual_start_precision": {
+            "anyOf": [
+              {
+                "enum": [
+                  "date",
+                  "datetime"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual Start Precision"
+          },
+          "actual_started_at": {
+            "anyOf": [
+              {
+                "maxLength": 40,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual Started At"
+          },
+          "batch_no": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Batch No"
+          },
+          "change_notice_refs": {
+            "default": [],
+            "items": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+              "type": "string"
+            },
+            "maxItems": 16,
+            "title": "Change Notice Refs",
+            "type": "array"
+          },
+          "operation_code": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation Code"
+          },
+          "plant_code": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Plant Code",
+            "type": "string"
+          },
+          "product_model": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Model"
+          },
+          "reported_at": {
+            "anyOf": [
+              {
+                "maxLength": 40,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Reported At"
+          },
+          "route_revision": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Route Revision"
+          },
+          "schema_version": {
+            "const": "work-order-v1",
+            "default": "work-order-v1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "source_record_id": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Source Record Id",
+            "type": "string"
+          },
+          "source_revision": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Source Revision",
+            "type": "string"
+          },
+          "source_system_id": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Source System Id",
+            "type": "string"
+          },
+          "source_updated_at": {
+            "format": "date-time",
+            "title": "Source Updated At",
+            "type": "string"
+          },
+          "status": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Status",
+            "type": "string"
+          },
+          "tenant_id": {
+            "format": "uuid",
+            "title": "Tenant Id",
+            "type": "string"
+          },
+          "work_order_id": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Work Order Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_system_id",
+          "tenant_id",
+          "plant_code",
+          "work_order_id",
+          "source_record_id",
+          "product_model",
+          "operation_code",
+          "actual_started_at",
+          "actual_start_precision",
+          "status",
+          "source_revision",
+          "source_updated_at"
+        ],
+        "title": "WorkOrderRecord",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "description": "A source record plus server-generated observation metadata.",
+    "properties": {
+      "fetched_at": {
+        "format": "date-time",
+        "title": "Fetched At",
+        "type": "string"
+      },
+      "last_verified_at": {
+        "format": "date-time",
+        "title": "Last Verified At",
+        "type": "string"
+      },
+      "payload_sha256": {
+        "pattern": "^[a-f0-9]{64}$",
+        "title": "Payload Sha256",
+        "type": "string"
+      },
+      "record": {
+        "$ref": "#/$defs/WorkOrderRecord"
+      }
+    },
+    "required": [
+      "record",
+      "fetched_at",
+      "last_verified_at",
+      "payload_sha256"
+    ],
+    "title": "WorkOrderContext",
+    "type": "object"
+  },
+  "WorkOrderFixtures": {
+    "$defs": {
+      "WorkOrderRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "actual_start_precision": {
+            "anyOf": [
+              {
+                "enum": [
+                  "date",
+                  "datetime"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual Start Precision"
+          },
+          "actual_started_at": {
+            "anyOf": [
+              {
+                "maxLength": 40,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual Started At"
+          },
+          "batch_no": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Batch No"
+          },
+          "change_notice_refs": {
+            "default": [],
+            "items": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+              "type": "string"
+            },
+            "maxItems": 16,
+            "title": "Change Notice Refs",
+            "type": "array"
+          },
+          "operation_code": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operation Code"
+          },
+          "plant_code": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Plant Code",
+            "type": "string"
+          },
+          "product_model": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Model"
+          },
+          "reported_at": {
+            "anyOf": [
+              {
+                "maxLength": 40,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Reported At"
+          },
+          "route_revision": {
+            "anyOf": [
+              {
+                "maxLength": 80,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Route Revision"
+          },
+          "schema_version": {
+            "const": "work-order-v1",
+            "default": "work-order-v1",
+            "title": "Schema Version",
+            "type": "string"
+          },
+          "source_record_id": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Source Record Id",
+            "type": "string"
+          },
+          "source_revision": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Source Revision",
+            "type": "string"
+          },
+          "source_system_id": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Source System Id",
+            "type": "string"
+          },
+          "source_updated_at": {
+            "format": "date-time",
+            "title": "Source Updated At",
+            "type": "string"
+          },
+          "status": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Status",
+            "type": "string"
+          },
+          "tenant_id": {
+            "format": "uuid",
+            "title": "Tenant Id",
+            "type": "string"
+          },
+          "work_order_id": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+            "title": "Work Order Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_system_id",
+          "tenant_id",
+          "plant_code",
+          "work_order_id",
+          "source_record_id",
+          "product_model",
+          "operation_code",
+          "actual_started_at",
+          "actual_start_precision",
+          "status",
+          "source_revision",
+          "source_updated_at"
+        ],
+        "title": "WorkOrderRecord",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "fixture_version": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Fixture Version",
+        "type": "string"
+      },
+      "records": {
+        "items": {
+          "$ref": "#/$defs/WorkOrderRecord"
+        },
+        "maxItems": 100,
+        "minItems": 1,
+        "title": "Records",
+        "type": "array"
+      },
+      "schema_version": {
+        "const": "work-order-fixtures-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "source_system_id": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Source System Id",
+        "type": "string"
+      },
+      "tenant_id": {
+        "format": "uuid",
+        "title": "Tenant Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "schema_version",
+      "fixture_version",
+      "source_system_id",
+      "tenant_id",
+      "records"
+    ],
+    "title": "WorkOrderFixtures",
+    "type": "object"
+  },
+  "WorkOrderRecord": {
+    "additionalProperties": false,
+    "properties": {
+      "actual_start_precision": {
+        "anyOf": [
+          {
+            "enum": [
+              "date",
+              "datetime"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Actual Start Precision"
+      },
+      "actual_started_at": {
+        "anyOf": [
+          {
+            "maxLength": 40,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Actual Started At"
+      },
+      "batch_no": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Batch No"
+      },
+      "change_notice_refs": {
+        "default": [],
+        "items": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+          "type": "string"
+        },
+        "maxItems": 16,
+        "title": "Change Notice Refs",
+        "type": "array"
+      },
+      "operation_code": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Operation Code"
+      },
+      "plant_code": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Plant Code",
+        "type": "string"
+      },
+      "product_model": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Product Model"
+      },
+      "reported_at": {
+        "anyOf": [
+          {
+            "maxLength": 40,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Reported At"
+      },
+      "route_revision": {
+        "anyOf": [
+          {
+            "maxLength": 80,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Route Revision"
+      },
+      "schema_version": {
+        "const": "work-order-v1",
+        "default": "work-order-v1",
+        "title": "Schema Version",
+        "type": "string"
+      },
+      "source_record_id": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Source Record Id",
+        "type": "string"
+      },
+      "source_revision": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Source Revision",
+        "type": "string"
+      },
+      "source_system_id": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Source System Id",
+        "type": "string"
+      },
+      "source_updated_at": {
+        "format": "date-time",
+        "title": "Source Updated At",
+        "type": "string"
+      },
+      "status": {
+        "maxLength": 80,
+        "minLength": 1,
+        "title": "Status",
+        "type": "string"
+      },
+      "tenant_id": {
+        "format": "uuid",
+        "title": "Tenant Id",
+        "type": "string"
+      },
+      "work_order_id": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$",
+        "title": "Work Order Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "source_system_id",
+      "tenant_id",
+      "plant_code",
+      "work_order_id",
+      "source_record_id",
+      "product_model",
+      "operation_code",
+      "actual_started_at",
+      "actual_start_precision",
+      "status",
+      "source_revision",
+      "source_updated_at"
+    ],
+    "title": "WorkOrderRecord",
+    "type": "object"
+  }
+}

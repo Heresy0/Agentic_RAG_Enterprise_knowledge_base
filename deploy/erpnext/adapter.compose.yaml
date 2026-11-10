@@ -1,0 +1,16 @@
+services:
+  adapter:
+    image: ${ERP_ADAPTER_IMAGE:?required}
+    env_file: ["${ERP_ADAPTER_ENV_FILE:?required}"]
+    environment:
+      ERPNEXT_ADAPTER_CONFIG: /app/config/erpnext/adapter.json
+    volumes:
+      - ${ERP_ADAPTER_CONFIG_FILE:?required}:/app/config/erpnext/adapter.json:ro
+    command: [python, -m, uvicorn, services.erpnext_adapter.main:app, --factory, --host, 0.0.0.0, --port, "8011", --no-access-log]
+    networks:
+      default:
+        aliases: [erpnext-adapter]
+    mem_limit: 256m
+    restart: unless-stopped
+    healthcheck:
+      disable: true

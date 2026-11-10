@@ -1,0 +1,15 @@
+services:
+  adapter:
+    image: ${OPENMES_ADAPTER_IMAGE:?required}
+    env_file: ["${OPENMES_ADAPTER_ENV_FILE:?required}"]
+    environment:
+      OPENMES_ADAPTER_CONFIG: /app/config/openmes/adapter.json
+    volumes: ["${OPENMES_ADAPTER_CONFIG_FILE:?required}:/app/config/openmes/adapter.json:ro"]
+    command: [python, -m, uvicorn, "services.openmes_adapter.main:app", "--factory", "--host", "0.0.0.0", "--port", "8012", "--no-access-log"]
+    networks:
+      default:
+        aliases: [openmes-adapter]
+    mem_limit: 256m
+    healthcheck:
+      disable: true
+    restart: unless-stopped

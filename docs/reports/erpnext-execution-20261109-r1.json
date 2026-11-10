@@ -1,0 +1,621 @@
+{
+  "schema_version": 1,
+  "stage": "ERPNext E3 execution selection",
+  "created_at": "2026-11-09T12:17:49.630407+00:00",
+  "status": "integration_passed",
+  "branch": "codex/erpnext-readonly-phase1",
+  "source_commit": "024011d4424688069923f0fec9561005882212df",
+  "image": {
+    "source_revision": "024011d4424688069923f0fec9561005882212df",
+    "image": "enterprise-knowledge-manufacturing:erpnext-execution-20261109-r2",
+    "image_id": "sha256:f1b9027d536168f51b336798b9f1cf8c02a7dbd7c209364f6188c5fe0e0dd195",
+    "backend_code_sha256": "7f7bf9aba2930f42666ee62da2bee531c9a0348b8445ac2da0fa6c1826d45dc6",
+    "business_python_files": 158,
+    "all_files_match": true,
+    "verified_files": 192
+  },
+  "environment": {
+    "erpnext": "16.54.0",
+    "frappe": "16.55.2",
+    "erp_url": "http://127.0.0.1:18080",
+    "candidate_url": "http://127.0.0.1:8003",
+    "candidate_database": "erpnext_readonly_phase1",
+    "migration_head": "f2b8c0a961d3",
+    "original_8000_8001_8002_unchanged": true,
+    "knowledge_index_or_quality_workers_started": false,
+    "reindexed": false,
+    "documents": 13,
+    "chunks": 53,
+    "vectors": 53
+  },
+  "scope": {
+    "read_only": true,
+    "operation_identity": "Work Order.operations[].name",
+    "job_card_identity": "Job Card.name",
+    "selection_contract": "work-order-execution-v1",
+    "legacy_contract_unchanged": "work-order-v1",
+    "job_card_requires_operation": true,
+    "three_rechecks_keep_selection": true,
+    "conversations_bind_selection": true,
+    "source_entities": [
+      "Work Order",
+      "Work Order Operation",
+      "Job Card"
+    ],
+    "canceled_cards_excluded": true,
+    "max_operations": 100,
+    "max_job_cards_per_page": 20,
+    "quality_review_and_freeze_enabled": false
+  },
+  "actual_start": {
+    "work_order_source": "Work Order.actual_start_date",
+    "operation_source": "Work Order Operation.actual_start_time",
+    "job_card_source": "Job Card.actual_start_date",
+    "version_selection_uses": "work_order_actual_start",
+    "fallback_between_scopes": false,
+    "demo_work_order": "ERP-WO-EXECUTION",
+    "work_order_actual": "2026-09-28T08:10:00+08:00",
+    "selected_operation": "OP-20",
+    "operation_actual": "2026-09-28T08:10:00+08:00",
+    "selected_card": "PO-JOB00008",
+    "card_actual": "2026-10-26T09:30:00+08:00",
+    "card_docstatus": "draft",
+    "unknown_card": "PO-JOB00009",
+    "demonstration_data_only": true
+  },
+  "validation": {
+    "tests": {
+      "nonintegration": {
+        "tests": 2250,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1,
+        "passed": 2249,
+        "deselected_integration": 96
+      },
+      "frontend": {
+        "tests": 53,
+        "passed": 53,
+        "failures": 0,
+        "visual_review": false
+      },
+      "targeted": {
+        "tests": 134,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 134
+      },
+      "postgres": {
+        "m1": {
+          "tests": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "database_removed": true
+        },
+        "m3": {
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "database_removed": true
+        },
+        "m4": {
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "database_removed": true
+        }
+      },
+      "frozen_integrity": {
+        "general_cases": 120,
+        "manufacturing_phase1_cases": 40,
+        "passed": true
+      }
+    },
+    "erp_api": {
+      "checks": [
+        {
+          "case": "erp-work-order",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "erp-submitted_card",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "erp-later_card",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "erp-unknown_card",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "erp-card-list",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "erp-other-company-wo",
+          "status": 403,
+          "expected": 403,
+          "passed": true
+        },
+        {
+          "case": "erp-no-card-create",
+          "status": 403,
+          "expected": 403,
+          "passed": true
+        },
+        {
+          "case": "erp-no-card-update",
+          "status": 403,
+          "expected": 403,
+          "passed": true
+        },
+        {
+          "case": "erp-no-card-delete",
+          "status": 403,
+          "expected": 403,
+          "passed": true
+        }
+      ],
+      "passed": 9
+    },
+    "platform": {
+      "checks": [
+        {
+          "case": "list",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "operations",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "cards-first",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "cards-next",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "cursor-other-operation",
+          "status": 422,
+          "expected": 422,
+          "passed": true
+        },
+        {
+          "case": "legacy-context",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "selected-context",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "stable-selected-context",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "wrong-operation",
+          "status": 404,
+          "expected": 404,
+          "passed": true
+        },
+        {
+          "case": "card-missing-operation",
+          "status": 422,
+          "expected": 422,
+          "passed": true
+        },
+        {
+          "case": "unknown-card",
+          "status": 404,
+          "expected": 404,
+          "passed": true
+        },
+        {
+          "case": "cross-order-card",
+          "status": 404,
+          "expected": 404,
+          "passed": true
+        },
+        {
+          "case": "cross-company",
+          "status": 404,
+          "expected": 404,
+          "passed": true
+        },
+        {
+          "case": "no-business-grant",
+          "status": 404,
+          "expected": 404,
+          "passed": true
+        },
+        {
+          "case": "unauthenticated",
+          "status": 401,
+          "expected": 401,
+          "passed": true
+        },
+        {
+          "case": "no-write-POST",
+          "status": 405,
+          "expected": 405,
+          "passed": true
+        },
+        {
+          "case": "no-write-PUT",
+          "status": 405,
+          "expected": 405,
+          "passed": true
+        },
+        {
+          "case": "no-write-DELETE",
+          "status": 405,
+          "expected": 405,
+          "passed": true
+        },
+        {
+          "case": "qa-card",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "qa-card-snapshot",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "qa-operation",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "qa-operation-snapshot",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "qa-work-order",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "qa-work-order-snapshot",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "qa-unknown-card",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "qa-card-not-selected",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "execution-refused",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "create-conversation",
+          "status": 201,
+          "expected": 201,
+          "passed": true
+        },
+        {
+          "case": "conversation-first-turn",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "conversation-history",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "conversation-another-card",
+          "status": 409,
+          "expected": 409,
+          "passed": true
+        },
+        {
+          "case": "revoked-before-delivery",
+          "status": 404,
+          "expected": 404,
+          "passed": true
+        },
+        {
+          "case": "permissions-restored",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        }
+      ],
+      "passed": 33,
+      "real_authentication": true,
+      "real_postgresql": true,
+      "real_erp_http": true,
+      "transport": "authenticated in-process ASGI HTTP",
+      "deterministic_server_projection": true,
+      "generation_double_used": false
+    },
+    "changed_card": {
+      "checks": [
+        {
+          "case": "old-selected-card-revision",
+          "status": 409,
+          "expected": 409,
+          "passed": true
+        },
+        {
+          "case": "fresh-changed-card",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        }
+      ],
+      "passed": 2,
+      "fixture_restored": true
+    },
+    "unavailable_source": {
+      "checks": [
+        {
+          "case": "unavailable",
+          "status": 503,
+          "expected": 503,
+          "passed": true
+        }
+      ],
+      "passed": 1,
+      "service_restored": true
+    },
+    "host_http": {
+      "checks": [
+        {
+          "case": "api-ready",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "erp-ready",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-selected-context",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-selected-context-repeat",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-unknown-card",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "host-unknown-operation",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "ui-index",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "ui-js",
+          "status": 200,
+          "passed": true
+        },
+        {
+          "case": "ui-css",
+          "status": 200,
+          "passed": true
+        }
+      ],
+      "passed": 9,
+      "ui_assets_match_source_archive": true,
+      "ui_visual_review": false
+    },
+    "test_groups_overlap": true
+  },
+  "model_usage": {
+    "physical_calls": 0,
+    "known_tokens": 0,
+    "unknown_calls": 0,
+    "hard_call_limit": 0,
+    "hard_token_limit": 0,
+    "independent_request_ids": 57,
+    "ledger_rows": 0,
+    "failed_first_observer_included": true,
+    "paid_quality_evaluation": false,
+    "trace_usage_events": 0
+  },
+  "failures_retained": [
+    {
+      "stage": "initial execution tests",
+      "issue": "Test fixture omitted api_context import; fixed fixture, original JUnit retained."
+    },
+    {
+      "stage": "ERP demo bootstrap",
+      "issue": "Pinned ERPNext factory expects transient job_card_qty on a mapping; corrected factory input, failed transaction rolled back, old log retained."
+    },
+    {
+      "stage": "first full regression",
+      "issue": "Schema test sentinel lacked newly required request context; corrected test shape without weakening runtime validation."
+    },
+    {
+      "stage": "first live observer",
+      "issue": "Two assertions expected internal schema_version in a public projection; fixed assertions. New Job Card execution wording escaped intent recognition, reached hard zero budget and returned 503; zero calls/writes, fixed recognition and verified refusal on final version."
+    }
+  ],
+  "backups": {
+    "before_and_after": true,
+    "erp_site": true,
+    "candidate_postgresql": true,
+    "postgres_catalog_verified": true,
+    "full_restore_exercised": false
+  },
+  "limitations": [
+    "Self-hosted ERP demonstration, not factory execution evidence.",
+    "No paid model quality rerun; full development 13/16 and critical 4/6 remain failed; formal 31/40 and critical 9/12 remain failed.",
+    "ERP quality review/export/frozen samples not opened.",
+    "Frontend interaction covered by DOM tests and deployed asset byte checks; no visual browser review in this stage."
+  ],
+  "evidence": {
+    "private_root": "tmp/erpnext-execution-20261109-r1/",
+    "artifact_count": 101,
+    "manifest_sha256": "0a4e10156d171e18dcaaf3c3c7dfb6db27712f793aca3092d6a484205fcfc139",
+    "files": {
+      "backup-before-manifest.json": "54c16a44b3954029d0d5324e4059b816c5f89d26ca6ac7d8e839a13c306a75e1",
+      "backup-final-manifest.json": "3adbaa2744f940a158de7218b18dc6bf311996d15c4407a7bf013ac1834e3c6e",
+      "candidate-migration.log": "5d4db7f05f493d053e43e80ce69f90d3d1571205bc852238e3e4bce588ab2f8a",
+      "candidate-r2/build.log": "54fe6c1446330f6e014630da6628584d5a9a9a35c21c117dc0cc418235597801",
+      "candidate-r2/image-verification.json": "b728582b43b06a43a391d0291f1d4e98974e6f2d2131f52090ed57212e2e312a",
+      "candidate-r2/source-manifest.json": "099f21f30ce2dce62cc80898b67de72074dfb49c988d41eded446312151bdead",
+      "capability-r1.xml": "b8a029839f916c55019c5a9999fdd44cecddb9799a35aeb520c1c6b0651d6156",
+      "erp-summary.json": "55c21f47c5811a17a30a71284acb2a1c36d43cd4da38f9bb64423f4969587037",
+      "execution-r1.xml": "3d570a3ea65a0d94146978795ec747264c4ec07afc911cfad1a53e1037f123ba",
+      "execution-r2.xml": "c14efb3c20d522597ef55d61cfa53f018f367d65c87296fa83834e552da4cb4a",
+      "execution-r4.xml": "9dbc740f6fcbb1ef4989cac080ee2f74f58391cbf96329545cd201e7b0e34caf",
+      "final-runtime-verification.json": "e85349aa5a0c6fef4b2cba5cb460f481758e94c0aeddf622eb6f8fabe88ba1bb",
+      "frontend-r2.log": "df2cfda6dace551cb7a73ec632c1f144a1c02e288470d70ca8fe48dc3080ad77",
+      "image-verification.json": "a051a13fb69ee56326b5ed3efea716f5af60294eda5ccbc1b578ba27620cc711",
+      "images-before.json": "c860ab5cbab67dbcb6b5e36644882bf069bd55b27f314fadfa018f83e0f722fe",
+      "independent-model-ledger.json": "987ac16a282354c48c6b094e3307552eead3dc20575a3b736d88e7ef9004bae1",
+      "nonintegration-r1.xml": "f3d23ad3cb47cca7ddbf8e335ba48eb0d3925ae5e2c3b353d18f1f71d006e7a4",
+      "nonintegration-r2.xml": "fd65966b7e1080a6c8e073c29e8cf661cb2f1251d93070d5929cf00ee6701a9a",
+      "nonintegration-r3.xml": "4fbd214162e2b99a1fca6be91f122cd3dc9025cf50655c66855712494b9eb12a",
+      "platform-healthy-r1/card-missing-operation.json": "1095cca924914a76ff3fc5319e568f6691fdc4e7a6c0527ca3474e3618e90275",
+      "platform-healthy-r1/cards-first.json": "e9b13aa796ad9cca2103906600e60f9fd2c8b51b1d49ed10af310a8488b8af61",
+      "platform-healthy-r1/cards-next.json": "ba56c3720322b3f1d6d767a51514c61c72194e0bdfbdb9bf67bba2889f547a67",
+      "platform-healthy-r1/conversation-another-card.json": "b95229a5ff7e00d1157d51c51f1a4d41d428e21a360aadc5e24eafcae4152b8e",
+      "platform-healthy-r1/conversation-first-turn.json": "9d303119e6e8fc3c158712a8e392db1b3275a19e9b6217463d4886c1024bf6d5",
+      "platform-healthy-r1/conversation-history.json": "786db02fa406ffa0341b288878af9bc6be1f11dbd042725ceb7464e10e45badf",
+      "platform-healthy-r1/create-conversation.json": "dccc91fd2f3e030c10c69dc3e2bc27132c43ab8221ce49c83ccb4ec6cb7323b4",
+      "platform-healthy-r1/cross-company.json": "baa31ceadd1482b0958fb73105096bb41390fd16ea02d4b31a9e95af70a3644b",
+      "platform-healthy-r1/cross-order-card.json": "c9ad48d668ebc7de08f906ec7a8bbad3444f8a26c6831fcc9cfa56e255fd0006",
+      "platform-healthy-r1/cursor-other-operation.json": "18b87fb3cb67ac96bdab7e5befa471c9b3323a24157ce799eb6fa92be77932a5",
+      "platform-healthy-r1/execution-refused.json": "c10ca293cfe4c8ab0060ed6dee147ff527e72beac58068c02e2042af88fc335a",
+      "platform-healthy-r1/legacy-context.json": "42785052cdf1eb771b2397f973c314744e2ca7266b725e015fedf057412c29b2",
+      "platform-healthy-r1/list.json": "18df95bb2c7c2050d3bcea3653b87895883bc975109ebad0a5986fdc1507b777",
+      "platform-healthy-r1/no-business-grant.json": "cfbd0e1194a7a0b22f4bbe65f97b67573bf4d22812ab9ea61f94543928d59695",
+      "platform-healthy-r1/no-write-DELETE.json": "0aa544357779ef8fd7dff07db43446bcd210247ee1fb35fb86359f6620ceb1a9",
+      "platform-healthy-r1/no-write-POST.json": "b3ddc65d2ee516938e264985005d6d092639687a6135277183ce12258fe62ece",
+      "platform-healthy-r1/no-write-PUT.json": "dcf02adb22169d930cd0ca152b5460b95940cfd3d4607bf9d719a426b653299d",
+      "platform-healthy-r1/observer-failure.json": "3988b58d2a6436367054f59f4dafe6be93087e2b1a1b46e8ecbcbf82e2a3a804",
+      "platform-healthy-r1/operations.json": "46a996b3f65bcd7e8a0318a4d652e60c1042d3689ee36ba0e5ef86d9d7b5be0a",
+      "platform-healthy-r1/permissions-restored.json": "7b4f2609ed898853ebe9b5f2c11452e300ef8502872f925de3412dd85f55b689",
+      "platform-healthy-r1/qa-card-not-selected.json": "cb2fa3fa3ebc1436bed3cd741f39591c47c4effe0fb32bc3c187d07495d36ece",
+      "platform-healthy-r1/qa-card-snapshot.json": "72422d4637de34fe557639910e551d03ad80679c24bd21dea16ffa637c19bb3c",
+      "platform-healthy-r1/qa-card.json": "a6998b2ead8b36a4ab70bac75bade88d49f5f9d933bc3d0bab40223a0d737125",
+      "platform-healthy-r1/qa-operation-snapshot.json": "047fe32598c7a827f56ca205779372fea74c9312c7761bd3a88d274c4bffb191",
+      "platform-healthy-r1/qa-operation.json": "47eadc3f48d389a86517f6a7eac08397a4330d57b6fbf073a91414406d55b27b",
+      "platform-healthy-r1/qa-unknown-card.json": "d38731ea271701a0d911987f84ec28a075b52f6ce3966794279b54c8c138477f",
+      "platform-healthy-r1/qa-work-order-snapshot.json": "adfdaaf37c7c8945ef03627ade49da3fbe2cd6406cbc998fbc9eb6321b84c871",
+      "platform-healthy-r1/qa-work-order.json": "bad95ac991ed7997401051fc37e7ff17dab7d2ec37f028c9d5c35010a91d928d",
+      "platform-healthy-r1/revoked-before-delivery.json": "158f2be6d134ad0fdb348593b036f1b64a935cd7533dfa4c5a28b24f975bce37",
+      "platform-healthy-r1/selected-context.json": "3ca638c106ba80a420d62090dd2da073ee073e509bbd54ecf65313807d23e291",
+      "platform-healthy-r1/stable-selected-context.json": "6052b8508d0b1f4b2421afd6a5d5482df8834c30120cf6d8f4133b31f04c288e",
+      "platform-healthy-r1/unauthenticated.json": "e803630a4fcb49652b7d0196063f34a84628ceea9af407c9de1be4bf507cf4d4",
+      "platform-healthy-r1/unknown-card.json": "972f2ca39489ccc60fc2078faca59ac7527d2e979e822d7cf0d7d65f9cdd2189",
+      "platform-healthy-r1/wrong-operation.json": "2ef971dbdb34f13d8bb582521d063622be0bea028813b77889267fb6fa1aeb99",
+      "platform-healthy-r2/card-missing-operation.json": "1095cca924914a76ff3fc5319e568f6691fdc4e7a6c0527ca3474e3618e90275",
+      "platform-healthy-r2/cards-first.json": "6e97eddd46985f60a8b9e62f7e295e18e6c6673108d8014890033a0a50a1b264",
+      "platform-healthy-r2/cards-next.json": "12d3fde3b36aba3537d818190d2277a608598346210da603463baab8491ea2e1",
+      "platform-healthy-r2/conversation-another-card.json": "a18c09d16a707c9497c13b2bc4f92c05bbd2139d592c5a7fd9a165ecc8a4b271",
+      "platform-healthy-r2/conversation-first-turn.json": "8b13fd598c22abcd4feb3f408b03ed107d58108f23154c32eaf159e36cdbc54b",
+      "platform-healthy-r2/conversation-history.json": "2c3cdc7348cffa2b15338a868e3df22e3b659d6b76ced48cae31d71431840e87",
+      "platform-healthy-r2/create-conversation.json": "c52b007aa63d37174510bd2d07f8c23a7b8aeffbcc8a281af3de55c2aeee4336",
+      "platform-healthy-r2/cross-company.json": "e7bd6db7d7e7ad44fd3e90ff296e1e961ae40db637dcf4c48b6e1af8800c8924",
+      "platform-healthy-r2/cross-order-card.json": "d0bacf5b02443e19383ba96b52ab2526f79f8951704af20674e284cc495c070c",
+      "platform-healthy-r2/cursor-other-operation.json": "31bc617ad61e393f40c949da9db3091bbb333f48d519268e310de2c7cc650084",
+      "platform-healthy-r2/execution-refused.json": "3e3048ca3c774c08ab89376a6e844d53078c2ead762d679ae641ccf901a031f6",
+      "platform-healthy-r2/legacy-context.json": "25ae3ee22a64c1eb04f055f38021f2c4f2dc2c2ba547ff0b33eeea8aaec70322",
+      "platform-healthy-r2/list.json": "44586791194507148ae499ba458950eae9822a93b55a5ab764a437797fa60aad",
+      "platform-healthy-r2/no-business-grant.json": "d33b63ab6b97cc7ef65c53ccb2783ced42df795abe2d09e3b42dcea484620922",
+      "platform-healthy-r2/no-write-DELETE.json": "0aa544357779ef8fd7dff07db43446bcd210247ee1fb35fb86359f6620ceb1a9",
+      "platform-healthy-r2/no-write-POST.json": "b3ddc65d2ee516938e264985005d6d092639687a6135277183ce12258fe62ece",
+      "platform-healthy-r2/no-write-PUT.json": "dcf02adb22169d930cd0ca152b5460b95940cfd3d4607bf9d719a426b653299d",
+      "platform-healthy-r2/operations.json": "44688e2311cc2e69ebdf6b111d6d9ac30384d64bfce3577bb184ea6cb0752a40",
+      "platform-healthy-r2/permissions-restored.json": "bcf33f0c1ebe68d3e3f4ba95bd303e3b8f888df25675b0ea86fa013200430d9c",
+      "platform-healthy-r2/qa-card-not-selected.json": "4e2dd7bcd714293101550e2bd1dcb7d88e83eae26dd569b6065a11f5cf9c726a",
+      "platform-healthy-r2/qa-card-snapshot.json": "ae788bb561910ddf801032fc9e5976d7d5e009735e5af27357ba93cc4f1d6898",
+      "platform-healthy-r2/qa-card.json": "75960950968ff08b3b42d2a4f48d16491b1ad9f232d267af45c02e2e03fcd7d2",
+      "platform-healthy-r2/qa-operation-snapshot.json": "bc3e1361570eb6c1cc72f4d872b4b9c36fa9499a21667ce92c5c49f13469af23",
+      "platform-healthy-r2/qa-operation.json": "bf3ddf2cf20906f3374449c48697838aed8c108800370026c2c9b93400368106",
+      "platform-healthy-r2/qa-unknown-card.json": "71c47238bc7643ebdb1fe5dce256a415f6d19a4fdf28231176ab044650b4c110",
+      "platform-healthy-r2/qa-work-order-snapshot.json": "4d181c5cf0a76c7cc138344be48587bbfd6810eea883fc254d3473f6a7e9f364",
+      "platform-healthy-r2/qa-work-order.json": "7df22d3e4d63875658c61fd5ee0e1b71c8174edcc96100233ffe295de310d7e7",
+      "platform-healthy-r2/revoked-before-delivery.json": "b9589438707ab178bf2d9b0c2bbb92516aa21dfcc27c9acd57f9b08da51db161",
+      "platform-healthy-r2/selected-context.json": "f2ac341e18abe921420fa5410985f5062b1db773f83b63eee848750ea9c7dafe",
+      "platform-healthy-r2/stable-selected-context.json": "bcce3e498c350b06578d35899e57970945d09107d4111479d5a3815bc4159659",
+      "platform-healthy-r2/summary.json": "6d1c8c3a756c0ea13563fde49bc9942985774715f6220fb445d9f73d242b9815",
+      "platform-healthy-r2/unauthenticated.json": "e803630a4fcb49652b7d0196063f34a84628ceea9af407c9de1be4bf507cf4d4",
+      "platform-healthy-r2/unknown-card.json": "e9168f02c88675b43b314e0b26167baff6ca4e0cfb0e7357b4dade0cf2f3d825",
+      "platform-healthy-r2/wrong-operation.json": "d3a113419a199ccff9d2d6a183261321c9df9cea83c574d9dae4c15ad3029b7a",
+      "platform-stale-card-r1/fresh-changed-card.json": "8ce1377a07a28b391b0ccd6121fc485e8d7f49942eac9724b37f08e7c37af941",
+      "platform-stale-card-r1/old-selected-card-revision.json": "81e5211982292e32ed64719882ed797010f43adbbee7369fda7d4bb52df7bcd0",
+      "platform-stale-card-r1/summary.json": "b64da10459a89fb280485d8bc2d8e0367f65daec5fc249aa8ecf69ee7546152d",
+      "platform-unavailable-r1/summary.json": "f31ba28d405d4bc8abd2812177225db034e38d5663c14f03856b70a3a34b2622",
+      "platform-unavailable-r1/unavailable.json": "5cea5114d770ea8d8c56541386fb81945f505808c6fcd33c137f9b894ee202f6",
+      "postgres-m1-r1/database-verification.json": "5c35011034cf60c5be6a7a27039bde48849c0fc3c19ac80b923ac085a672bc78",
+      "postgres-m3-r1/database-verification.json": "b078d02534fe7db33589043329c9510531908cc7ed56e55f0c2e888cffb644de",
+      "postgres-m4-r1/database-verification.json": "e59c35df0efda041ceb16491c35e84415658bace0138e3a443e10905e82aeb0c",
+      "prepare-failure.log": "637374b831372cbc03ef292b972718f40f1c5eba681b8525fc61bed267b526b6",
+      "prepare-resume-r2-1.log": "1dcba45db268cbd5b3569c9c37a640d857535ca0f401804ffb0a52567ed63278",
+      "runtime-config.json": "a26a0fa90de7f9752657e3b8016f000ff8714ca0d3181907f2d0a67563b35781",
+      "source-manifest.json": "31f39f144ce0b07435b6e2f064b12c73c9c694edc97ef73ef2e0bef33ffafd6d",
+      "source-secret-check.json": "39d96ffc97625c8a01926785718da7d763ca25b815a8e7e33357fe947ef39264",
+      "targeted-r5.xml": "766b26f33bf074684567b4629083a9a46c67ea13b31ad6226483fa34970e649b"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "status": "engineering_and_zero_model_readiness_passed",
+  "source_revision": "bc9925469c1b40e1e0ffd50cb626c883e187a39e",
+  "engineering": {
+    "nonintegration": {
+      "passed": 2135,
+      "skipped": 1,
+      "integration_deselected": 95
+    },
+    "capability_checks": 65,
+    "readiness_replay": 112,
+    "postgres_m3": 11,
+    "postgres_m4": 12,
+    "frontend": 48,
+    "checks_overlap": true,
+    "provider_calls": 0,
+    "real_model_accuracy_claimed": false
+  },
+  "runtime": {
+    "image": "enterprise-knowledge-manufacturing:phase1-capability-20261107-r1",
+    "image_id": "sha256:210b7f89c1baf27fc52e4251c6c5ac7eb964c03519a5df1d2dd6292597c64c00",
+    "backend_code_sha256": "afb4b2066f65374279c42a6c7403a68a4c923ff52b5b7fe9fcf5abd943354d5f",
+    "runtime_fingerprint": "ef0a44136e2cb65a16fa3285c7f9f644d92268ea31836840208abc452ed76067",
+    "host_port_8002_authenticated_get": 200,
+    "provider_calls": 0,
+    "capability_refusals": 3,
+    "context_reads": 20,
+    "source_p95_ms": 21.544,
+    "published_documents": 13,
+    "sql_chunks": 53,
+    "vector_records": 53,
+    "acceptance_qa_snapshots_written": 3,
+    "mes_writes": 0
+  },
+  "containers": [
+    {
+      "name": "manufacturing-phase1-api",
+      "image": "enterprise-knowledge-manufacturing:phase1-capability-20261107-r1",
+      "image_id": "sha256:210b7f89c1baf27fc52e4251c6c5ac7eb964c03519a5df1d2dd6292597c64c00",
+      "status": "running",
+      "health": "healthy"
+    },
+    {
+      "name": "manufacturing-phase1-mes",
+      "image": "enterprise-knowledge-manufacturing:phase1-capability-20261107-r1",
+      "image_id": "sha256:210b7f89c1baf27fc52e4251c6c5ac7eb964c03519a5df1d2dd6292597c64c00",
+      "status": "running",
+      "health": null
+    },
+    {
+      "name": "manufacturing-phase1-indexer",
+      "image": "enterprise-knowledge-manufacturing:phase1-m4-20261101-r4",
+      "image_id": "sha256:11489962d2bf3f84c47a9c9da27f80ab7045a048869998c6d73b93070b85a1b8",
+      "status": "exited",
+      "health": null
+    },
+    {
+      "name": "enterprise-knowledge-api",
+      "image": "enterprise-knowledge-manufacturing:response-type-33e13b5",
+      "image_id": "sha256:a105a27fae8ed06ff2f1136860594266d79ea7d4ed136e31238f2bdc03358bd8",
+      "status": "running",
+      "health": "healthy"
+    },
+    {
+      "name": "enterprise-knowledge-evidence-first-api",
+      "image": "enterprise-knowledge-manufacturing:timeout-868005e",
+      "image_id": "sha256:88cba4b97e7137a738b93543e8bb54e068a9c0083671df3c90cc90991e5493eb",
+      "status": "running",
+      "health": "healthy"
+    }
+  ],
+  "data_reindexed": false,
+  "rollback_image": "enterprise-knowledge-manufacturing:phase1-m4-20261101-r4",
+  "backup": "tmp/manufacturing-phase1-m4/runtime-r1/backup-capability-20261107-r1",
+  "full_restore_exercised": false,
+  "latest_real_model_evaluation": {
+    "version": "r4",
+    "automatic_passed": 31,
+    "total": 40,
+    "critical_passed": 9,
+    "critical_total": 12,
+    "release_gate_passed": false
+  },
+  "new_paid_evaluation_started": false,
+  "next_authorization_draft": {
+    "phase": "development",
+    "max_cases": 16,
+    "max_model_calls": 128,
+    "max_tokens": 800000,
+    "max_seconds": 1440,
+    "reservation_tokens": 32000,
+    "approved": false,
+    "pricing_configured": false,
+    "fees": "unknown"
+  },
+  "pending": [
+    "new real-model accuracy",
+    "formal 40-case acceptance",
+    "real improvement closure",
+    "browser visual acceptance"
+  ],
+  "private_evidence_roots": [
+    "tmp/manufacturing-capability-20261106/",
+    "tmp/manufacturing-capability-runtime-20261107-r1/"
+  ],
+  "limitation": "Inference is hard-disabled in this one-off process. Not formal model accuracy, gateway QA, browser acceptance or a real improvement closure."
+}

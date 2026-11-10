@@ -26,6 +26,8 @@ class FakeVectorStore:
         for row in self.records.values():
             if not scope.contains(row["tenant_id"], row["knowledge_base_id"]) or row["generation"] not in generations:
                 continue
+            if scope.manufacturing is not None and row["document_id"] not in set(map(str, scope.manufacturing.document_ids)):
+                continue
             embedding = row["embedding"]
             norm = sqrt(sum(x*x for x in vector) * sum(x*x for x in embedding))
             score = sum(x*y for x, y in zip(vector, embedding, strict=True)) / norm if norm else 0

@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from functools import lru_cache
 from importlib.metadata import version, PackageNotFoundError
 import platform
+import hashlib
+from pathlib import Path
 
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
@@ -44,13 +46,28 @@ def runtime_config(settings):
     values["endpoint_hashes"] = {key: digest(getattr(settings, key, None)) for key in ("chat_base_url", "rerank_url")}
     values["pricing_hash"] = digest(json.dumps(getattr(settings, "model_usage_prices", {}), sort_keys=True, default=str))
     values.update(pipeline=pipeline_fingerprint(), scorer=VERIFICATION_SCORER, dependencies=dependency_versions())
+    from ..manufacturing.evaluation_sources import CONNECTOR_CONTRACT
+    from ..evaluation.manufacturing_metrics import SCORER_VERSION as MANUFACTURING_SCORER
+    values["manufacturing"] = dict(connector_contract=CONNECTOR_CONTRACT, scorer=MANUFACTURING_SCORER)
+    from ..manufacturing.source_registration import LIVE_SOURCE_CONTRACT
+    from ..evaluation.manufacturing_execution_metrics import SCORER_VERSION as EXECUTION_SCORER
+    values['manufacturing'].update(live_connector_contract=LIVE_SOURCE_CONTRACT, execution_scorer=EXECUTION_SCORER)
+    from ..manufacturing.source_registration import OPENMES_SOURCE_CONTRACT
+    from ..evaluation.openmes_metrics import SCORER_VERSION as OPENMES_SCORER
+    values['manufacturing'].update(openmes_connector_contract=OPENMES_SOURCE_CONTRACT,openmes_scorer=OPENMES_SCORER)
+    for name in ("manufacturing_evaluation_registry", "manufacturing_sources_file"):
+        path = getattr(settings, name, None)
+        try:
+            values["manufacturing"][name + "_sha256"] = hashlib.sha256(Path(path).read_bytes()).hexdigest() if path else None
+        except OSError:
+            values["manufacturing"][name + "_sha256"] = "unavailable"
     return dict(values=values, fingerprint=digest(values))
 
 
 class VerificationStore:
     def __init__(self, session, principal, settings):
         self.session, self.principal, self.settings = session, principal, settings
-        self.reviews = ReviewStore(session, principal)
+        self.reviews = ReviewStore(session, principal, settings)
 
     def inputs(self, fixed_id, feedback_id, *, require_current=True):
         samples, bindings, current = [], {}, True
@@ -215,6 +232,9 @@ class VerificationStore:
             raise ReviewConflict("样本、语料、范围或评分口径不同，不能比较。")
         policy = policy or dict(max_latency_ratio=1.5, max_token_ratio=1.3)
         failures, partitions = [], {}
+        if (any(row.get("sample", {}).get("input_kind") == "manufacturing" for row in candidate.records_json)
+                and baseline.runtime_json.get("fingerprint") == candidate.runtime_json.get("fingerprint")):
+            failures.append("manufacturing_change_not_observed")
         before = {row["sample"]["id"]: row for row in baseline.records_json}
         after = {row["sample"]["id"]: row for row in candidate.records_json}
         expected = set(baseline.inputs_json["fixed"]["sample_ids"] + baseline.inputs_json["feedback"]["sample_ids"])

@@ -6,7 +6,8 @@ export function createVerificationWorkspace({ $, element, api, state, sameContex
   const canManage = () => !!state.auth?.authenticated && (state.kb ? state.kb.permission === "admin" : state.bases.some(kb => kb.permission === "admin"));
   const live = (revision, token) => sameContext(revision) && token === detailEpoch && $("verification-dialog").open;
   const button = (text, action) => { const node = element("button", text, "secondary"); node.type = "button"; node.addEventListener("click", action); return node; };
-  function updateControls() { $("verification-nav").disabled = !canManage(); $("evaluation-submit").disabled = !canManage() || !$("evaluation-consent").checked; }
+  function updateControls() { $("verification-nav").disabled = !canManage(); $("evaluation-submit").disabled = !canManage() || !$("evaluation-consent").checked;
+    for (const id of ['evaluation-max-calls', 'evaluation-max-tokens']) $(id).disabled = $("evaluation-mode").value === 'zero'; }
   function reset() {
     epoch += 1; detailEpoch += 1; clearTimeout(polling); jobs = [];
     $("evaluation-consent").checked = false; $("verification-jobs").replaceChildren(); $("improvement-list").replaceChildren();
@@ -136,10 +137,12 @@ export function createVerificationWorkspace({ $, element, api, state, sameContex
   $("evaluation-form").addEventListener("submit",async event=>{
     event.preventDefault(); if(!canManage()||!$("evaluation-consent").checked)return;
     const revision=state.revision; $("evaluation-submit").disabled=true;
-    try { await api("/api/quality/evaluations",{method:"POST",body:JSON.stringify({fixed_dataset_id:$("evaluation-fixed").value,feedback_dataset_id:$("evaluation-feedback").value,allow_model_calls:true,
-      max_cases:Number($("evaluation-max-cases").value),max_model_calls:Number($("evaluation-max-calls").value),max_tokens:Number($("evaluation-max-tokens").value),max_seconds:Number($("evaluation-max-seconds").value)})});
+      const zero = $("evaluation-mode").value === 'zero';
+      try { await api("/api/quality/evaluations",{method:"POST",body:JSON.stringify({fixed_dataset_id:$("evaluation-fixed").value,feedback_dataset_id:$("evaluation-feedback").value,allow_model_calls:!zero,
+        max_cases:Number($("evaluation-max-cases").value),max_model_calls:zero?0:Number($("evaluation-max-calls").value),max_tokens:zero?0:Number($("evaluation-max-tokens").value),max_seconds:Number($("evaluation-max-seconds").value)})});
       if(sameContext(revision)){ $("evaluation-consent").checked=false; await refresh(); }
     }catch(error){if(sameContext(revision))errorNotice(error);}finally{updateControls();}
   });
-  return { reset, updateControls, refresh, createForCase: id=>showImprovement(id), pause:()=>{clearTimeout(polling);} };
+    $("evaluation-mode").addEventListener('change',()=>{ $("evaluation-consent").checked=false; updateControls(); });
+    return { reset, updateControls, refresh, createForCase: id=>showImprovement(id), pause:()=>{clearTimeout(polling);} };
 }

@@ -1,0 +1,100 @@
+{
+  "schema_version": "manufacturing-targeted-confirmation-v1",
+  "client_date": "2026-11-09",
+  "status": "targeted_confirmation_passed",
+  "source_revision": "8bec4d9f4efe26a7a3c3a7f3a06f2c104fbe6c6e",
+  "image_id": "sha256:1d891cbb1a655384370c81920c2a26b5e96440fc19cd76ec151e16aebac27de9",
+  "runtime_fingerprint": "b6458d822713e76728415dfd399d65d3e193f58d4b76c2759232f879ba3faafa",
+  "case_ids": [
+    "MFGWO-Q001",
+    "MFGWO-Q002"
+  ],
+  "limits": {
+    "max_cases": 2,
+    "max_model_calls": 16,
+    "max_tokens": 100000,
+    "max_seconds": 300,
+    "reservation_tokens": 32000
+  },
+  "approval_text": "批准这两题确认",
+  "authorization_closed": true,
+  "results": {
+    "total": 2,
+    "automatic_proxy_passed": 2,
+    "assistant_non_independent_passed": 2,
+    "independent_human_review": false,
+    "http_errors": 0,
+    "critical_targeted_subset": {
+      "total": 0,
+      "passed": 0
+    },
+    "not_a_full_development_score": true,
+    "combined_with_previous_batches": false,
+    "confirmation_passed": true,
+    "correct_positive_answer_count": 2,
+    "correct_positive_answer_p95_ms": 3932.17,
+    "source_p95_ms": 27.583
+  },
+  "usage": {
+    "status": "reconciled",
+    "physical_calls": 2,
+    "known_tokens": 10647,
+    "unknown_usage_calls": 0,
+    "budget_tokens": 10647,
+    "by_stage": {
+      "answer_generation": 2
+    },
+    "trace_and_ledger_match": true,
+    "unpriced_calls": 2,
+    "fees": "unknown",
+    "additional_model_calls": 0,
+    "ledger_sha256": "a94430ad1f9acee22c8ea4fadeb147ded69dabbc0c627b1e4076f82e9f0dac7d",
+    "elapsed_seconds": 13.996
+  },
+  "case_reviews": [
+    {
+      "case_id": "MFGWO-Q001",
+      "verdict": "passed",
+      "reason": "直接交付当前工单WO-017的产品型号HC-A17，唯一业务引用绑定product_model及一致来源哈希，无文档引用或实际执行断言。",
+      "source_reads": 3,
+      "source_and_permissions_verified": true
+    },
+    {
+      "case_id": "MFGWO-Q002",
+      "verdict": "passed",
+      "reason": "直接交付当前工单WO-017登记工序OP-20，唯一业务引用绑定operation_code及一致来源哈希，无文档引用或实际执行断言。",
+      "source_reads": 3,
+      "source_and_permissions_verified": true
+    }
+  ],
+  "preserved": {
+    "raw_report_sha256": "a0045f5edea7fa6bedf6dec41209439133c92a61075170855c0df841ec50a35f",
+    "reviews_sha256": "b3f4d02800a5be87e24095a26983134b164655162435d5126b0acecb3d5034b3",
+    "raw_manifest_sha256": "1719d52e2bfcb1905745001882ec7a94bfa86a73ec0d364f76471ab45e8d8134"
+  },
+  "private_artifacts": "tmp/manufacturing-source-units-runtime-20261109-r4/confirmation-r1/",
+  "prior_complete_development": {
+    "batch": "2026-11-09-development-r2",
+    "passed": 11,
+    "total": 16,
+    "critical_passed": 4,
+    "critical_total": 6,
+    "gate_passed": false
+  },
+  "formal_status": {
+    "batch": "2026-11-01-r4",
+    "passed": 31,
+    "total": 40,
+    "critical_passed": 9,
+    "critical_total": 12,
+    "release_gate_passed": false
+  },
+  "new_full_development_executed": false,
+  "new_formal_executed": false,
+  "new_closure_executed": false,
+  "limitations": [
+    "仅两题字段场景定向确认；助手复核非独立，不与旧批次拼接成绩，也不证明完整开发或正式门槛通过。",
+    "旧11/16、2/5、1/3和正式31/40失败记录保留；没有自动重试、补跑或复用剩余额度。",
+    "供应商单价未配置，费用未知。"
+  ]
+}

@@ -83,7 +83,7 @@ def test_schema_failure_gets_one_shared_budget_repair_and_safe_field_diagnostics
 
 
 def test_schema_second_failure_returns_explicit_failure_without_unbounded_retry(monkeypatch):
-    service, calls, _ = schema_service(monkeypatch, candidate=RuntimeError('private error details'))
+    service, calls, _ = schema_service(monkeypatch, candidate=TimeoutError('private error details'))
     with capture_trace() as trace:
         result = answer(service, '温度是多少？')
     assert not result.answerable and not result.citations and len(calls) == 1

@@ -1,0 +1,12 @@
+{
+  "schema_version": "mes-sources-v1",
+  "sources": [
+    {
+      "source_system_id": "mock-mes-hc",
+      "tenant_id": "e64d4c68-86f2-4b22-997d-37d480f31a01",
+      "base_url": "http://127.0.0.1:8010",
+      "allowed_plants": ["HC-P01", "HC-P02"],
+      "token_env": "MOCK_MES_READ_TOKEN"
+    }
+  ]
+}

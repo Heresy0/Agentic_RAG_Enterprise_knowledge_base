@@ -1,0 +1,7 @@
+{
+  "tenant_id": "00000000-0000-0000-0000-000000000001",
+  "source_system_id": "openmes-hc",
+  "base_url": "http://backend:8000",
+  "line_plants": {"1": "HC-P01"},
+  "upstream_tenant_id": 1
+}

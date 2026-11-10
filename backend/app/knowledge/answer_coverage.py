@@ -111,7 +111,7 @@ def _quote_warnings(draft: GenerationAnswerDraft, context=None) -> list[str]:
         elif quote and context is not None:
             cited = {citation for index in row.claim_indices if 1 <= index <= len(draft.claims)
                      for citation in draft.claims[index - 1].citations}
-            candidates = [item for item in context.items
+            candidates = [item for item in [*context.items, *context.business_items]
                           if row.status != 'answered' or item.citation_id in cited]
             if not any(quote in re.sub(r'\s+', '', item.content) for item in candidates):
                 warnings.append('原文摘录不在对应引用资料中：' + row.requirement_id)

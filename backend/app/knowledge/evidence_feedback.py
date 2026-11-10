@@ -5,16 +5,16 @@ import time
 import unicodedata
 from dataclasses import dataclass
 
-from sqlalchemy.exc import SQLAlchemyError
 
 from ..evaluation.trace import (capture_trace, record_feedback_retrieval, record_documents,
                                 record_rag_event, record_scope)
-from ..security.authorization import AuthorizationDenied
 from .answer_coverage import coverage_errors, question_requirements
 from .answer_models import AnswerDraft
 from .answer_validation import AnswerValidator
 from .evidence_coordinator import EvidenceAccess
 from .evidence_selection import select_evidence
+from .generation_errors import RECOVERABLE_GENERATION_ERRORS
+from .milvus_store import VectorStoreUnavailable
 from .rag_budget import current_rag_budget, query_key, RagBudgetExceeded
 from .request_budget import evidence_deadline
 from .temporal import future_certainty_gap
@@ -149,7 +149,7 @@ class EvidenceFeedback:
                 return result
             merged = self.coordinator._merge(current, extra, scope, interleave=True)
             merged = self.retrieval.refresh_evidence(merged, scope=scope, session=session)
-            merged = select_evidence(question, merged)
+            merged = select_evidence(question, merged, scope=scope)
             enlarged = self.builder.build(merged, question=question)
             if enlarged.incomplete_reason:
                 record_rag_event(dict(kind="feedback", outcome="context_budget_incomplete"))
@@ -157,7 +157,7 @@ class EvidenceFeedback:
             if not all(item in context_signature(enlarged) for item in context_signature(context)):
                 record_rag_event(dict(kind="feedback", outcome="required_evidence_lost"))
                 return result
-            if future_certainty_gap(question, enlarged.items):
+            if not enlarged.business_items and future_certainty_gap(question, enlarged.items):
                 record_rag_event(dict(kind="feedback", outcome="future_policy_gap"))
                 return result
             existing_content = {_content_key(item.content) for item in context.items}
@@ -189,13 +189,11 @@ class EvidenceFeedback:
             result.regenerated = True
             record_rag_event(dict(kind="feedback", outcome="regenerated"))
             return result
-        except (AuthorizationDenied, SQLAlchemyError):
-            raise
         except RagBudgetExceeded:
             guard.require()
             record_rag_event(dict(kind="feedback", outcome="shared_budget"))
             return result
-        except Exception as exc:
+        except (VectorStoreUnavailable, *RECOVERABLE_GENERATION_ERRORS) as exc:
             guard.require()
             logger.warning("rag.feedback_failed error_type=%s", type(exc).__name__)
             record_rag_event(dict(kind="feedback", outcome="fallback", error_type=type(exc).__name__))

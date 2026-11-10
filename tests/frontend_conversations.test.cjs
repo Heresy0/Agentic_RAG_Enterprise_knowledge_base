@@ -61,7 +61,8 @@ function setup() {
   vm.createContext(sandbox);
   const qualitySource = fs.readFileSync(path.join(__dirname, "../backend/app/static/quality.js"), "utf8").replace("export function", "function");
   const verificationSource = fs.readFileSync(path.join(__dirname, "../backend/app/static/verification.js"), "utf8").replace("export function", "function");
-  const source = qualitySource + "\n" + verificationSource + "\n" + fs.readFileSync(path.join(__dirname, "../backend/app/static/app.js"), "utf8")
+  const openmesSource = fs.readFileSync(path.join(__dirname, "../backend/app/static/openmes.js"), "utf8").replace("export function", "function");
+  const source = qualitySource + "\n" + verificationSource + "\n" + openmesSource + "\n" + fs.readFileSync(path.join(__dirname, "../backend/app/static/app.js"), "utf8")
     .replace(/^import .*;\r?\n/gm, "").replace(/init\(\);\s*$/, "");
   vm.runInContext(source, sandbox);
   vm.runInContext('state.auth = { authenticated: true, epoch: 0, name: "Alice", token: async () => "test" }; state.kb = { id: "kb1", permission: "viewer" };', sandbox);
@@ -69,6 +70,172 @@ function setup() {
   const ask = async question => { $("question").value = question; await $("question-form").listeners.submit({ preventDefault() {} }); };
   return { $, requests, run, ask, sandbox };
 }
+
+function openmesSetup() {
+  const h = setup(); h.saved = [];
+  const makeContext = selected => ({ work_order_id: "1", work_order_number: "MES-WO-1", source_system_id: "openmes-hc", source_record_id: "1",
+    status: "IN_PROGRESS", actual_started_at: null, last_verified_at: "2026-11-10T08:00:00Z",
+    source_revision: `revision-${selected.batch_id || "parent"}-${selected.step_id || "parent"}`,
+    payload_sha256: `payload-${selected.batch_id || "parent"}-${selected.step_id || "parent"}`,
+    batch: selected.batch_id ? { batch_id: selected.batch_id, batch_number: 1, status: "IN_PROGRESS", actual_started_at: "2026-11-09T08:10:00Z" } : null,
+    step: selected.step_id ? { step_id: selected.step_id, name: "<img src=x>", status: "PENDING", actual_started_at: null } : null });
+  h.sandbox.fetch = async (url, options = {}) => {
+    const body = options.body ? JSON.parse(options.body) : null;
+    h.requests.push({ url, method: options.method || "GET", body });
+    const parsed = new URL(url, "http://localhost"); let data = makeContext(Object.fromEntries(parsed.searchParams));
+    if (url.endsWith("/batches")) data = { items: [{ batch_id: "10", batch_number: 1, status: "IN_PROGRESS" }] };
+    if (url.endsWith("/steps")) data = { items: ["101", "102"].map(step_id => ({ step_id, step_number: 1, name: "<img src=x>", status: "PENDING" })) };
+    if (parsed.pathname === "/api/manufacturing/conversations") {
+      if (body) { data = { id: `mes-${h.saved.length + 1}`, binding: { ...body }, title: "MES", turns: [] }; h.saved.push(data); }
+      else data = { items: h.saved };
+    } else if (parsed.pathname.includes("/conversations/")) data = h.saved.find(row => row.id === parsed.pathname.split("/").at(-1));
+    if (parsed.pathname === "/api/manufacturing/qa") {
+      data = { answer: "来源中的字段", answerable: true, response_type: "answer", citations: [], work_order_context: makeContext(body), business_citations: [], claim_bindings: [] };
+      h.saved.find(row => row.id === body.conversation_id).turns.push({ question: body.question, result: data });
+    }
+    return { status: 200, ok: true, headers: new Headers(), json: async () => data };
+  };
+  h.run("state.mode = 'manufacturing'; state.manufacturing.orderId = '1'; state.manufacturing.batchStepSupported = true;");
+  return h;
+}
+
+test("OpenMES selects real batch/step IDs with GET-only requests and renders names as text", async () => {
+  const h = openmesSetup();
+  await h.run("loadManufacturingSelection(true, true)");
+  h.$("openmes-batch").value = "10"; await h.$("openmes-batch").listeners.change();
+  assert.equal(h.$("openmes-step").children[1].textContent, "1. <img src=x> · PENDING");
+  h.$("openmes-step").value = "101"; await h.$("openmes-step").listeners.change();
+  await new Promise(resolve => setTimeout(resolve, 0));
+  assert.ok(h.requests.some(x => x.url.includes("batch_id=10&step_id=101")));
+  assert.ok(h.requests.every(x => x.method === "GET"));
+  assert.equal(h.$("openmes-execution").hidden, false);
+});
+
+test("OpenMES late responses after a scope change cannot restore execution data", async () => {
+  const h = openmesSetup(); let release;
+  h.sandbox.fetch = () => new Promise(resolve => { release = resolve; });
+  const pending = h.run("openmesWorkspace.select('1', {}, {})");
+  await new Promise(resolve => setTimeout(resolve, 0));
+  h.run("state.revision += 1; openmesWorkspace.clear();");
+  release({ status: 200, ok: true, headers: new Headers(), json: async () => ({ items: [{ batch_id: "private" }] }) });
+  await pending;
+  assert.equal(h.$("openmes-execution").hidden, true);
+  assert.equal(h.$("openmes-context").children.length, 0);
+});
+
+test("OpenMES authorization failure clears parent and selected execution data", async () => {
+  const h = openmesSetup(); await h.run("loadManufacturingSelection(true, true)");
+  h.sandbox.fetch = async () => ({ status: 404, ok: false, headers: new Headers(), json: async () => ({ detail: { message: "不可访问" } }) });
+  await h.$("openmes-refresh").listeners.click();
+  await new Promise(resolve => setTimeout(resolve, 0));
+  assert.equal(h.$("openmes-execution").hidden, true);
+  assert.equal(h.$("openmes-context").children.length, 0);
+  assert.equal(h.run("state.manufacturing.context"), null);
+  assert.equal(h.run("state.manufacturing.orderId"), null);
+});
+
+test("OpenMES expired authentication during choice loading clears the already rendered source", async () => {
+  const h = openmesSetup(); const fetch = h.sandbox.fetch;
+  h.run("state.auth.clear = function() { this.authenticated = false; this.epoch += 1; };");
+  h.sandbox.fetch = async (url, options) => url.endsWith("/batches")
+    ? { status: 401, ok: false, headers: new Headers(), json: async () => ({ detail: "过期" }) }
+    : fetch(url, options);
+  await h.run("loadManufacturingSelection(true, true)");
+  assert.equal(h.$("openmes-execution").hidden, true);
+  assert.equal(h.$("openmes-context").children.length, 0);
+  assert.equal(h.run("state.manufacturing.context"), null);
+});
+
+test("OpenMES QA keeps the selected batch/step in each turn and switching starts a new conversation", async () => {
+  const h = openmesSetup(); await h.run("loadManufacturingSelection(true, true)");
+  h.$("openmes-batch").value = "10"; await h.$("openmes-batch").listeners.change();
+  h.$("openmes-step").value = "101"; await h.$("openmes-step").listeners.change();
+  await h.ask("当前步骤何时开工？"); await h.ask("这个批次呢？");
+  let calls = h.requests.filter(x => x.url === "/api/manufacturing/qa");
+  assert.equal(calls.length, 2); assert.equal(calls[0].body.conversation_id, calls[1].body.conversation_id);
+  assert.ok(calls.every(x => x.body.batch_id === "10" && x.body.step_id === "101" && !("actual_started_at" in x.body)));
+  h.$("openmes-step").value = "102"; await h.$("openmes-step").listeners.change();
+  assert.equal(h.run("state.conversationId"), null);
+  await h.ask("现在的步骤呢？");
+  calls = h.requests.filter(x => x.url === "/api/manufacturing/qa");
+  assert.notEqual(calls[2].body.conversation_id, calls[0].body.conversation_id); assert.equal(calls[2].body.step_id, "102");
+});
+
+test("OpenMES restored history preserves frozen selection and current citations reread the same source", async () => {
+  const h = openmesSetup(); await h.run("loadManufacturingSelection(true, true)");
+  h.$("openmes-batch").value = "10"; await h.$("openmes-batch").listeners.change();
+  h.$("openmes-step").value = "101"; await h.$("openmes-step").listeners.change(); await h.ask("何时开工？");
+  await h.run("restoreConversation('mes-1')");
+  assert.equal(h.run("state.manufacturing.batchId"), "10"); assert.equal(h.run("state.manufacturing.stepId"), "101");
+  assert.equal(h.$("openmes-step").value, "101"); assert.equal(h.$("openmes-step").disabled, true);
+  await h.run("previewBusinessCitation({citation_id:'业务1',work_order_id:'1',batch_id:'10',step_id:'101',field_name:'step_actual_started_at',source_revision:'revision-10-101',payload_sha256:'payload-10-101'}, null)");
+  assert.ok(h.requests.at(-1).url.includes("batch_id=10&step_id=101"));
+  assert.equal(h.$("citation-content").textContent, "null");
+  assert.equal(h.run("openmesWorkspace.fieldValue({batch_no:null,batch:{lot_number:'LOT'}}, 'batch_no')"), null);
+});
+
+for (const execution of [false, true, "batch"]) test(`manufacturing review preserves ${execution === "batch" ? "batch/step" : execution ? "execution" : "legacy"} source identity`, async () => {
+  const { $, run, sandbox } = setup(); admin(run);
+  const data = qualityData(); data.source.snapshot.context.items = [];
+  const evidence = {citation_id:"业务2",field_name:"product_model",value:"<script>型号</script>",source_system_id:"mock-mes-hc",source_record_id:"source-1",source_revision:"r1",payload_sha256:"a".repeat(64),last_verified_at:"2026-11-01T00:00:00Z"};
+  if (execution === true) Object.assign(evidence, { field_name:"job_card_status", source_entity:"Job Card", source_record_id:"JC-A", operation_id:"ROW-A", job_card_id:"JC-A", actual_start_precision:"datetime" });
+  if (execution === "batch") Object.assign(evidence, { field_name:"step_status", source_entity:"Batch Step", source_record_id:"11", batch_id:"1", step_id:"11", actual_start_precision:"datetime" });
+  data.source.business_evidence_options = [evidence];
+  let submitted;
+  sandbox.fetch = async (url, options = {}) => {
+    if(options.method === "PUT") { submitted=JSON.parse(options.body); return jsonResponse(data); }
+    if(options.method === "POST") return jsonResponse(data);
+    return jsonResponse({items:[],next_cursor:null});
+  };
+  await run('qualityWorkspace.open("run1")');
+  const row=$("quality-detail").querySelector(".quality-evidence");
+  assert.match(row.children[0].children[1].textContent, /<script>型号<\/script>/);
+  assert.equal(row.children.filter(node=>node.tag==="textarea").length,0);
+  row.children[0].children[0].checked=true;
+  await $("quality-detail").querySelector(".quality-form").listeners.submit({preventDefault(){}});
+  assert.deepEqual(submitted.evidence,[]);
+  assert.deepEqual(submitted.business_evidence,[Object.fromEntries(["citation_id","field_name","value","source_system_id","source_record_id","source_revision","payload_sha256",...(execution === "batch" ? ["source_entity","batch_id","step_id","actual_start_precision"] : execution ? ["source_entity","operation_id","job_card_id","actual_start_precision"]:[])].map(key=>[key,evidence[key]]))]);
+});
+
+test("OpenMES mapping review submits the displayed step/source and starts a fresh conversation", async () => {
+  const h = openmesSetup(), original = h.sandbox.fetch; let submitted;
+  h.run("state.kb.permission = 'admin'; state.manufacturing.batchId = '10'; state.manufacturing.stepId = '101'; state.conversationId = 'old';");
+  const mapping = { document_id: "guide-2", document_code: "WI-020", business_revision: "2.0", operation_code: "OP-20", document_version: 1 };
+  h.sandbox.fetch = async (url, options = {}) => {
+    if (url.includes("/guidance-mapping")) {
+      if (options.method === "PUT") { submitted = { url, ...JSON.parse(options.body) }; return jsonResponse({revision:2}); }
+      if (url.includes("/candidates?")) return jsonResponse({items:[mapping],source_revision:"revision-10-101"});
+      return jsonResponse({revision:1,mapping:{state:"draft",data:mapping,review_note:"逐项审核"},history:[]});
+    }
+    return original(url, options);
+  };
+  await h.run("loadManufacturingSelection(false, false)");
+  const target=h.$("openmes-mapping"); assert.equal(target.hidden,false);
+  await target.children[2].listeners.click();
+  const form=target.children[3], enable=form.children.find(row=>row.textContent==="复核并启用");
+  assert.equal(enable.disabled,false); await enable.listeners.click();
+  assert.match(submitted.url,/batches\/10\/steps\/101\/guidance-mapping\?knowledge_base_id=kb1/);
+  assert.equal(submitted.expected_revision,1);assert.equal(submitted.expected_source_revision,"revision-10-101");
+  assert.equal(submitted.state,"reviewed");assert.equal(submitted.document_id,"guide-2");assert.equal(submitted.operation_code,"OP-20");
+  assert.equal(h.run("state.conversationId"),null);
+});
+
+test("OpenMES mapping history never accepts a late response after a scope change", async () => {
+  const h=openmesSetup();h.run("state.kb.permission='admin';state.manufacturing.batchId='10';state.manufacturing.stepId='101';");
+  await h.run("loadManufacturingSelection(false,false)");let release;
+  h.sandbox.fetch=()=>new Promise(resolve=>{release=resolve;});
+  const pending=h.$("openmes-mapping").children[2].listeners.click();await new Promise(resolve=>setTimeout(resolve,0));
+  h.run("state.revision+=1;openmesWorkspace.clear();");release(jsonResponse({revision:1,mapping:{review_note:"PRIVATE-LATE"},history:[]}));await pending;
+  assert.equal(h.$("openmes-mapping").children.length,0);assert.equal(h.$("openmes-mapping").hidden,true);
+});
+
+test("OpenMES mapping permission loss clears the previously loaded review form", async () => {
+  const h=openmesSetup();h.run("state.kb.permission='admin';state.manufacturing.batchId='10';state.manufacturing.stepId='101';");
+  await h.run("loadManufacturingSelection(false,false)");
+  h.sandbox.fetch=async()=>jsonResponse({detail:{message:"无审核权限"}},404);
+  await h.$("openmes-mapping").children[2].listeners.click();
+  assert.equal(h.$("openmes-mapping").children.length,1);assert.match(h.$("openmes-mapping").children[0].textContent,/无法核验/);
+});
 
 test("first question creates a conversation, followup reuses it, new conversation resets it", async () => {
   const { $, requests, run, ask } = setup();
@@ -516,4 +683,199 @@ test("late improvement dialog response after logout cannot restore private conte
   const pending=run('verificationWorkspace.createForCase("case1")');await new Promise(resolve=>setImmediate(resolve));
   run("resetWorkspace()");finish(jsonResponse({items:[]}));await pending;
   assert.equal($("verification-dialog").open,false);assert.equal($("verification-detail").children.length,0);
+});
+
+function manufacturingSetup() {
+  const h = setup(), original = h.sandbox.fetch, records = new Map(), saved = [];
+  for (const id of ["WO-017", "WO-018"]) records.set(id, { work_order_id: id, product_model: "HC-A17", operation_code: "OP-20",
+    actual_started_at: id === "WO-018" ? "2026-09-28" : "2026-10-26T08:10:00+08:00", actual_start_precision: id === "WO-018" ? "date" : "datetime",
+    route_revision: null, source_revision: "r1", source_system_id: "mock-mes-hc", payload_sha256: "fixture-hash-"+id, last_verified_at: "2026-10-31T08:00:00+08:00" });
+  const citation = id => ({ citation_id: "业务2", field_name: "product_model", value: "HC-A17", work_order_id: id,
+    source_system_id: "mock-mes-hc", source_record_id: "record-"+id, source_revision: "r1", payload_sha256: records.get(id).payload_sha256, last_verified_at: records.get(id).last_verified_at });
+  let sequence = 0;
+  const response = body => ({ answer: "本轮工单来源事实 <script>只作文本</script>", answerable: true, citations: [],
+    business_citations: [citation(body.work_order_id)], run_id: "mfg-run", work_order_context: records.get(body.work_order_id),
+    applicability: { state: "applicable", business_revision: "1.0", document_code: "HC-WI-A17-020", documents: [], evidence: [] } });
+  h.sandbox.fetch = async (url, options = {}) => {
+    if (!url.startsWith("/api/manufacturing") && !url.startsWith("/api/qa/runs/mfg-run")) return original(url, options);
+    const body = options.body ? JSON.parse(options.body) : null;
+    h.requests.push({ url, method: options.method || "GET", body });
+    if (url.startsWith("/api/manufacturing/work-orders/")) return jsonResponse(records.get(decodeURIComponent(url.split("/")[4])));
+    if (url.startsWith("/api/manufacturing/work-orders")) return jsonResponse({ items: [...records.values()], next_cursor: null });
+    if (url === "/api/manufacturing/qa") return jsonResponse(response(body));
+    if (url === "/api/manufacturing/conversations" && options.method === "POST") {
+      const item = { id: "mfg-"+(++sequence), title: body.work_order_id, binding: { work_order_id: body.work_order_id, source_revision: "r1" } };
+      saved.push(item); return jsonResponse(item);
+    }
+    if (url.startsWith("/api/manufacturing/conversations/")) return jsonResponse({ id: "history", binding: { work_order_id: "WO-018", source_revision: "r1" },
+      turns: [{ question: "之前的问题", result: response({ work_order_id: "WO-018" }), run_id: "mfg-run" }] });
+    if (url.startsWith("/api/manufacturing/conversations")) return jsonResponse({ items: saved });
+    return jsonResponse({ response: { business_citations: [citation("WO-018")] }, snapshot: {} });
+  };
+  h.run('state.mode = "manufacturing"; $("qa-mode").value = "manufacturing"; updateControls()');
+  return { ...h, records, citation };
+}
+function treeText(node) { return [node.textContent, ...node.children.map(treeText)].join(" "); }
+
+function executionSetup() {
+  const h = manufacturingSetup(), original = h.sandbox.fetch;
+  const operations = [{operation_id:"ROW-A",operation_code:"OP-20",status:"Completed"},{operation_id:"ROW-B",operation_code:"OP-30",status:"Pending"}];
+  function context(orderId, operationId, cardId) {
+    const base = {...h.records.get(orderId),source_revision:`r-${operationId||"wo"}-${cardId||"op"}`,payload_sha256:`hash-${operationId||"wo"}-${cardId||"op"}`};
+    if (operationId) base.execution = {operation_id:operationId,operation_status:"Pending",operation_actual_started_at:null,operation_start_precision:null,
+      job_card_id:cardId||null,job_card_actual_started_at:cardId==="CARD-A"?"2026-10-27T09:30:00+08:00":null,job_card_start_precision:cardId==="CARD-A"?"datetime":null,job_card_status:cardId?"Open":null};
+    return base;
+  }
+  h.sandbox.fetch = async (url, options={}) => {
+    const body = options.body ? JSON.parse(options.body) : null;
+    if (url === "/api/manufacturing/work-orders") { h.requests.push({url,method:"GET",body}); return jsonResponse({items:[...h.records.values()],next_cursor:null,selection_supported:true}); }
+    if (url.endsWith("/operations")) { h.requests.push({url,method:"GET",body}); return jsonResponse({items:operations}); }
+    if (url.includes("/job-cards")) { h.requests.push({url,method:"GET",body}); return jsonResponse({items:[{job_card_id:"CARD-A",status:"Open",actual_started_at:"2026-10-27T09:30:00+08:00"},{job_card_id:"CARD-A2",status:"Open",actual_started_at:null}],next_cursor:null}); }
+    if (url.includes("/context")) { h.requests.push({url,method:"GET",body}); const query=new URLSearchParams(url.split("?")[1]||""); return jsonResponse(context(decodeURIComponent(url.split("/")[4]),query.get("operation_id"),query.get("job_card_id"))); }
+    if (url === "/api/manufacturing/qa") { h.requests.push({url,method:"POST",body}); return jsonResponse({answer:"当前选择的来源事实",answerable:true,citations:[],business_citations:[],run_id:"execution-run",work_order_context:context(body.work_order_id,body.operation_id,body.job_card_id)}); }
+    if (url === "/api/manufacturing/conversations" && options.method === "POST") { const response=await original(url,options); const data=await response.json(); return jsonResponse({...data,binding:{...data.binding,operation_id:body.operation_id,job_card_id:body.job_card_id}}); }
+    if (url.startsWith("/api/manufacturing/conversations/selected-history")) { h.requests.push({url,method:"GET",body}); return jsonResponse({id:"selected-history",binding:{work_order_id:"WO-018",source_revision:"r-ROW-A-CARD-A",operation_id:"ROW-A",job_card_id:"CARD-A"},turns:[{question:"之前的问题",result:{answer:"历史答案",answerable:true,citations:[],work_order_context:context("WO-018","ROW-A","CARD-A")}}]}); }
+    return original(url,options);
+  };
+  return {...h,context};
+}
+
+test("ERP selection: explicit operation/card flow preserves all three start scopes and sends only selectors", async () => {
+  const {$,run,ask,requests}=executionSetup(); await run("refreshManufacturingOrders()"); await run('selectManufacturingOrder("WO-018")');
+  await run('selectManufacturingOperation("ROW-A")'); await run('selectManufacturingJobCard("CARD-A")');
+  const text=treeText($("manufacturing-context"));
+  assert.match(text,/工单实际开工（选版依据）/); assert.match(text,/2026-09-28/); assert.match(text,/工序实际开工：未知/); assert.match(text,/2026-10-27/);
+  await ask("所选作业卡实际开工时间是什么？");
+  const body=requests.find(row=>row.url==="/api/manufacturing/qa").body;
+  assert.equal(body.operation_id,"ROW-A"); assert.equal(body.job_card_id,"CARD-A"); assert(!("actual_started_at" in body));
+  assert.equal(requests.find(row=>row.method==="POST"&&row.url==="/api/manufacturing/conversations").body.job_card_id,"CARD-A");
+});
+
+test("ERP selection: card or operation changes clear conversation binding and child selection", async () => {
+  const {run,ask,requests}=executionSetup(); await run("refreshManufacturingOrders()"); await run('selectManufacturingOrder("WO-018")');
+  await run('selectManufacturingOperation("ROW-A")'); await run('selectManufacturingJobCard("CARD-A")'); await ask("型号？");
+  await run('selectManufacturingJobCard("CARD-A2")'); assert.equal(run("state.conversationId"),null); await ask("型号？");
+  assert.equal(requests.filter(row=>row.method==="POST"&&row.url==="/api/manufacturing/conversations").length,2);
+  await run('selectManufacturingOperation("ROW-B")'); assert.equal(run("state.manufacturing.jobCardId"),null); assert.equal(run("state.conversationId"),null);
+  assert.equal(run("state.manufacturing.context.execution.operation_id"),"ROW-B");
+});
+
+test("ERP selection: late card context cannot replace a newer card selection", async () => {
+  const {run,sandbox}=executionSetup(); await run("refreshManufacturingOrders()"); await run('selectManufacturingOrder("WO-018")'); await run('selectManufacturingOperation("ROW-A")');
+  const original=sandbox.fetch; let finish,begin; const started=new Promise(resolve=>{begin=resolve;});
+  sandbox.fetch=async(url,options)=>{if(url.includes("job_card_id=CARD-A")&&!url.includes("CARD-A2")){begin();return new Promise(resolve=>{finish=()=>original(url,options).then(resolve);});}return original(url,options);};
+  const pending=run('selectManufacturingJobCard("CARD-A")'); await started; await run('selectManufacturingJobCard("CARD-A2")'); finish(); await pending;
+  assert.equal(run("state.manufacturing.context.execution.job_card_id"),"CARD-A2");
+});
+
+test("ERP selection: history and new-conversation refresh retain the explicit selection", async () => {
+  const {run,ask,requests}=executionSetup(); await run("refreshManufacturingOrders()"); await run('restoreConversation("selected-history")');
+  assert.equal(run("state.manufacturing.operationId"),"ROW-A"); assert.equal(run("state.manufacturing.jobCardId"),"CARD-A");
+  await ask("型号？"); assert.equal(requests.find(row=>row.url==="/api/manufacturing/qa").body.job_card_id,"CARD-A");
+  await run("loadManufacturingSelection(true,true)"); assert.equal(run("state.manufacturing.context.execution.job_card_id"),"CARD-A"); assert.equal(run("state.conversationId"),null);
+});
+
+test("ERP selection: current business citation rechecks the same card and nested source field", async () => {
+  const {$,run,context}=executionSetup(); await run("refreshManufacturingOrders()"); await run('selectManufacturingOrder("WO-018")');
+  const source=context("WO-018","ROW-A","CARD-A");
+  const citation={citation_id:"业务22",field_name:"job_card_actual_started_at",work_order_id:"WO-018",operation_id:"ROW-A",job_card_id:"CARD-A",source_revision:source.source_revision,payload_sha256:source.payload_sha256,source_system_id:"erpnext-hc",source_record_id:"CARD-A"};
+  await run(`previewBusinessCitation(${JSON.stringify(citation)})`);
+  assert.match($("citation-content").textContent,/2026-10-27/);
+});
+
+test("M3 U01: work-order list and read-only source card preserve precision, revision and unknown route", async () => {
+  const { $, run } = manufacturingSetup();
+  await run("refreshManufacturingOrders()");
+  assert.equal($("manufacturing-order").children.length, 3);
+  await run('selectManufacturingOrder("WO-018")');
+  const text = treeText($("manufacturing-context"));
+  assert.match(text, /2026-09-28/); assert.match(text, /date/); assert.match(text, /路线修订：未知/); assert.match(text, /r1/);
+  assert.equal($("user-work-conditions").hidden, true); assert.equal($("manufacturing-context").children.some(n => n.tag === "input"), false);
+});
+
+test("M3 U02/U03: same order reuses binding, changed order creates a new conversation without client facts", async () => {
+  const { $, run, ask, requests } = manufacturingSetup();
+  await run('selectManufacturingOrder("WO-018")'); $("work-model").value = "UNTRUSTED-OVERRIDE";
+  await ask("型号是什么？"); await ask("那工序呢？");
+  let calls = requests.filter(row => row.url === "/api/manufacturing/qa");
+  assert.equal(calls[0].body.conversation_id, calls[1].body.conversation_id);
+  assert.equal(calls[0].body.work_order_id, "WO-018"); assert.equal(calls[0].body.expected_source_revision, "r1");
+  assert(!JSON.stringify(calls[0].body).includes("UNTRUSTED"));
+  await run('selectManufacturingOrder("WO-017")'); await ask("首件要求？");
+  calls = requests.filter(row => row.url === "/api/manufacturing/qa");
+  assert.notEqual(calls[0].body.conversation_id, calls[2].body.conversation_id); assert.equal(calls[2].body.work_order_id, "WO-017");
+});
+
+test("M3 U04: source change clears pending answer, source card and conversation binding", async () => {
+  const { $, run, ask, sandbox } = manufacturingSetup(); await run('selectManufacturingOrder("WO-018")');
+  const original = sandbox.fetch;
+  sandbox.fetch = async (url, options) => url === "/api/manufacturing/qa" ? jsonResponse({ detail: { error_code: "mes_context_changed", message: "工单已变化，请重新查询。" } }, 409) : original(url, options);
+  await ask("型号是什么？");
+  assert.equal(run("state.conversationId"), null); assert.equal(run("state.manufacturing.context"), null);
+  assert(!treeText($("manufacturing-context")).includes("2026-09-28")); assert.match(treeText($("answer-area")), /重新查询/);
+});
+
+test("M3 U05: changing to ordinary mode clears the manufacturing binding and never calls MES for ordinary QA", async () => {
+  const { $, run, ask, requests } = manufacturingSetup(); await run('selectManufacturingOrder("WO-018")'); await ask("型号？");
+  const before = requests.filter(row => row.url.startsWith("/api/manufacturing/work-orders")).length;
+  await $("qa-mode").listeners.change({ target: { value: "knowledge" } });
+  assert.equal(run("state.conversationId"), null); assert.equal(run("state.manufacturing.context"), null);
+  await ask("普通制度问题");
+  assert.equal(requests.filter(row => row.url.startsWith("/api/manufacturing/work-orders")).length, before);
+  assert.equal(requests.at(-1).url.includes("/api/manufacturing"), false);
+});
+
+test("M3 U06: late manufacturing answer after order switch cannot refill old facts or unlock a newer request", async () => {
+  const { $, run, ask, sandbox } = manufacturingSetup(); await run('selectManufacturingOrder("WO-018")');
+  const original = sandbox.fetch; let finish, begin;
+  const started = new Promise(resolve => { begin = resolve; });
+  sandbox.fetch = async (url, options) => { if (url === "/api/manufacturing/qa") { begin(); return new Promise(resolve => { finish = resolve; }); } return original(url, options); };
+  const pending = ask("旧工单问题"); await started; await run('selectManufacturingOrder("WO-017")');
+  finish(jsonResponse({ answer: "OLD-PRIVATE-ANSWER", work_order_context: { work_order_id: "WO-018" } })); await pending;
+  assert.equal(run("state.manufacturing.context.work_order_id"), "WO-017"); assert(!treeText($("answer-area")).includes("OLD-PRIVATE"));
+});
+
+test("M3 U06: late source context after logout cannot restore the old card", async () => {
+  const { $, run, sandbox } = manufacturingSetup(); let finish, begin;
+  const started = new Promise(resolve => { begin = resolve; });
+  sandbox.fetch = async () => { begin(); return new Promise(resolve => { finish = resolve; }); };
+  const pending = run('selectManufacturingOrder("WO-018")'); await started;
+  run('state.auth.authenticated = false; resetWorkspace()'); finish(jsonResponse({ work_order_id: "PRIVATE-OLD-ORDER" })); await pending;
+  assert.equal(run("state.manufacturing.context"), null); assert(!treeText($("manufacturing-context")).includes("PRIVATE-OLD"));
+});
+
+test("M3 U07: business reference is reauthorized and shows field, source revision and time without a PDF page", async () => {
+  const { $, run, citation } = manufacturingSetup();
+  run('globalThis.testCitation = '+JSON.stringify(citation("WO-018")));
+  await run('previewBusinessCitation(testCitation, "mfg-run")');
+  assert.match($("citation-title").textContent, /product_model/); assert.match($("citation-meta").textContent, /r1/);
+  assert.match($("citation-meta").textContent, /2026-10-31/); assert.equal($("citation-content").textContent, '"HC-A17"');
+  assert(!$("citation-meta").textContent.includes("物理页"));
+});
+
+test("M3 U08: denied history clears previous order and late business preview after scope change stays closed", async () => {
+  const { $, run, sandbox, citation } = manufacturingSetup(); await run('selectManufacturingOrder("WO-018")');
+  sandbox.fetch = async () => jsonResponse({ detail: { message: "当前不可访问" } }, 404);
+  await run('restoreConversation("denied")'); assert.equal(run("state.manufacturing.context"), null);
+  assert(!treeText($("manufacturing-context")).includes("2026-09-28"));
+  run('globalThis.testCitation = '+JSON.stringify(citation("WO-018"))); let finish, begin;
+  const started = new Promise(resolve => { begin = resolve; });
+  sandbox.fetch = async () => { begin(); return new Promise(resolve => { finish = resolve; }); };
+  const pending = run('previewBusinessCitation(testCitation, "mfg-run")'); await started;
+  run('state.revision += 1; clearConversation()'); finish(jsonResponse({ response: { business_citations: [{ ...citation("WO-018"), value: "LATE-PRIVATE-VALUE" }] } })); await pending;
+  assert.equal($("citation-dialog").open, false); assert.equal($("citation-content").textContent, "");
+});
+
+
+test("zero-call evaluation sends hard zero budgets and resets consent on mode changes", async () => {
+  const { $, run, sandbox } = setup(); admin(run); let submitted;
+  sandbox.fetch = async (url, options={}) => { if(options.method==="POST") submitted=JSON.parse(options.body); return jsonResponse({items:[]}); };
+  $("evaluation-fixed").value="fixed"; $("evaluation-feedback").value="feedback";
+  $("evaluation-max-cases").value="2"; $("evaluation-max-seconds").value="120";
+  $("evaluation-mode").value="zero"; $("evaluation-mode").listeners.change();
+  assert.equal($("evaluation-max-calls").disabled,true);assert.equal($("evaluation-consent").checked,false);
+  $("evaluation-consent").checked=true; await $("evaluation-form").listeners.submit({preventDefault(){}});
+  assert.equal(submitted.allow_model_calls,false);assert.equal(submitted.max_model_calls,0);assert.equal(submitted.max_tokens,0);
+  $("evaluation-consent").checked=true;$("evaluation-mode").value="model";$("evaluation-mode").listeners.change();
+  assert.equal($("evaluation-consent").checked,false);assert.equal($("evaluation-max-calls").disabled,false);
 });

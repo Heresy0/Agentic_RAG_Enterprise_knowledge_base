@@ -32,6 +32,7 @@ RUN python -m pip install --upgrade pip \
 COPY backend backend
 COPY migrations migrations
 COPY scripts scripts
+COPY services services
 COPY alembic.ini alembic.ini
 
 RUN mkdir -p /app/data/documents \

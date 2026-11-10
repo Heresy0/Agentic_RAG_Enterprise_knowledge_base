@@ -146,7 +146,11 @@ class MilvusVectorStore:
     def search(self, *, scope, generations, vector, limit):
         if not scope.knowledge_base_ids or not generations:
             return []
+        if scope.manufacturing is not None and not scope.manufacturing.document_ids:
+            return []
         expression = self._scope_filter(scope) + " and generation in " + json.dumps(sorted({self._generation(g) for g in generations}))
+        if scope.manufacturing is not None:
+            expression += " and document_id in " + json.dumps(sorted(map(str, scope.manufacturing.document_ids)))
         rows = self._call("entities/search", data=[self._vector(vector)], annsField="embedding", limit=limit,
                           filter=expression, outputFields=["chunk_id", "document_id", "tenant_id", "knowledge_base_id", "generation"],
                           searchParams={"metricType": "COSINE", "params": {"ef": max(64, limit)}}, consistencyLevel="Strong")

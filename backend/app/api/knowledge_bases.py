@@ -12,6 +12,7 @@ from fastapi import (
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from uuid import UUID, uuid4
+from typing import Annotated
 from datetime import datetime
 
 from ..db.dependencies import get_database_session
@@ -241,6 +242,7 @@ def preview_citation(
     chunk_id: str,
     response: Response,
     parent_id: str | None = Query(default=None, min_length=64, max_length=64, pattern=r'^[a-f0-9]{64}$'),
+    expected_version: Annotated[int | None, Query(ge=1)] = None,
     principal: Principal = Depends(get_current_principal),
     session: Session = Depends(get_database_session),
 ) -> CitationPreview:
@@ -266,6 +268,8 @@ def preview_citation(
     if row is None:
         raise HTTPException(status_code=404, detail="引用原文已不可用，文档可能已更新或删除，请重新提问。")
     chunk, document = row
+    if expected_version is not None and document.version != expected_version:
+        raise HTTPException(status_code=409, detail="引用文档版本已变化，请重新查询。")
     content, section = chunk.content, str(chunk.metadata_json.get('section_path',''))
     page_start, page_end = chunk.metadata_json.get("page_start"), chunk.metadata_json.get("page_end")
     if parent_id is not None:

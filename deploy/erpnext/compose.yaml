@@ -1,0 +1,130 @@
+# Based on frappe/frappe_docker 46c7ced81efbd4a119e14b81bf78e3b77cad3309.
+# Isolated persistent integration environment; credentials are local secret files.
+name: manufacturing-erpnext
+
+x-app: &app
+  image: frappe/erpnext:v16.54.0
+  volumes:
+    - sites:/home/frappe/frappe-bench/sites
+    - logs:/home/frappe/frappe-bench/logs
+  restart: unless-stopped
+
+services:
+  db:
+    image: mariadb:11.8
+    environment:
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/db-root-password
+    secrets: [db-root-password]
+    command: [--character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --skip-character-set-client-handshake, --innodb-snapshot-isolation=OFF, --innodb-buffer-pool-size=128M]
+    volumes: [database:/var/lib/mysql]
+    mem_limit: 768m
+    healthcheck:
+      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+  redis-cache:
+    image: redis:6.2-alpine
+    mem_limit: 96m
+    restart: unless-stopped
+  redis-queue:
+    image: redis:6.2-alpine
+    volumes: [queue:/data]
+    mem_limit: 96m
+    restart: unless-stopped
+  configurator:
+    <<: *app
+    restart: "no"
+    entrypoint: [bash, -c]
+    command:
+      - >-
+        set -e;
+        ls -1 apps > sites/apps.txt;
+        bench set-config -g db_host db;
+        bench set-config -gp db_port 3306;
+        bench set-config -g redis_cache redis://redis-cache:6379;
+        bench set-config -g redis_queue redis://redis-queue:6379;
+        bench set-config -g redis_socketio redis://redis-queue:6379;
+        bench set-config -gp socketio_port 9000;
+    depends_on:
+      db: {condition: service_healthy}
+      redis-cache: {condition: service_started}
+      redis-queue: {condition: service_started}
+  create-site:
+    <<: *app
+    profiles: [init]
+    restart: "no"
+    environment:
+      ERPNEXT_SITE_NAME: ${ERPNEXT_SITE_NAME:?required}
+    secrets: [db-root-password, admin-password]
+    entrypoint: [bash, -c]
+    command:
+      - >-
+        set -e;
+        if [ -d "sites/$$ERPNEXT_SITE_NAME" ]; then echo 'Site exists; initialization refused.'; exit 1; fi;
+        bench new-site "$$ERPNEXT_SITE_NAME" --mariadb-user-host-login-scope='%'
+        --db-root-username=root --db-root-password="$$(cat /run/secrets/db-root-password)"
+        --admin-password="$$(cat /run/secrets/admin-password)" --install-app erpnext --set-default;
+    mem_limit: 1536m
+    depends_on:
+      configurator: {condition: service_completed_successfully}
+  backend:
+    <<: *app
+    environment:
+      GUNICORN_WORKERS: "1"
+      GUNICORN_THREADS: "2"
+    mem_limit: 640m
+    depends_on:
+      configurator: {condition: service_completed_successfully}
+  websocket:
+    <<: *app
+    command: [node, /home/frappe/frappe-bench/apps/frappe/socketio.js]
+    mem_limit: 192m
+    depends_on:
+      configurator: {condition: service_completed_successfully}
+  worker:
+    <<: *app
+    command: [bench, worker, --queue, "long,default,short"]
+    mem_limit: 512m
+    depends_on:
+      configurator: {condition: service_completed_successfully}
+  scheduler:
+    <<: *app
+    command: [bench, schedule]
+    mem_limit: 256m
+    depends_on:
+      configurator: {condition: service_completed_successfully}
+  frontend:
+    <<: *app
+    networks: [default, web]
+    command: [nginx-entrypoint.sh]
+    environment:
+      BACKEND: backend:8000
+      SOCKETIO: websocket:9000
+      FRAPPE_SITE_NAME_HEADER: ${ERPNEXT_SITE_NAME:?required}
+      UPSTREAM_REAL_IP_ADDRESS: 127.0.0.1
+      UPSTREAM_REAL_IP_HEADER: X-Forwarded-For
+      UPSTREAM_REAL_IP_RECURSIVE: "off"
+      PROXY_READ_TIMEOUT: "120"
+      CLIENT_MAX_BODY_SIZE: 10m
+    ports: ["127.0.0.1:${ERPNEXT_PORT:?required}:8080"]
+    mem_limit: 192m
+    depends_on: [backend, websocket]
+
+volumes:
+  database: {}
+  sites: {}
+  logs: {}
+  queue: {}
+
+secrets:
+  db-root-password:
+    file: ${ERPNEXT_SECRETS_DIR:?required}/db-root-password
+  admin-password:
+    file: ${ERPNEXT_SECRETS_DIR:?required}/admin-password
+
+networks:
+  default:
+    internal: true
+  web: {}

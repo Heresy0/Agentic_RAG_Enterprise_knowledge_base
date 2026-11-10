@@ -3,7 +3,7 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
   const labels = { pending: "待审核", confirmed: "问题成立", dismissed: "反馈不成立", needs_evidence: "需补证据" };
   const feedbackLabels = { incorrect: "答案错误", incomplete: "遗漏条件或要点", citation: "引用不正确", false_refusal: "不该拒答", outdated: "资料过期", other: "其他问题" };
   const causes = { knowledge_missing: "知识缺失", outdated: "资料过期", parsing: "解析或切分", retrieval: "召回不足", rerank: "重排错误", context: "上下文遗漏", generation: "生成错误或漏答", citation: "引用错误", false_refusal: "误拒答", ambiguous: "问题含糊", access_policy: "权限规则", other: "其他" };
-  const blocked = { not_approved: "尚未通过样本审核", feedback_changed: "反馈已变化，需重新审核", export_not_authorized: "用户尚未允许回归导出", corpus_changed: "语料已变化，需重新审核" };
+  const blocked = { not_approved: "尚未通过样本审核", feedback_changed: "反馈已变化，需重新审核", export_not_authorized: "用户尚未允许回归导出", corpus_changed: "语料已变化，需重新审核", business_source_changed: "工单夹具、来源或适用性已变化，需重新采集并审核" };
   const selected = new Set();
   let queueEpoch = 0, detailEpoch = 0, cursor = null;
   const canReview = () => !!state.auth?.authenticated && (state.kb ? state.kb.permission === "admin" : state.bases.some(kb => kb.permission === "admin"));
@@ -62,6 +62,7 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
       field("审核说明（必填）", reason), field("回归问题（可独立理解）", evaluationQuestion), field("预期可回答性", answerable), field("参考答案 / 拒答依据", reference),
       field("必答事实（每行一项，最多32项）", facts), field("禁止结论（每行一项，最多32项）", forbidden));
     const evidenceInputs = [];
+    const businessInputs = [];
     source.append(element("h3", "当次上下文与样本依据"), element("p", "批准可回答样本时，勾选依据并从对应原文中复制必要的连续摘录。", "answer-meta"));
     for (const evidence of data.source.snapshot.context?.items || []) {
       const section = element("section", undefined, "quality-evidence");
@@ -74,6 +75,19 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
       quote.setAttribute("aria-label", `资料 ${evidence.citation_id} 的证据摘录`);
       section.append(label, quote); source.append(section); evidenceInputs.push({ choose, quote, citationId: evidence.citation_id });
     }
+    if (data.source.business_evidence_options?.length) {
+      source.append(element("h3", "工单字段证据"), element("p", "按当次来源选择字段；字段值、记录身份、修订和哈希不可编辑。作业样本需选择编号、型号、工序和实际开工，并选择决定适用版本的文档。", "answer-meta"));
+      for (const evidence of data.source.business_evidence_options) {
+        const section = element("section", undefined, "quality-evidence");
+        const choose = element("input"); choose.type = "checkbox";
+        choose.checked = (review.business_evidence || []).some(row => row.citation_id === evidence.citation_id);
+        const label = element("label", undefined, "feedback-consent");
+        label.append(choose, element("span", `[${evidence.citation_id}] ${evidence.field_name}：${JSON.stringify(evidence.value)}`));
+        section.append(label, element("p", `${evidence.source_entity || "工单"} · ${evidence.source_system_id} / ${evidence.source_record_id} · 修订 ${evidence.source_revision}`, "answer-meta"),
+          element("p", `来源哈希 ${evidence.payload_sha256}`, "answer-meta"));
+        source.append(section); businessInputs.push({ choose, evidence });
+      }
+    }
     const submit = element("button", "保存审核与新修订", "primary"); submit.type = "submit";
     const statusText = element("p", "", "answer-meta"); statusText.setAttribute("role", "status");
     form.append(element("p", "确认问题可先保存草稿；批准样本需补齐标准。资料不足样本不填写必答事实或支持答案的证据。", "answer-meta"), submit,
@@ -82,6 +96,9 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
       event.preventDefault(); submit.disabled = true;
       const lines = node => node.value.split("\n").map(value => value.trim()).filter(Boolean);
       const payload = { expected_revision: data.case.revision, review_status: status.value, sample_status: sample.value, root_cause: cause.value || null,
+        ...(businessInputs.length ? { business_evidence: businessInputs.filter(item => item.choose.checked).map(item => Object.fromEntries(
+          ["citation_id", "field_name", "value", "source_system_id", "source_record_id", "source_revision", "payload_sha256",
+            ...(item.evidence.source_entity ? ["source_entity", "actual_start_precision", ...["operation_id","job_card_id","batch_id","step_id"].filter(key => item.evidence[key] != null)] : [])].map(key => [key, item.evidence[key]]))) } : {}),
         ...Object.fromEntries(["fact_alternatives", "fact_assertions", "accepted_behaviors", "citation_requirement"].filter(key => review[key] != null).map(key => [key, review[key]])),
         review_reason: reason.value, expected_answerable: answerable.value === "" ? null : answerable.value === "true", reference_answer: reference.value.trim() || null,
         ...(answerable.value ? { expected_behavior: answerable.value === "clarify" ? "clarify" : answerable.value === "true" ? "answer" : "refuse" } : {}),

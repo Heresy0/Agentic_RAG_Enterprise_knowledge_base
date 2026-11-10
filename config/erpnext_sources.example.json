@@ -1,0 +1,11 @@
+{
+  "schema_version": "mes-sources-v1",
+  "sources": [{
+    "tenant_id": "00000000-0000-0000-0000-000000000001",
+    "source_system_id": "erpnext-hc",
+    "base_url": "http://erpnext-adapter:8011",
+    "allowed_plants": ["HC-P01"],
+    "token_env": "ERP_ADAPTER_READ_TOKEN",
+    "execution_selection": true
+  }]
+}

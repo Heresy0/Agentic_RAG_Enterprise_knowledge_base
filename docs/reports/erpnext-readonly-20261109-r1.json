@@ -1,0 +1,396 @@
+{
+  "schema_version": "erpnext-readonly-integration-v1",
+  "client_date": "2026-11-09",
+  "status": "integration_acceptance_passed",
+  "branch": "codex/erpnext-readonly-phase1",
+  "source_revision": "a5174272d86e1940317b3ff254d2ac28464f2659",
+  "image": {
+    "source_revision": "a5174272d86e1940317b3ff254d2ac28464f2659",
+    "image_id": "sha256:d7984272ce0c8042c554c28950e2b3eec832d75127c553204c08f3d5e1ed5082",
+    "backend_code_sha256": "9336ac89f58a3666918ec192ab7946f49c339ce793c1d9d325e72b4b434847e0",
+    "business_python_files": 157,
+    "all_files_match": true
+  },
+  "adapter_service_source_files": 4,
+  "runtime_fingerprint": "0fe31d345f59e9633c49d39d46818bf904b8927803958f7ca0ad961b2f6352ab",
+  "erpnext": {
+    "image": "frappe/erpnext:v16.54.0",
+    "versions": [
+      "erpnext 16.54.0  ()",
+      "frappe 16.55.2  ()"
+    ],
+    "images": {
+      "frappe/erpnext:v16.54.0": {
+        "image_id": "sha256:d944ce94699074c1155b17bad5dc66656db3d7362762c457630ac36cfbcacf11",
+        "repo_digests": [
+          "frappe/erpnext@sha256:33f4d620dcd5858a2dffaa5337e43627b70408a19d94ff396bb0e5023d252dd9"
+        ]
+      },
+      "mariadb:11.8": {
+        "image_id": "sha256:0f2506b4b989879f5e004ba606b1d6711d467dee12be80c81799dd046fcc753c",
+        "repo_digests": [
+          "mariadb@sha256:c4124d1afa875e47f2892edf26b482fa54f796e2f342d3717a04ca091a22a9bd"
+        ]
+      },
+      "redis:6.2-alpine": {
+        "image_id": "sha256:a7a1b2a172ec0979005ab22e533a6a67c8405aaaff0ff723e39c9c3edb1e7d16",
+        "repo_digests": [
+          "redis@sha256:5e38c443bd83d7d5214648d5de0a7d47f72cbb5141c50dcabcfc40f191b5b369"
+        ]
+      }
+    },
+    "port": 18080,
+    "independent_project": "manufacturing-erpnext",
+    "persistent_volumes": true,
+    "backend_restart_persistence_verified": true,
+    "demonstration_data": true,
+    "real_factory": false,
+    "total_work_orders": 4,
+    "reader_visible_work_orders": 3
+  },
+  "platform": {
+    "port": 8003,
+    "database": "erpnext_readonly_phase1",
+    "source_system_id": "erpnext-hc",
+    "copied_documents": 13,
+    "sql_chunks": 53,
+    "vectors": 53,
+    "vector_access": "existing_demo_collection_read_only_credential",
+    "index_rebuilt": false,
+    "existing_8000_8001_8002_images_unchanged": true,
+    "candidate_indexer_or_quality_started": false,
+    "separate_pkce_client": true,
+    "upstream_service_account": "company_scoped_read_only",
+    "quality_review_granted": false,
+    "live_erp_fixture_registry_configured": false
+  },
+  "scope": {
+    "read_fields": [
+      "work_order_id",
+      "product_model",
+      "operation_code",
+      "actual_started_at",
+      "actual_start_precision",
+      "status",
+      "source_record_id",
+      "source_revision",
+      "source_updated_at"
+    ],
+    "actual_start_source": "Work Order.actual_start_date",
+    "planned_start_fallback": false,
+    "operation_selection": "exactly_one_operation_or_unknown",
+    "site_timezone": "Asia/Shanghai",
+    "upstream_http_methods": [
+      "GET"
+    ],
+    "model_write_tools": false,
+    "three_source_reads_preserved": true,
+    "keycloak_and_business_and_document_permissions_preserved": true
+  },
+  "checks": {
+    "erp_native_api": {
+      "status": "passed",
+      "checks": [
+        {
+          "case": "identity",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "case": "started",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "case": "unknown",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "case": "multi",
+          "status": 200,
+          "expected": 200
+        },
+        {
+          "case": "other_company",
+          "status": 403,
+          "expected": 403
+        },
+        {
+          "case": "deny_create",
+          "status": 403,
+          "expected": 403
+        },
+        {
+          "case": "deny_update",
+          "status": 403,
+          "expected": 403
+        },
+        {
+          "case": "deny_delete",
+          "status": 403,
+          "expected": 403
+        },
+        {
+          "case": "company_scoped_list",
+          "status": 200,
+          "expected": 200,
+          "count": 3
+        },
+        {
+          "case": "admin_browser_login",
+          "status": 200,
+          "expected": 200
+        }
+      ],
+      "model_calls": 0
+    },
+    "platform_healthy": {
+      "status": "passed",
+      "checks": [
+        {
+          "case": "list",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "context",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "unauthenticated",
+          "status": 401,
+          "expected": 401,
+          "passed": true
+        },
+        {
+          "case": "no_business_grant",
+          "status": 404,
+          "expected": 404,
+          "passed": true
+        },
+        {
+          "case": "cross_company",
+          "status": 404,
+          "expected": 404,
+          "passed": true
+        },
+        {
+          "case": "fact-product_model",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "snapshot-product_model",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "fact-operation_code",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "snapshot-operation_code",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "fact-actual_started_at",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "snapshot-actual_started_at",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "unknown_actual",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "ambiguous_operation",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "execution_refused",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "case": "revoked_before_delivery",
+          "status": 404,
+          "expected": 404,
+          "passed": true
+        },
+        {
+          "case": "permission_restored",
+          "status": 200,
+          "expected": 200,
+          "passed": true
+        }
+      ],
+      "physical_model_calls": 0,
+      "deterministic_generation_double_calls": 5,
+      "independent_ledger_rows": 0,
+      "budget": {
+        "calls": 0,
+        "charged_tokens": 0,
+        "unknown_calls": 0,
+        "elapsed_seconds": 5.776,
+        "limited_by": null
+      },
+      "authenticated_asgi_http": true,
+      "real_erp_http": true,
+      "paid_quality_acceptance": false
+    },
+    "stale_source": {
+      "status": "passed",
+      "checks": [
+        {
+          "case": "stale_revision",
+          "status": 409,
+          "expected": 409,
+          "passed": true
+        }
+      ],
+      "physical_model_calls": 0,
+      "deterministic_generation_double_calls": 0,
+      "independent_ledger_rows": 0,
+      "budget": {
+        "calls": 0,
+        "charged_tokens": 0,
+        "unknown_calls": 0,
+        "elapsed_seconds": 1.753,
+        "limited_by": null
+      },
+      "authenticated_asgi_http": true,
+      "real_erp_http": true,
+      "paid_quality_acceptance": false
+    },
+    "unavailable_source": {
+      "status": "passed",
+      "checks": [
+        {
+          "case": "source_unavailable",
+          "status": 503,
+          "expected": 503,
+          "passed": true
+        }
+      ],
+      "physical_model_calls": 0,
+      "deterministic_generation_double_calls": 0,
+      "independent_ledger_rows": 0,
+      "budget": {
+        "calls": 0,
+        "charged_tokens": 0,
+        "unknown_calls": 0,
+        "elapsed_seconds": 3.669,
+        "limited_by": null
+      },
+      "authenticated_asgi_http": true,
+      "real_erp_http": true,
+      "paid_quality_acceptance": false
+    },
+    "deployed_host_http_matches_erp": true
+  },
+  "engineering": {
+    "nonintegration_passed": 2213,
+    "skipped": 1,
+    "integration_deselected": 95,
+    "targeted_passed": 69,
+    "suites_overlap": true,
+    "prior_rounds_preserved": true,
+    "frozen_120_and_40_integrity_passed": true,
+    "frozen_inputs_and_scorer_unchanged": true,
+    "full_postgres_test_suite_rerun": false,
+    "real_erp_mariadb_and_platform_postgres_used": true
+  },
+  "model_usage": {
+    "physical_calls": 0,
+    "budget_max_model_calls": 0,
+    "tokens": 0,
+    "independent_ledger_new_rows": 0,
+    "observed_request_ids": 41,
+    "platform_asgi_http_observations": 51,
+    "deployed_context_http_observations": 2,
+    "all_observer_traces_checked_zero": true,
+    "all_attempts_included": true,
+    "generation_double": true,
+    "paid_quality_evaluation": false
+  },
+  "failures_preserved": [
+    {
+      "stage": "ERP bootstrap",
+      "reason": "Missing Warehouse Type Transit; corrected by the official initial-master-data installer."
+    },
+    {
+      "stage": "Compose",
+      "reason": "Frontend requires a separate host-port network; queue CSV argument must be quoted."
+    },
+    {
+      "stage": "observer healthy r1",
+      "reason": "Test hook used a nonexistent grant id and attempted duplicate restoration; fixed only in observer, later permissions checks passed."
+    },
+    {
+      "stage": "source fixture command r1",
+      "reason": "Bench kwargs expects Python boolean literals; initial command failed before fixture mutation, subsequent mutation/restore passed."
+    }
+  ],
+  "backups": {
+    "erp_site_backup": true,
+    "candidate_postgres_final_backup": true,
+    "catalog_verified": true,
+    "full_restore_exercised": false,
+    "manifest_sha256": "964ed0e9eefb694e6f8edf93571f4870344581a9d41db7da0f6cae8a1eb4c6b8"
+  },
+  "preserved": {
+    "evidence_files": 91,
+    "evidence_manifest_sha256": "8a358b2f6750ad2627ba456e9a5fd84671afcccf67544bee51b995ddda095a60",
+    "frozen_development_sha256": "31bcf5d05c987ba2579b53cddfaa229dfaaa6c159c0d05d0bf9c129841a54739",
+    "frozen_regression_sha256": "f9ab87755a6bcd6832ce73d1e3ad7077a9dc11ab8fcc3c3e367dca308cf1b67d"
+  },
+  "private_artifacts": "tmp/erpnext-phase1-20261109-r1/",
+  "prior_quality": {
+    "development": {
+      "passed": 13,
+      "total": 16,
+      "critical_passed": 4,
+      "critical_total": 6,
+      "gate_passed": false
+    },
+    "formal": {
+      "passed": 31,
+      "total": 40,
+      "critical_passed": 9,
+      "critical_total": 12,
+      "release_gate_passed": false
+    },
+    "scores_combined": false,
+    "new_paid_model_evaluation": false,
+    "closed_loop_executed": false
+  },
+  "limitations": [
+    "Self-hosted ERPNext and demonstrative ERP documents; not a real factory deployment.",
+    "QA generation uses a deterministic double and a hard zero physical-call budget; the real parts are auth, SQL, ERP HTTP, source checks and snapshot delivery.",
+    "Only a unique operation is projected; multi-operation/Job Card selection is future work. Actual start remains unknown until recorded on the upstream Work Order.",
+    "Live ERP quality-sample review/export has not been opened; no synthetic fixture endpoint or review grant was added.",
+    "Native API, logical integration checks and pytest cases are separate evidence, not a model accuracy score or gateway load test.",
+    "Backups have been catalog-checked; a full recovery drill was not performed."
+  ]
+}

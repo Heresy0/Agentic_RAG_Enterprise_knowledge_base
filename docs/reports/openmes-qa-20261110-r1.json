@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "report_id": "openmes-qa-20261110-r1",
+  "date": "2026-11-10",
+  "status": "engineering_acceptance_passed",
+  "reviewer": "助手非独立工程验收",
+  "scope": "O3：OpenMES工单、批次和步骤接入制造问答、不可变会话绑定、分层来源引用及工作台",
+  "branch": "codex/openmes-qa-phase2",
+  "business_git_revision": "7348bfbc3e7c341c08ee54bf4710c9ad8442e05d",
+  "deployment": {
+    "platform_url": "http://127.0.0.1:8004/",
+    "openmes_url": "http://127.0.0.1:18081/",
+    "platform_image": "enterprise-knowledge-manufacturing:openmes-qa-20261110-r1",
+    "runtime": {
+      "openmes-readonly-api": {
+        "matched_files": 302,
+        "backend_python_files": 164,
+        "image": "sha256:60218c864404db4f7818506480221f6ea11beabdd2880b2b58a4f394a31efdf0"
+      },
+      "manufacturing-openmes-adapter-1": {
+        "matched_files": 302,
+        "backend_python_files": 164,
+        "image": "sha256:60218c864404db4f7818506480221f6ea11beabdd2880b2b58a4f394a31efdf0"
+      }
+    },
+    "file_count_includes": [
+      "backend",
+      "services",
+      "scripts",
+      "migrations",
+      "alembic.ini",
+      "requirements.txt"
+    ],
+    "database": "openmes_readonly_phase1",
+    "database_head": "d7a1c3e5f902",
+    "qa_contract": "openmes-work-order-v1",
+    "execution_contract_unchanged": "openmes-execution-v1",
+    "upstream_version": "0.28.0",
+    "upstream_git_revision": "eb184a2984b74d685e65ee24df9b8c7b34c765f6",
+    "upstream_image": "enterprise-openmes:readonly-0.28.0-r1",
+    "upstream_source": {
+      "files_matched": 11,
+      "image": "sha256:171e1a452a5e22dbb6a53d944bb59e8b7a81a170fe759e9149a8df90229d1969",
+      "revision": "eb184a2984b74d685e65ee24df9b8c7b34c765f6"
+    }
+  },
+  "acceptance": {
+    "immutable_binding": [
+      "work_order_id",
+      "batch_id",
+      "step_id",
+      "source_revision",
+      "payload_sha256"
+    ],
+    "references": [
+      "Work Order",
+      "Batch",
+      "Batch Step"
+    ],
+    "behavior": [
+      "所选层级参与问答输入、会话及快照，切换选择必须另建会话；缺父级、跨工单/批次、ERP/MES混用及源字段注入拒绝",
+      "模型仅选择白名单业务字段；后端编译文字、角色及引用，现有文档引用校验不变",
+      "工单无实际开工和唯一工序代码时保持未知；批次/步骤时间独立，不用于补给工单选版，步骤名称不当作已审核工序代码",
+      "来源变化或预期修订不符返回409；业务无权返回404；来源不可用返回503；历史/快照继续受当前权限约束",
+      "工作台不默认选择首个批次/步骤；展示与问答使用同一核验上下文；历史采用冻结快照，刷新开始新会话",
+      "只读令牌仍限制固定GET资源，执行命令在生成前拒绝；没有增加上游写入工具"
+    ],
+    "successful_live_qa_snapshots": 13,
+    "source_checks_per_successful_qa": 3,
+    "live_followup": "真实源第二轮为执行拒绝，未调用追问解析模型；一般事实追问使用工程替身完成测试，不计模型质量",
+    "guarded_downgrade": "存在批次或步骤绑定时拒绝降级丢弃列；独立PostgreSQL验证通过"
+  },
+  "verification": {
+    "full_nonintegration": {
+      "passed": 2325,
+      "tests": 2326,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "frontend": {
+      "passed": 61,
+      "failed": 0
+    },
+    "isolated_postgres": {
+      "m1": {
+        "passed": 9,
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "database_removed": true
+      },
+      "m3": {
+        "passed": 13,
+        "tests": 13,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "database_removed": true
+      },
+      "m4": {
+        "passed": 12,
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "database_removed": true
+      }
+    },
+    "live": {
+      "status": "passed",
+      "requests": 56,
+      "phases": [
+        {
+          "phase": "initial",
+          "requests": 35,
+          "model_calls": 0
+        },
+        {
+          "phase": "changed",
+          "requests": 3,
+          "model_calls": 0
+        },
+        {
+          "phase": "restored",
+          "requests": 5,
+          "model_calls": 0
+        },
+        {
+          "phase": "revoked",
+          "requests": 4,
+          "model_calls": 0
+        },
+        {
+          "phase": "grant-restored",
+          "requests": 4,
+          "model_calls": 0
+        },
+        {
+          "phase": "outage",
+          "requests": 2,
+          "model_calls": 0
+        },
+        {
+          "phase": "recovered",
+          "requests": 3,
+          "model_calls": 0
+        }
+      ],
+      "includes_snapshot_gets": true,
+      "source_value_restored": true,
+      "old_source_revision_not_restored": true,
+      "grant_restored": true,
+      "adapter_restarted": true
+    },
+    "upstream_readonly": {
+      "status": "passed",
+      "checks": [
+        {
+          "name": "read",
+          "status": 200
+        },
+        {
+          "name": "start-denied",
+          "status": 403
+        },
+        {
+          "name": "write-denied",
+          "status": 403
+        },
+        {
+          "name": "refresh-denied",
+          "status": 403
+        }
+      ]
+    },
+    "independent_audit": {
+      "status": "passed",
+      "new_model_calls": 0,
+      "tokens": 0,
+      "observed_request_ids": 62,
+      "ledger_unchanged": true,
+      "counts": {
+        "documents": 13,
+        "document_chunks": 53,
+        "quality_evaluation_jobs": 0,
+        "business_scope_grants": 1
+      },
+      "openmes_migration": "d7a1c3e5f902",
+      "erpnext_migration": "f2b8c0a961d3",
+      "old_container_ids_and_images_unchanged": 8,
+      "old_container_start_times_unchanged": 7,
+      "restarted_old_containers": [
+        "/erpnext-readonly-api"
+      ],
+      "old_reports_unchanged": 16,
+      "ports": [
+        {
+          "port": 8004,
+          "status": 200
+        },
+        {
+          "port": 18081,
+          "status": 200
+        },
+        {
+          "port": 8003,
+          "status": 200
+        },
+        {
+          "port": 18080,
+          "status": 200
+        }
+      ],
+      "page_assets_matched": 4,
+      "worker_started": false,
+      "index_rebuilt": false
+    },
+    "frozen_checks": {
+      "general_120": "passed",
+      "phase1_40": "passed"
+    },
+    "visual_browser_check": false,
+    "backups": {
+      "before": 2,
+      "after": 2,
+      "pg_restore_list": "passed",
+      "full_restore_exercise": false
+    }
+  },
+  "model_usage": {
+    "physical_calls": 0,
+    "known_tokens": 0,
+    "budget_tokens": 0,
+    "unknown_usage": 0,
+    "guard": "同进程真实问答全程max_model_calls=0/max_tokens=0；无真实生成或追问解析调用",
+    "independent_ledger_unchanged": true,
+    "observed_request_ids_all_attempts": 62,
+    "quality_accuracy": null,
+    "paid_evaluation": false,
+    "old_results_combined": false
+  },
+  "preservation": {
+    "erpnext_url": "http://127.0.0.1:18080/",
+    "erpnext_platform_url": "http://127.0.0.1:8003/",
+    "erpnext_database_head": "f2b8c0a961d3",
+    "original_container_ids_and_images_unchanged": 8,
+    "original_start_times_unchanged": 7,
+    "recovery": "Docker启动后原ERP候选API因配套Redis未启动而退出。仅docker start原erpnext-readonly-redis及原API；没有更改镜像、配置、ERP数据库或适配器。原API启动时间因此改变。",
+    "original_reports_unchanged": 16,
+    "review_permission_added": false,
+    "index_rebuilt": false,
+    "new_candidate_workers_started": false,
+    "documents": 13,
+    "chunks": 53,
+    "quality_jobs": 0
+  },
+  "retained_failures": {
+    "test_attempts": {
+      "initial-tests.xml": {
+        "passed": 82,
+        "tests": 83,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "targeted-r2.xml": {
+        "passed": 98,
+        "tests": 99,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "full-r1.xml": {
+        "passed": 2324,
+        "tests": 2326,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 1
+      },
+      "full-r2.xml": {
+        "passed": 2325,
+        "tests": 2326,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      }
+    },
+    "corrected_before_business_commit": [
+      "首轮旧测试仍假定不接受batch_id，改为验证不允许ERP/MES层级混用",
+      "会话历史测试漏传原knowledge_base_id，按原权限契约补齐测试，没有放宽授权",
+      "完整回归发现空上下文schema探测访问None，改为可选读取来源契约；最终完整回归通过"
+    ],
+    "private_acceptance_attempts": [
+      "live-r1：私有脚本缺少/app模块路径，在应用和问答前失败",
+      "live-r2：公开上下文不含schema_version，私有脚本误断言；宿主读取又遇GBK，改为UTF-8。来源契约改在快照核验",
+      "live-r3：35项初始请求通过，来源变化阶段脚本错误要求/context支持预期修订查询；改到QA正式参数验证，保留原失败并恢复源值",
+      "audit-r1：上游刷新探针多写v1前缀返回404，按上游真实路由改正后403",
+      "audit-r2：发现原ERP候选启动依赖Redis未运行，按原容器恢复后四个入口健康通过"
+    ]
+  },
+  "limitations": [
+    "自建OpenMES演示记录不是真实工厂执行证据；平台业务链路继续只读",
+    "本轮验收验证工程接入，不产生OpenMES模型准确率；自由表达、多实体问题及一般模型追问仍需另行真实模型验证",
+    "本版本OpenMES没有工单实际开工及已审核唯一工序映射，因此不能仅凭步骤名称完成文档选版；缺条件仍澄清",
+    "批次/步骤质量审核、冻结样本、ERP-MES同步尚未开放；未做浏览器视觉检查或完整恢复演练",
+    "ERPNext10/16关键2/6、模拟开发13/16关键4/6、正式31/40关键9/12失败状态分别保留，不拼分"
+  ],
+  "private_artifacts": "tmp/openmes-qa-20261110-r1/ (Git忽略；配置、令牌、备份、原始响应、Trace和失败记录不公开)"
+}

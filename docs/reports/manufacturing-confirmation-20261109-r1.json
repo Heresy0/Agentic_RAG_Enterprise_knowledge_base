@@ -1,0 +1,186 @@
+{
+  "schema_version": "manufacturing-targeted-confirmation-v1",
+  "client_date": "2026-11-09",
+  "status": "targeted_confirmation_failed",
+  "source_revision": "2cebe68791a16c68b3fefea9b97741f972e8ef85",
+  "image_id": "sha256:37b77d66fa50bbbeeb0b00905e499f40f4fd231a24e834d223a56d325c99813b",
+  "runtime_fingerprint": "d8b7c4076db586a7ecc4407b559a5c502ac997b466829a2948fcd0bb0f0da6be",
+  "case_ids": [
+    "MFGWO-Q001",
+    "MFGWO-Q002",
+    "MFGWO-Q007",
+    "MFGWO-Q013",
+    "MFGWO-Q016"
+  ],
+  "limits": {
+    "max_cases": 5,
+    "max_model_calls": 40,
+    "max_tokens": 250000,
+    "max_seconds": 450,
+    "reservation_tokens": 32000
+  },
+  "approval_text": "批准这5题确认",
+  "authorization_closed": true,
+  "results": {
+    "total": 5,
+    "automatic_proxy_passed": 2,
+    "assistant_non_independent_passed": 2,
+    "independent_human_review": false,
+    "http_errors": 0,
+    "critical_targeted_subset": {
+      "total": 2,
+      "passed": 1
+    },
+    "not_a_full_development_score": true,
+    "combined_with_previous_batches": false,
+    "confirmation_passed": false,
+    "correct_positive_answer_count": 2,
+    "correct_positive_answer_p95_ms": 9048.358,
+    "source_p95_ms": 28.172
+  },
+  "usage": {
+    "status": "reconciled",
+    "physical_calls": 11,
+    "known_tokens": 32415,
+    "unknown_usage_calls": 3,
+    "budget_tokens": 128415,
+    "by_stage": {
+      "answer_generation": 5,
+      "query_embedding": 3,
+      "rerank": 3
+    },
+    "trace_and_ledger_match": true,
+    "unpriced_calls": 11,
+    "fees": "unknown",
+    "additional_model_calls": 0,
+    "ledger_sha256": "00bf22adbb58811406d3fe5a47663d4389398fed5925b0a079b53832964b7ed2",
+    "elapsed_seconds": 39.903
+  },
+  "case_reviews": [
+    {
+      "case_id": "MFGWO-Q001",
+      "verdict": "failed",
+      "reason": "生成草稿在claim层value_error，未交付产品型号，不能用已知源值替代实际响应计分。",
+      "schema_errors": [
+        {
+          "kind": "schema_error",
+          "error_type": "ValidationError",
+          "errors": [
+            {
+              "location": [
+                "claims",
+                "0"
+              ],
+              "type": "value_error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "MFGWO-Q002",
+      "verdict": "failed",
+      "reason": "本轮不再超时，但仍在claim层value_error，未交付工序事实。",
+      "schema_errors": [
+        {
+          "kind": "schema_error",
+          "error_type": "ValidationError",
+          "errors": [
+            {
+              "location": [
+                "claims",
+                "0"
+              ],
+              "type": "value_error"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "MFGWO-Q007",
+      "verdict": "passed",
+      "reason": "交付2.0适用性、指导书生效范围和ECN选版规则；实际开工日期由业务引用提供，规则与工单身份来源绑定，未按上传时间选版。",
+      "schema_errors": []
+    },
+    {
+      "case_id": "MFGWO-Q013",
+      "verdict": "passed",
+      "reason": "明确不按报工或文档上传时间选版，交付当前工单2.0及ECN/指导书/业务来源，未将一般规则称为唯一依据。",
+      "schema_errors": []
+    },
+    {
+      "case_id": "MFGWO-Q016",
+      "verdict": "failed",
+      "reason": "四条claim层value_error，合法版本问题未交付答案；不把它解释为已发生身份或源地址更改。",
+      "schema_errors": [
+        {
+          "kind": "schema_error",
+          "error_type": "ValidationError",
+          "errors": [
+            {
+              "location": [
+                "claims",
+                "0"
+              ],
+              "type": "value_error"
+            },
+            {
+              "location": [
+                "claims",
+                "1"
+              ],
+              "type": "value_error"
+            },
+            {
+              "location": [
+                "claims",
+                "2"
+              ],
+              "type": "value_error"
+            },
+            {
+              "location": [
+                "claims",
+                "3"
+              ],
+              "type": "value_error"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "preserved": {
+    "raw_report_sha256": "28b81d07ab3742aa9e13ef11ddacd026eaba5fba614e73467c5961a09bc8f2d2",
+    "reviews_sha256": "d3d16402d3cf72a845f9acf6e59b6532d34c534d8fcd1591cc863d2aab826ab1",
+    "raw_manifest_sha256": "6bddd7933cca87aacbdf5daac60fe1f5dad88d6dad27823167c717499546fdbb"
+  },
+  "private_artifacts": "tmp/manufacturing-source-units-runtime-20261109-r2/confirmation-r1/",
+  "prior_complete_development": {
+    "batch": "2026-11-09-development-r2",
+    "automatic_passed": 11,
+    "assistant_non_independent_passed": 11,
+    "total": 16,
+    "critical_passed": 4,
+    "critical_total": 6,
+    "gate_passed": false
+  },
+  "formal_status": {
+    "batch": "2026-11-01-r4",
+    "passed": 31,
+    "total": 40,
+    "critical_passed": 9,
+    "critical_total": 12,
+    "release_gate_passed": false
+  },
+  "new_full_development_executed": false,
+  "new_formal_executed": false,
+  "new_closure_executed": false,
+  "limitations": [
+    "这是已失败题的定向确认，非独立盲测，不与旧11/16拼分。",
+    "未使用空选择器兼容后仍出现claim级value_error，原Trace未保留触发分支的细项，不能将推断当作完整根因证明。",
+    "模型失败结果保留，未按来源已知值替换实际交付或重新评分。",
+    "供应商单价未配置，费用未知；未知用量按每次32000预留预算。"
+  ]
+}

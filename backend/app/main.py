@@ -18,6 +18,9 @@ from .api.model_usage import router as model_usage_router
 from .api.feedback import router as feedback_router
 from .api.quality import router as quality_router
 from .api.verification import router as verification_router
+from .api.manufacturing import router as manufacturing_router
+from .integrations.mes import MESConnector
+from .integrations.mes_contracts import load_source_configs
 from .db.session import (
     create_database_engine,
     create_session_factory,
@@ -130,7 +133,16 @@ async def lifespan(app: FastAPI):
             answer_service, ConversationResolver(settings),
         )
 
-        yield
+        app.state.mes_connectors = {}
+        try:
+            source_file = getattr(settings, "manufacturing_sources_file", None)
+            if source_file is not None:
+                for tenant, config in load_source_configs(source_file).items():
+                    app.state.mes_connectors[tenant] = MESConnector(config)
+            yield
+        finally:
+            for connector in app.state.mes_connectors.values():
+                await connector.aclose()
 
 
 app = FastAPI(
@@ -142,6 +154,7 @@ app = FastAPI(
 app.middleware("http")(observe_http_request)
 
 app.include_router(qa_router)
+app.include_router(manufacturing_router)
 app.include_router(conversations_router)
 app.include_router(knowledge_base_router)
 app.include_router(document_review_router)

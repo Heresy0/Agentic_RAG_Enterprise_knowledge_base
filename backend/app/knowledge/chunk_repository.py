@@ -68,6 +68,7 @@ class ChunkRepository:
             ),
             "document_id": str(document.id),
             "document_version": document.version,
+            "document_content_hash": document.content_hash,
             "source_id": document.source_id,
             "chunk_id": chunk.id,
             "chunk_index": chunk.chunk_index,
@@ -76,6 +77,11 @@ class ChunkRepository:
             "document_name": document.file_name,
             "source": document.storage_uri,
         })
+        manufacturing = (document.metadata_json or {}).get("manufacturing")
+        if isinstance(manufacturing, dict):
+            metadata["manufacturing_revision"] = manufacturing.get("revision")
+            metadata["manufacturing_digest"] = manufacturing.get("data_sha256")
+            metadata["manufacturing"] = manufacturing.get("data")
 
         return metadata
 
@@ -88,13 +94,14 @@ class ChunkRepository:
         """
         if not document_ids:
             return {}
+        scope.require_current_manufacturing(self._session)
         rows = self._session.execute(select(KnowledgeDocument, DocumentChunk).join(
             DocumentChunk, and_(KnowledgeDocument.id == DocumentChunk.document_id,
                 KnowledgeDocument.tenant_id == DocumentChunk.tenant_id,
                 KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id),
         ).where(KnowledgeDocument.id.in_(document_ids), KnowledgeDocument.tenant_id == scope.tenant_id,
                 scope.knowledge_base_filter(KnowledgeDocument.knowledge_base_id),
-                KnowledgeDocument.status == "ready", published_predicate(), DocumentChunk.chunk_index < 8
+                KnowledgeDocument.status == "ready", published_predicate(), scope.document_filter(), DocumentChunk.chunk_index < 8
                 ).order_by(KnowledgeDocument.id, DocumentChunk.chunk_index)).all()
         grouped = {}
         for document, chunk in rows:
@@ -104,13 +111,14 @@ class ChunkRepository:
                 for identifier, (doc, contents) in grouped.items()}
 
     def _current_rows(self, scope):
+        scope.require_current_manufacturing(self._session)
         return select(DocumentChunk, KnowledgeDocument).join(KnowledgeDocument, and_(
             KnowledgeDocument.id == DocumentChunk.document_id,
             KnowledgeDocument.tenant_id == DocumentChunk.tenant_id,
             KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id,
         )).where(DocumentChunk.tenant_id == scope.tenant_id,
                  scope.knowledge_base_filter(DocumentChunk.knowledge_base_id),
-                 KnowledgeDocument.status == "ready", published_predicate()).execution_options(populate_existing=True)
+                 KnowledgeDocument.status == "ready", published_predicate(), scope.document_filter()).execution_options(populate_existing=True)
 
     def current_chunks(self, *, scope, expected):
         """Rehydrate a bounded evidence pool; retired versions cannot re-enter."""
@@ -128,6 +136,39 @@ class ChunkRepository:
                 continue
             result[chunk.id] = self._stored(chunk, document)
         return [result[key] for key in expected if key in result]
+
+    def manufacturing_evidence(self, *, scope, expand_parents=False):
+        """Read deciding sources directly, independently of vector/keyword top-k."""
+        if scope.manufacturing is None or not scope.manufacturing.required_evidence:
+            return []
+        expected = {row.anchor.chunk_id: {"document_id": str(row.document_id),
+            "knowledge_base_id": str(next(binding.knowledge_base_id for binding in scope.manufacturing.documents
+                                            if binding.document_id == row.document_id)),
+            "vector_generation": row.anchor.vector_generation}
+            for row in scope.manufacturing.required_evidence}
+        rows = {row.chunk_id: row for row in self.current_chunks(scope=scope, expected=expected)}
+        result = {}
+        for required in scope.manufacturing.required_evidence:
+            anchor = required.anchor
+            row = rows.get(anchor.chunk_id)
+            if row is None:
+                from ..manufacturing.scope import ManufacturingScopeChanged
+                raise ManufacturingScopeChanged("决定选版的原文不可用。")
+            if anchor.parent_id or expand_parents:
+                # Resolve each citation anchor separately: two required children
+                # may share one parent, while keeping distinct citation IDs.
+                parents = self.parent_chunks(scope=scope, expected={anchor.chunk_id: expected[anchor.chunk_id]})
+                expanded = parents[0] if parents else None
+                if anchor.parent_id and (expanded is None or expanded.metadata.get("parent_id") != anchor.parent_id):
+                    from ..manufacturing.scope import ManufacturingScopeChanged
+                    raise ManufacturingScopeChanged("决定选版的父块不可用。")
+                if expanded is not None and anchor.quote in expanded.content:
+                    row = expanded
+            if row.chunk_id not in result or row.metadata.get("parent_id"):
+                result[row.chunk_id] = StoredChunk(chunk_id=row.chunk_id, document_id=row.document_id, tenant_id=row.tenant_id,
+                    knowledge_base_id=row.knowledge_base_id, content=row.content, document_name=row.document_name,
+                    source=row.source, metadata={**row.metadata, "manufacturing_required": True})
+        return list(result.values())
 
     def neighboring_chunks(self, *, scope, chunk_id, generation, document_id, radius=2):
         """Read at most five neighbors of one already-authorized current anchor."""
@@ -203,6 +244,7 @@ class ChunkRepository:
         ids = list(document_ids)
         if not ids:
             return []
+        scope.require_current_manufacturing(self._session)
         if len(ids) > 2:
             raise ValueError("正文补取最多允许两份候选文档")
         rows = self._session.execute(select(DocumentChunk, KnowledgeDocument).join(
@@ -210,7 +252,7 @@ class ChunkRepository:
                 KnowledgeDocument.tenant_id == DocumentChunk.tenant_id,
                 KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id),
         ).where(DocumentChunk.document_id.in_(ids), DocumentChunk.tenant_id == scope.tenant_id,
-                scope.knowledge_base_filter(DocumentChunk.knowledge_base_id), KnowledgeDocument.status == 'ready', published_predicate(),
+                scope.knowledge_base_filter(DocumentChunk.knowledge_base_id), KnowledgeDocument.status == 'ready', published_predicate(), scope.document_filter(),
                 DocumentChunk.chunk_index >= 0, DocumentChunk.chunk_index < 8,
         ).order_by(KnowledgeDocument.id, DocumentChunk.chunk_index).limit(16)).all()
         return [StoredChunk(chunk_id=chunk.id, document_id=document.id, tenant_id=chunk.tenant_id,
@@ -237,13 +279,14 @@ class ChunkRepository:
 
         if not scope.knowledge_base_ids:
             return []
+        scope.require_current_manufacturing(self._session)
         base = select(DocumentChunk, KnowledgeDocument).join(KnowledgeDocument, and_(
             KnowledgeDocument.tenant_id == DocumentChunk.tenant_id,
             KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id,
             KnowledgeDocument.id == DocumentChunk.document_id,
         )).where(DocumentChunk.tenant_id == scope.tenant_id,
                  scope.knowledge_base_filter(DocumentChunk.knowledge_base_id),
-                 KnowledgeDocument.status == "ready", published_predicate())
+                 KnowledgeDocument.status == "ready", published_predicate(), scope.document_filter())
         generations = self._session.scalars(base.with_only_columns(DocumentChunk.vector_generation).distinct()).all()
         if not generations:
             return []
@@ -279,6 +322,7 @@ class ChunkRepository:
 
     def has_ready_chunks(self, *, scope: RetrievalScope) -> bool:
         """Empty-scope check without loading the entire knowledge base."""
+        scope.require_current_manufacturing(self._session)
         statement = select(DocumentChunk.id).join(KnowledgeDocument, and_(
             KnowledgeDocument.tenant_id == DocumentChunk.tenant_id,
             KnowledgeDocument.knowledge_base_id == DocumentChunk.knowledge_base_id,
@@ -288,6 +332,7 @@ class ChunkRepository:
             scope.knowledge_base_filter(DocumentChunk.knowledge_base_id),
             KnowledgeDocument.status == "ready",
             published_predicate(),
+            scope.document_filter(),
         ).limit(1)
         return self._session.scalar(statement) is not None
 
@@ -297,6 +342,7 @@ class ChunkRepository:
         scope: RetrievalScope,
     ) -> list[StoredChunk]:
         """列出授权范围内全部可用于关键词检索的分块。"""
+        scope.require_current_manufacturing(self._session)
         statement = (
             select(
                 DocumentChunk,
@@ -322,6 +368,7 @@ class ChunkRepository:
                 scope.knowledge_base_filter(KnowledgeDocument.knowledge_base_id),
                 KnowledgeDocument.status == "ready",
                 published_predicate(),
+                scope.document_filter(),
             )
             .order_by(
                 KnowledgeDocument.id,

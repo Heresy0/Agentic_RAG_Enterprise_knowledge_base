@@ -54,10 +54,10 @@ def authenticate_admin(uri, collection, target, *, allow_default_root=False, cur
     return store
 
 
-def configure_services(admin, tokens):
+def configure_services(admin, tokens, *, accounts=None):
     roles = set(admin._call("roles/list"))
     users = set(admin._call("users/list"))
-    for purpose, (username, role, privileges) in SERVICE_ACCOUNTS.items():
+    for purpose, (username, role, privileges) in (accounts or SERVICE_ACCOUNTS).items():
         token = tokens[purpose]
         if token.partition(":")[0] != username:
             raise RuntimeError("服务密钥的账号名称不匹配")
