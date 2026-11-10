@@ -1,28 +1,125 @@
-# Multi-tenant Long-context RAG Engine
+# 面向制造业的工艺知识与作业指导平台
 
 [![CI](https://github.com/Heresy0/Agentic_RAG_Enterprise_knowledge_base/actions/workflows/ci.yml/badge.svg)](https://github.com/Heresy0/Agentic_RAG_Enterprise_knowledge_base/actions/workflows/ci.yml)
 
-面向企业内部知识库的多租户 RAG 问答系统，当前以制造业场景验证。使用 Keycloak 完成 OIDC 认证，在 PostgreSQL 维护租户、部门和知识库授权，通过 Milvus/BM25 混合检索、父块回取与引用校验生成可追溯回答，并接入反馈审核和回归评测闭环。
+将工艺资料、指导书版本和 ERP/MES 执行记录接入同一问答流程的多租户平台。支持按工单及具体工序、作业卡或批次、步骤限定问题范围，分别追溯文档原文与业务字段来源，并将反馈纳入审核、样本冻结和回归验证。
+
+已完成自建 **ERPNext** 与 **OpenMES** 的真实 API 只读联调，尚未接入真实工厂系统。自建演示记录、助手非独立审核和工程替身验证均不视为工厂执行证据或独立业务验收；最近已记录的制造问答真实模型批次仍未达到各自门槛。
+
+## 典型业务场景
+
+- **查询执行记录**：选择工单、工序/作业卡或批次/步骤，分别查询实际开工及登记状态；缺失值保持未知，计划时间和父子实体时间不互相补齐。
+- **确定作业依据**：按已审核资料和书面规则判断工单适用版本；OpenMES 支持为具体步骤审核指定指导书业务版本，保留草稿、复核、撤回及历史。
+- **追溯回答来源**：指导书要求引用原文及文档版本，执行字段引用源实体、真实记录编号、字段值、修订和时间精度；作业要求不等于已经检验、签署或放行。
+- **审核和回归问题**：用户主动共享反馈并允许导出后，授权审核者核对证据、冻结样本；独立预算 Worker 复读来源并验证，来源变化使旧样本失效。
 
 ## 阅读入口
 
 | 需要了解什么 | 从哪里开始 |
 | --- | --- |
-| 新会话接手、源码定位和修改边界 | [AGENTS.md](AGENTS.md) |
-| 当前演示、启动、部门配置与成绩口径 | [制造业演示指南](docs/MANUFACTURING_DEMO.md) |
-| 日常16份资料、98题配置 | [制造业精简集](evals/manufacturing_zh_lite_v1/README.md) |
-| 稳定展示版本与冻结评分 | [发布清单](evals/manufacturing_zh_lite_v1/demo_release.json) |
-| 通用120题历史基线 | [统一评测套件](evals/current/README.md) |
-| 候选98题、超时补跑与剩余问题 | [2026-10-30收尾记录](evals/manufacturing_zh_lite_v1/reports/20261030-wrapup-r1/README.md) |
+| 工单、适用性与两类来源引用 | [制造问答与会话](docs/MANUFACTURING_QA.md)、[资料适用性审核](docs/MANUFACTURING_APPLICABILITY.md) |
+| ERPNext 工单、工序及作业卡只读接入 | [ERPNext 接入](docs/ERPNEXT_INTEGRATION.md)、[质量审核与冻结](docs/ERPNEXT_QUALITY.md) |
+| OpenMES 工单、批次及步骤只读接入 | [OpenMES 接入](docs/OPENMES_INTEGRATION.md) |
+| 步骤指导书审核映射、批次/步骤样本冻结 | [OpenMES 审核与质量冻结](docs/OPENMES_GUIDANCE_QUALITY.md) |
+| 最新阶段及各轮验收边界 | [分阶段进度](docs/MANUFACTURING_PHASE1_PROGRESS.md)、[OpenMES O4/O5 报告](docs/reports/openmes-guidance-quality-20261110-r1.json) |
+| ERPNext 最近真实模型验证与未通过项 | [16题开发验证报告](docs/reports/erpnext-development-20261109-r1.md) |
+| 保留的8000稳定展示、部门配置及98题成绩 | [制造业演示指南](docs/MANUFACTURING_DEMO.md)、[冻结发布清单](evals/manufacturing_zh_lite_v1/demo_release.json) |
+| 通用120题历史基线及评测入口 | [统一评测套件](evals/current/README.md) |
+| 开发接手、源码定位和修改边界 | [AGENTS.md](AGENTS.md) |
 
-源码已合入Git主线，本机8000稳定容器与8001候选容器仍分别保留，源码合并不代表容器更新。普通解析与OCR闭环已实现；视觉解析尚待接入实测，ERP/MES实时接口尚未接入。本机部门、账号及租户是运行配置，详见演示指南。
+## 系统架构
 
-历史演进资料按原批次保留：[17份/20题首版](docs/MANUFACTURING_LITE.md)、[60份公开资料v2](docs/MANUFACTURING_PUBLIC_V2.md)、[18份中文原文v3](docs/MANUFACTURING_ZH_V3.md)、[解析缺陷修复](evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/README.md)、[离线OCR实验](evals/ocr_small_experiment_v1/reports/20261029-offline-r1/README.md)、[原40题开发集](evals/manufacturing_zh_v3/reports/20261029-development-live-r1/README.md)、[原40/80题闭环](docs/MANUFACTURING_CLOSED_LOOP.md)。[最初完整实施方案](docs/MANUFACTURING_IMPLEMENTATION_PLAN.md)包含尚未实施的后续设计。这些历史记录不代表当前待办或最新成绩；不同题集、评分版本、辅助复核与补跑结果分别记录。
+```mermaid
+flowchart LR
+    UI["浏览器工作台"] --> API["FastAPI：认证、权限与请求治理"]
+    KC["Keycloak / OIDC"] --> API
+    API --> REDIS["Redis：限流与并发控制"]
+    API --> QA["制造问答：会话绑定、适用性与步骤映射"]
+    QA -->|三次来源核验| AD["ERP/MES 只读适配层"]
+    AD -->|GET| ERP["独立 ERPNext"]
+    AD -->|GET| MES["独立 OpenMES"]
+    QA --> RAG["共享 RAG：混合检索、重排与有限修复"]
+    RAG --> PG[("PostgreSQL：权限、正文、BM25与审核记录")]
+    QA --> PG
+    API --> PG
+    RAG --> VEC[("Milvus：向量检索")]
+    RAG -->|按需调用| MODEL["LLM / Embedding / Rerank"]
+    RAG --> OUT["后端字段编译、两类引用与交付校验"]
+    OUT --> FB["快照、反馈审核与样本冻结"]
+    FB --> EW["独立预算评测 Worker"]
+    EW -. 复用问答与来源校验 .-> QA
+    API --> DOC["文档解析 / OCR、适用性审核与发布"]
+    DOC --> FILE[("受管原件目录")]
+    DOC --> IW["异步索引 Worker"]
+    IW --> PG
+    IW --> VEC
+    API -. 日志与指标 .-> OBS["Loki / Prometheus / Grafana / Alertmanager"]
+```
+
+制造问答复用通用 RAG 主流程，业务上下文和来源校验由后端提供：
+
+1. 校验 Keycloak 身份、知识库检索范围和业务 `view` 授权，按真实父子编号读取所选对象；客户端不能提供可信型号、时间或执行状态。
+2. 固定会话的工单及执行选择。ERPNext 按工单实际开工和已审核规则选版；OpenMES 按具体步骤的审核分配确定指导书版本，两种依据分别记录。
+3. 从当前授权且已发布、复核有效的资料中检索，按需规划、补查及有限修复。模型选择白名单业务字段或原文条目，后端编译字段文字、角色与引用；简单开工字段问题可直接投影，不调用模型。
+4. 获取来源、生成前和交付前共进行三次完整核验，并复查权限、相关资料和步骤映射；发生变化中止交付，成功后保存会话、快照及审计。
+5. 反馈共享、导出同意和审核权限分别检查。Worker 复读冻结记录与适用依据，同源同工单的不同工序、卡、批次或步骤不能拆入固定集和反馈集。
+
+普通 `/api/qa` 仍只做授权知识问答，不自动读取 ERP/MES。ERPNext 与 OpenMES 在独立候选环境、独立平台数据库和源配置中接入；每个租户当前只绑定一个业务源，尚未实现两者工单自动关联或同步。
+
+## ERPNext / OpenMES 接入能力
+
+| 能力 | ERPNext | OpenMES |
+| --- | --- | --- |
+| 业务对象 | 工单 → 工序子行 → 作业卡 | 工单 → 生产批次 → 工序步骤 |
+| 实际开工 | 分别读取工单、所选工序和作业卡的登记值 | 工单级未知；批次、步骤分别读各自 `started_at` |
+| 作业依据 | 工单实际开工、已审核指导书及书面变更规则 | 为确切工单/批次/步骤审核指定指导书版本及工艺编码；不按步骤名称或时间自动推定 |
+| 问答与会话 | 保存具体工序、卡及来源绑定，提供各实体引用 | 保存批次、步骤及映射摘要，映射变更要求新会话，提供各实体引用 |
+| 质量闭环 | 业务证据审核、冻结样本及预算 Worker | 批次/步骤证据审核、冻结样本及独立评分，支持硬零预算 Worker |
+| 上游只读限制 | 专用读取账号、公司范围及固定 GET 资源 | 专用 Sanctum 令牌及只读中间件，限制固定 GET 资源；普通 Operator 角色本身不等于只读 |
+
+已验证版本为ERPNext 16.54.0 / Frappe 16.55.2及OpenMES 0.28.0，字段语义和接口范围以这些固定版本的接入记录为准。
+
+平台统一保留知识库权限、工厂业务范围与来源核验。步骤映射和样本批准还需知识库 `admin` 及业务 `view+review`。审核、反馈和样本写入平台数据库，连接器不向 ERP/MES 登记开工、报工或质量放行。
+
+本机保留的入口（2026-11-10记录，新克隆不会自动具备这些环境）：
+
+| 环境 | 上游页面 | 平台工作台 | 运行业务源码及说明 |
+| --- | --- | --- | --- |
+| ERPNext 独立演示 | [18080](http://127.0.0.1:18080/) | [8003](http://127.0.0.1:8003/) | E4 `2680ce0`；运行镜像、私有配置与步骤见[ERPNext质量接入](docs/ERPNEXT_QUALITY.md) |
+| OpenMES 独立演示 | [18081](http://127.0.0.1:18081/) | [8004](http://127.0.0.1:8004/) | O4/O5 `609d23d`；运行镜像、审核及冻结入口见[专项说明](docs/OPENMES_GUIDANCE_QUALITY.md) |
+
+原8000稳定展示、8001候选及8002模拟MES环境继续保留。源码已合入 `main`；Git提交、README更新和容器更新是独立操作，不能从当前分支推断运行版本。本机租户、部门、授权、凭据和演示记录属于运行配置，不随克隆自动生成，凭据不提交仓库。
+
+## 当前验收状态
+
+截至2026-11-10，工程接入已通过对应阶段验证，制造业务真实模型质量尚未形成通过门槛的新批次。工程回归、真实模型评测及工厂业务验收分别记录：
+
+| 范围 | 已记录结果 | 结论与证据 |
+| --- | --- | --- |
+| 主线工程复验 | 2352项非集成通过、1项既有跳过、98项集成排除；前端65项通过；独立PostgreSQL M1～M4为9/12/14/12项，共47项通过 | 在合并提交 `09ec518` 上复验，测试库均清理；不计算模型准确率。O4/O5专项记录见[公开报告](docs/reports/openmes-guidance-quality-20261110-r1.json)，其PostgreSQL范围为M1/M3/M4 |
+| OpenMES O4/O5真实来源链路 | 71个请求、7个成功问答快照均三次核验；两次各2题零预算CLI任务通过，新增模型调用0 | 工程接入通过；问题场景有重叠，未进行真实模型质量复验。[验收说明](docs/OPENMES_GUIDANCE_QUALITY.md) |
+| ERPNext E5真实模型开发验证 | 10/16，关键题2/6 | 未达至少14/16且关键题全过的门槛；对应当时E4运行版本。[逐题报告](docs/reports/erpnext-development-20261109-r1.md) |
+| 模拟MES完整开发验证 | 13/16，关键题4/6 | 未达开发门槛，保留误拒、漏答及503记录。[本轮报告](docs/reports/manufacturing-development-20261109-r3.md) |
+| 制造首期M4正式复验 | 31/40，关键题9/12 | 未通过门槛，真实改进闭环仍待验证。[正式复验说明](docs/MANUFACTURING_M4_REVALIDATION.md) |
+
+各批次绑定各自题集、评分口径及代码/镜像版本；后续源码修正和零模型验证不更新旧成绩，各轮不拼分。通用120题的历史成绩见后文，不代表当前 ERPNext/OpenMES 制造问答准确率；助手复核属于非独立复核。
+
+## 自建演示与真实工厂边界
+
+- 已验证的是自建开源ERP/MES的真实HTTP接口、权限、父子对象、来源修订和平台闭环；其中的演示工单、开工记录和审核分配不视为真实工厂执行证据。
+- 尚未对接工厂现有ERP/MES、设备采集或正式质量签署系统。实际开工、报工、检验合格、签署及放行属于不同业务事实，平台不代为执行或推定完成。
+- OpenMES 映射是逐具体步骤的显式审核分配，审核者须核对在制规则与相关通知；步骤名称不是工序代码，步骤/批次时间不能补为工单实际开工。
+- 普通解析与OCR已接入审核发布闭环；视觉解析实测、最新阶段浏览器视觉验收、完整备份恢复演练和真实工厂业务验收尚未完成。
+- 当前用于本地演示与技术验证，未建立生产并发容量或未见工厂问题上的准确率承诺；备份目录核验、接口测试和工程替身不能替代上述验收。
 
 ## 核心能力
 
 文档入库前已接入[统一保守清洗](docs/DOCUMENT_CLEANING.md)：四种格式共用清洗模块并保留结构、来源页码、规则与前后指纹。清洗版本为 `conservative-v2`，索引解析版本为 `structured-v7`；旧报告保留原版本和原成绩，现有索引不会自动重建。
 
+- ERPNext与OpenMES只读适配、真实父子对象选择、分层实际开工及业务字段引用
+- 已审核指导书适用性、书面规则与OpenMES步骤版本分配，保留原始来源及审核历史
+- 工单执行选择与步骤映射的会话绑定，来源/权限/资料变化时中止交付
+- 业务证据审核、不可变样本、同工单分组及有预算约束的独立质量Worker
 - Keycloak OIDC 登录、JWT 签名及 issuer、audience 校验
 - 租户、部门、用户和知识库四层权限模型
 - 用户授权与部门授权，支持 `viewer`、`editor` 和 `admin` 权限
@@ -64,19 +161,24 @@ Agent 可决定补查或读取相邻原文。生成后的覆盖记录与引用�
 配置和验证边界见 [输入路由与 Agent 证据收集说明](docs/AGENTIC_RAG.md)。
 
 当前默认重排保留 12 个子块，再回取已授权且版本匹配的父块。上下文默认保留完整父块，仅在剩余字符预算不足时尝试一次受约束的模型章节选取；命中原文及规则识别出的条件、例外、列表和表格强制保留，无法完整放入时明确拒答。配置、回退及验证边界见[上下文构建说明](docs/CONTEXT_BUILDING.md)。
-实现与升级步骤见 [父子块说明](docs/PARENT_CHILD_RAG.md)。最新整体评估与普通 RAG 对照结果见下文；
+实现与升级步骤见 [父子块说明](docs/PARENT_CHILD_RAG.md)。通用RAG历史评估与对照结果见下文；
 2026-10-14 的历史结果保留在 [父子块与回答修复验收](docs/PARENT_CHILD_ACCEPTANCE_20261014.md)。
 
 演示与收尾验收步骤见 [演示验收指南](docs/DEMO.md)。项目当前面向功能演示和
 技术方案验证，不将小样本评估结果或单机压测结果等同于生产级服务承诺。
 
-## 量化效果与普通 RAG 对照
+## 通用RAG历史评测与对照（2026-10-16）
 
-当前已统一为[120题评估套件](evals/current/README.md)，保留main100题、multihop12题、completeness8题各自成绩。以下区分2026-10-16最新汇总与历史批次，避免混用分母和评分口径。
+通用[120题评估套件](evals/current/README.md)保留main100题、multihop12题、completeness8题各自成绩。本节为2026-10-16的通用知识库实验及其历史配置，不是当前制造工单、ERPNext或OpenMES版本的验收结果；不同批次不混用分母或评分口径。
 
-### 最新120题回归汇总
+<details>
+<summary>展开通用120题、100题和复杂多跳历史实验</summary>
 
-120题真实运行原始r9成绩为107/120；修复CC-005否定等价表达误扣后，仅重跑该题并通过。最新汇总为108/120，助手逐题语义复核同为108/120；这是一轮120题加单题更新的汇总，不是另一轮120题全量生成。
+历史演进资料按原批次保留：[17份/20题首版](docs/MANUFACTURING_LITE.md)、[60份公开资料v2](docs/MANUFACTURING_PUBLIC_V2.md)、[18份中文原文v3](docs/MANUFACTURING_ZH_V3.md)、[解析缺陷修复](evals/manufacturing_zh_v3/reports/20261029-parser-fix-r1/README.md)、[离线OCR实验](evals/ocr_small_experiment_v1/reports/20261029-offline-r1/README.md)、[原40题开发集](evals/manufacturing_zh_v3/reports/20261029-development-live-r1/README.md)、[原40/80题闭环](docs/MANUFACTURING_CLOSED_LOOP.md)。[最初完整实施方案](docs/MANUFACTURING_IMPLEMENTATION_PLAN.md)包含尚未实施的后续设计。这些历史记录不代表当前待办或最新成绩；不同题集、评分版本、辅助复核与补跑结果分别记录。
+
+### 通用120题历史回归汇总
+
+120题真实运行原始r9成绩为107/120；修复CC-005否定等价表达误扣后，仅重跑该题并通过。该轮汇总为108/120，助手逐题语义复核同为108/120；这是一轮120题加单题更新的汇总，不是另一轮120题全量生成。
 
 | 分组 | 严格自动通过率 / 助手复核准确率 | 最终上下文标注证据召回 |
 |---|---:|---:|
@@ -94,7 +196,7 @@ Agent 可决定补查或读取相邻原文。生成后的覆盖记录与引用�
 使用 [100 题 v4](evals/archive/xinghai_v4/README.md)，包含 87 道可回答题与 13 道资料不足题。
 该历史批次来自真实模型运行，并按r9规则对保存的原始回答重评分；重评分没有重新生成答案。
 
-| 指标 | 当前结果 |
+| 指标 | 该历史批次结果 |
 | --- | ---: |
 | 严格自动通过率 | **94%（94/100）** |
 | 可回答题严格通过率 | 93.1%（81/87） |
@@ -145,49 +247,7 @@ Agent 可决定补查或读取相邻原文。生成后的覆盖记录与引用�
 以上为同源合成回归题的测量结果。100 题成绩是自动评分代理，未独立人工核验所有结论；
 12 题复核由本次助手完成，单次运行存在模型输出波动，不能据此推断生产环境或未见问题上的稳定准确率。
 
-## 系统架构
-
-```mermaid
-flowchart LR
-    U[用户或业务系统] -->|OIDC 登录| K[Keycloak]
-    K -->|JWT Access Token| U
-    U -->|Bearer Token| A[FastAPI]
-    A --> I[身份认证与权限校验]
-    I --> S[RetrievalScope]
-    S --> Q[输入规划与策略路由]
-    Q --> R[混合检索与重排]
-    R --> P[(PostgreSQL + pg_search)]
-    R --> V[(Milvus)]
-    R --> L[大模型服务]
-    A --> D[文档管理服务]
-    D --> F[(受管文件目录)]
-    D --> J[(文档索引任务)]
-    J --> W[索引 Worker]
-    W --> F
-    W --> P
-    W --> V
-    A --> O[结构化日志与耗时指标]
-    A --> AU[(不可变审计事件)]
-    O --> M[Prometheus]
-    O --> AL[Grafana Alloy]
-    AL --> LK[Loki]
-    LK --> G[Grafana]
-    M --> G[Grafana]
-    M --> AM[Alertmanager]
-    AM --> AW[Webhook 通知网关]
-    AW -. 可选转发 .-> E[外部告警平台]
-```
-
-一条问答请求的大致流程为：
-
-1. API 验证 Keycloak JWT，并把外部身份映射为本地租户用户。
-2. 授权服务验证用户对目标知识库的访问权限。
-3. 系统生成不可变的 `RetrievalScope`。
-4. 多轮问题补全后，识别意图、按需拆分并建议执行策略；原问题保留。
-5. SQL 读取已授权且 ready 的索引版本，Milvus 在 ANN 前过滤租户、知识库和版本，SQL 回查再次核验命中。
-6. 系统完成混合检索、融合和重排，必要时由 Agent 补查或补读。
-7. 重排子块回取当前授权父块并去重，在原字符及来源预算内优先保留完整父块；预算紧张时可有限模型选段，复杂问题保留完整父块，完整证据放不下时拒答。
-8. 大模型根据受控上下文生成答案；结构和引用绑定错误可有限修复，最终校验通过才输出引用。
+</details>
 
 ## 技术栈
 
@@ -195,6 +255,7 @@ flowchart LR
 | --- | --- |
 | Web API | FastAPI、Pydantic、Uvicorn |
 | 身份认证 | Keycloak、OIDC、JWT |
+| 业务接入 | ERPNext、OpenMES、独立只读HTTP适配器与版本化来源契约 |
 | 数据库 | PostgreSQL 16、SQLAlchemy、Alembic |
 | 向量检索 | Milvus 3.0.2、REST v2、COSINE / HNSW |
 | RAG | LangChain、BM25、DashScope Embedding/Rerank/LLM |
@@ -210,13 +271,22 @@ flowchart LR
 ├── backend/app/              # FastAPI、认证授权、检索和问答服务
 │   ├── api/                  # REST API 路由
 │   ├── db/                   # ORM 模型、数据库会话及初始化逻辑
-│   └── security/             # OIDC、Principal、权限与检索范围
+│   ├── security/             # OIDC、Principal、知识库及工厂业务权限
+│   ├── manufacturing/        # 工单上下文、适用性、步骤映射及会话绑定
+│   ├── integrations/        # ERP/MES只读客户端与来源契约
+│   ├── knowledge/           # 共享检索、上下文、问答和受限修复
+│   └── quality/             # 反馈审核、样本冻结及预算Worker
+├── services/                # 模拟MES、ERPNext及OpenMES独立适配服务
+├── deploy/                  # ERPNext/OpenMES独立部署及适配器配置
+├── config/                  # 不含凭据的来源映射与评测登记样例
+├── docs/                    # 接入说明、架构专题、阶段验收及失败报告
 ├── migrations/               # Alembic 数据库迁移
 ├── scripts/                  # 租户初始化、批量入库和评估工具
 ├── tests/                    # 单元测试、API 测试和集成测试
 ├── evals/
-│   ├── datasets/             # 开发集和独立测试集
-│   └── reports/              # 评估报告
+│   ├── current/              # 通用120题冻结套件
+│   ├── erpnext_zh_v1/        # ERPNext独立16题开发验证
+│   └── archive/              # 保留的历史套件；其他制造套件各自记录
 ├── sample_docs/              # 演示文档
 ├── monitoring/               # Prometheus、Alertmanager、Alloy、Loki 与 Grafana 配置
 ├── compose.yaml              # 应用、依赖服务与监控栈
@@ -224,7 +294,9 @@ flowchart LR
 └── requirements.txt
 ```
 
-## 快速开始
+## 快速开始（通用知识库基础环境）
+
+以下步骤用于新建通用知识库基础服务，不会自动初始化ERPNext/OpenMES、制造租户或业务授权。独立制造环境按[ERPNext](docs/ERPNEXT_INTEGRATION.md)和[OpenMES](docs/OPENMES_INTEGRATION.md)说明配置；已有站点不重复初始化，已有候选按各自配置维护，源码合并或文档更新不要求重建容器和索引。
 
 ### 1. 环境要求
 
@@ -236,8 +308,8 @@ flowchart LR
 ### 2. 获取代码
 
 ```powershell
-git clone https://github.com/Heresy0/Multi-tenant-long-context-rag-engine.git
-Set-Location Multi-tenant-long-context-rag-engine
+git clone https://github.com/Heresy0/Agentic_RAG_Enterprise_knowledge_base.git manufacturing-guidance-platform
+Set-Location manufacturing-guidance-platform
 ```
 
 ### 3. 配置环境变量
@@ -470,7 +542,7 @@ docker compose down
 
 ## 浏览器工作台
 
-API 启动后打开 <http://127.0.0.1:8000/>，即可使用内置的“知序”工作台。
+新建基础环境启动后打开 <http://127.0.0.1:8000/>，即可使用本平台的内置浏览器工作台；本机ERPNext/OpenMES候选分别使用上文的8003/8004入口。
 页面使用原生 HTML / CSS / JavaScript，由 FastAPI 同源提供，Docker 镜像自动包含
 静态资源，无需 Node.js、前端构建或额外容器。`3000` 端口仍为 Grafana。
 
@@ -479,10 +551,12 @@ API 启动后打开 <http://127.0.0.1:8000/>，即可使用内置的“知序”
 - editor / admin 可上传和删除文档、查看索引任务、重试失败任务。
 - 上传返回 202 后，页面每 5 秒刷新活动任务；任务完成后文档可用于问答。
 - viewer 仅可查看和提问。所有权限仍由 API 校验，前端显示不替代服务端授权。
+- 工单模式按当前来源显示ERPNext工序/作业卡或OpenMES批次/步骤选择，切换对象开始新会话；业务字段和文档引用分别预览。
+- 在单一管理知识库及具体OpenMES步骤下，具有业务review的管理员可审核指导书映射；质量工作台支持证据审核、冻结版本和预算任务。
 
 初次体验可点击“登录工作空间”，展开“已有访问令牌？临时登录”，粘贴现有
 Alice / Bob Access Token。令牌仅保存在页面内存中，刷新后需要重新登录；过期时会
-提示重新登录。问题和答案也只保留在当前页面，切换知识库或退出时清空。
+提示重新登录。切换知识库或退出时清空当前页面状态；已保存的私有会话和问答快照在服务器保留，重新登录后按当前权限恢复或查看，详见后文[多轮对话](#多轮对话)。
 
 使用企业账号直接登录前，需要在 Keycloak 的 `enterprise-knowledge` Realm
 创建一个浏览器 public client：
@@ -594,7 +668,7 @@ Markdown 按 `#` 标题和 Setext 标题建立章节路径，代码围栏内不�
 切分并重复表头，列表条目与缩进说明尽量一起保留。TXT、Markdown 和 DOCX
 复用最终分块生成逻辑，统一附加文档名、章节、内容类型和父单元标识。
 
-当前切分版本为 `structured-v4`。版本升级不会自动重建已有索引，需要重新
+当前切分版本为 `structured-v7`。版本升级不会自动重建已有索引，需要重新
 提交入库任务；再次入库时版本检查会使旧版本分块重新生成。
 
 PDF 入库采用渐进式处理：先清理重复页眉、页脚和页码，按标题与段落进行
@@ -718,7 +792,24 @@ Authorization: Bearer <access_token>
 | `GET` | `/api/knowledge-bases/{knowledge_base_id}/audit-events` | admin | 查询租户隔离的知识库审计事件 |
 | `POST` | `/api/qa` | viewer | 默认在全部授权知识库内问答，也可指定单个知识库 |
 
-问答请求示例：
+制造业务入口使用独立的业务范围授权，问答还需知识库检索权限：
+
+| 方法 | 路径 | 权限与行为 |
+| --- | --- | --- |
+| `GET` | `/api/manufacturing/work-orders` | 业务view；授权工单列表 |
+| `GET` | `/api/manufacturing/work-orders/{id}/context` | 业务view；读取当前所选工序/卡或批次/步骤上下文 |
+| `GET` | `/api/manufacturing/work-orders/{id}/operations` | ERPNext工序子行，业务view；卡列表为其下的 `/operations/{operation_id}/job-cards` |
+| `GET` | `/api/manufacturing/work-orders/{id}/batches` | OpenMES批次，业务view；步骤列表为其下的 `/batches/{batch_id}/steps` |
+| `POST` | `/api/manufacturing/qa` | 知识库viewer及业务view；三次来源校验、两类引用与快照 |
+| `POST` | `/api/manufacturing/conversations` | 知识库viewer及业务view；固定工单及执行选择 |
+| `GET/PUT` | `/api/manufacturing/work-orders/{id}/batches/{batch_id}/steps/{step_id}/guidance-mapping` | 指定知识库admin及业务view+review；映射历史、草稿、复核或撤回 |
+| `POST/PUT` | `/api/quality/cases` 及其 `/{case_id}` | 管理员审核已共享反馈；制造样本另需业务review和来源复读 |
+| `POST/GET` | `/api/quality/datasets` 及其 `/{dataset_id}/samples` | 冻结及导出已批准、已获导出同意的样本，重新校验权限与来源 |
+| `POST` | `/api/quality/evaluations` | 创建独立预算验证任务，支持硬零模型模式；由独立Worker执行 |
+
+各层选择编号、`knowledge_base_id`、预期修订及审核状态的完整契约见[制造问答](docs/MANUFACTURING_QA.md)、[ERPNext接入](docs/ERPNEXT_INTEGRATION.md)和[OpenMES审核冻结](docs/OPENMES_GUIDANCE_QUALITY.md)。平台审核接口可写本地审核记录，上游ERP/MES接口保持只读。
+
+普通知识问答请求示例：
 
 ```json
 {
@@ -830,7 +921,7 @@ Remove-Item Env:ENTERPRISE_KB_ACCESS_TOKEN
 当前套件中的main组来自[原100题v4](evals/archive/xinghai_v4/README.md)：保留原80题，增加20道南栖题，共87道可回答、13道资料不足。
 新增 [12 份南栖业务文档](sample_docs/xinghai_nanqi/README.md) 已按四个知识库各 3 份入库；2026-10-16 本地授权范围内共有 72 份 ready 文档。
 运行 `python scripts/build_100_evaluation.py --prepare-corpus` 准备 68 份指定评估原文（其余为未列入清单的旧资料）。
-原80题、多跳12题与历史报告继续保留。历史100题批次按r9规则严格自动通过94/100，最终上下文标注证据召回136/136，资料不足题正确拒答13/13；另有6/87道可回答题最终拒答。见[历史100题最终评分记录](evals/acceptance/scoring_r9_100_20261016.json)；当前120题汇总见上方最新表。首轮89/100的[历史快照](evals/acceptance/current_100_20261016.json)保留原样；题集、语料或评分口径不同的总体分数不能直接比较。
+原80题、多跳12题与历史报告继续保留。历史100题批次按r9规则严格自动通过94/100，最终上下文标注证据召回136/136，资料不足题正确拒答13/13；另有6/87道可回答题最终拒答。见[历史100题最终评分记录](evals/acceptance/scoring_r9_100_20261016.json)；该120题历史汇总见上方通用RAG评测表。首轮89/100的[历史快照](evals/acceptance/current_100_20261016.json)保留原样；题集、语料或评分口径不同的总体分数不能直接比较。
 
 可选的 [Ragas旁路评估](docs/RAGAS_EVALUATION.md)复用100题最终答案和实际上下文，不进入问答运行链路。2026-10-16补全参考主体及必要背景、单列必答与可选信息后，同批答案的事实F1均值由0.4235升至0.6851，忠实度由0.9224变为0.9247；诊断筛查通过由16/100变为43/100，与原规则的差异由78题减至51题。答案、上下文及r9事实标准未变，原自动通过仍为94/100；F1不是准确率，残留正确扩展扣分、裁判拆解和少量业务措辞/引用风险。见 [原轮次记录](evals/acceptance/ragas_saved_100_20261016.json)与[完整参考对照](evals/acceptance/ragas_reference_comparison_100_20261016.json)。
 历史结果与已知问题见 [2026-10-14 验收记录](docs/PARENT_CHILD_ACCEPTANCE_20261014.md)，扩容收据见 [2026-10-16 扩容快照](evals/acceptance/nanqi_expansion_20261016.json)。
@@ -955,20 +1046,16 @@ python -m pytest tests/test_pg_bm25_integration.py -q
 
 ## 业务版本选择与受限计算
 
-正式问答链已增加业务有效期元数据、候选版本选择与来源绑定的时间/金额计算校验。单轮和多轮共用这些能力，保留原有向量、PostgreSQL BM25、RRF 和重排流程，不新增业务表，也不要求旧文档全量重建向量。实现、限制与启用方法见 [RAG 可靠性说明](docs/RAG_RELIABILITY.md)。
+通用问答链支持业务有效期元数据、候选版本选择与来源绑定的时间/金额计算校验，单轮和多轮共用混合检索与重排。该通用能力本身不新增业务表；制造模式另有工单绑定、步骤审核和冻结记录，按[适用性审核](docs/MANUFACTURING_APPLICABILITY.md)及[步骤审核说明](docs/OPENMES_GUIDANCE_QUALITY.md)运行。已有索引不自动重建，通用版本/计算限制见 [RAG 可靠性说明](docs/RAG_RELIABILITY.md)。
 
 ## 当前项目边界
 
-项目目前适合本地开发、功能演示和技术方案验证，距离生产环境还需要继续补充：
+项目当前用于本地开发、功能演示和技术方案验证。具体边界见前文；后续重点是：
 
-- 将当前数据库任务队列扩展为可水平扩容的多 Worker 队列
-- 生产级对象存储和文件病毒扫描
-- Keycloak Realm 自动化配置和密钥管理
-- OpenTelemetry 分布式追踪和跨服务 Trace 上下文
-- 上传频率控制和可视化审计管理后台
-- 数据库备份、恢复演练和滚动迁移策略
-- 大规模文档下的 BM25 参数调优、查询计划验证和多节点容量测试
-- 长期用户记忆、历史保留策略、知识库管理后台与更多交互功能
+- 对已暴露的字段选择、漏答、误拒、输出校验失败及版本比较问题修复并做新的完整真实模型验证；工程测试通过不更新历史模型成绩。
+- 使用获授权的工厂接口和资料校验主数据、工艺适用性、时间精度、权限及来源一致性，并由业务人员独立验收；当前自建演示不能代替这一步。
+- 完成最新页面的完整浏览器验收、视觉解析实测及备份完整恢复演练；当前已有备份目录核验不等于恢复成功。
+- 按实际文档规模、请求负载和部署条件验证容量、故障恢复、密钥与存储管理及升级策略；历史小样本压测不构成生产容量承诺。
 
 ## 开发流程
 
