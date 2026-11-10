@@ -70,7 +70,7 @@ def pg_harness(monkeypatch):
 def test_postgres_head_has_nullable_invalidation_and_old_business_bindings_stay_readable(pg_harness):
     h = pg_harness
     with h.engine.connect() as connection:
-        assert connection.scalar(text("SELECT version_num FROM alembic_version")) == "f2b8c0a961d3"
+        assert connection.scalar(text("SELECT version_num FROM alembic_version")) == "d7a1c3e5f902"
         column = next(row for row in inspect(connection).get_columns("conversation_business_bindings") if row["name"] == "invalidated_at")
         assert column["nullable"]
     with TestClient(h.c.app) as client:
@@ -79,6 +79,7 @@ def test_postgres_head_has_nullable_invalidation_and_old_business_bindings_stay_
             binding = session.get(ConversationBusinessBinding, (h.c.tenant_id, UUID(identifier)))
             assert binding.invalidated_at is None and binding.source_revision == "r1"
             assert binding.operation_id is None and binding.job_card_id is None
+            assert binding.batch_id is None and binding.step_id is None
 
 
 def test_postgres_execution_binding_constraints_and_downgrade_preserve_selection(pg_harness):

@@ -12,11 +12,17 @@ StartValue = Annotated[str, StringConstraints(strict=True, max_length=40)]
 class ExecutionSelection(Contract):
     operation_id: Identifier | None = Field(default=None, exclude_if=lambda value: value is None)
     job_card_id: Identifier | None = Field(default=None, exclude_if=lambda value: value is None)
+    batch_id: Identifier | None = Field(default=None, exclude_if=lambda value: value is None)
+    step_id: Identifier | None = Field(default=None, exclude_if=lambda value: value is None)
 
     @model_validator(mode='after')
     def selected_parent(self):
         if self.job_card_id is not None and self.operation_id is None:
             raise ValueError('选择作业卡时必须指定所属工序。')
+        if self.step_id is not None and self.batch_id is None:
+            raise ValueError('选择步骤时必须指定所属批次。')
+        if self.batch_id is not None and self.operation_id is not None:
+            raise ValueError('不能混用ERP工序/作业卡和MES批次/步骤。')
         return self
 
 
@@ -118,19 +124,28 @@ class JobCardPage(Contract):
 
 def selection_kwargs(value):
     execution = getattr(value, 'execution', value)
-    return {key: getattr(execution, key) for key in ('operation_id', 'job_card_id') if getattr(execution, key, None) is not None}
+    return {key: getattr(execution, key) for key in ('operation_id', 'job_card_id', 'batch_id', 'step_id') if getattr(execution, key, None) is not None}
 
 
 def record_from_payload(data):
+    if isinstance(data,dict) and data.get('schema_version')=='openmes-work-order-v1':
+        from .batch_qa_contracts import BatchWorkOrderRecord
+        return BatchWorkOrderRecord.model_validate(data)
     model = ExecutionWorkOrderRecord if isinstance(data, dict) and data.get('schema_version') == EXECUTION_SCHEMA else WorkOrderRecord
     return model.model_validate(data)
 
 
 def context_from_payload(data):
+    if isinstance(data,dict) and isinstance(data.get('record'),dict) and data['record'].get('schema_version')=='openmes-work-order-v1':
+        from .batch_qa_contracts import BatchWorkOrderContext
+        return BatchWorkOrderContext.model_validate(data)
     model = ExecutionWorkOrderContext if isinstance(data, dict) and isinstance(data.get('record'), dict) and data['record'].get('schema_version') == EXECUTION_SCHEMA else WorkOrderContext
     return model.model_validate(data)
 
 
 def observed_context(record, **times):
+    if record.schema_version=='openmes-work-order-v1':
+        from .batch_qa_contracts import BatchWorkOrderContext
+        return BatchWorkOrderContext(record=record,payload_sha256=record.payload_sha256,**times)
     model = ExecutionWorkOrderContext if isinstance(record, ExecutionWorkOrderRecord) else WorkOrderContext
     return model(record=record, payload_sha256=record.payload_sha256, **times)

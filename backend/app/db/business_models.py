@@ -42,6 +42,8 @@ class ConversationBusinessBinding(Base):
     invalidated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     operation_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
     job_card_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    batch_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    step_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     __table_args__ = (
         ForeignKeyConstraint(["tenant_id", "conversation_id"], ["conversations.tenant_id", "conversations.id"],
@@ -50,6 +52,9 @@ class ConversationBusinessBinding(Base):
         *bounded_columns("business_binding", ("source_system_id", "plant_code", "work_order_id", "source_revision")),
         *bounded_columns('business_binding', ('operation_id', 'job_card_id')),
         CheckConstraint('job_card_id IS NULL OR operation_id IS NOT NULL', name='ck_business_binding_execution_parent'),
+        *bounded_columns('business_binding', ('batch_id', 'step_id')),
+        CheckConstraint('step_id IS NULL OR batch_id IS NOT NULL',name='ck_business_binding_batch_parent'),
+        CheckConstraint('batch_id IS NULL OR operation_id IS NULL',name='ck_business_binding_execution_kind'),
     )
 
 

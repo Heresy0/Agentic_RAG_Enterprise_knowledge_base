@@ -11,12 +11,12 @@ class WorkOrderAccessService:
         return self.authorization.require_scope(principal=principal,
             source_system_id=self.connector.config.source_system_id)
 
-    async def read_context(self, *, principal, work_order_id, expected_source_revision=None, operation_id=None, job_card_id=None):
+    async def read_context(self, *, principal, work_order_id, expected_source_revision=None, operation_id=None, job_card_id=None, batch_id=None, step_id=None):
         scope = self.scope(principal)
         try:
             return await self.connector.read_context(work_order_id, scope=scope,
                 expected_source_revision=expected_source_revision, **({key: value for key, value in
-                dict(operation_id=operation_id, job_card_id=job_card_id).items() if value is not None}))
+                dict(operation_id=operation_id, job_card_id=job_card_id,batch_id=batch_id,step_id=step_id).items() if value is not None}))
         finally:
             self.authorization.require_current(principal=principal, scope=scope)
 

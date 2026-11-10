@@ -198,13 +198,16 @@ async def operation_job_cards(work_order_id: Identifier, operation_id: Identifie
 @router.get("/work-orders/{work_order_id}/context")
 async def work_order_context(work_order_id: Identifier, request: Request, response: Response,
         operation_id: Identifier | None = None, job_card_id: Identifier | None = None,
+        batch_id: Identifier | None = None, step_id: Identifier | None = None,
         principal: Principal = Depends(get_current_principal), session: Session = Depends(get_database_session)):
     if job_card_id is not None and operation_id is None:
         raise HTTPException(422, '选择作业卡时必须指定所属工序。')
+    if step_id is not None and batch_id is None or batch_id is not None and operation_id is not None:
+        raise HTTPException(422,'批次/步骤父级缺失或混用了不同执行层级。')
     identifier = uuid4().hex; response.headers.update({"Cache-Control": "no-store", "X-Request-ID": identifier})
     with manufacturing_operation(session, identifier):
         context = await WorkOrderAccessService(session, connector_for(request, principal)).read_context(
-            principal=principal, work_order_id=work_order_id, operation_id=operation_id, job_card_id=job_card_id)
+            principal=principal, work_order_id=work_order_id, operation_id=operation_id, job_card_id=job_card_id,batch_id=batch_id,step_id=step_id)
         return public_context(context)
 
 

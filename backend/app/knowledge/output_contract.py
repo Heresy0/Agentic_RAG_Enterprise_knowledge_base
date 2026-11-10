@@ -13,6 +13,10 @@ def generation_schema(context=None, *, claim=False):
         from ..manufacturing.generation_models import (ManufacturingClaim, ManufacturingGenerationDraft,
             ExecutionManufacturingClaim, ExecutionManufacturingGenerationDraft)
         active = current_manufacturing_context()
+        if (active is not None and getattr(active.context.record,'schema_version',None)=='openmes-work-order-v1' or
+                context is not None and any(row.field_name=='work_order_number' for row in context.business_items)):
+            from ..manufacturing.generation_models import BatchManufacturingClaim, BatchManufacturingGenerationDraft
+            return BatchManufacturingClaim if claim else BatchManufacturingGenerationDraft
         if (active is not None and getattr(active.context.record, 'execution', None) is not None or
                 context is not None and any(row.field_name == 'operation_id' for row in context.business_items)):
             return ExecutionManufacturingClaim if claim else ExecutionManufacturingGenerationDraft

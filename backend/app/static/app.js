@@ -13,7 +13,8 @@ state.manufacturing = { orders: [], nextCursor: null, orderId: null, context: nu
 const feedbackReasons = { incorrect: "答案错误", incomplete: "遗漏条件或要点", citation: "引用不正确", false_refusal: "不该拒答", outdated: "资料过期", other: "其他问题" };
 const qualityWorkspace = createQualityWorkspace({ $, element, api, state, sameContext, errorNotice, onImprovement: id => verificationWorkspace.createForCase(id) });
 const verificationWorkspace = createVerificationWorkspace({ $, element, api, state, sameContext, errorNotice });
-const openmesWorkspace = createOpenMESWorkspace({ $, element, api, state, sameContext, errorNotice, invalidate: invalidateManufacturingView });
+const openmesWorkspace = createOpenMESWorkspace({ $, element, api, state, sameContext, errorNotice, invalidate: invalidateManufacturingView,
+  onSelection: selectManufacturingBatch, onRefresh: () => loadManufacturingSelection(true, true) });
 
 function element(tag, text, className) {
   const node = document.createElement(tag);
@@ -170,6 +171,7 @@ function conversationUrl(id = "") { return conversationPath() + (id ? `/${encode
 
 function resetManufacturing() {
   openmesWorkspace.clear(); state.manufacturing.batchStepSupported = false;
+  state.manufacturing.batchId = null; state.manufacturing.stepId = null;
   state.manufacturing.listEpoch += 1;
   state.manufacturing.epoch += 1; state.manufacturing.orders = []; state.manufacturing.nextCursor = null;
   state.manufacturing.orderId = null; state.manufacturing.context = null;
@@ -210,6 +212,7 @@ async function refreshManufacturingOrders(more = false) {
 }
 function renderWorkOrder(context, historical = false) {
   if (historical) openmesWorkspace.clear();
+  if (context.work_order_number) openmesWorkspace.renderContext(context, historical);
   const target = $("manufacturing-context"); target.replaceChildren();
   target.append(element("h3", `${historical ? "历史工单快照" : "已核验工单"} · ${context.work_order_id}`));
   for (const [name, label] of [["product_model", "型号"], ["operation_code", "工序"], ["actual_started_at", context.execution ? "工单实际开工（选版依据）" : "实际开工"], ["actual_start_precision", "工单时间精度"], ["route_revision", "路线修订"], ["source_system_id", "来源"], ["source_revision", "源修订"], ["last_verified_at", "最后核验时间"]]) {
@@ -226,13 +229,19 @@ function renderWorkOrder(context, historical = false) {
   target.append(element("p", historical ? "本卡片为当次快照；下一轮会重新核验来源。" : "字段来自工单系统，不能在此改写；核验后来源仍可能变化。", "answer-meta"));
 }
 async function selectManufacturingOrder(id) {
+  state.manufacturing.batchId = null; state.manufacturing.stepId = null;
   state.manufacturing.orderId = id || null; state.manufacturing.operationId = null; state.manufacturing.jobCardId = null;
   state.manufacturing.operations = []; state.manufacturing.jobCards = []; state.manufacturing.jobCursor = null;
   renderManufacturingSelectors();
   return loadManufacturingSelection(true, false);
 }
 function manufacturingSelection(value = state.manufacturing) {
-  return { ...(value.operationId ? { operation_id: value.operationId } : {}), ...(value.jobCardId ? { job_card_id: value.jobCardId } : {}) };
+  return { ...(value.operationId ? { operation_id: value.operationId } : {}), ...(value.jobCardId ? { job_card_id: value.jobCardId } : {}),
+    ...(value.batchId ? { batch_id: value.batchId } : {}), ...(value.stepId ? { step_id: value.stepId } : {}) };
+}
+async function selectManufacturingBatch(selected) {
+  state.manufacturing.batchId = selected.batch_id; state.manufacturing.stepId = selected.step_id;
+  return loadManufacturingSelection(false, false);
 }
 function renderManufacturingSelectors() {
   const value = state.manufacturing;
@@ -274,7 +283,7 @@ async function loadManufacturingSelection(loadOperations, loadCards) {
   if (!id) return;
   try {
     const value = state.manufacturing, selected = manufacturingSelection(value);
-    if (!value.selectionSupported && Object.keys(selected).length) throw new Error("当前来源不支持工序和作业卡选择，请重新选择工单。");
+    if ((!value.selectionSupported && selected.operation_id) || (!value.batchStepSupported && selected.batch_id)) throw new Error("当前来源不支持这类执行选择，请重新选择工单。");
     if (value.selectionSupported && loadOperations) {
       const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(id)}/operations`);
       if (!sameContext(revision) || epoch !== state.manufacturing.epoch) return;
@@ -289,7 +298,7 @@ async function loadManufacturingSelection(loadOperations, loadCards) {
     const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(id)}/context${params ? `?${params}` : ""}`);
     if (!sameContext(revision) || epoch !== state.manufacturing.epoch || state.mode !== "manufacturing") return;
     state.manufacturing.context = data; renderManufacturingSelectors(); renderWorkOrder(data);
-    if (state.manufacturing.batchStepSupported) await openmesWorkspace.select(id);
+    if (state.manufacturing.batchStepSupported) await openmesWorkspace.select(id, selected, data);
   } catch (error) { if (sameContext(revision) && epoch === state.manufacturing.epoch) { invalidateManufacturingView("工单来源或权限无法确认，请重新查询。"); errorNotice(error); } }
   finally { if (sameContext(revision)) updateControls(); }
 }
@@ -523,10 +532,11 @@ async function previewBusinessCitation(citation, runId) {
       const { data } = await api(`/api/qa/runs/${encodeURIComponent(runId)}`);
       verified = data.response?.business_citations?.find(item => item.citation_id === citation.citation_id);
     } else {
-      const params = new URLSearchParams({ ...(citation.operation_id ? { operation_id: citation.operation_id } : {}), ...(citation.job_card_id ? { job_card_id: citation.job_card_id } : {}) }).toString();
+      const params = new URLSearchParams({ ...(citation.operation_id ? { operation_id: citation.operation_id } : {}), ...(citation.job_card_id ? { job_card_id: citation.job_card_id } : {}),
+        ...(citation.batch_id ? { batch_id: citation.batch_id } : {}), ...(citation.step_id ? { step_id: citation.step_id } : {}) }).toString();
       const { data } = await api(`/api/manufacturing/work-orders/${encodeURIComponent(citation.work_order_id)}/context${params ? `?${params}` : ""}`);
       if (data.source_revision !== citation.source_revision || data.payload_sha256 !== citation.payload_sha256) throw new Error("来源已变化，请重新查询；旧值不再作为当前事实展示。");
-      verified = { ...citation, value: data.execution && Object.prototype.hasOwnProperty.call(data.execution, citation.field_name) ? data.execution[citation.field_name] : data[citation.field_name] };
+      verified = { ...citation, value: data.work_order_number ? openmesWorkspace.fieldValue(data, citation.field_name) : data.execution && Object.prototype.hasOwnProperty.call(data.execution, citation.field_name) ? data.execution[citation.field_name] : data[citation.field_name] };
     }
     if (!sameContext(revision) || preview !== previewRevision) return;
     if (!verified) throw new Error("当前快照中没有这条业务引用。");
@@ -551,6 +561,7 @@ async function restoreConversation(id) {
     if (state.mode === "manufacturing" && data.binding) {
       state.manufacturing.orderId = data.binding.work_order_id;
       state.manufacturing.operationId = data.binding.operation_id || null; state.manufacturing.jobCardId = data.binding.job_card_id || null;
+      state.manufacturing.batchId = data.binding.batch_id || null; state.manufacturing.stepId = data.binding.step_id || null;
       state.manufacturing.operations = []; state.manufacturing.jobCards = []; state.manufacturing.jobCursor = null; renderManufacturingSelectors();
       state.manufacturing.context = data.turns.at(-1)?.result?.work_order_context || { work_order_id: data.binding.work_order_id, source_revision: data.binding.source_revision };
       $("manufacturing-order").value = data.binding.work_order_id;

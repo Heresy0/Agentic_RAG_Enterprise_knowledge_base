@@ -36,7 +36,7 @@ def test_runtime_upgrade_joins_legacy_memory_and_quality_without_data_loss(start
     control = create_engine(required_env('DATABASE_URL'))
     engine = create_engine(required_env('DATABASE_URL'), connect_args={'options': f'-csearch_path={schema}'})
     script = ScriptDirectory.from_config(Config('alembic.ini'))
-    assert script.get_current_head() == 'f2b8c0a961d3'
+    assert script.get_current_head() == 'd7a1c3e5f902'
     created = False
     try:
         with control.begin() as connection:
@@ -69,7 +69,7 @@ def test_runtime_upgrade_joins_legacy_memory_and_quality_without_data_loss(start
                 context.run_migrations()
                 # A second upgrade is idempotent and follows the actual Alembic graph.
                 context.run_migrations()
-            assert connection.scalar(text('SELECT version_num FROM alembic_version')) == 'f2b8c0a961d3'
+            assert connection.scalar(text('SELECT version_num FROM alembic_version')) == 'd7a1c3e5f902'
             row = connection.execute(text('SELECT title, memory_json FROM conversations')).one()
             assert row.title == 'existing conversation'
             assert row.memory_json == ({'summary': 'preserve existing memory'}

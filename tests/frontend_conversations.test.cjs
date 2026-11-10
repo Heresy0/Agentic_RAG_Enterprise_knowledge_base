@@ -72,23 +72,36 @@ function setup() {
 }
 
 function openmesSetup() {
-  const h = setup();
-  const record = { source_system_id: "openmes-hc", source_record_id: "1", status: "IN_PROGRESS", actual_started_at: null };
-  h.context = { record: { work_order: record, work_order_number: "MES-WO-1", batch: null, step: null }, business_citations: [], last_verified_at: "2026-11-09T08:00:00Z" };
+  const h = setup(); h.saved = [];
+  const makeContext = selected => ({ work_order_id: "1", work_order_number: "MES-WO-1", source_system_id: "openmes-hc", source_record_id: "1",
+    status: "IN_PROGRESS", actual_started_at: null, last_verified_at: "2026-11-10T08:00:00Z",
+    source_revision: `revision-${selected.batch_id || "parent"}-${selected.step_id || "parent"}`,
+    payload_sha256: `payload-${selected.batch_id || "parent"}-${selected.step_id || "parent"}`,
+    batch: selected.batch_id ? { batch_id: selected.batch_id, batch_number: 1, status: "IN_PROGRESS", actual_started_at: "2026-11-09T08:10:00Z" } : null,
+    step: selected.step_id ? { step_id: selected.step_id, name: "<img src=x>", status: "PENDING", actual_started_at: null } : null });
   h.sandbox.fetch = async (url, options = {}) => {
-    h.requests.push({ url, method: options.method || "GET" });
-    let data = h.context;
+    const body = options.body ? JSON.parse(options.body) : null;
+    h.requests.push({ url, method: options.method || "GET", body });
+    const parsed = new URL(url, "http://localhost"); let data = makeContext(Object.fromEntries(parsed.searchParams));
     if (url.endsWith("/batches")) data = { items: [{ batch_id: "10", batch_number: 1, status: "IN_PROGRESS" }] };
-    if (url.endsWith("/steps")) data = { items: [{ step_id: "101", step_number: 1, name: "<img src=x>", status: "PENDING" }] };
+    if (url.endsWith("/steps")) data = { items: ["101", "102"].map(step_id => ({ step_id, step_number: 1, name: "<img src=x>", status: "PENDING" })) };
+    if (parsed.pathname === "/api/manufacturing/conversations") {
+      if (body) { data = { id: `mes-${h.saved.length + 1}`, binding: { ...body }, title: "MES", turns: [] }; h.saved.push(data); }
+      else data = { items: h.saved };
+    } else if (parsed.pathname.includes("/conversations/")) data = h.saved.find(row => row.id === parsed.pathname.split("/").at(-1));
+    if (parsed.pathname === "/api/manufacturing/qa") {
+      data = { answer: "来源中的字段", answerable: true, response_type: "answer", citations: [], work_order_context: makeContext(body), business_citations: [], claim_bindings: [] };
+      h.saved.find(row => row.id === body.conversation_id).turns.push({ question: body.question, result: data });
+    }
     return { status: 200, ok: true, headers: new Headers(), json: async () => data };
   };
-  h.run("state.mode = 'manufacturing'; state.manufacturing.orderId = '1';");
+  h.run("state.mode = 'manufacturing'; state.manufacturing.orderId = '1'; state.manufacturing.batchStepSupported = true;");
   return h;
 }
 
 test("OpenMES selects real batch/step IDs with GET-only requests and renders names as text", async () => {
   const h = openmesSetup();
-  await h.run("openmesWorkspace.select('1')");
+  await h.run("loadManufacturingSelection(true, true)");
   h.$("openmes-batch").value = "10"; await h.$("openmes-batch").listeners.change();
   assert.equal(h.$("openmes-step").children[1].textContent, "1. <img src=x> · PENDING");
   h.$("openmes-step").value = "101"; await h.$("openmes-step").listeners.change();
@@ -101,7 +114,7 @@ test("OpenMES selects real batch/step IDs with GET-only requests and renders nam
 test("OpenMES late responses after a scope change cannot restore execution data", async () => {
   const h = openmesSetup(); let release;
   h.sandbox.fetch = () => new Promise(resolve => { release = resolve; });
-  const pending = h.run("openmesWorkspace.select('1')");
+  const pending = h.run("openmesWorkspace.select('1', {}, {})");
   await new Promise(resolve => setTimeout(resolve, 0));
   h.run("state.revision += 1; openmesWorkspace.clear();");
   release({ status: 200, ok: true, headers: new Headers(), json: async () => ({ items: [{ batch_id: "private" }] }) });
@@ -111,14 +124,54 @@ test("OpenMES late responses after a scope change cannot restore execution data"
 });
 
 test("OpenMES authorization failure clears parent and selected execution data", async () => {
-  const h = openmesSetup(); await h.run("openmesWorkspace.select('1')");
+  const h = openmesSetup(); await h.run("loadManufacturingSelection(true, true)");
   h.sandbox.fetch = async () => ({ status: 404, ok: false, headers: new Headers(), json: async () => ({ detail: { message: "不可访问" } }) });
-  h.$("openmes-refresh").listeners.click();
+  await h.$("openmes-refresh").listeners.click();
   await new Promise(resolve => setTimeout(resolve, 0));
   assert.equal(h.$("openmes-execution").hidden, true);
   assert.equal(h.$("openmes-context").children.length, 0);
   assert.equal(h.run("state.manufacturing.context"), null);
   assert.equal(h.run("state.manufacturing.orderId"), null);
+});
+
+test("OpenMES expired authentication during choice loading clears the already rendered source", async () => {
+  const h = openmesSetup(); const fetch = h.sandbox.fetch;
+  h.run("state.auth.clear = function() { this.authenticated = false; this.epoch += 1; };");
+  h.sandbox.fetch = async (url, options) => url.endsWith("/batches")
+    ? { status: 401, ok: false, headers: new Headers(), json: async () => ({ detail: "过期" }) }
+    : fetch(url, options);
+  await h.run("loadManufacturingSelection(true, true)");
+  assert.equal(h.$("openmes-execution").hidden, true);
+  assert.equal(h.$("openmes-context").children.length, 0);
+  assert.equal(h.run("state.manufacturing.context"), null);
+});
+
+test("OpenMES QA keeps the selected batch/step in each turn and switching starts a new conversation", async () => {
+  const h = openmesSetup(); await h.run("loadManufacturingSelection(true, true)");
+  h.$("openmes-batch").value = "10"; await h.$("openmes-batch").listeners.change();
+  h.$("openmes-step").value = "101"; await h.$("openmes-step").listeners.change();
+  await h.ask("当前步骤何时开工？"); await h.ask("这个批次呢？");
+  let calls = h.requests.filter(x => x.url === "/api/manufacturing/qa");
+  assert.equal(calls.length, 2); assert.equal(calls[0].body.conversation_id, calls[1].body.conversation_id);
+  assert.ok(calls.every(x => x.body.batch_id === "10" && x.body.step_id === "101" && !("actual_started_at" in x.body)));
+  h.$("openmes-step").value = "102"; await h.$("openmes-step").listeners.change();
+  assert.equal(h.run("state.conversationId"), null);
+  await h.ask("现在的步骤呢？");
+  calls = h.requests.filter(x => x.url === "/api/manufacturing/qa");
+  assert.notEqual(calls[2].body.conversation_id, calls[0].body.conversation_id); assert.equal(calls[2].body.step_id, "102");
+});
+
+test("OpenMES restored history preserves frozen selection and current citations reread the same source", async () => {
+  const h = openmesSetup(); await h.run("loadManufacturingSelection(true, true)");
+  h.$("openmes-batch").value = "10"; await h.$("openmes-batch").listeners.change();
+  h.$("openmes-step").value = "101"; await h.$("openmes-step").listeners.change(); await h.ask("何时开工？");
+  await h.run("restoreConversation('mes-1')");
+  assert.equal(h.run("state.manufacturing.batchId"), "10"); assert.equal(h.run("state.manufacturing.stepId"), "101");
+  assert.equal(h.$("openmes-step").value, "101"); assert.equal(h.$("openmes-step").disabled, true);
+  await h.run("previewBusinessCitation({citation_id:'业务1',work_order_id:'1',batch_id:'10',step_id:'101',field_name:'step_actual_started_at',source_revision:'revision-10-101',payload_sha256:'payload-10-101'}, null)");
+  assert.ok(h.requests.at(-1).url.includes("batch_id=10&step_id=101"));
+  assert.equal(h.$("citation-content").textContent, "null");
+  assert.equal(h.run("openmesWorkspace.fieldValue({batch_no:null,batch:{lot_number:'LOT'}}, 'batch_no')"), null);
 });
 
 for (const execution of [false, true]) test(`manufacturing review preserves ${execution ? "execution" : "legacy"} source identity`, async () => {

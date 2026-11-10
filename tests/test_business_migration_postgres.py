@@ -62,14 +62,14 @@ def seed(connection):
 
 def test_alembic_graph_upgrade_matches_models_and_preserves_old_rows(database):
     script=ScriptDirectory.from_config(Config("alembic.ini"))
-    assert script.get_current_head()=="f2b8c0a961d3"
+    assert script.get_current_head()=="d7a1c3e5f902"
     with database.begin() as connection:
         ids=seed(connection)
         context=MigrationContext.configure(connection,opts={"fn":lambda revisions,_:script._upgrade_revs("head",revisions)})
         with Operations.context(context):
             context.stamp(script,MIGRATION.down_revision)
             context.run_migrations();context.run_migrations()
-        assert connection.scalar(text("SELECT version_num FROM alembic_version"))=="f2b8c0a961d3"
+        assert connection.scalar(text("SELECT version_num FROM alembic_version"))=="d7a1c3e5f902"
         inspector=inspect(connection)
         for model in MODELS:
             assert {c["name"] for c in inspector.get_columns(model.__tablename__)}==set(model.__table__.columns.keys())

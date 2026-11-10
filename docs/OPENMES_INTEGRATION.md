@@ -1,6 +1,6 @@
 # OpenMES 独立部署与首期只读接入
 
-本阶段分为 O0 独立部署、O1 只读适配、O2 平台执行查询。范围为工单、生产批次、工序步骤及各自实际开工，保留 ERPNext 和原应用环境。自建 MES 中建立的是演示记录，不视为真实工厂执行证据。
+本阶段分为 O0 独立部署、O1 只读适配、O2 平台执行查询、O3 制造问答与会话绑定。范围为工单、生产批次、工序步骤及各自实际开工，保留 ERPNext 和原应用环境。自建 MES 中建立的是演示记录，不视为真实工厂执行证据。
 
 ## 来源与权限
 
@@ -22,7 +22,7 @@ OpenMES 的结构为“工单 → 批次 → 步骤”，使用独立 `openmes-e
 
 批次号、批号、步骤名称、状态、实际时间、时间精度和源更新时间保留。源时间须有明确时区；上游站点配置 Asia/Shanghai，JSON 来源的 UTC 时间仍按其精度保存。开工记录不能证明检验、签署、报工完成或质量放行。
 
-版本判断和已有工单问答仍使用原有工单级来源；该 OpenMES 版本缺少工单实际开工和唯一工序时如实澄清。本期批次/步骤为确定性字段查询，没有把选中批次偷偷用于工单选版，也未增加批次绑定的模型问答、会话或质量样本审核。那些能力需后续明确契约后再接入。
+版本判断仍使用工单级来源；该 OpenMES 版本缺少工单实际开工和唯一工序时如实澄清。O3 在独立 `openmes-work-order-v1` 问答契约中保留所选批次及步骤，不能将其开工时间补给工单选版，也不能将步骤名称认作已审核工序代码。O2 的执行查询契约保持不变。批次/步骤质量样本审核、冻结和 ERP-MES 同步仍未接入。
 
 ## 接口与核验
 
@@ -36,7 +36,17 @@ GET /api/manufacturing/work-orders/{work_order_id}/execution-context?batch_id=..
 
 选择步骤必须指定批次，外来工单/批次/步骤拒绝。执行上下文在返回前读取两次并比较完整白名单记录和配置哈希，每次异步读取前后检查当前业务授权；与原工单问答三次校验分别记录。预期修订不匹配或读取中来源变化返回 409，来源不可用返回 503，业务无权或不存在返回 404；不回退至旧快照。字段引用标明 `Work Order`、`Batch`、`Batch Step`、真实记录 ID、字段值及本次来源修订。
 
-工作台选择工单后显示独立“MES 执行记录”区域，依次选择批次、步骤并重新核验。字段使用文本渲染；切换工单、退出登录、来源变化或权限失败时清空执行视图，晚到响应不能恢复旧数据。下方知识问答仍明确按工单范围查询。
+工作台选择工单后显示“MES 执行记录”区域，依次选择批次、步骤并重新核验。O3 的展示、问答及来源预览共用同一已核验问答上下文，切换任一选择会开始新会话。历史会话展示冻结的原选择，重新核验后另建会话；不会混入当前实时字段。字段使用文本渲染；切换工单、退出登录、来源变化或权限失败时清空执行视图，晚到响应不能恢复旧数据。
+
+## O3 问答、绑定与引用
+
+`GET /api/manufacturing/work-orders/{id}/context`、`POST /api/manufacturing/qa` 和 `POST /api/manufacturing/conversations` 接受可选 `batch_id`、`step_id`。选择步骤必须同时指定所属批次，不能混入 ERPNext 的 `operation_id` / `job_card_id`。适配器使用鉴权的 `/v1/work-orders/{id}/qa-context`，仍只向上游发送 GET。浏览器不能传入时间、状态或自行构造来源记录。
+
+会话绑定保存工单、批次、步骤、来源修订和上下文摘要；后续提问不能更换或省略原选择。切换选择须另建会话。每次问答保留获取来源、生成前、交付前三次完整来源与权限核验，均带原选择；任何一步变更返回 409，不使用旧快照继续回答。历史、快照访问继续检查当前权限。
+
+模型只选择后端白名单业务字段；文字、字段值和引用由后端编译。业务引用标明 `Work Order` / `Batch` / `Batch Step`、真实记录编号、字段、值、时间精度、所选批次/步骤及修订；文档引用仍独立保留原件和已审核版本约束。单一层级的简单实际开工问题可直接投影已核验字段，不调用模型；空值明确显示未知，缺选择先澄清。其他事实问题接入既有生成及修复流程。开工登记不证明检验完成或质量签署，执行请求仍在生成前拒绝。
+
+迁移 `d7a1c3e5f902` 仅增加可空的批次/步骤绑定列和父子/互斥约束，旧 ERP 会话保持原语义。本机只迁移 OpenMES 候选库；旧 ERPNext 容器和数据库不随源码升级。存在批次或步骤绑定会话时降级会拒绝丢弃绑定，回滚须先处理这些会话，不能直接删除列。
 
 每个租户仍只允许一个业务源。本机用新的候选数据库、配置、文档卷及浏览器 PKCE 客户端接入 OpenMES，ERPNext 环境继续独立保留；本期不实现 ERPNext 与 OpenMES 的工单同步或自动关联。
 
@@ -59,7 +69,7 @@ docker compose --env-file tmp/新的OpenMES/deployment/deployment.env -f deploy/
 ## 验证入口
 
 ```powershell
-.venv/Scripts/python.exe -m pytest tests/test_openmes_adapter.py tests/test_openmes_api.py tests/test_erpnext_adapter.py tests/test_erpnext_execution.py tests/test_manufacturing_m3_api.py
+.venv/Scripts/python.exe -m pytest tests/test_openmes_adapter.py tests/test_openmes_api.py tests/test_openmes_qa.py tests/test_erpnext_adapter.py tests/test_erpnext_execution.py tests/test_manufacturing_m3_api.py
 node --test tests/frontend_conversations.test.cjs tests/frontend/auth.test.mjs
 .venv/Scripts/python.exe scripts/evaluate.py check
 .venv/Scripts/python.exe scripts/manufacturing_phase1_workflow.py check

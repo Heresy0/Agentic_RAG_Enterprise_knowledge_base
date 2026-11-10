@@ -161,15 +161,19 @@ class MESConnector:
         return record
 
     async def read_context(self, work_order_id: str, *, scope: BusinessScope,
-                           expected_source_revision=None, operation_id=None, job_card_id=None) -> WorkOrderContext:
+                           expected_source_revision=None, operation_id=None, job_card_id=None, batch_id=None, step_id=None) -> WorkOrderContext:
         TypeAdapter(Identifier).validate_python(work_order_id)
         if expected_source_revision is not None:
             TypeAdapter(Identifier).validate_python(expected_source_revision)
-        selection = selection_kwargs(ExecutionSelection(operation_id=operation_id, job_card_id=job_card_id))
-        if selection and not self.config.execution_selection:
+        selection = selection_kwargs(ExecutionSelection(operation_id=operation_id, job_card_id=job_card_id,batch_id=batch_id,step_id=step_id))
+        if (operation_id is not None and not self.config.execution_selection or
+                batch_id is not None and not self.config.batch_step_selection):
             raise MESSelectionUnavailable()
-        payload, plants = await self._get(f"/v1/work-orders/{quote(work_order_id, safe='')}/context", scope=scope, params=selection or None)
+        suffix='qa-context' if self.config.batch_step_selection else 'context'
+        payload, plants = await self._get(f"/v1/work-orders/{quote(work_order_id, safe='')}/{suffix}", scope=scope, params=selection or None)
         record = self._validate_record(payload, scope, plants)
+        if self.config.batch_step_selection and record.schema_version!='openmes-work-order-v1':
+            raise MESError()
         if record.work_order_id != work_order_id or selection_kwargs(record) != selection:
             raise MESError()
         if expected_source_revision is not None and record.source_revision != expected_source_revision:

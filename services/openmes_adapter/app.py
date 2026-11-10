@@ -110,4 +110,12 @@ def create_app(config,*,transport=None):
         if step_id is not None and batch_id is None:raise HTTPException(422,'选择步骤时必须指定批次。')
         return await bounded(client.execution(work_order_id,plants,batch_id=batch_id,step_id=step_id))
 
+    @app.get('/v1/work-orders/{work_order_id}/qa-context')
+    async def qa_context(work_order_id: Identifier,response: Response,plants=Depends(authorized),
+                         batch_id: Identifier|None=None,step_id: Identifier|None=None):
+        from backend.app.manufacturing.batch_qa_contracts import qa_record
+        response.headers['Cache-Control']='no-store'
+        if step_id is not None and batch_id is None:raise HTTPException(422,'选择步骤时必须指定批次。')
+        return qa_record(await bounded(client.execution(work_order_id,plants,batch_id=batch_id,step_id=step_id)))
+
     return app

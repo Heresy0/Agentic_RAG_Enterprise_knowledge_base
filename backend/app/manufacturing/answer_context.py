@@ -60,19 +60,41 @@ class ManufacturingAnswerContext:
     def items(self):
         record = self.context.record
         execution = getattr(record, 'execution', None)
+        batch_source = record.schema_version == 'openmes-work-order-v1'
         result = []
         for index, (name, label) in enumerate(FIELD_LABELS.items(), 1):
+            if batch_source and name == 'work_order_id':label='工单源记录编号'
+            if batch_source and name == 'batch_no':label='工单登记批号（本来源未提供）'
             value = getattr(record, name) if name != "fetched_at" else self.context.fetched_at
             if isinstance(value, datetime): value = value.isoformat()
             rendered = display(value)
             if name == "actual_start_precision" and value == "date":
                 rendered += "（仅精确到日期，未提供具体时分，不能编造具体时分）"
-            if execution is not None and name in ('actual_started_at', 'actual_start_precision'):
+            if (execution is not None or batch_source) and name in ('actual_started_at', 'actual_start_precision'):
                 label = '工单' + label
             entity = 'Work Order Operation' if execution is not None and name == 'operation_code' else 'Work Order'
             source_id = execution.operation_id if entity == 'Work Order Operation' else record.source_record_id
             result.append(BusinessItem(f"业务{index}", name, value, f"工单{record.work_order_id}的{label}为{rendered}",
-                source_entity=entity if execution is not None else None, source_record_id=source_id if execution is not None else None))
+                source_entity=entity if execution is not None or batch_source else None, source_record_id=source_id if execution is not None or batch_source else None))
+        if batch_source:
+            fields = [('work_order_number', record, 'work_order_number', '原始工单编号', 'Work Order', record.source_record_id)]
+            for prefix, row, entity, identity, specs in (
+                ('batch', record.batch, 'Batch', 'batch_id', [('id','batch_id','批次记录编号'),('number','batch_number','批次序号'),
+                    ('lot_number','lot_number','批号'),('status','status','批次状态'),('actual_started_at','actual_started_at','实际开工时间'),
+                    ('start_precision','actual_start_precision','开工时间精度'),('updated_at','source_updated_at','源更新时间')]),
+                ('step', record.step, 'Batch Step', 'step_id', [('id','step_id','步骤记录编号'),('number','step_number','步骤序号'),
+                    ('name','name','步骤名称'),('status','status','步骤状态'),('actual_started_at','actual_started_at','实际开工时间'),
+                    ('start_precision','actual_start_precision','开工时间精度'),('updated_at','source_updated_at','源更新时间')])):
+                if row is not None:
+                    fields.extend((prefix+'_'+name,row,attribute,label,entity,getattr(row,identity)) for name,attribute,label in specs)
+            for name,row,attribute,label,entity,source_id in fields:
+                value=getattr(row,attribute)
+                if isinstance(value,datetime):value=value.isoformat()
+                subject=f'工单{record.work_order_id}'
+                if entity in ('Batch','Batch Step'):subject+=f'的批次{record.batch_id}'
+                if entity=='Batch Step':subject+=f'的步骤{record.step_id}'
+                result.append(BusinessItem(f'业务{len(result)+1}',name,value,f'{subject}的{label}为{display(value)}',
+                    source_entity=entity,source_record_id=source_id))
         if execution is not None:
             for name, label in EXECUTION_FIELD_LABELS.items():
                 is_card = name.startswith('job_card')
@@ -133,7 +155,7 @@ def precision_fact_question(question):
 def facts_only_question(question):
     """Conservative route; unknown requests keep the full document workflow."""
     if precision_fact_question(question):return True
-    return bool(re.search(r"型号|工序|开工|报工|批次|状态|工厂|源修订|源版本|源系统|来源|源记录|更新时间|采集|工单编号|路线|通知编号", question)
+    return bool(re.search(r"型号|工序|步骤.{0,8}(?:名称|编号)|开工|报工|批次|状态|工厂|源修订|源版本|源系统|来源|源记录|更新时间|采集|工单编号|路线|通知编号", question)
         and not re.search(r"适用|指导书|要求|首件|检验|复检|恢复|放行|切换|新版|旧版|(?<!路线)(?<!源)版本|参数|执行|比较|对比|修改|改为|更新(?!时间)|删除|写入|计划|假设|如果|能否|可否|是否", question))
 
 
@@ -145,6 +167,9 @@ def business_citation(item, context):
         precision = execution.job_card_start_precision
     elif execution is not None and item.source_entity == 'Work Order Operation':
         precision = execution.operation_start_precision
+    if context.record.schema_version == 'openmes-work-order-v1':
+        if item.source_entity == 'Batch':precision=context.record.batch.actual_start_precision
+        elif item.source_entity == 'Batch Step':precision=context.record.step.actual_start_precision
     return dict(citation_id=item.citation_id, source_system_id=context.record.source_system_id,
         source_record_id=item.source_record_id or context.record.source_record_id, work_order_id=context.record.work_order_id,
         plant_code=context.record.plant_code, source_revision=context.record.source_revision,
@@ -199,6 +224,11 @@ def attach_business_context(context):
         rendered += ('\n已选择具体工序/作业卡：actual_started_at始终是工单级开工和选版依据；'
             'operation_actual_started_at是所选工序的实际开工，job_card_actual_started_at是所选作业卡的实际开工。'
             '按问题明确的对象选择字段，未明确对象时使用当前最具体的选择。不得用工单或其他作业卡的时间补空值。')
+    if active.context.record.schema_version == 'openmes-work-order-v1':
+        rendered += ('\nOpenMES来源分别包含工单、生产批次及工序步骤；batch_*只表示所选批次，step_*只表示所选步骤。'
+            'actual_started_at始终是工单级字段，本来源没有该字段值及唯一工序代码，不能从批次/步骤或计划时间推定。'
+            'work_order_number是原工单编号，work_order_id是源记录身份。步骤名称不是已审核工序代码。'
+            '按问题对象选择字段；未知保持未知，开始记录不能证明检验、签署或质量放行完成。')
     return replace(context, text=rendered, total_characters=len(rendered), business_items=items, incomplete_reason=reason)
 
 

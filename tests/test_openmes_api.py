@@ -87,5 +87,5 @@ def test_foreign_selection_and_write_requests_are_rejected(mes):
         assert c.get('/api/manufacturing/work-orders/1/execution-context?batch_id=2').status_code==404
         assert c.get('/api/manufacturing/work-orders/2/batches').status_code==404
         assert c.post('/api/manufacturing/work-orders/1/batches').status_code==405
-        assert c.post('/api/manufacturing/qa',json=dict(question='查询批次',work_order_id='1',batch_id='1')).status_code==422
+        assert c.post('/api/manufacturing/qa',json=dict(question='查询批次',work_order_id='1',batch_id='1',operation_id='ROW-A')).status_code==422
     assert not h.generation.calls

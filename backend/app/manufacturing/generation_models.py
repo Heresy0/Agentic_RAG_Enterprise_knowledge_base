@@ -65,6 +65,45 @@ class ExecutionManufacturingGenerationDraft(ManufacturingGenerationDraft):
     claims: list[ExecutionManufacturingClaim] = Field(default_factory=list)
 
 
+BatchBusinessField = Literal[BusinessField, 'work_order_number', 'batch_id', 'batch_number', 'batch_lot_number',
+    'batch_status', 'batch_actual_started_at', 'batch_start_precision', 'batch_updated_at', 'step_id', 'step_number',
+    'step_name', 'step_status', 'step_actual_started_at', 'step_start_precision', 'step_updated_at']
+
+
+class BatchManufacturingClaim(ExecutionManufacturingClaim):
+    business_field: BatchBusinessField | None = Field(default=None,exclude_if=lambda value:value is None,
+        description=ManufacturingClaim.model_fields['business_field'].description)
+
+
+class BatchManufacturingGenerationDraft(ManufacturingGenerationDraft):
+    claims: list[BatchManufacturingClaim] = Field(default_factory=list)
+
+
+def batch_start_projection(question, context, active):
+    """Use verified fields for one simple entity-start question, including unknowns."""
+    import re
+    from ..knowledge.answer_coverage import requirement_prompt
+    record=active.context.record
+    if (record.schema_version!='openmes-work-order-v1' or not active.facts_only or
+            not re.search(r'实际.*开工|开工时间|开工日期|何时开工|几点.*开工',question) or
+            re.search(r'型号|状态|批号|编号|名称|路线|通知|来源|更新时间|采集|分别|比较|对比|先后|最早|以及|和|与',question)):
+        return None
+    mentioned=[prefix for prefix,pattern in [('step',r'步骤|工序'),('batch',r'批次'),('',r'工单')] if re.search(pattern,question)]
+    if len(mentioned)>1:return None
+    prefix=mentioned[0] if mentioned else 'step' if record.step is not None else 'batch' if record.batch is not None else ''
+    requirements=json.loads(requirement_prompt(question,context))
+    missing=prefix=='batch' and record.batch is None or prefix=='step' and record.step is None
+    if missing:
+        label='生产批次' if prefix=='batch' else '工序步骤'
+        return BatchManufacturingGenerationDraft.model_validate(dict(answerable=False,response_type='clarify',missing_fields=[label],
+            clarification_questions=['请先选择对应'+label+'。'],coverage=[dict(requirement_id=row['id'],aspect=row['question'],
+                status='insufficient',claim_indices=[],missing_information='尚未选择'+label) for row in requirements]))
+    names=[prefix+'_actual_started_at',prefix+'_start_precision'] if prefix else ['actual_started_at','actual_start_precision']
+    return BatchManufacturingGenerationDraft.model_validate(dict(answerable=True,response_type='answer',
+        claims=[dict(business_field=name,claim_kind='business_fact') for name in names],
+        coverage=[dict(requirement_id=row['id'],aspect=row['question'],status='answered',claim_indices=[1,2],missing_information=None) for row in requirements]))
+
+
 def execution_start_projection(question, context, active):
     """Project a simple selected-entity start query; never change selection policy."""
     import re
@@ -100,6 +139,9 @@ def precision_projection(question, context):
     from ..knowledge.answer_coverage import requirement_prompt
     active = current_manufacturing_context()
     if active is not None:
+        projected = batch_start_projection(question, context, active)
+        if projected is not None:
+            return projected
         projected = execution_start_projection(question, context, active)
         if projected is not None:
             return projected
