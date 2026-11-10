@@ -46,3 +46,26 @@ node --test tests/frontend_conversations.test.cjs tests/frontend/auth.test.mjs
 ```
 
 实际部署、失败记录及本轮验证结果在收尾报告中单独记录。自建 OpenMES 演示记录不是真实工厂证据，工程替身和零模型验证不视为真实模型或独立业务验收。
+
+## 2026-11-10 工程验收
+
+业务提交 `609d23d2095cc1324192a67be08c33f29dcf745b` 已从Git归档部署到 [8004工作台](http://127.0.0.1:8004/) 及 OpenMES适配器，最终镜像 `enterprise-knowledge-manufacturing:openmes-guidance-quality-20261110-r2`，ID `sha256:035737a9a4e4412ec1e28e281863139fe2bc2035ebeaaba62faa9e6eac801a61`。两者306个部署文件（含依赖清单及alembic.ini、后端167个Python）与归档一致，提交标签一致；仅OpenMES库迁移到 `e9b2d4f60713`。ERPNext库仍为 `f2b8c0a961d3`，8个原容器ID/镜像/启动时间和17份旧报告哈希不变。
+
+完整非集成 **2352通过、1既有跳过、98集成排除**，前端 **65通过**，独立PostgreSQL M1/M3/M4 **9/14/12通过**并移除测试库。自动测试覆盖指导书回答、作业样本审核与映射变更失效、工单例外冲突、历史与会话、来源/文档/权限变化及批次/步骤冻结；生成使用工程替身。原120题及首期40题契约完整性通过，没有运行模型题。
+
+真实来源验收 **71个请求**（含快照读取），包含5次映射修订、5个审核样本和5份冻结版本；7个成功问答快照均有三次来源校验。先后两次使用正式 `--once --zero-model-calls` CLI完成各2题任务，分别包含真实批次和步骤来源；场景有重叠，不计模型准确率。故障验证证明：映射撤回阻止旧会话并使相关冻结版本失效；步骤源变化返回409，恢复字段值不恢复旧修订；撤销review阻止审核/导出而普通view查询仍可用；登记变化和适配器停机中止使用旧证据。最后恢复映射、源值、权限、登记和适配器，并重新采集冻结两份当前版本完成第二次任务，无活动质量任务。
+
+同进程问答及Worker均有硬零预算，25个可观察请求ID、两个任务及整个候选独立模型账本新增调用和Token **0**。r2最终部署端口另外5项、上游只读4项、新旧健康端口4项及页面资源字节4项通过。仅给现有知识管理员增加新候选 `openmes-hc / HC-P01 / review`，未提升知识库、部门、上游或ERPNext权限。
+
+首轮旧测试仍要求缺工单开工时间，按新映射契约修正后通过；原记录保留。r1镜像应用文件正确但继承了依赖镜像的旧提交标签，保留r1后构建r2显式标注本轮提交；业务代码、数据库和模型用量没有二次变化。迁移前后平台/MES数据库共4份备份目录核验通过，未做完整恢复演练；未重建索引、常驻新Worker或做浏览器视觉检查。
+
+私有配置、备份、原始响应及Trace在 `tmp/openmes-guidance-quality-20261110-r1/`，凭据不提交。当前检查和零模型任务入口：
+
+```powershell
+docker compose -f tmp/openmes-guidance-quality-20261110-r1/compose.json ps
+docker compose --env-file tmp/openmes-phase1-20261109-r1/deployment/deployment.env -f deploy/openmes/compose.yaml -f tmp/openmes-guidance-quality-20261110-r1/adapter.compose.json ps
+# 仅在页面创建零调用任务后执行；不会领取允许模型的任务。
+docker compose -f tmp/openmes-guidance-quality-20261110-r1/compose.json run --rm --no-deps api python scripts/run_quality_worker.py --once --zero-model-calls
+```
+
+完整结构化结果见[本轮报告](reports/openmes-guidance-quality-20261110-r1.json)。这是工程接入通过，真实模型问答质量仍待独立验证，旧ERPNext10/16、模拟开发13/16及正式31/40失败状态不变。
