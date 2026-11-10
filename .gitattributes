@@ -42,3 +42,5 @@ sample_docs/manufacturing_workorder_v1/** -text whitespace=cr-at-eol
 evals/manufacturing_workorder_v1/** -text whitespace=cr-at-eol
 evals/erpnext_zh_v1/** text eol=lf
 scripts/accept_erpnext_development.py text eol=lf
+# Deployment guard is recorded by its exact image SHA-256.
+deploy/isolated_demo/zero_runtime.py text eol=lf
