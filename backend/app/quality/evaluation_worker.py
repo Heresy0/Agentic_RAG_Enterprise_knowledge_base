@@ -153,7 +153,8 @@ class QualityEvaluationWorker:
             answer = response.model_dump(mode="json")
             if sample.get("input_kind") == "manufacturing":
                 from ..evaluation.manufacturing_metrics import score_manufacturing
-                metrics = score_manufacturing(sample, answer, context)
+                from ..evaluation.manufacturing_execution_metrics import SCORER_VERSION as EXECUTION_SCORER
+                metrics = score_manufacturing(sample, answer, context, execution_scorer=EXECUTION_SCORER)
             else:
                 metrics = score_answer(sample, answer, context)
             forbidden = [claim for claim in sample.get("forbidden_claims", []) if normalize(claim) in normalize(answer["answer"])]

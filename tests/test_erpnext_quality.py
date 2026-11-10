@@ -100,7 +100,7 @@ def test_live_erp_review_export_and_zero_budget_worker_keep_selection(erp_qualit
         assert len(job['records'])==2 and all(row['proxy_pass'] for row in job['records']),job
         assert not h.generation.calls and job['summary']['budget']['calls']==0
         for row in job['records']:
-            assert row['metrics']['manufacturing_scorer']=='manufacturing-execution-v1'
+            assert row['metrics']['manufacturing_scorer']=='manufacturing-execution-v2'
             assert row['manufacturing_observation']['validation']['mes_reads']==3
             assert row['manufacturing_observation']['business_context']['record']['execution']['job_card_id'].endswith('JC-A')
         with h.c.session_factory() as db:assert db.scalar(select(func.count()).select_from(QARun))==before

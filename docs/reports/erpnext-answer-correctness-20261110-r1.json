@@ -1,0 +1,281 @@
+{
+  "schema_version": "erpnext-answer-correctness-report-v1",
+  "source_revision": "f4e31e6b1e6369ce25a3d5e971a5237aecc808b7",
+  "scope": "首批字段语义、覆盖提示及输出失败处理；版本比较与开工业务边界未修改",
+  "suite_sha256": "b051e4e0b5782afd8fb5843699483b02c30aa4507fcc04926a6a7edbdc7f9ad2",
+  "prepared_sha256": "7ea6ac93f7924320100e6d262c24afb5198dc4a8e9a51657e865f9d8b5294ca5",
+  "total": 16,
+  "automatic_passed": 12,
+  "assistant_non_independent_passed": 12,
+  "automatic_critical_passed": 4,
+  "assistant_non_independent_critical_passed": 4,
+  "critical_total": 6,
+  "gate_passed": false,
+  "gate": {
+    "minimum_passed": 14,
+    "all_critical_required": true
+  },
+  "automatic_and_semantic_disagreements": [
+    "ERPDEV-Q005",
+    "ERPDEV-Q010"
+  ],
+  "model_exercised_cases": 12,
+  "zero_model_cases": 4,
+  "budget": {
+    "calls": 35,
+    "charged_tokens": 146756,
+    "unknown_calls": 0,
+    "elapsed_seconds": 99.916,
+    "limited_by": null
+  },
+  "reconciliation": {
+    "matched": true,
+    "trace_calls": 35,
+    "ledger_calls": 35,
+    "ledger_budget_tokens": 146756,
+    "pending": 0
+  },
+  "fee": "单价未配置，费用未知",
+  "old_results_combined": false,
+  "request_retries": 0,
+  "reruns": 0,
+  "offline_tests": {
+    "passed": 2362,
+    "skipped": 1,
+    "integration_excluded": 98,
+    "targeted_passed": 125,
+    "postgres_m3_passed": 14
+  },
+  "isolation": {
+    "source_revision": "f4e31e6b1e6369ce25a3d5e971a5237aecc808b7",
+    "base_image": "sha256:0e68adb51aad2b3389e8989b09fca188223d550db9172bc5319ab46e911e72ea",
+    "database": "erpnext_answer_correctness_20261110_r1",
+    "container": "erpnext-answer-correctness-20261110-r1",
+    "redis": "erpnext-answer-correctness-20261110-r1-redis",
+    "no_published_port": true,
+    "no_workers": true,
+    "document_storage_readonly": true,
+    "verified_files": 1155
+  },
+  "post_run_audit": {
+    "status": "verified",
+    "ledger_rows": 35,
+    "pending": 0,
+    "source_cases_unchanged": 16,
+    "new_model_calls": 0,
+    "runtime_unchanged": true,
+    "q005_json_citations_match": true,
+    "q005_python_type_differences": [
+      {
+        "field": "change_notice_refs",
+        "key": "value",
+        "wire_type": "list",
+        "python_type": "tuple",
+        "wire_value": []
+      }
+    ]
+  },
+  "preservation": {
+    "old_files_unchanged": 128,
+    "original_containers_unchanged": 53,
+    "snapshots_with_three_rechecks": 15
+  },
+  "cases": [
+    {
+      "case_id": "ERPDEV-Q001",
+      "http_status": 200,
+      "model_calls": 1,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "工单、型号、OP-20工序代码及具体作业卡编号齐全，字段引用对应所选实体。",
+      "response_binding": "01a6d49f8e138c657845103725460cba753ece31dcb6b7fe3e386b7222991818",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q002",
+      "http_status": 200,
+      "model_calls": 1,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "工单、工序和作业卡三层实际开工分别引用，不互相补值。",
+      "response_binding": "3c4c76391c34f5e60754423611cbc79e0c9111cae03ca69d41a43d2f011d1c04",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q003",
+      "http_status": 200,
+      "model_calls": 1,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "未知开工的卡正确回答编号、Open状态和未知时间，没有将未知误判为整个问题不可答。",
+      "response_binding": "9ba80640746313dfaa40c6ee7aec7ad6fe9d55935bb86f7ab935c6b239e2bc02",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q004",
+      "http_status": 200,
+      "model_calls": 1,
+      "automatic_passed": false,
+      "assistant_non_independent_passed": false,
+      "review_reason": "OP-30代码正确，但状态和实际开工仍选择父工单字段，遗漏所选工序Pending及未知开工；正文明确称工单时间，不能据此认定已将其断言为工序时间。",
+      "response_binding": "f84d48b01b09e96a8b3c64e5a144ab223a1ad669d0d3b5800450168699887f55",
+      "automatic_failures": [
+        "business_evidence:operation_actual_started_at",
+        "business_evidence:operation_status",
+        "required_business_citation:operation_actual_started_at",
+        "required_business_citation:operation_status"
+      ]
+    },
+    {
+      "case_id": "ERPDEV-Q005",
+      "http_status": 200,
+      "model_calls": 3,
+      "automatic_passed": false,
+      "assistant_non_independent_passed": true,
+      "review_reason": "交付1.0版、连续2件、全部合格及质量签署要求，选版仍按工单开工。自动business_citation失败来自空通知数组的JSON列表与Python元组比较；逐字段JSON规范化审计一致，仅作为助手非独立语义通过，自动失败原样保留。",
+      "response_binding": "2c01e30a623ee4150eca7037f67398e0f7f57fc11821061265b102d53af6fab7",
+      "automatic_failures": [
+        "business_citation"
+      ]
+    },
+    {
+      "case_id": "ERPDEV-Q006",
+      "http_status": 200,
+      "model_calls": 5,
+      "automatic_passed": false,
+      "assistant_non_independent_passed": false,
+      "review_reason": "新工单内部选版正确，但附加通知摘录按工单记录角色未通过完整原句和身份绑定校验，最终拒答，不能按内部3件标准计通过。",
+      "response_binding": "fa17b17e44a144cc7812646dae7d7ef9e4c712697ad0e94bb32e615590b6a4af",
+      "automatic_failures": [
+        "business_evidence:actual_started_at",
+        "business_evidence:operation_code",
+        "business_evidence:product_model",
+        "business_evidence:work_order_id",
+        "required_business_citation:actual_started_at",
+        "required_business_citation:operation_code",
+        "required_business_citation:product_model",
+        "required_business_citation:work_order_id"
+      ]
+    },
+    {
+      "case_id": "ERPDEV-Q007",
+      "http_status": 200,
+      "model_calls": 5,
+      "automatic_passed": false,
+      "assistant_non_independent_passed": false,
+      "review_reason": "把对比指导书标为作业要求，通知当工单记录且未完整绑定，缺少两版独立比较，最终拒答；必要角色校验未放宽。",
+      "response_binding": "c2d26178174784be8618b0ea0a923cea0ed15add926993526ea2f6de7e375a49",
+      "automatic_failures": [
+        "business_evidence:actual_started_at",
+        "required_business_citation:actual_started_at"
+      ]
+    },
+    {
+      "case_id": "ERPDEV-Q008",
+      "http_status": 200,
+      "model_calls": 3,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "旧版更换治具后的重新确认、2件、全部合格和质量签署要求完整。",
+      "response_binding": "870afe32222a67f0f2f1351b5b446e7910ee7d82d352ca5b34bcf98e5fa58b57",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q009",
+      "http_status": 200,
+      "model_calls": 3,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "首次开机3件、全部必检合格和质量签署完整，要求没有冒充实际完成记录。",
+      "response_binding": "8cfd3c621f335c5283299bf3cb4911c719a15335e52a8945fa3b3c69ebf7cc51",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q010",
+      "http_status": 200,
+      "model_calls": 4,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": false,
+      "review_reason": "列出规则及报工不证明完成，却未直接回答作业卡实际开工登记是否能证明首件检验和质量签署；自动词项通过不代表语义完整。",
+      "response_binding": "a63b36b661130c372b9a3661993fe18710013c110d419409fd0b8a72beb3d46d",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q011",
+      "http_status": 200,
+      "model_calls": 4,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "恰好4小时不命中超过4小时，保留其他触发条件和不能证明实际复检完成的边界。",
+      "response_binding": "f4a9ea95f3d63204e250f59e449bff008c79b86862375bdffd96b622040366f5",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q012",
+      "http_status": 200,
+      "model_calls": 4,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "外径上下限及包含端点、孔深CAL-150、清洁切屑和零读数要求齐全。",
+      "response_binding": "a5ce7f57ebf586ac3218fb728644932e5f2758d92b282b6f12e8efea8b16b0e5",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q013",
+      "http_status": 200,
+      "model_calls": 0,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "实际开工未知时澄清，不用计划时间代替，不擅自选版，零模型。",
+      "response_binding": "1c118d4f33b5b88a3170ffd67df089d21a4a2a5834b62da6b7ad7dd15026d929",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q014",
+      "http_status": 200,
+      "model_calls": 0,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "多工序未选时澄清，不自动选首行或决定版本，零模型。",
+      "response_binding": "94cb988c342b2aa6ce1f045fc4a727f151703a0d42fe21303461569cf6d295f9",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q015",
+      "http_status": 404,
+      "model_calls": 0,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "无业务授权返回404，不披露工单业务信息，零模型。",
+      "response_binding": "ecbe1d1a4d5bb8cd1516b41edcd0265fede9557fe710d2dd1b188a80a2775658",
+      "automatic_failures": []
+    },
+    {
+      "case_id": "ERPDEV-Q016",
+      "http_status": 200,
+      "model_calls": 0,
+      "automatic_passed": true,
+      "assistant_non_independent_passed": true,
+      "review_reason": "拒绝代登记开工及质量放行，保留只读边界，零模型。",
+      "response_binding": "4754c5dbdad1a5fedc84904d4edd4cc1ce4f098c812393e15cd6a174b7860d23",
+      "automatic_failures": []
+    }
+  ],
+  "environment_final": {
+    "original_containers_unchanged": 53,
+    "temporary_containers_stopped": [
+      "erpnext-answer-correctness-20261110-r1",
+      "erpnext-answer-correctness-20261110-r1-redis"
+    ],
+    "original_ledgers": {
+      "erpnext-readonly-api": {
+        "new_run_event_rows": 0
+      },
+      "openmes-readonly-api": {
+        "new_run_event_rows": 0
+      }
+    },
+    "artifact_files": 81,
+    "artifact_manifest_sha256": "d940e927ba977e4e13d5c302389d045bb2a8c4ef0b474d432ab4e2f89b67fa91"
+  }
+}
