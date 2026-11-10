@@ -102,3 +102,26 @@ docker compose --env-file tmp/openmes-phase1-20261109-r1/deployment/deployment.e
 ```
 
 完整结构化结果见[OpenMES 首期验收报告](reports/openmes-readonly-20261109-r1.json)。以上为工程接入验收通过，旧 ERPNext 开发 **10/16、关键2/6**、旧模拟开发 **13/16、关键4/6** 和正式 **31/40、关键9/12** 的失败状态分别保留；本轮没有模型准确率、模型改进收益或真实改进闭环通过的结论。
+
+## 2026-11-10 O3 实测与交付
+
+O3 已在 `codex/openmes-qa-phase2` 完成。业务提交 `7348bfbc3e7c341c08ee54bf4710c9ad8442e05d` 从 Git 归档构建为 `enterprise-knowledge-manufacturing:openmes-qa-20261110-r1`，镜像 ID `sha256:60218c864404db4f7818506480221f6ea11beabdd2880b2b58a4f394a31efdf0`，仅更新 8004 和 OpenMES 适配器。两者各 302 个部署文件（含依赖清单和 alembic.ini，后端 Python 164 个）与归档逐字节一致。OpenMES 上游镜像和 11 个关键来源文件保持原版。
+
+仅 `openmes_readonly_phase1` 迁移至 `d7a1c3e5f902`，ERPNext 库仍为 `f2b8c0a961d3`。本轮发现 Docker 启动后原 ERP 候选 Redis 未启动，原 API 因 Redis 连接失败退出；仅启动原 `erpnext-readonly-redis` 和 `erpnext-readonly-api` 恢复 8003，未替换其镜像、配置或数据库。8 个保留容器 ID / 镜像不变，其中 7 个启动时间不变，原 ERP API 重启单独记录；16 份旧报告哈希一致。
+
+完整非集成回归 **2325 通过、1 既有跳过**；前端 **61 通过**；独立 PostgreSQL M1/M3/M4 **9/13/12 通过**，测试数据库均已移除。绑定列、父子/互斥约束及有绑定时拒绝降级均通过。原 120 题和首期 40 题契约完整性通过，没有运行这些题的模型评测。
+
+最终真实链路包含 **56 个请求**（包括快照读取），覆盖三层实际开工及引用、未知值、缺选择澄清、执行拒绝、两轮会话、历史恢复、不能换选或丢选、父子身份、伪造字段、来源变化及撤权/停机恢复；**13 个成功问答快照均有三次完整来源校验**。一般事实生成及事实追问使用工程替身验证；真实第二轮是执行拒绝，不调用追问模型。上游只读令牌 GET 及开始/写入/刷新拒绝 **4 项**、新旧端口 **4 项**、页面资源字节 **4 项**通过。故障后恢复源字段值，不恢复旧更新时间/修订，失效会话不能恢复使用；view 授权及适配器已恢复。
+
+同进程问答全程使用硬零预算，所有尝试含 **62 个可观察请求 ID** 与整个独立候选用量账本均无新增调用；物理模型调用和 Token **0**。这是工程接入验收，不产生 OpenMES 模型准确率。自由表达、多实体问答和模型追问质量尚需另行真实模型验证，旧 ERPNext 10/16、模拟开发13/16及正式31/40失败状态不变。
+
+首轮旧断言、缺知识库范围参数、空上下文探测失败已修正并回归。私有验收脚本的模块路径、Windows 编码、公开上下文/预期修订契约误断言，以及上游刷新探针路由错误保留原始记录；未放宽权限、修改旧结果或调用模型补跑。迁移前后平台与 MES 数据库共 4 份备份目录核验通过，未做完整恢复演练或浏览器视觉检查；仍为 13 份原件、53 个分块，未重建索引、启动新候选 Worker 或增加业务 review。
+
+本轮配置及原始证据在 `tmp/openmes-qa-20261110-r1/`，不能提交凭据。当前检查入口：
+
+```powershell
+docker compose -f tmp/openmes-qa-20261110-r1/compose.json ps
+docker compose --env-file tmp/openmes-phase1-20261109-r1/deployment/deployment.env -f deploy/openmes/compose.yaml -f tmp/openmes-qa-20261110-r1/adapter.compose.json ps
+```
+
+完整结果见[O3 问答与会话验收报告](reports/openmes-qa-20261110-r1.json)。旧首期私有配置仍保留用于历史复现，不用旧 Compose 误降当前 8004。批次/步骤质量审核、冻结及 ERP-MES 同步不在本轮范围。

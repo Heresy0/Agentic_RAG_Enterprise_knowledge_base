@@ -30,7 +30,7 @@ M3 将 M1 的只读工单访问、M2 的适用性判断和既有 RAG 主流程�
 }
 ```
 
-`knowledge_base_id=null` 仅表示当前授权的知识库集合。客户端不能额外传入源地址、租户、工厂、型号、实际开工日期、夹具版本或可信业务上下文。会话创建请求仅接受 `work_order_id`、`knowledge_base_id` 和可选预览修订。
+`knowledge_base_id=null` 仅表示当前授权的知识库集合。客户端不能额外传入源地址、租户、工厂、型号、实际开工日期、夹具版本或可信业务上下文。当前会话创建还支持来源允许的可选执行选择：ERPNext 的 `operation_id` / `job_card_id`，或 OpenMES 的 `batch_id` / `step_id`，两类不能混用。选择、来源修订及哈希在会话内固定，详情见[ERPNext](ERPNEXT_INTEGRATION.md)及[OpenMES](OPENMES_INTEGRATION.md)说明；最初 M3 示例仍是工单级请求。
 
 成功响应继承普通 `answer/clarify/refuse`、文档 `citations` 和原生成耗时，扩展：
 
