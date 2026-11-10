@@ -1,0 +1,798 @@
+{
+  "schema_version": 1,
+  "batch": "frontend-fixes-20261110-r1",
+  "date": "2026-11-10",
+  "base_commit": "41ea4a2",
+  "verdict": "passed",
+  "reviewer": "助手非独立工程及浏览器复验",
+  "changes": [
+    "分别展示文档和业务引用条数",
+    "相同拒绝原因仅显示一次，不同原因保留",
+    "窄屏导航分行、工具栏换行、来源表单宽度约束、弹窗长文本换行及标题关闭按钮间距"
+  ],
+  "files_sha256": {
+    "backend/app/static/app.js": "78148a0f0a90e1414d9a822615b824c200df339279fdfc2a9c9f78bbfbf40118",
+    "backend/app/static/styles.css": "7a9abd9cc6ca196e94194767436aa6c561c758a03a3734c3a581261433afa492"
+  },
+  "tests": {
+    "frontend_node": {
+      "passed": 67,
+      "failed": 0
+    },
+    "frontend_api": {
+      "passed": 11,
+      "failed": 0
+    },
+    "scope": "前端行为、认证/权限与来源变化保护、静态资源及安全响应头；未跑完整Python回归或付费模型评测"
+  },
+  "runtime": {
+    "base_image": "enterprise-knowledge-manufacturing:openmes-guidance-quality-20261110-r2",
+    "base_source_commit": "609d23d",
+    "temporary_port": 8005,
+    "modified_assets_only": [
+      "app.js",
+      "styles.css"
+    ],
+    "hard_model_limit": 0,
+    "stopped": true,
+    "original_8003_8004_updated": false,
+    "original_container_count": 19,
+    "original_container_changes": [],
+    "original_8004_asset_matches_base": true
+  },
+  "browser": {
+    "widths": [
+      320,
+      323,
+      375,
+      768,
+      1280
+    ],
+    "checks": {
+      "businessCountText": [
+        "你所选步骤的实际开工时间是什么？",
+        "✧ 知序 · 知识助手工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z。[业务29]\n工单1的批次1的步骤1的开工时间精度为datetime。[业务30][业务29] 工单字段 · step_actual_started_at ↗[业务30] 工单字段 · step_start_precision ↗0.1 秒 · 文档引用 0 条 · 业务引用 2 条赞 · 有帮助踩 · 待改进查看问答快照"
+      ],
+      "businessPreview": {
+        "clientWidth": 289,
+        "scrollWidth": 289
+      },
+      "refusal": {
+        "text": "✧ 知序 · 知识助手\n本平台仅提供只读查询与作业指导，不能代为执行质量放行、质量签署、恢复生产或修改 MES/ERP 记录。报工、规则和登记状态不能代替实际检验、质量签署或恢复批准；请由有权限的人员核验记录并在业务系统办理。\n文档引用 0 条 · 业务引用 0 条 · 请求编号 0336657387194c1aa48a3a3d25e2e36e\n赞 · 有帮助\n踩 · 待改进\n查看问答快照",
+        "openingSentenceOccurrences": 1
+      },
+      "dialogs": [
+        {
+          "name": "质量审核",
+          "viewport": 320,
+          "contentWidth": 271,
+          "overflow": false,
+          "width": 271
+        },
+        {
+          "name": "质量审核",
+          "viewport": 323,
+          "contentWidth": 274,
+          "overflow": false,
+          "width": 274
+        },
+        {
+          "name": "质量审核",
+          "viewport": 375,
+          "contentWidth": 326,
+          "overflow": false,
+          "width": 326
+        },
+        {
+          "name": "质量审核",
+          "viewport": 768,
+          "contentWidth": 719,
+          "overflow": false,
+          "width": 719
+        },
+        {
+          "name": "质量审核",
+          "viewport": 1280,
+          "contentWidth": 1133,
+          "overflow": false,
+          "width": 1133
+        },
+        {
+          "name": "评测结果",
+          "viewport": 320,
+          "contentWidth": 271,
+          "overflow": false,
+          "width": 271
+        },
+        {
+          "name": "评测结果",
+          "viewport": 323,
+          "contentWidth": 274,
+          "overflow": false,
+          "width": 274
+        },
+        {
+          "name": "评测结果",
+          "viewport": 375,
+          "contentWidth": 326,
+          "overflow": false,
+          "width": 326
+        },
+        {
+          "name": "评测结果",
+          "viewport": 768,
+          "contentWidth": 719,
+          "overflow": false,
+          "width": 719
+        },
+        {
+          "name": "评测结果",
+          "viewport": 1280,
+          "contentWidth": 883,
+          "overflow": false,
+          "width": 883
+        }
+      ],
+      "referenceAccount": {
+        "qualityDisabled": true,
+        "qualityText": "反馈审核与回归样本\n\n仅显示用户主动共享、且你有权管理的反馈。\n\n↻ 刷新\n审核状态\n全部状态\n待审核\n问题成立\n需补证据\n反馈不成立\n跟随左侧知识库筛选；跨库记录须拥有全部相关库的管理员权限。\n\n请选择你管理的知识库。\n\n内部回归样本版本\n仅导出已审核、获授权且标准仍有效的样本\n版本名称\n用已选样本创建版本",
+        "workOrderText": "当前工单\n选择有权访问的工单\n重新查询\n工单来源或权限无法确认，请重新查询。",
+        "orderOptions": "选择有权访问的工单"
+      },
+      "console": []
+    },
+    "layouts": [
+      {
+        "label": "323-知识问答",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "323-步骤指导书映射",
+        "contentWidth": 383,
+        "outside": [
+          {
+            "cls": "",
+            "id": "openmes-batch",
+            "right": 355,
+            "tag": "SELECT"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 383,
+            "tag": "LABEL"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 383,
+            "tag": "SELECT"
+          }
+        ],
+        "overflow": true,
+        "width": 323
+      },
+      {
+        "label": "323-步骤指导书映射-修正后",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "320-制造问答与映射",
+        "contentWidth": 305,
+        "outside": [],
+        "overflow": false,
+        "width": 320
+      },
+      {
+        "label": "323-制造问答与映射",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "375-制造问答与映射",
+        "contentWidth": 360,
+        "outside": [],
+        "overflow": false,
+        "width": 375
+      },
+      {
+        "label": "768-制造问答与映射",
+        "contentWidth": 753,
+        "outside": [],
+        "overflow": false,
+        "width": 768
+      },
+      {
+        "label": "1280-制造问答与映射",
+        "contentWidth": 1265,
+        "outside": [],
+        "overflow": false,
+        "width": 1280
+      },
+      {
+        "label": "323-业务引用弹窗",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "323-业务引用弹窗-换行后",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "320-拒绝与历史问答-最终样式",
+        "contentWidth": 305,
+        "outside": [],
+        "overflow": false,
+        "width": 320
+      },
+      {
+        "label": "323-拒绝与历史问答-最终样式",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "375-拒绝与历史问答-最终样式",
+        "contentWidth": 360,
+        "outside": [],
+        "overflow": false,
+        "width": 375
+      },
+      {
+        "label": "768-拒绝与历史问答-最终样式",
+        "contentWidth": 753,
+        "outside": [],
+        "overflow": false,
+        "width": 768
+      },
+      {
+        "label": "1280-拒绝与历史问答-最终样式",
+        "contentWidth": 1265,
+        "outside": [],
+        "overflow": false,
+        "width": 1280
+      },
+      {
+        "label": "320-文档管理",
+        "contentWidth": 305,
+        "outside": [
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TABLE"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "THEAD"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TR"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 386,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 473,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "documents-body",
+            "right": 617,
+            "tag": "TBODY"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TR"
+          }
+        ],
+        "overflow": false,
+        "width": 320
+      },
+      {
+        "label": "323-文档管理",
+        "contentWidth": 308,
+        "outside": [
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TABLE"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "THEAD"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TR"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 386,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 473,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "documents-body",
+            "right": 617,
+            "tag": "TBODY"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TR"
+          }
+        ],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "375-文档管理",
+        "contentWidth": 360,
+        "outside": [
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TABLE"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "THEAD"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TR"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 386,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 473,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "documents-body",
+            "right": 617,
+            "tag": "TBODY"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 617,
+            "tag": "TR"
+          }
+        ],
+        "overflow": false,
+        "width": 375
+      },
+      {
+        "label": "768-文档管理",
+        "contentWidth": 753,
+        "outside": [
+          {
+            "cls": "",
+            "id": "",
+            "right": 849,
+            "tag": "TABLE"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 849,
+            "tag": "THEAD"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 849,
+            "tag": "TR"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 849,
+            "tag": "TH"
+          },
+          {
+            "cls": "",
+            "id": "documents-body",
+            "right": 849,
+            "tag": "TBODY"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 849,
+            "tag": "TR"
+          },
+          {
+            "cls": "",
+            "id": "",
+            "right": 849,
+            "tag": "TD"
+          },
+          {
+            "cls": "secondary",
+            "id": "",
+            "right": 814,
+            "tag": "BUTTON"
+          }
+        ],
+        "overflow": false,
+        "width": 768
+      },
+      {
+        "label": "1280-文档管理",
+        "contentWidth": 1265,
+        "outside": [],
+        "overflow": false,
+        "width": 1280
+      },
+      {
+        "label": "320-问答反馈",
+        "contentWidth": 305,
+        "outside": [],
+        "overflow": false,
+        "width": 320
+      },
+      {
+        "label": "323-问答反馈",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "375-问答反馈",
+        "contentWidth": 360,
+        "outside": [],
+        "overflow": false,
+        "width": 375
+      },
+      {
+        "label": "768-问答反馈",
+        "contentWidth": 753,
+        "outside": [],
+        "overflow": false,
+        "width": 768
+      },
+      {
+        "label": "1280-问答反馈",
+        "contentWidth": 1265,
+        "outside": [],
+        "overflow": false,
+        "width": 1280
+      },
+      {
+        "label": "320-质量列表与冻结版本",
+        "contentWidth": 305,
+        "outside": [],
+        "overflow": false,
+        "width": 320
+      },
+      {
+        "label": "323-质量列表与冻结版本",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "375-质量列表与冻结版本",
+        "contentWidth": 360,
+        "outside": [],
+        "overflow": false,
+        "width": 375
+      },
+      {
+        "label": "768-质量列表与冻结版本",
+        "contentWidth": 753,
+        "outside": [],
+        "overflow": false,
+        "width": 768
+      },
+      {
+        "label": "1280-质量列表与冻结版本",
+        "contentWidth": 1265,
+        "outside": [],
+        "overflow": false,
+        "width": 1280
+      },
+      {
+        "label": "320-审核详情",
+        "contentWidth": 305,
+        "outside": [],
+        "overflow": false,
+        "width": 320
+      },
+      {
+        "label": "323-审核详情",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "375-审核详情",
+        "contentWidth": 360,
+        "outside": [],
+        "overflow": false,
+        "width": 375
+      },
+      {
+        "label": "768-审核详情",
+        "contentWidth": 753,
+        "outside": [],
+        "overflow": false,
+        "width": 768
+      },
+      {
+        "label": "1280-审核详情",
+        "contentWidth": 1265,
+        "outside": [],
+        "overflow": false,
+        "width": 1280
+      },
+      {
+        "label": "320-评测表单与任务列表",
+        "contentWidth": 305,
+        "outside": [],
+        "overflow": false,
+        "width": 320
+      },
+      {
+        "label": "323-评测表单与任务列表",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "375-评测表单与任务列表",
+        "contentWidth": 360,
+        "outside": [],
+        "overflow": false,
+        "width": 375
+      },
+      {
+        "label": "768-评测表单与任务列表",
+        "contentWidth": 753,
+        "outside": [],
+        "overflow": false,
+        "width": 768
+      },
+      {
+        "label": "1280-评测表单与任务列表",
+        "contentWidth": 1265,
+        "outside": [],
+        "overflow": false,
+        "width": 1280
+      },
+      {
+        "label": "320-评测结果详情",
+        "contentWidth": 305,
+        "outside": [],
+        "overflow": false,
+        "width": 320
+      },
+      {
+        "label": "323-评测结果详情",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "375-评测结果详情",
+        "contentWidth": 360,
+        "outside": [],
+        "overflow": false,
+        "width": 375
+      },
+      {
+        "label": "768-评测结果详情",
+        "contentWidth": 753,
+        "outside": [],
+        "overflow": false,
+        "width": 768
+      },
+      {
+        "label": "1280-评测结果详情",
+        "contentWidth": 1265,
+        "outside": [],
+        "overflow": false,
+        "width": 1280
+      },
+      {
+        "label": "320-审核详情-最终标题间距",
+        "contentWidth": 305,
+        "outside": [],
+        "overflow": false,
+        "width": 320
+      },
+      {
+        "label": "323-审核详情-最终标题间距",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      },
+      {
+        "label": "375-审核详情-最终标题间距",
+        "contentWidth": 360,
+        "outside": [],
+        "overflow": false,
+        "width": 375
+      },
+      {
+        "label": "768-审核详情-最终标题间距",
+        "contentWidth": 753,
+        "outside": [],
+        "overflow": false,
+        "width": 768
+      },
+      {
+        "label": "1280-审核详情-最终标题间距",
+        "contentWidth": 1265,
+        "outside": [],
+        "overflow": false,
+        "width": 1280
+      },
+      {
+        "label": "323-无业务权限",
+        "contentWidth": 308,
+        "outside": [],
+        "overflow": false,
+        "width": 323
+      }
+    ],
+    "intermediate_findings": [
+      "首轮实际映射的长批次和指导书select溢出，修正后通过",
+      "业务弹窗的长字段名及修订哈希局部横向滚动，换行修正后通过；长审核标题另补关闭按钮间距"
+    ],
+    "limitations": "单一浏览器、本机演示资料；表格允许容器内部滚动，不隐藏页面溢出来规避问题；没有代表所有设备尺寸"
+  },
+  "qa": [
+    {
+      "request_id": "639836cad32a4a709a5a60abddb8d443",
+      "question": "所选步骤的实际开工时间是什么？",
+      "response_type": "answer",
+      "business_citations": 2,
+      "validation": {
+        "source_verified": true,
+        "document_scope_verified": true,
+        "business_citations_verified": true,
+        "mes_reads": 3
+      }
+    },
+    {
+      "request_id": "0336657387194c1aa48a3a3d25e2e36e",
+      "question": "请把这个步骤登记为已开工。",
+      "response_type": "refuse",
+      "business_citations": 0,
+      "validation": {
+        "source_verified": true,
+        "document_scope_verified": true,
+        "business_citations_verified": true,
+        "mes_reads": 3
+      }
+    }
+  ],
+  "usage": {
+    "telemetry_requests": 69,
+    "statuses": {
+      "200": 67,
+      "404": 1,
+      "201": 1
+    },
+    "physical_model_calls": 0,
+    "budget_tokens": 0,
+    "independent_ledgers": {
+      "openmes-readonly-api": {
+        "database": "openmes_readonly_phase1",
+        "migration": "e9b2d4f60713",
+        "new_model_events": 0,
+        "missing_model_events": 0,
+        "business_grants_unchanged": true
+      },
+      "erpnext-readonly-api": {
+        "database": "erpnext_readonly_phase1",
+        "migration": "f2b8c0a961d3",
+        "new_model_events": 0,
+        "missing_model_events": 0,
+        "business_grants_unchanged": true
+      }
+    }
+  },
+  "preservation": {
+    "old_report_files": 20,
+    "old_report_hash_changes": [],
+    "active_quality_jobs": 0,
+    "no_mapping_review_or_dataset_writes": true,
+    "no_source_or_permission_changes": true,
+    "no_index_rebuild": true
+  },
+  "screenshots": {
+    "assets/frontend-fixes-20261110-r1/01-narrow-home.jpg": "2560cfc56452900a1faf45cedee9b4996cea83351de2359251600b5b5e362a66",
+    "assets/frontend-fixes-20261110-r1/04-business-preview-wrapped.jpg": "2221cf48824427237e7289fa4eeab6cf6f38173baf550cb1ed4ab3300ae0df59",
+    "assets/frontend-fixes-20261110-r1/05-business-count.jpg": "a3bdbe567680873a45ce9cd69bf35c8a123b2720eaf21390ba9ba58158db0cf6",
+    "assets/frontend-fixes-20261110-r1/06-refusal-once.jpg": "c41c0417c6bffee2c0b2a5995c8fddcc87b87bc1a86bffa804620b42c08aafaa",
+    "assets/frontend-fixes-20261110-r1/09-quality-final.jpg": "bb82c80c4b3be28f3e0d4abc900ef17163c50e9aed89fd248f829918d17a6876",
+    "assets/frontend-fixes-20261110-r1/10-permission.jpg": "e861882f31e47846ec15789b183db92da349993cd211582d49ec22f109bf06e2"
+  },
+  "limitations": [
+    "原8003/8004镜像及静态资源未更新，浏览器复验在临时挂载新静态文件的8005完成。",
+    "真实模型质量未重测；旧ERPNext10/16、模拟开发13/16、正式31/40失败状态不变，不拼分。",
+    "原验收报告和首轮中间布局记录保留。首次沙箱内前端API检查无输出后终止，同一11项在允许本机连接的环境通过。",
+    "复验只新增平台会话与两个零模型问答快照，没有向ERP/MES登记执行状态。"
+  ]
+}

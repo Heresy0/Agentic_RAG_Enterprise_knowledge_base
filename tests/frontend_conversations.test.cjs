@@ -384,6 +384,31 @@ test("cross-KB citations render the server KB name safely", () => {
   assert.equal($("answer-area").children.at(-1).querySelector(".citation").textContent, "[资料1] 技术部<script> · 手册 · 条件 ↗");
 });
 
+test("answer metadata distinguishes document and business references, including empty and mixed answers", () => {
+  for (const [documents, business] of [[0, 0], [1, 0], [0, 2], [1, 2]]) {
+    const { $, run, sandbox } = setup();
+    sandbox.response = { answer: "结论", answerable: true,
+      citations: Array.from({ length: documents }, (_, i) => ({ citation_id: `资料${i + 1}`, document_name: "手册" })),
+      business_citations: Array.from({ length: business }, (_, i) => ({ citation_id: `业务${i + 1}`, field_name: "step_actual_started_at" })) };
+    run('renderAnswer(message("assistant", ""), response, "request-1")');
+    const rendered = $("answer-area").children.at(-1);
+    assert.equal(rendered.querySelector(".citation-list").children.length, documents + business);
+    assert.equal(rendered.querySelector(".answer-meta").textContent, `文档引用 ${documents} 条 · 业务引用 ${business} 条 · 请求编号 request-1`);
+  }
+});
+
+test("refusal prose appears once when equal; a distinct reason remains visible as plain text", () => {
+  for (const reason of ["仅允许只读查询。", " 仅允许只读查询。\n", "缺少授权<script>原文</script>"]) {
+    const { $, run, sandbox } = setup();
+    sandbox.response = { answer: "仅允许只读查询。", answerable: false, response_type: "refuse", refusal_reason: reason };
+    run('renderAnswer(message("assistant", ""), response)');
+    const rendered = $("answer-area").children.at(-1);
+    assert.equal(rendered.querySelector(".message-text").textContent, "仅允许只读查询。");
+    const explanations = rendered.children.filter(node => node.tag === "p" && node.className === "answer-meta");
+    assert.deepEqual(explanations.map(node => node.textContent), reason.trim() === "仅允许只读查询。" ? [] : [reason]);
+  }
+});
+
 test("citation preview uses authorized endpoint and renders source as text", async () => {
   const { $, run, sandbox } = setup();
   sandbox.fetch = async url => {

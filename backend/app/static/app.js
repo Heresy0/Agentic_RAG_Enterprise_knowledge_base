@@ -340,7 +340,7 @@ function renderAnswer(container, data, requestId) {
   if (state.mode === "manufacturing" && data.work_order_context) { state.manufacturing.context = data.work_order_context; renderWorkOrder(data.work_order_context); renderApplicability(data.applicability, data.run_id); }
   const answer = container.querySelector(".message-text"); answer.classList.remove("loading"); answer.textContent = data.answer;
   if (data.response_type === "clarify") container.append(element("p", `请补充：${(data.missing_fields || []).join("、")}。回复后会继续当前问题。`, "answer-meta"));
-  if (!data.answerable && data.refusal_reason) container.append(element("p", data.refusal_reason, "answer-meta"));
+  if (!data.answerable && data.refusal_reason && data.refusal_reason.trim() !== data.answer.trim()) container.append(element("p", data.refusal_reason, "answer-meta"));
   const citations = element("div", undefined, "citation-list");
   for (const citation of data.citations || []) {
     const button = element("button", `[${citation.citation_id}] ${citation.knowledge_base_name ? `${citation.knowledge_base_name} · ` : ""}${citation.document_name} · ${citation.section_path} ↗`, "citation");
@@ -355,7 +355,7 @@ function renderAnswer(container, data, requestId) {
   }
   container.append(citations);
   const seconds = data.timings ? `${(data.timings.total_ms / 1000).toFixed(1)} 秒 · ` : "";
-  container.append(element("div", `${seconds}${data.citations?.length || 0} 个来源${requestId ? ` · 请求编号 ${requestId}` : ""}`, "answer-meta"));
+  container.append(element("div", `${seconds}文档引用 ${data.citations?.length || 0} 条 · 业务引用 ${data.business_citations?.length || 0} 条${requestId ? ` · 请求编号 ${requestId}` : ""}`, "answer-meta"));
   if (data.run_id) addFeedbackControls(container, data.run_id);
   else if (data.snapshot_status === "unavailable") container.append(element("p", "本次回答快照暂不可用，无法关联反馈。", "answer-meta"));
 }
