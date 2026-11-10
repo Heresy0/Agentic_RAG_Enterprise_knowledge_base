@@ -4,7 +4,9 @@
 
 将工艺资料、指导书版本和 ERP/MES 执行记录接入同一问答流程的多租户平台。支持按工单及具体工序、作业卡或批次、步骤限定问题范围，分别追溯文档原文与业务字段来源，并将反馈纳入审核、样本冻结和回归验证。
 
-已完成自建 **ERPNext** 与 **OpenMES** 的真实 API 只读联调，尚未接入真实工厂系统。自建演示记录、助手非独立审核和工程替身验证均不视为工厂执行证据或独立业务验收；最近已记录的制造问答真实模型批次仍未达到各自门槛。
+已完成自建 **ERPNext** 与 **OpenMES** 的真实 API 只读联调，尚未接入真实工厂系统。最新 ERPNext 16 题开发验证使用评分 v2，自动评分 **16/16**、助手非独立复核 **15/16**；实际包含8道模型参与题和8道零模型题，仍保留1题版本比较覆盖不足，整体未标记通过。自建演示记录、助手非独立审核和工程替身验证均不视为工厂执行证据或独立业务验收。
+
+求职展示可从[5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)开始；可复制的 AI 应用开发与后端／制造业 IT 两版描述见[简历项目描述](docs/MANUFACTURING_RESUME.md)。当前8005/8006采用零模型模式，现场展示业务查询、来源和会话，模型作业指导展示已保留的真实批次记录。
 
 ## 典型业务场景
 
@@ -22,7 +24,9 @@
 | OpenMES 工单、批次及步骤只读接入 | [OpenMES 接入](docs/OPENMES_INTEGRATION.md) |
 | 步骤指导书审核映射、批次/步骤样本冻结 | [OpenMES 审核与质量冻结](docs/OPENMES_GUIDANCE_QUALITY.md) |
 | 最新阶段及各轮验收边界 | [分阶段进度](docs/MANUFACTURING_PHASE1_PROGRESS.md)、[OpenMES O4/O5 报告](docs/reports/openmes-guidance-quality-20261110-r1.json) |
-| ERPNext 最近真实模型验证与未通过项 | [16题开发验证报告](docs/reports/erpnext-development-20261109-r1.md) |
+| ERPNext 最新真实模型验证与未通过项 | [评分v2完整16题报告](docs/reports/erpnext-model-v2-20261110-r1.md) |
+| 当前8005/8006隔离候选与零模型限制 | [部署版本、启动入口及验收记录](docs/reports/main-isolated-demo-20261110-r1.md) |
+| 求职演示与简历 | [5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)、[两版简历描述](docs/MANUFACTURING_RESUME.md) |
 | 保留的8000稳定展示、部门配置及98题成绩 | [制造业演示指南](docs/MANUFACTURING_DEMO.md)、[冻结发布清单](evals/manufacturing_zh_lite_v1/demo_release.json) |
 | 通用120题历史基线及评测入口 | [统一评测套件](evals/current/README.md) |
 | 开发接手、源码定位和修改边界 | [AGENTS.md](AGENTS.md) |
@@ -85,23 +89,31 @@ flowchart LR
 
 | 环境 | 上游页面 | 平台工作台 | 运行业务源码及说明 |
 | --- | --- | --- | --- |
-| ERPNext 独立演示 | [18080](http://127.0.0.1:18080/) | [8003](http://127.0.0.1:8003/) | E4后端 `2680ce0`，页面 `f6a53ca` 补丁；[当前镜像与启动入口](docs/reports/frontend-deploy-20261110-r1.md)、[质量接入](docs/ERPNEXT_QUALITY.md) |
-| OpenMES 独立演示 | [18081](http://127.0.0.1:18081/) | [8004](http://127.0.0.1:8004/) | O4/O5后端 `609d23d`，页面 `f6a53ca` 补丁；[当前镜像与启动入口](docs/reports/frontend-deploy-20261110-r1.md)、[审核与冻结](docs/OPENMES_GUIDANCE_QUALITY.md) |
+| ERPNext 零模型隔离候选，当前演示入口 | 复用[18080](http://127.0.0.1:18080/) | [8005](http://127.0.0.1:8005/) | `e386bf4` 主线归档及部署专用零预算入口；独立数据库副本、Redis及原件卷。[部署与启动记录](docs/reports/main-isolated-demo-20261110-r1.md) |
+| OpenMES 零模型隔离候选，当前演示入口 | 复用[18081](http://127.0.0.1:18081/) | [8006](http://127.0.0.1:8006/) | 同一主线归档及零预算入口；独立数据库副本、Redis及原件卷。[部署与启动记录](docs/reports/main-isolated-demo-20261110-r1.md) |
+| ERPNext 原工作台，独立保留 | [18080](http://127.0.0.1:18080/) | [8003](http://127.0.0.1:8003/) | E4后端 `2680ce0`，页面 `f6a53ca` 补丁；[当前镜像与启动入口](docs/reports/frontend-deploy-20261110-r1.md)、[质量接入](docs/ERPNEXT_QUALITY.md) |
+| OpenMES 原工作台，独立保留 | [18081](http://127.0.0.1:18081/) | [8004](http://127.0.0.1:8004/) | O4/O5后端 `609d23d`，页面 `f6a53ca` 补丁；[当前镜像与启动入口](docs/reports/frontend-deploy-20261110-r1.md)、[审核与冻结](docs/OPENMES_GUIDANCE_QUALITY.md) |
+
+8005/8006共同镜像为 `main-zero-model-20261110-r1`，固定部署源为 `e386bf4`；后续Git合并和文档提交不自动更新镜像。候选数据库分别为 `main_isolated_erpnext_20261110_r1`、`main_isolated_openmes_20261110_r1`。两套候选复用现有PostgreSQL实例、Keycloak、向量索引及只读适配器，未新建ERP/MES上游。
+
+零模型候选强制物理调用和Token预算均为0，供应商端点禁用；需要新模型生成的问题会返回 `503 / manufacturing_evaluation_stopped`。历史回答属于原批次快照。演示过程中不启用模型、索引或质量Worker，也不通过原8003/8004绕开该限制。
 
 原8000稳定展示、8001候选及8002模拟MES环境继续保留。源码已合入 `main`；Git提交、README更新和容器更新是独立操作，不能从当前分支推断运行版本。本机租户、部门、授权、凭据和演示记录属于运行配置，不随克隆自动生成，凭据不提交仓库。
 
 ## 当前验收状态
 
-截至2026-11-10，工程接入已通过对应阶段验证，制造业务真实模型质量尚未形成通过门槛的新批次。工程回归、真实模型评测及工厂业务验收分别记录：
+截至2026-11-10，最新ERPNext评分v2批次自动门槛通过，助手非独立复核仍有Q007的旧版停机规定比较覆盖缺口，整体未标记通过。工程回归、真实模型开发验证、零模型部署及工厂业务验收分别记录：
 
 | 范围 | 已记录结果 | 结论与证据 |
 | --- | --- | --- |
-| 主线工程复验 | 2352项非集成通过、1项既有跳过、98项集成排除；前端65项通过；独立PostgreSQL M1～M4为9/12/14/12项，共47项通过 | 在合并提交 `09ec518` 上复验，测试库均清理；不计算模型准确率。O4/O5专项记录见[公开报告](docs/reports/openmes-guidance-quality-20261110-r1.json)，其PostgreSQL范围为M1/M3/M4 |
+| 最近完整主线工程回归 | `e386bf4` 上2406项非集成通过、1项既有跳过、98项集成排除；独立PostgreSQL M3/M4为14/12项通过 | 属于合并检查，未调用真实模型；后续 `cd5c2be` 部署记录合并另有72项定向测试及120题套件完整性通过。[阶段记录](docs/MANUFACTURING_PHASE1_PROGRESS.md#2026-11-10-求职文档与已保留合并检查记录)；业务约束改造时的2396项回归另见[专题报告](docs/reports/manufacturing-answer-contracts-20261110-r1.md) |
+| ERPNext 最新完整16题真实模型开发验证，评分v2 | 自动16/16、关键6/6；助手非独立15/16、关键5/6 | 8道模型参与题自动8/8、非独立7/8，另8道为零模型题；Q007比较覆盖不足，整体未标通过。31次物理调用、121777 Token；无重试补跑、无拼分。[完整报告](docs/reports/erpnext-model-v2-20261110-r1.md) |
+| 主线隔离候选零模型部署 | 8005/8006的33项API冒烟及浏览器核心流程通过；9个新快照均三次核验 | 每套307个部署文件与归档一致，97条API观测和独立账本新增调用0；无新模型成绩。[部署验收](docs/reports/main-isolated-demo-20261110-r1.md) |
 | OpenMES O4/O5真实来源链路 | 71个请求、7个成功问答快照均三次核验；两次各2题零预算CLI任务通过，新增模型调用0 | 工程接入通过；问题场景有重叠，未进行真实模型质量复验。[验收说明](docs/OPENMES_GUIDANCE_QUALITY.md) |
 | 浏览器核心流程验收 | OpenMES选择、映射、来源预览、会话恢复、反馈审核和冻结走通；新建两题确定性任务及助手非独立复核通过，新增模型调用0；ERPNext执行选择页面通过 | [首轮报告](docs/reports/browser-acceptance-20261110-r1.md)保留预算停止及页面问题；3项页面问题已修复，前端67项/API11项及五档宽度复验通过。[修复报告](docs/reports/frontend-fixes-20261110-r1.md)；已部署到8003/8004并完成实际端口冒烟，见[部署记录](docs/reports/frontend-deploy-20261110-r1.md) |
-| ERPNext E5真实模型开发验证 | 10/16，关键题2/6 | 未达至少14/16且关键题全过的门槛；对应当时E4运行版本。[逐题报告](docs/reports/erpnext-development-20261109-r1.md) |
-| 模拟MES完整开发验证 | 13/16，关键题4/6 | 未达开发门槛，保留误拒、漏答及503记录。[本轮报告](docs/reports/manufacturing-development-20261109-r3.md) |
-| 制造首期M4正式复验 | 31/40，关键题9/12 | 未通过门槛，真实改进闭环仍待验证。[正式复验说明](docs/MANUFACTURING_M4_REVALIDATION.md) |
+| 历史ERPNext E5真实模型开发验证 | 10/16，关键题2/6 | 当时E4运行版本未达门槛，旧失败原样保留，不作为当前v2成绩。[逐题报告](docs/reports/erpnext-development-20261109-r1.md) |
+| 历史模拟MES完整开发验证 | 13/16，关键题4/6 | 未达开发门槛，保留误拒、漏答及503记录。[本轮报告](docs/reports/manufacturing-development-20261109-r3.md) |
+| 历史制造首期M4正式复验 | 31/40，关键题9/12 | 未通过门槛，真实改进闭环仍待验证；新开发16题不替代该正式结果。[正式复验说明](docs/MANUFACTURING_M4_REVALIDATION.md) |
 
 各批次绑定各自题集、评分口径及代码/镜像版本；后续源码修正和零模型验证不更新旧成绩，各轮不拼分。通用120题的历史成绩见后文，不代表当前 ERPNext/OpenMES 制造问答准确率；助手复核属于非独立复核。
 

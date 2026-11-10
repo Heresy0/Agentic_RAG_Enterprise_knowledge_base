@@ -41,6 +41,7 @@
 | 任务 | 入口 |
 | --- | --- |
 | 当前演示、启动、评分口径 | `docs/MANUFACTURING_DEMO.md` |
+| 求职5分钟演示与简历项目描述 | `docs/MANUFACTURING_FIVE_MINUTE_DEMO.md`、`docs/MANUFACTURING_RESUME.md` |
 | 首期工单集成改造方案与验收标准 | `docs/MANUFACTURING_PHASE1_PLAN.md` |
 | 首期分阶段实施进度与复现入口 | `docs/MANUFACTURING_PHASE1_PROGRESS.md` |
 | ERPNext 独立部署、只读接入与验证 | `docs/ERPNEXT_INTEGRATION.md` |
