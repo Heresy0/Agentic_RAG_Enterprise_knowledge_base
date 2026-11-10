@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "report_id": "main-isolated-demo-20261110-r1",
+  "date": "2026-11-10",
+  "status": "passed_for_zero_model_deployment_scope",
+  "source_revision": "e386bf47a118e8eb50f50ddba258c96a63dc667e",
+  "image_id": "sha256:a2c0b96a5fe2928029e26b5335597cdf67b51c1b76a2f9a365eafaec1ac75d2c",
+  "image": "enterprise-knowledge-manufacturing:main-zero-model-20261110-r1",
+  "deployment_guard": {
+    "path": "deploy/isolated_demo/zero_runtime.py",
+    "sha256": "99e868721900e83e6fe5b22857af5b6468680c50557e89f341a83df9e3a16391",
+    "physical_model_limit": 0,
+    "token_limit": 0,
+    "provider_endpoint": "http://127.0.0.1:9/v1",
+    "rerank_endpoint": "http://127.0.0.1:9/rerank"
+  },
+  "environments": {
+    "erpnext": {
+      "url": "http://127.0.0.1:8005/",
+      "container": "main-isolated-erpnext-api",
+      "redis": "main-isolated-erpnext-redis",
+      "database": "main_isolated_erpnext_20261110_r1",
+      "source_database": "erpnext_model_v2_20261110_r1",
+      "documents_volume": "main-isolated-erpnext-documents",
+      "source_documents_volume": "erpnext-readonly_documents",
+      "files_verified": 307,
+      "business_python": 167,
+      "extra_files": 0,
+      "migration": "e9b2d4f60713",
+      "model_events_before": 424,
+      "model_events_after": 424,
+      "new_model_events": 0,
+      "telemetry_requests": 50,
+      "budget_calls": 0,
+      "budget_tokens": 0,
+      "original_ledger_and_business_grants_unchanged": true,
+      "ports_healthy": true,
+      "successful_new_qa_snapshots": 5,
+      "three_checks_verified": true,
+      "active_quality_jobs": 0,
+      "document_files": 13,
+      "document_hashes_match": true
+    },
+    "openmes": {
+      "url": "http://127.0.0.1:8006/",
+      "container": "main-isolated-openmes-api",
+      "redis": "main-isolated-openmes-redis",
+      "database": "main_isolated_openmes_20261110_r1",
+      "source_database": "openmes_readonly_phase1",
+      "documents_volume": "main-isolated-openmes-documents",
+      "source_documents_volume": "openmes-readonly_documents",
+      "files_verified": 307,
+      "business_python": 167,
+      "extra_files": 0,
+      "migration": "e9b2d4f60713",
+      "model_events_before": 393,
+      "model_events_after": 393,
+      "new_model_events": 0,
+      "telemetry_requests": 47,
+      "budget_calls": 0,
+      "budget_tokens": 0,
+      "original_ledger_and_business_grants_unchanged": true,
+      "ports_healthy": true,
+      "successful_new_qa_snapshots": 4,
+      "three_checks_verified": true,
+      "active_quality_jobs": 0,
+      "document_files": 13,
+      "document_hashes_match": true
+    }
+  },
+  "api_smoke": {
+    "successful_batch_requests": 33,
+    "initial_limit_50_request_rejected_422": true,
+    "unauthenticated_status": 401,
+    "business_permission_denied_status": 404,
+    "model_required_probe_status": 503,
+    "model_required_probe_code": "manufacturing_evaluation_stopped",
+    "model_enabled_quality_job_status": 422
+  },
+  "browser": {
+    "checks": [
+      "两套候选使用独立 PKCE/S256 客户端完成 Keycloak 登录",
+      "ERP 工序 OP-30 / Pending / 实际开工未知",
+      "ERP 四条业务引用数量和字段原值预览",
+      "ERP 历史会话还原工序并展示当次快照",
+      "MES 工单、批次及步骤选择和分层开工信息",
+      "MES 步骤开工问答、两条业务引用及原值预览",
+      "MES 修订7步骤指导书审核映射及2.0指导书原文预览",
+      "MES 会话还原对应批次和步骤",
+      "MES OP-30 未开工步骤保持未知，不取批次时间代填",
+      "ERP 执行请求只读拒绝，拒绝内容显示一次",
+      "ERP 320像素快照弹窗无页面横向溢出",
+      "MES 320像素业务页面无页面横向溢出",
+      "ERP 与 MES 核心页面浏览器错误日志为空"
+    ],
+    "erpnext_narrow": {
+      "viewport": 320,
+      "client": 305,
+      "scroll": 305
+    },
+    "openmes_narrow": {
+      "viewport": 320,
+      "client": 305,
+      "scroll": 305
+    },
+    "screenshots": [
+      {
+        "path": "assets/main-isolated-demo-20261110-r1/erpnext-snapshot-desktop.jpg",
+        "sha256": "dcf44c6ff84405bf4a83c34a4035152c44ae0d909f5e06721e9201e019afa1f3"
+      },
+      {
+        "path": "assets/main-isolated-demo-20261110-r1/erpnext-snapshot-narrow.jpg",
+        "sha256": "2631454c476d3714cb6069b95a1f333a6655a7cbbeb47cb71b0e7f1f788a458c"
+      },
+      {
+        "path": "assets/main-isolated-demo-20261110-r1/openmes-guide-source-desktop.jpg",
+        "sha256": "e5e20844d9dfdb5eaca6865e1ab60e3fe8907979f8d236349d9685c3c25320f8"
+      },
+      {
+        "path": "assets/main-isolated-demo-20261110-r1/openmes-narrow.jpg",
+        "sha256": "99dc5a0e89fb2b4604388fbb108e09bd8ad8fcd74f1b5472c4a1fa68c923949d"
+      }
+    ],
+    "assistant_non_independent": true
+  },
+  "preservation": {
+    "original_containers_unchanged": 57,
+    "historical_files_unchanged": 170,
+    "original_oidc_clients_unchanged": true,
+    "original_erpnext_openmes_model_ledgers_and_business_grants_unchanged": true,
+    "old_results_preserved": true
+  },
+  "new_physical_model_calls": 0,
+  "new_model_tokens": 0,
+  "new_workers": 0,
+  "index_rebuilt": false,
+  "new_quality_reviews_or_frozen_samples": false,
+  "model_validation_performed": false,
+  "shared_dependencies": [
+    "原 PostgreSQL 实例中的独立数据库",
+    "原 Keycloak 实例中的独立本机客户端",
+    "现有向量索引",
+    "原 ERPNext/OpenMES 及只读适配服务"
+  ],
+  "private_artifacts": "tmp/main-isolated-demo-20261110-r1/",
+  "retained_failures": [
+    "OIDC客户端首次复制保留mapper内部ID导致409；移除待复制对象中的内部ID后新建成功，旧客户端未修改",
+    "首次工单查询limit=50触发422；按接口上限20另建冒烟批次",
+    "Docker inspect挂载列表顺序不稳定导致初次签名断言失败；逐一排列重现原哈希，未修改基线"
+  ],
+  "limitations": [
+    "本次仅验证零模型部署、确定性业务查询和选定页面流程；需要新模型生成的问答被调用前阻断",
+    "历史真实模型回答仍为旧批次快照，不算本轮生成或新准确率",
+    "自建ERP/MES记录不是真实工厂执行证据",
+    "未执行正式40题、真实改进闭环、视觉解析或灾难恢复演练"
+  ]
+}
