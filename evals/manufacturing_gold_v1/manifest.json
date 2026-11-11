@@ -1,0 +1,27 @@
+{
+  "schema_version": "manufacturing-gold-manifest-v1",
+  "dataset": "manufacturing_gold_v1",
+  "date": "2026-11-11",
+  "status": "candidate_pending_human_review",
+  "cases": 40,
+  "categories": {
+    "guidance": 12,
+    "erpnext": 8,
+    "openmes": 8,
+    "safety": 8,
+    "conversation": 4
+  },
+  "approved_cases": 0,
+  "pending_cases": 40,
+  "executable": false,
+  "live_verified": false,
+  "model_calls": 0,
+  "executed_cases": 0,
+  "files_sha256": {
+    "evals/manufacturing_gold_v1/cases.jsonl": "4ed2e08c535e33759f6be58a1d542f2a3b7b8d7f62ad6ca71562db48700d833f",
+    "evals/manufacturing_gold_v1/README.md": "1485b7cd31c872178c33fd9bb57151883533ec9e7bb908fa6e2b7721f0af1dbd",
+    "evals/manufacturing_gold_v1/REVIEW.md": "d32e3f980d7aa2a8c640592f73b3347cfc3dc5811a161f61695ff598a80b409a",
+    "evals/manufacturing_gold_v1/sources.json": "9baa772e29d855e3af34e98446feffab4ca60fc048806091e8518ebbf1e96e78",
+    "scripts/check_manufacturing_gold.py": "3ecf5cde3165edf9c4dca652f628bf9f5bd7433cae3de5317eb0ca2f344cb656"
+  }
+}

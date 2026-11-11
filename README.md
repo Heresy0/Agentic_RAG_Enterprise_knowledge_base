@@ -27,6 +27,7 @@
 | ERPNext 最新真实模型验证与未通过项 | [评分v2完整16题报告](docs/reports/erpnext-model-v2-20261110-r1.md) |
 | 当前8005/8006隔离候选与零模型限制 | [部署版本、启动入口及验收记录](docs/reports/main-isolated-demo-20261110-r1.md) |
 | 求职演示与简历 | [5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)、[两版简历描述](docs/MANUFACTURING_RESUME.md) |
+| 制造业40题黄金候选与人工审阅 | [题集说明](evals/manufacturing_gold_v1/README.md)、[逐题答案与证据](evals/manufacturing_gold_v1/REVIEW.md)；40题待审核，未执行、无新成绩 |
 | 保留的8000稳定展示、部门配置及98题成绩 | [制造业演示指南](docs/MANUFACTURING_DEMO.md)、[冻结发布清单](evals/manufacturing_zh_lite_v1/demo_release.json) |
 | 通用120题历史基线及评测入口 | [统一评测套件](evals/current/README.md) |
 | 开发接手、源码定位和修改边界 | [AGENTS.md](AGENTS.md) |
