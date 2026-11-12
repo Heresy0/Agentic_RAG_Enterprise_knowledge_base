@@ -66,4 +66,5 @@ scripts/report_manufacturing_gold_v2_live.py text eol=lf
 evals/manufacturing_gold_100_v3/** text eol=lf
 evals/manufacturing_gold_7_live_v3/** text eol=lf
 scripts/manufacturing_gold_v3_seven_live.py text eol=lf
+scripts/report_manufacturing_gold_v3_seven.py text eol=lf
 tests/test_manufacturing_gold_v3_seven_live.py text eol=lf

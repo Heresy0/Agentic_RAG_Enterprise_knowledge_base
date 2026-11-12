@@ -1,0 +1,57 @@
+{
+  "schema_version": "manufacturing-gold-seven-live-v3",
+  "dataset": "manufacturing_gold_100_v3",
+  "case_ids": [
+    "MFG-GOLD-006",
+    "MFG-GOLD-007",
+    "MFG-GOLD-011",
+    "MFG-GOLD-019",
+    "MFG-GOLD-064",
+    "MFG-GOLD-072",
+    "MFG-GOLD-090"
+  ],
+  "executed": 7,
+  "contract_passed": 7,
+  "assistant_non_independent_passed": 6,
+  "cases_with_model_calls": 7,
+  "zero_model_cases": 0,
+  "independent_holdout": false,
+  "human_approved": 0,
+  "old_scores_recomputed": false,
+  "old_results_combined": false,
+  "complete_hundred_case_result": false,
+  "business_source_revision": "b741bd2",
+  "entry_revision": "c7d30a01143976ad7e00bd53f350d49e4b91afb2",
+  "request_retries": 0,
+  "continuations": false,
+  "index_calls": 0,
+  "limits": {
+    "max_model_calls": 56,
+    "max_tokens": 350000,
+    "max_seconds": 900,
+    "reservation_tokens": 32000
+  },
+  "usage": {
+    "matched": true,
+    "calls": 20,
+    "known_tokens": 75151,
+    "unknown_calls": 0,
+    "budget_tokens": 75151,
+    "by_stage": {
+      "query_embedding": 6,
+      "rerank": 6,
+      "answer_generation": 7,
+      "query_planning": 1
+    },
+    "providers_models": [
+      "dashscope:qwen3-rerank",
+      "dashscope:qwen3.7-flash",
+      "dashscope:text-embedding-v4"
+    ],
+    "all_priced": false,
+    "pending": 0
+  },
+  "started_at": "2026-11-12T14:39:05.946205+00:00",
+  "finished_at": "2026-11-12T14:39:38.655919+00:00",
+  "elapsed_seconds": 34.631
+}
