@@ -45,10 +45,28 @@ def execution_active():
     ('所选工序的状态为什么异常？', ()),
     ('工单工序的状态是什么？', ()),
     ('所选工序开工以后需要什么？', ()),
+    ('所选OP-20工序状态、实际开工和精度分别是什么？', ('operation_status','operation_actual_started_at','operation_start_precision')),
+    ('OP-20下所选作业卡的编号、状态和实际开工是什么？', ('job_card_id','job_card_status','job_card_actual_started_at')),
+    ('所选卡的编号、状态和实际开工是什么？', ('job_card_id','job_card_status','job_card_actual_started_at')),
+    ('所选OP-30工序状态、实际开工和精度分别是什么？', ()),
+    ('OP-30下所选作业卡的编号、状态和实际开工是什么？', ()),
+    ('所选工序的精度是什么？', ()),
+    ('工单实际开工和所选工序精度是什么？', ()),
 ])
 def test_explicit_field_lists_resolve_entity_and_attributes_without_guessing(execution_active, question, fields):
     with manufacturing_answer_context(execution_active):
         assert requested_execution_fields(question) == fields
+
+
+def test_card_alias_needs_an_actual_selected_card(execution_active):
+    from backend.app.manufacturing.answer_context import execution_question_text
+    question='所选卡已有开工，能否认定首件检验和质量签署完成？'
+    assert execution_question_text(question) == question
+    record=execution_active.context.record
+    execution=record.execution.model_copy(update={'job_card_id':None})
+    context=execution_active.context.model_copy(update={'record':record.model_copy(update={'execution':execution})})
+    with manufacturing_answer_context(replace(execution_active,context=context)):
+        assert execution_question_text(question) == question
 
 
 def test_wrong_parent_fields_fail_even_when_true_and_coverage_says_answered(execution_active):
@@ -76,6 +94,28 @@ def test_http_operation_fields_project_without_model_and_keep_three_source_check
     assert 'Pending' in response.json()['answer'] and '未知' in response.json()['answer']
     assert len(h.graph.calls) == 9 and not h.generation.calls
     snapshot = h.client.get('/api/qa/runs/' + response.json()['run_id']).json()
+    assert snapshot['snapshot']['manufacturing']['validation']['mes_reads'] == 3
+
+
+@pytest.mark.parametrize('question,fields,state', [
+    ('所选OP-20工序状态、实际开工和精度分别是什么？',
+     {'operation_status','operation_actual_started_at','operation_start_precision'}, 'Pending'),
+    ('OP-20下所选作业卡的编号、状态和实际开工是什么？',
+     {'job_card_id','job_card_status','job_card_actual_started_at','job_card_start_precision'}, 'Open'),
+])
+def test_selected_codes_and_unknown_start_are_fields_not_overall_refusals(execution_harness,question,fields,state):
+    h = execution_harness
+    response = h.client.post('/api/manufacturing/qa', json=dict(work_order_id='WO-017',operation_id='ROW-B',job_card_id='JC-B',question=question))
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body['answerable'] and state in body['answer'] and '未知' in body['answer']
+    citations = {row['field_name']:row for row in body['business_citations']}
+    assert set(citations) == fields
+    start = next(row for name,row in citations.items() if name.endswith('actual_started_at'))
+    assert start['value'] is None
+    assert start['source_record_id'] == ('ROW-B' if 'operation_status' in fields else 'JC-B')
+    assert len(h.graph.calls) == 9 and not h.generation.calls
+    snapshot = h.client.get('/api/qa/runs/' + body['run_id']).json()
     assert snapshot['snapshot']['manufacturing']['validation']['mes_reads'] == 3
 
 
@@ -139,9 +179,46 @@ def test_boundary_requires_independent_inspection_and_signoff_evidence(catalog,e
             result=AnswerService.__new__(AnswerService)._render_result(draft=compiled,context=built,question=BOUNDARY)
             assert result.answer.startswith('仅凭实际开工登记，不能认定首件检验或质量签署已经完成')
             assert '实际未完成' not in result.answer
+            assert '也不能据此判断实际是否完成' in result.answer
             cited=next(row for row in result.business_citations if row['field_name']=='job_card_actual_started_at')
             assert cited['source_record_id']=='JC-B' and cited['value'] is None
             assert any(row.get('derived_condition',{}).get('origin')=='server_execution_evidence_boundary' for row in result.claim_bindings)
+
+
+AND_RULE = '''恢复后续作业前必须同时满足以下条件:
+1. 适用指导书要求的首件检查全部合格。
+2. 检验记录写明工单、批次和量具编号。
+3. 质量人员完成签署,生产班长确认记录齐全。
+4. 存在未关闭的暂停要求时,须按书面批准的恢复条件执行。'''
+CARD_BOUNDARY = '所选卡已有开工并显示Completed，能否认定首件检验和质量签署完成？'
+
+
+@pytest.mark.parametrize('rule,supported', [
+    (AND_RULE,True),
+    (AND_RULE.replace('同时满足','满足任一'),False),
+    (AND_RULE.replace('3. 质量人员完成签署,生产班长确认记录齐全。\n',''),False),
+    (AND_RULE.replace('质量人员完成签署','计划质量人员完成签署'),False),
+    (AND_RULE + '\n5. 特殊批次无需检验。',False),
+])
+def test_selected_card_boundary_uses_complete_and_rule_not_status(catalog,execution_active,rule,supported):
+    active,built,citation = built_source(catalog,rule)
+    active=replace(active,context=execution_active.context)
+    built=replace(built,business_items=active.items)
+    with manufacturing_answer_context(active):
+        compiled=compile_applicability_bindings(draft_for(dict(claim_kind='work_requirement',source_unit=citation+'#1')),built)
+        verdict=execution_boundary_verdict(CARD_BOUNDARY,compiled,built)
+        assert (verdict is not None) is supported
+        if supported:
+            assert compiled.claims[0].text == rule
+            assert '实际是否完成' in verdict['text']
+            start=next(item for item in built.business_items if item.field_name=='job_card_actual_started_at')
+            assert start.citation_id in verdict['citations'] and citation in verdict['citations']
+            # No metadata, truncated quotation or uncited rule may provide the premise.
+            truncated=compiled.model_copy(deep=True)
+            truncated.claims[0].text='1. 适用指导书要求的首件检查全部合格。\n3. 质量人员完成签署。'
+            assert execution_boundary_verdict(CARD_BOUNDARY,truncated,built) is None
+            assert execution_boundary_verdict(CARD_BOUNDARY,compiled,replace(built,items=[])) is None
+            assert execution_boundary_verdict(CARD_BOUNDARY,compiled,replace(built,business_items=())) is None
 
 
 @pytest.mark.parametrize('refs', [(), ('A','B')])

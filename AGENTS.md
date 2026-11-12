@@ -4,6 +4,8 @@
 
 ## 项目范围
 
+- 2026-11-12在`codex/manufacturing-gold-v2-fixes`先提交百题v2候选及3份台账ISO时间修订`7d84b68`，再修复ERP字段问法/所选卡别名、完整同时满足条件列表的开工证据边界、文档编号误作数字及登记对象指令识别。v2保持100题/48来源/55份逻辑语料，11题范围修订、28条记录变化、280必答/14可选；助手非独立复核，独立人工/工厂/平台批准0。专项238、非集成2442通过/1既有跳过/98集成排除，另补无已选卡别名约束1项通过，7份冻结普通草稿契约回放及3份/42块/9时间解析通过，8种损坏探针拒绝。全程零模型，无新准确率、部署、索引或运行库写入；416旧文件和原75容器元数据保持。更正旧报告日期题原因为台账漏日期/时刻分隔符，非分块；旧报告与结构89/100、语义69/100不改。生成覆盖不足及060/086语义问题未宣称解决；v1运行器仍固定v1，后续v2须另建绑定/批次。见[v2候选](evals/manufacturing_gold_100_v2/README.md)与[验收记录](docs/reports/manufacturing-gold-v2-fixes-20261112-r1.md)。
+
 - 2026-11-12在`codex/manufacturing-gold-100-fixtures`新建百题隔离夹具，业务基线6cb83c9、入口先冻结3017ceb；两个新平台数据库/原件卷、专用Redis及Milvus集合，MES另建上游和数据库，ERP复用只读来源。55份/885块，新增42份仅索引一次：104调用/101449 Token。单次完整100题结构89/100、助手非独立语义69/100，未全量通过；问答243调用、969332已知及1065332预算Token，3次规划报错未知预留，约1023.948秒，无重试补跑或拼分。34个制造快照三次来源核验、Trace/独立账本逐ID一致；原62容器元数据、646旧文件及四原应用库模型事件不变。新夹具保留，无新公开端口/常驻Worker/正式40题/闭环/浏览器复验；新副本审核不是工厂批准或平台黄金样本批准。关注060未登记推未完成、086卡与步骤混淆、数字/日期误拒和若干超问句金标必答点；本轮不改业务或原候选。见[本轮报告](docs/reports/manufacturing-gold100-live-20261112-r1.md)及[运行说明](evals/manufacturing_gold_100_live_v1/README.md)，私有配置/备份/Trace在`tmp/manufacturing-gold-100-live-20261112-r1/`，已执行不得重跑。
 
 - 2026-11-12在 `codex/manufacturing-gold-100-v1` 基于中文资料新增 `evals/manufacturing_gold_100_v1/`，保留旧40题并补60题，按30/20/20/20/10覆盖指导、ERPNext、OpenMES、边界和会话。100题均完成助手非独立复核并接受为离线候选，独立人工/工厂/平台批准均0；不得虚构人工签字或解释为模型成绩。新增54道离线资料题及6道待隔离夹具的协议题，别名不是实际API ID，整体不可直接执行；48来源、270必答点、九种损坏探针通过。只在新版本将旧036未问的数量细节移为可选，原40题与旧评分不改；公开6题改用本地原件而非缺HTML快照导读。638份旧跟踪文件与另组730份历史基线不变，62容器元数据保持；无问答、模型、索引、数据库或环境修改。见[候选说明](evals/manufacturing_gold_100_v1/README.md)和[本轮验收](docs/reports/manufacturing-gold-100-20261112-r1.md)。
@@ -47,6 +49,7 @@
 | --- | --- |
 | 当前演示、启动、评分口径 | `docs/MANUFACTURING_DEMO.md` |
 | 制造业40题黄金候选、待审答案与原文/字段证据 | `evals/manufacturing_gold_v1/README.md`、`evals/manufacturing_gold_v1/REVIEW.md` |
+| 制造业百题v2候选、范围修订与语料格式修订 | `evals/manufacturing_gold_100_v2/README.md`、`evals/manufacturing_gold_100_v2/REVIEW.md`、`sample_docs/manufacturing_zh_corrections_v2/README.md` |
 | 中文100题候选、助手逐题复核与来源 | `evals/manufacturing_gold_100_v1/README.md`、`evals/manufacturing_gold_100_v1/REVIEW.md` |
 | 中文语料扩充、三个合成产品系列及后续100题覆盖规划 | `sample_docs/manufacturing_zh_expansion_v1/README.md`、`sample_docs/manufacturing_zh_expansion_v1/coverage.json` |
 | 求职5分钟演示与简历项目描述 | `docs/MANUFACTURING_FIVE_MINUTE_DEMO.md`、`docs/MANUFACTURING_RESUME.md` |

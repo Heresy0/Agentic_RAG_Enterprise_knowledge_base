@@ -117,12 +117,12 @@ def execution_boundary_question(question):
 
 def execution_boundary_verdict(question, draft, context):
     """Derive only the evidence boundary supported by explicit independent requirements."""
-    from .answer_context import current_manufacturing_context, complete_source_statement
+    from .answer_context import current_manufacturing_context, complete_source_statement, execution_question_text
     active = current_manufacturing_context()
     if (not execution_boundary_question(question) or active is None or not draft.answerable
             or active.comparison or active.decision.state != 'applicable'):
         return None
-    premise = question.split('开工', 1)[0]
+    premise = execution_question_text(question).split('开工', 1)[0]
     names = {'作业卡': 'job_card_actual_started_at', '工序': 'operation_actual_started_at',
         '步骤': 'step_actual_started_at', '批次': 'batch_actual_started_at', '工单': 'actual_started_at'}
     mentioned = [name for name in names if name in premise]
@@ -144,9 +144,15 @@ def execution_boundary_verdict(question, draft, context):
         if re.search(r'除非|除外|无需|不必|免检|豁免', claim.text):
             continue
         independent = re.search(r'(?:首件确认(?:须|必须)|每次开工连续检查)[^。；\n]*(?:所有必检项目全部合格|全部项目合格后)[，,]?(?:并)?由质量人员签署', claim.text)
+        # A complete, explicit AND-list is another independent-requirement form.
+        # Merely finding inspection/signature words in adjacent prose is not proof.
+        if (not independent and re.match(r'^恢复后续作业前必须同时满足以下条件[:：]\s*\n', claim.text)
+                and re.search(r'(?m)^\s*[0-9]+[.、]\s*适用指导书要求的首件检查全部合格[。.]?\s*$', claim.text)
+                and re.search(r'(?m)^\s*[0-9]+[.、]\s*质量人员完成签署(?:[，,][^。\n]*)?[。.]?\s*$', claim.text)):
+            independent = True
         direct = re.search(r'开工(?:登记|记录)(?:本身)?(?:不能|无法|不足以)(?:证明|认定)[^。；\n]*首件[^。；\n]*质量签署[^。；\n]*完成', claim.text)
         if independent or direct:
-            text = '仅凭实际开工登记，不能认定首件检验或质量签署已经完成'
+            text = '仅凭实际开工登记，不能认定首件检验或质量签署已经完成，也不能据此判断实际是否完成'
             if independent:
                 text += '；仍需核验适用指导书要求的检验记录及质量签署'
             return dict(claim_index=index, text=text,

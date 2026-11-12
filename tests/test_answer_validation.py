@@ -1,3 +1,5 @@
+from dataclasses import replace
+
 import pytest
 
 from backend.app.knowledge.answer_models import (
@@ -76,6 +78,43 @@ def test_valid_claim_with_existing_citation_passes() -> None:
 
     assert result.valid is True
     assert result.errors == []
+
+
+@pytest.mark.parametrize('code', ['ZH-C31-04','ZH-C31-09'])
+def test_cited_document_code_is_an_identity_not_a_quantity(code):
+    context=make_context('偏差必须保留原始读数并暂停后续作业。')
+    context=replace(context,items=[replace(context.items[0],document_name=code+'偏差处理.txt')])
+    result=validate(make_answerable_draft(code+'要求保留原始读数并暂停后续作业。'),context)
+    assert result.valid, result.errors
+
+
+def test_complete_code_needs_matching_cited_identity_not_matching_digits():
+    context=make_context('ZH-C31-04要求连续检查9件。')
+    result=validate(make_answerable_draft('ZH-C31-09要求连续检查9件。'),context)
+    assert not result.valid and any('完整标识' in error for error in result.errors)
+
+
+def test_uncited_document_name_cannot_supply_an_identifier():
+    context=make_context('暂停后续作业。','暂停后续作业。')
+    context=replace(context,items=[context.items[0],replace(context.items[1],document_name='ZH-C31-09.txt')])
+    assert not validate(make_answerable_draft('ZH-C31-09要求暂停后续作业。'),context).valid
+
+
+@pytest.mark.parametrize('location', ['body','name','question'])
+def test_identifier_digits_never_prove_business_quantities(location):
+    context=make_context('ZH-C31-04要求首件检查。' if location=='body' else '要求首件检查。')
+    if location=='name':
+        context=replace(context,items=[replace(context.items[0],document_name='ZH-C31-04.txt')])
+    question='ZH-C31-04要求多少件？' if location=='question' else ''
+    result=validate(make_answerable_draft('ZH-C31-04要求首件检查4件。'),context,question)
+    assert not result.valid and any('数字' in error or '数值' in error for error in result.errors)
+
+
+def test_identifier_handling_keeps_dates_and_measurement_validation():
+    context=make_context('ZH-C31-04规定2026-11-02启用，尺寸为15.0±0.2mm。')
+    assert validate(make_answerable_draft('ZH-C31-04于2026-11-02启用，尺寸为15.0±0.2mm。'),context).valid
+    assert not validate(make_answerable_draft('ZH-C31-04于2026-11-03启用。'),context).valid
+    assert not validate(make_answerable_draft('ZH-C31-04规定尺寸为15.0±0.4mm。'),context).valid
 
 
 def test_question_shared_year_is_valid_but_not_new_business_numbers():
