@@ -1,0 +1,30 @@
+{
+  "base_corpus": "sample_docs/manufacturing_zh_expansion_v1",
+  "base_sources_sha256": "d8f9af2b3ad47b8ea7b65c3e3d556f327415426880d6eb408a726b817d8abbe8",
+  "corrections": [
+    {
+      "source_id": "ZH-B21-08",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+      "sha256": "414cf2ce8f71170d52d683fd5e7b2205f9422850a12deb4f1ad739742f1b4c05",
+      "new_repository_path": "sample_docs/manufacturing_zh_corrections_v2/documents/ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+      "new_sha256": "508b97f2b42b57eae7b42341d643eb9e7bb485f068329250eed0b526aa96dcfc",
+      "reason": "补齐日期与时刻间的ISO 8601分隔符T；不改变业务值、未知状态或实体关系。"
+    },
+    {
+      "source_id": "ZH-C31-08",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+      "sha256": "060c026270c8282380afdaf29ef909e62f1aa9a43d081366a2f5e6df7bbe8f36",
+      "new_repository_path": "sample_docs/manufacturing_zh_corrections_v2/documents/ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+      "new_sha256": "446e8f6eaa46026cbe0d31cb0d5f6c6cdc5bb3cb68405c4a45399a2248760235",
+      "reason": "补齐日期与时刻间的ISO 8601分隔符T；不改变业务值、未知状态或实体关系。"
+    },
+    {
+      "source_id": "ZH-D41-08",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+      "sha256": "8dc2ec7b3c5fa28d35c8b119c37fbca2f244a3f6b3de281cd09aea00eca53362",
+      "new_repository_path": "sample_docs/manufacturing_zh_corrections_v2/documents/ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+      "new_sha256": "258063f5efac40dd0a5fe509c997e16b349c305f787088932f19bd3d9d8f0be6",
+      "reason": "补齐日期与时刻间的ISO 8601分隔符T；不改变业务值、未知状态或实体关系。"
+    }
+  ]
+}

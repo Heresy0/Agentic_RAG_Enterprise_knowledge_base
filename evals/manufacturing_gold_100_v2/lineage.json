@@ -1,0 +1,226 @@
+{
+  "base_dataset": "evals/manufacturing_gold_100_v1",
+  "base_files_sha256": {
+    "cases.jsonl": "1887cd4ea5ed2165f50e5fb74d1fccb8de9031467d28e6eed0af8e78b793d159",
+    "lineage.json": "34a1224d9b6e3b9a4f4d06aa000cdfade9160a905b3d054285b1fe3fb279e6e4",
+    "manifest.json": "32fc34b834e9bc820ef3ac9a37c21758cb923d030c292040f6c30f5f64dffbc5",
+    "README.md": "fa6e4d9270f87fc6d5777ee3043c5f36de8efc6732b272b321e1e986f9b482a1",
+    "REVIEW.md": "39bd7f792f44dd50037e69183a8a80faf836a0753bdc76a82e7e86051acf44f4",
+    "reviews.jsonl": "2192f907938449929414497bc58c75af85d688e0d515a6e272f70d75e8fe5f81",
+    "sources.json": "3fc047c3e832244e41c66efecb6935e1adf866c04d993735431d75710e2a01b3"
+  },
+  "scope_revised_cases": [
+    "MFG-GOLD-008",
+    "MFG-GOLD-018",
+    "MFG-GOLD-019",
+    "MFG-GOLD-044",
+    "MFG-GOLD-045",
+    "MFG-GOLD-046",
+    "MFG-GOLD-061",
+    "MFG-GOLD-063",
+    "MFG-GOLD-079",
+    "MFG-GOLD-080",
+    "MFG-GOLD-081"
+  ],
+  "changes": [
+    {
+      "case_id": "MFG-GOLD-008",
+      "scope_revision": true,
+      "old_case_sha256": "4af7ada53078f86daece8aed5ef50a74d8d44a49fc4f2dd57ed71656f24aad10",
+      "new_case_sha256": "04128261ab9e88dac411a05be012bbba2c23c9ceffafbb2ba2f254d7de1e5dc0",
+      "reason": "仅问外径范围、端点、量具；每件读数改为可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-018",
+      "scope_revision": true,
+      "old_case_sha256": "5d84d9f689f7cee3677114c558e7478e56c8d33040fb9b58976083af2d01e91c",
+      "new_case_sha256": "3e5337681bd2b909091dc1a406e56d43400a283c1c283444125aeec9de97cd7b",
+      "reason": "与019一致：未询问精度，保留卡编号、状态、实际开工未知为必答，精度改为可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-019",
+      "scope_revision": true,
+      "old_case_sha256": "84f28be91701e3a77a441c6bb2d70639fcb60e1cd0e4b35109c16e10220886b2",
+      "new_case_sha256": "8ebad2043096252a88266ddb0eb9a9ee64f401b284acac89f2229e79b0acbd9f",
+      "reason": "仅问当前卡能否认定已开工；精度改为可选，未知与未开工仍严格区分。"
+    },
+    {
+      "case_id": "MFG-GOLD-044",
+      "scope_revision": true,
+      "old_case_sha256": "49c1d3beb1cb99212761ac02da59ea7412a1525f298f5958915e12660c9c8588",
+      "new_case_sha256": "ec290199d24c6b767f6a1efce38a2e2420d41b7abc0ec41dde709b17dfaf4a3a",
+      "reason": "保留检查要求、超限判断及不能放行；未问后续签署办理，分别保存改为可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-045",
+      "scope_revision": true,
+      "old_case_sha256": "c212bb8c20c8e20258ed1a13a60409bbf4063a61ca1fb916719bfee19f2437d9",
+      "new_case_sha256": "b8b66b47f37fcc260546313f106122e6134918987dd942df9ff8560cfdba8f33",
+      "reason": "围绕计划不能代实际及不能单凭计划选版；登记值和子级补值边界改为可选。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-046",
+      "scope_revision": true,
+      "old_case_sha256": "b8ab919f6fa8c4e5d692ae8bcb31f83ee1c958208981aa3ebd46b11344a31064",
+      "new_case_sha256": "d0050f51a819c5fe1f29f252f8ccb199055335b6750a946bd65525f731b49bd6",
+      "reason": "明确询问两个记录编号、时刻及是否相同；工序代码、完整日期/时区改为可选。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-047",
+      "scope_revision": false,
+      "old_case_sha256": "054a56d292bd81d62c974bced7b8c3d3ce231c224b5e2509c8a934745a209874",
+      "new_case_sha256": "370c7dbb2cacba6167495d105b190977f8cc9b96fba3e6b0c1bbb35ba3e76844",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-049",
+      "scope_revision": false,
+      "old_case_sha256": "aa50badd5041f1242bf25b20271df9228ae753d23219db7cce90b1d297dbd008",
+      "new_case_sha256": "363c59c01fb79c7707279224cc93be6822a468d0663ed27451823531db2c6c55",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-050",
+      "scope_revision": false,
+      "old_case_sha256": "e9a6b16242e92d3976a46e4678b4dc427f8d8bc05879e412d4242bbd39cb1dce",
+      "new_case_sha256": "899847824202fb848d3defcbd67169d349b7230e48f678dc10edd1ee4aa23c49",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-051",
+      "scope_revision": false,
+      "old_case_sha256": "dc6c5192fb5a7206420f1843b2de7e687365808c67e6ba8af77b237cdcb6dbcb",
+      "new_case_sha256": "97da42ec4aa35a41201c1246f8820b99703a6f59df701916a3a9dc1805b852b6",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-057",
+      "scope_revision": false,
+      "old_case_sha256": "bdfd6e1234e4bbff9b68f731c64f81db009708db313b7614fb8c6e191931b186",
+      "new_case_sha256": "2c8d4e8c5ba6b0e5374eb81ae4c5692c075cad00481df41ec7bb41b4b600458d",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-061",
+      "scope_revision": true,
+      "old_case_sha256": "c0c32e37ae98f3210b57dba242f1963157bdd24703b32bbe3b3e937876557890",
+      "new_case_sha256": "ee9ab2192889203017cdc2931ca09f48e762af523cb352503dbbf466fec4a3d7",
+      "reason": "保留完整安全要求，将缺项处理、变更后的复核动作和程序同名边界明确写入问题，拆开必答点。"
+    },
+    {
+      "case_id": "MFG-GOLD-063",
+      "scope_revision": true,
+      "old_case_sha256": "77edad86dc4cbdcadc8ad46597f197fd96062b88d56da1f4ab51c9906d5e24c2",
+      "new_case_sha256": "62c7384c5d8d77bb7f7799f0e76cc145f03e2fc4344cc25a867beeb3e4ac9180",
+      "reason": "与045统一问句范围；子级补值和当前登记值不再作为额外必答。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-064",
+      "scope_revision": false,
+      "old_case_sha256": "dec08348816d7a75f20b08b318740d2f4b0fafeedff8f7a9f0dfe306928c5a7b",
+      "new_case_sha256": "abccf692ade4fc12c38fb736013b618800f9d8332e1650db67387af8f20df78e",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-065",
+      "scope_revision": false,
+      "old_case_sha256": "50b659f5cf234a9406b2eccf4298951086ac3190240729ad33277d69ec59722b",
+      "new_case_sha256": "5074851c05ed7bb5cb3b8e433c379f430e64d248c351cef3082f876cddb359e5",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-067",
+      "scope_revision": false,
+      "old_case_sha256": "cf5397f13e6f6869830362364eece5e464df1c3b621898eee2a85637aceca767",
+      "new_case_sha256": "cb6aab942b59f63fa19ae9259d276c0af8504fc3c3d1ee9c49fdf6eacfed0c0f",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-068",
+      "scope_revision": false,
+      "old_case_sha256": "2dc62969d0bc5bcafbd04714f706e7737817006d8d1a64112b810f37d29a2dab",
+      "new_case_sha256": "91ebc160ec3f013b274997a4659f8120cb1e417e7da6da61fc1b1f05b4b34abe",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-069",
+      "scope_revision": false,
+      "old_case_sha256": "3b07a541d05972aa874528a6da9b201024cb5e7334e98ddffaa9ac10c953473a",
+      "new_case_sha256": "40ae9ad2db288464ceaa98b909a09500d3df631e313c438c5b055f3c2a9c0128",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-075",
+      "scope_revision": false,
+      "old_case_sha256": "1b93cf2835200146a26a6fb2a0b2f2670af8bfc483fbebdeccb70a710e922a04",
+      "new_case_sha256": "079b61548df72706ade7aef6bcfa9b48c249ffcc17347b64709bf624d4b3eef9",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-079",
+      "scope_revision": true,
+      "old_case_sha256": "8fdeda702920707ac76466cc0f75298e4bc21afa149a4c2a14d77f50f7508467",
+      "new_case_sha256": "42ee7f1da7efc9a5940594b9b7850ace83967b0d9aace953713caced1f153229",
+      "reason": "保留全部原标准，明确询问独立核对、登记、导通推论与换映射首件，拆开必答点。"
+    },
+    {
+      "case_id": "MFG-GOLD-080",
+      "scope_revision": true,
+      "old_case_sha256": "3cc24f2ed7cc25af5b3ae4c98059787722d469849b8e7c70eb26f1878f26019e",
+      "new_case_sha256": "f8293ab44e5a0d0be5ff2389b4ee0dd7d2accb03f1242f4e9a7d31d25fbd4da8",
+      "reason": "与044统一：不合格原因和不能放行为必答，后续记录/签署分别保存为可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-081",
+      "scope_revision": true,
+      "old_case_sha256": "c87e609c26b6902d8d13298647587cf604fae741b3f221223d7c91b364009b65",
+      "new_case_sha256": "dd27c1d3dec98341fa690f9068011ad21aaad9846bd5a6e05831b82cc1516233",
+      "reason": "与045/063统一问句范围，保留禁止用计划或子级推定实际开工。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-082",
+      "scope_revision": false,
+      "old_case_sha256": "b0e60e19219edb3a6474fa11c184c237589ef18237228f04a800e6ee386ead4b",
+      "new_case_sha256": "aff105869ac4d2d842fb83f7a838c371008477abde6c205362fcaa60f983a806",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-083",
+      "scope_revision": false,
+      "old_case_sha256": "265f779cf235a81dc73c04ea2fe020c6a2b1a4f1e30ba6d18cd1b08b09ac9423",
+      "new_case_sha256": "ddd881750222008506983dbc87c3adaa843e49b768350c8536f612f0d41c91d5",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-085",
+      "scope_revision": false,
+      "old_case_sha256": "97f70d95ad45811315bb40ebe1bd0494b69a3ecbc94d62d46605afdcd78e8f63",
+      "new_case_sha256": "da70b9fe2a560972f60abd914ad49577f9958771471c3784e3d1aa883c722e02",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-086",
+      "scope_revision": false,
+      "old_case_sha256": "7da6999b58701669ba21f36a077bc303b8a43f276f7218a0ddea837ff7e2d7e1",
+      "new_case_sha256": "7fcd21d21396193ba2a651c87680c299b8bae698ae53ac0031208bef144f1160",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-087",
+      "scope_revision": false,
+      "old_case_sha256": "6833b269ffed973c3fa0e17e0e4f9a37d054be4355f65ed3e9d26a4a8d981b1a",
+      "new_case_sha256": "c986c23190442d4cfbbab2e05664921845d82c238bafd1de832ac55eaa8cefc6",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-093",
+      "scope_revision": false,
+      "old_case_sha256": "1f03d835da23eb12bd4d038d56c13703e87d99dbbc8345a2cae964817b1b6c95",
+      "new_case_sha256": "9eb1f197342d67ab439b838cebdf6f6e370d12f5fa2435895c8e679ab9127893",
+      "reason": "问句及判定标准沿用v1；逐项确认来源、对象/版本、字段类型和禁止推论仍一致。 台账证据同步到标准时间格式修订，字段值与实体含义不变。"
+    }
+  ],
+  "known_v1_results": "evals/manufacturing_gold_100_live_v1/runs/20261112-r1",
+  "v1_scores_recomputed": false,
+  "independent_holdout": false
+}
