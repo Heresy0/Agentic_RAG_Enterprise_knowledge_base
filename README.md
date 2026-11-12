@@ -4,11 +4,11 @@
 
 将工艺资料、指导书版本和 ERP/MES 执行记录接入同一问答流程的多租户平台。支持按工单及具体工序、作业卡或批次、步骤限定问题范围，分别追溯文档原文与业务字段来源，并将反馈纳入审核、样本冻结和回归验证。
 
-已完成自建 **ERPNext** 与 **OpenMES** 的真实 API 只读联调，尚未接入真实工厂系统。最新 ERPNext 16 题开发验证使用评分 v2，自动评分 **16/16**、助手非独立复核 **15/16**；实际包含8道模型参与题和8道零模型题，仍保留1题版本比较覆盖不足，整体未标记通过。自建演示记录、助手非独立审核和工程替身验证均不视为工厂执行证据或独立业务验收。
+已完成自建 **ERPNext** 与 **OpenMES** 的真实 API 只读联调，尚未接入真实工厂系统。此前 ERPNext 16 题开发验证使用评分 v2，自动评分 **16/16**、助手非独立复核 **15/16**；实际包含8道模型参与题和8道零模型题，仍保留1题版本比较覆盖不足，整体未标记通过。自建演示记录、助手非独立审核和工程替身验证均不视为工厂执行证据或独立业务验收。
 
 2026-11-12扩充中文语料后的完整100题隔离验证为**结构89/100、助手非独立语义69/100**，发现覆盖遗漏、数字/日期误拒和业务推论问题，尚未全量通过；[本轮报告](docs/reports/manufacturing-gold100-live-20261112-r1.md)保留全部失败，不与旧16题拼分。
 
-随后新增[100题黄金候选v2](evals/manufacturing_gold_100_v2/README.md)，修订11题的问句/必答范围及3份台账时间格式，并修复字段问法、所选卡边界、编号校验和一处执行请求识别。仅完成零模型回归与冻结草稿回放，**未产生新模型成绩、未更新现有环境**；独立人工/工厂批准仍为0，详见[本轮修复验收](docs/reports/manufacturing-gold-v2-fixes-20261112-r1.md)。
+随后新增[100题黄金候选v2](evals/manufacturing_gold_100_v2/README.md)，修订11题的问句/必答范围及3份台账时间格式，并修复字段问法、所选卡边界、编号校验和一处执行请求识别。[修复验收](docs/reports/manufacturing-gold-v2-fixes-20261112-r1.md)后，在新隔离环境单次执行v2：**结构96/100、助手非独立语义82/100**；79题有模型调用、21题零模型，18题未全过，仍有跨工序事实混入和覆盖缺口。031主请求已拒绝，但快照观测失败按运行器失败保留。独立人工/工厂批准0，现有演示环境未更新；[本轮报告](docs/reports/manufacturing-gold100-v2-live-20261112-r1.md)与旧v1、旧16题分别保留，不拼分或作严格A/B归因。
 
 求职展示可从[5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)开始；可复制的 AI 应用开发与后端／制造业 IT 两版描述见[简历项目描述](docs/MANUFACTURING_RESUME.md)。当前8005/8006采用零模型模式，现场展示业务查询、来源和会话，模型作业指导展示已保留的真实批次记录。
 
@@ -33,7 +33,7 @@
 | 求职演示与简历 | [5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)、[两版简历描述](docs/MANUFACTURING_RESUME.md) |
 | 制造业40题黄金候选与人工审阅 | [题集说明](evals/manufacturing_gold_v1/README.md)、[逐题答案与证据](evals/manufacturing_gold_v1/REVIEW.md)；40题待审核，未执行、无新成绩 |
 | 中文100题候选与隔离单次验证 | [候选与证据](evals/manufacturing_gold_100_v1/README.md)、[隔离运行说明](evals/manufacturing_gold_100_live_v1/README.md)、[本轮报告](docs/reports/manufacturing-gold100-live-20261112-r1.md)；结构89/100、助手非独立语义69/100，独立人工批准0，未全量通过 |
-| 百题候选v2与零模型修复 | [题目、答案与证据](evals/manufacturing_gold_100_v2/REVIEW.md)、[语料格式修订](sample_docs/manufacturing_zh_corrections_v2/README.md)、[验收记录](docs/reports/manufacturing-gold-v2-fixes-20261112-r1.md)；保留v1及旧成绩，v2尚未执行真实模型 |
+| 百题候选v2与单次验证 | [题目、答案与证据](evals/manufacturing_gold_100_v2/REVIEW.md)、[语料格式修订](sample_docs/manufacturing_zh_corrections_v2/README.md)、[运行与结果](evals/manufacturing_gold_100_live_v2/README.md)、[本轮报告](docs/reports/manufacturing-gold100-v2-live-20261112-r1.md)；结构96/100、助手非独立语义82/100，保留18题未全过，不与旧批次拼分 |
 | 中文语料扩充与100题证据 | [55份中文资料](sample_docs/manufacturing_zh_expansion_v1/README.md)、[原离线验收](docs/reports/manufacturing-zh-expansion-20261112-r1.md)；本轮仅在新隔离副本发布55份/885块，现有演示环境未更新 |
 | 保留的8000稳定展示、部门配置及98题成绩 | [制造业演示指南](docs/MANUFACTURING_DEMO.md)、[冻结发布清单](evals/manufacturing_zh_lite_v1/demo_release.json) |
 | 通用120题历史基线及评测入口 | [统一评测套件](evals/current/README.md) |

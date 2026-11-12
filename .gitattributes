@@ -61,3 +61,5 @@ scripts/prepare_manufacturing_gold_runtime.py text eol=lf
 scripts/run_manufacturing_gold100_isolated.py text eol=lf
 sample_docs/manufacturing_zh_corrections_v2/** text eol=lf
 evals/manufacturing_gold_100_v2/** text eol=lf
+evals/manufacturing_gold_100_live_v2/** text eol=lf
+scripts/report_manufacturing_gold_v2_live.py text eol=lf

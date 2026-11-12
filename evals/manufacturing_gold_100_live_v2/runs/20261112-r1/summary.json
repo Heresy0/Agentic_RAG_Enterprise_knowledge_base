@@ -1,0 +1,212 @@
+{
+  "schema_version": "manufacturing-gold100-live-result-v2",
+  "executed": 100,
+  "contract_passed": 96,
+  "assistant_non_independent_passed": 82,
+  "human_approved": 0,
+  "independent_holdout": false,
+  "cases_with_any_model_calls": 79,
+  "zero_model_cases": 21,
+  "primary_question_calls_cases": 79,
+  "categories": {
+    "guidance": {
+      "cases": 30,
+      "contract_passed": 29,
+      "assistant_non_independent_passed": 21
+    },
+    "erpnext": {
+      "cases": 20,
+      "contract_passed": 20,
+      "assistant_non_independent_passed": 17
+    },
+    "openmes": {
+      "cases": 20,
+      "contract_passed": 18,
+      "assistant_non_independent_passed": 17
+    },
+    "safety": {
+      "cases": 20,
+      "contract_passed": 19,
+      "assistant_non_independent_passed": 17
+    },
+    "conversation": {
+      "cases": 10,
+      "contract_passed": 10,
+      "assistant_non_independent_passed": 10
+    }
+  },
+  "usage": {
+    "matched": true,
+    "calls": 243,
+    "known_tokens": 959260,
+    "unknown_calls": 3,
+    "budget_tokens": 1055260,
+    "by_stage": {
+      "rerank": 71,
+      "answer_generation": 79,
+      "query_embedding": 71,
+      "query_planning": 9,
+      "agent_decision": 9,
+      "answer_repair": 4
+    },
+    "providers_models": [
+      "dashscope:qwen3-rerank",
+      "dashscope:qwen3.7-flash",
+      "dashscope:text-embedding-v4"
+    ],
+    "all_priced": false,
+    "pending": 0
+  },
+  "index_usage": {
+    "matched": true,
+    "calls": 6,
+    "known_tokens": 3124,
+    "budget_tokens": 3124,
+    "unknown_calls": 0,
+    "pending": 0,
+    "model_ids": [
+      "dashscope:text-embedding-v4"
+    ]
+  },
+  "started_at": "2026-11-12T13:32:33.223584+00:00",
+  "finished_at": "2026-11-12T13:49:59.501300+00:00",
+  "limits": {
+    "index": {
+      "max_model_calls": 32,
+      "max_tokens": 1000000,
+      "max_seconds": 1800,
+      "reservation_tokens": 32000
+    },
+    "evaluation": {
+      "max_cases": 100,
+      "max_model_calls": 800,
+      "max_tokens": 5000000,
+      "max_seconds": 9000,
+      "reservation_tokens": 32000
+    }
+  },
+  "budget_origin": "operator_safety_ceilings",
+  "request_retries": 0,
+  "continuations": false,
+  "old_results_combined": false,
+  "failed_ids": [
+    "MFG-GOLD-001",
+    "MFG-GOLD-003",
+    "MFG-GOLD-006",
+    "MFG-GOLD-007",
+    "MFG-GOLD-011",
+    "MFG-GOLD-019",
+    "MFG-GOLD-021",
+    "MFG-GOLD-025",
+    "MFG-GOLD-031",
+    "MFG-GOLD-041",
+    "MFG-GOLD-042",
+    "MFG-GOLD-059",
+    "MFG-GOLD-064",
+    "MFG-GOLD-072",
+    "MFG-GOLD-077",
+    "MFG-GOLD-084",
+    "MFG-GOLD-086",
+    "MFG-GOLD-090"
+  ],
+  "harness_error_ids": [
+    "MFG-GOLD-031"
+  ],
+  "preservation": {
+    "original_containers": 77,
+    "changed_containers": [],
+    "protected_files": 1089,
+    "changed_files": []
+  },
+  "runtime_audit": {
+    "isolated_copies": {
+      "erp": {
+        "documents": 55,
+        "chunks": 885,
+        "active_vectors": 885,
+        "total_vectors": 927,
+        "active_index_jobs": 0,
+        "frozen_inventory_matches": true,
+        "current_original_hashes_verified": true,
+        "revised_documents_v2": 3
+      },
+      "mes": {
+        "documents": 55,
+        "chunks": 885,
+        "active_vectors": 885,
+        "total_vectors": 927,
+        "active_index_jobs": 0,
+        "frozen_inventory_matches": true,
+        "current_original_hashes_verified": true,
+        "revised_documents_v2": 3
+      }
+    },
+    "original_application_models_new_events": 0,
+    "original_application_ledgers_checked": 6,
+    "model_index_and_evaluation_ledgers_separate": true,
+    "normal_erp_mes_adapters_readonly": true,
+    "conflict_history_checks": [
+      {
+        "case_id": "MFG-GOLD-037",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-038",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-039",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-057",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-058",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-075",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-076",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-093",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-094",
+        "bound_turn_preserved": true,
+        "turns": 1
+      }
+    ],
+    "additional_browser_acceptance": false,
+    "live_platform_gold_sample_approvals": 0,
+    "formal_40_or_closed_loop_executed": false
+  },
+  "auxiliary_observation": {
+    "case": "MFG-GOLD-040",
+    "additional_command_model_calls": 0,
+    "response_type": "refuse",
+    "upstream_write_from_application": false,
+    "case031_post_observed": {
+      "status_code": 200,
+      "response_type": "refuse",
+      "model_calls": 0,
+      "snapshot_read_failure_preserved": true
+    },
+    "limitation": "Supplemental observations, not extra gold cases or browser acceptance."
+  }
+}
