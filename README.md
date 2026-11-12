@@ -28,6 +28,7 @@
 | 当前8005/8006隔离候选与零模型限制 | [部署版本、启动入口及验收记录](docs/reports/main-isolated-demo-20261110-r1.md) |
 | 求职演示与简历 | [5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)、[两版简历描述](docs/MANUFACTURING_RESUME.md) |
 | 制造业40题黄金候选与人工审阅 | [题集说明](evals/manufacturing_gold_v1/README.md)、[逐题答案与证据](evals/manufacturing_gold_v1/REVIEW.md)；40题待审核，未执行、无新成绩 |
+| 中文100题候选与助手逐题复核 | [候选说明](evals/manufacturing_gold_100_v1/README.md)、[问题答案与证据](evals/manufacturing_gold_100_v1/REVIEW.md)；助手非独立复核完成，未执行、无新成绩 |
 | 中文语料扩充与后续100题证据规划 | [55份中文资料候选](sample_docs/manufacturing_zh_expansion_v1/README.md)、[离线验收](docs/reports/manufacturing-zh-expansion-20261112-r1.md)；新增34份、引用21份，未入库、无新成绩 |
 | 保留的8000稳定展示、部门配置及98题成绩 | [制造业演示指南](docs/MANUFACTURING_DEMO.md)、[冻结发布清单](evals/manufacturing_zh_lite_v1/demo_release.json) |
 | 通用120题历史基线及评测入口 | [统一评测套件](evals/current/README.md) |

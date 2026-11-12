@@ -1,0 +1,17 @@
+{
+  "legacy_dataset": "evals/manufacturing_gold_v1",
+  "legacy_cases_sha256": "4ed2e08c535e33759f6be58a1d542f2a3b7b8d7f62ad6ca71562db48700d833f",
+  "inherited_cases": 40,
+  "new_cases": 60,
+  "coverage_plan_sha256": "dfc3da50682f9f376be13141825b5eae3cf3d6123317d33611005b00f1910e02",
+  "changes": [
+    {
+      "case_id": "MFG-GOLD-036",
+      "change": "move_unasked_required_F04_to_optional_O01",
+      "old_case_sha256": "41922d05d53c1f8b9aceb5cdcb6a67ebec202549b4af1e6de055e80600944abc",
+      "reason": "开工或Completed不能证明质量已完成，也不能反推一定未完成；原F04要求题目未问的3件细节，移为可选说明，旧40题原件不改。"
+    }
+  ],
+  "coverage_departure": "原6项公开导读主题改为6道有本地原件的中文公开资料题，因导读缺少原始网页快照；类别题数不变。",
+  "review_migration": "旧40题内嵌review仅保留在原数据集；新100题统一以reviews.jsonl为本轮助手审核记录，不把旧pending状态伪改成人工批准。"
+}
