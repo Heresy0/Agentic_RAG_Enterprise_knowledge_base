@@ -47,3 +47,7 @@ deploy/isolated_demo/zero_runtime.py text eol=lf
 # Independent candidate dataset artifacts are byte-hashed.
 evals/manufacturing_gold_v1/** text eol=lf
 scripts/check_manufacturing_gold.py text eol=lf
+# New Chinese-only corpus references historical assets without rewriting them.
+sample_docs/manufacturing_zh_expansion_v1/** text eol=lf
+sample_docs/manufacturing_zh_expansion_v1/**/*.pdf binary
+docs/reports/manufacturing-zh-expansion-20261112-r1.json text eol=lf

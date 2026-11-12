@@ -4,6 +4,7 @@
 
 ## 项目范围
 
+- 2026-11-12在 `codex/manufacturing-corpus-100` 新增中文离线语料候选 `sample_docs/manufacturing_zh_expansion_v1/`：55份逻辑文档，新增30份合成业务资料与4份中文公开导读，引用旧13份业务原件及8份中文公开资料。三个新产品系列、六道工序，各有版本、检验、变更、例外、交接及离线执行夹具设计；新增扫描件0，全部待人工审核。55份由现有解析器产出885块，169条新证据完整定位；60项覆盖主题只用于后续100题规划，不是新黄金题集、金标批准、API验证或成绩。四个官方页面经网页工具核对，HTML直接下载两轮失败，无网页原始快照；导读不能代替原文金标审核。无问答、模型、索引、数据库或容器修改；见[语料说明](sample_docs/manufacturing_zh_expansion_v1/README.md)和[本轮记录](docs/reports/manufacturing-zh-expansion-20261112-r1.md)。
 - 2026-11-11在 `codex/manufacturing-gold-v1` 新建独立40题黄金回归候选 `evals/manufacturing_gold_v1/`，按12/8/8/8/4覆盖指导书、ERPNext、OpenMES、安全/来源边界和会话。40题均待人工审核、已批准0题，不是独立盲测或运行平台样本批准；全部只读本地整理，无问答、模型调用或新成绩。标准来自6份原文、4份平台契约和8份历史业务/映射投影；Docker引擎未运行，历史投影明确不代表本轮实时核验。离线检查器核对题量、引用、字段、父子选择、分组、待审状态和可读视图；五种损坏探针被拒绝，722旧文件哈希保持。不启动、重建或修改ERPNext/OpenMES及候选环境；不能宣称本轮容器健康或独立模型账本核验。见[候选说明](evals/manufacturing_gold_v1/README.md)和[本轮记录](docs/reports/manufacturing-gold-20261111-r1.md)。
 - 2026-11-10将部署时main `e386bf4` 部署为新隔离零模型候选：ERP工作台8005、MES工作台8006，各自独立数据库副本/Redis/13份原件卷，复用原只读上游、适配器及向量索引。共同镜像 `main-zero-model-20261110-r1`，两套各307个部署文件/167业务Python与归档一致；另有部署专用零预算入口，供应商端点禁用。33项API冒烟及工序/步骤引用、映射原文、会话、320px页面/弹窗浏览器复验通过；9个新快照三次核验，97条API观测及独立账本新增模型调用/Token均0，无新Worker、审核冻结或索引重建。原57容器、原客户端/业务授权/账本及170旧文件保持，8003/8004和ERPNext/OpenMES上游继续保留。需要新模型生成的问题在调用前503停止，历史真实回答不算本轮生成；旧16/16自动、15/16助手非独立及全部旧成绩保留、不拼分。私有启动配置在 `tmp/main-isolated-demo-20261110-r1/compose.json`，详见[部署验收记录](docs/reports/main-isolated-demo-20261110-r1.md)。
 - 2026-11-10用户批准当前业务版完整16题真实模型验证并使用评分v2：`codex/erpnext-model-v2-validation` 以 `87a9c7c` 单独冻结v2入口，业务仍c025d71，原题集/v1入口不改。独立数据库副本/Redis/只读挂载、1162归档文件及167业务Python文件一致，预读20次零模型。一次执行自动16/16、关键6/6；助手非独立15/16、关键5/6，Q007未明确交代冻结参考答案中的旧版未给出停机阈值，整体未标通过。实际8模型题/8零模型题，模型参与题自动8/8、复核7/8；31次物理调用、121777已知及预算Token、未知0、82.368秒，授权收尾，无重试补跑，费用未知。13道执行契约响应为execution-v2，Q013/Q014原工单契约用其既有校验器，Q015独立权限检查。15快照三次核验、16来源及目录复读/账本一致；205旧文件及55原容器保持，原ERP/OpenMES库无本轮模型事件，两个临时容器已停止。未改业务源码、更新现有后端、授权、索引或审核冻结。旧成绩保留、不拼分，不宣称模型独立16题全对、正式40题或闭环通过。详见[本轮报告](docs/reports/erpnext-model-v2-20261110-r1.md)。
@@ -43,6 +44,7 @@
 | --- | --- |
 | 当前演示、启动、评分口径 | `docs/MANUFACTURING_DEMO.md` |
 | 制造业40题黄金候选、待审答案与原文/字段证据 | `evals/manufacturing_gold_v1/README.md`、`evals/manufacturing_gold_v1/REVIEW.md` |
+| 中文语料扩充、三个合成产品系列及后续100题覆盖规划 | `sample_docs/manufacturing_zh_expansion_v1/README.md`、`sample_docs/manufacturing_zh_expansion_v1/coverage.json` |
 | 求职5分钟演示与简历项目描述 | `docs/MANUFACTURING_FIVE_MINUTE_DEMO.md`、`docs/MANUFACTURING_RESUME.md` |
 | 首期工单集成改造方案与验收标准 | `docs/MANUFACTURING_PHASE1_PLAN.md` |
 | 首期分阶段实施进度与复现入口 | `docs/MANUFACTURING_PHASE1_PROGRESS.md` |

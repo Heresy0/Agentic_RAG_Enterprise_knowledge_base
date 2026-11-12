@@ -1,0 +1,2655 @@
+{
+  "edition": "manufacturing-zh-expansion-v1",
+  "documents": [
+    {
+      "id": "BASE-MFG-02",
+      "title": "02_首件确认与工序交接流程",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/02_首件确认与工序交接流程.pdf",
+      "sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+      "bytes": 4105,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFG-06",
+      "title": "06_HC-A17_OP20作业指导书历史版",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/06_HC-A17_OP20作业指导书历史版.docx",
+      "sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+      "bytes": 37839,
+      "format": "docx",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFG-07",
+      "title": "07_HC-A17_OP20作业指导书现行版",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/07_HC-A17_OP20作业指导书现行版.docx",
+      "sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+      "bytes": 37995,
+      "format": "docx",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFG-08",
+      "title": "08_HC-A17首件检验规范",
+      "repository_path": "sample_docs/manufacturing_lite/documents/质量检验/08_HC-A17首件检验规范.docx",
+      "sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+      "bytes": 38318,
+      "format": "docx",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFG-09",
+      "title": "09_工艺变更通知ECN-2026-018",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/09_工艺变更通知ECN-2026-018.docx",
+      "sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+      "bytes": 37983,
+      "format": "docx",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFG-10",
+      "title": "10_产品工序与文件路由",
+      "repository_path": "sample_docs/manufacturing_lite/documents/公共参考/10_产品工序与文件路由.md",
+      "sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+      "bytes": 774,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFG-12",
+      "title": "12_检验记录填写与追溯规则",
+      "repository_path": "sample_docs/manufacturing_lite/documents/质量检验/12_检验记录填写与追溯规则.md",
+      "sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+      "bytes": 792,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFG-14",
+      "title": "14_工单WO-017班次交接记录",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/14_工单WO-017班次交接记录.txt",
+      "sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+      "bytes": 646,
+      "format": "txt",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFG-15",
+      "title": "15_工单WO-018班次交接记录",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/15_工单WO-018班次交接记录.txt",
+      "sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+      "bytes": 513,
+      "format": "txt",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFG-16",
+      "title": "16_首件检验记录B-1026-017",
+      "repository_path": "sample_docs/manufacturing_lite/documents/质量检验/16_首件检验记录B-1026-017.txt",
+      "sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+      "bytes": 623,
+      "format": "txt",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFGWO-01",
+      "title": "01_WO019书面切换通知",
+      "repository_path": "sample_docs/manufacturing_workorder_v1/documents/生产工艺/01_WO019书面切换通知.md",
+      "sha256": "43a90c111f1117895d3933ccf39ff4440c37c8ec11855f8cb417311477e158a6",
+      "bytes": 642,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFGWO-02",
+      "title": "02_WO024书面指示A",
+      "repository_path": "sample_docs/manufacturing_workorder_v1/documents/生产工艺/02_WO024书面指示A.md",
+      "sha256": "2332f98f9c6b0e54e0a0c0602c5b00f802608a7195135cfe4d79f2f3262fa497",
+      "bytes": 558,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "BASE-MFGWO-03",
+      "title": "03_WO024书面指示B",
+      "repository_path": "sample_docs/manufacturing_workorder_v1/documents/生产工艺/03_WO024书面指示B.md",
+      "sha256": "f773f6704aa53f8d06170474f0e06517c8729bd27d944285621eef99c608efad",
+      "bytes": 564,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "source_family": "legacy-HC-A17",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "legacy_manifest": "sample_docs/manufacturing_workorder_v1/manifest.json"
+    },
+    {
+      "id": "ZH-B21-01",
+      "title": "DEMO-B21_OP-10来料与基准核对_历史版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-01_DEMO-B21_OP-10来料与基准核对_历史版.md",
+      "sha256": "de6048346e87685b44bb074fb08e08eabe09142674a8be53e3929d9da020ca0b",
+      "bytes": 1102,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-B21的OP-10来料与基准核对，不得因产品名称相似用于其他系列。文件业务版本为1.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-01-01起适用，至2026-10-31结束，起止日期均包含当日。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "核对毛坯标签与工单型号；基准面标记可辨认后登记领料。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "异常发现后保持物料与记录可追溯，提请质量人员确认后再处理。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用演示图样受控副本与条码读取器核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-10"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-B21-OP-10",
+      "business_revision": "1.0",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-10-31",
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-B21-02",
+      "title": "DEMO-B21_OP-10来料与基准核对_现行演示版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+      "sha256": "5b4d7a61311ce96c0e802fe8584512e0491270ac931650a96da271132685dcd2",
+      "bytes": 1167,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-B21的OP-10来料与基准核对，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-11-01起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "逐项核对毛坯标签、物料批号和基准面标记；任一标识缺失时转入待确认区，工艺员补充书面结论后才能继续流转。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "更换物料批次后重新执行标识核对，沿用上一批签名不能替代本批确认。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用演示图样受控副本与条码读取器核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-10"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-B21-OP-10",
+      "business_revision": "2.0",
+      "effective_from": "2026-11-01",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-B21-03",
+      "title": "DEMO-B21_OP-20定位孔尺寸复核_历史版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-03_DEMO-B21_OP-20定位孔尺寸复核_历史版.md",
+      "sha256": "d93c7bb5980d7525888709fa92f768f813d2a0a5187a964ad84ae6501fc8e0cd",
+      "bytes": 1078,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-B21的OP-20定位孔尺寸复核，不得因产品名称相似用于其他系列。文件业务版本为1.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-01-01起适用，至2026-10-31结束，起止日期均包含当日。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "定位孔按演示图样规定测量一次，记录测量值。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "异常发现后保持物料与记录可追溯，提请质量人员确认后再处理。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用有效状态的演示内径量具核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-20"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-B21-OP-20",
+      "business_revision": "1.0",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-10-31",
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-B21-04",
+      "title": "DEMO-B21_OP-20定位孔尺寸复核_现行演示版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-04_DEMO-B21_OP-20定位孔尺寸复核_现行演示版.md",
+      "sha256": "a763e64c450b69ee84ed99d8cf4267d6295bb68424e84d0ec5dc4868d2edc26e",
+      "bytes": 1206,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-B21的OP-20定位孔尺寸复核，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-11-01起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "定位孔在相互垂直的两个方向各测量一次，分别保存原始读数；任一方向超出演示图样范围时标记待处置，不能仅以两个读数的平均值判定合格。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "更换检具或定位治具后重新进行首件确认，质量复核签署前不得登记批量放行。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用有效状态的演示内径量具核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-20"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-B21-OP-20",
+      "business_revision": "2.0",
+      "effective_from": "2026-11-01",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-B21-05",
+      "title": "DEMO-B21_OP-10检验要求与记录辨析",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+      "sha256": "2282dd1785a9568161d312e6dc34649c1ab278cb8b55e8b7c9d113bc47dba060",
+      "bytes": 38842,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "inspection",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用对象",
+          "text": "本规范适用于DEMO-B21的OP-10来料与基准核对。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "检查要求",
+          "text": "物料批号与领料记录一致，基准面标记完整且方向与演示图样说明一致。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "取样与触发",
+          "text": "每批核对首箱及末箱标签；发现混批时隔离该批全部未确认物料。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "演示记录辨析",
+          "text": "标签照片、领料记录号与基准方向检查结果分别登记。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "签署与处置",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u06",
+          "heading": "来源追溯",
+          "text": "登记产品DEMO-B21、工单DEMO-WO-B2101、工序OP-10、物料批号DEMO-LOT-B21-1102、文件版次及原始记录编号，保留更正前的历史记录。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-10"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSPECTION-B21-OP-10",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-01",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-B21-06",
+      "title": "DEMO-B21_OP-20检验要求与记录辨析",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+      "sha256": "5827645b3ce7ad816eb66aaab7c609206a40c729034db4962bb65c0b4368d797",
+      "bytes": 37944,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "inspection",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用对象",
+          "text": "本规范适用于DEMO-B21的OP-20定位孔尺寸复核。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "检查要求",
+          "text": "演示定位孔尺寸范围为10.00至10.05毫米，两个方向的原始读数均须在范围内。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "取样与触发",
+          "text": "首件逐项检查；批内抽查不能替代换检具后的首件复核。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "演示记录辨析",
+          "text": "演示首件两个方向读数为10.02毫米和10.06毫米；第二个读数超出范围。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "签署与处置",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u06",
+          "heading": "来源追溯",
+          "text": "登记产品DEMO-B21、工单DEMO-WO-B2101、工序OP-20、物料批号DEMO-LOT-B21-1102、文件版次及原始记录编号，保留更正前的历史记录。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-20"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSPECTION-B21-OP-20",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-01",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-B21-07",
+      "title": "DEMO-B21工艺变更通知",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-07_DEMO-B21工艺变更通知.md",
+      "sha256": "2fcb4d63a9c660de8d018baa6cdd967a47d7e1f76d218f2cb9ae6c56bfbcab05",
+      "bytes": 1411,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "change_notice",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "变更对象",
+          "text": "演示变更单DEMO-ECN-B21-02将DEMO-B21的两份作业指导书更新至2.0版，切换日期为2026-11-01，仅适用于本系列明确列出的两道工序。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "变更内容",
+          "text": "OP-10新增要求：逐项核对毛坯标签、物料批号和基准面标记；任一标识缺失时转入待确认区，工艺员补充书面结论后才能继续流转。；OP-20新增要求：定位孔在相互垂直的两个方向各测量一次，分别保存原始读数；任一方向超出演示图样范围时标记待处置，不能仅以两个读数的平均值判定合格。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "切换条件",
+          "text": "工单时间只能作为选版条件之一；仍须核对产品、工序、有效区间和已审核适用性。通知已编写不表示平台审核已批准；本资料包所有映射仍是草案。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "已开工工单",
+          "text": "未取得明确书面切换指示的既有工单，不因新通知存在就自动切换指导书；多个书面指示冲突时应保留冲突并请求审核者确认。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "关联文件",
+          "text": "对应的新指导书来源编号为ZH-B21-02、ZH-B21-04，引用变更单不能替代对所选指导书原文及版本的核对。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-10",
+        "OP-20"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-CHANGE_NOTICE-B21-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-01",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-B21-08",
+      "title": "DEMO-B21工单执行记录与离线夹具设计",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+      "sha256": "414cf2ce8f71170d52d683fd5e7b2205f9422850a12deb4f1ad739742f1b4c05",
+      "bytes": 1859,
+      "format": "txt",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "record",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "记录身份",
+          "text": "本台账为合成离线记录，工单DEMO-WO-B2101，产品DEMO-B21，计划数量120件，物料演示铝合金毛坯，物料批号DEMO-LOT-B21-1102；不来自ERPNext或OpenMES实时API。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "工单时间",
+          "text": "计划开工为2026-11-0208:00:00+08:00，工单级实际开工未登记。计划时间不得当作实际时间，任何子级记录也不得补填工单级实际开工。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "工序与作业卡",
+          "text": "ERPNext离线夹具设计：工序子行DEMO-ROW-B21-1属于OP-10，工序实际开工为2026-11-0208:12:00+08:00；作业卡DEMO-JC-B21-1实际开工为08:17:00+08:00，日期同本工单演示日期。第二工序子行DEMO-ROW-B21-2和作业卡DEMO-JC-B21-2均未登记实际开工。卡与工序分别取值，不能互补。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "批次与步骤",
+          "text": "OpenMES离线夹具设计：批次DEMO-BATCH-B21-1实际开工为2026-11-0209:00:00+08:00，步骤DEMO-STEP-B21-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-B21-2未登记实际开工。另有同工单批次DEMO-BATCH-B21-2，其步骤DEMO-STEP-B21-3与第一批次不构成父子关系。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "记录状态",
+          "text": "OP-10：首箱标签核对一致，但未登记末箱核对结果；OP-20：已保存两方向原始读数，但质量复核人未签署。这些状态为样例事实，不表示真实系统当前状态。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u06",
+          "heading": "指导书映射草案",
+          "text": "步骤DEMO-STEP-B21-1拟分配来源ZH-B21-02的2.0版，步骤DEMO-STEP-B21-2拟分配来源ZH-B21-04的2.0版。两个分配均待人工审核，尚未登记到平台，不能称为已批准映射或用于线上会话绑定。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-10",
+        "OP-20"
+      ],
+      "work_order_ids": [
+        "DEMO-WO-B2101"
+      ],
+      "scope_kind": "work_order",
+      "document_code": "ZH-RECORD-B21-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-01",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-B21-09",
+      "title": "DEMO-B21工单例外通知草案",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-09_DEMO-B21工单例外通知草案.md",
+      "sha256": "d46181d3e69050e043eec18bfcec86d3f9121363f9c3b4861b91f9d7f0c64679",
+      "bytes": 1003,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "notice",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "例外身份",
+          "text": "演示例外单DEMO-EX-B21-01只针对DEMO-WO-B2101，不适用于同型号其他工单，也不是平台已审核授权。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "例外要求",
+          "text": "DEMO-WO-B2101的OP-10因首批标签模板切换，可在工艺员完成补充标签记录后继续使用本系列2.0版；本例外不豁免物料批号核对，也不改变OP-20的质量签署要求。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "审核边界",
+          "text": "本通知尚未审核，保留草案状态；不能把作者编写时间当作批准时间。若后续审核版本与当前快照不同，必须重新读取并冻结新版本，保留旧版本。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "引用用途",
+          "text": "本通知可说明假设场景的例外条件，不能证明例外已经执行、质量已经签署或平台已经授予访问权限。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-10",
+        "OP-20"
+      ],
+      "work_order_ids": [
+        "DEMO-WO-B2101"
+      ],
+      "scope_kind": "work_order",
+      "document_code": "ZH-NOTICE-B21-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-01",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-B21-10",
+      "title": "DEMO-B21班次交接与未完成项",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-10_DEMO-B21班次交接与未完成项.md",
+      "sha256": "89c09d402f6e45eccb37d87398eee7e0fefc1fcfa52af3d22aaf4c73656af537",
+      "bytes": 1006,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "handover",
+      "source_family": "B21",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "交接身份",
+          "text": "合成交接记录DEMO-HO-B21-01，工单DEMO-WO-B2101，日期2026-11-02，对象为本系列两道工序，全部角色与事实均为演示设定。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "交接内容",
+          "text": "早班已完成首箱标签核对，末箱核对尚未登记；检验台已保存定位孔两方向读数，第二方向超限品置于待处置区。晚班应先核对隔离标识及待处置单，不能将交接接收签名视为质量放行。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "未完成项",
+          "text": "OP-10：未登记末箱核对结果；OP-20：质量复核人未签署。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "追溯与更正",
+          "text": "接班后新增的检查、处置和签署应另建记录，注明记录号和时间；不得覆盖本交接原件，也不得把后来的合格结论回填为交接时已知事实。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-B21"
+      ],
+      "operation_codes": [
+        "OP-10",
+        "OP-20"
+      ],
+      "work_order_ids": [
+        "DEMO-WO-B2101"
+      ],
+      "scope_kind": "work_order",
+      "document_code": "ZH-HANDOVER-B21-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-01",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-01",
+      "title": "DEMO-C31_OP-30密封组件核对与装配记录_历史版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-01_DEMO-C31_OP-30密封组件核对与装配记录_历史版.md",
+      "sha256": "471dfbe6ded685792244b65e90e28e8640061285fbc5f30e3e00d415a5986ae5",
+      "bytes": 1099,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-C31的OP-30密封组件核对与装配记录，不得因产品名称相似用于其他系列。文件业务版本为1.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-01-01起适用，至2026-11-02结束，起止日期均包含当日。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "核对密封组件型号后记录装配完成数量。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "异常发现后保持物料与记录可追溯，提请质量人员确认后再处理。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用演示物料清单与方向示意说明核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-30"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-C31-OP-30",
+      "business_revision": "1.0",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-11-02",
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-02",
+      "title": "DEMO-C31_OP-30密封组件核对与装配记录_现行演示版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-02_DEMO-C31_OP-30密封组件核对与装配记录_现行演示版.md",
+      "sha256": "79ba2fe94066f98c7af601dd056ac35e7bb31d8779d87ccd868018978632c469",
+      "bytes": 1212,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-C31的OP-30密封组件核对与装配记录，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-11-03起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "核对密封组件型号、批号及装配方向，确认表面无可见破损后填写装配检查记录；仅有完成数量不能证明装配方向已检查。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "密封组件开包后发现混料或破损时隔离同包组件，经质量人员确认后决定后续处置。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用演示物料清单与方向示意说明核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-30"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-C31-OP-30",
+      "business_revision": "2.0",
+      "effective_from": "2026-11-03",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-03",
+      "title": "DEMO-C31_OP-40气密检测结果复核_历史版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-03_DEMO-C31_OP-40气密检测结果复核_历史版.md",
+      "sha256": "93de6040f28e01ee635d77a7761a2a12eb8fd0fa5ad2b708c3e3c4a6dee22e6d",
+      "bytes": 1087,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-C31的OP-40气密检测结果复核，不得因产品名称相似用于其他系列。文件业务版本为1.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-01-01起适用，至2026-11-02结束，起止日期均包含当日。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "保存检测设备给出的合格或不合格结果。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "异常发现后保持物料与记录可追溯，提请质量人员确认后再处理。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用受控检测程序清单及原始数据索引核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-40"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-C31-OP-40",
+      "business_revision": "1.0",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-11-02",
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-04",
+      "title": "DEMO-C31_OP-40气密检测结果复核_现行演示版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-04_DEMO-C31_OP-40气密检测结果复核_现行演示版.md",
+      "sha256": "dd42e81a673efbef301bc4ba41294d318649718d7d4e6ca67353822b2c136a0a",
+      "bytes": 1236,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-C31的OP-40气密检测结果复核，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-11-03起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "同时保存设备结果、检测程序版本和原始数据记录号；缺少任一项时将该件标记为待复核，不得用设备运行结束时间补写质量签署。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "检测程序版本变更后先核对受控程序清单并进行验证记录复核；程序名称相同不能证明程序版本相同。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用受控检测程序清单及原始数据索引核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-40"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-C31-OP-40",
+      "business_revision": "2.0",
+      "effective_from": "2026-11-03",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-05",
+      "title": "DEMO-C31_OP-30检验要求与记录辨析",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+      "sha256": "b361ef5a71879e8621127d61749a30d3b78e3a7410e4cccfaabd4123ec60eebb",
+      "bytes": 39052,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "inspection",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用对象",
+          "text": "本规范适用于DEMO-C31的OP-30密封组件核对与装配记录。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "检查要求",
+          "text": "型号与演示物料清单一致，批号可追溯，方向检查与外观检查均有独立结果。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "取样与触发",
+          "text": "每件保存方向检查结果，开包核对不能代替逐件方向确认。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "演示记录辨析",
+          "text": "演示装配记录数量为20件，方向检查栏为空；不能据此判定20件全部通过装配检查。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "签署与处置",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u06",
+          "heading": "来源追溯",
+          "text": "登记产品DEMO-C31、工单DEMO-WO-C3101、工序OP-30、物料批号DEMO-LOT-C31-1104、文件版次及原始记录编号，保留更正前的历史记录。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-30"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSPECTION-C31-OP-30",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-03",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-06",
+      "title": "DEMO-C31_OP-40检验要求与记录辨析",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+      "sha256": "01878877878e504e6eaa48ffdadc64a8cb24822d7d7bb7fdf8bedd7fa5228f9b",
+      "bytes": 38980,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "inspection",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用对象",
+          "text": "本规范适用于DEMO-C31的OP-40气密检测结果复核。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "检查要求",
+          "text": "设备结果为合格，程序版本为演示清单指定的P2，且原始数据记录号非空，三项同时满足后仍需质量人员签署放行。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "取样与触发",
+          "text": "每件关联原始数据记录号，批次汇总截图不能替代逐件数据关联。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "演示记录辨析",
+          "text": "演示记录设备结果为合格，程序版本P2，原始数据记录号为空，应判为资料待复核。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "签署与处置",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u06",
+          "heading": "来源追溯",
+          "text": "登记产品DEMO-C31、工单DEMO-WO-C3101、工序OP-40、物料批号DEMO-LOT-C31-1104、文件版次及原始记录编号，保留更正前的历史记录。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-40"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSPECTION-C31-OP-40",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-03",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-07",
+      "title": "DEMO-C31工艺变更通知",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-07_DEMO-C31工艺变更通知.md",
+      "sha256": "eb8ce6085683cf2f37b03450cab102db2dc27770ac25402b76f843f3e083afb0",
+      "bytes": 1402,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "change_notice",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "变更对象",
+          "text": "演示变更单DEMO-ECN-C31-02将DEMO-C31的两份作业指导书更新至2.0版，切换日期为2026-11-03，仅适用于本系列明确列出的两道工序。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "变更内容",
+          "text": "OP-30新增要求：核对密封组件型号、批号及装配方向，确认表面无可见破损后填写装配检查记录；仅有完成数量不能证明装配方向已检查。；OP-40新增要求：同时保存设备结果、检测程序版本和原始数据记录号；缺少任一项时将该件标记为待复核，不得用设备运行结束时间补写质量签署。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "切换条件",
+          "text": "工单时间只能作为选版条件之一；仍须核对产品、工序、有效区间和已审核适用性。通知已编写不表示平台审核已批准；本资料包所有映射仍是草案。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "已开工工单",
+          "text": "未取得明确书面切换指示的既有工单，不因新通知存在就自动切换指导书；多个书面指示冲突时应保留冲突并请求审核者确认。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "关联文件",
+          "text": "对应的新指导书来源编号为ZH-C31-02、ZH-C31-04，引用变更单不能替代对所选指导书原文及版本的核对。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-30",
+        "OP-40"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-CHANGE_NOTICE-C31-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-03",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-08",
+      "title": "DEMO-C31工单执行记录与离线夹具设计",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+      "sha256": "060c026270c8282380afdaf29ef909e62f1aa9a43d081366a2f5e6df7bbe8f36",
+      "bytes": 1866,
+      "format": "txt",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "record",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "记录身份",
+          "text": "本台账为合成离线记录，工单DEMO-WO-C3101，产品DEMO-C31，计划数量80件，物料演示壳体与密封组件，物料批号DEMO-LOT-C31-1104；不来自ERPNext或OpenMES实时API。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "工单时间",
+          "text": "计划开工为2026-11-0408:00:00+08:00，工单级实际开工未登记。计划时间不得当作实际时间，任何子级记录也不得补填工单级实际开工。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "工序与作业卡",
+          "text": "ERPNext离线夹具设计：工序子行DEMO-ROW-C31-1属于OP-30，工序实际开工为2026-11-0408:12:00+08:00；作业卡DEMO-JC-C31-1实际开工为08:17:00+08:00，日期同本工单演示日期。第二工序子行DEMO-ROW-C31-2和作业卡DEMO-JC-C31-2均未登记实际开工。卡与工序分别取值，不能互补。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "批次与步骤",
+          "text": "OpenMES离线夹具设计：批次DEMO-BATCH-C31-1实际开工为2026-11-0409:00:00+08:00，步骤DEMO-STEP-C31-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-C31-2未登记实际开工。另有同工单批次DEMO-BATCH-C31-2，其步骤DEMO-STEP-C31-3与第一批次不构成父子关系。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "记录状态",
+          "text": "OP-30：已登记装配数量20件，但方向检查结果未登记；OP-40：设备结果登记为合格，但原始数据记录号缺失。这些状态为样例事实，不表示真实系统当前状态。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u06",
+          "heading": "指导书映射草案",
+          "text": "步骤DEMO-STEP-C31-1拟分配来源ZH-C31-02的2.0版，步骤DEMO-STEP-C31-2拟分配来源ZH-C31-04的2.0版。两个分配均待人工审核，尚未登记到平台，不能称为已批准映射或用于线上会话绑定。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-30",
+        "OP-40"
+      ],
+      "work_order_ids": [
+        "DEMO-WO-C3101"
+      ],
+      "scope_kind": "work_order",
+      "document_code": "ZH-RECORD-C31-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-03",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-09",
+      "title": "DEMO-C31工单例外通知草案",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-09_DEMO-C31工单例外通知草案.md",
+      "sha256": "1bc07785cda76414d1543ad69c60fe246e94d72bdaa58122494979a0d6cfe04a",
+      "bytes": 1087,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "notice",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "例外身份",
+          "text": "演示例外单DEMO-EX-C31-01只针对DEMO-WO-C3101，不适用于同型号其他工单，也不是平台已审核授权。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "例外要求",
+          "text": "DEMO-WO-C3101的OP-40因数据归档接口维护，允许先保存本地原始文件并登记临时索引；只有质量人员核对临时索引可读取且完成书面确认后，才可补齐正式关联。本例外不允许空索引直接放行，不影响OP-30的逐件方向检查。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "审核边界",
+          "text": "本通知尚未审核，保留草案状态；不能把作者编写时间当作批准时间。若后续审核版本与当前快照不同，必须重新读取并冻结新版本，保留旧版本。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "引用用途",
+          "text": "本通知可说明假设场景的例外条件，不能证明例外已经执行、质量已经签署或平台已经授予访问权限。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-30",
+        "OP-40"
+      ],
+      "work_order_ids": [
+        "DEMO-WO-C3101"
+      ],
+      "scope_kind": "work_order",
+      "document_code": "ZH-NOTICE-C31-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-03",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-C31-10",
+      "title": "DEMO-C31班次交接与未完成项",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-10_DEMO-C31班次交接与未完成项.md",
+      "sha256": "878c59ab34083bf52d5ebea995a874bc2a4f7792afc9b7610ea7eef509c2f35a",
+      "bytes": 1032,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "handover",
+      "source_family": "C31",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "交接身份",
+          "text": "合成交接记录DEMO-HO-C31-01，工单DEMO-WO-C3101，日期2026-11-04，对象为本系列两道工序，全部角色与事实均为演示设定。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "交接内容",
+          "text": "装配台累计登记20件，方向检查记录仍缺失；检测台已有设备合格结果，但正式原始数据关联尚未完成。交班人只确认这些记录已移交，接班人应先核对临时索引和书面确认，不得推断本批已经质量放行。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "未完成项",
+          "text": "OP-30：方向检查结果未登记；OP-40：原始数据记录号缺失。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "追溯与更正",
+          "text": "接班后新增的检查、处置和签署应另建记录，注明记录号和时间；不得覆盖本交接原件，也不得把后来的合格结论回填为交接时已知事实。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-C31"
+      ],
+      "operation_codes": [
+        "OP-30",
+        "OP-40"
+      ],
+      "work_order_ids": [
+        "DEMO-WO-C3101"
+      ],
+      "scope_kind": "work_order",
+      "document_code": "ZH-HANDOVER-C31-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-03",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-01",
+      "title": "DEMO-D41_OP-50端子压接记录核对_历史版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+      "sha256": "e576097565e55e881d1885b5ec24afde2f7d4adef0a7b881516d46ed44d0963c",
+      "bytes": 1081,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-D41的OP-50端子压接记录核对，不得因产品名称相似用于其他系列。文件业务版本为1.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-01-01起适用，至2026-11-04结束，起止日期均包含当日。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "记录端子型号和压接数量后提交首件样品。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "异常发现后保持物料与记录可追溯，提请质量人员确认后再处理。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用演示工艺卡与首件记录台账核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-50"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-D41-OP-50",
+      "business_revision": "1.0",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-11-04",
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-02",
+      "title": "DEMO-D41_OP-50端子压接记录核对_现行演示版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+      "sha256": "c212885e28c89fd698be0f9da6dd6e19f1d2e360c9d268da81694150030786bb",
+      "bytes": 1212,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-D41的OP-50端子压接记录核对，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-11-05起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "分别登记端子批号、线材批号、模具编号和首件检查记录号，确认四项对应本工单后提交质量复核；压接机启动记录不能替代首件检查记录。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "更换模具或端子批次时重新建立首件记录；设备点检正常不能免除本次首件检查。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用演示工艺卡与首件记录台账核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-50"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-D41-OP-50",
+      "business_revision": "2.0",
+      "effective_from": "2026-11-05",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-03",
+      "title": "DEMO-D41_OP-60导通检测与标识核对_历史版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-03_DEMO-D41_OP-60导通检测与标识核对_历史版.md",
+      "sha256": "7f020b05fbe4ee758507a50fa0acb191e0c1572e59fb4439b9967acea6cb36f8",
+      "bytes": 1084,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-D41的OP-60导通检测与标识核对，不得因产品名称相似用于其他系列。文件业务版本为1.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-01-01起适用，至2026-11-04结束，起止日期均包含当日。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "导通检测显示通过后贴上产品标签。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "异常发现后保持物料与记录可追溯，提请质量人员确认后再处理。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用受控针位映射清单及序列号标签核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-60"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-D41-OP-60",
+      "business_revision": "1.0",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-11-04",
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-04",
+      "title": "DEMO-D41_OP-60导通检测与标识核对_现行演示版",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-04_DEMO-D41_OP-60导通检测与标识核对_现行演示版.md",
+      "sha256": "de2d4ad5b5d021e5030b35dad1f27732d614d9efc79e00e49c1bf9252ffb3331",
+      "bytes": 1236,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "instruction",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用范围",
+          "text": "本指导书仅适用于演示产品DEMO-D41的OP-60导通检测与标识核对，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "版本区间",
+          "text": "本版从2026-11-05起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "作业要求",
+          "text": "核对检测程序版本、针位映射版本和产品序列号，再分别登记导通结果与标签核对结果；导通通过不能证明标签内容或针位映射版本正确。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "变更后复核",
+          "text": "针位映射变更后使用新映射进行首件核对；旧映射的通过记录不得复制为新映射的验证结论。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "工具与记录",
+          "text": "使用受控针位映射清单及序列号标签核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-60"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSTRUCTION-D41-OP-60",
+      "business_revision": "2.0",
+      "effective_from": "2026-11-05",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-05",
+      "title": "DEMO-D41_OP-50检验要求与记录辨析",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+      "sha256": "6aab4ccfe54e6112d0efc19f2147a47145d3f2b095e54dad9b07e98a05f25f11",
+      "bytes": 38905,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "inspection",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用对象",
+          "text": "本规范适用于DEMO-D41的OP-50端子压接记录核对。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "检查要求",
+          "text": "端子与线材批号可追溯，模具编号与演示工艺卡一致，首件检查记录有对应质量复核结论。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "取样与触发",
+          "text": "首件检查按每次换模或换端子批次触发，不以班次开始的一份记录覆盖后续全部变更。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "演示记录辨析",
+          "text": "演示记录模具编号为MJ-D41-02，首件记录号为DEMO-FA-D41-01，复核结论尚未填写。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "签署与处置",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u06",
+          "heading": "来源追溯",
+          "text": "登记产品DEMO-D41、工单DEMO-WO-D4101、工序OP-50、物料批号DEMO-LOT-D41-1106、文件版次及原始记录编号，保留更正前的历史记录。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-50"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSPECTION-D41-OP-50",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-05",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-06",
+      "title": "DEMO-D41_OP-60检验要求与记录辨析",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+      "sha256": "21631f4ec1634d8c64a2c56a19a5e6cd47fdd0cc1aa11d1b3cc4d8eff232bb17",
+      "bytes": 38562,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "inspection",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "适用对象",
+          "text": "本规范适用于DEMO-D41的OP-60导通检测与标识核对。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "检查要求",
+          "text": "程序版本T3与映射版本MAP-2匹配，导通结果通过且标签序列号与该件记录一致。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "取样与触发",
+          "text": "每件独立关联序列号和检测记录，合并上传不能丢失单件对应关系。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "演示记录辨析",
+          "text": "演示记录程序版本T3、映射版本MAP-1、导通结果通过；映射版本不符，应保持待处置。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "签署与处置",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u06",
+          "heading": "来源追溯",
+          "text": "登记产品DEMO-D41、工单DEMO-WO-D4101、工序OP-60、物料批号DEMO-LOT-D41-1106、文件版次及原始记录编号，保留更正前的历史记录。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-60"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-INSPECTION-D41-OP-60",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-05",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-07",
+      "title": "DEMO-D41工艺变更通知",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-07_DEMO-D41工艺变更通知.md",
+      "sha256": "95a86e5ef893935246d5246261d0dd513f19fea667e2eae9c5564c8eb7ab8efd",
+      "bytes": 1435,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "change_notice",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "变更对象",
+          "text": "演示变更单DEMO-ECN-D41-02将DEMO-D41的两份作业指导书更新至2.0版，切换日期为2026-11-05，仅适用于本系列明确列出的两道工序。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "变更内容",
+          "text": "OP-50新增要求：分别登记端子批号、线材批号、模具编号和首件检查记录号，确认四项对应本工单后提交质量复核；压接机启动记录不能替代首件检查记录。；OP-60新增要求：核对检测程序版本、针位映射版本和产品序列号，再分别登记导通结果与标签核对结果；导通通过不能证明标签内容或针位映射版本正确。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "切换条件",
+          "text": "工单时间只能作为选版条件之一；仍须核对产品、工序、有效区间和已审核适用性。通知已编写不表示平台审核已批准；本资料包所有映射仍是草案。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "已开工工单",
+          "text": "未取得明确书面切换指示的既有工单，不因新通知存在就自动切换指导书；多个书面指示冲突时应保留冲突并请求审核者确认。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "关联文件",
+          "text": "对应的新指导书来源编号为ZH-D41-02、ZH-D41-04，引用变更单不能替代对所选指导书原文及版本的核对。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-50",
+        "OP-60"
+      ],
+      "work_order_ids": [],
+      "scope_kind": "product_operation",
+      "document_code": "ZH-CHANGE_NOTICE-D41-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-05",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-08",
+      "title": "DEMO-D41工单执行记录与离线夹具设计",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+      "sha256": "8dc2ec7b3c5fa28d35c8b119c37fbca2f244a3f6b3de281cd09aea00eca53362",
+      "bytes": 1882,
+      "format": "txt",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "record",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "记录身份",
+          "text": "本台账为合成离线记录，工单DEMO-WO-D4101，产品DEMO-D41，计划数量60件，物料演示端子与线材组件，物料批号DEMO-LOT-D41-1106；不来自ERPNext或OpenMES实时API。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "工单时间",
+          "text": "计划开工为2026-11-0608:00:00+08:00，工单级实际开工未登记。计划时间不得当作实际时间，任何子级记录也不得补填工单级实际开工。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "工序与作业卡",
+          "text": "ERPNext离线夹具设计：工序子行DEMO-ROW-D41-1属于OP-50，工序实际开工为2026-11-0608:12:00+08:00；作业卡DEMO-JC-D41-1实际开工为08:17:00+08:00，日期同本工单演示日期。第二工序子行DEMO-ROW-D41-2和作业卡DEMO-JC-D41-2均未登记实际开工。卡与工序分别取值，不能互补。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "批次与步骤",
+          "text": "OpenMES离线夹具设计：批次DEMO-BATCH-D41-1实际开工为2026-11-0609:00:00+08:00，步骤DEMO-STEP-D41-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-D41-2未登记实际开工。另有同工单批次DEMO-BATCH-D41-2，其步骤DEMO-STEP-D41-3与第一批次不构成父子关系。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u05",
+          "heading": "记录状态",
+          "text": "OP-50：模具编号与首件记录号已登记，但首件复核结论缺失；OP-60：旧映射下导通结果通过，但新映射首件验证未完成。这些状态为样例事实，不表示真实系统当前状态。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u06",
+          "heading": "指导书映射草案",
+          "text": "步骤DEMO-STEP-D41-1拟分配来源ZH-D41-02的2.0版，步骤DEMO-STEP-D41-2拟分配来源ZH-D41-04的2.0版。两个分配均待人工审核，尚未登记到平台，不能称为已批准映射或用于线上会话绑定。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-50",
+        "OP-60"
+      ],
+      "work_order_ids": [
+        "DEMO-WO-D4101"
+      ],
+      "scope_kind": "work_order",
+      "document_code": "ZH-RECORD-D41-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-05",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-09",
+      "title": "DEMO-D41工单例外通知草案",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-09_DEMO-D41工单例外通知草案.md",
+      "sha256": "6aaad236fade8d156f5efc31f5acb0a81a6857904e03abafa107aa68c431e198",
+      "bytes": 1041,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "notice",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "例外身份",
+          "text": "演示例外单DEMO-EX-D41-01只针对DEMO-WO-D4101，不适用于同型号其他工单，也不是平台已审核授权。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "例外要求",
+          "text": "DEMO-WO-D4101的OP-60仅允许工程人员在隔离的演示验证件上对照MAP-1与MAP-2，不得将MAP-1的通过结果转写成MAP-2验证通过；演示验证件不计入可交付数量。本例外不豁免OP-50的换模首件复核。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "审核边界",
+          "text": "本通知尚未审核，保留草案状态；不能把作者编写时间当作批准时间。若后续审核版本与当前快照不同，必须重新读取并冻结新版本，保留旧版本。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "引用用途",
+          "text": "本通知可说明假设场景的例外条件，不能证明例外已经执行、质量已经签署或平台已经授予访问权限。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-50",
+        "OP-60"
+      ],
+      "work_order_ids": [
+        "DEMO-WO-D4101"
+      ],
+      "scope_kind": "work_order",
+      "document_code": "ZH-NOTICE-D41-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-05",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-D41-10",
+      "title": "DEMO-D41班次交接与未完成项",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+      "sha256": "dce4fc1b506c19d7bd0bc8a41d4429ad1357c35c89b6d4e77bfa6b568f330fdb",
+      "bytes": 1001,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "synthetic_business",
+      "document_role": "handover",
+      "source_family": "D41",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "交接身份",
+          "text": "合成交接记录DEMO-HO-D41-01，工单DEMO-WO-D4101，日期2026-11-06，对象为本系列两道工序，全部角色与事实均为演示设定。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "交接内容",
+          "text": "压接台已登记模具及首件记录号，质量结论为空；电测台在MAP-1下显示通过，新MAP-2首件尚未完成。接班时应区分验证件与待交付件，不能因导通通过或交接签名而改变待处置状态。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "未完成项",
+          "text": "OP-50：首件复核结论缺失；OP-60：新映射首件验证未完成。",
+          "scope": "synthetic_rule_or_record"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "追溯与更正",
+          "text": "接班后新增的检查、处置和签署应另建记录，注明记录号和时间；不得覆盖本交接原件，也不得把后来的合格结论回填为交接时已知事实。",
+          "scope": "synthetic_rule_or_record"
+        }
+      ],
+      "product_models": [
+        "DEMO-D41"
+      ],
+      "operation_codes": [
+        "OP-50",
+        "OP-60"
+      ],
+      "work_order_ids": [
+        "DEMO-WO-D4101"
+      ],
+      "scope_kind": "work_order",
+      "document_code": "ZH-HANDOVER-D41-ALL",
+      "business_revision": "1.0",
+      "effective_from": "2026-11-05",
+      "effective_to": null,
+      "interval_convention": "inclusive_dates",
+      "applicability_review_state": "draft",
+      "rights_status": "assistant_authored_synthetic_demo",
+      "factory_approved": false
+    },
+    {
+      "id": "ZH-PUB-01",
+      "title": "工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+      "sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "bytes": 229513,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "public_original",
+      "source_family": "industrial-quality-responsibility-75",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+      "landing_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/t20230811_6224396.htm",
+      "publisher": "国家市场监督管理总局（福建省市场监督管理局公开附件）",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "use_note": "研究与评测参考；保留署名和来源。公开发行全文前须另核复用条件。",
+      "validity_status": "locked_document_edition; latest_applicability_not_certified",
+      "legacy_manifest": "sample_docs/manufacturing_zh_v3/manifest.json"
+    },
+    {
+      "id": "ZH-PUB-02",
+      "title": "辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+      "sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+      "bytes": 13382,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "public_web_conversion",
+      "source_family": "industrial-quality-responsibility-75",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "source_url": "https://scjg.ln.gov.cn/scjdglj/fw/wyk/tbtg/cpzlaqjg/2023070414585541222/index.shtml",
+      "landing_url": "https://scjg.ln.gov.cn/scjdglj/fw/wyk/tbtg/cpzlaqjg/2023070414585541222/index.shtml",
+      "publisher": "辽宁省市场监督管理局",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "use_note": "研究与评测参考；保留署名和来源。公开发行全文前须另核复用条件。",
+      "validity_status": "locked_document_edition; latest_applicability_not_certified",
+      "legacy_manifest": "sample_docs/manufacturing_zh_v3/manifest.json"
+    },
+    {
+      "id": "ZH-PUB-03",
+      "title": "推进重点工业产品质量安全追溯的实施意见及附件_2024",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+      "sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "bytes": 15253,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "public_web_conversion",
+      "source_family": "industrial-product-traceability-2024",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "source_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+      "landing_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+      "publisher": "国家市场监督管理总局（会同县人民政府公开转载）",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "use_note": "研究与评测参考；保留署名和来源。公开发行全文前须另核复用条件。",
+      "validity_status": "locked_document_edition; latest_applicability_not_certified",
+      "legacy_manifest": "sample_docs/manufacturing_zh_v3/manifest.json"
+    },
+    {
+      "id": "ZH-PUB-04",
+      "title": "制造业质量管理数字化实施指南_试行_2021",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+      "sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "bytes": 274523,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "public_original",
+      "source_family": "manufacturing-quality-digitalization-2021",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+      "landing_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/t20231020_582526.html",
+      "publisher": "工业和信息化部（鄂州葛店经济技术开发区官方转载）",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "use_note": "研究与评测参考；保留署名和来源。公开发行全文前须另核复用条件。",
+      "validity_status": "locked_document_edition; latest_applicability_not_certified",
+      "legacy_manifest": "sample_docs/manufacturing_zh_v3/manifest.json"
+    },
+    {
+      "id": "ZH-PUB-05",
+      "title": "盐雾试验设备校准规范_JJF吉92-2021",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+      "sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+      "bytes": 1011194,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "public_original",
+      "source_family": "jl-salt-mist-92-2021",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831582548526055.pdf",
+      "landing_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/",
+      "publisher": "吉林省市场监督管理厅",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "use_note": "研究与评测参考；保留署名和来源。公开发行全文前须另核复用条件。",
+      "validity_status": "locked_document_edition; latest_applicability_not_certified",
+      "legacy_manifest": "sample_docs/manufacturing_zh_v3/manifest.json"
+    },
+    {
+      "id": "ZH-PUB-06",
+      "title": "砂尘试验设备校准规范_JJF吉121-2023",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+      "sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+      "bytes": 717240,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "public_original",
+      "source_family": "jl-sand-dust-121-2023",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202312/P020231208306770938636.pdf",
+      "landing_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/",
+      "publisher": "吉林省市场监督管理厅",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "use_note": "研究与评测参考；保留署名和来源。公开发行全文前须另核复用条件。",
+      "validity_status": "locked_document_edition; latest_applicability_not_certified",
+      "legacy_manifest": "sample_docs/manufacturing_zh_v3/manifest.json"
+    },
+    {
+      "id": "ZH-PUB-07",
+      "title": "热工仪表校验仪校准规范_JJF吉31-2021",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+      "sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+      "bytes": 1195161,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "public_original",
+      "source_family": "jl-thermal-calibrator-31-2021",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202108/P020210831581706202719.pdf",
+      "landing_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/",
+      "publisher": "吉林省市场监督管理厅",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "use_note": "研究与评测参考；保留署名和来源。公开发行全文前须另核复用条件。",
+      "validity_status": "locked_document_edition; latest_applicability_not_certified",
+      "legacy_manifest": "sample_docs/manufacturing_zh_v3/manifest.json"
+    },
+    {
+      "id": "ZH-PUB-08",
+      "title": "压合机校准规范_JJF吉103-2022",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+      "sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+      "bytes": 944005,
+      "format": "pdf",
+      "language": "zh-CN",
+      "source_kind": "public_original",
+      "source_family": "jl-compactor-103-2022",
+      "origin": "existing_reference",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "source_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/202211/P020221125244262240961.pdf",
+      "landing_url": "https://scjg.jl.gov.cn/fw/wsbl/jlxxfw/jljsgf/dfjzgf/",
+      "publisher": "吉林省市场监督管理厅",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "use_note": "研究与评测参考；保留署名和来源。公开发行全文前须另核复用条件。",
+      "validity_status": "locked_document_edition; latest_applicability_not_certified",
+      "legacy_manifest": "sample_docs/manufacturing_zh_v3/manifest.json"
+    },
+    {
+      "id": "ZH-PUB-09",
+      "title": "中小企业数字化转型路径导读",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/公开参考导读/ZH-PUB-09_中小企业数字化转型路径导读.md",
+      "sha256": "11e3ba6008af4f05cf578fa5e235c21c39ea0fa1a7279ad8451fc6a55828fe9f",
+      "bytes": 1033,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "public_summary",
+      "document_role": "reference",
+      "source_family": "sme-digital-guide-2022",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "事实摘要一",
+          "text": "政策解读面向中小企业、数字化转型服务供给方和地方主管部门，分别说明需求、供给与支持工作的定位。",
+          "scope": "source_summary"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "事实摘要二",
+          "text": "转型思路包括从易到难、由点到面、长期迭代和多方协同。企业可以先选择基础较好、价值较高的环节，再逐步扩大覆盖范围。",
+          "scope": "source_summary"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "应用边界",
+          "text": "转型按照评估、规划、实施和优化持续推进。这些路径建议不能证明某家企业已完成转型，也不提供某张工单的执行结果。",
+          "scope": "author_application_boundary"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "中文来源",
+          "text": "原文：中小企业数字化转型指南政策解读。发布机构：工业和信息化部信息技术发展司。网页发布日期：2022-11-09。来源链接：https://www.miit.gov.cn/zwgk/zcjd/art/2022/art_f2be257809da425cb6159c367940ccd5.html。",
+          "scope": "source_summary"
+        }
+      ],
+      "source_url": "https://www.miit.gov.cn/zwgk/zcjd/art/2022/art_f2be257809da425cb6159c367940ccd5.html",
+      "publisher": "工业和信息化部信息技术发展司",
+      "published_date": "2022-11-09",
+      "rights_status": "new_short_summary_original_not_republished",
+      "validity_status": "locked_reference_latest_applicability_not_certified"
+    },
+    {
+      "id": "ZH-PUB-10",
+      "title": "智能制造典型场景与工艺知识导读",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/公开参考导读/ZH-PUB-10_智能制造典型场景与工艺知识导读.md",
+      "sha256": "d64bd1e5088ecf5a2d9b036be1817350700b096ebd521f897f4b37d1a79fe413",
+      "bytes": 1038,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "public_summary",
+      "document_role": "reference",
+      "source_family": "smart-manufacturing-scenarios-2025",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "事实摘要一",
+          "text": "2025年版参考指引归纳八个重点环节的四十个典型场景，用于智能工厂培育、解决方案及标准工作参考。",
+          "scope": "source_summary"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "事实摘要二",
+          "text": "工艺数字化设计涉及流程设计、验证和优化，可以建设工艺知识库。生产进度跟踪则关注生产数据获取、进度监控及指标计算，两者处理的业务对象不同。",
+          "scope": "source_summary"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "应用边界",
+          "text": "场景建设方向不能代替具体产品的受控指导书，也不能证明某批次已执行、某步骤已通过质量检查。",
+          "scope": "author_application_boundary"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "中文来源",
+          "text": "原文：智能制造典型场景参考指引2025年版。发布机构：工业和信息化部 湖北省经济和信息化厅转载。网页发布日期：2025-05-12。来源链接：https://jxt.hubei.gov.cn/bmdt/rdjj/202505/t20250512_5646450.shtml。",
+          "scope": "source_summary"
+        }
+      ],
+      "source_url": "https://jxt.hubei.gov.cn/bmdt/rdjj/202505/t20250512_5646450.shtml",
+      "publisher": "工业和信息化部 湖北省经济和信息化厅转载",
+      "published_date": "2025-05-12",
+      "rights_status": "new_short_summary_original_not_republished",
+      "validity_status": "locked_reference_latest_applicability_not_certified"
+    },
+    {
+      "id": "ZH-PUB-11",
+      "title": "智能制造标准体系建设通知导读",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/公开参考导读/ZH-PUB-11_智能制造标准体系建设通知导读.md",
+      "sha256": "50cf2b75c21ff5885bc288b3503cda313c06e530ea50bd8fd85962e3bd1f8cd5",
+      "bytes": 1096,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "public_summary",
+      "document_role": "reference",
+      "source_family": "smart-manufacturing-standards-2024",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "事实摘要一",
+          "text": "通知文号为工信部联科〔2025〕60号，成文日期为2025年3月7日，网页发布日期为2025年4月22日；指南名称中的2024版与发布日期不是同一个概念。",
+          "scope": "source_summary"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "事实摘要二",
+          "text": "通知说明该指南服务于智能制造标准化工作的顶层设计与标准引领。网页通知正文不包含某台设备的参数或某产品的验收限值。",
+          "scope": "source_summary"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "应用边界",
+          "text": "引用时应分别记录指南版次、通知日期和获取日期，不应仅凭新版通知推断企业原有指导书已经失效。",
+          "scope": "author_application_boundary"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "中文来源",
+          "text": "原文：关于印发国家智能制造标准体系建设指南2024版的通知。发布机构：工业和信息化部 国家标准化管理委员会。网页发布日期：2025-04-22。来源链接：https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_03f60d66fa7b4b95abbea92d155da941.html。",
+          "scope": "source_summary"
+        }
+      ],
+      "source_url": "https://www.miit.gov.cn/zwgk/zcwj/wjfb/tz/art/2025/art_03f60d66fa7b4b95abbea92d155da941.html",
+      "publisher": "工业和信息化部 国家标准化管理委员会",
+      "published_date": "2025-04-22",
+      "rights_status": "new_short_summary_original_not_republished",
+      "validity_status": "locked_reference_latest_applicability_not_certified"
+    },
+    {
+      "id": "ZH-PUB-12",
+      "title": "质量基础设施与质量目标导读",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/公开参考导读/ZH-PUB-12_质量基础设施与质量目标导读.md",
+      "sha256": "92ec261d2b8163c80aaf33d3f2c1567ce43189027b39244c82bd74c0aa8c449c",
+      "bytes": 1019,
+      "format": "md",
+      "language": "zh-CN",
+      "source_kind": "public_summary",
+      "document_role": "reference",
+      "source_family": "quality-nation-outline-2023",
+      "origin": "new",
+      "scan": false,
+      "review_status": "pending_human_review",
+      "approved": false,
+      "indexed": false,
+      "live_verified_this_batch": false,
+      "evidence": [
+        {
+          "unit_id": "u01",
+          "heading": "事实摘要一",
+          "text": "纲要提出全面质量管理和质量基础设施建设方向，涉及计量、标准、认证认可和检验检测等能力的协同。",
+          "scope": "source_summary"
+        },
+        {
+          "unit_id": "u02",
+          "heading": "事实摘要二",
+          "text": "纲要中的阶段目标属于宏观建设目标，不能转写为某一演示产品的合格判定、抽样数量或企业已实现的经营指标。",
+          "scope": "source_summary"
+        },
+        {
+          "unit_id": "u03",
+          "heading": "应用边界",
+          "text": "具体产品检验仍需适用的图样、技术要求及受控检验文件，并由对应记录证明执行情况；政策目标与产品执行证据应分别引用。",
+          "scope": "author_application_boundary"
+        },
+        {
+          "unit_id": "u04",
+          "heading": "中文来源",
+          "text": "原文：质量强国建设纲要。发布机构：中共中央 国务院 工业和信息化部转载。网页发布日期：2023-02-16。来源链接：https://www.miit.gov.cn/threestrategy/zcgh/zlgh/art/2023/art_f25b7ab14d4e492bba4ee7aef7412fa7.html。",
+          "scope": "source_summary"
+        }
+      ],
+      "source_url": "https://www.miit.gov.cn/threestrategy/zcgh/zlgh/art/2023/art_f25b7ab14d4e492bba4ee7aef7412fa7.html",
+      "publisher": "中共中央 国务院 工业和信息化部转载",
+      "published_date": "2023-02-16",
+      "rights_status": "new_short_summary_original_not_republished",
+      "validity_status": "locked_reference_latest_applicability_not_certified"
+    }
+  ]
+}
