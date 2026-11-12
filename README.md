@@ -12,6 +12,8 @@
 
 求职展示可从[5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)开始；可复制的 AI 应用开发与后端／制造业 IT 两版描述见[简历项目描述](docs/MANUFACTURING_RESUME.md)。当前8005/8006采用零模型模式，现场展示业务查询、来源和会话，模型作业指导展示已保留的真实批次记录。
 
+最新[黄金候选v3完整100题](evals/manufacturing_gold_100_live_v3/README.md)独立隔离单次执行为**结构93/100、助手非独立语义78/100**；79道模型参与题通过58道，21道零模型题通过20道。业务代码未新增修复，22题未全过，包含回答遗漏、无来源补充、输出校验拒答、标注模板差异及身份/供应商问题；084仍将检查要求写成已登记结果。242调用、1,109,868预算Token，无重试补跑或新索引；[完整报告](docs/reports/manufacturing-gold100-v3-live-20261112-r1.md)。旧82/100及七题6/7原样保留，不拼分，不称独立盲测或工厂验收。
+
 ## 典型业务场景
 
 - **查询执行记录**：选择工单、工序/作业卡或批次/步骤，分别查询实际开工及登记状态；缺失值保持未知，计划时间和父子实体时间不互相补齐。
@@ -34,6 +36,7 @@
 | 制造业40题黄金候选与人工审阅 | [题集说明](evals/manufacturing_gold_v1/README.md)、[逐题答案与证据](evals/manufacturing_gold_v1/REVIEW.md)；40题待审核，未执行、无新成绩 |
 | 中文100题候选与隔离单次验证 | [候选与证据](evals/manufacturing_gold_100_v1/README.md)、[隔离运行说明](evals/manufacturing_gold_100_live_v1/README.md)、[本轮报告](docs/reports/manufacturing-gold100-live-20261112-r1.md)；结构89/100、助手非独立语义69/100，独立人工批准0，未全量通过 |
 | 百题候选v2与单次验证 | [题目、答案与证据](evals/manufacturing_gold_100_v2/REVIEW.md)、[语料格式修订](sample_docs/manufacturing_zh_corrections_v2/README.md)、[运行与结果](evals/manufacturing_gold_100_live_v2/README.md)、[本轮报告](docs/reports/manufacturing-gold100-v2-live-20261112-r1.md)；结构96/100、助手非独立语义82/100，保留18题未全过，不与旧批次拼分 |
+| 百题候选v3与最新完整验证 | [候选与复核口径](evals/manufacturing_gold_100_v3/README.md)、[完整100题结果](evals/manufacturing_gold_100_live_v3/README.md)、[报告](docs/reports/manufacturing-gold100-v3-live-20261112-r1.md)；结构93/100、助手非独立语义78/100，22题未全过，旧成绩保留、不拼分 |
 | 中文语料扩充与100题证据 | [55份中文资料](sample_docs/manufacturing_zh_expansion_v1/README.md)、[原离线验收](docs/reports/manufacturing-zh-expansion-20261112-r1.md)；本轮仅在新隔离副本发布55份/885块，现有演示环境未更新 |
 | 保留的8000稳定展示、部门配置及98题成绩 | [制造业演示指南](docs/MANUFACTURING_DEMO.md)、[冻结发布清单](evals/manufacturing_zh_lite_v1/demo_release.json) |
 | 通用120题历史基线及评测入口 | [统一评测套件](evals/current/README.md) |
@@ -100,6 +103,7 @@ flowchart LR
 | ERPNext 零模型隔离候选，当前演示入口 | 复用[18080](http://127.0.0.1:18080/) | [8005](http://127.0.0.1:8005/) | `e386bf4` 主线归档及部署专用零预算入口；独立数据库副本、Redis及原件卷。[部署与启动记录](docs/reports/main-isolated-demo-20261110-r1.md) |
 | OpenMES 零模型隔离候选，当前演示入口 | 复用[18081](http://127.0.0.1:18081/) | [8006](http://127.0.0.1:8006/) | 同一主线归档及零预算入口；独立数据库副本、Redis及原件卷。[部署与启动记录](docs/reports/main-isolated-demo-20261110-r1.md) |
 | 百题真实验证专用夹具 | ERP复用只读上游；MES另建克隆 | 无公开端口，使用隔离运行器 | 两个平台数据库/原件卷及专用向量集合，55份资料/885块。本轮已执行，不能重跑已消费批次；8005/8006页面未更新。[运行说明](evals/manufacturing_gold_100_live_v1/README.md) |
+| v3百题隔离夹具，另行保留 | ERP复用只读上游；MES新克隆 | 无公开端口，CLI单次运行 | 两个新平台库/Redis，原件与既有向量索引只读复用，55份/885当前块；未更新旧环境。[运行说明](evals/manufacturing_gold_100_live_v3/README.md) |
 | ERPNext 原工作台，独立保留 | [18080](http://127.0.0.1:18080/) | [8003](http://127.0.0.1:8003/) | E4后端 `2680ce0`，页面 `f6a53ca` 补丁；[当前镜像与启动入口](docs/reports/frontend-deploy-20261110-r1.md)、[质量接入](docs/ERPNEXT_QUALITY.md) |
 | OpenMES 原工作台，独立保留 | [18081](http://127.0.0.1:18081/) | [8004](http://127.0.0.1:8004/) | O4/O5后端 `609d23d`，页面 `f6a53ca` 补丁；[当前镜像与启动入口](docs/reports/frontend-deploy-20261110-r1.md)、[审核与冻结](docs/OPENMES_GUIDANCE_QUALITY.md) |
 
@@ -111,10 +115,11 @@ flowchart LR
 
 ## 当前验收状态
 
-截至2026-11-12，新百题候选单次隔离验证结构89/100、助手非独立语义69/100，暴露回答覆盖、数字/日期误拒及业务推论问题，未全量通过。旧ERPNext评分v2批次保留自动16/16、非独立15/16，不能与新百题换分母比较。工程回归、模型验证、零模型部署及工厂验收分别记录：
+截至2026-11-12，最新v3完整百题单次隔离验证结构93/100、助手非独立语义78/100，22题未全过。旧v1的69/100、v2的82/100、定向七题6/7及ERPNext评分v2的自动16/16、非独立15/16分别保留；不能换分母比较或拼分。工程回归、模型验证、零模型部署及工厂验收分别记录：
 
 | 范围 | 已记录结果 | 结论与证据 |
 | --- | --- | --- |
+| 最新v3完整100题隔离验证 | 结构93/100、助手非独立语义78/100；79道模型参与题58/79，21道零模型题20/21 | 242调用、949868已知及1109868预算Token，5次未知预留；无索引、重试补跑，不拼分，22题未全过。[完整报告](docs/reports/manufacturing-gold100-v3-live-20261112-r1.md) |
 | 新100题中文候选隔离验证 | 结构89/100、助手非独立语义69/100；82道用例内有模型调用、18道零模型 | 问答243调用、969332已知Token，3次未知预留后1065332预算Token；索引另104调用/101449 Token。无重试补跑、不拼分，未全量通过，原环境保持。[完整报告](docs/reports/manufacturing-gold100-live-20261112-r1.md) |
 | 最近完整主线工程回归 | `e386bf4` 上2406项非集成通过、1项既有跳过、98项集成排除；独立PostgreSQL M3/M4为14/12项通过 | 属于合并检查，未调用真实模型；后续 `cd5c2be` 部署记录合并另有72项定向测试及120题套件完整性通过。[阶段记录](docs/MANUFACTURING_PHASE1_PROGRESS.md#2026-11-10-求职文档与已保留合并检查记录)；业务约束改造时的2396项回归另见[专题报告](docs/reports/manufacturing-answer-contracts-20261110-r1.md) |
 | ERPNext 最新完整16题真实模型开发验证，评分v2 | 自动16/16、关键6/6；助手非独立15/16、关键5/6 | 8道模型参与题自动8/8、非独立7/8，另8道为零模型题；Q007比较覆盖不足，整体未标通过。31次物理调用、121777 Token；无重试补跑、无拼分。[完整报告](docs/reports/erpnext-model-v2-20261110-r1.md) |

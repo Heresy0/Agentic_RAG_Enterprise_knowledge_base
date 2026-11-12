@@ -1,0 +1,53 @@
+{
+  "business_source": {
+    "normal_erp_adapter_readonly": true,
+    "normal_openmes_token_probe": {
+      "read_status": 200,
+      "write_status": 403,
+      "records_unchanged": true,
+      "model_calls": 0
+    },
+    "fixture_controller_only_new_mes_clone": "gold100-v3-upstream-mes-20261112-r1",
+    "old_application_ledgers_checked": 9,
+    "old_ledgers_unchanged": true,
+    "business_files_before_after": {
+      "erp": {
+        "files": 167,
+        "matches_revision": "b741bd2"
+      },
+      "mes": {
+        "files": 167,
+        "matches_revision": "b741bd2"
+      }
+    },
+    "model_endpoints": {
+      "erp": {
+        "DASHSCOPE_BASE_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com",
+        "DASHSCOPE_RERANK_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com"
+      },
+      "mes": {
+        "DASHSCOPE_BASE_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com",
+        "DASHSCOPE_RERANK_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com"
+      }
+    },
+    "model_postflight_calls": 0,
+    "new_index_calls": 0
+  },
+  "snapshots": {
+    "observed_requests": 253,
+    "qa_post_requests": 110,
+    "snapshot_get_requests": 95,
+    "manufacturing_snapshots": 34,
+    "all_three_reads_and_validations": true
+  },
+  "v3_preflight": {
+    "platforms": 2,
+    "documents_each": 55,
+    "chunks_each": 885,
+    "index_calls": 0,
+    "auth": "normal_keycloak_sub_and_existing_grants",
+    "fresh_identity_files_owned_by_application": true,
+    "source_faults_only_new_mes_clone": true,
+    "old_environments_modified": false
+  }
+}

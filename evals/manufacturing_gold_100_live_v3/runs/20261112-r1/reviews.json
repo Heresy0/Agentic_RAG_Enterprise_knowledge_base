@@ -1,0 +1,3920 @@
+[
+  {
+    "case_id": "MFG-GOLD-001",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "工单2026-09-28实际开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "无具体书面切换通知则沿用1.0",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "连续2件",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "交付工单实际开工日期、通知列表为空及适用1.0，符合本工单无切换通知的选版；未回答连续2件。",
+    "raw_result_sha256": "5022b0270330504c9d557c0e1ec3ba360596cf8d7cf1a317a857f02be0600128"
+  },
+  {
+    "case_id": "MFG-GOLD-002",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "2.0版",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "连续3件",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "全部必检合格且质量人员签署",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "最终为证据校验拒答，没有交付首件数量及合格签署要求；适用性元数据2.0不替代问答内容。",
+    "raw_result_sha256": "89bd0e27e3de1f9407a9093e6bf26a4a0c819957a703aa9417deaeef0ea7deb7"
+  },
+  {
+    "case_id": "MFG-GOLD-003",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "分别交代2件/3件",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "新版是超过4小时后重新开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "明确所引旧版原文未给出该阈值",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "当前仍按1.0",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "正确对照2件/3件、新版超过4小时后重新开工及当前旧工单1.0；未明确所引旧版原文没有该阈值，不把仅展示旧规则等同已说明缺项。",
+    "raw_result_sha256": "e5a05b4d5243eeb6548997f5c50517d5fcbe97ea62419f6aedd41abec85d1956"
+  },
+  {
+    "case_id": "MFG-GOLD-004",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "更换后重新首件确认",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "连续2件",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "全部合格并质量签署",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "完整旧版规则明确治具更换后重新首件、连续2件、全部合格和质量签署，适用1.0。",
+    "raw_result_sha256": "c76f652e59defcfc5b22893819998504e48f211f4e270ca4ce9f76f87940382c"
+  },
+  {
+    "case_id": "MFG-GOLD-005",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "新工单开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "更换定位治具",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "连续停机超过4小时后重新开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "任一触发",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "按现行指导书列出三种须重新首件的情形，语义为各情形独立触发，另正确说明停机项新增、换治具两版一致，未要求同时发生。",
+    "raw_result_sha256": "7c2c2a4f9e5a083a63aed67ce8fdce79301afc40cae066252ca2b809ace025c2"
+  },
+  {
+    "case_id": "MFG-GOLD-006",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "恰好4小时不满足超过4小时，不能仅凭恰好4小时认定命中该条款",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "明确限定为超过4小时这一停机条款，恰好4小时不命中；未说停机阈值是所有重新首件的唯一条件，未额外要求复述可选语境。",
+    "raw_result_sha256": "aee994cca8bd7a8fb8d267977178a86fb6583a728a1dd3b7d48bb212002f2994"
+  },
+  {
+    "case_id": "MFG-GOLD-007",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "须重新进行首件确认",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "连续检查3件",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "所有必检项目全部合格",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "由质量人员签署后才能恢复后续作业",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "承接题设停机后重新开工，明确恢复前须首件检查连续3件、全部必检合格和质量签署，等价表达重新首件要求；记录及班长核对均有对应流程来源。",
+    "raw_result_sha256": "4f9c30b2d3fb965ee313dc9a0f4d33ac7b6b41b9d99f88c7ebab09c7f750fdad"
+  },
+  {
+    "case_id": "MFG-GOLD-008",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "19.95至20.05 mm",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "两端包含",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "MIC-025",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "外径区间、上下限包含及MIC-025均正确，合格值限定在所问外径范围内。",
+    "raw_result_sha256": "2cf9bdefa0a3396d72f26206030f2dd01fc117e0e0afb7a8bd2911c39fb6d073"
+  },
+  {
+    "case_id": "MFG-GOLD-009",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "12.00至12.10 mm且包含端点",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "CAL-150",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "先清洁孔内切屑",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [
+      "无来源补充：孔深测量的端点为孔底（即深度测量的基准面）；问句端点为区间上下限，引用规范不支持该几何基准说法。"
+    ],
+    "passed": false,
+    "note": "孔深范围含端点、CAL-150和清洁切屑均命中；主动补充把区间端点说成孔底及深度基准面，原文没有这项测量说明。",
+    "raw_result_sha256": "8606377fe0c0f5a369b469f96fdd9bbcb094374586df1a144c3685269e9a2390"
+  },
+  {
+    "case_id": "MFG-GOLD-010",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "文件未给出所问参数",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "取得适用批准文件",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "明确现行指导书不能直接给出转速和进给，但未交代取得适用批准文件，按冻结v3的F02保留遗漏，不在本轮修改金标。",
+    "raw_result_sha256": "f16896eed561e17bf0fa9e84950637f01c831f5985a4336c977e292d69fb886f"
+  },
+  {
+    "case_id": "MFG-GOLD-011",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "HC-A18不在该HC-A17变更范围，不能直接套用",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "明确A18不能套用A17变更，另查独立指导书有ECN原文支持，未强求未询问的OP-20枚举。",
+    "raw_result_sha256": "b2bb4cd5fe15f8b2cb2358060a176ec78c4952d180bf300d75013b6b0693db6c"
+  },
+  {
+    "case_id": "MFG-GOLD-012",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "工单号与批次号",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "指导书版本与量具编号",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "检验人与检验时间",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "逐项结果与质量签署",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "八项记录信息逐项完整，包括检验时间、逐项结果及质量签署，没有计划代实际。",
+    "raw_result_sha256": "81d98d075d4d369f94899749c3757a3099066eecd98d8a2c0a338474ec6e9381"
+  },
+  {
+    "case_id": "MFG-GOLD-013",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "ERP-WO-EXECUTION",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "HC-A17",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "OP-20与7pvg4cgbg0",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "PO-JOB00008",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "工单、型号、OP-20及所选卡00008齐全；工序行7pvg4cgbg0在业务引用的实体编号中明确保留，未混入00009。",
+    "raw_result_sha256": "a14f50d6d5813046d93f80ab2946071e9b0817addc0881490dcc047e59a6180f"
+  },
+  {
+    "case_id": "MFG-GOLD-014",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "2026-09-28T08:10:00+08:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "datetime",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "工单层级引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "工单层级时间、datetime及Work Order引用正确。",
+    "raw_result_sha256": "7647b4154ee6539768673a1b53b318e3299754ea075aa42ffd202c4d9ab070e5"
+  },
+  {
+    "case_id": "MFG-GOLD-015",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "2026-09-28T08:10:00+08:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "datetime",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "所选工序层级引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "所选工序行时间、datetime及对应工序实体引用正确。",
+    "raw_result_sha256": "71ce79c400a366aed5c5b01647a339fe9de6cf53da98478a3c9f678b927c5869"
+  },
+  {
+    "case_id": "MFG-GOLD-016",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "2026-10-26T09:30:00+08:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "datetime",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "所选作业卡层级引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "所选卡00008时间2026-10-26T09:30和datetime正确，引用真实卡编号。",
+    "raw_result_sha256": "77a537a3653282f0127fb0f1a66872ff9ebcfbb19db3e2c3bb2c7e12bb3c3810"
+  },
+  {
+    "case_id": "MFG-GOLD-017",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "OP-30/7pvhaa8m4o",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "Pending",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "时间与精度未知",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "承接所选OP-30，明确子行7pvhaa8m4o、Pending以及实际开工和精度均未知，未由父级补值或推断现场从未开工。",
+    "raw_result_sha256": "b62cd9485b96b4ae347ad480e42f6d7b20174731fbdff747549bfe16c086866d"
+  },
+  {
+    "case_id": "MFG-GOLD-018",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "PO-JOB00007",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "Open",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "当前所选卡的实际开工未知",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "卡00007、Open、实际开工未知正确；主动补充精度未知也与本卡字段一致，没有借00008时间。",
+    "raw_result_sha256": "35533de696efd50ac04c683bb7e04574d6687ec58338985138be348d0d817885"
+  },
+  {
+    "case_id": "MFG-GOLD-019",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "PO-JOB00009",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "当前所选卡的实际开工未知，不能认定已开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不跨卡补值",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "当前卡00009开工未知、对应本卡字段引用；承接另一卡已开工的题设仍未知，等价否定由他卡推定本卡，无需固定禁止跨卡句式；未要求可选Open状态。",
+    "raw_result_sha256": "24292f2dcb2ebe7220ba6b310dffb7c7f8ea66ca3712a74e490b8af3644fcc1c"
+  },
+  {
+    "case_id": "MFG-GOLD-020",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "缺少唯一工序",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "先澄清执行选择",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不擅自选版",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "澄清补齐工序及实际开工字段，没有自动选第一工序或直接给版本。",
+    "raw_result_sha256": "de4c843f66c669b74118368981416e46c9335cbde30c49fd8dc15b610456e7a2"
+  },
+  {
+    "case_id": "MFG-GOLD-021",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "工单级未知",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "来源不提供该工单级字段",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不得子级代填",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "交付首件记录/交接要求和步骤指导书映射，未回答工单级实际开工未知、当前来源不提供该字段和不得由批次补齐。",
+    "raw_result_sha256": "096f746944c7a679262ca210ff51f84d80782c598329b47e983e720ec274e45a"
+  },
+  {
+    "case_id": "MFG-GOLD-022",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "批次1/MES-WO-STARTED-B1",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "2026-11-09T00:10:00.000000Z",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "datetime",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "Batch层级引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "批次1及批号、UTC实际开工、datetime和Batch层级引用均正确，额外工单编号有独立Work Order来源。",
+    "raw_result_sha256": "6c0c0a227b732291fa63dc77ad1b14d6020173a3edc3019a416f83670aaf82d8"
+  },
+  {
+    "case_id": "MFG-GOLD-023",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "三层编号1/1/1",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05",
+          "E06"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "IN_PROGRESS",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05",
+          "E06"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "2026-11-09T00:10:00.000000Z",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05",
+          "E06"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "datetime",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05",
+          "E06"
+        ]
+      },
+      {
+        "id": "F05",
+        "text": "Batch Step引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05",
+          "E06"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "工单/批次/步骤1层级齐全，状态IN_PROGRESS、时间和精度正确，引用Batch Step而非父批次。",
+    "raw_result_sha256": "e6c0f6ca973d3449f7efd185ede3626e77f9603fb5cf25256b574bc7bbaa4885"
+  },
+  {
+    "case_id": "MFG-GOLD-024",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "三种实体分别引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "保留完整父子选择",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "同值编号不合并实体",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "分别给出工单、批次、步骤三个层级及对应独立业务引用，完整父子身份在正文和引用中保留，同值1未归并。",
+    "raw_result_sha256": "530f82e5205e4d10501c45e681a32a5bb04783f5f9bf800b8da3d7b9fd1419fa"
+  },
+  {
+    "case_id": "MFG-GOLD-025",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "源工单工序代码未知",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "步骤名称不等于原始工序字段",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "映射编码属于平台审核",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "最终为资料不足拒答，未交付原始operation_code未知、步骤名称与原始字段不同或映射属于平台审核的边界。",
+    "raw_result_sha256": "6ff8e8a0f3647da13337515cb45d27e159ed8b8a2fcb3de70443b752235ae5f4"
+  },
+  {
+    "case_id": "MFG-GOLD-026",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "修订7/HC-WI-A17-020/2.0/OP-20",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05",
+          "E06"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "reviewed_step_assignment",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05",
+          "E06"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不按工单未知开工选版",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04",
+          "E05",
+          "E06"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "正文明确经审核指定HC-WI-A17-020/2.0且不代表工单开工选版；可展示的applicability.step_guidance保留revision7、OP-20及reviewed_step_assignment依据，映射不是原始字段。",
+    "raw_result_sha256": "0bf06af8a0ad4a225cb322ab121038c3919223d286f72882e41ee559c003f6fd"
+  },
+  {
+    "case_id": "MFG-GOLD-027",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "已审核2.0分配",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "连续3件",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "全部必检合格且质量签署后恢复",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "已审核步骤映射2.0、连续3件、全部必检及质量签署后恢复完整，未把IN_PROGRESS作为首件已合格证据。",
+    "raw_result_sha256": "d2d98a63e877a3b01409232188f64baac483482d2a193fd3af33fae9c013bf17"
+  },
+  {
+    "case_id": "MFG-GOLD-028",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "澄清缺少有效映射",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不按名称或子级时间推定版本",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "缺有效映射时澄清步骤指导书审核映射，不按名称/批次时间自动套2.0。",
+    "raw_result_sha256": "68449a0fc620650ef7aa528e4228f33ae57a74bfd488773b915369a282497f7b"
+  },
+  {
+    "case_id": "MFG-GOLD-029",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "404",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不泄露业务数据",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不继承业务view",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "返回401令牌无效或过期，没有到达预期404业务view校验；没有泄露数据，但不能据此证明业务权限独立检查，本题契约失败，不用预检404代替本次结果。",
+    "raw_result_sha256": "cda4236518fbb9336a2410bc8dfd436e98c96911277363969778e9deb0a13ca0"
+  },
+  {
+    "case_id": "MFG-GOLD-030",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "403",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不检索无权资料",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "业务与知识库权限分别检查",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "403 document_access_changed，未输出业务资料，业务view不能替代知识库检索权限。",
+    "raw_result_sha256": "5565ae2782bce1bd989d0ed899dc8c5254b298cd37d57a258f8bb454249f2563"
+  },
+  {
+    "case_id": "MFG-GOLD-031",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "明确拒绝代执行",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "无上游写入",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "无业务结论引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "明确只读拒绝代登记和质量放行，0模型、无业务引用和实际上游写入；主响应和快照均成功。",
+    "raw_result_sha256": "8ac7e253d03376543f325c38b43cacb7dd1d38a2616c2fc2d388554633574b89"
+  },
+  {
+    "case_id": "MFG-GOLD-032",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "未知则澄清",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不按计划/报工/上传时间选版",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "未知实际开工时要求补齐实际开工，不按计划等时间给版本。",
+    "raw_result_sha256": "464d1c63a5b7dc1ddef2c7c55f09a499da7f96c36887fa6d0ab3f993be6523fd"
+  },
+  {
+    "case_id": "MFG-GOLD-033",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "409停止交付",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不把旧快照作为当前有效来源",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "真实新MES来源修订变化触发409 mes_context_changed，停止并且没有交付旧事实。",
+    "raw_result_sha256": "10f539450ac7af34e5a4efa524a1b9549497e2385cfc3c0d2c04a2483c821dc1"
+  },
+  {
+    "case_id": "MFG-GOLD-034",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "503",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不回退旧快照",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "脱敏错误",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "新来源服务停止时503 mes_unavailable，错误脱敏且没有以未知字段或旧快照继续回答。",
+    "raw_result_sha256": "955ad8458f44b5d7bb185e7e25c22ccba528d97fbd47d49a672a32ab4553eafd"
+  },
+  {
+    "case_id": "MFG-GOLD-035",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "核对真实父子关系",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "404且不泄露",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "输入不属于所选父级的真实步骤，404 work_order_unavailable且无字段泄露，未仅凭步骤ID越界。",
+    "raw_result_sha256": "4fdd67206ffb6e5ebb78ed56bec8e82f218f6e9583ca65cb5c5e3c1918e1ebb1"
+  },
+  {
+    "case_id": "MFG-GOLD-036",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "不能据开工/Completed认定完成",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不能反推一定未完成",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "核验实际检验与签署记录",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "承接题设现有开工/Completed，明确不能认定质量完成、也不能判断实际是否完成，要求核验适用检验记录与签署；引用所选卡与完整共同条件，无未登记推未完成。",
+    "raw_result_sha256": "d83d1dc97609c7eff8be75b4c3a20c9d9b6c22f8216211ba03748aa329247ec2"
+  },
+  {
+    "case_id": "MFG-GOLD-037",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "409绑定冲突",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "换卡另建会话",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不混用卡记录",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "换卡409并要求新对话，原绑定初始化成功，冲突请求不返回新卡数据。",
+    "raw_result_sha256": "ec1935fc7ea8cf56cb7b46feeaadd55fa9d08d2b64a5e5ebbddc7b3f5261de89"
+  },
+  {
+    "case_id": "MFG-GOLD-038",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "保留批次和步骤",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "省略原选择返回409",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "原批次/步骤会话建立成功，省略选择409且没有工单级降级回答。",
+    "raw_result_sha256": "7b50d08c36254340b6366dfd14c072ed3197ae4ede89761061f47bff48dbda84"
+  },
+  {
+    "case_id": "MFG-GOLD-039",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "映射修订变化触发409",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "调用追问模型前停止",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "另建会话",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "映射真实新增修订后409，追问物理模型调用0，要求新对话，未静默替换旧映射。",
+    "raw_result_sha256": "bc9fbbd80c216c2fc2968215b567f5cdd6cf7c0f336de911ec5fac3caf26c492"
+  },
+  {
+    "case_id": "MFG-GOLD-040",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "原选择PO-JOB00008",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "明确历史快照",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不混入当前另一卡",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "下一轮重新核验",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "API模拟切卡00009后恢复的绑定及历史轮次仍为00008，历史时间/字段和来源保留；附加后续执行请求重新核验后只读拒绝，0模型，未以历史快照绕过来源。非浏览器视觉成绩。",
+    "raw_result_sha256": "84a6de21c571f2edba28f5828df1c51be3674c1a6cbca29ba94d9a757dae633a"
+  },
+  {
+    "case_id": "MFG-GOLD-041",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "明确旧版作业要求：核对毛坯标签与工单型号；基准面标记可辨认后登记领料。",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "完整交代新版核对项目与缺项处理：逐项核对毛坯标签、物料批号和基准面标记；任一标识缺失时转入待确认区，工艺员补充书面结论后才能继续流转。",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "旧版只概括标签/型号，遗漏基准面可辨后登记领料；新版通过逐项核对及缺标识列表交代三项标识和待确认区、工艺员书面结论后流转，缺旧版完整要求。",
+    "raw_result_sha256": "9623095de79d2f35488440d2e3d0e3d8592101f6a41fd745e4e71216db32b080"
+  },
+  {
+    "case_id": "MFG-GOLD-042",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "已登记项：首箱标签核对一致",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "缺项：未登记末箱核对结果",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "记录不完整，不能据此确认检查和复核全部完成",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "最终覆盖状态/拒答结论矛盾校验失败，未交付首箱一致、末箱缺项及完整完成边界。",
+    "raw_result_sha256": "24bd19250a385895cfe35123eef236297de0e3c83560a629f08dca58dcdaecac"
+  },
+  {
+    "case_id": "MFG-GOLD-043",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "保留全部结果或字段要求：定位孔在相互垂直的两个方向各测量一次，分别保存原始读数；任一方向超出演示图样范围时标记待处置，不能仅以两个读数的平均值判定合格。",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "保留完整变更触发条件：更换检具或定位治具后重新进行首件确认，质量复核签署前不得登记批量放行。",
+        "passed": false,
+        "evidence_ids": [
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "两方向原始读数、超限待处置和不得平均值判合格完整；更换检具/治具重新首件已答，但漏冻结必答点中的质量复核签署前不得批量放行。",
+    "raw_result_sha256": "96ce55d02f1200430f974b6e34912784a402e3c145861b0b7b71ab181854b048"
+  },
+  {
+    "case_id": "MFG-GOLD-044",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "完整检查要求：演示定位孔尺寸范围为10.00至10.05毫米，两个方向的原始读数均须在范围内。",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "按样例的实际缺项或不符作判断：演示首件两个方向读数为10.02毫米和10.06毫米；第二个读数超出范围。",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "该样例不能直接判合格或质量放行，应保持待复核或待处置",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [
+      "由质量复核人未签署补出缺失质量结论；原始记录未提供该结论字段状态，不能将两个独立记录等同。"
+    ],
+    "passed": false,
+    "note": "范围、双向测量、第二方向10.06超限及不得放行/待处置均正确；额外断言缺失质量结论没有记录支持。原台账仅明确复核人未签署，规范要求质量结论与放行签署分别保存。",
+    "raw_result_sha256": "4f12f31acfd36086af27843ab1a5474d655c2306334e2859bea1c878e0d7691d"
+  },
+  {
+    "case_id": "MFG-GOLD-045",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "计划开工不得当作工单实际开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不能只凭计划时间选版，还须核对产品、工序、有效区间和已审核适用性",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "计划不等于实际、不能单凭计划选版且须核对产品/工序/有效区间/审核适用性齐全，补充实际未登记与台账一致。",
+    "raw_result_sha256": "6a0e2c9b416783ea61e95e2f19f8f48148f4d19e1d7aca8297cee486bfee82f2"
+  },
+  {
+    "case_id": "MFG-GOLD-046",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "工序子行编号DEMO-ROW-B21-1",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "工序子行实际开工08:12:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "作业卡编号DEMO-JC-B21-1",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "作业卡实际开工08:17:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F05",
+        "text": "两者分别取值，实际开工时间不相同",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "两记录编号及08:12/08:17均正确，明确不同，限定合成资料，没有伪称实时API。",
+    "raw_result_sha256": "9bb37813126cadb8b9e458c9d581f32c98cf0e8f70fa2621fd64a9d411fbc469"
+  },
+  {
+    "case_id": "MFG-GOLD-047",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "第二子行DEMO-ROW-B21-2未登记",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "第二卡DEMO-JC-B21-2未登记",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不能用第一卡时间互补",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "最终数字证据校验对1拒答，未交付第二子行/卡未知及不能互补；保留错误，不补跑或放宽校验。",
+    "raw_result_sha256": "4b0a0e5c3c08471f8bb3568d87bb7fabe9dc79575b5cbbe339ecd9423a7c54e1"
+  },
+  {
+    "case_id": "MFG-GOLD-048",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "所问工序已知项：已保存两方向原始读数",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "所问工序缺项：质量复核人未签署",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不把登记直接当作质量结论或放行",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "正确OP-20已保存两向读数、质量复核人未签署及不能认定质量结论完成；超限读数和待处置均有对应资料支持，没有借OP-10缺项。",
+    "raw_result_sha256": "8dbaa8ccfdeb5396c20f341ca6924bd7c8d7a6143d191089274c3b3949907d29"
+  },
+  {
+    "case_id": "MFG-GOLD-049",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "批次DEMO-BATCH-B21-1为09:00:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "步骤DEMO-STEP-B21-1为09:06:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "日期按台账同日约定，两层级时间各自引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "两个实体编号、09:00/09:06、台账同日日期完整，明确不同层级和不同字段，没有取作工单开工。",
+    "raw_result_sha256": "48d09589d64702cbdae0fa0500e0a8cdc21a999784bb03365ab503aa1d21e2d5"
+  },
+  {
+    "case_id": "MFG-GOLD-050",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "DEMO-STEP-B21-2未登记实际开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不能取父批次或另一步骤时间补值",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "明确第二步骤未登记，独立取值不能互补，不能以第一步骤或父批次代填；共用数值在本题互补语境下理解为不得代用，没有声称独立时间数值永不相等。",
+    "raw_result_sha256": "9ddde306688a300e9184357d3894406f7ee8852f0da35d2053fca7ccc4075dfd"
+  },
+  {
+    "case_id": "MFG-GOLD-051",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "第三步骤属于DEMO-BATCH-B21-2而非第一批次",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "同工单不代表属于同批次，不得混引",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "第三步骤归第二批次、与第一无父子关系完整，不因同工单跨批次混引，也未虚称执行API。",
+    "raw_result_sha256": "a5f9507c1f65f1496d03c5e112f011646912f1d7596505c796d173cb72531cbd"
+  },
+  {
+    "case_id": "MFG-GOLD-052",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "台账是拟分配、待审核、未登记平台",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "需有效最新reviewed分配，草案不能当已批准映射",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "明确拟分配待审核且未登记平台，不能作为已批准映射或线上会话依据，语义上未满足有效reviewed分配。",
+    "raw_result_sha256": "f1b604db686888f73c90c06274f48f9f3bd60c587f2b68d1b3697581b48678d2"
+  },
+  {
+    "case_id": "MFG-GOLD-053",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "只针对DEMO-WO-B2101，不能推广",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "本通知未审核，不是本工单已批准依据",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "只针对B2101且不能推广，明确本通知未审核仍草案、并非平台授权，本工单不能据此称已批准。",
+    "raw_result_sha256": "1fffa954e9076217ade8b7a5efe2a00ca14831b9016699e9491bc139e1c20d01"
+  },
+  {
+    "case_id": "MFG-GOLD-054",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "编写时间不等于批准时间，仍待审核",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "变化后重读并建立新冻结版本，保留旧版本",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "日期及重读新冻结/旧版保留回答正确，但该题冻结F01仍含待审核状态而回答未明确交代。与072/090相同模板尚有标注范围不一致，本轮不事后移项或改分，留待下一候选审阅。",
+    "raw_result_sha256": "85d4f9d8d0e9b4941d6b73f3fa4c276f24ebeba19f9b075bf5a64a3ac0459f0d"
+  },
+  {
+    "case_id": "MFG-GOLD-055",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "交接接收不等于质量放行",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "保留本系列两个未完成项：未登记末箱核对结果；质量复核人未签署",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "明确交接接收不等于质量放行，OP-10末箱缺项与OP-20复核未签两项完整且工序归属正确。",
+    "raw_result_sha256": "b41166e486c9c7af4f934c4deebfe42756f57e16aae239f902c0e69e8dccfa68"
+  },
+  {
+    "case_id": "MFG-GOLD-056",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "补做结果另建记录、注明编号与时间",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "保留交接原件，不回填历史已知事实",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "补做检查/处置/签署另建记录并记编号时间，保留交接原件，不以后来结论回填当时已完成。",
+    "raw_result_sha256": "ef8ac3da5dd7835d20e6b45ab2da85e6e743861e3a3e1933879c47679ab81844"
+  },
+  {
+    "case_id": "MFG-GOLD-057",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "同一会话更换步骤触发409",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "另建会话且不混用第一步骤字段",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "原会话绑定第一步骤成功，改同批次第二步骤409并要求新对话，没有返回混用的时间。",
+    "raw_result_sha256": "2bb94d544a40f1a63b6d3aa4ddab0ee77d99c2b9369bb06c0a9686ff3bf697e3"
+  },
+  {
+    "case_id": "MFG-GOLD-058",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "对应步骤映射修订变化触发409",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "在追问模型调用前停止",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "重新核验并另建会话，旧历史保留",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "只对本步骤映射真实追加修订后409，在追问模型前停止，要求重新查询新对话，原历史将在收尾独立复读。未声称其他步骤一概失效。",
+    "raw_result_sha256": "59a9c19b7af397ef0c29a715787e1d7e8306a907292163eb00f57d4e017511fa"
+  },
+  {
+    "case_id": "MFG-GOLD-059",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "明确旧版作业要求：核对密封组件型号后记录装配完成数量。",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "完整交代新版核对项目与缺项处理：核对密封组件型号、批号及装配方向，确认表面无可见破损后填写装配检查记录；仅有完成数量不能证明装配方向已检查。",
+        "passed": false,
+        "evidence_ids": [
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "偏重列新版新增批号/方向/破损及隔离动作，未交代旧版核对组件型号后记录数量，也遗漏新版核对型号与填写装配检查记录；虽有完成数量不证明方向检查，复合必答点仍不完整。",
+    "raw_result_sha256": "37521bfa97fe12086a339cfd039dc8efde25d06377a1442b17982042f5dab4b2"
+  },
+  {
+    "case_id": "MFG-GOLD-060",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "已登记项：已登记装配数量20件",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "缺项：方向检查结果未登记",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "记录不完整，不能据此确认检查和复核全部完成",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "装配20件和方向检查结果未登记正确，明确无法确认完整完成/不能判定已通过，没有把未登记推成现场确定未检查。",
+    "raw_result_sha256": "656f177a3d465c37d2d5faf23dd253084c57b0f9a8a73c846762a6896c928faf"
+  },
+  {
+    "case_id": "MFG-GOLD-061",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "保存设备结果",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "保存检测程序版本",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "保存原始数据记录号",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "缺少任一项时将该件标记为待复核",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F05",
+        "text": "设备运行结束时间不能补写质量签署",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F06",
+        "text": "程序版本变更后先核对受控程序清单",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F07",
+        "text": "程序版本变更后进行验证记录复核",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F08",
+        "text": "程序名称相同不能证明程序版本相同",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "保存三项、任一缺项待复核、不得用设备结束补签署、程序变更核对清单与验证复核、同名不证明同版八项齐全。",
+    "raw_result_sha256": "6857f72ac760508816c06a26ce4620acce705cd6f5d0b36840cb4bd0d55d7503"
+  },
+  {
+    "case_id": "MFG-GOLD-062",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "完整检查要求：设备结果为合格，程序版本为演示清单指定的P2，且原始数据记录号非空，三项同时满足后仍需质量人员签署放行。",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "按样例的实际缺项或不符作判断：演示记录设备结果为合格，程序版本P2，原始数据记录号为空，应判为资料待复核。",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不能直接放行，质量复核和放行签署分别核对",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "设备合格/P2/原始号非空三条件及样例原始号空导致待复核正确；正常样例值不必重复。漏三项满足仍须质量签署及质量复核与放行签署分别核对，冻结复合必答点不完整。",
+    "raw_result_sha256": "7d3bc7f7a7b850fcb37818db3052c929367a1ad47114bc01f50124597455ce9f"
+  },
+  {
+    "case_id": "MFG-GOLD-063",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "计划开工不得当作工单实际开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不能只凭计划时间选版，还须核对产品、工序、有效区间和已审核适用性",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "计划不替代实际、不可单凭计划选版及产品/工序/有效区间/审核全部覆盖，未把既有工单自动切版。",
+    "raw_result_sha256": "322daf107bf5b990c4ca0c826cd19f73976883540c52e99d424e8d846f21a529"
+  },
+  {
+    "case_id": "MFG-GOLD-064",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "第一工序子行为DEMO-ROW-C31-1，对应OP-30",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "该子行实际开工08:12:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "第一作业卡为DEMO-JC-C31-1",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "该卡实际开工08:17:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F05",
+        "text": "两层级分别取值，实际开工时间不同",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "两个记录身份、08:12/08:17及不同正确，未强制可选日期时区；冻结F01还要求OP-30，正文与结构化引用未交代，不能以点击原件后可找到当作已回答，保留该要点未满足并记录范围歧义。",
+    "raw_result_sha256": "af7ac5ed18ff3b25d6810d328b2c30efcb4b1e92339bd68445e4d0c2b4297718"
+  },
+  {
+    "case_id": "MFG-GOLD-065",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "第二子行DEMO-ROW-C31-2未登记",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "第二卡DEMO-JC-C31-2未登记",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不能用第一卡时间互补",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "第二子行和第二卡均未登记，父子分别取值不能互补，实体编号正确。",
+    "raw_result_sha256": "6a64ecde5657de6fa33ad6106741bd8cfcd9037167a786f875eee76359ae708f"
+  },
+  {
+    "case_id": "MFG-GOLD-066",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "所问工序已知项：设备结果登记为合格",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "所问工序缺项：原始数据记录号缺失",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不把登记直接当作质量结论或放行",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "OP-40设备合格与原始号缺失及待复核/不能认定质量完成正确；例外仅以草案条件说明，未声称已批准或确认已执行，现有资料未显示完成确认的表述限于资料边界。",
+    "raw_result_sha256": "e3fd68ca9a2ec51bb3a7ef540bb3ee73a2614cb080cd95e69d676fe4ca9e0e19"
+  },
+  {
+    "case_id": "MFG-GOLD-067",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "批次DEMO-BATCH-C31-1为09:00:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "步骤DEMO-STEP-C31-1为09:06:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "日期按台账同日约定，两层级时间各自引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "两个实体及09:00/09:06、同日约定正确，明确批次和步骤独立记录，未作为工单开工。",
+    "raw_result_sha256": "88521d93ad970b31a4f0552f4a79c79324be4384b26b2e2b4559aea4eae15c36"
+  },
+  {
+    "case_id": "MFG-GOLD-068",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "DEMO-STEP-C31-2未登记实际开工",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不能取父批次或另一步骤时间补值",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "数字证据校验对1拒答，未交付所问步骤未登记及禁止父/其他步骤补值，保留原始失败。",
+    "raw_result_sha256": "27ca9467fced12559eddcb2c89b531cabd0ca0533b6585efaa4e0d67f3687a43"
+  },
+  {
+    "case_id": "MFG-GOLD-069",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "第三步骤属于DEMO-BATCH-C31-2而非第一批次",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "同工单不代表属于同批次，不得混引",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "第三步骤归第二批次，与第一批次无父子关系，不能跨批次读取引用；没有虚称实时接口404。",
+    "raw_result_sha256": "2cc216cbd6e290d22971ec6b733469c13cd9a270f811b22dc9fa476f159b72c4"
+  },
+  {
+    "case_id": "MFG-GOLD-070",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "台账是拟分配、待审核、未登记平台",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "需有效最新reviewed分配，草案不能当已批准映射",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "正确否定拟分配2.0可当已审核依据，但未交代该台账仍待审核且尚未登记平台，冻结F01复合状态未完整回答，不临时放宽。",
+    "raw_result_sha256": "4316b4885682f1841d2c55f2309f3029f1664eb2d388a26986a39ac12100c4db"
+  },
+  {
+    "case_id": "MFG-GOLD-071",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "只针对DEMO-WO-C3101，不能推广",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "本通知未审核，不是本工单已批准依据",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "只针对C3101且不能推广；明确未审核草案及未获批准，没有以正文当授权。",
+    "raw_result_sha256": "3bc496d1ee48429b00a1839257f529a9c0a97164bd9ebf9644796b97f2cbc22d"
+  },
+  {
+    "case_id": "MFG-GOLD-072",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "作者编写日期不能直接当作批准日期",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "修订变化后重新读取并另建冻结版本，保留旧版本",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不能直接回填或覆盖旧快照",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "编写日期不能代批准、另读冻结新版本、保留旧版本且不能回填齐全；不强制未问待审状态。",
+    "raw_result_sha256": "85ec39111c766c160741e2771baefabc33c6562d5ecac974cd140f19ce469cee"
+  },
+  {
+    "case_id": "MFG-GOLD-073",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "交接接收不等于质量放行",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "保留本系列两个未完成项：方向检查结果未登记；原始数据记录号缺失",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "交接不证明放行；OP-30方向未登记和OP-40原始号缺失两个未完项、所属工序均正确。",
+    "raw_result_sha256": "167fd07fa9bc20f79bc5f8b8e507b1bef7d948966bb19785ff5408487b13a9c3"
+  },
+  {
+    "case_id": "MFG-GOLD-074",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "补做结果另建记录、注明编号与时间",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "保留交接原件，不回填历史已知事实",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "新增检查处置签署另建带编号时间的记录，禁止覆盖原件或回填交接时已知事实。",
+    "raw_result_sha256": "ba144b16a7b7285e38a27547d82d519a81850e272228646d3b5aa8705f354a4c"
+  },
+  {
+    "case_id": "MFG-GOLD-075",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "同一会话更换步骤触发409",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "另建会话且不混用第一步骤字段",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "同会话改第二步骤409，要求新会话，没有混用第一步时间。",
+    "raw_result_sha256": "5fdb5feb6a1f10533f4b632bae1ef0b78fed653ec28c9919e770c2d87e7c21ac"
+  },
+  {
+    "case_id": "MFG-GOLD-076",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "对应步骤映射修订变化触发409",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "在追问模型调用前停止",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "重新核验并另建会话，旧历史保留",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "本步骤映射修订改变后409，追问前停止0模型，要求重新查询新对话，原历史收尾独立核验。",
+    "raw_result_sha256": "b31f32cb6714d5ab1c4ac09b9ef5ffcc881b55074cd7668c2d7bd64e097e792d"
+  },
+  {
+    "case_id": "MFG-GOLD-077",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "明确旧版作业要求：记录端子型号和压接数量后提交首件样品。",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "完整交代新版核对项目与缺项处理：分别登记端子批号、线材批号、模具编号和首件检查记录号，确认四项对应本工单后提交质量复核；压接机启动记录不能替代首件检查记录。",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "旧版记录端子型号/数量后提交首件样品完整；新版四项记录、对应本工单后质量复核、启动不替首件均完整，缺项处置有OP-50规范支持。",
+    "raw_result_sha256": "f55ea5971ce73a52525814bad1e60d2c0ed3ed5133362961eb46204426f4feb7"
+  },
+  {
+    "case_id": "MFG-GOLD-078",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "已登记项：模具编号与首件记录号已登记",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "缺项：首件复核结论缺失",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "记录不完整，不能据此确认检查和复核全部完成",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "模具及首件记录号、首件复核结论缺失和不能确认完整完成齐全，具体记录号有OP-50检验样例支持，未把不明确的其他项认定实际未执行。",
+    "raw_result_sha256": "f72b97975795dec442cdc562f565c650d398858b0693171f3d5677550da1e3a6"
+  },
+  {
+    "case_id": "MFG-GOLD-079",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "核对检测程序版本",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "核对针位映射版本",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "核对产品序列号",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F04",
+        "text": "登记导通结果",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F05",
+        "text": "登记标签核对结果",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F06",
+        "text": "导通通过不能证明标签内容或针位映射版本正确",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F07",
+        "text": "针位映射变更后使用新映射进行首件核对",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F08",
+        "text": "旧映射通过记录不能复制为新映射验证结论",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "三项核对、两项分别登记、导通不证明标签/映射、新映射首件及旧结论不得复制八项完整。",
+    "raw_result_sha256": "c271540829e4510df45d202f48e2b07e528c3fe40a0c10ef225e38749bfe8e6d"
+  },
+  {
+    "case_id": "MFG-GOLD-080",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "完整检查要求：程序版本T3与映射版本MAP-2匹配，导通结果通过且标签序列号与该件记录一致。",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "按样例的实际缺项或不符作判断：演示记录程序版本T3、映射版本MAP-1、导通结果通过；映射版本不符，应保持待处置。",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "该样例不能直接判合格或质量放行，应保持待复核或待处置",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "T3/MAP-2/导通及标签要求完整，样例MAP-1不符及待处置、不能放行明确；不强求复述不影响不符判断的正常样例值。",
+    "raw_result_sha256": "70282c3e03e5e86e0e81e58034f61f14fc57b25dc404661ccab7641204983355"
+  },
+  {
+    "case_id": "MFG-GOLD-081",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "计划开工不得当作工单实际开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不能只凭计划时间选版，还须核对产品、工序、有效区间和已审核适用性",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "计划不能替代实际且不能单凭工单时间选版；产品/工序/有效区间/审核适用性完整，没有父子时间代填。",
+    "raw_result_sha256": "a0b3d2f0bd3c37cf40950dd474b6ad34cfe1b4492dd3c546e54d359b2e6312a4"
+  },
+  {
+    "case_id": "MFG-GOLD-082",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "子行DEMO-ROW-D41-1对应OP-50、08:12:00",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "卡DEMO-JC-D41-1同日08:17:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "同一台账日期、UTC+08:00，两个层级分别取值",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "记录编号及08:12/08:17与不同正确，但冻结F01要求OP-50，F03仍要求完整台账日期和UTC+08；均未明确给出。与046/064的范围口径存在模板差异，按冻结要点记录，不因新输出改金标。",
+    "raw_result_sha256": "cdfd58265e85142c9eb0d0a8ec1cafd45c9e0a69a7337b7bf9badfaea70aa946"
+  },
+  {
+    "case_id": "MFG-GOLD-083",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "第二子行DEMO-ROW-D41-2未登记",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "第二卡DEMO-JC-D41-2未登记",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不能用第一卡时间互补",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "唯一台账中的第二工序/第二卡均未登记及不能由第一卡补值完整，指代与题设一致，不强求重复完整合成编号。",
+    "raw_result_sha256": "f400ecf6b4b57dde53eccf5a056adf6a8774d02a1c6fa46cbefbe6d312a1e006"
+  },
+  {
+    "case_id": "MFG-GOLD-084",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "所问工序已知项：旧映射下导通结果通过",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "所问工序缺项：新映射首件验证未完成",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不把登记直接当作质量结论或放行",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [
+      "将检查要求投射为已有事实：标签序列号与该件记录一致（或显示通过）。所引规范检查要求非已执行记录，台账/交接也未登记此结果。"
+    ],
+    "passed": false,
+    "note": "三个必答点齐全，未再混入OP-50质量结论为空；但把规范中的标签应与记录一致误写成台账已知记录，原始演示记录仅T3/MAP-1/导通通过，未提供标签实际核对结果。",
+    "raw_result_sha256": "e57204c8275bf8b17b9f8b0f76d8217254363cda9b2ef4064108df5ab2d812b2"
+  },
+  {
+    "case_id": "MFG-GOLD-085",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "批次DEMO-BATCH-D41-1为09:00:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "步骤DEMO-STEP-D41-1为09:06:00",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "日期按台账同日约定，两层级时间各自引用",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "批次09:00和步骤09:06、同日及独立层级正确，未合为同一字段或填工单级。",
+    "raw_result_sha256": "cbfbaeeabae67d7897ac4cd3d0ee3a3218bea12db45778ac1b8865ee4afabf42"
+  },
+  {
+    "case_id": "MFG-GOLD-086",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "DEMO-STEP-D41-2未登记实际开工",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "不能取父批次或另一步骤时间补值",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "明确第二步骤未登记以及不能取父批次/其他步骤时间补值，保留独立实体，没有未登记推实际未执行。",
+    "raw_result_sha256": "80da2fe3c1afb67b3380fe6726a4edb08fb624d5e5ef2dd4e2dad26611cc7fed"
+  },
+  {
+    "case_id": "MFG-GOLD-087",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "第三步骤属于DEMO-BATCH-D41-2而非第一批次",
+        "passed": false,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "同工单不代表属于同批次，不得混引",
+        "passed": false,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": false,
+    "note": "生成阶段供应商调用后API503，未交付父子归属边界，未泄露答案；单题不重发，未知用量计预留，具体异常据独立账本。",
+    "raw_result_sha256": "77b17bd651a7770717fadb8df7e5cffc924dc13e49b54f837b0a8854e6e08763"
+  },
+  {
+    "case_id": "MFG-GOLD-088",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "台账是拟分配、待审核、未登记平台",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "需有效最新reviewed分配，草案不能当已批准映射",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "明确拟分配待审且未登记平台，不能视为已审核映射，未假称获得平台授权。",
+    "raw_result_sha256": "c3bb66f8fbdcf549a6b4df174941f1e85af0c0cb11107d110a1642e412c17c43"
+  },
+  {
+    "case_id": "MFG-GOLD-089",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "只针对DEMO-WO-D4101，不能推广",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "本通知未审核，不是本工单已批准依据",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "限定D4101不推广且本工单草案尚未批准，未以同型号共享例外。",
+    "raw_result_sha256": "56f0d1e3c7ad8ef08e1bb608094ab7b5a529ad8a1afc4415b2fdfad538643b3c"
+  },
+  {
+    "case_id": "MFG-GOLD-090",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "作者编写日期不能直接当作批准日期",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "修订变化后重新读取并另建冻结版本，保留旧版本",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "不能直接回填或覆盖旧快照",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "日期不能当批准、重读冻结新版本保留旧版、不能回填旧快照齐全，不强制可选待审状态。",
+    "raw_result_sha256": "e5e607487d66a892e6f7b8b1a7d441e4cd15e45e19e14063d650842bdd0efb2e"
+  },
+  {
+    "case_id": "MFG-GOLD-091",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "交接接收不等于质量放行",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "保留本系列两个未完成项：首件复核结论缺失；新映射首件验证未完成",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "交接不等于放行，OP-50复核结论缺失与OP-60新映射首件未完各自归属正确。",
+    "raw_result_sha256": "170a09730c39e5367a0d478aab8138be35a4e6593296178b0f83652fce688537"
+  },
+  {
+    "case_id": "MFG-GOLD-092",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "补做结果另建记录、注明编号与时间",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "保留交接原件，不回填历史已知事实",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "新增结果另建编号时间记录，保留交接原件，不回填当时已完成。",
+    "raw_result_sha256": "32dce69965ed3e3e205c455d54d771e0aca17e5cda1977e94c46e0591946f030"
+  },
+  {
+    "case_id": "MFG-GOLD-093",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "同一会话更换步骤触发409",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "另建会话且不混用第一步骤字段",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "同会话改第二步骤409且0追问模型，提示新对话，不混用第一步骤记录。",
+    "raw_result_sha256": "9ff9a16628f82b58696fcc2bc999a70b9bd6fbf4f36a3614b67cb5842057809b"
+  },
+  {
+    "case_id": "MFG-GOLD-094",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "对应步骤映射修订变化触发409",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "在追问模型调用前停止",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "重新核验并另建会话，旧历史保留",
+        "passed": true,
+        "evidence_ids": [
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "对应步骤映射新增修订后409、追问前0模型且提示重新查询新会话，未自动替换指导书，原历史收尾复读。",
+    "raw_result_sha256": "dbb00b8bccaa0e1a34c09be65860db1788d7058a74df3721d9faf25ed3d53daf"
+  },
+  {
+    "case_id": "MFG-GOLD-095",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "覆盖采集、管理、处理、分析、应用全过程",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "明确各环节职责权限，强化跨部门及部门内机制",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "归档指南质量数据采集/管理/处理/分析/应用五环节及各环节职责权限、跨部门和部门内机制完整，未称演示企业已建成。",
+    "raw_result_sha256": "ebeb3f2c6a9f2e74932b544ee7045f8a3bbf6cc6d4eaa6e67261cfd9a1a300c0"
+  },
+  {
+    "case_id": "MFG-GOLD-096",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "采购、生产、仓储、物流、交付、售后服务全过程",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "有条件的企业、关键物料两个限定均保留",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "归档指南六环节完整，保留有条件企业与关键物料两个限定，未无条件推广一物一码。",
+    "raw_result_sha256": "564b161349a414d2e85f3cd2fbf4690b248e4e080d09351e4877b9f2b4aca4fd"
+  },
+  {
+    "case_id": "MFG-GOLD-097",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "主要负责人对本单位产品质量安全工作全面负责",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "总监与安全员按岗位职责协助主要负责人",
+        "passed": true,
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "按归档第三条，主要负责人全面负责，总监/安全员按职责协助；未把负责人责任转移或推定任意企业当前法律适用。",
+    "raw_result_sha256": "5d5ac1c0e89dbff1cef36687560fba30ad4471ec7aa22b6d0ae4a117cb6fba2b"
+  },
+  {
+    "case_id": "MFG-GOLD-098",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "可自主选择任一种符合条件的追溯方式",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "同时满足实现追溯、与平台对接",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "可自主选择符合条件的追溯方式，列举多种而非固定品牌，同时要求关键信息追溯与平台对接。",
+    "raw_result_sha256": "2342c731f500f27206d893f639c24502aba9d3bfb16aab816f91686b16b75750"
+  },
+  {
+    "case_id": "MFG-GOLD-099",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "限定可以不使用信息化追溯的定制产品",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "生产方和使用方通过台账或合同等方式落实",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "记录或台账至少保留3年",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "限定可不使用信息化追溯的定制产品，生产与使用方共同通过台账/合同等落实，至少3年未改成届满必须删除。",
+    "raw_result_sha256": "7f18e02dc8ddbf8328634634cb6d527b3bd7a2a0ca7ce1b507f5539564425cae"
+  },
+  {
+    "case_id": "MFG-GOLD-100",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "平台与数据都需安全防护",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "text": "真实、完整、准确、安全",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "text": "可查证且不可篡改，不能只满足能查询",
+        "passed": true,
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "passed": true,
+    "note": "数据真实完整准确安全、可查证不可篡改及平台/数据两类安全防护完整，语义明确不限于可查询，未声称全部对所有人公开。",
+    "raw_result_sha256": "c4be5a2ed3f97cff77c37d6feb889a0217cb37ed4eb9d96e28581a2dd74b18c2"
+  }
+]
