@@ -6,6 +6,8 @@
 
 已完成自建 **ERPNext** 与 **OpenMES** 的真实 API 只读联调，尚未接入真实工厂系统。最新 ERPNext 16 题开发验证使用评分 v2，自动评分 **16/16**、助手非独立复核 **15/16**；实际包含8道模型参与题和8道零模型题，仍保留1题版本比较覆盖不足，整体未标记通过。自建演示记录、助手非独立审核和工程替身验证均不视为工厂执行证据或独立业务验收。
 
+2026-11-12扩充中文语料后的完整100题隔离验证为**结构89/100、助手非独立语义69/100**，发现覆盖遗漏、数字/日期误拒和业务推论问题，尚未全量通过；[本轮报告](docs/reports/manufacturing-gold100-live-20261112-r1.md)保留全部失败，不与旧16题拼分。
+
 求职展示可从[5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)开始；可复制的 AI 应用开发与后端／制造业 IT 两版描述见[简历项目描述](docs/MANUFACTURING_RESUME.md)。当前8005/8006采用零模型模式，现场展示业务查询、来源和会话，模型作业指导展示已保留的真实批次记录。
 
 ## 典型业务场景
@@ -28,8 +30,8 @@
 | 当前8005/8006隔离候选与零模型限制 | [部署版本、启动入口及验收记录](docs/reports/main-isolated-demo-20261110-r1.md) |
 | 求职演示与简历 | [5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)、[两版简历描述](docs/MANUFACTURING_RESUME.md) |
 | 制造业40题黄金候选与人工审阅 | [题集说明](evals/manufacturing_gold_v1/README.md)、[逐题答案与证据](evals/manufacturing_gold_v1/REVIEW.md)；40题待审核，未执行、无新成绩 |
-| 中文100题候选与助手逐题复核 | [候选说明](evals/manufacturing_gold_100_v1/README.md)、[问题答案与证据](evals/manufacturing_gold_100_v1/REVIEW.md)；助手非独立复核完成，未执行、无新成绩 |
-| 中文语料扩充与后续100题证据规划 | [55份中文资料候选](sample_docs/manufacturing_zh_expansion_v1/README.md)、[离线验收](docs/reports/manufacturing-zh-expansion-20261112-r1.md)；新增34份、引用21份，未入库、无新成绩 |
+| 中文100题候选与隔离单次验证 | [候选与证据](evals/manufacturing_gold_100_v1/README.md)、[隔离运行说明](evals/manufacturing_gold_100_live_v1/README.md)、[本轮报告](docs/reports/manufacturing-gold100-live-20261112-r1.md)；结构89/100、助手非独立语义69/100，独立人工批准0，未全量通过 |
+| 中文语料扩充与100题证据 | [55份中文资料](sample_docs/manufacturing_zh_expansion_v1/README.md)、[原离线验收](docs/reports/manufacturing-zh-expansion-20261112-r1.md)；本轮仅在新隔离副本发布55份/885块，现有演示环境未更新 |
 | 保留的8000稳定展示、部门配置及98题成绩 | [制造业演示指南](docs/MANUFACTURING_DEMO.md)、[冻结发布清单](evals/manufacturing_zh_lite_v1/demo_release.json) |
 | 通用120题历史基线及评测入口 | [统一评测套件](evals/current/README.md) |
 | 开发接手、源码定位和修改边界 | [AGENTS.md](AGENTS.md) |
@@ -94,6 +96,7 @@ flowchart LR
 | --- | --- | --- | --- |
 | ERPNext 零模型隔离候选，当前演示入口 | 复用[18080](http://127.0.0.1:18080/) | [8005](http://127.0.0.1:8005/) | `e386bf4` 主线归档及部署专用零预算入口；独立数据库副本、Redis及原件卷。[部署与启动记录](docs/reports/main-isolated-demo-20261110-r1.md) |
 | OpenMES 零模型隔离候选，当前演示入口 | 复用[18081](http://127.0.0.1:18081/) | [8006](http://127.0.0.1:8006/) | 同一主线归档及零预算入口；独立数据库副本、Redis及原件卷。[部署与启动记录](docs/reports/main-isolated-demo-20261110-r1.md) |
+| 百题真实验证专用夹具 | ERP复用只读上游；MES另建克隆 | 无公开端口，使用隔离运行器 | 两个平台数据库/原件卷及专用向量集合，55份资料/885块。本轮已执行，不能重跑已消费批次；8005/8006页面未更新。[运行说明](evals/manufacturing_gold_100_live_v1/README.md) |
 | ERPNext 原工作台，独立保留 | [18080](http://127.0.0.1:18080/) | [8003](http://127.0.0.1:8003/) | E4后端 `2680ce0`，页面 `f6a53ca` 补丁；[当前镜像与启动入口](docs/reports/frontend-deploy-20261110-r1.md)、[质量接入](docs/ERPNEXT_QUALITY.md) |
 | OpenMES 原工作台，独立保留 | [18081](http://127.0.0.1:18081/) | [8004](http://127.0.0.1:8004/) | O4/O5后端 `609d23d`，页面 `f6a53ca` 补丁；[当前镜像与启动入口](docs/reports/frontend-deploy-20261110-r1.md)、[审核与冻结](docs/OPENMES_GUIDANCE_QUALITY.md) |
 
@@ -105,10 +108,11 @@ flowchart LR
 
 ## 当前验收状态
 
-截至2026-11-10，最新ERPNext评分v2批次自动门槛通过，助手非独立复核仍有Q007的旧版停机规定比较覆盖缺口，整体未标记通过。工程回归、真实模型开发验证、零模型部署及工厂业务验收分别记录：
+截至2026-11-12，新百题候选单次隔离验证结构89/100、助手非独立语义69/100，暴露回答覆盖、数字/日期误拒及业务推论问题，未全量通过。旧ERPNext评分v2批次保留自动16/16、非独立15/16，不能与新百题换分母比较。工程回归、模型验证、零模型部署及工厂验收分别记录：
 
 | 范围 | 已记录结果 | 结论与证据 |
 | --- | --- | --- |
+| 新100题中文候选隔离验证 | 结构89/100、助手非独立语义69/100；82道用例内有模型调用、18道零模型 | 问答243调用、969332已知Token，3次未知预留后1065332预算Token；索引另104调用/101449 Token。无重试补跑、不拼分，未全量通过，原环境保持。[完整报告](docs/reports/manufacturing-gold100-live-20261112-r1.md) |
 | 最近完整主线工程回归 | `e386bf4` 上2406项非集成通过、1项既有跳过、98项集成排除；独立PostgreSQL M3/M4为14/12项通过 | 属于合并检查，未调用真实模型；后续 `cd5c2be` 部署记录合并另有72项定向测试及120题套件完整性通过。[阶段记录](docs/MANUFACTURING_PHASE1_PROGRESS.md#2026-11-10-求职文档与已保留合并检查记录)；业务约束改造时的2396项回归另见[专题报告](docs/reports/manufacturing-answer-contracts-20261110-r1.md) |
 | ERPNext 最新完整16题真实模型开发验证，评分v2 | 自动16/16、关键6/6；助手非独立15/16、关键5/6 | 8道模型参与题自动8/8、非独立7/8，另8道为零模型题；Q007比较覆盖不足，整体未标通过。31次物理调用、121777 Token；无重试补跑、无拼分。[完整报告](docs/reports/erpnext-model-v2-20261110-r1.md) |
 | 主线隔离候选零模型部署 | 8005/8006的33项API冒烟及浏览器核心流程通过；9个新快照均三次核验 | 每套307个部署文件与归档一致，97条API观测和独立账本新增调用0；无新模型成绩。[部署验收](docs/reports/main-isolated-demo-20261110-r1.md) |

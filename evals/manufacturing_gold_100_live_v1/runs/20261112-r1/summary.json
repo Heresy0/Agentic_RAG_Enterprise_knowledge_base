@@ -1,0 +1,186 @@
+{
+  "schema_version": "manufacturing-gold100-live-result-v1",
+  "executed": 100,
+  "contract_passed": 89,
+  "assistant_non_independent_passed": 69,
+  "human_approved": 0,
+  "independent_holdout": false,
+  "cases_with_any_model_calls": 82,
+  "zero_model_cases": 18,
+  "primary_question_calls_cases": 81,
+  "categories": {
+    "guidance": {
+      "cases": 30,
+      "contract_passed": 28,
+      "assistant_non_independent_passed": 16
+    },
+    "erpnext": {
+      "cases": 20,
+      "contract_passed": 16,
+      "assistant_non_independent_passed": 11
+    },
+    "openmes": {
+      "cases": 20,
+      "contract_passed": 17,
+      "assistant_non_independent_passed": 14
+    },
+    "safety": {
+      "cases": 20,
+      "contract_passed": 18,
+      "assistant_non_independent_passed": 18
+    },
+    "conversation": {
+      "cases": 10,
+      "contract_passed": 10,
+      "assistant_non_independent_passed": 10
+    }
+  },
+  "usage": {
+    "matched": true,
+    "calls": 243,
+    "known_tokens": 969332,
+    "unknown_calls": 3,
+    "budget_tokens": 1065332,
+    "by_stage": {
+      "query_embedding": 71,
+      "rerank": 71,
+      "answer_generation": 82,
+      "query_planning": 7,
+      "conversation_rewrite": 1,
+      "agent_decision": 7,
+      "answer_repair": 4
+    },
+    "providers_models": [
+      "dashscope:qwen3-rerank",
+      "dashscope:qwen3.7-flash",
+      "dashscope:text-embedding-v4"
+    ],
+    "all_priced": false,
+    "pending": 0
+  },
+  "index_usage": {
+    "calls": 104,
+    "known_tokens": 101449,
+    "unknown_calls": 0,
+    "stages": [
+      "document_embedding"
+    ],
+    "trace_ledger_ids_match": true,
+    "pending": 0
+  },
+  "started_at": "2026-11-12T10:49:06.694502+00:00",
+  "finished_at": "2026-11-12T11:06:10.642260+00:00",
+  "limits": {
+    "index": {
+      "max_model_calls": 128,
+      "max_tokens": 1000000,
+      "max_seconds": 1800,
+      "reservation_tokens": 32000
+    },
+    "evaluation": {
+      "max_cases": 100,
+      "max_model_calls": 800,
+      "max_tokens": 5000000,
+      "max_seconds": 9000,
+      "reservation_tokens": 32000
+    }
+  },
+  "budget_origin": "operator_safety_ceilings",
+  "request_retries": 0,
+  "continuations": false,
+  "old_results_combined": false,
+  "failed_ids": [
+    "MFG-GOLD-001",
+    "MFG-GOLD-003",
+    "MFG-GOLD-006",
+    "MFG-GOLD-007",
+    "MFG-GOLD-008",
+    "MFG-GOLD-017",
+    "MFG-GOLD-018",
+    "MFG-GOLD-019",
+    "MFG-GOLD-021",
+    "MFG-GOLD-025",
+    "MFG-GOLD-036",
+    "MFG-GOLD-041",
+    "MFG-GOLD-042",
+    "MFG-GOLD-044",
+    "MFG-GOLD-045",
+    "MFG-GOLD-046",
+    "MFG-GOLD-049",
+    "MFG-GOLD-059",
+    "MFG-GOLD-060",
+    "MFG-GOLD-061",
+    "MFG-GOLD-062",
+    "MFG-GOLD-063",
+    "MFG-GOLD-064",
+    "MFG-GOLD-067",
+    "MFG-GOLD-072",
+    "MFG-GOLD-079",
+    "MFG-GOLD-080",
+    "MFG-GOLD-081",
+    "MFG-GOLD-082",
+    "MFG-GOLD-085",
+    "MFG-GOLD-086"
+  ],
+  "harness_error_ids": [],
+  "preservation": {
+    "original_containers": 62,
+    "container_metadata_changes": {},
+    "protected_files": 646,
+    "changed_files": []
+  },
+  "runtime_audit": {
+    "original_ledger_checks": [
+      {
+        "container": "main-isolated-erpnext-api",
+        "database": "main_isolated_erpnext_20261110_r1",
+        "new_model_events": 0,
+        "baseline_rows": 424
+      },
+      {
+        "container": "main-isolated-openmes-api",
+        "database": "main_isolated_openmes_20261110_r1",
+        "new_model_events": 0,
+        "baseline_rows": 393
+      },
+      {
+        "container": "erpnext-readonly-api",
+        "database": "erpnext_readonly_phase1",
+        "new_model_events": 0,
+        "baseline_rows": 393
+      },
+      {
+        "container": "openmes-readonly-api",
+        "database": "openmes_readonly_phase1",
+        "new_model_events": 0,
+        "baseline_rows": 393
+      }
+    ],
+    "isolated_copies": {
+      "erp": {
+        "documents": 55,
+        "chunks": 885,
+        "vector_records": 885,
+        "active_index_jobs": 0,
+        "all_ready": true,
+        "published": 55
+      },
+      "mes": {
+        "documents": 55,
+        "chunks": 885,
+        "vector_records": 885,
+        "active_index_jobs": 0,
+        "all_ready": true,
+        "published": 55
+      }
+    },
+    "original_application_models_new_events": 0,
+    "model_index_and_evaluation_ledgers_separate": true,
+    "normal_erp_mes_adapters_readonly": true,
+    "fixture_admin_writes_only_new_mes_clone": true,
+    "additional_browser_acceptance": false,
+    "live_platform_gold_sample_approvals": 0,
+    "formal_40_or_closed_loop_executed": false
+  },
+  "auxiliary_observation": "Q040附加登记措辞进入2次模型后校验拒答，未执行写入；单独保留，不另计黄金题。"
+}

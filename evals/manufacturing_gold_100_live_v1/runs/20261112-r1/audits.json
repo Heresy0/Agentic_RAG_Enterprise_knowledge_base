@@ -1,0 +1,71 @@
+{
+  "business_source": {
+    "gold100-erp-20261112-r1": {
+      "business_python_files": 167,
+      "archive_exact": true,
+      "git_blob_lf_normalized": true,
+      "source_revision": "6cb83c9",
+      "changed_files": []
+    },
+    "gold100-mes-20261112-r1": {
+      "business_python_files": 167,
+      "archive_exact": true,
+      "git_blob_lf_normalized": true,
+      "source_revision": "6cb83c9",
+      "changed_files": []
+    }
+  },
+  "snapshots": {
+    "observed_requests": 254,
+    "qa_post_requests": 110,
+    "snapshot_get_requests": 96,
+    "manufacturing_snapshots": 34,
+    "all_three_reads_and_validations": true,
+    "bad_snapshots": []
+  },
+  "numeric_identifier_probe": [
+    {
+      "case_id": "MFG-GOLD-062",
+      "claims": [
+        {
+          "text": "根据DEMO-C31现行演示版（ZH-C31-04）规定，OP-40的检验要求是同时保存设备结果、检测程序版本和原始数据记录号；缺少任一项时将该件标记为待复核，不得用设备运行结束时间补写质量签署。",
+          "numeric_facts": [
+            "number:-40",
+            "number:31",
+            "number:4"
+          ]
+        },
+        {
+          "text": "给出的样例记录不能直接支持合格与质量放行。因为该记录中原始数据记录号为空，不满足“同时保存设备结果、检测程序版本和原始数据记录号”的必要条件，按规定应判为资料待复核。",
+          "numeric_facts": []
+        }
+      ],
+      "errors": [
+        "第1个结论中的数字或日期缺少证据支持：['4']"
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-072",
+      "claims": [
+        {
+          "text": "根据DEMO-C31合成资料（ZH-C31-09），该例外通知处于未审核的草案状态，明确规定不能把作者编写时间当作批准时间。",
+          "numeric_facts": [
+            "number:31",
+            "number:9"
+          ]
+        },
+        {
+          "text": "根据DEMO-C31合成资料（ZH-C31-09），若后续审核版本与当前快照不同，必须重新读取并冻结新版本，同时保留旧版本，因此不允许直接回填覆盖旧快照。",
+          "numeric_facts": [
+            "number:31",
+            "number:9"
+          ]
+        }
+      ],
+      "errors": [
+        "第1个结论中的数字或日期缺少证据支持：['9']",
+        "第2个结论中的数字或日期缺少证据支持：['9']"
+      ]
+    }
+  ]
+}

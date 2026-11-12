@@ -52,3 +52,20 @@ def test_unknown_usage_reservation_survives_process_boundary():
     budget=RunBudget(state);budget.before_call();budget.after_call(None)
     assert budget.snapshot()['calls'] == 104
     assert budget.charged_tokens == 55000 and budget.unknown_calls == 2
+
+
+def test_report_reconciles_physical_ids_and_reserves_unknown_usage():
+    from scripts.report_manufacturing_gold_live import reconcile
+    records=[dict(events=[dict(trace=dict(stages=dict(model_usage=[dict(event_id='a'),dict(event_id='b')])) )])]
+    ledger=[dict(id='a',stage='query_embedding',total_tokens=120,provider='demo',model='e',estimated_cost=None,status='succeeded'),
+            dict(id='b',stage='answer_generation',total_tokens=None,provider='demo',model='g',estimated_cost=None,status='failed')]
+    result=reconcile(records,ledger)
+    assert result['calls']==2 and result['known_tokens']==120 and result['budget_tokens']==32120
+    assert result['unknown_calls']==1 and not result['all_priced']
+    with pytest.raises(ValueError,match='IDs differ'):
+        reconcile(records,ledger[:1])
+    with pytest.raises(ValueError,match='duplicates'):
+        reconcile(records,ledger+[ledger[0]])
+    ledger[1]['status']='pending'
+    with pytest.raises(ValueError,match='Pending'):
+        reconcile(records,ledger)
