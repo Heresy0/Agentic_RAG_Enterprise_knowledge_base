@@ -1,0 +1,119 @@
+{
+  "base_dataset": "evals/manufacturing_gold_100_v3",
+  "base_files_sha256": {
+    "cases.jsonl": "4a1e4737593291d36670c9649a3a7b840e17d065c5e7834db3e51e3522b4b1d5",
+    "lineage.json": "400e03172fd44736f8b5cdb2b7b1ce304bc897d4e5f3864bc5df3a28b000618e",
+    "manifest.json": "f677d1df2b2ceca79147a554757bf82261703360bd269cb883dd62b6224952d5",
+    "README.md": "c936df57a9f1d693f948c05524df2c22dfb0eca191fc77c93ec41cbced33f073",
+    "REVIEW.md": "63457d35b24b442641f40c3f463fb4c8e9bad77cbf45f14f3b7c9d5f17a316ef",
+    "reviews.jsonl": "b0a9fe4d05f73a57a12aab7e452b284c141c588d3326275997ed079bae1028df",
+    "review_policy.json": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "sources.json": "d97aede4a78567d7c9e16159a0f03f1b92d82fcd8238131bb5d6fd036308711e"
+  },
+  "scope_reviewed_cases": 100,
+  "scope_revised_cases": [
+    "MFG-GOLD-001",
+    "MFG-GOLD-004",
+    "MFG-GOLD-010",
+    "MFG-GOLD-013",
+    "MFG-GOLD-017",
+    "MFG-GOLD-025",
+    "MFG-GOLD-026",
+    "MFG-GOLD-043",
+    "MFG-GOLD-052",
+    "MFG-GOLD-054",
+    "MFG-GOLD-064",
+    "MFG-GOLD-070",
+    "MFG-GOLD-082",
+    "MFG-GOLD-088"
+  ],
+  "known_results": "evals/manufacturing_gold_100_live_v3/runs/20261112-r1",
+  "old_scores_recomputed": false,
+  "independent_holdout": false,
+  "changes": [
+    {
+      "case_id": "MFG-GOLD-001",
+      "old_case_sha256": "e6b55e08a22a778d40d2dd1f0565aea869799e650d120f1acc6af0f67d4c0d26",
+      "new_case_sha256": "fdeeddab40ba5c4e874f0c862744c8ca6ed4ec3c7c85259c7cf6891d949eb008",
+      "reason": "问句已给出9月工单开工，具体日期改可选；旧工单沿用1.0及连续2件仍必答。"
+    },
+    {
+      "case_id": "MFG-GOLD-004",
+      "old_case_sha256": "ec76e28a5dfc307f7a46afacf6631a6e8253b58810a944c0d54b341518ff1c8a",
+      "new_case_sha256": "4ac23f8dbb4adc6153764761f640f748910c81d4fb850d5c92bad716c38df87b",
+      "reason": "只问更换治具能否沿用结论，必答不能沿用且重新首件；未问的后续数量与签署流程改可选，错误补充仍失败。"
+    },
+    {
+      "case_id": "MFG-GOLD-010",
+      "old_case_sha256": "7a2e97a2677dc63dc2e95b278c72881ca9467ec7911df8c2e68cd784e2bb2c1c",
+      "new_case_sha256": "b51f3749947926b84cc0fad8036b4cbbab91cb8ae80f708c733ac62f0c05b828",
+      "reason": "不能直接取得所问参数仍必答；未问的取得批准文件建议改可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-013",
+      "old_case_sha256": "22be0d58098d2bec0e901c93c7e601a1f6c7943d53dfc8b0a4b9b4bf70597074",
+      "new_case_sha256": "44a0c3195626fd3e3f73be7d326b3c7d78f2cdd70d83066e53978937d29997fe",
+      "reason": "工单、型号、工序代码和卡仍必答；未要求的工序子行内部ID改可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-017",
+      "old_case_sha256": "ba8ed9b589d6c9bb7b516b74ab4f76d665fbd9acf867b9c021c6c7bd0a1d96cd",
+      "new_case_sha256": "c9b52c45bf5eb16a1741e61a770bf6cf26d1e5e1cbd71dc3a1998095ae4bbf20",
+      "reason": "状态、实际开工及精度未知仍必答；已给出的OP-30及未问内部ID改可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-025",
+      "old_case_sha256": "88df034f2e2975edebbb30c2b4958b98c3c5209d5fce01a1457c3552a971074d",
+      "new_case_sha256": "d3b8fd81d0d48e9c817f614d0714ac6880769eaeb4079f75812f6cf34aac85c2",
+      "reason": "步骤名称不能证明工单原始字段、原始字段未知仍必答；平台映射编码解释改可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-026",
+      "old_case_sha256": "861abe46542c0f4e2e36a6ee0864163f9e4c95bc7c2f928b57269a8fca9ec040",
+      "new_case_sha256": "2510530b8e65fd73235742dc68b09be0cdc98b19e716c302261be80ef595f672",
+      "reason": "指导书编号/2.0和已复核分配依据仍必答；未问的内部修订号7和工艺编码解释改可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-043",
+      "old_case_sha256": "421a2fad019dc7ca3f35352eec0d4495346cfca552cd09da87874e1d5df92c76",
+      "new_case_sha256": "6f24c3d607d0b33c9506b169e03123f5037002aaae357365ab16e9a76c2c7300",
+      "reason": "保存核对要求及两种变更触发仍必答；未问的批量放行签署条款单列可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-052",
+      "old_case_sha256": "cdb1dc5250a255aeca7849e03128660cebc4da02013aa4e5a47c39f067507fa5",
+      "new_case_sha256": "f9cb4588164845adf37f0d6bcfa48532fb39703d357824241c7354b5a59215eb",
+      "reason": "拟分配不等于平台已审核仍必答；待审核/未登记细分状态和完整办理路径改可选，与070/088统一。"
+    },
+    {
+      "case_id": "MFG-GOLD-054",
+      "old_case_sha256": "ada1629809da6bcda2eb3fb7deb7c728301f06efb754574fb47fe0c63c454041",
+      "new_case_sha256": "dcc0dc2430121f017e34b3b8e8f69ee6ae5f7c7ad8dd3ac2bb00ea967f08cb13",
+      "reason": "编写日期不等于批准、新冻结且保留旧快照仍必答；未问待审状态改可选，与072/090统一。"
+    },
+    {
+      "case_id": "MFG-GOLD-064",
+      "old_case_sha256": "dff92b39e805933a9260604d6663d29c1257b571a9b6e1aff760df14f49a51d5",
+      "new_case_sha256": "c297a99cb80df5caa3716e5b505568cd9b6f3d1c1346b3ee4d03da5f8736c72f",
+      "reason": "子行/卡身份、各自时刻和不同仍必答；未问OP-30改可选，与046/082统一。"
+    },
+    {
+      "case_id": "MFG-GOLD-070",
+      "old_case_sha256": "5310ab7dc7c4291d7b51767bddf7de389b0d2379d556e1d00d33f76bee505f1b",
+      "new_case_sha256": "28e2d62fa095b6fe70e7f76f2f72cdb3dbed9adcd5da7283ee818c930e192063",
+      "reason": "与052/088统一：拟分配不能当已审核依据，细分状态和完整办理路径不强制复述。"
+    },
+    {
+      "case_id": "MFG-GOLD-082",
+      "old_case_sha256": "aff105869ac4d2d842fb83f7a838c371008477abde6c205362fcaa60f983a806",
+      "new_case_sha256": "d7cb6b8a5e2333fe768978032d4475988e137a9a7192d6e40d9d17031a4adab6",
+      "reason": "与046/064统一：身份、各自时刻和不同仍必答，工序码、日期及时区改可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-088",
+      "old_case_sha256": "2e2ad0fbac375b2349aca385aa990a2386aa5e8b5e1b5b533abad64db8f21d09",
+      "new_case_sha256": "436bbb353537130b1e7e4d024a3fc634854e498f1c2fb7e4959e96eb525a4e82",
+      "reason": "与052/070统一：拟分配不能当已审核依据，细分状态和完整办理路径不强制复述。"
+    }
+  ]
+}
