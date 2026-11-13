@@ -32,7 +32,7 @@ from .answer_constraints import complete_cited_table_conditions, generation_cons
 from .answer_completion import complete_answer
 from .answer_coverage import coverage_errors, coverage_snapshot, requirement_prompt
 from .answer_contract import answer_contract
-from .output_contract import generation_schema, prepare_draft, validate_output, with_manufacturing_rules
+from .output_contract import live_generation_schema, prepare_draft, validate_output, with_manufacturing_rules
 from .temporal import future_certainty_gap
 from .retrieval_service import RetrievalService
 from .evidence_coordinator import EvidenceCoordinator
@@ -436,13 +436,18 @@ class AnswerService:
             if projection is not None:
                 return prepare_draft(projection, context)
             model = getattr(self, "_manufacturing_llm", None) or self._base_llm.with_structured_output(
-                generation_schema(context), include_raw=True)
+                live_generation_schema(context), include_raw=True)
         result = invoke_structured(model, self._generation_messages(question, context),
                                    stage="answer_generation", model_name=self._settings.chat_model)
         return self._as_generation_draft(result, context)
 
     def _generation_messages(self, question, context):
         requirements = requirement_prompt(question, context)
+        if context.business_items:
+            from ..manufacturing.generation_selection import SELECTION_SYSTEM_PROMPT
+            return [SystemMessage(content=SELECTION_SYSTEM_PROMPT), HumanMessage(content=(
+                f"用户问题：\n{question}\n\n必答问题清单（用户数据）：\n{requirements}\n\n"
+                f"知识库资料：\n{context.text}"))]
         # Only server-selected fixed guidance and compiler-owned IDs go into
         # the system message. Original questions and source text remain data.
         contract = answer_contract(question, json.loads(requirements))
@@ -464,7 +469,7 @@ class AnswerService:
     def _regeneration_preflight(self, question, context):
         messages = self._generation_messages(question, context)
         prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
-        schema = generation_schema(context)
+        schema = live_generation_schema(context)
         prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
         output = self._settings.rag_regeneration_output_tokens
         current_rag_budget().check_model(prompt_bytes=prompt_bytes, output_tokens=output)
@@ -474,7 +479,7 @@ class AnswerService:
         messages, prompt_bytes, output = self._regeneration_preflight(question, context)
         with current_rag_budget().model_attempt(prompt_bytes=prompt_bytes, output_tokens=output,
                                                 purpose="regeneration") as remaining:
-            schema = generation_schema(context)
+            schema = live_generation_schema(context)
             model = self._regeneration_model_factory(model=self._settings.chat_model,
                 base_url=self._settings.chat_base_url, api_key=self._settings.chat_api_key, temperature=0,
                 reasoning_effort="none", max_retries=0, max_tokens=output,

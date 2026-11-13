@@ -16,7 +16,7 @@ from .answer_validation import ValidationResult
 from .evidence_coordinator import EvidenceAccess
 from .rag_budget import current_rag_budget
 from .calculation_repair import normalize_calculations, verified_calculation_repair
-from .output_contract import generation_schema, prepare_draft, validate_output, with_manufacturing_rules
+from .output_contract import generation_schema, live_generation_schema, prepare_draft, validate_output, with_manufacturing_rules
 from .generation_errors import RECOVERABLE_GENERATION_ERRORS
 
 logger = logging.getLogger(__name__)
@@ -211,7 +211,7 @@ class AnswerRepair:
             if not refresh_context():
                 return None
             prompt_bytes = sum(len(str(message.content).encode('utf-8')) for message in messages)
-            schema = generation_schema(context)
+            schema = live_generation_schema(context)
             prompt_bytes += len(json.dumps(schema.model_json_schema()).encode('utf-8')) + 256
             output = self.settings.rag_repair_output_tokens
             if prompt_bytes > self.settings.rag_repair_prompt_bytes:

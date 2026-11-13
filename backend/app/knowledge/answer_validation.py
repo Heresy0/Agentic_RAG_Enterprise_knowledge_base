@@ -57,6 +57,22 @@ def without_identifiers(text, allowed):
     return IDENTIFIER_PATTERN.sub(lambda m: ' ' if m.group() in allowed else m.group(), text)
 
 
+def without_bound_citation_labels(text, citations):
+    """Reference labels are not quantities; only exempt this claim's bindings.
+
+    Do not match prefixes, revisions, selectors or an attached measurement.
+    The source IDs themselves still undergo the normal existence check.
+    """
+    for citation in sorted(set(citations), key=len, reverse=True):
+        if not re.fullmatch(r'(?:资料|业务)[1-9][0-9]*', citation):
+            continue
+        text = re.sub(
+            re.escape(citation)
+            + r'(?![0-9A-Za-z_.#]|\s*(?:件|次|小时|分钟|秒|天|元|%|毫米|厘米|米|克|千克)|\s*(?:至|到|[-~～])\s*\d)',
+            ' ', text)
+    return text
+
+
 @dataclass
 class ValidationResult:
     valid: bool
@@ -131,7 +147,8 @@ class AnswerValidator:
             for item in all_items
         }
         question_facts = self._extract_numeric_facts(
-            expand_omitted_years(without_identifiers(question, identifiers(question)))
+            expand_omitted_years(without_identifiers(
+                without_bound_citation_labels(question, allowed_ids), identifiers(question)))
         )
 
         if not draft.answerable:
@@ -263,9 +280,10 @@ class AnswerValidator:
             unknown_identifiers = identifiers(claim.text) - identity_sources
             if unknown_identifiers:
                 errors.append(f"第{claim_index}个结论中的完整标识缺少对应引用支持：{sorted(unknown_identifiers)}")
-            claim_facts = self._extract_numeric_facts(without_identifiers(claim.text, identity_sources))
+            claim_facts = self._extract_numeric_facts(without_identifiers(
+                without_bound_citation_labels(claim.text, claim.citations), identity_sources))
             evidence_facts = self._extract_numeric_facts(
-                without_identifiers(cited_text, cited_identifiers)
+                without_identifiers(without_bound_citation_labels(cited_text, allowed_ids), cited_identifiers)
             )
             if context.business_items:
                 evidence_facts |= {"number:" + number for _, number in self._manufacturing_quantities(cited_text)}
