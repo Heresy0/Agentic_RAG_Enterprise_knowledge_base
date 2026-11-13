@@ -1,0 +1,195 @@
+{
+  "schema_version": "manufacturing-contract-budget-offline-replay-v1",
+  "cases": [
+    {
+      "case_id": "MFG-GOLD-036",
+      "recorded_errors": [
+        "开工登记与检验签署的边界回答缺少适用指导书的独立检验及质量签署要求或对应开工来源"
+      ],
+      "replayed_validation": {
+        "valid": true,
+        "errors": []
+      },
+      "restored_five_items_validation": {
+        "valid": true,
+        "errors": []
+      },
+      "restored_items_match_old_content_order_citations": true,
+      "frozen_draft_unchanged": true,
+      "boundary": {
+        "claim_index": 0,
+        "text": "仅凭实际开工登记，不能认定首件检验或质量签署已经完成，也不能据此判断实际是否完成；仍需核验适用指导书要求的检验记录及质量签署",
+        "citations": [
+          "业务22",
+          "资料4"
+        ]
+      },
+      "rendered_answer": "仅凭实际开工登记，不能认定首件检验或质量签署已经完成，也不能据此判断实际是否完成；仍需核验适用指导书要求的检验记录及质量签署。[业务22][资料4]\n不能认定。工单、工序或作业卡显示“Completed”仅表示生产报工或流程节点已登记，不证明首件检验或质量签署已经完成。[资料4]\n首件确认必须连续检查3件（适用版本2.0），所有必检项目全部合格，且必须由质量人员完成签署后才能恢复后续作业。[资料1][资料2]\n仅有口头同意、报工记录或计划签署时间，均不能证明首件确认条件和质量签署已经满足。[资料4]\n工单ERP-WO-STARTED适用HC-WI-A17-020业务版本2.0。[资料1][资料2][业务1][业务2][业务3][业务4]",
+      "business_citations": [
+        {
+          "citation_id": "业务22",
+          "source_system_id": "erpnext-hc",
+          "source_record_id": "PO-JOB00001",
+          "work_order_id": "ERP-WO-STARTED",
+          "plant_code": "HC-P01",
+          "source_revision": "erp-75d1bb1b11a275fc39d4d8f09c88d7dfb3f542fb81ebcd0199d116f3143d",
+          "payload_sha256": "b8ce50227fbe48f2e7906da9368e0a7806c166c6407ac770e092d91b7aa97b5b",
+          "field_name": "job_card_actual_started_at",
+          "value": "2026-11-09T16:55:29.735215+08:00",
+          "actual_start_precision": "datetime",
+          "fetched_at": "2026-11-13T10:00:05.688828+00:00",
+          "last_verified_at": "2026-11-13T10:00:05.688828+00:00",
+          "source_entity": "Job Card",
+          "operation_id": "eojkf47oip",
+          "job_card_id": "PO-JOB00001"
+        },
+        {
+          "citation_id": "业务1",
+          "source_system_id": "erpnext-hc",
+          "source_record_id": "ERP-WO-STARTED",
+          "work_order_id": "ERP-WO-STARTED",
+          "plant_code": "HC-P01",
+          "source_revision": "erp-75d1bb1b11a275fc39d4d8f09c88d7dfb3f542fb81ebcd0199d116f3143d",
+          "payload_sha256": "b8ce50227fbe48f2e7906da9368e0a7806c166c6407ac770e092d91b7aa97b5b",
+          "field_name": "work_order_id",
+          "value": "ERP-WO-STARTED",
+          "actual_start_precision": "datetime",
+          "fetched_at": "2026-11-13T10:00:05.688828+00:00",
+          "last_verified_at": "2026-11-13T10:00:05.688828+00:00",
+          "source_entity": "Work Order",
+          "operation_id": "eojkf47oip",
+          "job_card_id": "PO-JOB00001"
+        },
+        {
+          "citation_id": "业务2",
+          "source_system_id": "erpnext-hc",
+          "source_record_id": "ERP-WO-STARTED",
+          "work_order_id": "ERP-WO-STARTED",
+          "plant_code": "HC-P01",
+          "source_revision": "erp-75d1bb1b11a275fc39d4d8f09c88d7dfb3f542fb81ebcd0199d116f3143d",
+          "payload_sha256": "b8ce50227fbe48f2e7906da9368e0a7806c166c6407ac770e092d91b7aa97b5b",
+          "field_name": "product_model",
+          "value": "HC-A17",
+          "actual_start_precision": "datetime",
+          "fetched_at": "2026-11-13T10:00:05.688828+00:00",
+          "last_verified_at": "2026-11-13T10:00:05.688828+00:00",
+          "source_entity": "Work Order",
+          "operation_id": "eojkf47oip",
+          "job_card_id": "PO-JOB00001"
+        },
+        {
+          "citation_id": "业务3",
+          "source_system_id": "erpnext-hc",
+          "source_record_id": "eojkf47oip",
+          "work_order_id": "ERP-WO-STARTED",
+          "plant_code": "HC-P01",
+          "source_revision": "erp-75d1bb1b11a275fc39d4d8f09c88d7dfb3f542fb81ebcd0199d116f3143d",
+          "payload_sha256": "b8ce50227fbe48f2e7906da9368e0a7806c166c6407ac770e092d91b7aa97b5b",
+          "field_name": "operation_code",
+          "value": "OP-20",
+          "actual_start_precision": "datetime",
+          "fetched_at": "2026-11-13T10:00:05.688828+00:00",
+          "last_verified_at": "2026-11-13T10:00:05.688828+00:00",
+          "source_entity": "Work Order Operation",
+          "operation_id": "eojkf47oip",
+          "job_card_id": "PO-JOB00001"
+        },
+        {
+          "citation_id": "业务4",
+          "source_system_id": "erpnext-hc",
+          "source_record_id": "ERP-WO-STARTED",
+          "work_order_id": "ERP-WO-STARTED",
+          "plant_code": "HC-P01",
+          "source_revision": "erp-75d1bb1b11a275fc39d4d8f09c88d7dfb3f542fb81ebcd0199d116f3143d",
+          "payload_sha256": "b8ce50227fbe48f2e7906da9368e0a7806c166c6407ac770e092d91b7aa97b5b",
+          "field_name": "actual_started_at",
+          "value": "2026-11-09T16:55:29.735215+08:00",
+          "actual_start_precision": "datetime",
+          "fetched_at": "2026-11-13T10:00:05.688828+00:00",
+          "last_verified_at": "2026-11-13T10:00:05.688828+00:00",
+          "source_entity": "Work Order",
+          "operation_id": "eojkf47oip",
+          "job_card_id": "PO-JOB00001"
+        }
+      ],
+      "limitation": "Contract replay only; unchanged broad Completed wording still requires semantic review. Not a new question-level pass."
+    },
+    {
+      "case_id": "MFG-GOLD-091",
+      "search_replay": {
+        "top_k": 12,
+        "ranked_anchors": 12,
+        "parent_resolver_calls": 1,
+        "returned_parents": 5,
+        "context_items": 5,
+        "exact_old_context_content_order_citations": true,
+        "incomplete_reason": null,
+        "limitation": "Saved fusion/ranking and exact-anchor SQL parent results are substitutes. No live scope/source/SQL recheck; missing trace metadata prevents exact formatted character-count claims."
+      },
+      "original_draft_validation": {
+        "valid": false,
+        "errors": [
+          "必答要点关联了重复或不存在的结论：Q1"
+        ]
+      },
+      "repair_prompt_bytes_before": 26344,
+      "repair_prompt_bytes_after": 16703,
+      "repair_limit_bytes": 24000,
+      "existing_repair_budget_eligible": true,
+      "limitation": "The saved out-of-range index remains invalid. This fixes access to the existing repair, not its hypothetical model output."
+    },
+    {
+      "case_id": "MFG-GOLD-095",
+      "search_replay": {
+        "top_k": 12,
+        "ranked_anchors": 12,
+        "parent_resolver_calls": 1,
+        "returned_parents": 5,
+        "context_items": 5,
+        "exact_old_context_content_order_citations": true,
+        "incomplete_reason": null,
+        "limitation": "Saved fusion/ranking and exact-anchor SQL parent results are substitutes. No live scope/source/SQL recheck; missing trace metadata prevents exact formatted character-count claims."
+      },
+      "known_old_draft_compatibility": {
+        "valid": true,
+        "errors": []
+      },
+      "target_quote_in_retained_context": true,
+      "limitation": "Generation gate is no longer blocked; the old draft is only a compatibility fixture, not a new answer or score."
+    }
+  ],
+  "model_calls": 0,
+  "network_connections_allowed": false,
+  "api_calls": 0,
+  "database_calls": 0,
+  "container_operations": 0,
+  "inputs_unchanged": true,
+  "input_sha256": {
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-036-result.json": "8a677566c37654e056708588a7a7016a5da695f007c9a5b585e0e6adb8ec9eb2",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-091-result.json": "af60b1298b58df213111649c6b1465a9352cd21d44e7823460c9ced9c910f9ec",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-095-result.json": "b8b1c231b69380b94e5806c3c41a0b0a3c34a670e0a01cefad0874406f5c6f69",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-036-result.json": "4bb888f240de5ea4fbab81a1c1a68f2a06d5a1f081721b6e8026a62f30b1a19a",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-091-result.json": "f72745ce2d5e812e868c40db40f6e7497986341c60db500989025da44726d587",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-095-result.json": "adb35484c7dec68b0c4f1f8cd61ba159ba8a85b8ddd7ff98e5cc0656b63afac9",
+    "evals/manufacturing_gold_100_v4/cases.jsonl": "0e482e1e3b2d1209f48e71d11f8f1ec9a6109531d65d3b834379638e1c5cfbeb",
+    "evals/manufacturing_gold_100_v4/sources.json": "d97aede4a78567d7c9e16159a0f03f1b92d82fcd8238131bb5d6fd036308711e",
+    "evals/manufacturing_gold_100_v4/review_policy.json": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+    "evals/manufacturing_gold_100_v4/manifest.json": "c800b45dab8c2daebb4c8a86b812889eb1ad630be88079be89274ed78005794d",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/audits.json": "16875fc3ae38cd22bb6fa94de09292c4c05d8a80e722b11d3a8fa0164e1bb48e",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/manifest.json": "ff8f14354d3fae1f037840523be1b820a60b30d216791dfc833ae995a49c44f6",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/results.jsonl": "ce4c4afae60dd9a32a0b2c374e9054604325d9f2e621dfc1743117dd068831e6",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/reviews.json": "2328a0d0b42714a0a3979cea827312f4f4c436dda5ca8f7f3c8a2ea3fb57e512",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/summary.json": "bb38395b38c9853334b2b1b3569706f59a71c20ac70344f35feafb363ca6ffaf",
+    "backend/app/manufacturing/source_statements.py": "ae9d8ca8f8f8ace9c459109e6fc479be95d623c832914d814d5ecb3af9af34b3",
+    "backend/app/knowledge/retrieval_service.py": "85e4cf33d055770d8ec2889511fb35d07833aa5ef092cf258af9d2e69e65d4c9",
+    "backend/app/knowledge/answer_repair.py": "8f7e3e5318eefd040a9996e96d8931b82157825c65c894ec004884eb04e5db9a",
+    "backend/app/knowledge/context_builder.py": "e188fe911f463c4a966622d1fea3e4e94e47b9becc98141ec7351041ef456d95",
+    "backend/app/knowledge/chunk_repository.py": "18cf0ae9530bac012460b1a86f1702244a48e7188c3e9f4e2f47271f761aae9c",
+    "backend/app/knowledge/answer_validation.py": "b7745a93a5b47894ea848d959694a769789e58bce76605dec0193e310b993a60",
+    "scripts/replay_manufacturing_contract_budget_fixes.py": "796ab80899d3189e599beef9daad14a0f7bb1736ded3ec4eb0874b0882f6d480",
+    "scripts/diagnose_manufacturing_grounded_regressions.py": "104fb11d5ba9dc869d034f4d7bf9bbfdab6667859ec90eaca344442c70203268",
+    "scripts/diagnose_manufacturing_selection_failures.py": "633817a29835daa066a6586a4e6b0f96d3ddadcdb7750e9d410486ba51a75199"
+  },
+  "old_scores_recomputed": false,
+  "new_accuracy_claimed": false
+}

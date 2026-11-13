@@ -162,21 +162,6 @@ class RetrievalService:
             record_documents("policy_candidates", candidates)
             return candidates
 
-        def finalize_candidates(question, documents):
-            documents = select_evidence(question, documents, scope=scope)
-            if getattr(self._settings, 'rag_parent_context_enabled', False):
-                # Parent resolution already deduplicates within the current
-                # authorized generation. Do it before spending the top-k slots.
-                original = {doc.metadata['chunk_id']: doc.metadata for doc in documents}
-                parents = repository.parent_chunks(scope=scope, expected=original)
-                documents = [stored_chunk_to_document(row) for row in parents]
-                for doc in documents:
-                    for key in RANK_METADATA_KEYS:
-                        if key in original.get(doc.metadata['chunk_id'], {}):
-                            doc.metadata[key] = original[doc.metadata['chunk_id']][key]
-                documents = select_evidence(question, documents, scope=scope)
-            return documents
-
         final_k = getattr(self._settings, 'rag_rerank_top_k', FINAL_K)
         retriever = RerankRetriever(
             base_retriever=hybrid_retriever,
@@ -187,7 +172,7 @@ class RetrievalService:
                 "fetch_k": FETCH_K,
             },
             candidate_processor=prepare_candidates,
-            result_processor=finalize_candidates,
+            result_processor=lambda question, docs: select_evidence(question, docs, scope=scope),
         )
 
         documents = retriever.invoke(query)
@@ -198,6 +183,16 @@ class RetrievalService:
             documents = select_evidence(query, documents, scope=scope)
         record_documents("rerank", documents)
         if getattr(self._settings, 'rag_parent_context_enabled', False):
+            # Bound ranked hits before expansion; filling top-k with distinct
+            # parents also expands generation and repair context budgets.
+            original = {doc.metadata['chunk_id']: doc.metadata for doc in documents}
+            parents = repository.parent_chunks(scope=scope, expected=original)
+            documents = [stored_chunk_to_document(row) for row in parents]
+            for doc in documents:
+                for key in RANK_METADATA_KEYS:
+                    if key in original.get(doc.metadata['chunk_id'], {}):
+                        doc.metadata[key] = original[doc.metadata['chunk_id']][key]
+            documents = select_evidence(query, documents, scope=scope)
             record_documents('parent_context', documents)
         names = {str(kb_id): name for kb_id, name in scope.knowledge_base_names}
         for document in documents:

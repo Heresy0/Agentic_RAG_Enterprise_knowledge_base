@@ -221,6 +221,42 @@ def test_selected_card_boundary_uses_complete_and_rule_not_status(catalog,execut
             assert execution_boundary_verdict(CARD_BOUNDARY,compiled,replace(built,business_items=())) is None
 
 
+@pytest.mark.parametrize('rule,supported', [(RULE,True), (AND_RULE,True),
+    (AND_RULE.replace('同时满足','满足任一'),False),
+    (AND_RULE.replace('质量人员完成签署','计划质量人员完成签署'),False),
+    (RULE+'特殊批次无需检验。',False), ('只有开工登记，无检验或签署规则。',False)])
+def test_grounded_boundary_derives_from_cited_complete_rule(catalog,execution_active,rule,supported):
+    from backend.app.knowledge.answer_models import AnswerDraft
+    from backend.app.manufacturing.generation_selection import GroundedDraft
+    active,built,citation = built_source(catalog,rule)
+    active=replace(active,context=execution_active.context)
+    built=replace(built,business_items=active.items)
+    draft=GroundedDraft.model_validate(dict(answerable=True,response_type='answer',
+        claims=[dict(text='不能据开工登记认定首件检验和质量签署已完成。',citations=[citation])],
+        coverage=[dict(requirement_id='Q1',aspect='开工与检验签署边界',status='answered',claim_indices=[1],missing_information=None)]))
+    with manufacturing_answer_context(active):
+        verdict=execution_boundary_verdict(CARD_BOUNDARY,draft,built)
+        assert (verdict is not None) is supported
+        assert draft.claims[0].claim_kind is None
+        if supported:
+            assert AnswerValidator().validate(draft=draft,context=built,question=CARD_BOUNDARY).valid
+            result=AnswerService._render_result(None,draft=draft,context=built,question=CARD_BOUNDARY)
+            assert result.answer.startswith('仅凭实际开工登记，不能认定')
+            assert '也不能据此判断实际是否完成' in result.answer
+            assert result.claim_bindings[0]['derived_condition']['origin']=='server_execution_evidence_boundary'
+            start=next(x for x in built.business_items if x.field_name=='job_card_actual_started_at')
+            assert set(verdict['citations'])=={start.citation_id,citation}
+            # The source must be cited, current, and a rule rather than a notice.
+            uncited=draft.model_copy(deep=True);uncited.claims[0].citations=[start.citation_id]
+            assert execution_boundary_verdict(CARD_BOUNDARY,uncited,built) is None
+            for changes in ({'business_revision':'not-current'}, {'document_role':'change_notice'}):
+                altered=replace(built,items=[replace(x,**changes) if x.citation_id==citation else x for x in built.items])
+                assert execution_boundary_verdict(CARD_BOUNDARY,draft,altered) is None
+            # Existing untyped legacy assertions retain the old strict contract.
+            legacy=AnswerDraft.model_validate(draft.model_dump())
+            assert execution_boundary_verdict(CARD_BOUNDARY,legacy,built) is None
+
+
 @pytest.mark.parametrize('refs', [(), ('A','B')])
 @pytest.mark.parametrize('bad_value', [None, '', ['OTHER'], ['B','A']])
 def test_execution_v2_only_normalizes_array_representation(execution_active,bad_value,refs):

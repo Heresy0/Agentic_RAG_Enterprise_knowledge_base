@@ -292,7 +292,7 @@ def test_multi_scope_shares_budget_and_drops_out_of_scope_hits_before_reranking(
 
 
 @pytest.mark.parametrize("parent_enabled", [True, False])
-def test_parent_deduplication_happens_before_top_k(monkeypatch, parent_enabled):
+def test_parent_expansion_does_not_backfill_beyond_ranked_top_k(monkeypatch, parent_enabled):
     from dataclasses import replace
     from types import SimpleNamespace
     scope = _scope()
@@ -310,10 +310,11 @@ def test_parent_deduplication_happens_before_top_k(monkeypatch, parent_enabled):
     def parent_chunks(*, scope, expected):
         seen.extend(expected)
         # The first two child hits share a parent. The third has a distinct parent.
-        return [replace(chunks[0], content="完整父段A"), replace(chunks[2], content="完整父段B")]
+        assert list(expected) == ['chunk-1', 'chunk-2']
+        return [replace(chunks[0], content="完整父段A")]
     monkeypatch.setattr(repository, "parent_chunks", parent_chunks)
     result = service.search("对应要求？", scope=scope, session=object())
-    assert [d.metadata["chunk_id"] for d in result] == (["chunk-1", "chunk-3"] if parent_enabled else ["chunk-1", "chunk-2"])
-    assert seen == (["chunk-1", "chunk-2", "chunk-3"] if parent_enabled else [])
-    assert result[-1].metadata["final_rank"] == 2
-    assert result[-1].metadata["model_rank"] == (3 if parent_enabled else 2)
+    assert [d.metadata["chunk_id"] for d in result] == (["chunk-1"] if parent_enabled else ["chunk-1", "chunk-2"])
+    assert seen == (["chunk-1", "chunk-2"] if parent_enabled else [])
+    assert result[-1].metadata["final_rank"] == (1 if parent_enabled else 2)
+    assert result[-1].metadata["model_rank"] == (1 if parent_enabled else 2)
