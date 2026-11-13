@@ -108,7 +108,7 @@ def test_ordinary_schema_and_prompt_remain_separate(catalog):
         context = ContextBuilder().build([])
         messages = AnswerService._generation_messages(None, "工单编号？", context)
         from backend.app.knowledge.prompts import ANSWER_SYSTEM_PROMPT
-        assert messages[0].content.startswith(ANSWER_SYSTEM_PROMPT)
+        assert not messages[0].content.startswith(ANSWER_SYSTEM_PROMPT)
         assert '业务字段使用source选择' in messages[0].content
         fact = live_generation_schema(context).model_json_schema()['$defs']['VerifiedAnswerSource']
         assert fact['required'] == ['source'] and set(fact['properties']) == {'source'}

@@ -2,6 +2,7 @@
 import json
 import logging
 from copy import deepcopy
+from pydantic import BaseModel
 
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
@@ -9,14 +10,14 @@ from langchain_openai import ChatOpenAI
 from ..config import Settings
 from ..evaluation.trace import record_rag_event
 from ..model_usage import invoke_structured
-from .answer_models import AnswerDraft, GenerationAnswerDraft
+from .answer_models import AnswerDraft
 from .answer_coverage import requirement_prompt
 from .answer_contract import direct_answer_errors
 from .answer_validation import ValidationResult
 from .evidence_coordinator import EvidenceAccess
 from .rag_budget import current_rag_budget
 from .calculation_repair import normalize_calculations, verified_calculation_repair
-from .output_contract import generation_schema, live_generation_schema, prepare_draft, validate_output, with_manufacturing_rules
+from .output_contract import generation_schema, live_generation_schema, reference_schema, prepare_draft, validate_output, with_manufacturing_rules
 from .generation_errors import RECOVERABLE_GENERATION_ERRORS
 
 logger = logging.getLogger(__name__)
@@ -172,6 +173,8 @@ class AnswerRepair:
             from ..manufacturing.generation_selection import GroundedDraft, grounded_schema
             if isinstance(draft, GroundedDraft):
                 schema = grounded_schema(context, claim=decision_mode)
+            elif not context.business_items:
+                schema = reference_schema(context, claim=decision_mode)
             else:
                 schema = generation_schema(context, claim=True) if decision_mode else type(draft)
             prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
@@ -186,7 +189,7 @@ class AnswerRepair:
                 ).with_structured_output(schema, include_raw=True)
                 response = invoke_structured(model, messages, stage="answer_repair", model_name=self.settings.chat_model)
                 if decision_mode:
-                    verdict = schema.model_validate(response)
+                    verdict = schema.model_validate(response.model_dump() if isinstance(response, BaseModel) else response)
                     repaired = original.model_copy(deep=True)
                     repaired.claims.insert(0, verdict)
                     # Index remapping only; no new coverage/facts are invented.
@@ -194,7 +197,7 @@ class AnswerRepair:
                         row.claim_indices = [index + 1 for index in row.claim_indices]
                 else:
                     repaired = type(draft).model_validate(response.model_dump()
-                        if isinstance(response, GenerationAnswerDraft) else response)
+                        if isinstance(response, BaseModel) else response)
             guard.require()
             current = refresh_context()
             repaired = prepare_draft(repaired, context, schema=type(draft))
@@ -216,7 +219,7 @@ class AnswerRepair:
             record_rag_event(dict(kind="repair", outcome="fallback", error_type=type(exc).__name__))
             return original
 
-    def recover_schema(self, *, messages, scope, session, refresh_context, context=None, question=''):
+    def recover_schema(self, *, messages, scope, session, refresh_context, context=None):
         """One fresh generation after an unparsable output, charged as repair."""
         if not self.settings.rag_repair_enabled:
             return None
@@ -228,24 +231,23 @@ class AnswerRepair:
             if not refresh_context():
                 return None
             prompt_bytes = sum(len(str(message.content).encode('utf-8')) for message in messages)
-            schema = live_generation_schema(context, question)
+            schema = live_generation_schema(context)
             prompt_bytes += len(json.dumps(schema.model_json_schema()).encode('utf-8')) + 256
             output = self.settings.rag_repair_output_tokens
-            if prompt_bytes > self.settings.rag_repair_prompt_bytes:
-                record_rag_event(dict(kind='schema_repair', outcome='prompt_budget'))
-                return None
+            # This regenerates a whole answer, unlike a small citation repair.
+            # The shared call/token/time budget below bounds the full input.
             with budget.model_attempt(prompt_bytes=prompt_bytes, output_tokens=output) as remaining:
                 model = self.model_factory(model=self.settings.chat_model, base_url=self.settings.chat_base_url,
                     api_key=self.settings.chat_api_key, temperature=0, reasoning_effort='none', max_retries=0,
                     timeout=min(self.settings.rag_repair_timeout_seconds, remaining), max_tokens=output
                 ).with_structured_output(schema, include_raw=True)
-                result = schema.model_validate(invoke_structured(
-                    model, messages, stage='answer_repair', model_name=self.settings.chat_model))
+                response = invoke_structured(model, messages, stage='answer_repair', model_name=self.settings.chat_model)
+                result = schema.model_validate(response.model_dump() if isinstance(response, BaseModel) else response)
             guard.require()
             if not refresh_context():
                 return None
             record_rag_event(dict(kind='schema_repair', outcome='generated'))
-            return prepare_draft(result, context, question=question)
+            return prepare_draft(result, context)
         except RECOVERABLE_GENERATION_ERRORS as exc:
             record_rag_event(dict(kind='schema_repair', outcome='fallback', error_type=type(exc).__name__))
             return None

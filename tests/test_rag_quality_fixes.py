@@ -60,12 +60,12 @@ def test_calculation_model_repair_must_use_only_program_results_or_whole_source_
 
 
 def schema_service(monkeypatch, *, candidate=None, hook=None):
-    service, retrieval, *_ = build_service(monkeypatch, documents=[make_document('温度是80摄氏度。')], model_result=None)
+    service, retrieval, structured, *_ = build_service(monkeypatch, documents=[make_document('温度是80摄氏度。')], model_result=None)
     service._settings.rag_repair_enabled = True
     retrieval.refresh_evidence = lambda docs, **kwargs: docs
     def invalid(messages):
         return GenerationAnswerDraft.model_validate({'answerable':True, 'response_type':'answer', 'coverage':[]})
-    service._structured_llm.invoke = invalid
+    structured.invoke = invalid
     service._answer_repair, calls, guard = repair_service(candidate or draft(indices=(1,)), hook=hook)
     return service, calls, guard
 

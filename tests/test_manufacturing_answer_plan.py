@@ -49,13 +49,16 @@ def test_source_plan_rebinds_only_current_authorized_items(catalog):
         assert active.context.record.product_model not in result.claims[0].text
 
 
-def test_document_explanations_cannot_rewrite_business_fields_or_invent_refs(catalog):
+def test_explanations_can_bind_related_business_facts_but_cannot_invent_refs(catalog):
     active, context, citation=built_source(catalog,'开工记录不能证明检验完成。')
     with manufacturing_answer_context(active):
         schema=live_generation_schema(context)
         wire=schema.model_validate(grounded_payload('不能凭开工记录确认检验完成。',citation))
         assert isinstance(prepare_draft(wire,context),GroundedDraft)
-        for ref in ('业务2','资料999'):
+        related=schema.model_validate(grounded_payload('本条解释需要关联当前业务字段。',citation))
+        related.claims[0].citations.append('业务2')
+        assert prepare_draft(related,context).claims[0].citations==[citation,'业务2']
+        for ref in ('业务999','资料999','1','data:资料1','https://example.com'):
             with pytest.raises(ValidationError):schema.model_validate(grounded_payload('猜测执行事实。',ref))
 
 
@@ -82,18 +85,17 @@ def test_backend_boundary_uses_existing_complete_source_proof(catalog,execution_
     context=replace(context,business_items=active.items)
     question='所选作业卡已有开工登记，能否证明首件检验和质量签署已完成？'
     with manufacturing_answer_context(active):
-        sources=answer_sources(context,question)
-        assert ('后端开工边界' in sources) is available
+        from backend.app.manufacturing.source_statements import execution_boundary_verdict
+        wire=live_generation_schema(context).model_validate(grounded_payload(rule,citation))
+        draft=prepare_draft(wire,context)
+        verdict=execution_boundary_verdict(question,draft,context)
+        assert (verdict is not None) is available
         if available:
-            wire=live_generation_schema(context,question).model_validate(payload('后端开工边界'))
-            draft=prepare_draft(wire,context,question=question)
             assert AnswerValidator().validate(draft=draft,context=context,question=question).valid
             result=AnswerService._render_result(None,draft=draft,context=context,question=question)
             assert result.answer.count('仅凭实际开工登记')==1
             assert '也不能据此判断实际是否完成' in result.answer
-            assert citation in sources['后端开工边界'].citations
-            unbound=replace(context,items=[replace(x,document_id='unbound-document') for x in context.items])
-            assert '后端开工边界' not in answer_sources(unbound,question)
+            assert citation in verdict['citations']
 
 
 def test_unknown_start_note_is_a_source_boundary_not_an_execution_status(catalog,execution_active):

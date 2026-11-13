@@ -292,7 +292,7 @@ def test_initializes_structured_model_with_expected_settings(
         "timeout": 120,
         "max_retries": 0,
     }]
-    assert chat_model.schemas == [EvidenceFirstAnswerDraft]
+    assert chat_model.schemas == []  # Reference pools are bound at request time.
 
 
 def test_blank_question_is_rejected_before_retrieval(

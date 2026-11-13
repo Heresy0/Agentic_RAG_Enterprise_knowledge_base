@@ -1,5 +1,7 @@
 """Shared output preparation and checks for generation and bounded repair."""
-from pydantic import BaseModel
+from typing import Literal
+
+from pydantic import BaseModel, Field, create_model
 
 from .answer_contract import direct_answer_errors
 from .answer_models import AnswerClaim, EvidenceFirstAnswerDraft
@@ -24,10 +26,22 @@ def generation_schema(context=None, *, claim=False):
     return AnswerClaim if claim else EvidenceFirstAnswerDraft
 
 
-def live_generation_schema(context, question=''):
+def reference_schema(context, *, claim_type=AnswerClaim, draft_type=EvidenceFirstAnswerDraft, claim=False):
+    """Use the same current-reference contract for generation and bounded repair."""
+    refs = tuple(dict.fromkeys(item.citation_id for item in [*context.items, *context.business_items]))
+    model = create_model('Bound' + claim_type.__name__, __base__=claim_type,
+        citations=(list[Literal[refs]], Field(default_factory=list,
+            description='支持本条结论的当前授权来源编号；直接选择，不附加前后缀。')))
+    return model if claim else create_model('Bound' + draft_type.__name__, __base__=draft_type,
+        claims=(list[model], Field(default_factory=list)))
+
+
+def live_generation_schema(context):
     if context is not None and context.business_items:
         from ..manufacturing.generation_selection import answer_schema
-        return answer_schema(context, question)
+        return answer_schema(context)
+    if context is not None and context.items:
+        return reference_schema(context)
     return generation_schema(context)
 
 
@@ -41,16 +55,16 @@ def with_manufacturing_rules(system, context, *, draft=None):
     return system
 
 
-def prepare_draft(result, context=None, *, schema=None, question=''):
+def prepare_draft(result, context=None, *, schema=None):
     schema = schema or generation_schema(context)
     from ..manufacturing.generation_selection import (GroundedDraft, SelectionDraft, lower_selection, selection_schema,
                                                      LiveAnswerPlan, answer_schema, lower_answer_plan)
     if (context is not None and context.business_items and isinstance(result, dict)
             and any('source' in row for row in result.get('claims', []) if isinstance(row, dict))
             and any('text' in row or str(row.get('source','')).startswith('后端') for row in result['claims'])):
-        result = answer_schema(context, question).model_validate(result)
+        result = answer_schema(context).model_validate(result)
     if isinstance(result, LiveAnswerPlan):
-        result = lower_answer_plan(result, context, question)
+        result = lower_answer_plan(result, context)
     if (context is not None and context.business_items and isinstance(result, dict)
             and any('source' in row for row in result.get('claims', []) if isinstance(row, dict))):
         result = selection_schema(context).model_validate(result)
@@ -61,8 +75,8 @@ def prepare_draft(result, context=None, *, schema=None, question=''):
         result = GroundedDraft.model_validate(result)
     if isinstance(result, GroundedDraft):
         schema = GroundedDraft
-    if not isinstance(result, schema):
-        result = schema.model_validate(result.model_dump() if isinstance(result, BaseModel) else result)
+    # Wire enums/subclasses do not carry authority into the internal draft.
+    result = schema.model_validate(result.model_dump() if isinstance(result, BaseModel) else result)
     # Unused diagnostic quotes and a redundant search request cannot turn a
     # legitimate clarification into a refusal. Assertions still undergo validation.
     if any(row.status != "answered" and row.source_quote is not None for row in result.coverage):

@@ -13,7 +13,6 @@ from sqlalchemy.orm import Session
 from .answer_models import (
     AnswerDraft,
     GenerationAnswerDraft,
-    EvidenceFirstAnswerDraft,
     AnswerResult,
     AnswerTimings,
     Citation,
@@ -96,9 +95,6 @@ class AnswerService:
             max_retries=0,
         )
 
-        self._structured_llm = (
-            llm.with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
-        )
         self._base_llm = llm
 
     @audited_scope
@@ -233,7 +229,7 @@ class AnswerService:
                 changed=False, validation_errors=['结构化输出解析失败'])
             schema_started = time.perf_counter()
             draft = self._answer_repair.recover_schema(messages=self._generation_messages(question, context),
-                scope=scope, session=session, refresh_context=refresh_context, context=context, question=question)
+                scope=scope, session=session, refresh_context=refresh_context, context=context)
             timings['answer_repair_ms'] = _elapsed_ms(schema_started)
             schema_recovered = True
             if draft is None:
@@ -432,23 +428,23 @@ class AnswerService:
         question: str,
         context: BuiltContext,
     ) -> GenerationAnswerDraft:
-        model = self._structured_llm
+        model = None
         if context.business_items:
             from ..manufacturing.generation_models import precision_projection
             projection = precision_projection(question, context)
             if projection is not None:
                 return prepare_draft(projection, context)
-            model = getattr(self, "_manufacturing_llm", None) or self._base_llm.with_structured_output(
-                live_generation_schema(context, question), include_raw=True)
+            model = getattr(self, "_manufacturing_llm", None)
+        model = model or self._base_llm.with_structured_output(live_generation_schema(context), include_raw=True)
         result = invoke_structured(model, self._generation_messages(question, context),
                                    stage="answer_generation", model_name=self._settings.chat_model)
-        return self._as_generation_draft(result, context, question)
+        return self._as_generation_draft(result, context)
 
     def _generation_messages(self, question, context):
         requirements = requirement_prompt(question, context)
         if context.business_items:
             from ..manufacturing.generation_selection import SELECTION_SYSTEM_PROMPT, answer_sources
-            verified = {key: value.text for key, value in answer_sources(context, question).items()
+            verified = {key: value.text for key, value in answer_sources(context).items()
                         if key.startswith('后端')}
             return [SystemMessage(content=SELECTION_SYSTEM_PROMPT), HumanMessage(content=(
                 f"用户问题：\n{question}\n\n必答问题清单（用户数据）：\n{requirements}\n\n"
@@ -474,7 +470,7 @@ class AnswerService:
     def _regeneration_preflight(self, question, context):
         messages = self._generation_messages(question, context)
         prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
-        schema = live_generation_schema(context, question)
+        schema = live_generation_schema(context)
         prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
         output = self._settings.rag_regeneration_output_tokens
         current_rag_budget().check_model(prompt_bytes=prompt_bytes, output_tokens=output)
@@ -484,18 +480,18 @@ class AnswerService:
         messages, prompt_bytes, output = self._regeneration_preflight(question, context)
         with current_rag_budget().model_attempt(prompt_bytes=prompt_bytes, output_tokens=output,
                                                 purpose="regeneration") as remaining:
-            schema = live_generation_schema(context, question)
+            schema = live_generation_schema(context)
             model = self._regeneration_model_factory(model=self._settings.chat_model,
                 base_url=self._settings.chat_base_url, api_key=self._settings.chat_api_key, temperature=0,
                 reasoning_effort="none", max_retries=0, max_tokens=output,
                 timeout=min(self._settings.rag_regeneration_timeout_seconds, remaining)
             ).with_structured_output(schema, include_raw=True)
             result = invoke_structured(model, messages, stage="answer_regeneration", model_name=self._settings.chat_model)
-        return self._as_generation_draft(result, context, question)
+        return self._as_generation_draft(result, context)
 
     @staticmethod
-    def _as_generation_draft(result, context=None, question=''):
-        return prepare_draft(result, context, question=question)
+    def _as_generation_draft(result, context=None):
+        return prepare_draft(result, context)
 
     def _render_result(
         self,
