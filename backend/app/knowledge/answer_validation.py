@@ -57,6 +57,14 @@ def without_identifiers(text, allowed):
     return IDENTIFIER_PATTERN.sub(lambda m: ' ' if m.group() in allowed else m.group(), text)
 
 
+def without_bound_filenames(text, names):
+    """An exact, standalone cited filename is an identity, never a quantity."""
+    for name in sorted({name for name in names if name}, key=len, reverse=True):
+        if re.search(r'\.[A-Za-z][A-Za-z0-9]*$', name):
+            text = re.sub(r'(?<![\w.-])' + re.escape(name) + r'(?![\w.-])', ' ', text)
+    return text
+
+
 def without_bound_citation_labels(text, citations):
     """Reference labels are not quantities; only exempt this claim's bindings.
 
@@ -148,7 +156,8 @@ class AnswerValidator:
         }
         question_facts = self._extract_numeric_facts(
             expand_omitted_years(without_identifiers(
-                without_bound_citation_labels(question, allowed_ids), identifiers(question)))
+                without_bound_citation_labels(without_bound_filenames(question,
+                    [getattr(item, 'document_name', '') for item in all_items]), allowed_ids), identifiers(question)))
         )
 
         if not draft.answerable:
@@ -273,10 +282,11 @@ class AnswerValidator:
                 # number matching. Direct claims still take the original path.
                 continue
 
-            cited_text = "\n".join(
+            filenames = [getattr(item_map[key], 'document_name', '') for key in claim.citations]
+            cited_text = without_bound_filenames("\n".join(
                 item_map[citation_id].content + "\n" + policy_label(item_map[citation_id].policy)
                 for citation_id in claim.citations
-            )
+            ), filenames)
 
             cited_identifiers = identifiers(cited_text)
             identity_sources = cited_identifiers | identifiers(question)
@@ -286,7 +296,7 @@ class AnswerValidator:
             if unknown_identifiers:
                 errors.append(f"第{claim_index}个结论中的完整标识缺少对应引用支持：{sorted(unknown_identifiers)}")
             claim_facts = self._extract_numeric_facts(without_identifiers(
-                without_bound_citation_labels(claim.text, claim.citations), identity_sources))
+                without_bound_citation_labels(without_bound_filenames(claim.text, filenames), claim.citations), identity_sources))
             evidence_facts = self._extract_numeric_facts(
                 without_identifiers(without_bound_citation_labels(cited_text, allowed_ids), cited_identifiers)
             )

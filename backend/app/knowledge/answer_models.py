@@ -1,7 +1,7 @@
 from uuid import UUID
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validator
 from pydantic.json_schema import SkipJsonSchema
 
 ClaimKind = Literal["business_fact", "applicability", "work_requirement", "version_comparison", "work_order_evidence"]
@@ -66,6 +66,13 @@ class AnswerCoverage(BaseModel):
         description="回答该要点的claims序号，从1开始；未回答时为空数组")
     missing_information: str | None = Field(
         description="未回答时明确缺口或整体拒答原因；已回答为null")
+
+    @field_validator('missing_information', mode='before')
+    @classmethod
+    def normalize_answered_gap(cls, value, info: ValidationInfo):
+        if info.data.get('status') == 'answered' and isinstance(value, str) and not value.strip():
+            return None
+        return value
 
 
 class EvidenceGap(BaseModel):

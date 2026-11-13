@@ -117,6 +117,58 @@ def test_identifier_handling_keeps_dates_and_measurement_validation():
     assert not validate(make_answerable_draft('ZH-C31-04规定尺寸为15.0±0.4mm。'),context).valid
 
 
+@pytest.mark.parametrize('name', ['07_HC-A17_OP20作业指导书现行版.docx', '2026-11-03_参数(2.0).pdf'])
+def test_exact_cited_filename_is_not_a_business_number_or_date(name):
+    context=make_context('本文件未提供主轴转速或进给量。')
+    context=replace(context,items=[replace(context.items[0],document_name=name)])
+    result=validate(make_answerable_draft(f'依据《{name}》，本文件未提供主轴转速或进给量。'),context)
+    assert result.valid, result.errors
+
+
+@pytest.mark.parametrize('mentioned', ['08_检查.docx', '07_检查.docx.bak', 'x07_检查.docx', '旧07_检查.docx'])
+def test_unknown_or_partial_filename_is_not_exempt(mentioned):
+    context=make_context('检查要求见正文。')
+    context=replace(context,items=[replace(context.items[0],document_name='07_检查.docx')])
+    assert not validate(make_answerable_draft(f'依据《{mentioned}》执行检查。'),context).valid
+
+
+def test_uncited_filename_is_not_exempt_even_when_present_in_other_context():
+    context=make_context('检查要求见正文。','检查要求见正文。')
+    context=replace(context,items=[context.items[0],replace(context.items[1],document_name='07_检查.docx')])
+    assert not validate(make_answerable_draft('依据《07_检查.docx》执行检查。'),context).valid
+
+
+@pytest.mark.parametrize('name,extra', [
+    ('07_检查.docx', '需要检查7件'),
+    ('2026-11-03_检查.pdf', '自2026-11-03起启用'),
+    ('2.0_检查.txt', '使用2.0版'),
+])
+def test_filename_digits_never_support_quantities_dates_or_versions(name, extra):
+    context=make_context('检查要求见正文。')
+    context=replace(context,items=[replace(context.items[0],document_name=name)])
+    result=validate(make_answerable_draft(f'依据《{name}》，{extra}。'),context)
+    assert not result.valid and any('数字或日期' in error for error in result.errors)
+
+
+@pytest.mark.parametrize('location', ['body', 'question'])
+def test_bound_filename_in_body_or_question_cannot_lend_its_number_to_a_claim(location):
+    name='07_检查.docx'
+    context=make_context(f'《{name}》未说明检查数量。' if location=='body' else '未说明检查数量。')
+    context=replace(context,items=[replace(context.items[0],document_name=name)])
+    question=f'《{name}》需要检查几件？' if location=='question' else ''
+    assert not validate(make_answerable_draft('需要检查7件。'),context,question).valid
+
+
+def test_filename_handling_preserves_real_parameters_and_invalid_citation_checks():
+    context=make_context('2026-11-02起使用2.0版，首件检查3件，尺寸10.05毫米。')
+    context=replace(context,items=[replace(context.items[0],document_name='07_检查.docx')])
+    prefix='依据《07_检查.docx》，'
+    assert validate(make_answerable_draft(prefix+'2026-11-02起使用2.0版，首件检查3件，尺寸10.05毫米。'),context).valid
+    for wrong in ('2026-11-03起使用', '使用4.0版', '首件检查7件', '尺寸10.06毫米'):
+        assert not validate(make_answerable_draft(prefix+wrong),context).valid
+    assert not validate(make_answerable_draft(prefix+'首件检查3件。',citations=['资料99']),context).valid
+
+
 def test_question_shared_year_is_valid_but_not_new_business_numbers():
     question = '对比2026年9月20日与10月13日的访问上限？'
     context = make_context('单次访问上限为8小时。')
