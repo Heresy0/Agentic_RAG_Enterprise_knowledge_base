@@ -1,0 +1,24 @@
+{
+  "bindings_sha256": "38f1024db208a54bff96f6744f96462d09b138a93f8a966bf3295f9d071fd2ef",
+  "inputs": {
+    "scripts/confirm_manufacturing_contract_budget.py": "2cb3fb368b8f67808d4be71d2e01e41a84c2efa9d0e1cb0c6bde62d0e6bcd272",
+    "scripts/manufacturing_gold_v4_grounded_live.py": "43c556ce2253e8bfce0348c437da2e6022ef494cffd8523d96c6d3a49938a985",
+    "scripts/manufacturing_gold_live.py": "d1574e8744bc01099891bf532866a6bc0c4ecd9097d985eedf0979f31ae655db",
+    "evals/manufacturing_gold_100_v4/cases.jsonl": "0e482e1e3b2d1209f48e71d11f8f1ec9a6109531d65d3b834379638e1c5cfbeb",
+    "evals/manufacturing_gold_100_v4/review_policy.json": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d"
+  },
+  "raw_results": {
+    "MFG-GOLD-036": "0242cbea6303a6a54d3d583511a9f6c1b1195f972f578eeefd4155cc75d3aaf5",
+    "MFG-GOLD-091": "fdcc311e9648f0de00a47749ced6f60e3e5451b03afaab89f38a011956b789ca",
+    "MFG-GOLD-095": "1c86be97bbd5e6d362ae46573bf725509cfc2a967144fdcefdc65d9644899d27",
+    "MFG-GOLD-042": "c6c0dd152e2bdbb306d6a46e5c2cc6d04afbc7c9b8b71b7a12b29a054ffdff68"
+  },
+  "public_files": {
+    "audits.json": "cd52ed1bd7a2aa3c56bbab0a069134db37e2e1178259fd58f78e4f82079f07d9",
+    "results.jsonl": "fce93b169ec886b76bc4560a8d731cb531218f4b5b7356b54aa6c289a0092543",
+    "reviews.json": "22ef9c29175c783f729bc445557d48247797f6463cbf6c8ea412a02210de1048",
+    "summary.json": "6f312f018da409b7154a414498d675954b1d1b918debd503f62aa20e792739c3"
+  },
+  "labels_sent_to_model": false,
+  "credentials_included": false
+}

@@ -1,0 +1,173 @@
+{
+  "ledger": {
+    "matched": true,
+    "calls": 12,
+    "known_tokens": 44576,
+    "unknown_calls": 0,
+    "budget_tokens": 44576,
+    "by_stage": {
+      "query_embedding": 4,
+      "rerank": 4,
+      "answer_generation": 4
+    },
+    "providers_models": [
+      "dashscope:qwen3-rerank",
+      "dashscope:qwen3.7-flash",
+      "dashscope:text-embedding-v4"
+    ],
+    "all_priced": false,
+    "pending": 0
+  },
+  "business_source": {
+    "normal_erp_adapter_readonly": true,
+    "openmes_not_in_scope": true,
+    "no_fault_controller": true,
+    "old_application_ledgers_checked": 23,
+    "old_ledgers_unchanged": true,
+    "business_files_before_after": {
+      "erp": {
+        "files": 168,
+        "matches_revision": "c207559cd67fd37f5c347e3c8fede662ff379938"
+      }
+    },
+    "model_endpoints": {
+      "erp": {
+        "DASHSCOPE_BASE_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com",
+        "DASHSCOPE_RERANK_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com"
+      }
+    },
+    "model_postflight_calls": 0,
+    "new_index_calls": 0
+  },
+  "snapshots": {
+    "observed_requests": 7,
+    "qa_post_requests": 4,
+    "snapshot_get_requests": 3,
+    "manufacturing_snapshots": 1,
+    "all_three_reads_and_validations": true
+  },
+  "inventory": {
+    "erp": {
+      "documents": 55,
+      "chunks": 885,
+      "active_vectors": 885,
+      "total_vectors": 927,
+      "active_index_jobs": 0,
+      "frozen_inventory_matches": true,
+      "current_original_hashes_verified": true,
+      "revised_documents_v2": 3
+    }
+  },
+  "specific_behavior": {
+    "cases": [
+      {
+        "case_id": "MFG-GOLD-036",
+        "context_items": 5,
+        "context_characters": 2850,
+        "incomplete_reason": null,
+        "answer_generation_calls": 1,
+        "repair_model_calls": 0,
+        "public_snapshot_observed": true,
+        "harness_error": null,
+        "same_live_draft_old_boundary": null,
+        "same_live_draft_new_boundary": {
+          "claim_index": 0,
+          "text": "仅凭实际开工登记，不能认定首件检验或质量签署已经完成，也不能据此判断实际是否完成；仍需核验适用指导书要求的检验记录及质量签署",
+          "citations": [
+            "业务22",
+            "资料4"
+          ]
+        }
+      },
+      {
+        "case_id": "MFG-GOLD-091",
+        "context_items": 5,
+        "context_characters": 3318,
+        "incomplete_reason": null,
+        "answer_generation_calls": 1,
+        "repair_model_calls": 0,
+        "public_snapshot_observed": true,
+        "harness_error": null
+      },
+      {
+        "case_id": "MFG-GOLD-095",
+        "context_items": 5,
+        "context_characters": 5838,
+        "incomplete_reason": null,
+        "answer_generation_calls": 1,
+        "repair_model_calls": 0,
+        "public_snapshot_observed": true,
+        "harness_error": null
+      },
+      {
+        "case_id": "MFG-GOLD-042",
+        "context_items": 5,
+        "context_characters": 3661,
+        "incomplete_reason": null,
+        "answer_generation_calls": 1,
+        "repair_model_calls": 0,
+        "public_snapshot_observed": false,
+        "harness_error": {
+          "type": "ValueError",
+          "message": "令牌生效时间偏移异常。"
+        },
+        "target_source_hits": {
+          "fusion": [
+            {
+              "rank": 7,
+              "model_rank": null,
+              "chunk_id": "3877dd9ac7e63922058ddedc267276d7c879058d7f92faa70df733e5cb77d951",
+              "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt"
+            }
+          ],
+          "rerank_model": [
+            {
+              "rank": 13,
+              "model_rank": 13,
+              "chunk_id": "3877dd9ac7e63922058ddedc267276d7c879058d7f92faa70df733e5cb77d951",
+              "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt"
+            }
+          ],
+          "rerank": [],
+          "parent_context": [],
+          "context": []
+        },
+        "snapshot_read_only_sql_audit": true,
+        "original_observation_failure_retained": true
+      }
+    ],
+    "model_calls": 0,
+    "question_retries": 0,
+    "sql_snapshot_audit_does_not_change_original_contract": true
+  },
+  "preservation": {
+    "original_containers": 120,
+    "changed_containers": [],
+    "protected_files": 2206,
+    "changed_files": []
+  },
+  "authorization_closure": {
+    "status": "closed",
+    "closed_at": "2026-11-13T11:47:56.903006+00:00",
+    "executed": 4,
+    "physical_calls": 12,
+    "budget_tokens": 44576,
+    "unknown_calls": 0,
+    "request_retries": 0,
+    "continuations": false,
+    "unused_allowance_reusable": false,
+    "postflight_ledger_unchanged": true
+  },
+  "final_original_preservation": {
+    "old_containers": 120,
+    "unchanged_containers": 117,
+    "changed_only_dependency_start_times": [
+      "/gold100-v2-milvus-20261112-r1",
+      "/gold100-v2-minio-20261112-r1",
+      "/gold100-v2-etcd-20261112-r1"
+    ],
+    "old_statuses_restored": true,
+    "original_workbench_changes": false,
+    "models": 0
+  }
+}
