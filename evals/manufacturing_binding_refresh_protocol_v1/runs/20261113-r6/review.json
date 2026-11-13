@@ -1,0 +1,23 @@
+{
+  "reviewer": "assistant_non_independent",
+  "human_review": false,
+  "independent": false,
+  "checks": [
+    {
+      "case_id": "MFG-GOLD-015",
+      "observations": [
+        "工序开工时间2026-09-28T08:10:00+08:00和datetime正确，引用指向Operation记录7pvg4cgbg0。",
+        "原草稿OP-20缺业务3，既有一次引用修复补齐，文字/事实保持，model_repaired，未再误判evidence_changed。"
+      ],
+      "limitation": "已知回归题，不是独立准确率测试。"
+    },
+    {
+      "case_id": "MFG-GOLD-024",
+      "observations": [
+        "三层级业务引用各自保留source_entity/真实记录1及完整父子选择，未按同值1合并。",
+        "本次原草稿直接生成通过，未触发引用修复，因此024修复路径由离线回归覆盖。"
+      ],
+      "limitation": "回答对*_number的序号含义作了泛述；本协议只核对当前层级绑定，不据此批准所有编号字段的通用语义。"
+    }
+  ]
+}
