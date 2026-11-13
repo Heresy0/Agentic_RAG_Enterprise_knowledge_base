@@ -108,3 +108,20 @@ def test_manufacturing_request_cannot_downgrade_schema_with_an_empty_context():
     # The request carries a legacy record while the rendered evidence is empty.
     with manufacturing_answer_context(SimpleNamespace(context=SimpleNamespace(record=None))):
         assert generation_schema(context) is ManufacturingGenerationDraft
+
+
+def test_schema_recovery_returns_a_prepared_draft_without_service_preparing_it_again(monkeypatch):
+    from test_answer_service import build_service, answer, make_document, service_module
+    from backend.app.knowledge.answer_models import EvidenceFirstAnswerDraft
+    service, *_ = build_service(monkeypatch, documents=[make_document('温度是80摄氏度。')],
+                                model_result=None)
+    service._settings.rag_repair_enabled = True
+    def malformed(**_):
+        return EvidenceFirstAnswerDraft.model_validate({})
+    service._generate_draft = malformed
+    candidate = draft(text='温度是80摄氏度', indices=(1,))
+    service._answer_repair.recover_schema = lambda **_: candidate
+    def duplicate(*_, **__):
+        pytest.fail('Schema recovery already prepared its draft')
+    monkeypatch.setattr(service_module, 'prepare_draft', duplicate)
+    assert answer(service, '温度是多少？').answerable

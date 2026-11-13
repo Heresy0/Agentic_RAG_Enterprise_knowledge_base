@@ -28,14 +28,14 @@ sys.path.insert(0, str(ROOT))
 from backend.app.knowledge.answer_models import EvidenceFirstAnswerDraft
 from backend.app.knowledge.answer_validation import AnswerValidator
 from backend.app.knowledge.context_builder import BuiltContext, ContextItem
-from backend.app.knowledge.output_contract import generation_schema, prepare_draft, validate_output
+from backend.app.knowledge.output_contract import generation_schema, validate_output
+from scripts.manufacturing_legacy_drafts import prepare_legacy_draft as prepare_draft, selection_schema
 from backend.app.manufacturing.answer_context import (
     ManufacturingAnswerContext, manufacturing_answer_context, comparison_question,
     facts_only_question, requested_execution_fields, attach_business_context,
 )
 from backend.app.manufacturing.execution_contracts import context_from_payload
 from backend.app.manufacturing.generation_models import precision_projection
-from backend.app.manufacturing.generation_selection import selection_schema
 from backend.app.manufacturing.source_statements import source_units
 from backend.app.security.oidc import OidcTokenVerifier, TokenVerificationError
 from scripts import accept_erpnext_development_v2 as identity_runner
@@ -135,7 +135,9 @@ def replay(record, case):
                 projected = precision_projection(question, context)
                 result['field_projection_probes'].append(dict(question=question,
                     requested_fields=list(requested_execution_fields(question)),
-                    projection_fields=[c.business_field for c in projected.claims] if projected else None))
+                    projection_fields=[next(item.field_name for item in context.business_items
+                                            if item.citation_id == claim.citations[0])
+                                       for claim in projected.claims] if projected else None))
             sources = [x.citation_id for x in context.business_items
                        if x.field_name in ('operation_actual_started_at', 'operation_start_precision')]
             payload = dict(data, claims=[dict(source=ref) for ref in sources])

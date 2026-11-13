@@ -219,7 +219,7 @@ def test_grounded_context_keeps_only_citation_ids_and_original_content(catalog):
 
 
 @pytest.mark.parametrize("unknown", [False, True])
-def test_http_source_selection_keeps_source_checks_and_stops_unknown_unit(harness, monkeypatch, unknown):
+def test_http_rejects_legacy_document_selectors_before_delivery(harness, monkeypatch, unknown):
     h = harness
     h.generation.mode = "requirements"
     original = h.generation.invoke
@@ -233,14 +233,6 @@ def test_http_source_selection_keeps_source_checks_and_stops_unknown_unit(harnes
         response = ask(client, h, question='首件要求是什么？')
     body = response.json()
     assert len(h.generation.calls) == 1
-    if unknown:
-        assert response.status_code == 200, response.text
-        assert not body['answerable'] and body['response_type'] == 'refuse'
-        assert not body.get('claim_bindings') and not body['citations'] and not body['business_citations']
-        assert len(h.source.reads) == 3
-    else:
-        assert response.status_code == 200, response.text
-        assert body['answerable']
-        assert len(h.source.reads) == 3
-        assert '连续两件首件合格' in body['answer'] and '作业要求' in body['answer']
-        assert body['citations'] and body['business_citations']
+    assert response.status_code == 503, response.text
+    assert body['detail']['error_code'] == 'manufacturing_generation_invalid'
+    assert 'claim_bindings' not in body and 'answer' not in body

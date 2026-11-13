@@ -272,8 +272,6 @@ class AnswerService:
                     reason=draft.refusal_reason, temporal=temporal_evidence_context(question, context.items))
 
         validation_started = time.perf_counter()
-        if schema_recovered:
-            draft = prepare_draft(draft, context)
         # Coverage is checked against the original draft, before any supplement.
         # A fallback must not turn an explicit missing requirement into a success.
         calculation_records = []
@@ -491,6 +489,8 @@ class AnswerService:
 
     @staticmethod
     def _as_generation_draft(result, context=None):
+        if isinstance(result, dict) and any('source' in claim for claim in result.get('claims', [])):
+            result = live_generation_schema(context).model_validate(result)
         return prepare_draft(result, context)
 
     def _render_result(

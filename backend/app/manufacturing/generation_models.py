@@ -85,6 +85,7 @@ class BatchManufacturingGenerationDraft(ManufacturingGenerationDraft):
 def batch_start_projection(question, context, active):
     """Use verified fields for one simple entity-start question, including unknowns."""
     import re
+    from .generation_selection import GroundedDraft
     from ..knowledge.answer_coverage import requirement_prompt
     record=active.context.record
     if (record.schema_version!='openmes-work-order-v1' or not active.facts_only or
@@ -95,21 +96,24 @@ def batch_start_projection(question, context, active):
     if len(mentioned)>1:return None
     prefix=mentioned[0] if mentioned else 'step' if record.step is not None else 'batch' if record.batch is not None else ''
     requirements=json.loads(requirement_prompt(question,context))
+    fields = {item.field_name: item for item in context.business_items}
     missing=prefix=='batch' and record.batch is None or prefix=='step' and record.step is None
     if missing:
         label='生产批次' if prefix=='batch' else '工序步骤'
-        return BatchManufacturingGenerationDraft.model_validate(dict(answerable=False,response_type='clarify',missing_fields=[label],
+        return GroundedDraft.model_validate(dict(answerable=False,response_type='clarify',missing_fields=[label],
             clarification_questions=['请先选择对应'+label+'。'],coverage=[dict(requirement_id=row['id'],aspect=row['question'],
                 status='insufficient',claim_indices=[],missing_information='尚未选择'+label) for row in requirements]))
     names=[prefix+'_actual_started_at',prefix+'_start_precision'] if prefix else ['actual_started_at','actual_start_precision']
-    return BatchManufacturingGenerationDraft.model_validate(dict(answerable=True,response_type='answer',
-        claims=[dict(business_field=name,claim_kind='business_fact') for name in names],
+    return GroundedDraft.model_validate(dict(answerable=True,response_type='answer',
+        claims=[dict(text=fields[name].content, citations=[fields[name].citation_id], claim_kind='business_fact')
+                for name in names],
         coverage=[dict(requirement_id=row['id'],aspect=row['question'],status='answered',claim_indices=[1,2],missing_information=None) for row in requirements]))
 
 
 def execution_start_projection(question, context, active):
     """Project explicit ERP field lists or a simple start query from verified fields."""
     import re
+    from .generation_selection import GroundedDraft
     from ..knowledge.answer_coverage import requirement_prompt
     from .answer_context import requested_execution_fields
     execution = getattr(active.context.record, 'execution', None)
@@ -135,13 +139,15 @@ def execution_start_projection(question, context, active):
             names.append(name.replace('actual_started_at', 'start_precision') if name != 'actual_started_at' else 'actual_start_precision')
     names = list(dict.fromkeys(names))
     requirements = json.loads(requirement_prompt(question, context))
+    fields = {item.field_name: item for item in context.business_items}
     if set(names) - {item.field_name for item in context.business_items}:
-        return ExecutionManufacturingGenerationDraft.model_validate(dict(answerable=False, response_type='clarify',
+        return GroundedDraft.model_validate(dict(answerable=False, response_type='clarify',
             missing_fields=['作业卡'], clarification_questions=['请先选择所属工序下的具体作业卡。'],
             coverage=[dict(requirement_id=row['id'], aspect=row['question'], status='insufficient', claim_indices=[],
                 missing_information='尚未选择具体作业卡') for row in requirements]))
-    return ExecutionManufacturingGenerationDraft.model_validate(dict(answerable=True, response_type='answer',
-        claims=[dict(business_field=name, claim_kind='business_fact') for name in names],
+    return GroundedDraft.model_validate(dict(answerable=True, response_type='answer',
+        claims=[dict(text=fields[name].content, citations=[fields[name].citation_id], claim_kind='business_fact')
+                for name in names],
         coverage=[dict(requirement_id=row['id'], aspect=row['question'], status='answered', claim_indices=list(range(1, len(names)+1)), missing_information=None)
             for row in requirements]))
 
@@ -149,6 +155,7 @@ def execution_start_projection(question, context, active):
 def precision_projection(question, context):
     """Known date + known precision answers a clock question without inventing a time."""
     from .answer_context import current_manufacturing_context, precision_fact_question
+    from .generation_selection import GroundedDraft
     from ..knowledge.answer_coverage import requirement_prompt
     active = current_manufacturing_context()
     if active is not None:
@@ -163,8 +170,8 @@ def precision_projection(question, context):
         return None
     items = [item for item in active.items if item.field_name in ("actual_started_at","actual_start_precision")]
     requirements = json.loads(requirement_prompt(question,context))
-    return ManufacturingGenerationDraft.model_validate(dict(answerable=True,response_type="answer",
-        claims=[dict(business_field=item.field_name,claim_kind="business_fact") for item in items],
+    return GroundedDraft.model_validate(dict(answerable=True,response_type="answer",
+        claims=[dict(text=item.content, citations=[item.citation_id], claim_kind="business_fact") for item in items],
         coverage=[dict(requirement_id=row["id"],aspect=row["question"],status="answered",claim_indices=[1,2],missing_information=None) for row in requirements]))
 
 

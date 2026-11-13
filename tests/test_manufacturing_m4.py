@@ -284,7 +284,8 @@ def test_backend_selection_compiles_complete_source_bindings_even_if_model_omits
     original=h.generation.invoke
     def invoke(messages):
         result=original(messages)
-        if mode=='applicability':result['parsed']['claims'][0]['citations']=[]
+        if mode=='applicability':
+            assert result['parsed']['claims'] == [dict(source='后端适用性')]
         return result
     h.generation.invoke=invoke
     with TestClient(h.c.app) as client:
@@ -302,7 +303,8 @@ def test_backend_selection_compiler_does_not_rewrite_false_model_conclusions(m4)
     def invoke(messages):
         from backend.app.manufacturing.answer_context import current_manufacturing_context
         result=original(messages)
-        result['parsed']['claims'][0]['text']=current_manufacturing_context().applicability_text+'，并已自动放行'
+        result['parsed']['claims']=[dict(claim_kind='applicability', citations=[],
+            text=current_manufacturing_context().applicability_text+'，并已自动放行')]
         return result
     h.generation.invoke=invoke
     with TestClient(h.c.app) as client:

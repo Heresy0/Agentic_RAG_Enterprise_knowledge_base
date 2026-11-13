@@ -126,11 +126,13 @@ def test_legacy_fabricated_business_fact_is_not_rewritten_into_a_valid_field(cat
     ("WO-019", "change_notice_refs", ["HC-SW-019"]),
 ])
 def test_http_field_selection_preserves_value_precision_and_business_scope(harness, monkeypatch, wo, field, expected):
+    from backend.app.manufacturing.answer_context import current_manufacturing_context
     h = harness
     original = h.generation.invoke
     def select(messages):
         value = original(messages)
-        value["claims"] = [dict(claim_kind="business_fact", business_field=field)]
+        value["claims"] = [dict(source=next(item.citation_id for item in current_manufacturing_context().items
+                                           if item.field_name == field))]
         return value
     monkeypatch.setattr(h.generation, "invoke", select)
     with TestClient(h.c.app) as client:
@@ -166,7 +168,12 @@ def test_additional_generation_paths_compile_field_selectors(catalog, monkeypatc
     service, *_ = build_service(monkeypatch, model_result={})
     service._settings.rag_repair_enabled = True
     selected = draft_for(dict(claim_kind="business_fact", business_field="actual_started_at"))
-    model = SimpleNamespace(invoke=lambda _: selected.model_dump())
+    def invoke(_):
+        value = selected.model_dump()
+        if stage == 'regeneration':
+            value['claims'] = [dict(source='业务4')]
+        return value
+    model = SimpleNamespace(invoke=invoke)
     factory = lambda **_: SimpleNamespace(with_structured_output=lambda *a, **kw: model)
     with manufacturing_answer_context(replace(active, facts_only=True)):
         built = ContextBuilder().build([])
@@ -196,8 +203,14 @@ def test_http_schema_recovery_compiles_selected_field(harness, monkeypatch):
     def invalid(**_):
         raise OutputParserException("synthetic malformed draft")
     monkeypatch.setattr(h.answer, "_generate_draft", invalid)
-    monkeypatch.setattr(h.answer._answer_repair, "recover_schema", lambda **_: draft_for(
-        dict(claim_kind="business_fact", business_field="actual_started_at")))
+    def recovered(**kwargs):
+        from backend.app.knowledge.output_contract import live_generation_schema, prepare_draft
+        context = kwargs['context']
+        value = draft_for(dict(claim_kind='business_fact', business_field='actual_started_at')).model_dump()
+        value['claims'] = [dict(source=next(item.citation_id for item in context.business_items
+                                           if item.field_name == 'actual_started_at'))]
+        return prepare_draft(live_generation_schema(context).model_validate(value), context)
+    monkeypatch.setattr(h.answer._answer_repair, "recover_schema", recovered)
     with TestClient(h.c.app) as client:
         body = ask(client, h, question="实际开工日期？").json()
     assert body["answerable"], body
@@ -206,12 +219,14 @@ def test_http_schema_recovery_compiles_selected_field(harness, monkeypatch):
 
 
 def test_http_contradictory_refusal_with_empty_field_text_does_not_raise_503(harness, monkeypatch):
+    from backend.app.manufacturing.answer_context import current_manufacturing_context
     h = harness
     original = h.generation.invoke
     def contradictory(messages):
         value = original(messages)
         value.update(answerable=False, response_type='refuse',
-            claims=[dict(claim_kind='business_fact', business_field='source_record_id')])
+            claims=[dict(source=next(item.citation_id for item in
+                current_manufacturing_context().items if item.field_name == 'source_record_id'))])
         return value
     monkeypatch.setattr(h.generation, 'invoke', contradictory)
     with TestClient(h.c.app) as client:

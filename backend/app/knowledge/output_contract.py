@@ -56,25 +56,12 @@ def with_manufacturing_rules(system, context, *, draft=None):
 
 
 def prepare_draft(result, context=None, *, schema=None):
-    schema = schema or generation_schema(context)
-    from ..manufacturing.generation_selection import (GroundedDraft, SelectionDraft, lower_selection, selection_schema,
-                                                     LiveAnswerPlan, answer_schema, lower_answer_plan)
-    if (context is not None and context.business_items and isinstance(result, dict)
-            and any('source' in row for row in result.get('claims', []) if isinstance(row, dict))
-            and any('text' in row or str(row.get('source','')).startswith('后端') for row in result['claims'])):
-        result = answer_schema(context).model_validate(result)
+    """Prepare current wire/internal drafts; historical decoding is offline-only."""
+    from ..manufacturing.generation_selection import GroundedDraft, LiveAnswerPlan, lower_answer_plan
     if isinstance(result, LiveAnswerPlan):
         result = lower_answer_plan(result, context)
-    if (context is not None and context.business_items and isinstance(result, dict)
-            and any('source' in row for row in result.get('claims', []) if isinstance(row, dict))):
-        result = selection_schema(context).model_validate(result)
-    if isinstance(result, SelectionDraft):
-        result = lower_selection(result, context, schema)
-    elif (context is not None and context.business_items and isinstance(result, dict)
-          and not any('claim_kind' in row for row in result.get('claims', []))):
-        result = GroundedDraft.model_validate(result)
-    if isinstance(result, GroundedDraft):
-        schema = GroundedDraft
+    schema = schema or (GroundedDraft if context is not None and context.business_items
+                        else generation_schema(context))
     # Wire enums/subclasses do not carry authority into the internal draft.
     result = schema.model_validate(result.model_dump() if isinstance(result, BaseModel) else result)
     # Unused diagnostic quotes and a redundant search request cannot turn a
