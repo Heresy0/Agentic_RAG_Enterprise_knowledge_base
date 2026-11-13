@@ -57,12 +57,15 @@ def main():
         failed_ids=[r['case_id'] for r in rows if not r['review']['passed']],
         harness_error_ids=[r['case_id'] for r in rows if r['harness_error']],
         preservation=read(run/'preservation-final.json'),runtime_audit=read(run/'runtime-audit.json'),
-        auxiliary_observation=read(run/'auxiliary-observations.json'))
+        auxiliary_observation=read(run/'auxiliary-observations.json'),
+        environment_closure=read(run/'temporary-compute-closure.json'))
     out.mkdir(parents=True,exist_ok=True)
     for name,data in [('summary.json',summary),('reviews.json',reviews)]:
         with (out/name).open('x',encoding='utf-8',newline='\n') as f:json.dump(data,f,ensure_ascii=False,indent=2)
     audits={name:read(run/file) for name,file in [('business_source','business-source-proof.json'),
-        ('snapshots','snapshot-audit.json'),('v4_preflight','preflight-audit.json')]}
+        ('snapshots','snapshot-audit.json'),('v4_preflight','preflight-audit.json'),
+        ('inventory_preflight','inventory-preflight-proof.json'),('ledger','evaluation-ledger-proof.json'),
+        ('authorization_closure','authorization-closed.json')]}
     with (out/'audits.json').open('x',encoding='utf-8',newline='\n') as f:json.dump(audits,f,ensure_ascii=False,indent=2)
     with (out/'results.jsonl').open('x',encoding='utf-8',newline='\n') as f:
         for row in rows:f.write(json.dumps(row,ensure_ascii=False)+'\n')
@@ -70,7 +73,8 @@ def main():
         bindings_sha256=digest(run/'bindings.json'),
         raw_results={r['case_id']:r['raw_result_sha256'] for r in rows},
         public_files={name:digest(out/name) for name in ('summary.json','reviews.json','results.jsonl','audits.json')},
-        labels_sent_to_model=False,credentials_included=False)
+        labels_sent_to_model=False,credentials_included=False,
+        report_implementation_sha256=digest(Path(__file__)))
     with (out/'manifest.json').open('x',encoding='utf-8',newline='\n') as f:json.dump(manifest,f,ensure_ascii=False,indent=2)
     print(json.dumps({k:summary[k] for k in ('executed','contract_passed','assistant_non_independent_passed','usage','categories')},ensure_ascii=False))
 
