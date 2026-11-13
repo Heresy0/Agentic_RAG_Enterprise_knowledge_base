@@ -208,11 +208,12 @@ def test_unrecognized_or_exceptional_rule_cannot_generate_a_duration_verdict(cat
         assert not AnswerValidator().validate(draft=compiled, context=built, question=question).valid
 
 
-def test_generation_context_shows_selector_without_changing_original_content(catalog):
+def test_grounded_context_keeps_only_citation_ids_and_original_content(catalog):
     active, rows, _ = evidence(catalog)
     with manufacturing_answer_context(active):
         built = ContextBuilder().build(rows)
-        assert "[原文条目 资料1#1]" in built.text
+        assert "[原文条目" not in built.text
+        assert "原文条目索引" not in built.text
         assert all("[原文条目" not in item.content for item in built.items)
         assert built.total_characters == len(built.text)
 

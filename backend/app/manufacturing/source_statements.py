@@ -52,17 +52,6 @@ def source_units(context):
         for item in context.items for index, text in enumerate(statement_units(item.content), 1)}
 
 
-def annotate_sources(context):
-    rendered = context.text
-    for item in context.items:
-        units = statement_units(item.content)
-        annotated = "\n".join(f"[原文条目 {item.citation_id}#{index}] {text[:160]}{'…（完整原文见下方内容）' if len(text) > 160 else ''}"
-            for index, text in enumerate(units, 1))
-        # ContextItem and its hash still contain the original content. Only the
-        # model-facing view gains selectors; source metadata remains intact.
-        rendered = rendered.replace("内容：" + item.content, "原文条目索引：\n" + annotated + "\n内容：" + item.content, 1)
-    return rendered
-
 
 _DURATION = r"(\d+(?:\.\d{1,6})?)(小时|分钟|秒)"
 
