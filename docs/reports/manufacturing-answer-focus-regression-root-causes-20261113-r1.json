@@ -1,0 +1,5459 @@
+{
+  "schema_version": "manufacturing-answer-focus-regression-diagnosis-v1",
+  "old_source": "4c9663b",
+  "new_source": "ea00ed2",
+  "new_business": "e755bcb",
+  "cases": [
+    {
+      "case_id": "MFG-GOLD-002",
+      "question": "所选11月开工工单按哪版作业，首件合格和签署要求是什么？",
+      "old": {
+        "route": "/api/manufacturing/qa",
+        "status": 200,
+        "final_answer": "工单ERP-WO-STARTED（产品HC-A17，工序OP-20）于2026年11月9日实际开工，依据ECN-2026-018规定，2026年10月1日起新开工工单由指导书1.0版切换为2.0版，因此该工单适用HC-WI-A17-020业务版本2.0。[资料1][资料2][业务4][业务2][业务3]\n首件合格要求：必须连续检查3件，所有必检项目（外径19.95至20.05 mm、孔深12.00至12.10 mm、外观无可见毛刺和碰伤）全部合格；不允许只检1件，也不能用操作员口头确认替代质量签署。[资料1][资料3]\n签署要求：首件确认须由质量人员签署后才能恢复后续作业；检验记录必须写明工单、批次和量具编号，且质量人员完成签署、生产班长确认记录齐全后，方可进行工序交接。仅有报工或计划时间不能证明已满足条件。[资料1][资料5]\n工单ERP-WO-STARTED适用HC-WI-A17-020业务版本2.0。[资料1][资料2][业务1][业务2][业务3][业务4]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "actual_start_window",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "2.0",
+            "rule_ids": [
+              "HC-START-NEW"
+            ],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 6,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "工单ERP-WO-STARTED（产品HC-A17，工序OP-20）于2026年11月9日实际开工，依据ECN-2026-018规定，2026年10月1日起新开工工单由指导书1.0版切换为2.0版，因此该工单适用HC-WI-A17-020业务版本2.0。",
+            "citations": [
+              "资料1",
+              "资料2",
+              "业务4",
+              "业务2",
+              "业务3"
+            ]
+          },
+          {
+            "text": "首件合格要求：必须连续检查3件，所有必检项目（外径19.95至20.05 mm、孔深12.00至12.10 mm、外观无可见毛刺和碰伤）全部合格；不允许只检1件，也不能用操作员口头确认替代质量签署。",
+            "citations": [
+              "资料1",
+              "资料3"
+            ]
+          },
+          {
+            "text": "签署要求：首件确认须由质量人员签署后才能恢复后续作业；检验记录必须写明工单、批次和量具编号，且质量人员完成签署、生产班长确认记录齐全后，方可进行工序交接。仅有报工或计划时间不能证明已满足条件。",
+            "citations": [
+              "资料1",
+              "资料5"
+            ]
+          },
+          {
+            "claim_kind": "applicability",
+            "text": "工单ERP-WO-STARTED适用HC-WI-A17-020业务版本2.0",
+            "citations": [
+              "资料1",
+              "资料2",
+              "业务1",
+              "业务2",
+              "业务3",
+              "业务4"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "所选11月开工工单按哪版作业，首件合格和签署要求是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "所选11月开工工单按哪版作业，首件合格和签署要求是什么？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "manufacturing_binding_compilation",
+            "bindings": [
+              {
+                "original_citations": [],
+                "compiled_citations": [
+                  "资料1",
+                  "资料2",
+                  "业务1",
+                  "业务2",
+                  "业务3",
+                  "业务4"
+                ],
+                "origin": "server_applicability"
+              }
+            ],
+            "model_calls": 0
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 22,
+            "error_type": null,
+            "duration_ms": 412.302
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4306,
+            "error_type": null,
+            "duration_ms": 375.392
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 4534,
+            "error_type": null,
+            "duration_ms": 5790.077
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/manufacturing/qa",
+        "status": 503,
+        "final_answer": null,
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "actual_start_window",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "2.0",
+            "rule_ids": [
+              "HC-START-NEW"
+            ],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 5,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": null,
+        "coverage": null,
+        "first_validation_errors": null,
+        "completion_changed": null,
+        "decisions": null,
+        "completion": null,
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 22,
+            "error_type": null,
+            "duration_ms": 380.458
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4306,
+            "error_type": null,
+            "duration_ms": 368.566
+          },
+          {
+            "stage": "answer_generation",
+            "status": "error",
+            "total_tokens": null,
+            "error_type": "APITimeoutError",
+            "duration_ms": 120123.397
+          }
+        ]
+      },
+      "ordered_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "context_overlap": {
+        "old": 6,
+        "new": 5,
+        "same_document_content": 5
+      },
+      "source_evidence": [
+        {
+          "evidence_id": "E02",
+          "quote": "仅适用于HC-A17的OP-20工序。2026年10月1日起新开工工单由指导书1.0版切换为2.0版。判断依据为工单实际开工日期，不按报工日期或文档上传日期选择版本。",
+          "old_context_hits": [
+            {
+              "document_name": "09_工艺变更通知ECN-2026-018.docx",
+              "citation_id": "资料2",
+              "chunk_id": "0e7d9855a669620f6ae2185278783182dfd756d247b4531b5f87e66d348f6823",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "09_工艺变更通知ECN-2026-018.docx",
+              "citation_id": "资料2",
+              "chunk_id": "0e7d9855a669620f6ae2185278783182dfd756d247b4531b5f87e66d348f6823",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E03",
+          "quote": "首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。不允许只检1件，也不能用操作员口头确认替代质量签署。",
+          "old_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料1",
+              "chunk_id": "c70434c8e49c9111e69919b98b789f11b979c43c5122752b2bcb10d24386cec3",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料1",
+              "chunk_id": "c70434c8e49c9111e69919b98b789f11b979c43c5122752b2bcb10d24386cec3",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "old_review": {
+        "case_id": "MFG-GOLD-002",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "2.0版",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "连续3件",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "全部必检合格且质量人员签署",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "2.0、连续3件、必检全合格及质量签署完整，保留交接记录与班长条件；不以开工证明完成。",
+        "raw_result_sha256": "c30e9ca06eee6d4cfc10d34d4cf43e74af54cf4a9887d16785a70872848fdad0"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-002",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "2.0版",
+            "passed": false,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "连续3件",
+            "passed": false,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "全部必检合格且质量人员签署",
+            "passed": false,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": false,
+        "note": "生成服务超时后503，没有交付回答；三必答均未满足，按可用性失败保留，不解释为模型答错，也不重发。",
+        "raw_result_sha256": "68915d8aac0b1e2bdc70fede9b514aeaaf9fe1cd1d7e28c01d4d602678109729"
+      },
+      "local_probe": {
+        "generation_trace_saved": false,
+        "answer_generation_errors": [
+          {
+            "stage": "answer_generation",
+            "status": "error",
+            "total_tokens": null,
+            "error_type": "APITimeoutError",
+            "duration_ms": 120123.397
+          }
+        ],
+        "limitation": "No generated draft or supplier request ID; cannot infer semantic quality or the underlying provider timeout cause."
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-007",
+      "question": "按2.0版连续停机5小时后重新开工，首件与恢复作业有什么要求？",
+      "old": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "按2.0版规定，连续停机超过4小时后重新开工必须进行首件确认。[资料3]\n首件确认必须连续检查3件，且所有必检项目全部合格。[资料3]\n必须由质量人员完成签署后，才能恢复后续作业。[资料3]\n恢复后续作业前，检验记录必须写明工单、批次和量具编号，且生产班长需确认记录齐全。[资料2]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 12,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "按2.0版规定，连续停机超过4小时后重新开工必须进行首件确认。",
+            "citations": [
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "首件确认必须连续检查3件，且所有必检项目全部合格。",
+            "citations": [
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "必须由质量人员完成签署后，才能恢复后续作业。",
+            "citations": [
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "恢复后续作业前，检验记录必须写明工单、批次和量具编号，且生产班长需确认记录齐全。",
+            "citations": [
+              "资料2"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "按2.0版连续停机5小时后重新开工，首件与恢复作业有什么要求？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "连续停机超过4小时后重新开工。首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。",
+              "aspect": "首件与恢复作业要求",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 23,
+            "error_type": null,
+            "duration_ms": 387.255
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 5465,
+            "error_type": null,
+            "duration_ms": 339.732
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 9564,
+            "error_type": null,
+            "duration_ms": 4707.212
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "按2.0版规定，连续停机超过4小时后重新开工必须进行首件确认。[资料3]\n首件确认必须连续检查3件（由原来的2件改为3件）。[资料3]\n首件确认的所有必检项目必须全部合格。[资料3]\n首件确认必须由质量人员签署。[资料3]\n恢复后续作业前，检验记录必须写明工单、批次和量具编号。[资料2]\n恢复后续作业前，生产班长必须确认记录齐全。[资料2]\n首件检验记录必须填写工单号、批次号、指导书版本、量具编号、检验人、检验时间、逐项结果和质量签署。[资料5]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 7,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "按2.0版规定，连续停机超过4小时后重新开工必须进行首件确认。",
+            "citations": [
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "首件确认必须连续检查3件（由原来的2件改为3件）。",
+            "citations": [
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "首件确认的所有必检项目必须全部合格。",
+            "citations": [
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "首件确认必须由质量人员签署。",
+            "citations": [
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "恢复后续作业前，检验记录必须写明工单、批次和量具编号。",
+            "citations": [
+              "资料2"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "恢复后续作业前，生产班长必须确认记录齐全。",
+            "citations": [
+              "资料2"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "首件检验记录必须填写工单号、批次号、指导书版本、量具编号、检验人、检验时间、逐项结果和质量签署。",
+            "citations": [
+              "资料5"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "按2.0版连续停机5小时后重新开工，首件与恢复作业有什么要求？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "连续停机超过4小时后重新开工。首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。",
+              "aspect": "首件要求",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "适用指导书要求的首件检查全部合格。检验记录写明工单、批次和量具编号。质量人员完成签署,生产班长确认记录齐全。",
+              "aspect": "恢复作业要求",
+              "status": "answered",
+              "claim_indices": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 23,
+            "error_type": null,
+            "duration_ms": 1958.027
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 5465,
+            "error_type": null,
+            "duration_ms": 344.527
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 6983,
+            "error_type": null,
+            "duration_ms": 6009.495
+          }
+        ]
+      },
+      "ordered_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "context_overlap": {
+        "old": 12,
+        "new": 7,
+        "same_document_content": 7
+      },
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "连续停机超过4小时后重新开工。",
+          "old_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料3",
+              "chunk_id": "f85946e551b3b07c7129a8191bf6603b3dc23fc8b23a92c529e7d0ebbcfca393",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料3",
+              "chunk_id": "f85946e551b3b07c7129a8191bf6603b3dc23fc8b23a92c529e7d0ebbcfca393",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E02",
+          "quote": "首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。不允许只检1件，也不能用操作员口头确认替代质量签署。",
+          "old_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料3",
+              "chunk_id": "f85946e551b3b07c7129a8191bf6603b3dc23fc8b23a92c529e7d0ebbcfca393",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料3",
+              "chunk_id": "f85946e551b3b07c7129a8191bf6603b3dc23fc8b23a92c529e7d0ebbcfca393",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "old_review": {
+        "case_id": "MFG-GOLD-007",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "须重新进行首件确认",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "连续检查3件",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "所有必检项目全部合格",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          },
+          {
+            "id": "F04",
+            "text": "由质量人员签署后才能恢复后续作业",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "超过阈值重开须首件、连续3件/全部必检合格/质量签署后恢复完整，记录与班长条件保留。",
+        "raw_result_sha256": "bffd8e03b2e43d70ea5cb73d1b5b1ead4699ae1afb35f3784bd4f766bfc87b9c"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-007",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "须重新进行首件确认",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "连续检查3件",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "所有必检项目全部合格",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          },
+          {
+            "id": "F04",
+            "text": "由质量人员签署后才能恢复后续作业",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [
+          "主动补充“由原来的2件改为3件”，本条仅引现行指导书资料3，未绑定说明旧2件的来源；属于补充比较的引用支持不足。"
+        ],
+        "passed": false,
+        "note": "四必答均满足；恢复前记录、班长及记录字段有来源。但主动括注旧2件到新3件只引现行资料3，所引全文没有旧2件，绑定不完整，整题保持失败。",
+        "raw_result_sha256": "6bff97381ef527415f35b208fd996f0d891b13fc622a73af4da1a3b5dcef54dd"
+      },
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        },
+        "business_fields": [],
+        "requested_execution_fields": [],
+        "extra_comparison_support": {
+          "claim": "首件确认必须连续检查3件（由原来的2件改为3件）。",
+          "claim_piece_quantities": [
+            [
+              "件",
+              "2"
+            ],
+            [
+              "件",
+              "3"
+            ]
+          ],
+          "cited_piece_quantities": [
+            [
+              "件",
+              "1"
+            ],
+            [
+              "件",
+              "3"
+            ]
+          ],
+          "cited_numeric_facts": [
+            "date:2026-10-01",
+            "number:1",
+            "number:17",
+            "number:2",
+            "number:20",
+            "number:3",
+            "number:4"
+          ],
+          "old_two_piece_source_hits": [
+            {
+              "document_name": "06_HC-A17_OP20作业指导书历史版.docx",
+              "citation_id": "资料4",
+              "chunk_id": "ba46e67bb91ff4b168e827eb6e646c392a0ca9319d9e919c16fd05fb85c99707",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "change_notice_comparison_hits": [
+            {
+              "document_name": "09_工艺变更通知ECN-2026-018.docx",
+              "citation_id": "资料1",
+              "chunk_id": "6054b0e659f45dab27d91a25d31de67bf03c96c47827dcce1cc83cd812fbfb32",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-010",
+      "question": "现有HC-WI-A17-020 2.0能直接给出主轴转速和进给吗？",
+      "old": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "现有HC-WI-A17-020 2.0不能直接给出主轴转速和进给，操作前必须取得适用的批准工艺文件。[资料1]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 12,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "现有HC-WI-A17-020 2.0不能直接给出主轴转速和进给，操作前必须取得适用的批准工艺文件。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "现有HC-WI-A17-020 2.0能直接给出主轴转速和进给吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "本指导书没有给出主轴转速、切削速度或进给量，操作前必须取得适用的批准工艺文件。",
+              "aspect": "HC-WI-A17-020 2.0是否直接给出主轴转速和进给",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "fact",
+            "strategy": "standard",
+            "subquestions": [],
+            "reason": "direct_lookup"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "standard",
+            "selected_strategy": "standard",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 28,
+            "error_type": null,
+            "duration_ms": 468.369
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 5119,
+            "error_type": null,
+            "duration_ms": 460.385
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 8905,
+            "error_type": null,
+            "duration_ms": 3508.293
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "根据当前知识库资料，暂时无法回答这个问题。",
+        "final_refusal": "生成结果未通过证据与引用校验：第2个结论中的数字或日期缺少证据支持：['7']",
+        "harness_error": null,
+        "selection": null,
+        "context_count": 6,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "现有HC-WI-A17-020 2.0版本不能直接给出主轴转速和进给量，操作前必须取得适用的批准工艺文件。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "该结论基于《07_HC-A17_OP20作业指导书现行版.docx》（文档编号：HC-WI-A17-020，业务版本：2.0）第3节“检验与交接”中的明确规定。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "现有HC-WI-A17-020 2.0能直接给出主轴转速和进给吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "本指导书没有给出主轴转速、切削速度或进给量，操作前必须取得适用的批准工艺文件。",
+              "aspect": "HC-WI-A17-020 2.0是否包含主轴转速和进给",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [
+          "第2个结论中的数字或日期缺少证据支持：['7']"
+        ],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "validation",
+            "answerable": false,
+            "reason": "evidence_validation_failed",
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "fact",
+            "strategy": "standard",
+            "subquestions": [],
+            "reason": "direct_lookup"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "standard",
+            "selected_strategy": "standard",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "ineligible",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 28,
+            "error_type": null,
+            "duration_ms": 444.505
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 5119,
+            "error_type": null,
+            "duration_ms": 337.391
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 6250,
+            "error_type": null,
+            "duration_ms": 3606.399
+          }
+        ]
+      },
+      "ordered_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "context_overlap": {
+        "old": 12,
+        "new": 6,
+        "same_document_content": 6
+      },
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "必检项目按HC-QC-A17-001执行，交接按HC-FLOW-001执行。本指导书没有给出主轴转速、切削速度或进给量，操作前必须取得适用的批准工艺文件。",
+          "old_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料1",
+              "chunk_id": "a45fd06d8d713a0ec7eb20878e94c7fe35efdd3c16668249ec3f0c878093ec66",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料1",
+              "chunk_id": "a45fd06d8d713a0ec7eb20878e94c7fe35efdd3c16668249ec3f0c878093ec66",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "old_review": {
+        "case_id": "MFG-GOLD-010",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "现有指导书未给出所问参数，不能直接给出主轴转速和进给",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "明确现有指导书不能直接给转速进给，需批准工艺文件，不编数值。",
+        "raw_result_sha256": "74fd3f66ed04d7a7d6a30730178d1d0aa2c358159ee67adf83c1d2c0c87568db"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-010",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "现有指导书未给出所问参数，不能直接给出主轴转速和进给",
+            "passed": false,
+            "evidence_ids": [
+              "E01"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": false,
+        "note": "首次草稿核心否定正确，另加文件名07的来源介绍触发既有数字7证据校验，最终拒答；保留未交付失败，未现场修改校验。",
+        "raw_result_sha256": "c37f5ddf9a14d927111f13e73da87b7f8bc4221d6feb2a7f71a04c8897dc9bc2"
+      },
+      "local_probe": {
+        "original": {
+          "valid": false,
+          "errors": [
+            "第2个结论中的数字或日期缺少证据支持：['7']"
+          ]
+        },
+        "business_fields": [],
+        "requested_execution_fields": [],
+        "drop_only_uncited_in_coverage_source_introduction_claim": {
+          "valid": true,
+          "errors": []
+        },
+        "numeric_rebinding_eligible": false
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-019",
+      "question": "同工单另一张所选作业卡已开工，当前卡PO-JOB00009也已开工吗？",
+      "old": {
+        "route": "/api/manufacturing/qa",
+        "status": 200,
+        "final_answer": "当前作业卡PO-JOB00009的实际开工时间为未知。[业务22]\n当前作业卡PO-JOB00009的作业卡状态为Open，未显示已开工。[业务24]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "actual_start_window",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "1.0",
+            "rule_ids": [
+              "HC-START-OLD"
+            ],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 0,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "当前作业卡PO-JOB00009的实际开工时间为未知。",
+            "citations": [
+              "业务22"
+            ]
+          },
+          {
+            "text": "当前作业卡PO-JOB00009的作业卡状态为Open，未显示已开工。",
+            "citations": [
+              "业务24"
+            ]
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "同工单另一张所选作业卡已开工，当前卡PO-JOB00009也已开工吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "job_card_actual_started_at",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": {
+              "query_from": "2026-11-13",
+              "query_to": "2026-11-13",
+              "evidence": []
+            }
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 1914,
+            "error_type": null,
+            "duration_ms": 3142.75
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/manufacturing/qa",
+        "status": 200,
+        "final_answer": "根据当前知识库资料，暂时无法回答这个问题。",
+        "final_refusal": "生成结果未通过证据与引用校验：已回答要点缺少结论或与拒答状态矛盾：Q1",
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "actual_start_window",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "1.0",
+            "rule_ids": [
+              "HC-START-OLD"
+            ],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 0,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "当前卡PO-JOB00009未开工，其实际开工时间为未知，状态为Open。",
+            "citations": [
+              "业务22",
+              "业务24"
+            ]
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "同工单另一张所选作业卡已开工，当前卡PO-JOB00009也已开工吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "E",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": ""
+            }
+          ],
+          "errors": [
+            "已回答要点缺少结论或与拒答状态矛盾：Q1"
+          ],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": false,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [
+          "已回答要点缺少结论或与拒答状态矛盾：Q1"
+        ],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": {
+              "query_from": "2026-11-13",
+              "query_to": "2026-11-13",
+              "evidence": []
+            }
+          },
+          {
+            "stage": "validation",
+            "answerable": false,
+            "reason": "evidence_validation_failed",
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "strategy_transition",
+            "selected_strategy": "reflective",
+            "reason": "repairable_validation"
+          },
+          {
+            "kind": "repair_validation",
+            "facts_verified": true,
+            "evidence_current": true,
+            "errors": [
+              "已回答要点缺少结论或与拒答状态矛盾：Q1"
+            ],
+            "candidate_claims": [
+              {
+                "text": "当前卡PO-JOB00009未开工，其实际开工时间为未知，状态为Open。",
+                "citations": [
+                  "业务22",
+                  "业务24"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "repair",
+            "outcome": "rejected",
+            "model_calls": 1
+          },
+          {
+            "kind": "budget",
+            "calls": 1,
+            "charged_tokens": 1958,
+            "optional_seconds": 2.326,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 1938,
+            "error_type": null,
+            "duration_ms": 2936.143
+          },
+          {
+            "stage": "answer_repair",
+            "status": "success",
+            "total_tokens": 1958,
+            "error_type": null,
+            "duration_ms": 2234.045
+          }
+        ]
+      },
+      "ordered_inputs_equal": {},
+      "context_overlap": {
+        "old": 0,
+        "new": 0,
+        "same_document_content": 0
+      },
+      "source_evidence": [],
+      "old_review": {
+        "case_id": "MFG-GOLD-019",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "PO-JOB00009",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "当前所选卡的实际开工未知，不能认定已开工",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "不跨卡补值",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "卡09实际开工未知、Open仅说未显示，未断言现实未执行或跨卡补值。",
+        "raw_result_sha256": "9f46d84f551d35cebd89c8404707c5305c866c084c127d8da493137388b7ff7b"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-019",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "PO-JOB00009",
+            "passed": false,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "当前所选卡的实际开工未知，不能认定已开工",
+            "passed": false,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "不跨卡补值",
+            "passed": false,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": false,
+        "note": "最终拒答；草稿的answerable/claims与answered覆盖矛盾，现有校验拦截，未交付当前卡未知及不跨卡补值的回答。",
+        "raw_result_sha256": "063fc136c047f2728f9eb9f11ef79ba6e521c06c5662ed20b45173f284862bfa"
+      },
+      "local_probe": {
+        "original": {
+          "valid": false,
+          "errors": [
+            "已回答要点缺少结论或与拒答状态矛盾：Q1"
+          ]
+        },
+        "business_fields": [
+          {
+            "citation_id": "业务4",
+            "field": "actual_started_at",
+            "value": "2026-09-28T08:10:00+08:00",
+            "source_entity": "Work Order",
+            "content": "工单ERP-WO-EXECUTION的工单实际开工时间为2026-09-28T08:10:00+08:00"
+          },
+          {
+            "citation_id": "业务21",
+            "field": "job_card_id",
+            "value": "PO-JOB00009",
+            "source_entity": "Job Card",
+            "content": "工单ERP-WO-EXECUTION的作业卡PO-JOB00009的作业卡编号为PO-JOB00009"
+          },
+          {
+            "citation_id": "业务22",
+            "field": "job_card_actual_started_at",
+            "value": null,
+            "source_entity": "Job Card",
+            "content": "工单ERP-WO-EXECUTION的作业卡PO-JOB00009的实际开工时间为未知"
+          },
+          {
+            "citation_id": "业务24",
+            "field": "job_card_status",
+            "value": "Open",
+            "source_entity": "Job Card",
+            "content": "工单ERP-WO-EXECUTION的作业卡PO-JOB00009的作业卡状态为Open"
+          }
+        ],
+        "requested_execution_fields": [],
+        "only_missing_information_empty_string_to_null": {
+          "valid": true,
+          "errors": []
+        },
+        "limitation": "Local validity still accepts the unchanged assertion 未开工; null normalization alone does not establish semantic correctness."
+      },
+      "business_fields_except_fetch_timestamp_equal": true
+    },
+    {
+      "case_id": "MFG-GOLD-022",
+      "question": "当前批次的编号、批号、实际开工和精度是什么？",
+      "old": {
+        "route": "/api/manufacturing/qa",
+        "status": 200,
+        "final_answer": "当前批次（工单1的批次1）的批次记录编号为1。[业务18]\n当前批次的批号为MES-WO-STARTED-B1。[业务20]\n当前批次（工单1的批次1）的实际开工时间为2026-11-09T00:10:00.000000Z。[业务22]\n当前批次（工单1的批次1）的开工时间精度为datetime。[业务23]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "reviewed_step_assignment",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "2.0",
+            "rule_ids": [],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 0,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "当前批次（工单1的批次1）的批次记录编号为1。",
+            "citations": [
+              "业务18"
+            ]
+          },
+          {
+            "text": "当前批次的批号为MES-WO-STARTED-B1。",
+            "citations": [
+              "业务20"
+            ]
+          },
+          {
+            "text": "当前批次（工单1的批次1）的实际开工时间为2026-11-09T00:10:00.000000Z。",
+            "citations": [
+              "业务22"
+            ]
+          },
+          {
+            "text": "当前批次（工单1的批次1）的开工时间精度为datetime。",
+            "citations": [
+              "业务23"
+            ]
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "当前批次的编号、批号、实际开工和精度是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "当前批次的编号、批号、实际开工和精度是什么？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": {
+              "query_from": "2026-11-13",
+              "query_to": "2026-11-13",
+              "evidence": []
+            }
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 1995,
+            "error_type": null,
+            "duration_ms": 4388.514
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/manufacturing/qa",
+        "status": 200,
+        "final_answer": "当前批次的编号为MES-WO-STARTED-B1。[业务20]\n当前批次的批号为MES-WO-STARTED-B1。[业务20]\n当前批次的实际开工时间为2026-11-09T00:10:00.000000Z。[业务22]\n当前批次的精度为datetime。[业务23]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "reviewed_step_assignment",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "2.0",
+            "rule_ids": [],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 0,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "当前批次的编号为MES-WO-STARTED-B1。",
+            "citations": [
+              "业务20"
+            ]
+          },
+          {
+            "text": "当前批次的批号为MES-WO-STARTED-B1。",
+            "citations": [
+              "业务20"
+            ]
+          },
+          {
+            "text": "当前批次的实际开工时间为2026-11-09T00:10:00.000000Z。",
+            "citations": [
+              "业务22"
+            ]
+          },
+          {
+            "text": "当前批次的精度为datetime。",
+            "citations": [
+              "业务23"
+            ]
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "当前批次的编号、批号、实际开工和精度是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "E",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3,
+                4
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": {
+              "query_from": "2026-11-13",
+              "query_to": "2026-11-13",
+              "evidence": []
+            }
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 2039,
+            "error_type": null,
+            "duration_ms": 4376.854
+          }
+        ]
+      },
+      "ordered_inputs_equal": {},
+      "context_overlap": {
+        "old": 0,
+        "new": 0,
+        "same_document_content": 0
+      },
+      "source_evidence": [],
+      "old_review": {
+        "case_id": "MFG-GOLD-022",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "批次1/MES-WO-STARTED-B1",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "2026-11-09T00:10:00.000000Z",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "datetime",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F04",
+            "text": "Batch层级引用",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "批次编号批号/时刻/精度及Batch引用齐全。",
+        "raw_result_sha256": "5fd3366722890773d1284165801762e1dbded8df96ef0c8529087bf858d0e5f0"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-022",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "批次1/MES-WO-STARTED-B1",
+            "passed": false,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "2026-11-09T00:10:00.000000Z",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "datetime",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          },
+          {
+            "id": "F04",
+            "text": "Batch层级引用",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": false,
+        "note": "批号、时间、精度及Batch引用正确；把批次编号也答成批号MES-WO-STARTED-B1，未答真实批次ID1，字段混淆。用户明确询问编号，不能靠元数据抵消正文错值。",
+        "raw_result_sha256": "2a03e3adbe6d704ad1fd49a6c2e2171641b80bf292138bb7b36ef9dfb0b8d3f1"
+      },
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        },
+        "business_fields": [
+          {
+            "citation_id": "业务4",
+            "field": "actual_started_at",
+            "value": null,
+            "source_entity": "Work Order",
+            "content": "工单1的工单实际开工时间为未知"
+          },
+          {
+            "citation_id": "业务18",
+            "field": "batch_id",
+            "value": "1",
+            "source_entity": "Batch",
+            "content": "工单1的批次1的批次记录编号为1"
+          },
+          {
+            "citation_id": "业务20",
+            "field": "batch_lot_number",
+            "value": "MES-WO-STARTED-B1",
+            "source_entity": "Batch",
+            "content": "工单1的批次1的批号为MES-WO-STARTED-B1"
+          }
+        ],
+        "requested_execution_fields": []
+      },
+      "business_fields_except_fetch_timestamp_equal": true
+    },
+    {
+      "case_id": "MFG-GOLD-026",
+      "question": "所选步骤已有审核映射时，应使用哪份指导书，选版依据是什么？",
+      "old": {
+        "route": "/api/manufacturing/qa",
+        "status": 200,
+        "final_answer": "应使用文档编号为HC-WI-A17-020、业务版本为2.0的作业指导书。[资料1][资料4]\n选版依据为步骤映射审核结果（即平台已核验的适用性结论），而非工单实际开工日期或报工日期。[资料3][资料5]\n工单1的批次1步骤1经审核指定适用HC-WI-A17-020业务版本2.0（步骤映射依据，不代表工单级开工选版）。[资料1][资料3][业务1][业务2][业务18][业务25]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "reviewed_step_assignment",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "2.0",
+            "rule_ids": [],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 6,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "应使用文档编号为HC-WI-A17-020、业务版本为2.0的作业指导书。",
+            "citations": [
+              "资料1",
+              "资料4"
+            ]
+          },
+          {
+            "text": "选版依据为步骤映射审核结果（即平台已核验的适用性结论），而非工单实际开工日期或报工日期。",
+            "citations": [
+              "资料3",
+              "资料5"
+            ]
+          },
+          {
+            "claim_kind": "applicability",
+            "text": "工单1的批次1步骤1经审核指定适用HC-WI-A17-020业务版本2.0（步骤映射依据，不代表工单级开工选版）",
+            "citations": [
+              "资料1",
+              "资料3",
+              "业务1",
+              "业务2",
+              "业务18",
+              "业务25"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "所选步骤已有审核映射时，应使用哪份指导书，选版依据是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "所选步骤已有审核映射时，应使用哪份指导书，选版依据是什么？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "manufacturing_binding_compilation",
+            "bindings": [
+              {
+                "original_citations": [],
+                "compiled_citations": [
+                  "资料1",
+                  "资料3",
+                  "业务1",
+                  "业务2",
+                  "业务18",
+                  "业务25"
+                ],
+                "origin": "server_applicability"
+              }
+            ],
+            "model_calls": 0
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 22,
+            "error_type": null,
+            "duration_ms": 372.795
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4306,
+            "error_type": null,
+            "duration_ms": 330.958
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 4269,
+            "error_type": null,
+            "duration_ms": 3771.827
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/manufacturing/qa",
+        "status": 200,
+        "final_answer": "应使用HC-WI-A17-020业务版本2.0。[资料1][资料3]\n变更通知：选版依据为工单实际开工日期：2026年10月1日起新开工的工单使用2.0版；此前已开工的工单沿用1.0版，除非工艺负责人签发书面切换通知。[资料3]\n工单1的批次1步骤1经审核指定适用HC-WI-A17-020业务版本2.0（步骤映射依据，不代表工单级开工选版）。[资料1][资料3][业务1][业务2][业务18][业务25]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "reviewed_step_assignment",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "2.0",
+            "rule_ids": [],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 5,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "应使用HC-WI-A17-020业务版本2.0。",
+            "citations": [
+              "资料1",
+              "资料3"
+            ]
+          },
+          {
+            "text": "选版依据为工单实际开工日期：2026年10月1日起新开工的工单使用2.0版；此前已开工的工单沿用1.0版，除非工艺负责人签发书面切换通知。",
+            "citations": [
+              "资料3"
+            ]
+          },
+          {
+            "claim_kind": "applicability",
+            "text": "工单1的批次1步骤1经审核指定适用HC-WI-A17-020业务版本2.0（步骤映射依据，不代表工单级开工选版）",
+            "citations": [
+              "资料1",
+              "资料3",
+              "业务1",
+              "业务2",
+              "业务18",
+              "业务25"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "所选步骤已有审核映射时，应使用哪份指导书，选版依据是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "E",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "manufacturing_binding_compilation",
+            "bindings": [
+              {
+                "original_citations": [],
+                "compiled_citations": [
+                  "资料1",
+                  "资料3",
+                  "业务1",
+                  "业务2",
+                  "业务18",
+                  "业务25"
+                ],
+                "origin": "server_applicability"
+              }
+            ],
+            "model_calls": 0
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 22,
+            "error_type": null,
+            "duration_ms": 466.417
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4306,
+            "error_type": null,
+            "duration_ms": 360.961
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 3981,
+            "error_type": null,
+            "duration_ms": 3179.767
+          }
+        ]
+      },
+      "ordered_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "context_overlap": {
+        "old": 6,
+        "new": 5,
+        "same_document_content": 5
+      },
+      "source_evidence": [
+        {
+          "evidence_id": "E06",
+          "quote": "映射采用**具体步骤明确分配版本**：范围为源系统、工厂、工单、批次、步骤和知识库，审核者选择已发布、已完成制造适用性复核的指导书及业务版本，明确工艺编码与审核说明。系统校验文档的产品、工厂、路线、工单和工艺范围及原文锚点；不从步骤名称识别工序，不将步骤或批次时间补为工单实际开工，也不据此套用工单开工窗口。平台映射和 OpenMES 原始字段分别展示，不能把平台审核编码称为 MES 工单源字段。",
+          "old_context_hits": [],
+          "new_context_hits": []
+        }
+      ],
+      "old_review": {
+        "case_id": "MFG-GOLD-026",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "已复核分配指向HC-WI-A17-020的2.0版",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04",
+              "E05",
+              "E06"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "reviewed_step_assignment",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04",
+              "E05",
+              "E06"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "不按工单未知开工选版",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04",
+              "E05",
+              "E06"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "指导书2.0及平台步骤审核映射依据明确；后端独立编译真实三层分配及不按工单开工选版边界，不是自动最新或上游字段。",
+        "raw_result_sha256": "c4a6091fdd040d58a168f56f6f486d472b018d5ec6d58ea58a1e3c269fdb2bbe"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-026",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "已复核分配指向HC-WI-A17-020的2.0版",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04",
+              "E05",
+              "E06"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "reviewed_step_assignment",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04",
+              "E05",
+              "E06"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "不按工单未知开工选版",
+            "passed": false,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03",
+              "E04",
+              "E05",
+              "E06"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [
+          "在本步骤选版回答中把ERP式工单实际开工日期规则作为依据；通知前缀不能使不适用当前对象的依据成立。"
+        ],
+        "passed": false,
+        "note": "2.0与审核步骤分配的后端依据齐全；模型又称选版依据为工单实际开工日期，和本来源工单级未知/步骤审核分配相矛盾，不能因后端补充正确而抵消错误。",
+        "raw_result_sha256": "6186b90b6c1193aef1cb999c43af74d9d684a1017b58a4fecdded11a89dbe079"
+      },
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        },
+        "business_fields": [
+          {
+            "citation_id": "业务4",
+            "field": "actual_started_at",
+            "value": null,
+            "source_entity": "Work Order",
+            "content": "工单1的工单实际开工时间为未知"
+          },
+          {
+            "citation_id": "业务18",
+            "field": "batch_id",
+            "value": "1",
+            "source_entity": "Batch",
+            "content": "工单1的批次1的批次记录编号为1"
+          },
+          {
+            "citation_id": "业务20",
+            "field": "batch_lot_number",
+            "value": "MES-WO-STARTED-B1",
+            "source_entity": "Batch",
+            "content": "工单1的批次1的批号为MES-WO-STARTED-B1"
+          }
+        ],
+        "requested_execution_fields": [],
+        "mapping_guidance_visible_in_offline_render": true,
+        "backend_applicability_text": "工单1的批次1步骤1经审核指定适用HC-WI-A17-020业务版本2.0（步骤映射依据，不代表工单级开工选版）"
+      },
+      "business_fields_except_fetch_timestamp_equal": true
+    },
+    {
+      "case_id": "MFG-GOLD-027",
+      "question": "依据所选步骤已复核的2.0指导书，首件数量和恢复条件是什么？",
+      "old": {
+        "route": "/api/manufacturing/qa",
+        "status": 200,
+        "final_answer": "依据已复核的2.0指导书（HC-WI-A17-020），首件数量要求为连续检查3件。[资料1][资料3]\n恢复条件包括：首件确认须连续检查3件且所有必检项目全部合格；必须由质量人员签署；在以下情形之一发生时必须重新进行首件确认：新工单开工、更换定位治具、连续停机超过4小时后重新开工。[资料1][资料4]\n工单1的批次1步骤1经审核指定适用HC-WI-A17-020业务版本2.0（步骤映射依据，不代表工单级开工选版）。[资料1][资料3][业务1][业务2][业务18][业务25]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "reviewed_step_assignment",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "2.0",
+            "rule_ids": [],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 6,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "依据已复核的2.0指导书（HC-WI-A17-020），首件数量要求为连续检查3件。",
+            "citations": [
+              "资料1",
+              "资料3"
+            ]
+          },
+          {
+            "text": "恢复条件包括：首件确认须连续检查3件且所有必检项目全部合格；必须由质量人员签署；在以下情形之一发生时必须重新进行首件确认：新工单开工、更换定位治具、连续停机超过4小时后重新开工。",
+            "citations": [
+              "资料1",
+              "资料4"
+            ]
+          },
+          {
+            "claim_kind": "applicability",
+            "text": "工单1的批次1步骤1经审核指定适用HC-WI-A17-020业务版本2.0（步骤映射依据，不代表工单级开工选版）",
+            "citations": [
+              "资料1",
+              "资料3",
+              "业务1",
+              "业务2",
+              "业务18",
+              "业务25"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "依据所选步骤已复核的2.0指导书，首件数量和恢复条件是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。出现下列任一情形时必须重新进行首件确认：新工单开工。更换定位治具。连续停机超过4小时后重新开工。",
+              "aspect": "answerable",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "manufacturing_binding_compilation",
+            "bindings": [
+              {
+                "original_citations": [],
+                "compiled_citations": [
+                  "资料1",
+                  "资料3",
+                  "业务1",
+                  "业务2",
+                  "业务18",
+                  "业务25"
+                ],
+                "origin": "server_applicability"
+              }
+            ],
+            "model_calls": 0
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 23,
+            "error_type": null,
+            "duration_ms": 387.902
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4332,
+            "error_type": null,
+            "duration_ms": 359.038
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 4346,
+            "error_type": null,
+            "duration_ms": 4163.218
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/manufacturing/qa",
+        "status": 200,
+        "final_answer": "首件数量为连续检查3件。[资料1][资料3]\n恢复条件为出现以下任一情形时必须重新进行首件确认：新工单开工；更换定位治具；连续停机超过4小时后重新开工。[资料1][资料3]\n工单1的批次1步骤1经审核指定适用HC-WI-A17-020业务版本2.0（步骤映射依据，不代表工单级开工选版）。[资料1][资料3][业务1][业务2][业务18][业务25]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": [
+          {
+            "state": "applicable",
+            "reason": "reviewed_step_assignment",
+            "selected_document_code": "HC-WI-A17-020",
+            "selected_business_revision": "2.0",
+            "rule_ids": [],
+            "gaps": [],
+            "catalog_sha256": "6543698405543ab580b7b7d973a8951d4caad9a71569f6fc7694fb4e5c0b5681"
+          }
+        ],
+        "context_count": 5,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "首件数量为连续检查3件。",
+            "citations": [
+              "资料1",
+              "资料3"
+            ]
+          },
+          {
+            "text": "恢复条件为出现以下任一情形时必须重新进行首件确认：新工单开工；更换定位治具；连续停机超过4小时后重新开工。",
+            "citations": [
+              "资料1",
+              "资料3"
+            ]
+          },
+          {
+            "claim_kind": "applicability",
+            "text": "工单1的批次1步骤1经审核指定适用HC-WI-A17-020业务版本2.0（步骤映射依据，不代表工单级开工选版）",
+            "citations": [
+              "资料1",
+              "资料3",
+              "业务1",
+              "业务2",
+              "业务18",
+              "业务25"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "依据所选步骤已复核的2.0指导书，首件数量和恢复条件是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "首件确认须连续检查3件...出现下列任一情形时必须重新进行首件确认：新工单开工。更换定位治具。连续停机超过4小时后重新开工。",
+              "aspect": "E",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "manufacturing_binding_compilation",
+            "bindings": [
+              {
+                "original_citations": [],
+                "compiled_citations": [
+                  "资料1",
+                  "资料3",
+                  "业务1",
+                  "业务2",
+                  "业务18",
+                  "业务25"
+                ],
+                "origin": "server_applicability"
+              }
+            ],
+            "model_calls": 0
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 23,
+            "error_type": null,
+            "duration_ms": 400.86
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4332,
+            "error_type": null,
+            "duration_ms": 349.094
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 3995,
+            "error_type": null,
+            "duration_ms": 3704.421
+          }
+        ]
+      },
+      "ordered_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "context_overlap": {
+        "old": 6,
+        "new": 5,
+        "same_document_content": 5
+      },
+      "source_evidence": [
+        {
+          "evidence_id": "E02",
+          "quote": "首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。不允许只检1件，也不能用操作员口头确认替代质量签署。",
+          "old_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料1",
+              "chunk_id": "c70434c8e49c9111e69919b98b789f11b979c43c5122752b2bcb10d24386cec3",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料1",
+              "chunk_id": "c70434c8e49c9111e69919b98b789f11b979c43c5122752b2bcb10d24386cec3",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E03",
+          "quote": "批次号、批号、步骤名称、状态、实际时间、时间精度和源更新时间保留。源时间须有明确时区；上游站点配置 Asia/Shanghai，JSON 来源的 UTC 时间仍按其精度保存。开工记录不能证明检验、签署、报工完成或质量放行。",
+          "old_context_hits": [],
+          "new_context_hits": []
+        }
+      ],
+      "old_review": {
+        "case_id": "MFG-GOLD-027",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "已审核2.0分配",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "连续3件",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "全部必检合格且质量签署后恢复",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "已审核2.0分配/连续3件/必检全合格与质量签署恢复完整，不以IN_PROGRESS证明已合格。",
+        "raw_result_sha256": "ed6912477de462d236ff7e2a65867e0edf0d45f7febb65eed381c7d68c43ea51"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-027",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "已审核2.0分配",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "连续3件",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "全部必检合格且质量签署后恢复",
+            "passed": false,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": false,
+        "note": "审核2.0分配和连续3件正确；把新工单/换治具/超过4小时的重新首件触发情形当作恢复条件，漏全部必检合格及质量签署后恢复。",
+        "raw_result_sha256": "13c6d7ded0d6fb9e0be24dd4da50b029a83097e1d643d33291c36a68e7e6e260"
+      },
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        },
+        "business_fields": [
+          {
+            "citation_id": "业务4",
+            "field": "actual_started_at",
+            "value": null,
+            "source_entity": "Work Order",
+            "content": "工单1的工单实际开工时间为未知"
+          },
+          {
+            "citation_id": "业务18",
+            "field": "batch_id",
+            "value": "1",
+            "source_entity": "Batch",
+            "content": "工单1的批次1的批次记录编号为1"
+          },
+          {
+            "citation_id": "业务20",
+            "field": "batch_lot_number",
+            "value": "MES-WO-STARTED-B1",
+            "source_entity": "Batch",
+            "content": "工单1的批次1的批号为MES-WO-STARTED-B1"
+          }
+        ],
+        "requested_execution_fields": []
+      },
+      "business_fields_except_fetch_timestamp_equal": true
+    },
+    {
+      "case_id": "MFG-GOLD-044",
+      "question": "仅按DEMO-B21合成资料，OP-20检验要求是什么，给出的样例记录能否直接支持合格与质量放行？",
+      "old": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "仅按DEMO-B21合成资料，OP-20的检验要求为：定位孔尺寸范围在10.00至10.05毫米之间，且相互垂直的两个方向上的原始读数均必须在范围内。[资料1]\n给出的样例记录不能直接支持合格与质量放行。因为第二个方向的读数为10.06毫米，超出了规定的10.00至10.05毫米范围；同时，根据规定，缺失或超限项应保持待复核或待处置，交接签名、设备启动时间和完成数量均不能代填质量结论。[资料1]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 12,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "仅按DEMO-B21合成资料，OP-20的检验要求为：定位孔尺寸范围在10.00至10.05毫米之间，且相互垂直的两个方向上的原始读数均必须在范围内。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "给出的样例记录不能直接支持合格与质量放行。因为第二个方向的读数为10.06毫米，超出了规定的10.00至10.05毫米范围；同时，根据规定，缺失或超限项应保持待复核或待处置，交接签名、设备启动时间和完成数量均不能代填质量结论。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-B21合成资料，OP-20检验要求是什么，给出的样例记录能否直接支持合格与质量放行？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "检查要求演示定位孔尺寸范围为10.00至10.05毫米,两个方向的原始读数均须在范围内。... 签署与处置操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置;交接签名、设备启动时间和完成数量均不能代填质量结论。",
+              "aspect": "OP-20检验要求及样例判定",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 33,
+            "error_type": null,
+            "duration_ms": 360.462
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 6301,
+            "error_type": null,
+            "duration_ms": 383.959
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 9462,
+            "error_type": null,
+            "duration_ms": 4351.214
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "根据DEMO-B21合成资料（ZH-B21-07），OP-20的检验要求为：定位孔在相互垂直的两个方向各测量一次并分别保存原始读数；任一方向超出演示图样范围时标记待处置，不能仅以两个读数的平均值判定合格。[资料2]\n给出的样例记录不能直接支持合格与质量放行。因为该记录中第二个方向的读数（10.06毫米）超出了规定的范围（10.00至10.05毫米），属于超限项，按规定应保持待复核或待处置状态。[资料1]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 8,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "根据DEMO-B21合成资料（ZH-B21-07），OP-20的检验要求为：定位孔在相互垂直的两个方向各测量一次并分别保存原始读数；任一方向超出演示图样范围时标记待处置，不能仅以两个读数的平均值判定合格。",
+            "citations": [
+              "资料2"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "给出的样例记录不能直接支持合格与质量放行。因为该记录中第二个方向的读数（10.06毫米）超出了规定的范围（10.00至10.05毫米），属于超限项，按规定应保持待复核或待处置状态。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-B21合成资料，OP-20检验要求是什么，给出的样例记录能否直接支持合格与质量放行？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "仅按DEMO-B21合成资料，OP-20检验要求是什么，给出的样例记录能否直接支持合格与质量放行？",
+              "aspect": "OP-20检验要求及样例记录判定",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 33,
+            "error_type": null,
+            "duration_ms": 383.661
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 6301,
+            "error_type": null,
+            "duration_ms": 385.276
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 7787,
+            "error_type": null,
+            "duration_ms": 4478.113
+          }
+        ]
+      },
+      "ordered_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "context_overlap": {
+        "old": 12,
+        "new": 8,
+        "same_document_content": 8
+      },
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "演示定位孔尺寸范围为10.00至10.05毫米，两个方向的原始读数均须在范围内。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "f8a512c7f0063f61a5a6408e948eb46a1e783eb97966dd6087edb36ac4156b92",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "f8a512c7f0063f61a5a6408e948eb46a1e783eb97966dd6087edb36ac4156b92",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E02",
+          "quote": "演示首件两个方向读数为10.02毫米和10.06毫米；第二个读数超出范围。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "f8a512c7f0063f61a5a6408e948eb46a1e783eb97966dd6087edb36ac4156b92",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "f8a512c7f0063f61a5a6408e948eb46a1e783eb97966dd6087edb36ac4156b92",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E03",
+          "quote": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "f8a512c7f0063f61a5a6408e948eb46a1e783eb97966dd6087edb36ac4156b92",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+              "citation_id": "资料3",
+              "chunk_id": "2333e2c1d9c5c23a1ad41c654bacef6db4df66fcfbd3db16b845d27c6e39a244",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+              "citation_id": "资料8",
+              "chunk_id": "3ada07f33ec4b5615f86e785297a144001c6eebef2e0205d7f192c153f37ccb6",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+              "citation_id": "资料9",
+              "chunk_id": "93dde1d4913859a4a280679a87a6574ba04dc189c99fd076fb871bdfc2190a37",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+              "citation_id": "资料10",
+              "chunk_id": "08fe78234e5c7c80769b3b62196893349d4eb6fe51bbbee9d4578ef60636a7fb",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+              "citation_id": "资料11",
+              "chunk_id": "6ccea0b390fed60ad776781de8bb2622a6fc126256860b612d97fdbbd6d25a00",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "f8a512c7f0063f61a5a6408e948eb46a1e783eb97966dd6087edb36ac4156b92",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+              "citation_id": "资料3",
+              "chunk_id": "2333e2c1d9c5c23a1ad41c654bacef6db4df66fcfbd3db16b845d27c6e39a244",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+              "citation_id": "资料8",
+              "chunk_id": "3ada07f33ec4b5615f86e785297a144001c6eebef2e0205d7f192c153f37ccb6",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "old_review": {
+        "case_id": "MFG-GOLD-044",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "完整检查要求：演示定位孔尺寸范围为10.00至10.05毫米，两个方向的原始读数均须在范围内。",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "按样例的实际缺项或不符作判断：演示首件两个方向读数为10.02毫米和10.06毫米；第二个读数超出范围。",
+            "passed": true,
+            "evidence_ids": [
+              "E02"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "该样例不能直接判合格或质量放行，应保持待复核或待处置",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "双向10.00至10.05、第二10.06超限、不能合格/放行且待复核处置均明确；样例判断不要求复读无不符的首方向值。",
+        "raw_result_sha256": "07ca5cb2d2dcb4d1208b86b0d2bc7000f98b4b0ab9bd1727a51bde31d2112731"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-044",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "完整检查要求：演示定位孔尺寸范围为10.00至10.05毫米，两个方向的原始读数均须在范围内。",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "按样例的实际缺项或不符作判断：演示首件两个方向读数为10.02毫米和10.06毫米；第二个读数超出范围。",
+            "passed": false,
+            "evidence_ids": [
+              "E02"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "该样例不能直接判合格或质量放行，应保持待复核或待处置",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02",
+              "E03"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": false,
+        "note": "范围10.00至10.05及任一方向不符不能合格、不能平均完整；样例明确10.06超限及保持待复核/待处置，但漏另一实际读数10.02，冻结F02未答全。",
+        "raw_result_sha256": "40f5c37d53191ff5e905bd4a15fef61dea3437852ad457002e7a0a55ee9a8edf"
+      },
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        },
+        "business_fields": [],
+        "requested_execution_fields": []
+      },
+      "review_consistency_probe": {
+        "first_reading_in_old_delivered_answer": false,
+        "first_reading_in_new_delivered_answer": false,
+        "old_F02_passed": true,
+        "new_F02_passed": false,
+        "original_scores_modified": false,
+        "conclusion": "Both delivered answers omit the first reading; different existing F02 judgments cannot establish a new generation omission."
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-048",
+      "question": "仅按DEMO-B21合成资料，OP-20台账有哪些已知记录和缺项，能否凭这些登记认定质量结论已经完成？",
+      "old": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "仅按DEMO-B21合成资料，OP-20台账的已知记录包括已保存定位孔两个方向的原始读数；缺项为质量复核人未签署。[资料3]\nOP-20台账中第二方向读数为10.06毫米，超出演示图样规定的10.00至10.05毫米范围，属于超限项。[资料1]\n不能凭这些登记认定质量结论已经完成。因为质量复核人未签署，且存在超限项需保持待复核或待处置，交接签名、设备启动时间和完成数量均不能代填质量结论。[资料1][资料3][资料4]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 12,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "仅按DEMO-B21合成资料，OP-20台账的已知记录包括已保存定位孔两个方向的原始读数；缺项为质量复核人未签署。",
+            "citations": [
+              "[资料3]"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "OP-20台账中第二方向读数为10.06毫米，超出演示图样规定的10.00至10.05毫米范围，属于超限项。",
+            "citations": [
+              "[资料1]"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "不能凭这些登记认定质量结论已经完成。因为质量复核人未签署，且存在超限项需保持待复核或待处置，交接签名、设备启动时间和完成数量均不能代填质量结论。",
+            "citations": [
+              "[资料1]",
+              "[资料3]",
+              "[资料4]"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-B21合成资料，OP-20台账有哪些已知记录和缺项，能否凭这些登记认定质量结论已经完成？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "OP-20：已保存两方向原始读数，但质量复核人未签署。这些状态为样例事实，不表示真实系统当前状态。",
+              "aspect": "已知记录与缺项",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "交接签名、设备启动时间和完成数量均不能代填质量结论。缺失或超限项保持待复核或待处置;交接签名、设备启动时间和完成数量均不能代填质量结论。",
+              "aspect": "能否认定质量结论已完成",
+              "status": "answered",
+              "claim_indices": [
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1",
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [
+          "第1个结论包含不存在的引用：['[资料3]']",
+          "第2个结论包含不存在的引用：['[资料1]']",
+          "第3个结论包含不存在的引用：['[资料1]', '[资料3]', '[资料4]']"
+        ],
+        "completion_changed": true,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "strategy_transition",
+            "selected_strategy": "reflective",
+            "reason": "repairable_validation"
+          },
+          {
+            "kind": "repair",
+            "outcome": "local_repaired",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 34,
+            "error_type": null,
+            "duration_ms": 350.323
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 6037,
+            "error_type": null,
+            "duration_ms": 834.143
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 9834,
+            "error_type": null,
+            "duration_ms": 5193.438
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "仅按DEMO-B21合成资料，OP-20台账的已知记录包括已保存定位孔两个方向的原始读数（其中第二方向读数为10.06毫米，超出演示范围10.00至10.05毫米）；缺项为质量复核人未签署。[资料1][资料3]\n根据DEMO-B21检验要求，缺失或超限项应保持待复核或待处置，且交接签名、设备启动时间和完成数量均不能代填质量结论。[资料1]\n由于OP-20存在第二方向读数超限的情况，且质量复核人尚未签署，依据规定该工序处于待复核/待处置状态，不能凭现有登记认定质量结论已经完成。[资料1][资料3]\n班次交接记录也确认了OP-20的质量复核人未签署这一未完成项，进一步证实质量结论未完成。[资料4]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 8,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "仅按DEMO-B21合成资料，OP-20台账的已知记录包括已保存定位孔两个方向的原始读数（其中第二方向读数为10.06毫米，超出演示范围10.00至10.05毫米）；缺项为质量复核人未签署。",
+            "citations": [
+              "资料1",
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "根据DEMO-B21检验要求，缺失或超限项应保持待复核或待处置，且交接签名、设备启动时间和完成数量均不能代填质量结论。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "由于OP-20存在第二方向读数超限的情况，且质量复核人尚未签署，依据规定该工序处于待复核/待处置状态，不能凭现有登记认定质量结论已经完成。",
+            "citations": [
+              "资料1",
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "班次交接记录也确认了OP-20的质量复核人未签署这一未完成项，进一步证实质量结论未完成。",
+            "citations": [
+              "资料4"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-B21合成资料，OP-20台账有哪些已知记录和缺项，能否凭这些登记认定质量结论已经完成？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "OP-20：已保存两方向原始读数，但质量复核人未签署。这些状态为样例事实，不表示真实系统当前状态。",
+              "aspect": "已知记录与缺项",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "交接签名、设备启动时间和完成数量均不能代填质量结论。缺失或超限项保持待复核或待处置;交接签名、设备启动时间和完成数量均不能代填质量结论。",
+              "aspect": "能否凭登记认定质量结论已完成",
+              "status": "answered",
+              "claim_indices": [
+                3,
+                4
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 34,
+            "error_type": null,
+            "duration_ms": 379.294
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 6037,
+            "error_type": null,
+            "duration_ms": 324.192
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 8153,
+            "error_type": null,
+            "duration_ms": 6271.05
+          }
+        ]
+      },
+      "ordered_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "context_overlap": {
+        "old": 12,
+        "new": 8,
+        "same_document_content": 8
+      },
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "OP-10：首箱标签核对一致，但未登记末箱核对结果；OP-20：已保存两方向原始读数，但质量复核人未签署。这些状态为样例事实，不表示真实系统当前状态。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料3",
+              "chunk_id": "3877dd9ac7e63922058ddedc267276d7c879058d7f92faa70df733e5cb77d951",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料3",
+              "chunk_id": "3877dd9ac7e63922058ddedc267276d7c879058d7f92faa70df733e5cb77d951",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E02",
+          "quote": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "f8a512c7f0063f61a5a6408e948eb46a1e783eb97966dd6087edb36ac4156b92",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+              "citation_id": "资料2",
+              "chunk_id": "2333e2c1d9c5c23a1ad41c654bacef6db4df66fcfbd3db16b845d27c6e39a244",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+              "citation_id": "资料12",
+              "chunk_id": "08fe78234e5c7c80769b3b62196893349d4eb6fe51bbbee9d4578ef60636a7fb",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "f8a512c7f0063f61a5a6408e948eb46a1e783eb97966dd6087edb36ac4156b92",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+              "citation_id": "资料2",
+              "chunk_id": "2333e2c1d9c5c23a1ad41c654bacef6db4df66fcfbd3db16b845d27c6e39a244",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "old_review": {
+        "case_id": "MFG-GOLD-048",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "所问工序已知项：已保存两方向原始读数",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "所问工序缺项：质量复核人未签署",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "不把登记直接当作质量结论或放行",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "台账两向读数/复核未签署以及不能认定质量结论齐全；所引检验样例追溯同B21工单OP20，不混另一工序。",
+        "raw_result_sha256": "fbe648cb99225e2db2c401e1eb0ef2641edcce97fc937cebcf45174137ba4f80"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-048",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "所问工序已知项：已保存两方向原始读数",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "所问工序缺项：质量复核人未签署",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "不把登记直接当作质量结论或放行",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [
+          "把质量复核人未签署进一步概括为证实整个质量结论未完成；资料要求记录、复核结论和放行签署分别保存，不能以一个缺项替代整体实际结论。"
+        ],
+        "passed": false,
+        "note": "两方向读数保存、复核人未签署及不能凭登记认定质量完成均答到；末句又称交接未签署进一步证实整个质量结论未完成，超过独立记录/签署边界的支持范围，保留补充断言失败。",
+        "raw_result_sha256": "5361f4810567ad937d92ebce12141052f9b64778d24d2cf8b5bca1f6907c97d6"
+      },
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        },
+        "business_fields": [],
+        "requested_execution_fields": []
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-081",
+      "question": "仅按DEMO-D41合成资料，台账中的计划开工能否当作工单实际开工，并据此选指导书版本？",
+      "old": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "不能将台账中的计划开工当作工单实际开工。资料明确规定：计划时间不得当作实际时间，且任何子级记录也不得补填工单级实际开工。[资料1]\n不能仅依据（或代替）实际开工来选定指导书版本。工单时间只能作为选版的条件之一，必须同时核对产品、工序、有效区间以及是否已完成业务适用性审核。[资料2]\n对于DEMO-D41的OP-50工序，其现行指导书（ZH-D41-02，业务版本2.0）自2026-11-05起适用。若该工单的实际开工在2026-11-05及之后，且满足产品与工序匹配并完成审核，则应选用2.0版；若在2026-11-04及之前，则适用历史版（ZH-D41-01，业务版本1.0）。[资料3][资料4]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 10,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "不能将台账中的计划开工当作工单实际开工。资料明确规定：计划时间不得当作实际时间，且任何子级记录也不得补填工单级实际开工。",
+            "citations": [
+              "[资料1]"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "不能仅依据（或代替）实际开工来选定指导书版本。工单时间只能作为选版的条件之一，必须同时核对产品、工序、有效区间以及是否已完成业务适用性审核。",
+            "citations": [
+              "[资料2]"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "对于DEMO-D41的OP-50工序，其现行指导书（ZH-D41-02，业务版本2.0）自2026-11-05起适用。若该工单的实际开工在2026-11-05及之后，且满足产品与工序匹配并完成审核，则应选用2.0版；若在2026-11-04及之前，则适用历史版（ZH-D41-01，业务版本1.0）。",
+            "citations": [
+              "[资料3]",
+              "[资料4]"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，台账中的计划开工能否当作工单实际开工，并据此选指导书版本？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "计划时间不得当作实际时间，任何子级记录也不得补填工单级实际开工。",
+              "aspect": "能否将计划开工当作实际开工",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "工单时间只能作为选版条件之一；仍须核对产品、工序、有效区间和已审核适用性。",
+              "aspect": "能否据此选指导书版本",
+              "status": "answered",
+              "claim_indices": [
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1",
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [
+          "第1个结论包含不存在的引用：['[资料1]']",
+          "第2个结论包含不存在的引用：['[资料2]']",
+          "第3个结论包含不存在的引用：['[资料3]', '[资料4]']"
+        ],
+        "completion_changed": true,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "strategy_transition",
+            "selected_strategy": "reflective",
+            "reason": "repairable_validation"
+          },
+          {
+            "kind": "repair",
+            "outcome": "local_repaired",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 28,
+            "error_type": null,
+            "duration_ms": 701.958
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 3721,
+            "error_type": null,
+            "duration_ms": 320.979
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 9786,
+            "error_type": null,
+            "duration_ms": 5824.855
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "不能将台账中的计划开工当作工单实际开工。资料明确规定“计划时间不得当作实际时间”，且该工单（DEMO-WO-D4101）的工单级实际开工并未登记。[资料1]\n不能仅依据计划开工时间选择指导书版本。虽然变更通知中规定工单时间是选版条件之一，但必须同时满足核对产品、工序、有效区间以及完成已审核适用性等多重条件。[资料2]\n即使满足上述所有条件，也不能直接选用2.0版指导书。因为当前资料包中的所有映射（包括拟分配的2.0版）均处于草案状态，尚未登记到平台或获得批准，因此不能作为线上会话绑定的依据。[资料1][资料2]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 5,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "不能将台账中的计划开工当作工单实际开工。资料明确规定“计划时间不得当作实际时间”，且该工单（DEMO-WO-D4101）的工单级实际开工并未登记。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "不能仅依据计划开工时间选择指导书版本。虽然变更通知中规定工单时间是选版条件之一，但必须同时满足核对产品、工序、有效区间以及完成已审核适用性等多重条件。",
+            "citations": [
+              "资料2"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "即使满足上述所有条件，也不能直接选用2.0版指导书。因为当前资料包中的所有映射（包括拟分配的2.0版）均处于草案状态，尚未登记到平台或获得批准，因此不能作为线上会话绑定的依据。",
+            "citations": [
+              "资料1",
+              "资料2"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，台账中的计划开工能否当作工单实际开工，并据此选指导书版本？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "计划时间不得当作实际时间，任何子级记录也不得补填工单级实际开工。",
+              "aspect": "能否将计划开工当作实际开工",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "工单时间只能作为选版条件之一；仍须核对产品、工序、有效区间和已审核适用性。",
+              "aspect": "能否据此选指导书版本",
+              "status": "answered",
+              "claim_indices": [
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 28,
+            "error_type": null,
+            "duration_ms": 351.969
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 3721,
+            "error_type": null,
+            "duration_ms": 370.945
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 7114,
+            "error_type": null,
+            "duration_ms": 5660.499
+          }
+        ]
+      },
+      "ordered_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "context_overlap": {
+        "old": 10,
+        "new": 5,
+        "same_document_content": 5
+      },
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "计划开工为2026-11-06T08:00:00+08:00，工单级实际开工未登记。计划时间不得当作实际时间，任何子级记录也不得补填工单级实际开工。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料1",
+              "chunk_id": "2232bb7d5eede7aa9e7aa020ab8a89115de496442e9ac65e43a5cad243040cff",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料1",
+              "chunk_id": "2232bb7d5eede7aa9e7aa020ab8a89115de496442e9ac65e43a5cad243040cff",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E02",
+          "quote": "工单时间只能作为选版条件之一；仍须核对产品、工序、有效区间和已审核适用性。通知已编写不表示平台审核已批准；本资料包所有映射仍是草案。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+              "citation_id": "资料2",
+              "chunk_id": "08a4a62a46eb85acab9031108dd2061f84bae71cae506d8345c94743f900aaa0",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+              "citation_id": "资料9",
+              "chunk_id": "6b2d53d3c01a44f07150b708239a5b838b5b697773b26f39ebc986d960dcc7b0",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+              "citation_id": "资料10",
+              "chunk_id": "a421929611c2660e30f242d1b010297100b1c8bf6feee8fb57007356891bce1f",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+              "citation_id": "资料2",
+              "chunk_id": "08a4a62a46eb85acab9031108dd2061f84bae71cae506d8345c94743f900aaa0",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "old_review": {
+        "case_id": "MFG-GOLD-081",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "计划开工不得当作工单实际开工",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "不能只凭计划时间选版，还须核对产品、工序、有效区间和已审核适用性",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "计划不作实际，选版还核产品工序区间和审核，条件版本举例未宣称现场已切换。",
+        "raw_result_sha256": "0919c08e23c057d95b3da7d31da353e459176fbd9513643867fb3998f52d33a5"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-081",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "计划开工不得当作工单实际开工",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "不能只凭计划时间选版，还须核对产品、工序、有效区间和已审核适用性",
+            "passed": true,
+            "evidence_ids": [
+              "E01",
+              "E02"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [
+          "主动增加“即使满足上述所有条件，也不能直接选用2.0”，将当前草案/未登记状态推广到假设已经满足全部审核适用条件的情形；不能以当前草案否定该假设。"
+        ],
+        "passed": false,
+        "note": "两必答均答全；第三条虽有当前映射草案未批准的资料依据，却又称即使满足包括已审核适用性的全部条件也不能选2.0，扩大为额外持续禁令，条件关系超出所引支持。",
+        "raw_result_sha256": "9edafcf75a6d37521eb13161080d8dee137b638489ec81bc2b67e62473819575"
+      },
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        },
+        "business_fields": [],
+        "requested_execution_fields": []
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-083",
+      "question": "仅按DEMO-D41合成资料，第一张作业卡有开工登记，第二工序及第二张卡的实际开工能否补成已知？",
+      "old": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "仅按DEMO-D41合成资料，第一张作业卡有开工登记的情况下，第二工序及第二张卡的实际开工不能补成已知。[资料1]\n根据资料规定，卡与工序分别取值，不能互补。[资料1]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 12,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "仅按DEMO-D41合成资料，第一张作业卡有开工登记的情况下，第二工序及第二张卡的实际开工不能补成已知。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "根据资料规定，卡与工序分别取值，不能互补。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，第一张作业卡有开工登记，第二工序及第二张卡的实际开工能否补成已知？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "第二工序子行DEMO-ROW-D41-2和作业卡DEMO-JC-D41-2均未登记实际开工。卡与工序分别取值，不能互补。",
+              "aspect": "第二工序及第二张卡的实际开工能否补成已知",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 33,
+            "error_type": null,
+            "duration_ms": 403.853
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4615,
+            "error_type": null,
+            "duration_ms": 388.76
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 10037,
+            "error_type": null,
+            "duration_ms": 3645.982
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "根据当前知识库资料，暂时无法回答这个问题。",
+        "final_refusal": "知识库资料不足。",
+        "harness_error": null,
+        "selection": null,
+        "context_count": 7,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，第一张作业卡有开工登记，第二工序及第二张卡的实际开工能否补成已知？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "第二工序及第二张卡的实际开工能否补成已知",
+              "status": "insufficient",
+              "claim_indices": [],
+              "missing_information": "资料中明确说明第二工序子行和作业卡均未登记实际开工，且规定卡与工序分别取值、不能互补；未提供通过第一张卡或第一工序的开工数据来推导/补填第二张卡或第二工序开工时间的规则或机制。"
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": false,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": false,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": false,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "feedback",
+            "outcome": "ineligible"
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 33,
+            "error_type": null,
+            "duration_ms": 527.826
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4615,
+            "error_type": null,
+            "duration_ms": 342.105
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 7817,
+            "error_type": null,
+            "duration_ms": 3774.503
+          }
+        ]
+      },
+      "ordered_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "context_overlap": {
+        "old": 12,
+        "new": 7,
+        "same_document_content": 7
+      },
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "ERPNext离线夹具设计：工序子行DEMO-ROW-D41-1属于OP-50，工序实际开工为2026-11-06T08:12:00+08:00；作业卡DEMO-JC-D41-1实际开工为08:17:00+08:00，日期同本工单演示日期。第二工序子行DEMO-ROW-D41-2和作业卡DEMO-JC-D41-2均未登记实际开工。卡与工序分别取值，不能互补。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料1",
+              "chunk_id": "338e68e7218de79bea5c9999282180d791ff1fd8df96df3a4890f2b7ec0b1a3c",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料1",
+              "chunk_id": "338e68e7218de79bea5c9999282180d791ff1fd8df96df3a4890f2b7ec0b1a3c",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "old_review": {
+        "case_id": "MFG-GOLD-083",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "第二子行DEMO-ROW-D41-2未登记",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "第二卡DEMO-JC-D41-2未登记",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "不能用第一卡时间互补",
+            "passed": true,
+            "evidence_ids": [
+              "E01"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": true,
+        "note": "承接题设无歧义的第二工序/卡，明确不能补成已知且分别取值；不额外强制未问的内部ID。",
+        "raw_result_sha256": "9ca5eac3cccacc9aab993219f92fdd5e8eb7c066e8cc44dd9a64c13669dff27f"
+      },
+      "new_review": {
+        "case_id": "MFG-GOLD-083",
+        "reviewer": "assistant_non_independent",
+        "human_review": false,
+        "independent": false,
+        "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+        "required_facts": [
+          {
+            "id": "F01",
+            "text": "第二子行DEMO-ROW-D41-2未登记",
+            "passed": false,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F02",
+            "text": "第二卡DEMO-JC-D41-2未登记",
+            "passed": false,
+            "evidence_ids": [
+              "E01"
+            ]
+          },
+          {
+            "id": "F03",
+            "text": "不能用第一卡时间互补",
+            "passed": false,
+            "evidence_ids": [
+              "E01"
+            ]
+          }
+        ],
+        "forbidden_violations": [],
+        "unsupported_additions": [],
+        "passed": false,
+        "note": "知识库资料不足的拒答未交付第二子行/第二卡未知及不互补的回答，保留过度拒答失败，不补跑。",
+        "raw_result_sha256": "b54f76e3d3127763013763eaa3da2724ae9b1eb5ba39bce74987f991e02479ed"
+      },
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        },
+        "business_fields": [],
+        "requested_execution_fields": [],
+        "answer_located_in_gap_instead_of_claims": {
+          "claims": 0,
+          "status": "insufficient",
+          "missing_information": "资料中明确说明第二工序子行和作业卡均未登记实际开工，且规定卡与工序分别取值、不能互补；未提供通过第一张卡或第一工序的开工数据来推导/补填第二张卡或第二工序开工时间的规则或机制。",
+          "evidence_gap_recorded_in_trace": false
+        },
+        "limitation": "Raw evidence_gap is not saved; feedback ineligible is observed, its exact parsed reason is not independently recoverable."
+      }
+    }
+  ],
+  "supplemental": {
+    "MFG-GOLD-086": {
+      "previously_failed": true,
+      "old": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "第一批次已开工，第二步骤不应填写相同的实际开工时间。[资料1]\n因为同一工单下的卡与工序、以及同批次的不同步骤均分别独立取值，且明确说明“不能互补”，因此各步骤的实际开工时间必须独立记录，不能直接沿用或复制前一阶段的数值。[资料1]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 11,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "第一批次已开工，第二步骤不应填写相同的实际开工时间。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "因为同一工单下的卡与工序、以及同批次的不同步骤均分别独立取值，且明确说明“不能互补”，因此各步骤的实际开工时间必须独立记录，不能直接沿用或复制前一阶段的数值。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "卡与工序分别取值，不能互补。同批次步骤DEMO-STEP-D41-2未登记实际开工。",
+              "aspect": "第二步骤是否应填相同实际开工",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 26,
+            "error_type": null,
+            "duration_ms": 1381.221
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4508,
+            "error_type": null,
+            "duration_ms": 337.436
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 9359,
+            "error_type": null,
+            "duration_ms": 3793.59
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "status": 200,
+        "final_answer": "不应填写相同的实际开工时间。工单执行记录中，作业卡（代表步骤）与工序是分别取值的，且明确规定不能互补。[资料1]",
+        "final_refusal": null,
+        "harness_error": null,
+        "selection": null,
+        "context_count": 6,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "不应填写相同的实际开工时间。工单执行记录中，作业卡（代表步骤）与工序是分别取值的，且明确规定不能互补。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "卡与工序分别取值，不能互补。",
+              "aspect": "第二步骤是否应填相同的实际开工",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "first_validation_errors": [],
+        "completion_changed": false,
+        "decisions": [
+          {
+            "stage": "generation",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          },
+          {
+            "stage": "final",
+            "answerable": true,
+            "reason": null,
+            "temporal": null
+          }
+        ],
+        "completion": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_usage": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "total_tokens": 26,
+            "error_type": null,
+            "duration_ms": 390.218
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "total_tokens": 4508,
+            "error_type": null,
+            "duration_ms": 334.288
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "total_tokens": 6817,
+            "error_type": null,
+            "duration_ms": 4430.555
+          }
+        ]
+      },
+      "source_evidence": [
+        {
+          "source_id": "ZH-D41-08",
+          "kind": "text",
+          "unit_id": "u04",
+          "quote": "OpenMES离线夹具设计：批次DEMO-BATCH-D41-1实际开工为2026-11-06T09:00:00+08:00，步骤DEMO-STEP-D41-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-D41-2未登记实际开工。另有同工单批次DEMO-BATCH-D41-2，其步骤DEMO-STEP-D41-3与第一批次不构成父子关系。",
+          "id": "E01"
+        }
+      ]
+    }
+  },
+  "protected_inputs": 117,
+  "input_sha256": {
+    "evals/manufacturing_gold_100_v4/cases.jsonl": "0e482e1e3b2d1209f48e71d11f8f1ec9a6109531d65d3b834379638e1c5cfbeb",
+    "evals/manufacturing_gold_100_v4/sources.json": "d97aede4a78567d7c9e16159a0f03f1b92d82fcd8238131bb5d6fd036308711e",
+    "evals/manufacturing_gold_100_v4/review_policy.json": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+    "evals/manufacturing_gold_100_v4/manifest.json": "c800b45dab8c2daebb4c8a86b812889eb1ad630be88079be89274ed78005794d",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/audits.json": "16875fc3ae38cd22bb6fa94de09292c4c05d8a80e722b11d3a8fa0164e1bb48e",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/manifest.json": "ff8f14354d3fae1f037840523be1b820a60b30d216791dfc833ae995a49c44f6",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/results.jsonl": "ce4c4afae60dd9a32a0b2c374e9054604325d9f2e621dfc1743117dd068831e6",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/reviews.json": "2328a0d0b42714a0a3979cea827312f4f4c436dda5ca8f7f3c8a2ea3fb57e512",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/summary.json": "bb38395b38c9853334b2b1b3569706f59a71c20ac70344f35feafb363ca6ffaf",
+    "evals/manufacturing_gold_100_answer_focus_live_v1/runs/20261113-r8/audits.json": "5859b6c6a36cd747018a4952de8ee695907411d196343a3c2a206d83c6f98939",
+    "evals/manufacturing_gold_100_answer_focus_live_v1/runs/20261113-r8/fixed-retrieval-validation-proof.json": "8182b80723f3dceda49becae06ffd3157dda60f307de495cba03821ee4cbbf01",
+    "evals/manufacturing_gold_100_answer_focus_live_v1/runs/20261113-r8/focus-comparison.json": "b7336552250f2d25e41b0bf72f945c3a746daa41e0e939b70a91b7b3088d1f7b",
+    "evals/manufacturing_gold_100_answer_focus_live_v1/runs/20261113-r8/manifest.json": "888b3e01498ed35e2b189550f6c984c44d27db29e90a82bca867a2f0d2833bd7",
+    "evals/manufacturing_gold_100_answer_focus_live_v1/runs/20261113-r8/model-error-proof.json": "212f744f05bcfccbcbbe5e211e8394d9eb06b8e1e6d7e03630f043270aa6df91",
+    "evals/manufacturing_gold_100_answer_focus_live_v1/runs/20261113-r8/results.jsonl": "4a1ab2260b3867dca117095e850a070ee59352da9b1992a2728da64e0e33b2ad",
+    "evals/manufacturing_gold_100_answer_focus_live_v1/runs/20261113-r8/reviews.json": "b1e1ae4ec6ce2a8710f89ad1e7193b548cf12ec54391b6d9de0549c78bfd0ca8",
+    "evals/manufacturing_gold_100_answer_focus_live_v1/runs/20261113-r8/summary.json": "3eff0d3b5baa42aeec84eb95c582db09a2d1d27321b2b6da973c87d67d7d5e6f",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-002-result.json": "c30e9ca06eee6d4cfc10d34d4cf43e74af54cf4a9887d16785a70872848fdad0",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-002-stdout.log": "07004cc8040c872b8f39c606be4c8187ee68597697301677c3b069cf05ced7e4",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-002-stderr.log": "f955d56ec57ae94e669c5f9ce3b1b8366753d6f126a6fe7d0888a711380d5068",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-007-result.json": "bffd8e03b2e43d70ea5cb73d1b5b1ead4699ae1afb35f3784bd4f766bfc87b9c",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-007-stdout.log": "c959d44afe9efc78d58ce67010fcacae01de2f33c5e5684a23d40d3e06fb9f50",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-007-stderr.log": "99e7812cb3ca1325c7ca33d16dcea3e22bfc79b3ec32ff49b8cb2b6f2ccd3c87",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-010-result.json": "74fd3f66ed04d7a7d6a30730178d1d0aa2c358159ee67adf83c1d2c0c87568db",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-010-stdout.log": "4890e5ba119e82487f29b6de4bb39840730b812caef963b1f61152b7034d1c44",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-010-stderr.log": "20392e2ebd5581555139c61a6aa9e75f08a7072c7111cdb427937d85798d3e42",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-019-result.json": "9f46d84f551d35cebd89c8404707c5305c866c084c127d8da493137388b7ff7b",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-019-stdout.log": "71d2cd9a9ccd8efb2dd32fffe70207dd5126bae426baf1c058f72452cba664e9",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-019-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-022-result.json": "5fd3366722890773d1284165801762e1dbded8df96ef0c8529087bf858d0e5f0",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-022-stdout.log": "fa79ff328ea431a2a7829dc0df20674aac0874b9b87dfb30f24142e764ee851a",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-022-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-026-result.json": "c4a6091fdd040d58a168f56f6f486d472b018d5ec6d58ea58a1e3c269fdb2bbe",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-026-stdout.log": "851bab8287fb37eeebd5023c4f984ea86011b48b92f5517382b74437c238b55b",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-026-stderr.log": "b8954a045ddf070c9ca277b98e1bd5333dec16bd1f8e7307ed1fd28000f3b12d",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-027-result.json": "ed6912477de462d236ff7e2a65867e0edf0d45f7febb65eed381c7d68c43ea51",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-027-stdout.log": "512114b44e496eb318fb61267b700a5199779f03d007280addf435086571ad20",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-027-stderr.log": "97a30c322d790a508c91673779ddc0b707ca328bfa9b16012588742ed72e329e",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-044-result.json": "07ca5cb2d2dcb4d1208b86b0d2bc7000f98b4b0ab9bd1727a51bde31d2112731",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-044-stdout.log": "6a9f898a1739129d7d4a072e6ca2fd928abbb9a87644500a1967644531ad21d2",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-044-stderr.log": "024990404ab51025bb02b9df13dbbdafa827bf22ba3777ed39297b666d934b66",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-048-result.json": "fbe648cb99225e2db2c401e1eb0ef2641edcce97fc937cebcf45174137ba4f80",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-048-stdout.log": "a66924534c28a9286d030ffb12a5c972d4174c06b34b8176b4bdbb1f16b4e502",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-048-stderr.log": "10f3f86632dd698d3ca5e0b8b8c52ff72f7ee98e72693490a38fd03da1ba27df",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-081-result.json": "0919c08e23c057d95b3da7d31da353e459176fbd9513643867fb3998f52d33a5",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-081-stdout.log": "57395799f6f208699081b139cdcedd96a46badafdad4465b6dc2b71c104d6e98",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-081-stderr.log": "a32ec52e32dabd0cb7f48dba480df23e8a02e01779846d045b2e7c23e74fa63f",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-083-result.json": "9ca5eac3cccacc9aab993219f92fdd5e8eb7c066e8cc44dd9a64c13669dff27f",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-083-stdout.log": "7a37db5abf7e583572e06a3c515b3a633831ae4b4c1b364a75e390cf4de7425b",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-083-stderr.log": "143845dbf0ba87aabb5e5162c109926e5d0ed1c15f41d7111cf9bce9c945ef14",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-086-result.json": "0e2121c0638e1dece73ccd87a00c9ec624a520872f7a2d4cfcf85432a9355e85",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-086-stdout.log": "2921549120e1eb0b837574e4633d95da0bb9a3bdd66b1bb6ad42f0492586e52a",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-086-stderr.log": "cda603bcb5883d4e0d2a8b83e86a5b9bc0f0a8f89ac303f22c8cb0fcbaa54a02",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-002-result.json": "68915d8aac0b1e2bdc70fede9b514aeaaf9fe1cd1d7e28c01d4d602678109729",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-002-stdout.log": "f0d21e49db4052e963ee8280612c7b5ded19302ef619a2f318ac8851d1c23052",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-002-stderr.log": "c54944a44391db8e8eaade03e23a6fe6976ef53435fb19d8f72defab8336cfef",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-007-result.json": "6bff97381ef527415f35b208fd996f0d891b13fc622a73af4da1a3b5dcef54dd",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-007-stdout.log": "b8595e710dbcaece7b04313ede7da8c3d02b443a6377422d2b484174979d7f7c",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-007-stderr.log": "b3cb7838dc781f44cdb3f9411fabbc07f22d686fcf874beb5c4c47d4e6fcfe5e",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-010-result.json": "c37f5ddf9a14d927111f13e73da87b7f8bc4221d6feb2a7f71a04c8897dc9bc2",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-010-stdout.log": "749092d62359202abb8443aca96248b44dad9acbcf8549bbab634d3fd026f648",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-010-stderr.log": "538aa6b93bb6e4e704f913407060f615a4b597178f570b67ae44b25fcdc127ab",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-019-result.json": "063fc136c047f2728f9eb9f11ef79ba6e521c06c5662ed20b45173f284862bfa",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-019-stdout.log": "64317f386cb8bf917cba8a475d717e1ed7395b1197cae6af99244ae3a8127eb8",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-019-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-022-result.json": "2a03e3adbe6d704ad1fd49a6c2e2171641b80bf292138bb7b36ef9dfb0b8d3f1",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-022-stdout.log": "543c2c07ce0416b04983d912b900cd248954f21e7234989f9e4bb58afcc99e25",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-022-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-026-result.json": "6186b90b6c1193aef1cb999c43af74d9d684a1017b58a4fecdded11a89dbe079",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-026-stdout.log": "6de02fdbe1b6b29f382807fdf4e0def9470a5e77a519a7de53dafe464530ce32",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-026-stderr.log": "76a6fc2e100a6ba7757bd4a90776e216440e898fb7e9c716bcea6de7a1478025",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-027-result.json": "13c6d7ded0d6fb9e0be24dd4da50b029a83097e1d643d33291c36a68e7e6e260",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-027-stdout.log": "2b938af18782ee8e6da3b971abe5b2eadd66623c203db06946cc18194c1b39d7",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-027-stderr.log": "bfe25ac8928be68c4ad97bcf9508607b16918da78d09b7fc717a3e167b24cb1d",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-044-result.json": "40f5c37d53191ff5e905bd4a15fef61dea3437852ad457002e7a0a55ee9a8edf",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-044-stdout.log": "33b54397672f85cccb1e2ad438c82fd43743cec5575caf6f3758c87322615557",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-044-stderr.log": "5677e7cf557c30362e9b4df0b621904ffd0ef5d451d60b1becaa4698b5d87e15",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-048-result.json": "5361f4810567ad937d92ebce12141052f9b64778d24d2cf8b5bca1f6907c97d6",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-048-stdout.log": "451d586d6f7e602ad169ede1b6aafc12c7c394f9c10b72602eb2369b97eddc5e",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-048-stderr.log": "3897c3fa30d2158e3f9b864fb748f3e7f55ca1dd402ac350912318b5b07baa9c",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-081-result.json": "9edafcf75a6d37521eb13161080d8dee137b638489ec81bc2b67e62473819575",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-081-stdout.log": "e9d98491adf824887ec540b2b708c83b2d96b99077aab9f4a6e3daa335c9f4d0",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-081-stderr.log": "eb18709ab507c65b0069ddc66abcd180cfe58f353498453de6833d7745a2de52",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-083-result.json": "b54f76e3d3127763013763eaa3da2724ae9b1eb5ba39bce74987f991e02479ed",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-083-stdout.log": "7c6183b1901dc4b196a7e40eee60dcdd0f2f19f97b3f9b31a29168a3f0efac0f",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-083-stderr.log": "1f7cdda224a38139bc594cb7382a2cd584719f9a1a002d1a233376b4936a015a",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-086-result.json": "ff8341396bc80c922fd5a50a9b97c7d5c58654f75655aecc57a399df8eb214d2",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-086-stdout.log": "790a1906af16a967cdea4a0e05798e33464c0eee38e75fa8eb277dace75532d7",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/MFG-GOLD-086-stderr.log": "e01f15da6bc83f367efcad21acc56991468e36047937072654f02c9130c34144",
+    "backend/app/knowledge/answer_models.py": "462bfcc004fa8ede645f61d0039c04491bb22806884c31bc3d58ee1570522ffb",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/knowledge/answer_models.py": "462bfcc004fa8ede645f61d0039c04491bb22806884c31bc3d58ee1570522ffb",
+    "backend/app/knowledge/answer_coverage.py": "6b8f126b625f50738c2c687405f46943733feef87087ad2d1ea975d1d3e0739f",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/knowledge/answer_coverage.py": "6b8f126b625f50738c2c687405f46943733feef87087ad2d1ea975d1d3e0739f",
+    "backend/app/knowledge/answer_validation.py": "b7745a93a5b47894ea848d959694a769789e58bce76605dec0193e310b993a60",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/knowledge/answer_validation.py": "b7745a93a5b47894ea848d959694a769789e58bce76605dec0193e310b993a60",
+    "backend/app/knowledge/answer_service.py": "60b4d5cae10e0fb8df9b487d1716ee46b9c99d17a8e123518ece3f7ff5e141d9",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/knowledge/answer_service.py": "60b4d5cae10e0fb8df9b487d1716ee46b9c99d17a8e123518ece3f7ff5e141d9",
+    "backend/app/knowledge/answer_repair.py": "8f7e3e5318eefd040a9996e96d8931b82157825c65c894ec004884eb04e5db9a",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/knowledge/answer_repair.py": "8f7e3e5318eefd040a9996e96d8931b82157825c65c894ec004884eb04e5db9a",
+    "backend/app/knowledge/output_contract.py": "72a33aa8813af532b64bbfefafff74df76b21c2e3240b5158d7f9b23f1c17ab3",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/knowledge/output_contract.py": "72a33aa8813af532b64bbfefafff74df76b21c2e3240b5158d7f9b23f1c17ab3",
+    "backend/app/knowledge/answer_contract.py": "95a2a9b15d6bbdda4b2db51c8a3597d4532ecf4b14a29407b817e9dea21108e1",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/knowledge/answer_contract.py": "95a2a9b15d6bbdda4b2db51c8a3597d4532ecf4b14a29407b817e9dea21108e1",
+    "backend/app/knowledge/retrieval_service.py": "85e4cf33d055770d8ec2889511fb35d07833aa5ef092cf258af9d2e69e65d4c9",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/knowledge/retrieval_service.py": "85e4cf33d055770d8ec2889511fb35d07833aa5ef092cf258af9d2e69e65d4c9",
+    "backend/app/knowledge/context_builder.py": "e188fe911f463c4a966622d1fea3e4e94e47b9becc98141ec7351041ef456d95",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/knowledge/context_builder.py": "e188fe911f463c4a966622d1fea3e4e94e47b9becc98141ec7351041ef456d95",
+    "backend/app/manufacturing/answer_context.py": "ca9a608ca2faee9e46b99c0055d3becc2f02861d5a0bc83e6f50abd3b58fd55f",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/manufacturing/answer_context.py": "ca9a608ca2faee9e46b99c0055d3becc2f02861d5a0bc83e6f50abd3b58fd55f",
+    "backend/app/manufacturing/generation_models.py": "79f1b9e160016f3dd45d6e3d9b30476beaa8003df990439c5d47913e253d0e34",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/manufacturing/generation_models.py": "79f1b9e160016f3dd45d6e3d9b30476beaa8003df990439c5d47913e253d0e34",
+    "backend/app/manufacturing/generation_selection.py": "7793a998f81ed497d6024d6e691a7ff65e1334249d3223420a0bc1f32f4de291",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/manufacturing/generation_selection.py": "7793a998f81ed497d6024d6e691a7ff65e1334249d3223420a0bc1f32f4de291",
+    "backend/app/manufacturing/source_statements.py": "ae9d8ca8f8f8ace9c459109e6fc479be95d623c832914d814d5ecb3af9af34b3",
+    "tmp/manufacturing-gold-100-v4-answer-focus-live-20261113-r8/source/backend/app/manufacturing/source_statements.py": "ae9d8ca8f8f8ace9c459109e6fc479be95d623c832914d814d5ecb3af9af34b3",
+    "scripts/diagnose_manufacturing_answer_focus_regressions.py": "714cda65ed080437c4b5652eeac9afec29a15cc36a9c8e41f0c4023a6afbbb7f",
+    "scripts/diagnose_manufacturing_selection_failures.py": "633817a29835daa066a6586a4e6b0f96d3ddadcdb7750e9d410486ba51a75199"
+  },
+  "inputs_unchanged": true,
+  "frozen_code_matches": [
+    "knowledge/answer_models.py",
+    "knowledge/answer_coverage.py",
+    "knowledge/answer_validation.py",
+    "knowledge/answer_service.py",
+    "knowledge/answer_repair.py",
+    "knowledge/output_contract.py",
+    "knowledge/answer_contract.py",
+    "knowledge/retrieval_service.py",
+    "knowledge/context_builder.py",
+    "manufacturing/answer_context.py",
+    "manufacturing/generation_models.py",
+    "manufacturing/generation_selection.py",
+    "manufacturing/source_statements.py"
+  ],
+  "model_calls": 0,
+  "api_calls": 0,
+  "database_calls": 0,
+  "container_operations": 0,
+  "network_connections_allowed": false,
+  "old_scores_recomputed": false,
+  "limits": "Processed saved drafts/contexts only. Missing top-level parsed fields are inferred only where trace decisions establish them; no exact full-provider-request reconstruction or stochastic causality claim. Counterfactuals demonstrate local mechanisms, not new acceptance scores."
+}
