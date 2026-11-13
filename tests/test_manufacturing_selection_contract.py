@@ -219,3 +219,13 @@ def test_http_grounded_output_retains_three_source_checks(harness, monkeypatch):
         assert response.status_code == 200, response.text
         assert response.json()["answerable"]
     assert len(h.source.reads) == 3
+
+
+def test_grounded_repair_prompt_does_not_reintroduce_legacy_selectors(catalog):
+    from backend.app.knowledge.output_contract import with_manufacturing_rules
+    active, context, citation = built_source(catalog, "开工记录不等于检验合格，仍须质量签署。")
+    with manufacturing_answer_context(active):
+        draft = prepare_draft(grounded_payload("仍须质量签署。", citation), context)
+        prompt = with_manufacturing_rules("仅修复引用，保留文字。", context, draft=draft)
+        assert "claims每项用text" in prompt
+        assert "source_unit" not in prompt and "business_field" not in prompt

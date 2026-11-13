@@ -152,11 +152,12 @@ class AnswerRepair:
                         evidence=[dict(citation_id=item.citation_id, content=item.content) for item in [*context.items, *context.business_items]],
                         draft=deepcopy(candidate.model_dump()), errors=errors)
             system = DECISION_PROMPT if decision_mode else CALCULATION_PROMPT if calculation_mode else REPAIR_PROMPT
-            system = with_manufacturing_rules(system, context)
+            system = with_manufacturing_rules(system, context, draft=draft)
             messages = [SystemMessage(content=system),
                         HumanMessage(content=json.dumps(data, ensure_ascii=False, separators=(",", ":")))]
             prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
-            schema = generation_schema(context, claim=True) if decision_mode else type(draft)
+            from ..manufacturing.generation_selection import GroundedDraft, GroundedClaim
+            schema = (GroundedClaim if isinstance(draft, GroundedDraft) else generation_schema(context, claim=True)) if decision_mode else type(draft)
             prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
             if prompt_bytes > self.settings.rag_repair_prompt_bytes:
                 record_rag_event(dict(kind="repair", outcome="prompt_budget", model_calls=0))

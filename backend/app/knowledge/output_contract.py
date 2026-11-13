@@ -31,8 +31,11 @@ def live_generation_schema(context):
     return generation_schema(context)
 
 
-def with_manufacturing_rules(system, context):
+def with_manufacturing_rules(system, context, *, draft=None):
     if context.business_items:
+        from ..manufacturing.generation_selection import GroundedDraft, SELECTION_SYSTEM_PROMPT
+        if isinstance(draft, GroundedDraft):
+            return system + "\n" + SELECTION_SYSTEM_PROMPT
         from ..manufacturing.answer_context import MANUFACTURING_PROMPT
         return system + MANUFACTURING_PROMPT
     return system
