@@ -45,12 +45,16 @@ def main():
         grouped[category]=dict(cases=len(subset),contract_passed=sum(r['contract']['passed'] for r in subset),
                                assistant_non_independent_passed=sum(r['review']['passed'] for r in subset))
     summary=dict(schema_version='manufacturing-gold100-selection-live-result-v1',executed=100,
+        dataset='manufacturing_gold_100_v4',source_revision=read(run/'setup-receipt.json')['source_revision'],
         contract_passed=sum(r['contract']['passed'] for r in rows),
         assistant_non_independent_passed=sum(r['review']['passed'] for r in rows),human_approved=0,independent_holdout=False,
         cases_with_any_model_calls=sum(r['model_calls']>0 for r in rows),zero_model_cases=sum(r['model_calls']==0 for r in rows),
+        model_cases_passed=sum(r['model_calls']>0 and r['review']['passed'] for r in rows),
+        zero_model_cases_passed=sum(r['model_calls']==0 and r['review']['passed'] for r in rows),
         primary_question_calls_cases=sum(r['final'] is not None and r['final']['model_calls']>0 for r in records),
         categories=grouped,usage=usage,index_usage=dict(calls=0,tokens=0,reused_existing_index=True),
         started_at=finished['budget']['started_at'],finished_at=finished['finished_at'],
+        elapsed_seconds=round((datetime.fromisoformat(finished['finished_at'])-datetime.fromisoformat(finished['budget']['started_at'])).total_seconds(),3),
         limits=read(run/'bindings.json')['plan']['limits'],budget_origin='explicit_user_authorization',
         request_retries=0,continuations=False,old_results_combined=False,
         old_scores_recomputed=False,
@@ -59,13 +63,14 @@ def main():
         preservation=read(run/'preservation-final.json'),runtime_audit=read(run/'runtime-audit.json'),
         auxiliary_observation=read(run/'auxiliary-observations.json'),
         environment_closure=read(run/'temporary-compute-closure.json'))
+    summary['final_original_preservation']=read(run/'post-closure-preservation.json')
     out.mkdir(parents=True,exist_ok=True)
     for name,data in [('summary.json',summary),('reviews.json',reviews)]:
         with (out/name).open('x',encoding='utf-8',newline='\n') as f:json.dump(data,f,ensure_ascii=False,indent=2)
     audits={name:read(run/file) for name,file in [('business_source','business-source-proof.json'),
         ('snapshots','snapshot-audit.json'),('v4_preflight','preflight-audit.json'),
         ('inventory_preflight','inventory-preflight-proof.json'),('ledger','evaluation-ledger-proof.json'),
-        ('authorization_closure','authorization-closed.json')]}
+        ('authorization_closure','authorization-closed.json'),('final_original_preservation','post-closure-preservation.json')]}
     with (out/'audits.json').open('x',encoding='utf-8',newline='\n') as f:json.dump(audits,f,ensure_ascii=False,indent=2)
     with (out/'results.jsonl').open('x',encoding='utf-8',newline='\n') as f:
         for row in rows:f.write(json.dumps(row,ensure_ascii=False)+'\n')
