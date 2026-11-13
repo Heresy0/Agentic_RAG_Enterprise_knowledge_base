@@ -1,5 +1,7 @@
 # 新会话工作入口
 
+- 2026-11-13用户要求先推送现有改动再新分支整体收敛：旧分支推送至d5dc546，新建`codex/manufacturing-answer-contract-consolidation`。候选把业务字段/既有后端结论选择与文档解释编译为同一内部契约，压缩重复提示，不改检索/金标、不加题号规则或模型层。已有178草稿回放及143原成功交付校验结果保持；新r10完整100题真实验证独立800调用/500万Token/9000秒，既有百炼端点和同范围中文资料/问题/演示字段，不重试补跑拼分，不复用旧余额。私有`tmp/manufacturing-answer-contract-full-live-20261113-r10/`执行后关闭，原工作台不更新，结果另记。见[候选说明](docs/reports/manufacturing-answer-contract-consolidation-20261113-r1.md)。
+
 先阅读本文件，再按任务读取对应源码和文档；不需要通读完整 README、所有历史报告或 tmp。
 
 ## 项目范围

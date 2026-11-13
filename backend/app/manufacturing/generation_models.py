@@ -168,6 +168,22 @@ def precision_projection(question, context):
         coverage=[dict(requirement_id=row["id"],aspect=row["question"],status="answered",claim_indices=[1,2],missing_information=None) for row in requirements]))
 
 
+def applicability_claim(context):
+    """The single source of the backend's verified version decision and bindings."""
+    from .answer_context import current_manufacturing_context
+    active = current_manufacturing_context()
+    if active is None or active.facts_only or active.decision.state != 'applicable':
+        return None
+    required = {str(row.document_id) for row in active.decision.scope.manufacturing.documents
+        if row.document_role == 'change_notice' or row.document_role == 'instruction'
+        and row.business_revision == active.decision.selected_business_revision}
+    if not required or not required <= {str(item.document_id) for item in context.items}:
+        return None
+    citations = [item.citation_id for item in context.items if str(item.document_id) in required]
+    citations += [item.citation_id for item in active.items if item.field_name in active.required_fields]
+    return ManufacturingClaim(text=active.applicability_text, citations=citations, claim_kind='applicability')
+
+
 def compile_applicability_bindings(draft, context):
     """Compile the backend's exact selection as scoped answer context.
 
@@ -230,14 +246,10 @@ def compile_applicability_bindings(draft, context):
         record_rag_event(dict(kind="manufacturing_binding_compilation", bindings=field_bindings, model_calls=0))
     if rendered != draft.claims:
         draft = draft.model_copy(update=dict(claims=rendered))
-    if active.facts_only or active.decision.state != "applicable":
+    applicability = applicability_claim(context)
+    if applicability is None:
         return draft
-    required = {str(row.document_id) for row in active.decision.scope.manufacturing.documents
-        if row.document_role == "change_notice" or row.document_role == "instruction" and row.business_revision == active.decision.selected_business_revision}
-    available = {str(item.document_id) for item in context.items}
-    if not required or not required <= available:return draft
-    citations = [item.citation_id for item in context.items if str(item.document_id) in required]
-    citations += [item.citation_id for item in active.items if item.field_name in active.required_fields]
+    citations = applicability.citations
     changed=[];claims=[];indices={}
     work_order = next((item.citation_id for item in active.items if item.field_name == "work_order_id"), None)
     for index, claim in enumerate(draft.claims, 1):
@@ -277,7 +289,7 @@ def compile_applicability_bindings(draft, context):
     if not active.comparison and not any(claim.claim_kind == "applicability" for claim in claims):
         # Selection is a backend fact. Work guidance consistently includes its
         # scope and both source types even if the model only states a rule.
-        claims.append(ManufacturingClaim(text=active.applicability_text,citations=list(citations),claim_kind="applicability"))
+        claims.append(applicability)
         changed.append(dict(original_citations=[],compiled_citations=citations,origin="server_applicability"))
     if changed:
         record_rag_event(dict(kind="manufacturing_binding_compilation",bindings=changed,model_calls=0))

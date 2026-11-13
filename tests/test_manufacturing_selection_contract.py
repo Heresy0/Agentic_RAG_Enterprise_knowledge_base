@@ -107,10 +107,11 @@ def test_ordinary_schema_and_prompt_remain_separate(catalog):
     with manufacturing_answer_context(replace(active, facts_only=True)):
         context = ContextBuilder().build([])
         messages = AnswerService._generation_messages(None, "工单编号？", context)
-        assert "claims每项用text" in messages[0].content
-        assert "citations填写" in messages[0].content
-        assert live_generation_schema(context).model_json_schema()["$defs"]["ManufacturingGroundedClaim"]["required"] == ["text"]
-        assert set(live_generation_schema(context).model_json_schema()["$defs"]["ManufacturingGroundedClaim"]["properties"]) == {"text", "citations"}
+        from backend.app.knowledge.prompts import ANSWER_SYSTEM_PROMPT
+        assert messages[0].content.startswith(ANSWER_SYSTEM_PROMPT)
+        assert '业务字段使用source选择' in messages[0].content
+        fact = live_generation_schema(context).model_json_schema()['$defs']['VerifiedAnswerSource']
+        assert fact['required'] == ['source'] and set(fact['properties']) == {'source'}
 
 
 @pytest.mark.parametrize("stage", ["generation", "regeneration", "schema_recovery"])
@@ -118,7 +119,7 @@ def test_live_model_paths_use_grounded_schema_and_compile(catalog, monkeypatch, 
     from test_answer_service import build_service
     from backend.app.knowledge.answer_repair import AnswerRepair
     from backend.app.knowledge.rag_budget import RagBudget, rag_budget_scope
-    from backend.app.manufacturing.generation_selection import GroundedDraft
+    from backend.app.manufacturing.generation_selection import GroundedDraft, LiveAnswerPlan
 
     active, _, _ = evidence(catalog)
     service, *_ = build_service(monkeypatch, model_result={})
@@ -128,7 +129,7 @@ def test_live_model_paths_use_grounded_schema_and_compile(catalog, monkeypatch, 
 
     def structured(schema, **_):
         schemas.append(schema)
-        return SimpleNamespace(invoke=lambda _: schema.model_validate(grounded_payload(context.business_items[1].content, "业务2")))
+        return SimpleNamespace(invoke=lambda _: schema.model_validate(payload('业务2')))
 
     factory = lambda **_: SimpleNamespace(with_structured_output=structured)
     service._base_llm = factory()
@@ -146,7 +147,8 @@ def test_live_model_paths_use_grounded_schema_and_compile(catalog, monkeypatch, 
                     guard_factory=lambda *a: SimpleNamespace(available=True, require=lambda: None))
                 draft = repair.recover_schema(messages=service._generation_messages("产品型号？", context),
                     context=context, scope=active.decision.scope, session=None, refresh_context=lambda: True)
-        assert len(schemas) == 1 and issubclass(schemas[0], GroundedDraft)
+        assert len(schemas) == 1 and issubclass(schemas[0], LiveAnswerPlan)
+        assert isinstance(draft, GroundedDraft)
         assert draft.claims[0].claim_kind == "business_fact"
         assert draft.claims[0].citations == ["业务2"]
         assert AnswerValidator().validate(draft=draft, context=context, question="产品型号？").valid
@@ -277,7 +279,7 @@ def test_grounded_repair_prompt_does_not_reintroduce_legacy_selectors(catalog):
     with manufacturing_answer_context(active):
         draft = prepare_draft(grounded_payload("仍须质量签署。", citation), context)
         prompt = with_manufacturing_rules("仅修复引用，保留文字。", context, draft=draft)
-        assert "claims每项用text" in prompt
+        assert '只修复覆盖及引用' in prompt
         assert "source_unit" not in prompt and "business_field" not in prompt
 
 
@@ -317,7 +319,8 @@ def test_grounded_repair_restores_exact_server_applicability_without_duplicate(c
         assert original.claims[-1].claim_kind == "applicability"
         data = original.model_dump()
         for claim in data["claims"]:claim.pop("claim_kind", None)
-        repaired = prepare_draft(live_generation_schema(context).model_validate(data), context)
+        from backend.app.manufacturing.generation_selection import grounded_schema
+        repaired = prepare_draft(grounded_schema(context).model_validate(data), context)
         assert len(repaired.claims) == len(original.claims)
         assert repaired.claims[-1].claim_kind == "applicability"
         assert preserves_facts(original, repaired)

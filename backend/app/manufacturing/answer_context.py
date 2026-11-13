@@ -37,6 +37,12 @@ def complete_source_statement(text, items):
     return complete_statement(text, items)
 
 
+def unknown_start_note(item):
+    if item is not None and item.value is None and item.field_name.endswith('actual_started_at'):
+        return '本来源未提供该实际开工时间，不能据此确认已开工或认定实际未开工；不能用其他实体或计划时间补值'
+    return None
+
+
 @dataclass(frozen=True, slots=True)
 class BusinessItem:
     citation_id: str

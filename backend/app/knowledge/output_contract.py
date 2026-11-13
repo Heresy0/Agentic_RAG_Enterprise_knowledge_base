@@ -24,26 +24,33 @@ def generation_schema(context=None, *, claim=False):
     return AnswerClaim if claim else EvidenceFirstAnswerDraft
 
 
-def live_generation_schema(context):
+def live_generation_schema(context, question=''):
     if context is not None and context.business_items:
-        from ..manufacturing.generation_selection import grounded_schema
-        return grounded_schema(context)
+        from ..manufacturing.generation_selection import answer_schema
+        return answer_schema(context, question)
     return generation_schema(context)
 
 
 def with_manufacturing_rules(system, context, *, draft=None):
     if context.business_items:
-        from ..manufacturing.generation_selection import GroundedDraft, SELECTION_SYSTEM_PROMPT
+        from ..manufacturing.generation_selection import GroundedDraft
         if isinstance(draft, GroundedDraft):
-            return system + "\n" + SELECTION_SYSTEM_PROMPT
+            return system + '\n业务编号和资料编号均为当前授权来源。保持后端已编译事实、角色和文字；本任务只修复覆盖及引用，不切换为source选择。'
         from ..manufacturing.answer_context import MANUFACTURING_PROMPT
         return system + MANUFACTURING_PROMPT
     return system
 
 
-def prepare_draft(result, context=None, *, schema=None):
+def prepare_draft(result, context=None, *, schema=None, question=''):
     schema = schema or generation_schema(context)
-    from ..manufacturing.generation_selection import GroundedDraft, SelectionDraft, lower_selection, selection_schema
+    from ..manufacturing.generation_selection import (GroundedDraft, SelectionDraft, lower_selection, selection_schema,
+                                                     LiveAnswerPlan, answer_schema, lower_answer_plan)
+    if (context is not None and context.business_items and isinstance(result, dict)
+            and any('source' in row for row in result.get('claims', []) if isinstance(row, dict))
+            and any('text' in row or str(row.get('source','')).startswith('后端') for row in result['claims'])):
+        result = answer_schema(context, question).model_validate(result)
+    if isinstance(result, LiveAnswerPlan):
+        result = lower_answer_plan(result, context, question)
     if (context is not None and context.business_items and isinstance(result, dict)
             and any('source' in row for row in result.get('claims', []) if isinstance(row, dict))):
         result = selection_schema(context).model_validate(result)

@@ -92,7 +92,7 @@ def numeric_binding_supported(draft, errors, validator, context, question):
 def preserves_facts(original, candidate):
     return (candidate.answerable == original.answerable and candidate.refusal_reason == original.refusal_reason
             and candidate.evidence_gap == original.evidence_gap and len(candidate.claims) == len(original.claims)
-            and all(left.text == right.text and left.calculation == right.calculation
+            and all(left.text == right.text and left.calculation == right.calculation and left.claim_kind == right.claim_kind
                     for left, right in zip(original.claims, candidate.claims)))
 
 
@@ -216,7 +216,7 @@ class AnswerRepair:
             record_rag_event(dict(kind="repair", outcome="fallback", error_type=type(exc).__name__))
             return original
 
-    def recover_schema(self, *, messages, scope, session, refresh_context, context=None):
+    def recover_schema(self, *, messages, scope, session, refresh_context, context=None, question=''):
         """One fresh generation after an unparsable output, charged as repair."""
         if not self.settings.rag_repair_enabled:
             return None
@@ -228,7 +228,7 @@ class AnswerRepair:
             if not refresh_context():
                 return None
             prompt_bytes = sum(len(str(message.content).encode('utf-8')) for message in messages)
-            schema = live_generation_schema(context)
+            schema = live_generation_schema(context, question)
             prompt_bytes += len(json.dumps(schema.model_json_schema()).encode('utf-8')) + 256
             output = self.settings.rag_repair_output_tokens
             if prompt_bytes > self.settings.rag_repair_prompt_bytes:
@@ -245,7 +245,7 @@ class AnswerRepair:
             if not refresh_context():
                 return None
             record_rag_event(dict(kind='schema_repair', outcome='generated'))
-            return prepare_draft(result, context)
+            return prepare_draft(result, context, question=question)
         except RECOVERABLE_GENERATION_ERRORS as exc:
             record_rag_event(dict(kind='schema_repair', outcome='fallback', error_type=type(exc).__name__))
             return None

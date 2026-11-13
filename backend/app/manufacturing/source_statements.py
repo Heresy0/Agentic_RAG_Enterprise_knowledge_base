@@ -104,6 +104,22 @@ def execution_boundary_question(question):
         and re.search(r'完成|已(?:经)?签署|已(?:经)?放行', lead))
 
 
+def execution_boundary_source(question, context):
+    """Reuse the existing proof on complete, currently bound source units."""
+    from .answer_context import current_manufacturing_context
+    from ..knowledge.answer_models import AnswerClaim, AnswerDraft
+    active = current_manufacturing_context()
+    if active is None or not execution_boundary_question(question):
+        return None
+    bound = {str(row.document_id) for row in active.decision.scope.manufacturing.documents}
+    evidence = AnswerDraft(answerable=True, claims=[
+        AnswerClaim(text=text, citations=[item.citation_id], claim_kind='work_requirement')
+        for item in context.items if str(item.document_id) in bound
+        for text in statement_units(item.content)])
+    verdict = execution_boundary_verdict(question, evidence, context)
+    return AnswerClaim(text=verdict['text'], citations=verdict['citations']) if verdict else None
+
+
 def execution_boundary_verdict(question, draft, context):
     """Derive only the evidence boundary supported by explicit independent requirements."""
     from .answer_context import current_manufacturing_context, complete_source_statement, execution_question_text
