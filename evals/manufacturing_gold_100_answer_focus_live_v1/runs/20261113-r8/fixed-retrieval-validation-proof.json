@@ -1,0 +1,29 @@
+{
+  "reference_generation_commit": "e755bcb",
+  "reference_before_generation": "8609346",
+  "business_tree_unchanged_since_generation_commit": true,
+  "protected_code_sha256": {
+    "backend/app/knowledge/retrieval_service.py": "85e4cf33d055770d8ec2889511fb35d07833aa5ef092cf258af9d2e69e65d4c9",
+    "backend/app/knowledge/rerank_retriever.py": "47c963e778547d5ca988dba08f073fd81547a801f5ac2e430f4ba8355984e991",
+    "backend/app/knowledge/chunk_repository.py": "18cf0ae9530bac012460b1a86f1702244a48e7188c3e9f4e2f47271f761aae9c",
+    "backend/app/knowledge/context_builder.py": "e188fe911f463c4a966622d1fea3e4e94e47b9becc98141ec7351041ef456d95",
+    "backend/app/knowledge/context_selection.py": "8ecf4de6560f56407d009ee8f4b508de48f93e207aefbb6cb31ef7b46116dff8",
+    "backend/app/knowledge/parent_context_selection.py": "82e9de6609584e66ecec2fbd17ca167a0cc348e9d0f62183732f3aef1de8eaaa",
+    "backend/app/knowledge/evidence_selection.py": "993513f4702b318cf57d2675750f0daad91c0df11845c1fd9cbb07c61230b0ed",
+    "backend/app/knowledge/evidence_coordinator.py": "0f5863946e411851cbc8935dc5aefdd072c0bafdac5bddc56917c7c3a7adef0f",
+    "backend/app/knowledge/evidence_feedback.py": "2b9e432365b8ea3b335080e8950e1a3f241331f6292cf9c471da8a0fecbab6c5",
+    "backend/app/knowledge/answer_validation.py": "b7745a93a5b47894ea848d959694a769789e58bce76605dec0193e310b993a60",
+    "backend/app/knowledge/answer_contract.py": "95a2a9b15d6bbdda4b2db51c8a3597d4532ecf4b14a29407b817e9dea21108e1",
+    "backend/app/knowledge/answer_constraints.py": "3aaec3fd654ec1cdffb734bf64c89d99b124f212770bcfe903ef6575badaa963",
+    "backend/app/knowledge/answer_coverage.py": "6b8f126b625f50738c2c687405f46943733feef87087ad2d1ea975d1d3e0739f",
+    "backend/app/knowledge/condition_requirements.py": "8c4dc9e87efee06ca44fd5424346ee15f19ca1c372324534470fb01e442fb589",
+    "backend/app/knowledge/output_contract.py": "72a33aa8813af532b64bbfefafff74df76b21c2e3240b5158d7f9b23f1c17ab3",
+    "backend/app/knowledge/answer_service.py": "60b4d5cae10e0fb8df9b487d1716ee46b9c99d17a8e123518ece3f7ff5e141d9",
+    "backend/app/knowledge/answer_repair.py": "8f7e3e5318eefd040a9996e96d8931b82157825c65c894ec004884eb04e5db9a",
+    "backend/app/manufacturing/source_statements.py": "ae9d8ca8f8f8ace9c459109e6fc479be95d623c832914d814d5ecb3af9af34b3",
+    "backend/app/manufacturing/answer_context.py": "ca9a608ca2faee9e46b99c0055d3becc2f02861d5a0bc83e6f50abd3b58fd55f",
+    "backend/app/manufacturing/generation_models.py": "79f1b9e160016f3dd45d6e3d9b30476beaa8003df990439c5d47913e253d0e34"
+  },
+  "matched_before_generation": true,
+  "model_calls": 0
+}
