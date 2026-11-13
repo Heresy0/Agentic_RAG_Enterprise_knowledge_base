@@ -12,4 +12,4 @@
 
 用户已授权实施期间自动真实模型验证。修订版另建r11完整100题批次：800物理调用/500万预算Token/9000秒，未知每次预留32000，既有百炼目的地、同范围中文公开/合成资料、问题与演示字段。题集、金标、语料和旧索引保持；新两平台库/Redis/MES副本，原工作台不更新。100题各一次，不补跑重发，不拼分，不使用r10或其他已关闭批次余额。
 
-新入口：`scripts/manufacturing_contract_revision_live.py`、`scripts/run_manufacturing_contract_revision_isolated.py`。私有`tmp/manufacturing-answer-contract-revised-full-live-20261113-r11/`运行后关闭。尚无本修订的完整真实成绩，离线通过不能证明语义改善，不是工厂、平台或独立人工验收。
+新入口：`scripts/manufacturing_contract_revision_live.py`、`scripts/run_manufacturing_contract_revision_isolated.py`。冻结2472c98后的r11已一次完整执行并关闭：结构95/100、助手非独立语义81/100，与r8持平；12改善、12原成功退步，必答248→253/274，无依据补充5→7，未证明整体改善。保留开发候选，不合并或部署，不继续逐题调整。见[完整报告](manufacturing-answer-contract-revised-full-live-20261113-r11.md)。私有`tmp/manufacturing-answer-contract-revised-full-live-20261113-r11/`已执行不得复用；不是工厂、平台或独立人工验收。

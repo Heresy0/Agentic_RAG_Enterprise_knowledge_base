@@ -1,0 +1,86 @@
+[
+  {
+    "case_id": "MFG-GOLD-041",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 3117.659,
+      "error_type": "ValidationError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-042",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 121164.36,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-059",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 6931.804,
+      "error_type": "ValidationError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-064",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 3788.673,
+      "error_type": "ValidationError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-073",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 120628.408,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-077",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 2936.386,
+      "error_type": "ValidationError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  }
+]

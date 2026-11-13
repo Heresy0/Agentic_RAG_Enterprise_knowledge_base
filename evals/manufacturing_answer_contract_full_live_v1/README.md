@@ -5,5 +5,6 @@
 | 运行 | 冻结提交 | 结构 | 助手非独立语义 | 结论 |
 |---|---|---:|---:|---|
 | [20261113-r10](runs/20261113-r10/summary.json) | 31444e4 | 72/100 | 60/100 | 低于完整r8的95/81，不接受为改善版，不部署 |
+| [20261113-r11](runs/20261113-r11/summary.json) | 2472c98 | 95/100 | 81/100 | 与r8持平，12改善/12退步，无依据补充5→7；保留开发候选，不合并部署 |
 
-[本轮报告](../../docs/reports/manufacturing-answer-contract-full-live-20261113-r10.md)。原始Trace与私有配置在忽略的tmp中，禁止提交凭据；已执行批次不能复用或补跑。
+[首版报告](../../docs/reports/manufacturing-answer-contract-full-live-20261113-r10.md)、[修订版报告](../../docs/reports/manufacturing-answer-contract-revised-full-live-20261113-r11.md)。r11于UTC 2026-11-13执行，北京时间跨至11月14日。原始Trace与私有配置在忽略的tmp中，禁止提交凭据；两个批次均已关闭，不能复用或补跑。
