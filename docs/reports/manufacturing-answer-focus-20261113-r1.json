@@ -1,0 +1,367 @@
+{
+  "baseline": "8609346",
+  "model_calls": 0,
+  "new_accuracy_claimed": false,
+  "business_files_changed": [
+    "backend/app/knowledge/answer_models.py",
+    "backend/app/knowledge/prompts.py",
+    "backend/app/manufacturing/generation_selection.py"
+  ],
+  "before": {
+    "phase": "before",
+    "model_calls": 0,
+    "api_calls": 0,
+    "database_calls": 0,
+    "container_operations": 0,
+    "network_connections_allowed": false,
+    "protected_sha256": {
+      "backend/app/knowledge/retrieval_service.py": "85e4cf33d055770d8ec2889511fb35d07833aa5ef092cf258af9d2e69e65d4c9",
+      "backend/app/knowledge/rerank_retriever.py": "47c963e778547d5ca988dba08f073fd81547a801f5ac2e430f4ba8355984e991",
+      "backend/app/knowledge/chunk_repository.py": "18cf0ae9530bac012460b1a86f1702244a48e7188c3e9f4e2f47271f761aae9c",
+      "backend/app/knowledge/context_builder.py": "e188fe911f463c4a966622d1fea3e4e94e47b9becc98141ec7351041ef456d95",
+      "backend/app/knowledge/context_selection.py": "8ecf4de6560f56407d009ee8f4b508de48f93e207aefbb6cb31ef7b46116dff8",
+      "backend/app/knowledge/parent_context_selection.py": "82e9de6609584e66ecec2fbd17ca167a0cc348e9d0f62183732f3aef1de8eaaa",
+      "backend/app/knowledge/evidence_selection.py": "993513f4702b318cf57d2675750f0daad91c0df11845c1fd9cbb07c61230b0ed",
+      "backend/app/knowledge/evidence_coordinator.py": "0f5863946e411851cbc8935dc5aefdd072c0bafdac5bddc56917c7c3a7adef0f",
+      "backend/app/knowledge/evidence_feedback.py": "2b9e432365b8ea3b335080e8950e1a3f241331f6292cf9c471da8a0fecbab6c5",
+      "backend/app/knowledge/answer_validation.py": "b7745a93a5b47894ea848d959694a769789e58bce76605dec0193e310b993a60",
+      "backend/app/knowledge/answer_contract.py": "95a2a9b15d6bbdda4b2db51c8a3597d4532ecf4b14a29407b817e9dea21108e1",
+      "backend/app/knowledge/answer_constraints.py": "3aaec3fd654ec1cdffb734bf64c89d99b124f212770bcfe903ef6575badaa963",
+      "backend/app/knowledge/answer_coverage.py": "6b8f126b625f50738c2c687405f46943733feef87087ad2d1ea975d1d3e0739f",
+      "backend/app/knowledge/condition_requirements.py": "8c4dc9e87efee06ca44fd5424346ee15f19ca1c372324534470fb01e442fb589",
+      "backend/app/knowledge/output_contract.py": "72a33aa8813af532b64bbfefafff74df76b21c2e3240b5158d7f9b23f1c17ab3",
+      "backend/app/knowledge/answer_service.py": "60b4d5cae10e0fb8df9b487d1716ee46b9c99d17a8e123518ece3f7ff5e141d9",
+      "backend/app/knowledge/answer_repair.py": "8f7e3e5318eefd040a9996e96d8931b82157825c65c894ec004884eb04e5db9a",
+      "backend/app/manufacturing/source_statements.py": "ae9d8ca8f8f8ace9c459109e6fc479be95d623c832914d814d5ecb3af9af34b3",
+      "backend/app/manufacturing/answer_context.py": "ca9a608ca2faee9e46b99c0055d3becc2f02861d5a0bc83e6f50abd3b58fd55f",
+      "backend/app/manufacturing/generation_models.py": "79f1b9e160016f3dd45d6e3d9b30476beaa8003df990439c5d47913e253d0e34",
+      "evals/manufacturing_gold_100_v4/cases.jsonl": "0e482e1e3b2d1209f48e71d11f8f1ec9a6109531d65d3b834379638e1c5cfbeb",
+      "evals/manufacturing_gold_100_v4/sources.json": "d97aede4a78567d7c9e16159a0f03f1b92d82fcd8238131bb5d6fd036308711e",
+      "evals/manufacturing_gold_100_v4/review_policy.json": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+      "evals/manufacturing_gold_100_v4/manifest.json": "c800b45dab8c2daebb4c8a86b812889eb1ad630be88079be89274ed78005794d",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-050-result.json": "03ad6d0dcff92590c0cd591b48ba88203b3121a0f22311cee3b0cb1789dc09f0",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-060-result.json": "c42761d71781df6410a213ae3a858d92dd0725b84c84365ec5629e0b06234185",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-068-result.json": "9861166df629e68e0dec7aa5b9e58d790279dacf1cc2f797d6b9738eba3c565e",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-077-result.json": "a480ee3e2b7adb5c7d0d89d8ae7a326db706298764f88fbba1334caed6a94bf8",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-091-result.json": "f72745ce2d5e812e868c40db40f6e7497986341c60db500989025da44726d587",
+      "tmp/manufacturing-contract-budget-four-live-20261113-r7/MFG-GOLD-036-result.json": "0242cbea6303a6a54d3d583511a9f6c1b1195f972f578eeefd4155cc75d3aaf5",
+      "tmp/manufacturing-contract-budget-four-live-20261113-r7/MFG-GOLD-042-result.json": "c6c0dd152e2bdbb306d6a46e5c2cc6d04afbc7c9b8b71b7a12b29a054ffdff68",
+      "tmp/manufacturing-contract-budget-four-live-20261113-r7/MFG-GOLD-091-result.json": "fdcc311e9648f0de00a47749ced6f60e3e5451b03afaab89f38a011956b789ca",
+      "tmp/manufacturing-contract-budget-four-live-20261113-r7/MFG-GOLD-095-result.json": "1c86be97bbd5e6d362ae46573bf725509cfc2a967144fdcefdc65d9644899d27"
+    },
+    "semantic_structure": {
+      "backend/app/knowledge/prompts.py": "a58e86d82ab8a8bec3ee58f8d3355ae673e5e5dd5e47028941df015169df24d8",
+      "backend/app/manufacturing/generation_selection.py": "cd26f8aea1788658473a96e9f87f16b8a5858217e8d2a0920f32200752ac99b9",
+      "backend/app/knowledge/answer_models.py": "5c793b542887deb03a60614fb9c5a3d5d4a52ebe627c6146da2cedaea6d0518a"
+    },
+    "prompts": {
+      "ordinary_characters": 6352,
+      "manufacturing_characters": 844
+    },
+    "fixtures": [
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-050",
+        "question": "仅按DEMO-B21合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？",
+        "system_sha256": "6a42cb483069a111199e55ca8a759ddbed16fab25e6f782f87dc87d9b785ce82",
+        "system_bytes": 15182,
+        "human_sha256": "42858d358fd8429fb414853bdd849895561f366d6af537bde1919ee81173f0e6",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-060",
+        "question": "仅按DEMO-C31合成资料，OP-30目前记录了什么、还缺什么，能否确认相关检查已经完整完成？",
+        "system_sha256": "8f4aa35b9f90ae2f9c78c3183a5fac29cf810136b02acda26f45f53bf38e2ecd",
+        "system_bytes": 15665,
+        "human_sha256": "a1a8f1446099447e95085a4f5ed9816f509d35c6d53d37fca8effd243f8937d6",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-068",
+        "question": "仅按DEMO-C31合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？",
+        "system_sha256": "6a42cb483069a111199e55ca8a759ddbed16fab25e6f782f87dc87d9b785ce82",
+        "system_bytes": 15182,
+        "human_sha256": "dcfc524fd1f55d8c17c9008cff0909c46b4590c2d3f7a91b1e6f70b038fd36d1",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-077",
+        "question": "仅按DEMO-D41合成资料，比较OP-50两版的作业要求，2.0新增了哪些核对和缺项处理？",
+        "system_sha256": "6a42cb483069a111199e55ca8a759ddbed16fab25e6f782f87dc87d9b785ce82",
+        "system_bytes": 15182,
+        "human_sha256": "616c6f78a17719e431fe46f5bfdef70b82d14ca7a0af523c5b2a398625628443",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-091",
+        "question": "仅按DEMO-D41合成资料，交接签名能证明质量放行吗，接班时还应关注哪些未完成项？",
+        "system_sha256": "ff2af37df9cf894e5cc933c510d336bcafcc889378c62037c82b5cb712e3d8b3",
+        "system_bytes": 15049,
+        "human_sha256": "f7a8ec7b46bd511038ec35f98e9850baed94f69d04b14739ca5f9def6815a314",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": false,
+          "errors": [
+            "必答要点关联了重复或不存在的结论：Q1"
+          ]
+        }
+      },
+      {
+        "fixture": "manufacturing-contract-budget-four-live-20261113-r7",
+        "case_id": "MFG-GOLD-036",
+        "question": "所选卡已有开工并显示Completed，能否认定首件检验和质量签署完成？",
+        "system_sha256": "973bc144001b3e0bdf061829ef4f59d151b7f04dc9008cc2cce98048d8e523ea",
+        "system_bytes": 2088,
+        "human_sha256": "b85fa0d0a8e291b6c2d1cd64fff1787b3a9c8f1e7a5145ba8252257fe7dbffe1",
+        "schema_without_descriptions": "dc65b6d6d0073927ef0406aea13ec5a8943080aabd99df8ecdfbd33fdf2392d5",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-contract-budget-four-live-20261113-r7",
+        "case_id": "MFG-GOLD-042",
+        "question": "仅按DEMO-B21合成资料，OP-10目前记录了什么、还缺什么，能否确认相关检查已经完整完成？",
+        "system_sha256": "8f4aa35b9f90ae2f9c78c3183a5fac29cf810136b02acda26f45f53bf38e2ecd",
+        "system_bytes": 15665,
+        "human_sha256": "425799c8273d91c9d1f4fd32df4e4c84d0091c73ba497372e7effe709c7d4096",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-contract-budget-four-live-20261113-r7",
+        "case_id": "MFG-GOLD-091",
+        "question": "仅按DEMO-D41合成资料，交接签名能证明质量放行吗，接班时还应关注哪些未完成项？",
+        "system_sha256": "ff2af37df9cf894e5cc933c510d336bcafcc889378c62037c82b5cb712e3d8b3",
+        "system_bytes": 15049,
+        "human_sha256": "939acb1d177fc14442e7d204ecf2a86c176021c4fec832fc318015948dee4966",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-contract-budget-four-live-20261113-r7",
+        "case_id": "MFG-GOLD-095",
+        "question": "按本库归档的制造业质量管理数字化实施指南第十四项，质量数据管理覆盖哪些环节，职责与权限如何处理？",
+        "system_sha256": "ff2af37df9cf894e5cc933c510d336bcafcc889378c62037c82b5cb712e3d8b3",
+        "system_bytes": 15049,
+        "human_sha256": "05cead354446cd460c24da271bb8a284f72e9b9d73896f00c176ec6105ab756e",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      }
+    ]
+  },
+  "after": {
+    "phase": "after",
+    "model_calls": 0,
+    "api_calls": 0,
+    "database_calls": 0,
+    "container_operations": 0,
+    "network_connections_allowed": false,
+    "protected_sha256": {
+      "backend/app/knowledge/retrieval_service.py": "85e4cf33d055770d8ec2889511fb35d07833aa5ef092cf258af9d2e69e65d4c9",
+      "backend/app/knowledge/rerank_retriever.py": "47c963e778547d5ca988dba08f073fd81547a801f5ac2e430f4ba8355984e991",
+      "backend/app/knowledge/chunk_repository.py": "18cf0ae9530bac012460b1a86f1702244a48e7188c3e9f4e2f47271f761aae9c",
+      "backend/app/knowledge/context_builder.py": "e188fe911f463c4a966622d1fea3e4e94e47b9becc98141ec7351041ef456d95",
+      "backend/app/knowledge/context_selection.py": "8ecf4de6560f56407d009ee8f4b508de48f93e207aefbb6cb31ef7b46116dff8",
+      "backend/app/knowledge/parent_context_selection.py": "82e9de6609584e66ecec2fbd17ca167a0cc348e9d0f62183732f3aef1de8eaaa",
+      "backend/app/knowledge/evidence_selection.py": "993513f4702b318cf57d2675750f0daad91c0df11845c1fd9cbb07c61230b0ed",
+      "backend/app/knowledge/evidence_coordinator.py": "0f5863946e411851cbc8935dc5aefdd072c0bafdac5bddc56917c7c3a7adef0f",
+      "backend/app/knowledge/evidence_feedback.py": "2b9e432365b8ea3b335080e8950e1a3f241331f6292cf9c471da8a0fecbab6c5",
+      "backend/app/knowledge/answer_validation.py": "b7745a93a5b47894ea848d959694a769789e58bce76605dec0193e310b993a60",
+      "backend/app/knowledge/answer_contract.py": "95a2a9b15d6bbdda4b2db51c8a3597d4532ecf4b14a29407b817e9dea21108e1",
+      "backend/app/knowledge/answer_constraints.py": "3aaec3fd654ec1cdffb734bf64c89d99b124f212770bcfe903ef6575badaa963",
+      "backend/app/knowledge/answer_coverage.py": "6b8f126b625f50738c2c687405f46943733feef87087ad2d1ea975d1d3e0739f",
+      "backend/app/knowledge/condition_requirements.py": "8c4dc9e87efee06ca44fd5424346ee15f19ca1c372324534470fb01e442fb589",
+      "backend/app/knowledge/output_contract.py": "72a33aa8813af532b64bbfefafff74df76b21c2e3240b5158d7f9b23f1c17ab3",
+      "backend/app/knowledge/answer_service.py": "60b4d5cae10e0fb8df9b487d1716ee46b9c99d17a8e123518ece3f7ff5e141d9",
+      "backend/app/knowledge/answer_repair.py": "8f7e3e5318eefd040a9996e96d8931b82157825c65c894ec004884eb04e5db9a",
+      "backend/app/manufacturing/source_statements.py": "ae9d8ca8f8f8ace9c459109e6fc479be95d623c832914d814d5ecb3af9af34b3",
+      "backend/app/manufacturing/answer_context.py": "ca9a608ca2faee9e46b99c0055d3becc2f02861d5a0bc83e6f50abd3b58fd55f",
+      "backend/app/manufacturing/generation_models.py": "79f1b9e160016f3dd45d6e3d9b30476beaa8003df990439c5d47913e253d0e34",
+      "evals/manufacturing_gold_100_v4/cases.jsonl": "0e482e1e3b2d1209f48e71d11f8f1ec9a6109531d65d3b834379638e1c5cfbeb",
+      "evals/manufacturing_gold_100_v4/sources.json": "d97aede4a78567d7c9e16159a0f03f1b92d82fcd8238131bb5d6fd036308711e",
+      "evals/manufacturing_gold_100_v4/review_policy.json": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+      "evals/manufacturing_gold_100_v4/manifest.json": "c800b45dab8c2daebb4c8a86b812889eb1ad630be88079be89274ed78005794d",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-050-result.json": "03ad6d0dcff92590c0cd591b48ba88203b3121a0f22311cee3b0cb1789dc09f0",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-060-result.json": "c42761d71781df6410a213ae3a858d92dd0725b84c84365ec5629e0b06234185",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-068-result.json": "9861166df629e68e0dec7aa5b9e58d790279dacf1cc2f797d6b9738eba3c565e",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-077-result.json": "a480ee3e2b7adb5c7d0d89d8ae7a326db706298764f88fbba1334caed6a94bf8",
+      "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-091-result.json": "f72745ce2d5e812e868c40db40f6e7497986341c60db500989025da44726d587",
+      "tmp/manufacturing-contract-budget-four-live-20261113-r7/MFG-GOLD-036-result.json": "0242cbea6303a6a54d3d583511a9f6c1b1195f972f578eeefd4155cc75d3aaf5",
+      "tmp/manufacturing-contract-budget-four-live-20261113-r7/MFG-GOLD-042-result.json": "c6c0dd152e2bdbb306d6a46e5c2cc6d04afbc7c9b8b71b7a12b29a054ffdff68",
+      "tmp/manufacturing-contract-budget-four-live-20261113-r7/MFG-GOLD-091-result.json": "fdcc311e9648f0de00a47749ced6f60e3e5451b03afaab89f38a011956b789ca",
+      "tmp/manufacturing-contract-budget-four-live-20261113-r7/MFG-GOLD-095-result.json": "1c86be97bbd5e6d362ae46573bf725509cfc2a967144fdcefdc65d9644899d27"
+    },
+    "semantic_structure": {
+      "backend/app/knowledge/prompts.py": "a58e86d82ab8a8bec3ee58f8d3355ae673e5e5dd5e47028941df015169df24d8",
+      "backend/app/manufacturing/generation_selection.py": "cd26f8aea1788658473a96e9f87f16b8a5858217e8d2a0920f32200752ac99b9",
+      "backend/app/knowledge/answer_models.py": "5c793b542887deb03a60614fb9c5a3d5d4a52ebe627c6146da2cedaea6d0518a"
+    },
+    "prompts": {
+      "ordinary_characters": 6356,
+      "manufacturing_characters": 956
+    },
+    "fixtures": [
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-050",
+        "question": "仅按DEMO-B21合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？",
+        "system_sha256": "e18e28c6fd2f7df9e0a2152f1eab36c881270db1a89e2c4e8892cf6e9ecc861e",
+        "system_bytes": 15220,
+        "human_sha256": "42858d358fd8429fb414853bdd849895561f366d6af537bde1919ee81173f0e6",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-060",
+        "question": "仅按DEMO-C31合成资料，OP-30目前记录了什么、还缺什么，能否确认相关检查已经完整完成？",
+        "system_sha256": "f044d9164eea2ca04be3ed716b9b5c5fd900b8aa42474a76a0164f5e0aa23365",
+        "system_bytes": 15703,
+        "human_sha256": "a1a8f1446099447e95085a4f5ed9816f509d35c6d53d37fca8effd243f8937d6",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-068",
+        "question": "仅按DEMO-C31合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？",
+        "system_sha256": "e18e28c6fd2f7df9e0a2152f1eab36c881270db1a89e2c4e8892cf6e9ecc861e",
+        "system_bytes": 15220,
+        "human_sha256": "dcfc524fd1f55d8c17c9008cff0909c46b4590c2d3f7a91b1e6f70b038fd36d1",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-077",
+        "question": "仅按DEMO-D41合成资料，比较OP-50两版的作业要求，2.0新增了哪些核对和缺项处理？",
+        "system_sha256": "e18e28c6fd2f7df9e0a2152f1eab36c881270db1a89e2c4e8892cf6e9ecc861e",
+        "system_bytes": 15220,
+        "human_sha256": "616c6f78a17719e431fe46f5bfdef70b82d14ca7a0af523c5b2a398625628443",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-gold-100-v4-grounded-live-20261113-r5",
+        "case_id": "MFG-GOLD-091",
+        "question": "仅按DEMO-D41合成资料，交接签名能证明质量放行吗，接班时还应关注哪些未完成项？",
+        "system_sha256": "e3d73e7a7cc2d85286b48c5567fee8a2eb1bdc87e81bf72c46317423b5ab2a09",
+        "system_bytes": 15087,
+        "human_sha256": "f7a8ec7b46bd511038ec35f98e9850baed94f69d04b14739ca5f9def6815a314",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": false,
+          "errors": [
+            "必答要点关联了重复或不存在的结论：Q1"
+          ]
+        }
+      },
+      {
+        "fixture": "manufacturing-contract-budget-four-live-20261113-r7",
+        "case_id": "MFG-GOLD-036",
+        "question": "所选卡已有开工并显示Completed，能否认定首件检验和质量签署完成？",
+        "system_sha256": "6b1ac1db4f6b604a991a0b49854edb596364e56bb61e70687f078710ffa81f37",
+        "system_bytes": 2362,
+        "human_sha256": "b85fa0d0a8e291b6c2d1cd64fff1787b3a9c8f1e7a5145ba8252257fe7dbffe1",
+        "schema_without_descriptions": "dc65b6d6d0073927ef0406aea13ec5a8943080aabd99df8ecdfbd33fdf2392d5",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-contract-budget-four-live-20261113-r7",
+        "case_id": "MFG-GOLD-042",
+        "question": "仅按DEMO-B21合成资料，OP-10目前记录了什么、还缺什么，能否确认相关检查已经完整完成？",
+        "system_sha256": "f044d9164eea2ca04be3ed716b9b5c5fd900b8aa42474a76a0164f5e0aa23365",
+        "system_bytes": 15703,
+        "human_sha256": "425799c8273d91c9d1f4fd32df4e4c84d0091c73ba497372e7effe709c7d4096",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-contract-budget-four-live-20261113-r7",
+        "case_id": "MFG-GOLD-091",
+        "question": "仅按DEMO-D41合成资料，交接签名能证明质量放行吗，接班时还应关注哪些未完成项？",
+        "system_sha256": "e3d73e7a7cc2d85286b48c5567fee8a2eb1bdc87e81bf72c46317423b5ab2a09",
+        "system_bytes": 15087,
+        "human_sha256": "939acb1d177fc14442e7d204ecf2a86c176021c4fec832fc318015948dee4966",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      },
+      {
+        "fixture": "manufacturing-contract-budget-four-live-20261113-r7",
+        "case_id": "MFG-GOLD-095",
+        "question": "按本库归档的制造业质量管理数字化实施指南第十四项，质量数据管理覆盖哪些环节，职责与权限如何处理？",
+        "system_sha256": "e3d73e7a7cc2d85286b48c5567fee8a2eb1bdc87e81bf72c46317423b5ab2a09",
+        "system_bytes": 15087,
+        "human_sha256": "05cead354446cd460c24da271bb8a284f72e9b9d73896f00c176ec6105ab756e",
+        "schema_without_descriptions": "07e24f302910d042eed5de9c238fb83774e8fcccb307d2861aac10b5d00b0dbc",
+        "validation": {
+          "valid": true,
+          "errors": []
+        }
+      }
+    ],
+    "checks": {
+      "protected_files_unchanged": true,
+      "only_prompt_description_changes": true,
+      "human_messages_unchanged": true,
+      "schema_structure_unchanged": true,
+      "validation_results_unchanged": true,
+      "fixtures": 9,
+      "no_new_accuracy": true
+    }
+  },
+  "verification_script_sha256": "1c0030ffed82a9f4459dfaa5d4cab2c10802116cf238193e6e18165b581a25ca",
+  "limitation": "Prompt rendering, schema and validator invariance only. Saved source bindings are not live permission checks; no model output quality claim."
+}

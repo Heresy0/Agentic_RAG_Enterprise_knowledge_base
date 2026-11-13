@@ -27,7 +27,7 @@ class AnswerClaim(BaseModel):
     text: str = Field(
         min_length=1,
         description=(
-        "依据知识库资料生成的一条独立结论，"
+        "直接回答问句所需一个要点的有据结论；答全所问事实，不添加未问背景或无依据概括。"
         "判定题先给总体结论，并引用适用规则与实际证据；不能只列事实。"
         "日期沿用所引原文，有年份就保留、无年份就不补充。"
         "文本中不要自行编造引用编号。"
@@ -105,11 +105,11 @@ class GenerationAnswerDraft(BaseModel):
 class EvidenceCoverage(AnswerCoverage):
     """Live evidence plan; historical coverage records retain their old schema."""
     aspect: str = Field(min_length=1, max_length=200,
-                        description="A required answer point, not reasoning.")
+                        description="问句要求直接回答的一个要点；同一编号的并列要点分别覆盖，不增加未问任务。")
     status: Literal["answered", "insufficient", "withheld"] = Field(
         description="Answered, missing evidence/user input, or withheld by overall refusal.")
     source_quote: str | None = Field(default=None, max_length=600,
-        description="Optional verbatim evidence before aspect/claims; null if unavailable. Diagnostic only.")
+        description="可选的连续原文诊断摘录，可为null；摘录不能代替claims直接回答所问要点。")
 
     @field_validator('source_quote', mode='before')
     @classmethod
@@ -121,7 +121,7 @@ class EvidenceCoverage(AnswerCoverage):
 class EvidenceFirstAnswerDraft(GenerationAnswerDraft):
     """Select evidence and its obligations within the existing generation call."""
     coverage: list[EvidenceCoverage] = Field(min_length=1, max_length=32,
-        description="Quote relevant evidence, identify required points, then write claims. Cover every requirement.")
+        description="按问句识别必答要点并在claims中直接作答，coverage关联实际存在的结论；只答部分要点不能标为完整。")
 
 
 class Citation(BaseModel):

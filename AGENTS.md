@@ -4,6 +4,8 @@
 
 ## 项目范围
 
+- 2026-11-13按用户要求仅收敛生成：普通/制造提示统一按问句识别要点、claims直接答全、coverage关联实际结论，source_quote不代替正文；答全后精简，不主动补背景/状态释义，不从要求推当前缺项。仅prompts.py、generation_selection.py的提示常量及answer_models.py的description，AST排除提示/说明后相同；检索/校验/修复执行逻辑与金标未改。254相关回归通过/12.79秒；9份r5/r7 Trace离线检查HumanMessage/去description的Schema结构/原草稿校验结果不变，33选定文件哈希保持，网络/DNS禁用、真实模型/API/运行库/Docker0；通用120完整性通过。无新模型质量结论、成绩、部署或旧结果修改；见[生成收敛记录](docs/reports/manufacturing-answer-focus-20261113-r1.md)及JSON证据。
+
 - 2026-11-13四题真实确认r7入口c207559/业务48eac53：036/091/095/042各一次，结构3/4、助手非独立整题2/4；091/095通过，036契约和三必答已通但泛化三层Completed释义未获来源支持，042台账融合7/重排13仍被Top12截掉、漏首箱一致且主POST后快照GET前令牌时间保护失败。042主响应保留、仅只读SQL复读已有快照，不补GET/重发；同一036真实草稿旧边界None/新边界可编译。091本次直接生成未触发修复模型，不声称真实修复路径成功。12调用/44576已知及预算Token/未知0/52.785秒，待结算0，独立40调用/40万Token/900秒批次已关闭；不回填93/80。1新ERP库/Redis，仅2计算容器停止、3索引依赖恢复停止，23旧库账本/2206旧文件保持；120旧容器117元数据不变/3仅启动时间变化，原工作台不更新。见[四题报告](docs/reports/manufacturing-contract-budget-four-live-20261113-r7.md)及[结果](evals/manufacturing_contract_budget_four_live_v1/README.md)；私有`tmp/manufacturing-contract-budget-four-live-20261113-r7/`已执行不得复用。
 
 - 2026-11-13用户另批真实验证036/091/095及042回退表现，业务仍48eac53，独立四题入口先冻结；40调用/40万预算Token/900秒、未知32000，原百炼端点/同范围资料，四题各执行一次、不重试补跑/拼分、不复用旧余额。四题均ERP平台，仅新ERP库/Redis/只读旧原件与索引，不创建无关MES副本、不更新原工作台。私有`tmp/manufacturing-contract-budget-four-live-20261113-r7/`，执行后关闭，不算新完整百题或独立验收。
