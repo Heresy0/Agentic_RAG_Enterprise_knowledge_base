@@ -71,4 +71,3 @@ def prepare_legacy_draft(result, context=None, *, schema=None):
         from backend.app.manufacturing.generation_models import compile_applicability_bindings
         result = compile_applicability_bindings(result, context)
     return result
-
