@@ -209,6 +209,9 @@ class AnswerService:
 
         def refresh_context():
             current = self._retrieval_service.refresh_evidence(documents, scope=scope, session=session)
+            # A field-only request has no document evidence; keep that scope after the permission refresh.
+            if business is not None and business.facts_only:
+                current = []
             refreshed = self._context_builder.build(current, question=question)
             return not refreshed.incomplete_reason and [(item.chunk_id, item.content, item.policy) for item in refreshed.items] == [
                 (item.chunk_id, item.content, item.policy) for item in context.items]

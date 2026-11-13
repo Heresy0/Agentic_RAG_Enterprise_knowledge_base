@@ -221,6 +221,56 @@ def test_http_grounded_output_retains_three_source_checks(harness, monkeypatch):
     assert len(h.source.reads) == 3
 
 
+@pytest.mark.parametrize("outcome,status", [("ok", 200), ("revoked", 403), ("source_changed", 409)])
+def test_field_only_binding_repair_refresh_keeps_scope_and_security(harness, monkeypatch, outcome, status):
+    from test_answer_service import make_document
+    from backend.app.knowledge.answer_repair import AnswerRepair
+    from backend.app.security.authorization import AuthorizationDenied
+    from backend.app.db.quality_models import QARun
+    from sqlalchemy import select
+
+    h = harness
+    calls, refreshes = [], []
+    h.settings.rag_repair_enabled = True
+    h.settings.rag_repair_prompt_bytes = 48000
+    monkeypatch.setattr(h.generation, "invoke", lambda _: grounded_payload("产品型号：HC-A17"))
+
+    def refresh(documents, **kwargs):
+        refreshes.append(documents)
+        assert documents == []
+        if outcome == "revoked":
+            raise AuthorizationDenied("撤权")
+        return [make_document("刷新补回的必需指导书条款。")]
+
+    def invoke(messages):
+        calls.append(messages)
+        return grounded_payload("产品型号：HC-A17", "业务2")
+
+    monkeypatch.setattr(h.answer._retrieval_service, "refresh_evidence", refresh)
+    h.answer._answer_repair = AnswerRepair(h.settings,
+        model_factory=lambda **_: SimpleNamespace(with_structured_output=lambda *a, **k: SimpleNamespace(invoke=invoke)),
+        guard_factory=lambda *a: SimpleNamespace(available=True, require=lambda: None))
+    if outcome == "source_changed":
+        def change(source, count):
+            if count == 3:
+                source.records["WO-018"]["source_revision"] = "r2"
+        h.source.hook = change
+    with TestClient(h.c.app) as client:
+        response = ask(client, h, question="产品型号是什么？")
+        assert response.status_code == status, response.text
+        if status == 200:
+            assert response.json()["answerable"]
+            assert response.json()["business_citations"][0]["value"] == "HC-A17"
+        else:
+            assert "HC-A17" not in response.text
+    assert refreshes and len(calls) == (0 if outcome == "revoked" else 1)
+    if outcome != "revoked":
+        assert len(h.source.reads) == 3
+    if status != 200:
+        with h.c.session_factory() as session:
+            assert session.scalars(select(QARun)).all() == []
+
+
 def test_grounded_repair_prompt_does_not_reintroduce_legacy_selectors(catalog):
     from backend.app.knowledge.output_contract import with_manufacturing_rules
     active, context, citation = built_source(catalog, "开工记录不等于检验合格，仍须质量签署。")
