@@ -211,7 +211,8 @@ def compile_applicability_bindings(draft, context):
             kind = None
             if item is not None and claim.text.rstrip('。') == item.content:
                 kind = 'business_fact'
-            elif key in documents and complete_source_statement(claim.text, [documents[key]]):
+            elif (key in documents and documents[key].document_role != 'change_notice'
+                  and complete_source_statement(claim.text, [documents[key]])):
                 kind = document_kind(documents[key])
             if kind is not None and kind != claim.claim_kind:
                 claim = claim.model_copy(update=dict(claim_kind=kind))

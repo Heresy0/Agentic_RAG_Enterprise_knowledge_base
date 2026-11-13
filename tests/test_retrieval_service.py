@@ -289,3 +289,31 @@ def test_multi_scope_shares_budget_and_drops_out_of_scope_hits_before_reranking(
     assert set(reranker.calls[0]["documents"]) == {first.content, second.content}
     assert reranker.calls[0]["top_n"] == 8
     assert results[0].metadata["knowledge_base_name"] in {"公共", "技术"}
+
+
+@pytest.mark.parametrize("parent_enabled", [True, False])
+def test_parent_deduplication_happens_before_top_k(monkeypatch, parent_enabled):
+    from dataclasses import replace
+    from types import SimpleNamespace
+    scope = _scope()
+    seed = _stored_chunk(scope)
+    chunks = [replace(seed, chunk_id=f"chunk-{i}", content=f"证据段落{i}，对应要求。", metadata={**seed.metadata, "chunk_content_hash": f"hash-{i}"}) for i in range(1, 4)]
+    repository = FakeRepository(chunks, [_search_hit(c) for c in chunks])
+    service, _, _, _ = _service(monkeypatch, repository)
+    service._settings = SimpleNamespace(rag_parent_context_enabled=parent_enabled, rag_rerank_top_k=2)
+    class Ranked(BaseReranker):
+        def rerank(self, *, query, documents, top_n):
+            assert len(documents) == 3 and top_n == 3
+            return [RerankResult(index=i, relevance_score=1-i/10) for i in range(3)]
+    service._reranker = Ranked()
+    seen = []
+    def parent_chunks(*, scope, expected):
+        seen.extend(expected)
+        # The first two child hits share a parent. The third has a distinct parent.
+        return [replace(chunks[0], content="完整父段A"), replace(chunks[2], content="完整父段B")]
+    monkeypatch.setattr(repository, "parent_chunks", parent_chunks)
+    result = service.search("对应要求？", scope=scope, session=object())
+    assert [d.metadata["chunk_id"] for d in result] == (["chunk-1", "chunk-3"] if parent_enabled else ["chunk-1", "chunk-2"])
+    assert seen == (["chunk-1", "chunk-2", "chunk-3"] if parent_enabled else [])
+    assert result[-1].metadata["final_rank"] == 2
+    assert result[-1].metadata["model_rank"] == (3 if parent_enabled else 2)

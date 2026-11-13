@@ -201,7 +201,9 @@ class AnswerValidator:
                 document_ids = {item.citation_id for item in context.items}
                 cited_business = [business[key] for key in claim.citations if key in business]
                 cited_documents = [item_map[key] for key in claim.citations if key in document_ids]
-                if active is not None and active.facts_only and claim.claim_kind != "business_fact":
+                from ..manufacturing.generation_selection import GroundedDraft
+                grounded = isinstance(draft, GroundedDraft) and claim.claim_kind is None
+                if active is not None and active.facts_only and claim.claim_kind not in (None, "business_fact"):
                     errors.append(f"第{claim_index}个工单字段查询不能用文档条件代替业务事实")
                     continue
                 if claim.claim_kind == "business_fact":
@@ -232,27 +234,30 @@ class AnswerValidator:
                         or len({item.business_revision for item in guides}) != 1):
                     errors.append(f"第{claim_index}个版本对比未明确绑定单个业务修订")
                     continue
-                if claim.claim_kind not in ("work_requirement", "version_comparison") or not cited_documents or cited_business:
+                if not grounded and (claim.claim_kind not in ("work_requirement", "version_comparison") or not cited_documents or cited_business):
                     errors.append(f"第{claim_index}个作业要求必须以文档为据，工单适用结论需单独绑定")
                     continue
                 rule_documents = [item for item in cited_documents if item.document_role in
                     ("instruction", "inspection", "change_notice", "reference", "route")]
-                if not comparing and not rule_documents:
+                if not grounded and not comparing and not rule_documents:
                     errors.append(f"第{claim_index}个作业要求不能冒充执行记录或系统操作结果")
                     continue
-                if not comparing and active is not None and any(item.business_revision != active.decision.selected_business_revision for item in guides):
+                if not comparing and active is not None and not (grounded and active.comparison) and any(item.business_revision != active.decision.selected_business_revision for item in guides):
                     errors.append(f"第{claim_index}个作业要求引用了仅供对比的非适用指导书")
                     continue
                 quantity_sources = guides if guides and re.search(r"首件|连续.*件", claim.text) else cited_documents
+                notice_excerpt = (grounded and len(cited_documents) == 1 and not cited_business
+                    and cited_documents[0].document_role == 'change_notice'
+                    and complete_source_statement(claim.text, cited_documents))
                 if (not comparing and self._manufacturing_quantities(claim.text)
-                        and re.search(r"首件|连续.*件", claim.text) and not guides):
+                        and re.search(r"首件|连续.*件", claim.text) and not guides and not notice_excerpt):
                     errors.append(f"第{claim_index}个首件数量须引用当前适用指导书正文，不能仅引用并列新旧数量的通知")
                     continue
                 missing_quantities = self._manufacturing_quantities(claim.text) - self._manufacturing_quantities(
                     "\n".join(item.content for item in quantity_sources))
                 if missing_quantities:
                     errors.append(f"第{claim_index}个结论中的件数或次数缺少对应文档数量支持")
-                if claim.calculation is None and not complete_source_statement(claim.text, guides if comparing else rule_documents):
+                if not grounded and claim.calculation is None and not complete_source_statement(claim.text, guides if comparing else rule_documents):
                     errors.append(f"第{claim_index}个作业要求或版本对比须保留所引规则的完整原句，不能改写为执行状态或反转条件")
                 # Business IDs and question numbers cannot legitimize process limits.
                 question_facts = set()
@@ -322,7 +327,7 @@ class AnswerValidator:
                 errors.append('开工登记与检验签署的边界回答缺少适用指导书的独立检验及质量签署要求或对应开工来源')
             if active is not None and active.comparison and draft.answerable:
                 revisions = {item_map[key].business_revision for claim in draft.claims
-                    if claim.claim_kind == "version_comparison" for key in claim.citations
+                    if claim.claim_kind == "version_comparison" or claim.claim_kind is None for key in claim.citations
                     if key in item_map and getattr(item_map[key], "document_role", None) == "instruction"}
                 if len(revisions) < 2:
                     errors.append("版本比较必须分别引用至少两个业务修订")

@@ -528,7 +528,11 @@ class AnswerService:
 
             text = claim.text.rstrip('。')
             if context.business_items:
-                if claim.claim_kind == "work_requirement":
+                if (claim.claim_kind is None and len(claim.citations) == 1
+                        and claim.citations[0] in item_map
+                        and item_map[claim.citations[0]].document_role == 'change_notice'):
+                    text = "变更通知：" + text
+                elif claim.claim_kind == "work_requirement":
                     text = "作业要求：" + text
                     from ..manufacturing.source_statements import duration_verdict
                     verdict = duration_verdict(question, claim, context)

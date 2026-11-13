@@ -26,8 +26,8 @@ def generation_schema(context=None, *, claim=False):
 
 def live_generation_schema(context):
     if context is not None and context.business_items:
-        from ..manufacturing.generation_selection import selection_schema
-        return selection_schema(context)
+        from ..manufacturing.generation_selection import GroundedDraft
+        return GroundedDraft
     return generation_schema(context)
 
 
@@ -40,12 +40,17 @@ def with_manufacturing_rules(system, context):
 
 def prepare_draft(result, context=None, *, schema=None):
     schema = schema or generation_schema(context)
-    from ..manufacturing.generation_selection import SelectionDraft, lower_selection, selection_schema
+    from ..manufacturing.generation_selection import GroundedDraft, SelectionDraft, lower_selection, selection_schema
     if (context is not None and context.business_items and isinstance(result, dict)
             and any('source' in row for row in result.get('claims', []) if isinstance(row, dict))):
         result = selection_schema(context).model_validate(result)
     if isinstance(result, SelectionDraft):
         result = lower_selection(result, context, schema)
+    elif (context is not None and context.business_items and isinstance(result, dict)
+          and not any('claim_kind' in row for row in result.get('claims', []))):
+        result = GroundedDraft.model_validate(result)
+    if isinstance(result, GroundedDraft):
+        schema = GroundedDraft
     if not isinstance(result, schema):
         result = schema.model_validate(result.model_dump() if isinstance(result, BaseModel) else result)
     # Unused diagnostic quotes and a redundant search request cannot turn a

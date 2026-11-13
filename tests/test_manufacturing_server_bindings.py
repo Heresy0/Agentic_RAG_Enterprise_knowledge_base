@@ -253,8 +253,8 @@ def test_malformed_source_unit_uses_only_one_existing_schema_recovery(harness, m
     def recover(messages):
         calls.append(messages)
         value = draft_for(dict(claim_kind='business_fact', business_field='product_model')).model_dump()
-        # Schema recovery now uses the same source-only live contract.
-        value['claims'] = [dict(source='业务2' if recovery_valid else '资料999#1')]
+        # Schema recovery uses the same grounded live contract.
+        value['claims'] = [dict(text='产品型号：HC-A17', citations=['业务2' if recovery_valid else '资料999'])]
         return value
     h.answer._answer_repair.model_factory = lambda **_: SimpleNamespace(
         with_structured_output=lambda *a, **kw: SimpleNamespace(invoke=recover))

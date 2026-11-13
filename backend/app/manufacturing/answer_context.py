@@ -282,7 +282,11 @@ def attach_business_context(context, *, question=''):
     if active is None:
         return context
     items = active.items
-    text = "\n\n".join(f"[{item.citation_id}] business_field={item.field_name}\n{item.content}" for item in items)
+    groups = {}
+    for item in items:
+        groups.setdefault(item.source_entity or 'Work Order', []).append(
+            f"[{item.citation_id}] business_field={item.field_name}\n{item.content}")
+    text = "\n\n".join(f"实体：{entity}\n" + "\n\n".join(rows) for entity, rows in groups.items())
     if len(text) > 4000:
         from ..integrations.mes import MESError
         raise MESError()
