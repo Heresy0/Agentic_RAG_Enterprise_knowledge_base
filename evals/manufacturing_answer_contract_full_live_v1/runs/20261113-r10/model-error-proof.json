@@ -1,0 +1,226 @@
+[
+  {
+    "case_id": "MFG-GOLD-002",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 121266.101,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-014",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 123756.662,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-015",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 121108.465,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-019",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 121295.438,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-041",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 3753.741,
+      "error_type": "ValidationError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-043",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5047.331,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-044",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 120934.781,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-048",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 121204.987,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-052",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 122065.551,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-059",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 3703.004,
+      "error_type": "ValidationError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-060",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 120980.205,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-063",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 120871.6,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-064",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5319.303,
+      "error_type": "ValidationError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-065",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 122275.165,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-080",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 121015.095,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-091",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 120638.183,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null
+    }
+  }
+]
