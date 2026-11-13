@@ -109,8 +109,8 @@ def test_ordinary_schema_and_prompt_remain_separate(catalog):
         messages = AnswerService._generation_messages(None, "工单编号？", context)
         assert "claims每项用text" in messages[0].content
         assert "citations填写" in messages[0].content
-        assert live_generation_schema(context).model_json_schema()["$defs"]["GroundedClaim"]["required"] == ["text"]
-        assert set(live_generation_schema(context).model_json_schema()["$defs"]["GroundedClaim"]["properties"]) == {"text", "citations"}
+        assert live_generation_schema(context).model_json_schema()["$defs"]["ManufacturingGroundedClaim"]["required"] == ["text"]
+        assert set(live_generation_schema(context).model_json_schema()["$defs"]["ManufacturingGroundedClaim"]["properties"]) == {"text", "citations"}
 
 
 @pytest.mark.parametrize("stage", ["generation", "regeneration", "schema_recovery"])
@@ -229,3 +229,53 @@ def test_grounded_repair_prompt_does_not_reintroduce_legacy_selectors(catalog):
         prompt = with_manufacturing_rules("仅修复引用，保留文字。", context, draft=draft)
         assert "claims每项用text" in prompt
         assert "source_unit" not in prompt and "business_field" not in prompt
+
+
+@pytest.mark.parametrize("citation", ["[资料1]", "资料1#1", "已核验选版结论", "资料999", "资料1 全文摘录", '{"id":"资料1"}'])
+def test_grounded_live_schema_only_exposes_current_citation_pool(catalog, citation):
+    active, context, _ = built_source(catalog, "条款正文。")
+    with manufacturing_answer_context(active):
+        with pytest.raises(ValidationError):
+            live_generation_schema(context).model_validate(grounded_payload("据条款作答。", citation))
+
+
+@pytest.mark.parametrize("text,supported", [("温度应为85摄氏度。", True), ("部件编号为PART-Z91。", True),
+                                            ("部件编号为PART-Z92。", False), ("温度应为86摄氏度。", False)])
+def test_grounded_binding_repair_eligibility_keeps_type_and_authorized_pool(catalog, text, supported):
+    from backend.app.knowledge.answer_repair import numeric_binding_supported
+    active, context, citation = built_source(catalog, "温度应为80摄氏度。")
+    second = replace(context.items[0], citation_id="资料9", content="温度应为85摄氏度。部件编号为PART-Z91。")
+    context = replace(context, items=[*context.items, second])
+    with manufacturing_answer_context(active):
+        draft = GroundedDraft.model_validate(grounded_payload(text, citation))
+        validation = AnswerValidator().validate(draft=draft, context=context, question="条件是什么？")
+        assert not validation.valid
+        assert numeric_binding_supported(draft, validation.errors, AnswerValidator(), context, "条件是什么？") is supported
+        assert draft.claims[0].citations == [citation]
+        if supported:
+            rebound = draft.model_copy(deep=True)
+            rebound.claims[0].citations = ["资料9"]
+            assert AnswerValidator().validate(draft=rebound, context=context, question="条件是什么？").valid
+
+
+def test_grounded_repair_restores_exact_server_applicability_without_duplicate(catalog):
+    from backend.app.knowledge.answer_repair import preserves_facts
+    active, rows, _ = evidence(catalog)
+    with manufacturing_answer_context(active):
+        context = ContextBuilder().build(rows)
+        original = prepare_draft(grounded_payload("应按已核验的适用版本作业。", context.items[0].citation_id), context)
+        assert original.claims[-1].claim_kind == "applicability"
+        data = original.model_dump()
+        for claim in data["claims"]:claim.pop("claim_kind", None)
+        repaired = prepare_draft(live_generation_schema(context).model_validate(data), context)
+        assert len(repaired.claims) == len(original.claims)
+        assert repaired.claims[-1].claim_kind == "applicability"
+        assert preserves_facts(original, repaired)
+        assert repaired.claims[-1].citations == original.claims[-1].citations
+        from backend.app.knowledge.answer_repair import preserves_decision_addition
+        from backend.app.manufacturing.generation_selection import GroundedClaim
+        verdict = repaired.model_copy(deep=True)
+        verdict.claims.insert(0, GroundedClaim(text="应按当前适用版本作业。", citations=[context.items[0].citation_id]))
+        assert preserves_decision_addition(original, verdict)
+        verdict.claims[1].citations = ["资料999"]
+        assert not preserves_decision_addition(original, verdict)

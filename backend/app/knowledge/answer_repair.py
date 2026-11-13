@@ -58,7 +58,7 @@ def eligible(draft, errors, *, numeric_binding=False):
                 and all(row.status == "answered" for row in draft.coverage
                         if not row.requirement_id.startswith('P'))
                 and all(any(marker in error for marker in REPAIRABLE + ("计算结论校验失败", "计算结论不是程序生成",)
-                            + (("数字或日期缺少证据支持",) if numeric_binding else ()) )
+                            + (("数字或日期缺少证据支持", "完整标识缺少对应引用支持") if numeric_binding else ()) )
                         for error in errors))
 
 
@@ -69,10 +69,20 @@ def numeric_binding_supported(draft, errors, validator, context, question):
     repair or rendered answer. The candidate must still pass the original
     per-claim validator, preserve facts and recheck authorization/freshness.
     """
-    if not any('数字或日期缺少证据支持' in error for error in errors):
+    if not any(marker in error for error in errors
+               for marker in ('数字或日期缺少证据支持', '完整标识缺少对应引用支持')):
         return False
     if any(claim.calculation is not None for claim in draft.claims):
         return False
+    from ..manufacturing.generation_selection import GroundedDraft
+    if isinstance(draft, GroundedDraft):
+        # Eligibility only: preserve the new contract and server-owned facts.
+        # The actual repair must still pass the original per-claim bindings.
+        probe = draft.model_copy(deep=True)
+        for claim in probe.claims:
+            if claim.claim_kind is None:
+                claim.citations = [item.citation_id for item in [*context.items, *context.business_items]]
+        return validator.validate(draft=probe, context=context, question=question, coverage=[]).valid
     probe = AnswerDraft.model_validate(draft.model_dump(exclude={'coverage', 'evidence_gap'}))
     for claim in probe.claims:
         claim.citations = [item.citation_id for item in context.items]
@@ -87,12 +97,15 @@ def preserves_facts(original, candidate):
 
 
 def preserves_decision_addition(original, candidate):
+    # Structured parsing may change the Pydantic subclass, not the facts.
+    def bindings(claims):
+        return [(c.text, c.citations, c.calculation, c.claim_kind) for c in claims]
     return (candidate.answerable == original.answerable and original.answerable
             and candidate.refusal_reason == original.refusal_reason
             and candidate.evidence_gap == original.evidence_gap
             and len(candidate.claims) == len(original.claims) + 1
             and candidate.claims[0].calculation is None
-            and candidate.claims[1:] == original.claims)
+            and bindings(candidate.claims[1:]) == bindings(original.claims))
 
 
 class AnswerRepair:
@@ -156,8 +169,11 @@ class AnswerRepair:
             messages = [SystemMessage(content=system),
                         HumanMessage(content=json.dumps(data, ensure_ascii=False, separators=(",", ":")))]
             prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
-            from ..manufacturing.generation_selection import GroundedDraft, GroundedClaim
-            schema = (GroundedClaim if isinstance(draft, GroundedDraft) else generation_schema(context, claim=True)) if decision_mode else type(draft)
+            from ..manufacturing.generation_selection import GroundedDraft, grounded_schema
+            if isinstance(draft, GroundedDraft):
+                schema = grounded_schema(context, claim=decision_mode)
+            else:
+                schema = generation_schema(context, claim=True) if decision_mode else type(draft)
             prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
             if prompt_bytes > self.settings.rag_repair_prompt_bytes:
                 record_rag_event(dict(kind="repair", outcome="prompt_budget", model_calls=0))

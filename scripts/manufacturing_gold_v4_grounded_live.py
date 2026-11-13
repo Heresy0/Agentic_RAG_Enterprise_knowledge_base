@@ -63,7 +63,7 @@ def source_change(args):
     """
     import httpx
     cfg = read(args.control)
-    if cfg['upstream_container'] != 'gold100-v4-grounded-upstream-mes-20261113-r4':
+    if cfg['upstream_container'] != 'gold100-v4-grounded-upstream-mes-20261113-r5':
         raise ValueError('Fault controller must point at the independent clone.')
     upstream = httpx.Client(base_url=cfg['url'], trust_env=False, timeout=20,
                            headers={'Authorization': 'Bearer ' + cfg['token'], 'Accept': 'application/json'})

@@ -26,8 +26,8 @@ def generation_schema(context=None, *, claim=False):
 
 def live_generation_schema(context):
     if context is not None and context.business_items:
-        from ..manufacturing.generation_selection import GroundedDraft
-        return GroundedDraft
+        from ..manufacturing.generation_selection import grounded_schema
+        return grounded_schema(context)
     return generation_schema(context)
 
 

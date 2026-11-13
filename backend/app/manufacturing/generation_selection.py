@@ -27,6 +27,17 @@ class GroundedDraft(EvidenceFirstAnswerDraft):
     claims: list[GroundedClaim] = Field(default_factory=list)
 
 
+def grounded_schema(context, *, claim=False):
+    refs = tuple(dict.fromkeys(item.citation_id for item in [*context.items, *context.business_items]))
+    model = create_model("ManufacturingGroundedClaim", __base__=GroundedClaim,
+        citations=(list[Literal[refs]], Field(default_factory=list,
+            description="支持本条文字的当前授权来源编号；直接选择编号，不添加方括号或正文。")))
+    if claim:
+        return model
+    return create_model("ManufacturingGroundedDraft", __base__=GroundedDraft,
+        claims=(list[model], Field(default_factory=list)))
+
+
 def selection_schema(context):
     """Enumerate only sources already authorized for this exact request."""
     refs = tuple(dict.fromkeys([

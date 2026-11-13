@@ -249,7 +249,7 @@ def compile_applicability_bindings(draft, context):
         if claim.claim_kind == "applicability" and not claim.text.strip() and claim.calculation is None:
             claim = claim.model_copy(update=dict(text=active.applicability_text))
             changed.append(dict(origin="server_applicability_selection", compiled_citations=citations))
-        if (claim.claim_kind in ("applicability", "business_fact") and claim.text.rstrip("。") == active.applicability_text
+        if (claim.claim_kind in (None, "applicability", "business_fact") and claim.text.rstrip("。") == active.applicability_text
                 and claim.calculation is None and (claim.citations != citations or claim.claim_kind != "applicability")):
             changed.append(dict(original_citations=claim.citations,compiled_citations=citations))
             claim=claim.model_copy(update=dict(citations=list(citations),claim_kind="applicability"))
