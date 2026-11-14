@@ -1,0 +1,865 @@
+{
+  "schema_version": "manufacturing-paired-prompt-comparison-v1",
+  "source_revision": "1be9c034bf53db0342847edf37cd65a04f121c64",
+  "model": "qwen3.7-flash",
+  "physical_calls": 54,
+  "cases": 9,
+  "repeats": 3,
+  "variants": {
+    "current": {
+      "attempts": 27,
+      "transport_success": 27,
+      "local_valid": 24,
+      "semantic_passed": 18,
+      "draft_required_facts_satisfied": 61,
+      "deliverable_required_facts_satisfied": 55,
+      "required_fact_observations": 66,
+      "unsupported_or_citation_issue_trials": 2,
+      "forbidden_violation_trials": 0,
+      "stable_pass_cases": 4,
+      "stable_fail_cases": 1,
+      "source_success_passed": 11,
+      "source_failure_passed": 7,
+      "input_tokens": 169098,
+      "output_tokens": 9617,
+      "cached_input_tokens": 54528,
+      "known_tokens": 178715,
+      "unknown_calls": 0,
+      "reasoning_tokens_reported": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "returned_models": [
+        "qwen3.7-flash"
+      ],
+      "latency_ms": {
+        "min": 3428.295,
+        "median": 4731.448,
+        "mean": 4839.5768148148145,
+        "max": 7583.419
+      },
+      "cases": [
+        {
+          "case_id": "MFG-GOLD-006",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            false,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 1,
+              "issues": [
+                "先说超过在字面上不包含恰好4小时，又称原文未定义边界所以不能判定是否触发，正文判断相互矛盾且额外制造定义缺口。"
+              ],
+              "note": "只判恰好4小时不命中特定超过条款，未问的其他触发条件不列为必答。 当前未改输出门禁拒绝：第2个结论没有引用。未修复后计分。",
+              "validation_errors": [
+                "第2个结论没有引用"
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-010",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 2,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-012",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 3,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-043",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            false,
+            false,
+            false
+          ],
+          "required_complete_by_repeat": [
+            false,
+            false,
+            false
+          ],
+          "passes": 0,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 1,
+              "issues": [],
+              "note": "两方向各一次、保存原始读数、超限待处置、不得平均判合格及换检具/治具重新首件均须保留。 本次漏任一方向超限待处置和不得平均判合格。",
+              "validation_errors": []
+            },
+            {
+              "repeat": 2,
+              "issues": [],
+              "note": "两方向各一次、保存原始读数、超限待处置、不得平均判合格及换检具/治具重新首件均须保留。 本次漏任一方向超限待处置和不得平均判合格。",
+              "validation_errors": []
+            },
+            {
+              "repeat": 3,
+              "issues": [],
+              "note": "两方向各一次、保存原始读数、超限待处置、不得平均判合格及换检具/治具重新首件均须保留。 本次漏任一方向超限待处置和不得平均判合格。",
+              "validation_errors": []
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-051",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 3,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-060",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            false,
+            true,
+            false
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 1,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 1,
+              "issues": [
+                "将规范要求核对型号/批号/方向/外观并填写记录，直接列为OP-30目前缺失的记录；当前原始记录仅明确方向检查未登记，其他缺项未被证明。"
+              ],
+              "note": "20件、方向检查未登记、不能确认完整完成分别作答；其他工序和规范要求不自动成为OP-30当前缺项。",
+              "validation_errors": []
+            },
+            {
+              "repeat": 3,
+              "issues": [],
+              "note": "20件、方向检查未登记、不能确认完整完成分别作答；其他工序和规范要求不自动成为OP-30当前缺项。 当前未改输出门禁拒绝：第1个结论中的完整标识缺少对应引用支持：['ZH-C31-07']；第1个结论中的数字或日期缺少证据支持：['31', '7']。未修复后计分。",
+              "validation_errors": [
+                "第1个结论中的完整标识缺少对应引用支持：['ZH-C31-07']",
+                "第1个结论中的数字或日期缺少证据支持：['31', '7']"
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-064",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 2,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-091",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            false
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 3,
+              "issues": [],
+              "note": "交接不等质量放行，两项本系列未完成信息齐全。 当前未改输出门禁拒绝：必答要点关联了重复或不存在的结论：Q1。未修复后计分。",
+              "validation_errors": [
+                "必答要点关联了重复或不存在的结论：Q1"
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-095",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            false,
+            true,
+            false
+          ],
+          "required_complete_by_repeat": [
+            false,
+            true,
+            false
+          ],
+          "passes": 1,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 1,
+              "issues": [],
+              "note": "按库内归档指南回答五环节、职责权限及跨部门/部门内机制，不当作企业已落实或当前法律意见。 本次漏跨部门及部门内数据管理机制建设。",
+              "validation_errors": []
+            },
+            {
+              "repeat": 3,
+              "issues": [],
+              "note": "按库内归档指南回答五环节、职责权限及跨部门/部门内机制，不当作企业已落实或当前法律意见。 本次漏跨部门及部门内数据管理机制建设。",
+              "validation_errors": []
+            }
+          ]
+        }
+      ]
+    },
+    "candidate": {
+      "attempts": 27,
+      "transport_success": 27,
+      "local_valid": 20,
+      "semantic_passed": 15,
+      "draft_required_facts_satisfied": 62,
+      "deliverable_required_facts_satisfied": 44,
+      "required_fact_observations": 66,
+      "unsupported_or_citation_issue_trials": 4,
+      "forbidden_violation_trials": 0,
+      "stable_pass_cases": 2,
+      "stable_fail_cases": 2,
+      "source_success_passed": 11,
+      "source_failure_passed": 4,
+      "input_tokens": 111426,
+      "output_tokens": 8135,
+      "cached_input_tokens": 50944,
+      "known_tokens": 119561,
+      "unknown_calls": 0,
+      "reasoning_tokens_reported": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "returned_models": [
+        "qwen3.7-flash"
+      ],
+      "latency_ms": {
+        "min": 3122.955,
+        "median": 4046.386,
+        "mean": 4140.2018148148145,
+        "max": 5959.608
+      },
+      "cases": [
+        {
+          "case_id": "MFG-GOLD-006",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            true,
+            false,
+            false
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 1,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 2,
+              "issues": [
+                "额外写“只有当停机时间严格大于4小时时，才必须重新进行首件确认”，将该时长条款扩大成重新首件的唯一必要条件，遗漏原文其他触发方式的适用可能。"
+              ],
+              "note": "只判恰好4小时不命中特定超过条款，未问的其他触发条件不列为必答。",
+              "validation_errors": []
+            },
+            {
+              "repeat": 3,
+              "issues": [],
+              "note": "只判恰好4小时不命中特定超过条款，未问的其他触发条件不列为必答。 当前未改输出门禁拒绝：第1个结论没有引用。未修复后计分。",
+              "validation_errors": [
+                "第1个结论没有引用"
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-010",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 2,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-012",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            false,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 2,
+              "issues": [
+                "追加DEMO-D41 OP-50换模/换端子批次触发和DEMO-C31 OP-40专用追溯要求，未保留产品工序限定，混作当前通用首件记录要求；属于适用范围泛化。"
+              ],
+              "note": "八项必填信息完整；额外引用须保持产品/工序适用范围。",
+              "validation_errors": []
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-043",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            false
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            false
+          ],
+          "passes": 2,
+          "distinct_answers": 2,
+          "failures": [
+            {
+              "repeat": 3,
+              "issues": [],
+              "note": "两方向各一次、保存原始读数、超限待处置、不得平均判合格及换检具/治具重新首件均须保留。 本次漏任一方向超限待处置和不得平均判合格。",
+              "validation_errors": []
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-051",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            false,
+            false,
+            false
+          ],
+          "required_complete_by_repeat": [
+            false,
+            false,
+            false
+          ],
+          "passes": 0,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 1,
+              "issues": [],
+              "note": "必须交付实际第二批次归属及不得混作第一批次。 本次只否定属于第一批次，未交付实际所属第二批次DEMO-BATCH-B21-2。",
+              "validation_errors": []
+            },
+            {
+              "repeat": 2,
+              "issues": [],
+              "note": "必须交付实际第二批次归属及不得混作第一批次。 本次只否定属于第一批次，未交付实际所属第二批次DEMO-BATCH-B21-2。",
+              "validation_errors": []
+            },
+            {
+              "repeat": 3,
+              "issues": [],
+              "note": "必须交付实际第二批次归属及不得混作第一批次。 本次只否定属于第一批次，未交付实际所属第二批次DEMO-BATCH-B21-2。 当前未改输出门禁拒绝：第1个结论中的数字或日期缺少证据支持：['3']。未修复后计分。 正文[3]被当前数值门禁当作未支持的数字3，已有资料3结构引用未能消除该正文格式问题；不称业务数量算错。",
+              "validation_errors": [
+                "第1个结论中的数字或日期缺少证据支持：['3']"
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-060",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            false,
+            false,
+            false
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 0,
+          "distinct_answers": 1,
+          "failures": [
+            {
+              "repeat": 1,
+              "issues": [
+                "把交接原文属于检测台/OP-40的正式原始数据关联未完成，错归到OP-30缺项。"
+              ],
+              "note": "20件、方向检查未登记、不能确认完整完成分别作答；其他工序和规范要求不自动成为OP-30当前缺项。 当前未改输出门禁拒绝：第1个结论没有引用；第2个结论没有引用；第3个结论没有引用。未修复后计分。",
+              "validation_errors": [
+                "第1个结论没有引用",
+                "第2个结论没有引用",
+                "第3个结论没有引用"
+              ]
+            },
+            {
+              "repeat": 2,
+              "issues": [],
+              "note": "20件、方向检查未登记、不能确认完整完成分别作答；其他工序和规范要求不自动成为OP-30当前缺项。 当前未改输出门禁拒绝：第1个结论没有引用；第2个结论没有引用；第3个结论没有引用；第4个结论没有引用。未修复后计分。 正文中[1][3]等编号未写入citations结构字段，引用协议失败，其他必答内容仍存在。",
+              "validation_errors": [
+                "第1个结论没有引用",
+                "第2个结论没有引用",
+                "第3个结论没有引用",
+                "第4个结论没有引用"
+              ]
+            },
+            {
+              "repeat": 3,
+              "issues": [
+                "把交接原文属于检测台/OP-40的正式原始数据关联未完成，错归到OP-30缺项。"
+              ],
+              "note": "20件、方向检查未登记、不能确认完整完成分别作答；其他工序和规范要求不自动成为OP-30当前缺项。 当前未改输出门禁拒绝：第1个结论没有引用；第2个结论没有引用；第3个结论没有引用；第4个结论没有引用。未修复后计分。",
+              "validation_errors": [
+                "第1个结论没有引用",
+                "第2个结论没有引用",
+                "第3个结论没有引用",
+                "第4个结论没有引用"
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-064",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            false,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 2,
+              "issues": [],
+              "note": "两个实体ID、08:12/08:17及不同分别正确。 当前未改输出门禁拒绝：必答要点关联了重复或不存在的结论：Q1。未修复后计分。",
+              "validation_errors": [
+                "必答要点关联了重复或不存在的结论：Q1"
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-091",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            false,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 1,
+              "issues": [],
+              "note": "交接不等质量放行，两项本系列未完成信息齐全。 当前未改输出门禁拒绝：第1个结论没有引用；第2个结论没有引用；第3个结论没有引用；第4个结论没有引用。未修复后计分。",
+              "validation_errors": [
+                "第1个结论没有引用",
+                "第2个结论没有引用",
+                "第3个结论没有引用",
+                "第4个结论没有引用"
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-095",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 2,
+          "failures": []
+        }
+      ]
+    }
+  },
+  "paired": {
+    "candidate_only": 6,
+    "current_only": 9,
+    "both_pass": 9,
+    "neither_pass": 3,
+    "trials": [
+      {
+        "case_id": "MFG-GOLD-006",
+        "repeat": 1,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-006",
+        "repeat": 2,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-006",
+        "repeat": 3,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-010",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-010",
+        "repeat": 2,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-010",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-012",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-012",
+        "repeat": 2,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-012",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-043",
+        "repeat": 1,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-043",
+        "repeat": 2,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-043",
+        "repeat": 3,
+        "current": false,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-051",
+        "repeat": 1,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-051",
+        "repeat": 2,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-051",
+        "repeat": 3,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-060",
+        "repeat": 1,
+        "current": false,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-060",
+        "repeat": 2,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-060",
+        "repeat": 3,
+        "current": false,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-064",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-064",
+        "repeat": 2,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-064",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-091",
+        "repeat": 1,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-091",
+        "repeat": 2,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-091",
+        "repeat": 3,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-095",
+        "repeat": 1,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-095",
+        "repeat": 2,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-095",
+        "repeat": 3,
+        "current": false,
+        "candidate": true
+      }
+    ]
+  },
+  "known_tokens": 298276,
+  "budget": {
+    "calls": 54,
+    "charged_tokens": 298276,
+    "unknown_calls": 0,
+    "elapsed_seconds": 243.547,
+    "limited_by": null
+  },
+  "limits": {
+    "max_model_calls": 54,
+    "max_tokens": 2000000,
+    "max_seconds": 5400,
+    "reservation_tokens": 32000
+  },
+  "authorization_closed": true,
+  "pending": 0,
+  "retries": 0,
+  "repairs": 0,
+  "retrieval_calls": 0,
+  "system_characters": [
+    {
+      "case_id": "MFG-GOLD-006",
+      "current": 6360,
+      "candidate": 2213
+    },
+    {
+      "case_id": "MFG-GOLD-010",
+      "current": 6360,
+      "candidate": 2213
+    },
+    {
+      "case_id": "MFG-GOLD-012",
+      "current": 6360,
+      "candidate": 2213
+    },
+    {
+      "case_id": "MFG-GOLD-043",
+      "current": 6360,
+      "candidate": 2213
+    },
+    {
+      "case_id": "MFG-GOLD-051",
+      "current": 6360,
+      "candidate": 2213
+    },
+    {
+      "case_id": "MFG-GOLD-060",
+      "current": 6644,
+      "candidate": 2497
+    },
+    {
+      "case_id": "MFG-GOLD-064",
+      "current": 6407,
+      "candidate": 2260
+    },
+    {
+      "case_id": "MFG-GOLD-091",
+      "current": 6360,
+      "candidate": 2213
+    },
+    {
+      "case_id": "MFG-GOLD-095",
+      "current": 6360,
+      "candidate": 2213
+    }
+  ],
+  "unchanged_business_files": 168,
+  "protected_input_files": 189,
+  "protected_inputs_unchanged": true,
+  "gold100_score": false,
+  "old_scores_modified": false,
+  "independent": false,
+  "human_factory_platform_approvals": 0,
+  "thinking_requested": false,
+  "thinking_usage_missing_is_not_proof": true,
+  "actual_billed_cost_unknown": true,
+  "limitations": "Known development cases, reconstructed historical headers, component experiment without live source checks, no holdout."
+}
