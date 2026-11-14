@@ -1,5 +1,7 @@
 # 新会话工作入口
 
+- 2026-11-14用户批准单独提示候选对照：仅评测目录新增普通文档系统提示候选，保留动态answer_contract、HumanMessage/上下文/Schema/检索/校验/模型配置，制造专用提示不改。r16取既有12题中全部9文档题（r12原成功5/失败4），当前Qwen3.7-Flash两提示各3次共54预定调用，显式关闭思考、无重试修复/检索/Agent/索引/运行库/Docker/部署；独立54调用/200万预算Token/5400秒、未知32000。系统消息减少4147字符至2213–2497，4项Mock通过；只整理一个候选，不据本轮失败继续调参，不称新百题或独立留出集。私有`tmp/manufacturing-prompt-candidate-20261114-r16/`执行后关闭不复用，见[计划](docs/reports/prompt-candidate-plan-20261114-r16.md)，结果另记。
+
 - 2026-11-14固定输入双模型r15以34e8773冻结并完成关闭：同12题每模型3次，Qwen3.7-Flash本地校验35/36、助手非独立语义及校验29/36；Qwen3.8-Flash为35/36、32/36，原成功子组均16/18，三次全过6→9题。草稿必答84→85/87、可过门禁草稿事实82→80/87、错误补充3→1；3.8仍有091要求/实际版本错释及064额外正确5分钟差被数值门禁拒绝，不宣称全面升级或无退步。72调用/431687已知及预算Token/未知0/331.359秒/待结算0，无重试修复/检索/Agent/索引/运行库/Docker/部署，现有模型配置不变。两边显式enable_thinking=false保留reasoning_effort=none，实际reasoning计数未提供；中位3.893→4.641秒，实际费用未知。198选定文件含168业务Python保持，3项Mock通过；旧成绩不改不拼分。私有`tmp/manufacturing-generation-model-comparison-20261114-r15/`已关闭不得复用，见[报告](docs/reports/generation-model-comparison-20261114-r15.md)及[全部结果](evals/manufacturing_generation_stability_v1/runs/20261114-r15/summary.json)。不自动追加百题、改提示/校验或切换模型，独立人工/工厂/平台批准0。
 
 - 2026-11-14用户要求先比较现有Qwen3.7-Flash与Qwen3.8-Flash：新r15生成组件实验复用r13已选12题（原成功/失败各6），两模型各3次共72预定调用；消息/Schema先离线确认与r13相同，两边显式enable_thinking=false且保留原reasoning_effort=none，不改线上配置。新独立72调用/300万预算Token/7200秒、未知32000，既有百炼目的地及同范围资料；无重试补跑/修复/检索/Agent/索引/运行库/Docker/部署，关闭批次不复用。3项Mock测试通过；语义须逐次助手非独立复核，不当新百题或盲测成绩。私有`tmp/manufacturing-generation-model-comparison-20261114-r15/`，见[冻结计划](docs/reports/generation-model-comparison-plan-20261114-r15.md)，运行结果另记。
