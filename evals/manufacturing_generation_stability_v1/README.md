@@ -4,7 +4,10 @@
 
 | 批次 | 冻结提交 | 生成 | 独立重排探针 | 结果 |
 |---|---|---:|---:|---|
+| [20261114-r15](runs/20261114-r15/summary.json) | 34e8773 | 同12题，两模型各3次，共72次 | 0 | 3.7校验35/36、语义及校验29/36；3.8校验35/36、语义及校验32/36，助手非独立，未证明全面升级收益 |
 | [20261114-r13](runs/20261114-r13/summary.json) | f389f95 | 12题各3次，共36次 | 3题各3次，共9次 | 生成35次返回、1次读取超时；助手非独立复核27/36；重排7成功/2读取超时 |
+
+r15：[对照报告](../../docs/reports/generation-model-comparison-20261114-r15.md)、[计划](../../docs/reports/generation-model-comparison-plan-20261114-r15.md)、[固定请求](runs/20261114-r15/inputs.json)、[全部调用与判定](runs/20261114-r15/trials.jsonl)、[关闭证明](runs/20261114-r15/audits.json)、[哈希清单](runs/20261114-r15/manifest.json)。两边消息/Schema保持，显式关闭思考；不经检索或修复，不改线上配置。72调用、431687已知及预算Token、331.359秒、待结算0，批次关闭不复用。原完整百题成绩保持；不将该12题目的性样本视为总体准确率或独立留出集。
 
 [实施与结果报告](../../docs/reports/generation-stability-20261114-r13.md)、[冻结计划](../../docs/reports/generation-stability-plan-20261114-r13.md)。
 
