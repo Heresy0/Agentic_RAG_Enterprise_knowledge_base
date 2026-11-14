@@ -20,6 +20,8 @@
 
 先按[基础部署](../../README.md)、[ERPNext接入](../../docs/ERPNEXT_INTEGRATION.md)、[OpenMES接入](../../docs/OPENMES_INTEGRATION.md)准备依赖。此模板不创建或初始化以下资源，也不在启动时迁移、重建索引或导入评测夹具。
 
+基础Compose只启用依赖服务，不同时启动其`api`、`worker`、`quality-worker`或旧独立工作台；8000入口由本模板网关提供，避免重复入口和重复消费任务。
+
 - PostgreSQL须具备项目所需的pg_search等依赖，三个工作区分别恢复原数据库；保留租户、用户、知识库、业务授权、映射、会话、快照和账本的原ID。
 - 三个原件卷分别恢复到目标Docker volume，填写其真实名称。卷声明为`external`，避免用自动创建的空卷代替已有资料。
 - 一致地恢复Milvus集合、向量及服务账号权限；完整迁移还需对应etcd/MinIO状态。SQL分块和向量需对应，不能用空索引冒充恢复成功。
@@ -75,8 +77,11 @@ docker compose --env-file tmp/unified-workspace-portable/compose.env -f deploy/u
 默认通过仓库根`Dockerfile`构建全部API/Worker共用镜像，**不依赖本机旧零模型基础镜像**。也可载入已归档镜像并在`UNIFIED_IMAGE`指定其标签或摘要；严格复现时记录应用和Caddy镜像的摘要，使用已归档镜像时跳过构建。
 
 ```powershell
+docker compose --env-file tmp/unified-workspace-portable/compose.env -f deploy/unified_workspace/compose.yaml pull gateway
 docker compose --env-file tmp/unified-workspace-portable/compose.env -f deploy/unified_workspace/compose.yaml build knowledge
 ```
+
+若已从归档载入Caddy镜像，也跳过`pull gateway`；后续使用`--pull never`启动，不隐式更换已准备的镜像。
 
 恢复目标库并完成备份核对后，按目标库的实际版本显式执行所需迁移；命令只应作用于新目标库，不回灌或降级现有库：
 
