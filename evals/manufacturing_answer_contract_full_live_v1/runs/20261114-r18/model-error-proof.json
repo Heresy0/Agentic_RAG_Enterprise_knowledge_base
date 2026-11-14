@@ -1,0 +1,80 @@
+[
+  {
+    "case_id": "MFG-GOLD-059",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 7266.461,
+      "error_type": "ValidationError",
+      "provider_request_id": "3a291d89-4628-9e45-ace5-e64b7152e79b",
+      "price_snapshot": null,
+      "error_chain": [
+        "ValidationError"
+      ],
+      "http_status_code": 200,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-063",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 9311.972,
+      "error_type": "APIConnectionError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "APIConnectionError",
+        "ConnectError",
+        "ConnectError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-064",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 8472.014,
+      "error_type": "ValidationError",
+      "provider_request_id": "64e41a28-0f2b-95fa-b4a7-e090211a1cb9",
+      "price_snapshot": null,
+      "error_chain": [
+        "ValidationError"
+      ],
+      "http_status_code": 200,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-077",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 4872.571,
+      "error_type": "ValidationError",
+      "provider_request_id": "60a28c54-b719-9aa1-ac1a-947dee8b73a7",
+      "price_snapshot": null,
+      "error_chain": [
+        "ValidationError"
+      ],
+      "http_status_code": 200,
+      "transport_errno": null
+    }
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "selected_prior_files": 3653,
+  "unchanged_after_publication": 3651,
+  "deliberate_release_index_updates": [
+    "evals/manufacturing_answer_contract_full_live_v1/README.md",
+    "evals/manufacturing_prompt_candidate_v2/README.md"
+  ],
+  "old_results_gold_and_private_traces_changed": false,
+  "models_after_authorization_closed": 0
+}
