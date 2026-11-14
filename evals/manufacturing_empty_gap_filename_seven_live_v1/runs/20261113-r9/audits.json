@@ -1,0 +1,744 @@
+{
+  "ledger": {
+    "matched": true,
+    "calls": 19,
+    "known_tokens": 60157,
+    "unknown_calls": 0,
+    "budget_tokens": 60157,
+    "by_stage": {
+      "query_embedding": 5,
+      "answer_generation": 7,
+      "rerank": 5,
+      "query_planning": 1,
+      "answer_repair": 1
+    },
+    "providers_models": [
+      "dashscope:qwen3-rerank",
+      "dashscope:qwen3.7-flash",
+      "dashscope:text-embedding-v4"
+    ],
+    "all_priced": false,
+    "pending": 0
+  },
+  "business_source": {
+    "normal_erp_adapter_readonly": true,
+    "openmes_not_in_scope": true,
+    "no_fault_controller": true,
+    "old_application_ledgers_checked": 26,
+    "old_ledgers_unchanged": true,
+    "business_files_before_after": {
+      "erp": {
+        "files": 168,
+        "matches_revision": "ee5fe001cc9f8b44ec47c59a9d07d79cc1986c18"
+      }
+    },
+    "model_endpoints": {
+      "erp": {
+        "DASHSCOPE_BASE_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com",
+        "DASHSCOPE_RERANK_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com"
+      }
+    },
+    "model_postflight_calls": 0,
+    "new_index_calls": 0
+  },
+  "snapshots": {
+    "observed_requests": 14,
+    "qa_post_requests": 7,
+    "snapshot_get_requests": 7,
+    "manufacturing_snapshots": 4,
+    "all_three_reads_and_validations": true
+  },
+  "inventory": {
+    "erp": {
+      "documents": 55,
+      "chunks": 885,
+      "active_vectors": 885,
+      "total_vectors": 927,
+      "active_index_jobs": 0,
+      "frozen_inventory_matches": true,
+      "current_original_hashes_verified": true,
+      "revised_documents_v2": 3
+    }
+  },
+  "zero_model_probe": {
+    "requests": 6,
+    "model_calls": 0,
+    "model_ledger_unchanged": true,
+    "authorization_and_source_checks": true
+  },
+  "fixed_code": {
+    "reference_full100": "ea00ed2",
+    "business_revision": "9b6f7f2",
+    "business_unchanged_since_fix": true,
+    "protected_code_sha256": {
+      "backend/app/knowledge/retrieval_service.py": "053510d0f7b717a11bd4af67db8a61276d3f089c057786b107a55997232d46cf",
+      "backend/app/knowledge/rerank_retriever.py": "36cbe0805ff52b0397004bcb3b9d437e65b297ee3d9e6b7a8c95be503aae5b8e",
+      "backend/app/knowledge/chunk_repository.py": "c200fd54386c82bfc80caf331a818a8a370c28ba5ec927766d2c381949e70338",
+      "backend/app/knowledge/context_builder.py": "5961577061497365eda082b0a23f6fb8e50611de29c80142426a03933d983e0c",
+      "backend/app/knowledge/context_selection.py": "5014f9f9289fdb7f42e320b47f870c613ba2ad5bd4f82dd5a5081bb03f59fc38",
+      "backend/app/knowledge/parent_context_selection.py": "7b7c56bf467414b946448551b96bf86dd4450a42b25af10268cfc2a67b1e82df",
+      "backend/app/knowledge/evidence_selection.py": "18f8b7cb127dc2fcc59187af1af71c70cd95f95d87b3a776d58db0c3c0fef8e0",
+      "backend/app/knowledge/evidence_coordinator.py": "af3b8da5ad36cb42f4cb4eff72d10f40ab44b8d78ea897d6efbcb3bd43d52d37",
+      "backend/app/knowledge/evidence_feedback.py": "f8f29acb78d78f29b59bb91ccd64e90be42e20ae894a14ede46c04d0374bdf03",
+      "backend/app/knowledge/answer_contract.py": "75393a0c38ae665a6d6a24a637371baa37e2ff2cbc083a78b90c68f62b2396f9",
+      "backend/app/knowledge/answer_constraints.py": "3aaec3fd654ec1cdffb734bf64c89d99b124f212770bcfe903ef6575badaa963",
+      "backend/app/knowledge/answer_coverage.py": "fd7ff75430f8e316e1dd384ab70019efe177b84ddb922a9d051289a0c33d1734",
+      "backend/app/knowledge/condition_requirements.py": "8c4dc9e87efee06ca44fd5424346ee15f19ca1c372324534470fb01e442fb589",
+      "backend/app/knowledge/output_contract.py": "44a24b3d85de7dccfa0e8379d6620c957becd3caa85df55547f88eeb2ff0495f",
+      "backend/app/knowledge/answer_service.py": "8b0b9672b08313cc9e659eb66ee7d7f9d0044dde98011d1e78ba2f72d9ab5283",
+      "backend/app/knowledge/answer_repair.py": "4f9fc5ffa2725bb4ddaf8142ffc3ea7c6782d14ea8ce57c08e21e31ddaae4f7f",
+      "backend/app/manufacturing/source_statements.py": "2d95987a098ae1610d184e1648592710b2da187f42d49e807a7657a8bd02a296",
+      "backend/app/manufacturing/answer_context.py": "4e86e860bff8e7b85825afaab2c631ef64a3d7c583a2f40482b047369bb39d25",
+      "backend/app/manufacturing/generation_models.py": "3391d75c0d759310432a037b3744320c2e7f7de06ea23fec3e83f3952d6d77a0",
+      "backend/app/knowledge/prompts.py": "5a33daabb64c12f7b65e203ea1c1a078ee2e29adba8f9846b6feba61a27ecf23",
+      "backend/app/manufacturing/generation_selection.py": "fd2190de862d3fdd27365f559a9206bec7e90592e2d344e6f41c2c9f49e355a2"
+    },
+    "prompt_retrieval_and_context_unchanged": true,
+    "only_changed_business_files": [
+      "backend/app/knowledge/answer_models.py",
+      "backend/app/knowledge/answer_validation.py"
+    ],
+    "model_calls": 0
+  },
+  "specific_behavior": {
+    "schema_version": "manufacturing-empty-gap-filename-seven-specific-audit-v1",
+    "cases": [
+      {
+        "case_id": "MFG-GOLD-010",
+        "old_validator_same_processed_draft": {
+          "valid": true,
+          "errors": []
+        },
+        "current_validator": {
+          "valid": true,
+          "errors": []
+        },
+        "first_claims": [
+          {
+            "text": "HC-WI-A17-020 2.0版本不能直接给出主轴转速和进给量，该指导书中未包含这些参数，操作前必须取得适用的批准工艺文件。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "HC-WI-A17-020 2.0版本不能直接给出主轴转速和进给量，该指导书中未包含这些参数，操作前必须取得适用的批准工艺文件。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "现有HC-WI-A17-020 2.0能直接给出主轴转速和进给吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "本指导书没有给出主轴转速、切削速度或进给量，操作前必须取得适用的批准工艺文件。",
+              "aspect": "HC-WI-A17-020 2.0是否包含主轴转速和进给",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "completion": [],
+        "repair": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          }
+        ],
+        "filename_numeric_fix_exercised_in_new_claims": false
+      },
+      {
+        "case_id": "MFG-GOLD-019",
+        "old_validator_same_processed_draft": {
+          "valid": true,
+          "errors": []
+        },
+        "current_validator": {
+          "valid": true,
+          "errors": []
+        },
+        "first_claims": [
+          {
+            "text": "当前作业卡PO-JOB00009已开工，其实际开工时间记录为未知。",
+            "citations": [
+              "业务22"
+            ]
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "同工单另一张所选作业卡已开工，当前卡PO-JOB00009也已开工吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "工单ERP-WO-EXECUTION的作业卡PO-JOB00009的实际开工时间为未知",
+              "aspect": "E",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "completion": [],
+        "repair": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          }
+        ],
+        "source_card_fields": [
+          {
+            "field": "job_card_id",
+            "value": "PO-JOB00009",
+            "content": "工单ERP-WO-EXECUTION的作业卡PO-JOB00009的作业卡编号为PO-JOB00009"
+          },
+          {
+            "field": "job_card_actual_started_at",
+            "value": null,
+            "content": "工单ERP-WO-EXECUTION的作业卡PO-JOB00009的实际开工时间为未知"
+          },
+          {
+            "field": "job_card_status",
+            "value": "Open",
+            "content": "工单ERP-WO-EXECUTION的作业卡PO-JOB00009的作业卡状态为Open"
+          }
+        ],
+        "limitation": "Trace contains post-parse missing_information=null, not raw provider output; cannot determine whether the new normalizer was exercised. Same processed draft passing old validator does not establish acceptance of the unsaved raw payload."
+      },
+      {
+        "case_id": "MFG-GOLD-003",
+        "old_validator_same_processed_draft": {
+          "valid": true,
+          "errors": []
+        },
+        "current_validator": {
+          "valid": true,
+          "errors": []
+        },
+        "first_claims": [
+          {
+            "text": "1.0版首件数量为连续检查2件，停机条款为更换定位治具后必须重新进行首件确认；2.0版首件数量为连续检查3件，停机条款在更换定位治具基础上增加连续停机超过4小时后重新开工需重新首件确认。",
+            "citations": [
+              "资料1",
+              "资料2",
+              "资料3"
+            ]
+          },
+          {
+            "text": "当前旧工单ERP-WO-EXECUTION适用1.0版。",
+            "citations": [
+              "资料1",
+              "资料3",
+              "业务1",
+              "业务4",
+              "业务3"
+            ]
+          },
+          {
+            "text": "判断依据为该工单实际开工时间为2026-09-28T08:10:00+08:00，早于2026年10月1日，且无书面切换通知，故沿用1.0版。",
+            "citations": [
+              "资料1",
+              "资料3",
+              "业务4"
+            ]
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "比较1.0与2.0的首件数量、停机条款，并说明当前旧工单用哪版。"
+            },
+            {
+              "id": "P1",
+              "question": "比较1.0与2.0的首件数量、停机条款，并说明当前旧工单用哪版。",
+              "auxiliary": true
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "answerable",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [
+            "缺少辅助计划的覆盖记录：P1"
+          ],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "completion": [],
+        "repair": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          }
+        ]
+      },
+      {
+        "case_id": "MFG-GOLD-012",
+        "old_validator_same_processed_draft": {
+          "valid": true,
+          "errors": []
+        },
+        "current_validator": {
+          "valid": true,
+          "errors": []
+        },
+        "first_claims": [
+          {
+            "text": "首件检验记录必须填写工单号、批次号、指导书版本、量具编号、检验人、检验时间、逐项结果和质量签署。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "首件检验记录必须填写工单号、批次号、指导书版本、量具编号、检验人、检验时间、逐项结果和质量签署。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "首件检验记录必须包含哪些信息？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "首件检验记录必须填写工单号、批次号、指导书版本、量具编号、检验人、检验时间、逐项结果和质量签署。",
+              "aspect": "首件检验记录必须包含的信息",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "completion": [],
+        "repair": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          }
+        ]
+      },
+      {
+        "case_id": "MFG-GOLD-015",
+        "old_validator_same_processed_draft": {
+          "valid": false,
+          "errors": [
+            "第1个结论中的完整标识缺少对应引用支持：['OP-20']",
+            "第1个结论中的数字或日期缺少证据支持：['-20']"
+          ]
+        },
+        "current_validator": {
+          "valid": false,
+          "errors": [
+            "第1个结论中的完整标识缺少对应引用支持：['OP-20']",
+            "第1个结论中的数字或日期缺少证据支持：['-20']"
+          ]
+        },
+        "first_claims": [
+          {
+            "text": "所选工序（OP-20，记录编号7pvg4cgbg0）的实际开工登记时间为2026-09-28T08:10:00+08:00。",
+            "citations": [
+              "业务18"
+            ]
+          },
+          {
+            "text": "所选工序的开工时间精度为datetime。",
+            "citations": [
+              "业务19"
+            ]
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "所选工序的实际开工登记和时间精度是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "E",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "completion": [],
+        "repair": [
+          {
+            "kind": "repair_validation",
+            "facts_verified": true,
+            "evidence_current": true,
+            "errors": [
+              "第1个结论中的完整标识缺少对应引用支持：['OP-20']",
+              "第1个结论中的数字或日期缺少证据支持：['-20']"
+            ],
+            "candidate_claims": [
+              {
+                "text": "所选工序（OP-20，记录编号7pvg4cgbg0）的实际开工登记时间为2026-09-28T08:10:00+08:00。",
+                "citations": [
+                  "业务18"
+                ]
+              },
+              {
+                "text": "所选工序的开工时间精度为datetime。",
+                "citations": [
+                  "业务19"
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "repair",
+            "outcome": "rejected",
+            "model_calls": 1
+          }
+        ],
+        "business_fields": [
+          {
+            "citation_id": "业务3",
+            "field": "operation_code",
+            "value": "OP-20",
+            "source_entity": "Work Order Operation"
+          },
+          {
+            "citation_id": "业务18",
+            "field": "operation_actual_started_at",
+            "value": "2026-09-28T08:10:00+08:00",
+            "source_entity": "Work Order Operation"
+          },
+          {
+            "citation_id": "业务19",
+            "field": "operation_start_precision",
+            "value": "datetime",
+            "source_entity": "Work Order Operation"
+          },
+          {
+            "citation_id": "业务20",
+            "field": "operation_status",
+            "value": "Work in Progress",
+            "source_entity": "Work Order Operation"
+          },
+          {
+            "citation_id": "业务24",
+            "field": "job_card_status",
+            "value": "Work In Progress",
+            "source_entity": "Job Card"
+          }
+        ]
+      },
+      {
+        "case_id": "MFG-GOLD-036",
+        "old_validator_same_processed_draft": {
+          "valid": true,
+          "errors": []
+        },
+        "current_validator": {
+          "valid": true,
+          "errors": []
+        },
+        "first_claims": [
+          {
+            "text": "不能认定。工序和作业卡显示Completed仅表示已登记生产数量（报工），该状态本身不证明首件确认或质量签署已经完成。",
+            "citations": [
+              "资料4"
+            ]
+          },
+          {
+            "claim_kind": "applicability",
+            "text": "工单ERP-WO-STARTED适用HC-WI-A17-020业务版本2.0",
+            "citations": [
+              "资料1",
+              "资料2",
+              "业务1",
+              "业务2",
+              "业务3",
+              "业务4"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "所选卡已有开工并显示Completed，能否认定首件检验和质量签署完成？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "报工完成只说明已登记生产数量,不证明首件确认或质量签署已经完成。",
+              "aspect": "E",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "completion": [],
+        "repair": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          }
+        ],
+        "business_fields": [
+          {
+            "citation_id": "业务3",
+            "field": "operation_code",
+            "value": "OP-20",
+            "source_entity": "Work Order Operation"
+          },
+          {
+            "citation_id": "业务18",
+            "field": "operation_actual_started_at",
+            "value": "2026-11-09T16:55:29.735215+08:00",
+            "source_entity": "Work Order Operation"
+          },
+          {
+            "citation_id": "业务19",
+            "field": "operation_start_precision",
+            "value": "datetime",
+            "source_entity": "Work Order Operation"
+          },
+          {
+            "citation_id": "业务20",
+            "field": "operation_status",
+            "value": "Completed",
+            "source_entity": "Work Order Operation"
+          },
+          {
+            "citation_id": "业务24",
+            "field": "job_card_status",
+            "value": "Completed",
+            "source_entity": "Job Card"
+          }
+        ],
+        "cited_source_content": [
+          {
+            "citation_id": "资料4",
+            "document_name": "02_首件确认与工序交接流程.pdf",
+            "content": "## 首件确认与工序交接流程\n\n文档编号:HC-FLOW-001版本:1.0生效日期:2026-01-01状态:现行适用范围:衡川精密已授权人员\n\n## 1 首件确认\n\n操作员按适用指导书完成首件检查,检验员核对全部必检项目。报工完成只说明已登记生产数量,不证明首件确认或质量签署已经完成。\n\n## 2 工序交接的必要条件\n\n恢复后续作业前必须同时满足以下条件:\n1. 适用指导书要求的首件检查全部合格。\n2. 检验记录写明工单、批次和量具编号。\n3. 质量人员完成签署,生产班长确认记录齐全。\n4. 存在未关闭的暂停要求时,须按书面批准的恢复条件执行。\n\n以上条件共同适用。仅有口头同意、报工记录或计划签署时间,均不能证明这些条件已经满足。"
+          }
+        ]
+      },
+      {
+        "case_id": "MFG-GOLD-091",
+        "old_validator_same_processed_draft": {
+          "valid": true,
+          "errors": []
+        },
+        "current_validator": {
+          "valid": true,
+          "errors": []
+        },
+        "first_claims": [
+          {
+            "text": "仅按DEMO-D41合成资料，交接签名不能证明质量放行。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "在DEMO-D41的检验要求中，交接签名、设备启动时间和完成数量均不能代填质量结论。",
+            "citations": [
+              "资料2",
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "接班时应关注的未完成项包括：OP-50工序的首件复核结论缺失。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "接班时应关注的未完成项还包括：OP-60工序的新映射（MAP-2）首件验证尚未完成。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，交接签名能证明质量放行吗，接班时还应关注哪些未完成项？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "不能因导通通过或交接签名而改变待处置状态。",
+              "aspect": "交接签名能否证明质量放行",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "接班时应区分验证件与待交付件，不能因导通通过或交接签名而改变待处置状态。OP-50：首件复核结论缺失；OP-60：新映射首件验证未完成。",
+              "aspect": "接班时还应关注哪些未完成项",
+              "status": "answered",
+              "claim_indices": [
+                3,
+                4
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "completion": [],
+        "repair": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          }
+        ]
+      }
+    ],
+    "input_sha256": {
+      "D:\\code\\Enterprise_knowladge\\tmp\\manufacturing-empty-gap-filename-seven-live-20261113-r9\\MFG-GOLD-010-result.json": "d05990ab8da3c06884d136bff8f842e5464ba497448c2ee13b1f4e1589c8b3ad",
+      "D:\\code\\Enterprise_knowladge\\tmp\\manufacturing-empty-gap-filename-seven-live-20261113-r9\\MFG-GOLD-019-result.json": "1443dc313bcccdccc5e007bcb3dc83a63ba6d64dbd2b3cd860f3b388e71012e8",
+      "D:\\code\\Enterprise_knowladge\\tmp\\manufacturing-empty-gap-filename-seven-live-20261113-r9\\MFG-GOLD-003-result.json": "81ec8a635de36b6cade74de81b51a4733879a09f4e0e8b0b0ef8265fddbaf780",
+      "D:\\code\\Enterprise_knowladge\\tmp\\manufacturing-empty-gap-filename-seven-live-20261113-r9\\MFG-GOLD-012-result.json": "6c8269d018863f755b25b824af6c15cbfa1b31eb9550e51319cc41d246c2a92c",
+      "D:\\code\\Enterprise_knowladge\\tmp\\manufacturing-empty-gap-filename-seven-live-20261113-r9\\MFG-GOLD-015-result.json": "82a5c7e764762e6573a17663cecf6ea3d592348fa269e95ef94f345021a0de0a",
+      "D:\\code\\Enterprise_knowladge\\tmp\\manufacturing-empty-gap-filename-seven-live-20261113-r9\\MFG-GOLD-036-result.json": "ea5aff2108510c4927745efca9d0ad493e8ec60de00e2917f06ccbce85972d60",
+      "D:\\code\\Enterprise_knowladge\\tmp\\manufacturing-empty-gap-filename-seven-live-20261113-r9\\MFG-GOLD-091-result.json": "0086a44692c681b6ff8d9ba7fa5ea01029bdbac36d4793ee0dceefba5bda2ab1"
+    },
+    "inputs_unchanged": true,
+    "old_validator_sha256": "b7745a93a5b47894ea848d959694a769789e58bce76605dec0193e310b993a60",
+    "all_same_processed_draft_validator_outcomes": true,
+    "model_calls": 0,
+    "api_calls": 0,
+    "database_calls": 0,
+    "network": false,
+    "limits": "Processed saved drafts only. Not a controlled provider-request A/B; cannot recover normalized-away raw fields or infer stochastic causality."
+  },
+  "preservation": {
+    "original_containers": 128,
+    "changed_containers": [],
+    "protected_files": 2436,
+    "changed_files": []
+  },
+  "authorization_closure": {
+    "status": "closed",
+    "closed_at": "2026-11-13T13:30:40.204794+00:00",
+    "executed": 7,
+    "physical_calls": 19,
+    "budget_tokens": 60157,
+    "unknown_calls": 0,
+    "request_retries": 0,
+    "continuations": false,
+    "unused_allowance_reusable": false,
+    "postflight_ledger_unchanged": true
+  },
+  "final_original_preservation": {
+    "old_containers": 128,
+    "unchanged_containers": 125,
+    "changed_only_dependency_start_times": [
+      "/gold100-v2-milvus-20261112-r1",
+      "/gold100-v2-minio-20261112-r1",
+      "/gold100-v2-etcd-20261112-r1"
+    ],
+    "old_statuses_restored": true,
+    "original_workbench_changes": false,
+    "models": 0
+  }
+}

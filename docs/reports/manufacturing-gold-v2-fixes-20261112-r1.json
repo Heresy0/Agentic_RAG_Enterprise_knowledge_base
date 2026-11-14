@@ -1,0 +1,218 @@
+{
+  "schema_version": "manufacturing-gold-v2-zero-model-fixes-v1",
+  "date": "2026-11-12",
+  "branch": "codex/manufacturing-gold-v2-fixes",
+  "base_commit": "34de983",
+  "dataset_corpus_commit": "7d84b68",
+  "model_calls": 0,
+  "real_model_cases": 0,
+  "new_accuracy": null,
+  "old_results_combined": false,
+  "dataset": {
+    "path": "evals/manufacturing_gold_100_v2",
+    "cases": 100,
+    "scope_revised_cases": [
+      8,
+      18,
+      19,
+      44,
+      45,
+      46,
+      61,
+      63,
+      79,
+      80,
+      81
+    ],
+    "changed_records": 28,
+    "required_facts": 280,
+    "optional_facts": 14,
+    "human_approved": 0,
+    "independent": false,
+    "executed_cases": 0,
+    "manifest_sha256": "8b69413dce6a18e251aa8e075aed02a9530d3838f8493b160dfa4016eedfc553"
+  },
+  "tests": {
+    "focused_passed": 238,
+    "nonintegration_passed": 2442,
+    "skipped": 1,
+    "integration_deselected": 98,
+    "supplemental_alias_constraint_passed": 1,
+    "real_external_http_blocked": true,
+    "blocked_hosts": [],
+    "live_source_validation": false,
+    "database_integration_run": false,
+    "browser_acceptance": false
+  },
+  "frozen_replay": {
+    "kind": "zero_model_frozen_contract_replay",
+    "replays": [
+      {
+        "case_id": "MFG-GOLD-049",
+        "frozen_result_sha256": "71a201279652ffa958e86915f9021fed2cf27c6d438939caf8791106d6d577e2",
+        "frozen_validation_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['2026-11-02']",
+          "第2个结论中的数字或日期缺少证据支持：['2026-11-02']"
+        ],
+        "current_code_original_context_valid": false,
+        "original_context_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['2026-11-02']",
+          "第2个结论中的数字或日期缺少证据支持：['2026-11-02']"
+        ],
+        "context_timestamp_replacements": 3,
+        "corrected_context_valid": true,
+        "semantic_regraded": false
+      },
+      {
+        "case_id": "MFG-GOLD-062",
+        "frozen_result_sha256": "ec503b11f7d0bbd13c982827b836097fa17a31f708d5ec89f94319ea97c1a560",
+        "frozen_validation_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['4']"
+        ],
+        "current_code_original_context_valid": true,
+        "original_context_errors": [],
+        "context_timestamp_replacements": 0,
+        "corrected_context_valid": true,
+        "semantic_regraded": false
+      },
+      {
+        "case_id": "MFG-GOLD-064",
+        "frozen_result_sha256": "66ee0dc0b2dcf0ddf1537580452bee0b6ee0bc6a784b5547e9988f41d8879201",
+        "frozen_validation_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['2026-11-04']"
+        ],
+        "current_code_original_context_valid": false,
+        "original_context_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['2026-11-04']"
+        ],
+        "context_timestamp_replacements": 9,
+        "corrected_context_valid": true,
+        "semantic_regraded": false
+      },
+      {
+        "case_id": "MFG-GOLD-067",
+        "frozen_result_sha256": "976af361c1f9a7be74c3bfd87ebe0d677ff12a453f9721f8e0aea4225ea47856",
+        "frozen_validation_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['2026-11-04']",
+          "第2个结论中的数字或日期缺少证据支持：['2026-11-04']"
+        ],
+        "current_code_original_context_valid": false,
+        "original_context_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['2026-11-04']",
+          "第2个结论中的数字或日期缺少证据支持：['2026-11-04']"
+        ],
+        "context_timestamp_replacements": 3,
+        "corrected_context_valid": true,
+        "semantic_regraded": false
+      },
+      {
+        "case_id": "MFG-GOLD-072",
+        "frozen_result_sha256": "63e5abcbe1036b62bf85789343002344b11b0a609cc63471a3f15f904cc0f2e4",
+        "frozen_validation_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['9']",
+          "第2个结论中的数字或日期缺少证据支持：['9']"
+        ],
+        "current_code_original_context_valid": true,
+        "original_context_errors": [],
+        "context_timestamp_replacements": 0,
+        "corrected_context_valid": true,
+        "semantic_regraded": false
+      },
+      {
+        "case_id": "MFG-GOLD-082",
+        "frozen_result_sha256": "cbd67f5c9bfcf10a2009a68c063a51a763381e747ffe9942332fafef079bf056",
+        "frozen_validation_errors": [
+          "第2个结论中的数字或日期缺少证据支持：['2026-11-06']"
+        ],
+        "current_code_original_context_valid": false,
+        "original_context_errors": [
+          "第2个结论中的数字或日期缺少证据支持：['2026-11-06']"
+        ],
+        "context_timestamp_replacements": 9,
+        "corrected_context_valid": true,
+        "semantic_regraded": false
+      },
+      {
+        "case_id": "MFG-GOLD-085",
+        "frozen_result_sha256": "88c78addef1d3ff60133a2c22322602bff9e4b9cc1d25e4f0e47a18a37289e92",
+        "frozen_validation_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['2026-11-06']"
+        ],
+        "current_code_original_context_valid": false,
+        "original_context_errors": [
+          "第1个结论中的数字或日期缺少证据支持：['2026-11-06']"
+        ],
+        "context_timestamp_replacements": 3,
+        "corrected_context_valid": true,
+        "semantic_regraded": false
+      }
+    ],
+    "parsed_corpus": [
+      {
+        "id": "ZH-B21-08",
+        "path": "sample_docs/manufacturing_zh_corrections_v2/documents/ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+        "chunks": 14,
+        "timestamps": 3,
+        "timestamps_intact_in_chunks": true,
+        "sha256": "508b97f2b42b57eae7b42341d643eb9e7bb485f068329250eed0b526aa96dcfc"
+      },
+      {
+        "id": "ZH-C31-08",
+        "path": "sample_docs/manufacturing_zh_corrections_v2/documents/ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+        "chunks": 14,
+        "timestamps": 3,
+        "timestamps_intact_in_chunks": true,
+        "sha256": "446e8f6eaa46026cbe0d31cb0d5f6c6cdc5bb3cb68405c4a45399a2248760235"
+      },
+      {
+        "id": "ZH-D41-08",
+        "path": "sample_docs/manufacturing_zh_corrections_v2/documents/ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+        "chunks": 14,
+        "timestamps": 3,
+        "timestamps_intact_in_chunks": true,
+        "sha256": "258063f5efac40dd0a5fe509c997e16b349c305f787088932f19bd3d9d8f0be6"
+      }
+    ],
+    "model_calls": 0,
+    "network_attempts": 0,
+    "qa_requests": 0,
+    "indexing": false,
+    "new_semantic_score": false,
+    "limitation": "Frozen draft/context replay is not live retrieval, new generation or full semantic coverage."
+  },
+  "preservation": {
+    "old_containers": 75,
+    "old_running": 52,
+    "changed_containers": [],
+    "new_containers": [
+      "/personal-rag-mcp-run-23c695a52fe5",
+      "/personal-rag-mcp-run-c57e335ac31a"
+    ],
+    "protected_files": 416,
+    "changed_files": [],
+    "scope": "Container metadata and protected file bytes only; no database or model ledger query."
+  },
+  "preservation_manifest_sha256": "c2e6c00f7f240a44b5048a956cd1640629fdac5761269dfa769d6b307cf81ff7",
+  "private_log_sha256": {
+    "focused-r1.log": "464a7fcf889a935f2eb271a722d0ceb5eb72193fa5a87516a5e5f903a06764b1",
+    "focused-r2.log": "46f8ff37fc2bc73dcd13dd012276a6c889c75d377fafec1f440766964d1b409d",
+    "regression-r1.log": "eda33845b862e052cb736581a50c5578bca05d9f5f63a58fb268c78f29dcaa39",
+    "alias-guard.log": "a7962885d0cceb621537bd6e646849a47aba3d1940627b09ce502779e63ea381",
+    "gold-v2-check.log": "12b75890d8de2029f204b3462c6eb4d2eacbb2fdea624ab9755b1f9475bf6814",
+    "gold-v1-check.log": "42f10aeae30e4783ef1de99ef4e51c8327c79f64e3581a0f717301e1446125f4",
+    "legacy-evaluate-check.log": "9dbaf359cd39f09972cb61fdc535b3bc052e5b3e6d0622cd665d72b2f308d519"
+  },
+  "limitations": [
+    "Not a new model evaluation or independent business acceptance.",
+    "No container, database, index, permission or sample approval updates.",
+    "No independent runtime model ledger audit in this task.",
+    "Semantic coverage and cases 060/086 remain unresolved; case 001 legitimate citation rejection retained."
+  ],
+  "delivery_checks": {
+    "python_compile_passed": true,
+    "diff_whitespace_passed": true,
+    "local_links_checked": 156,
+    "missing_links": [],
+    "secret_patterns_found": false
+  }
+}

@@ -21,6 +21,7 @@ export function tokenClaims(token) {
 export class AuthSession {
   constructor(config) {
     this.config = config;
+    this.pendingKey = PENDING_KEY + (config.base_path || "");
     this.accessToken = null;
     this.refreshToken = null;
     this.idToken = null;
@@ -36,7 +37,7 @@ export class AuthSession {
     this.epoch += 1;
     this.accessToken = this.refreshToken = this.idToken = this.claims = null;
     this.refreshing = null;
-    sessionStorage.removeItem(PENDING_KEY);
+    sessionStorage.removeItem(this.pendingKey);
   }
 
   useToken(value) {
@@ -59,9 +60,9 @@ export class AuthSession {
     if (!crypto.subtle) throw new Error("企业登录需要 HTTPS 或 localhost / 127.0.0.1 环境。");
     const verifier = base64url(crypto.getRandomValues(new Uint8Array(48)));
     const state = base64url(crypto.getRandomValues(new Uint8Array(32)));
-    const redirect = `${location.origin}/`;
+    const redirect = `${location.origin}${this.config.base_path || ""}/`;
     const challenge = base64url(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier))));
-    sessionStorage.setItem(PENDING_KEY, JSON.stringify({ verifier, state, redirect, created: Date.now() }));
+    sessionStorage.setItem(this.pendingKey, JSON.stringify({ verifier, state, redirect, created: Date.now() }));
     const url = new URL(`${this.config.issuer}/protocol/openid-connect/auth`);
     url.search = new URLSearchParams({ client_id: this.config.client_id, redirect_uri: redirect, response_type: "code", scope: "openid profile", state, code_challenge: challenge, code_challenge_method: "S256" });
     location.assign(url.href);
@@ -70,9 +71,9 @@ export class AuthSession {
   async callback() {
     const params = new URLSearchParams(location.search);
     if (!params.has("code") && !params.has("error")) return false;
-    const saved = sessionStorage.getItem(PENDING_KEY);
-    sessionStorage.removeItem(PENDING_KEY);
-    history.replaceState({}, "", "/"); // Remove authorization code before other requests.
+    const saved = sessionStorage.getItem(this.pendingKey);
+    sessionStorage.removeItem(this.pendingKey);
+    history.replaceState({}, "", `${this.config.base_path || ""}/`); // Remove authorization code before other requests.
     const pending = saved ? JSON.parse(saved) : null;
     if (!pending || pending.state !== params.get("state") || Date.now() - pending.created > 600000 || (params.has("iss") && params.get("iss") !== this.config.issuer)) {
       throw new Error("登录校验失败或登录请求已过期，请重新登录。");
@@ -122,7 +123,7 @@ export class AuthSession {
     this.clear();
     if (idToken) {
       const url = new URL(`${this.config.issuer}/protocol/openid-connect/logout`);
-      url.search = new URLSearchParams({ id_token_hint: idToken, post_logout_redirect_uri: `${location.origin}/` });
+      url.search = new URLSearchParams({ id_token_hint: idToken, post_logout_redirect_uri: `${location.origin}${this.config.base_path || ""}/` });
       location.assign(url.href);
     }
   }

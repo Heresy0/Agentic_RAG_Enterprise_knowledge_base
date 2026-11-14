@@ -69,7 +69,7 @@ async function api(path, options = {}) {
   const headers = new Headers(options.headers);
   headers.set("Authorization", `Bearer ${token}`);
   if (options.body && !(options.body instanceof FormData)) headers.set("Content-Type", "application/json");
-  const response = await fetch(path, { ...requestOptions, headers, signal: AbortSignal.timeout(path.endsWith("/qa") ? 180000 : 120000), credentials: "same-origin" });
+  const response = await fetch((state.config?.base_path || "") + path, { ...requestOptions, headers, signal: AbortSignal.timeout(path.endsWith("/qa") ? 180000 : 120000), credentials: "same-origin" });
   if (epoch !== state.auth.epoch) throw new Error("登录状态已改变，请重试。");
   let data = null;
   if (response.status !== 204) {
@@ -753,7 +753,7 @@ function message(role, text) {
 
 async function checkHealth() {
   try {
-    const response = await fetch("/health/ready", { signal: AbortSignal.timeout(5000) });
+    const response = await fetch("./health/ready", { signal: AbortSignal.timeout(5000) });
     if (!response.ok) throw new Error();
     $("health").classList.add("online"); $("health").lastChild.textContent = "服务在线";
   } catch { $("health").classList.remove("online"); $("health").lastChild.textContent = "服务暂不可用"; }
@@ -889,9 +889,16 @@ $("question").addEventListener("keydown", event => {
 
 async function init() {
   try {
-    const response = await fetch("/ui/config");
+    const response = await fetch("./ui/config");
     if (!response.ok) throw new Error("无法加载登录配置，请检查 API 服务。");
     state.config = await response.json(); state.auth = new AuthSession(state.config);
+    const workspaces = state.config.workspaces || [];
+    $("workspace-selector").hidden = workspaces.length === 0;
+    for (const workspace of workspaces) {
+      const option = element("option", workspace.label); option.value = workspace.path;
+      $("workspace-switch").append(option);
+    }
+    $("workspace-switch").value = (state.config.base_path || "") + "/";
     $("upload-description").textContent = `支持 PDF、DOCX、TXT、Markdown · 单文件最大 ${Math.round(state.config.max_upload_bytes / 1048576)} MB`;
     if (await state.auth.callback()) await connect();
     else notice("登录企业账号后，即可在有权限的知识库中提问。", false);
@@ -899,4 +906,5 @@ async function init() {
   updateControls(); await checkHealth();
   setInterval(checkHealth, 60000);
 }
+$("workspace-switch").addEventListener("change", event => location.assign(event.target.value));
 init();

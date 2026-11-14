@@ -1,0 +1,767 @@
+{
+  "schema_version": "manufacturing-paired-prompt-comparison-v1",
+  "source_revision": "e2cce36bcdb76702efb220444e658baaaf34871f",
+  "model": "qwen3.7-flash",
+  "physical_calls": 54,
+  "cases": 9,
+  "repeats": 3,
+  "variants": {
+    "current": {
+      "attempts": 27,
+      "transport_success": 27,
+      "local_valid": 27,
+      "semantic_passed": 22,
+      "draft_required_facts_satisfied": 64,
+      "deliverable_required_facts_satisfied": 64,
+      "required_fact_observations": 66,
+      "unsupported_or_citation_issue_trials": 3,
+      "forbidden_violation_trials": 0,
+      "stable_pass_cases": 6,
+      "stable_fail_cases": 1,
+      "source_success_passed": 15,
+      "source_failure_passed": 7,
+      "input_tokens": 169098,
+      "output_tokens": 9692,
+      "cached_input_tokens": 59648,
+      "known_tokens": 178790,
+      "unknown_calls": 0,
+      "reasoning_tokens_reported": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "returned_models": [
+        "qwen3.7-flash"
+      ],
+      "latency_ms": {
+        "min": 2514.984,
+        "median": 4093.83,
+        "mean": 4449.252444444444,
+        "max": 7119.653
+      },
+      "cases": [
+        {
+          "case_id": "MFG-GOLD-006",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 3,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-010",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 3,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-012",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 1,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-043",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 3,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-051",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            false,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            false,
+            true,
+            true
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 1,
+              "issues": [],
+              "note": "主否定判断及实际第二批次归属均属不变v4必答。 本次只否定属于第一批次，未交付实际所属第二批次DEMO-BATCH-B21-2。",
+              "validation_errors": []
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-060",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            false,
+            false,
+            false
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 0,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 1,
+              "issues": [
+                "将属于检测台/OP-40的正式原始数据关联尚未完成，补为OP-30缺项，跨工序错归。"
+              ],
+              "note": "20件、方向检查未登记、不能确认完整完成分别作答；其他工序及规范要求不自动成为当前缺项。",
+              "validation_errors": []
+            },
+            {
+              "repeat": 2,
+              "issues": [
+                "先正确说无法确认完整完成，又把交接不能证明放行解释为进一步证实当前检查未完成，由证据不足越界断言实际状态。"
+              ],
+              "note": "20件、方向检查未登记、不能确认完整完成分别作答；其他工序及规范要求不自动成为当前缺项。",
+              "validation_errors": []
+            },
+            {
+              "repeat": 3,
+              "issues": [
+                "由方向检查结果未登记推断相关检查尚未完整完成，并下综合判断检查未完成；混同缺记录与实际未执行。"
+              ],
+              "note": "20件、方向检查未登记、不能确认完整完成分别作答；其他工序及规范要求不自动成为当前缺项。",
+              "validation_errors": []
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-064",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 3,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-091",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 3,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-095",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            true,
+            false,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            false,
+            true
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 2,
+              "issues": [],
+              "note": "按库内归档指南回答五环节、职责权限及跨部门/部门内机制，不当作当前法律意见或企业已落实。 本次漏跨部门及部门内数据管理机制建设。",
+              "validation_errors": []
+            }
+          ]
+        }
+      ]
+    },
+    "candidate": {
+      "attempts": 27,
+      "transport_success": 27,
+      "local_valid": 26,
+      "semantic_passed": 24,
+      "draft_required_facts_satisfied": 65,
+      "deliverable_required_facts_satisfied": 60,
+      "required_fact_observations": 66,
+      "unsupported_or_citation_issue_trials": 1,
+      "forbidden_violation_trials": 0,
+      "stable_pass_cases": 6,
+      "stable_fail_cases": 0,
+      "source_success_passed": 14,
+      "source_failure_passed": 10,
+      "input_tokens": 119607,
+      "output_tokens": 8177,
+      "cached_input_tokens": 66816,
+      "known_tokens": 127784,
+      "unknown_calls": 0,
+      "reasoning_tokens_reported": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "returned_models": [
+        "qwen3.7-flash"
+      ],
+      "latency_ms": {
+        "min": 2357.461,
+        "median": 3500.332,
+        "mean": 3359.146740740741,
+        "max": 4971.975
+      },
+      "cases": [
+        {
+          "case_id": "MFG-GOLD-006",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            true,
+            false,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 2,
+              "issues": [
+                "额外说必须为连续停机超过4小时后才需重新首件，按此前口径视作把特定阈值扩大为首件确认的必要条件。该句也可能被理解为仅解释该停机条款，属于需披露的语境判读不确定性。"
+              ],
+              "note": "只判恰好4小时不命中特定超过条款，不要求罗列未问的其他首件触发；不将明确唯一必要条件泛化放过。",
+              "validation_errors": []
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-010",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 1,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-012",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 1,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-043",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 2,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-051",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            true,
+            true,
+            false
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            false
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 3,
+              "issues": [],
+              "note": "主否定判断及实际第二批次归属均属不变v4必答。 本次只否定属于第一批次，未交付实际所属第二批次DEMO-BATCH-B21-2。",
+              "validation_errors": []
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-060",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 3,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-064",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            false,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 2,
+          "distinct_answers": 3,
+          "failures": [
+            {
+              "repeat": 2,
+              "issues": [],
+              "note": "两个实体ID、08:12/08:17及不同分别正确。 当前未改输出门禁拒绝：第3个结论中的数字或日期缺少证据支持：['5']。 5分钟算术正确，但原文未直接给出且既有链未提供该时间差结果；属额外派生结论与当前数值契约不匹配，不称计算错误。没有修后计分。",
+              "validation_errors": [
+                "第3个结论中的数字或日期缺少证据支持：['5']"
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "MFG-GOLD-091",
+          "source_r12_passed": true,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 2,
+          "failures": []
+        },
+        {
+          "case_id": "MFG-GOLD-095",
+          "source_r12_passed": false,
+          "passed_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "required_complete_by_repeat": [
+            true,
+            true,
+            true
+          ],
+          "passes": 3,
+          "distinct_answers": 3,
+          "failures": []
+        }
+      ]
+    }
+  },
+  "paired": {
+    "candidate_only": 5,
+    "current_only": 3,
+    "both_pass": 19,
+    "neither_pass": 0,
+    "trials": [
+      {
+        "case_id": "MFG-GOLD-006",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-006",
+        "repeat": 2,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-006",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-010",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-010",
+        "repeat": 2,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-010",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-012",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-012",
+        "repeat": 2,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-012",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-043",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-043",
+        "repeat": 2,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-043",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-051",
+        "repeat": 1,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-051",
+        "repeat": 2,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-051",
+        "repeat": 3,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-060",
+        "repeat": 1,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-060",
+        "repeat": 2,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-060",
+        "repeat": 3,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-064",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-064",
+        "repeat": 2,
+        "current": true,
+        "candidate": false
+      },
+      {
+        "case_id": "MFG-GOLD-064",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-091",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-091",
+        "repeat": 2,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-091",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-095",
+        "repeat": 1,
+        "current": true,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-095",
+        "repeat": 2,
+        "current": false,
+        "candidate": true
+      },
+      {
+        "case_id": "MFG-GOLD-095",
+        "repeat": 3,
+        "current": true,
+        "candidate": true
+      }
+    ]
+  },
+  "known_tokens": 306574,
+  "budget": {
+    "calls": 54,
+    "charged_tokens": 306574,
+    "unknown_calls": 0,
+    "elapsed_seconds": 212.016,
+    "limited_by": null
+  },
+  "limits": {
+    "max_model_calls": 54,
+    "max_tokens": 2000000,
+    "max_seconds": 5400,
+    "reservation_tokens": 32000
+  },
+  "authorization_closed": true,
+  "pending": 0,
+  "retries": 0,
+  "repairs": 0,
+  "retrieval_calls": 0,
+  "system_characters": [
+    {
+      "case_id": "MFG-GOLD-006",
+      "current": 6360,
+      "candidate": 3067
+    },
+    {
+      "case_id": "MFG-GOLD-010",
+      "current": 6360,
+      "candidate": 3067
+    },
+    {
+      "case_id": "MFG-GOLD-012",
+      "current": 6360,
+      "candidate": 3067
+    },
+    {
+      "case_id": "MFG-GOLD-043",
+      "current": 6360,
+      "candidate": 3067
+    },
+    {
+      "case_id": "MFG-GOLD-051",
+      "current": 6360,
+      "candidate": 3067
+    },
+    {
+      "case_id": "MFG-GOLD-060",
+      "current": 6644,
+      "candidate": 3351
+    },
+    {
+      "case_id": "MFG-GOLD-064",
+      "current": 6407,
+      "candidate": 3114
+    },
+    {
+      "case_id": "MFG-GOLD-091",
+      "current": 6360,
+      "candidate": 3067
+    },
+    {
+      "case_id": "MFG-GOLD-095",
+      "current": 6360,
+      "candidate": 3067
+    }
+  ],
+  "unchanged_business_files": 168,
+  "protected_input_files": 197,
+  "protected_inputs_unchanged": true,
+  "gold100_score": false,
+  "old_scores_modified": false,
+  "independent": false,
+  "human_factory_platform_approvals": 0,
+  "thinking_requested": false,
+  "thinking_usage_missing_is_not_proof": true,
+  "actual_billed_cost_unknown": true,
+  "limitations": "Known development cases, reconstructed historical headers, component experiment without live source checks, no holdout.",
+  "candidate_version": "v2",
+  "semantic_adjudication_sensitivity": {
+    "case_id": "MFG-GOLD-006",
+    "variant": "candidate",
+    "repeat": 2,
+    "primary_passed": false,
+    "alternative_scoped_reading_passed": true,
+    "primary_candidate_total": 24,
+    "alternative_candidate_total": 25,
+    "note": "必要条件泛化或仅解释停机条款的语境分歧；不据此修改主判定或旧成绩。"
+  },
+  "empty_citation_trials": {
+    "current": 0,
+    "candidate": 0
+  },
+  "invalid_coverage_indices_trials": {
+    "current": 0,
+    "candidate": 0
+  },
+  "example_name_observed_in_outputs": false
+}

@@ -38,8 +38,28 @@ def test_config_only_exposes_public_browser_settings(client):
         "issuer": "http://127.0.0.1:8080/realms/enterprise-knowledge",
         "client_id": "enterprise-knowledge-web",
         "max_upload_bytes": 20971520,
+        "base_path": "",
+        "workspaces": [],
     }
     assert "must-not-be-exposed" not in response.text
+
+
+def test_workspace_navigation_is_deployment_selected(client):
+    client.app.state.settings.unified_workspace_navigation = True
+    assert client.get('/ui/config').json()['workspaces'] == [
+        {'label': '通用知识', 'path': '/'},
+        {'label': 'ERP工作区', 'path': '/erp/'},
+        {'label': 'MES工作区', 'path': '/mes/'},
+    ]
+
+
+@pytest.mark.parametrize('prefix', ['/erp', '/mes'])
+def test_workspace_config_keeps_the_server_root_path(client, prefix):
+    client.app.root_path = prefix
+    assert client.get(prefix + '/ui/config').json()['base_path'] == prefix
+    page = client.get(prefix + '/')
+    assert page.status_code == 200
+    assert 'src="./ui/assets/app.js"' in page.text
 
 
 @pytest.mark.parametrize("asset", ["app.js", "auth.js", "quality.js", "verification.js", "styles.css"])

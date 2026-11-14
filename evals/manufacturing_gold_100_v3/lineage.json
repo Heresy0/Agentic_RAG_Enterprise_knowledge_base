@@ -1,0 +1,68 @@
+{
+  "base_dataset": "evals/manufacturing_gold_100_v2",
+  "base_files_sha256": {
+    "cases.jsonl": "eb45aa090ae4ff2a1999e51a4e72161df845520997418b040dca2c2e74b3cbd9",
+    "lineage.json": "45115542d0c36c1aac1526e6065c2d69149bcf0456c044842b93a2e17e9cc8fa",
+    "manifest.json": "8b69413dce6a18e251aa8e075aed02a9530d3838f8493b160dfa4016eedfc553",
+    "README.md": "a603bd6fe0ddd894a996423b5069e04cdd6e2cb7c00093668aebdf497c458b8a",
+    "REVIEW.md": "a59f71fcf93f20b99688b87b47f5ce6b25ba739188e28ad840af55a5f4e09974",
+    "reviews.jsonl": "3e7ba57b8f5cdb1f7c0eec347c61090f61f9e454b6a9d98caa2c3af9deafba18",
+    "sources.json": "d97aede4a78567d7c9e16159a0f03f1b92d82fcd8238131bb5d6fd036308711e"
+  },
+  "scope_revised_cases": [
+    "MFG-GOLD-006",
+    "MFG-GOLD-007",
+    "MFG-GOLD-011",
+    "MFG-GOLD-019",
+    "MFG-GOLD-064",
+    "MFG-GOLD-072",
+    "MFG-GOLD-090"
+  ],
+  "known_results": "evals/manufacturing_gold_100_live_v2/runs/20261112-r1",
+  "old_scores_recomputed": false,
+  "independent_holdout": false,
+  "changes": [
+    {
+      "case_id": "MFG-GOLD-006",
+      "old_case_sha256": "d0eda235aeb0a23e8c6f183ae48856207d6dfb4bd049ed70bdc0b94ad66b5445",
+      "new_case_sha256": "f793003f8226c52829fff224c87948e5cffc091875e5f3334157cffaf783641c",
+      "reason": "只问是否命中超过4小时条款；重新开工语境及其他触发条件改为可选，禁止无条件恢复的结论不变。"
+    },
+    {
+      "case_id": "MFG-GOLD-007",
+      "old_case_sha256": "e93d6654a28c1250f020442629023e35fac2b643a45de9baea1847706f627ccd",
+      "new_case_sha256": "c918a1d2b08e5b8958d34c811be3af3bcd4964f30fc42c808608d9bd16acad1f",
+      "reason": "问句已给出停机5小时后重新开工；触发原因改为可选，重新首件、数量、必检及签署要求仍为必答。"
+    },
+    {
+      "case_id": "MFG-GOLD-011",
+      "old_case_sha256": "ed16289886c975b50f6db23e129ea6b50c648eda6d888eb75bb82cfa71574ea6",
+      "new_case_sha256": "94e0ae2b9c5f4eb0cca414bc6d74ee528a096639caa00a61c57b7b0ecc72daeb",
+      "reason": "直接回答A18不能套用A17变更；OP-20细分范围及另查独立文件改为可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-019",
+      "old_case_sha256": "8ebad2043096252a88266ddb0eb9a9ee64f401b284acac89f2229e79b0acbd9f",
+      "new_case_sha256": "7005a3408a5eacee64338554568886361684448c444fbdb8eaba1a616aa1edb5",
+      "reason": "保留所选卡身份、实际开工未知及不得跨卡推断；未问的Open状态改为可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-064",
+      "old_case_sha256": "abccf692ade4fc12c38fb736013b618800f9d8332e1650db67387af8f20df78e",
+      "new_case_sha256": "dff92b39e805933a9260604d6663d29c1257b571a9b6e1aff760df14f49a51d5",
+      "reason": "保留两个记录身份、各自时刻及不同的结论；完整日期和时区改为可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-072",
+      "old_case_sha256": "f6a6b86ab68e32aed41a0d964c3762a341d9309a05daf3f5ec0b03db76051cf9",
+      "new_case_sha256": "2758495966ab04ff6764d765754085ad4a658caab0f5ac820109dae6ec3ca8b1",
+      "reason": "保留编写日期不等于批准日期、变更后重读另建冻结及不能覆盖旧快照；未问的待审核状态改为可选。"
+    },
+    {
+      "case_id": "MFG-GOLD-090",
+      "old_case_sha256": "36050a94a2d01435675a3f658f29d9c96cc9372e9afbaedda2a6403d2715eefc",
+      "new_case_sha256": "69124fea4c8dbc62966e329bc5024aed2541ffa03397dd07c5577ceb8fac99e0",
+      "reason": "与072采用相同范围口径；待审核状态改为可选，日期与历史快照边界不变。"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "manufacturing-gold-100-manifest-v3",
+  "dataset": "manufacturing_gold_100_v3",
+  "status": "candidate_assistant_reviewed_non_independent",
+  "cases": 100,
+  "categories": {
+    "guidance": 30,
+    "erpnext": 20,
+    "openmes": 20,
+    "safety": 20,
+    "conversation": 10
+  },
+  "assistant_reviewed_cases": 100,
+  "human_approved_cases": 0,
+  "professional_factory_approved_cases": 0,
+  "platform_approved_cases": 0,
+  "executable": false,
+  "live_verified": false,
+  "model_calls": 0,
+  "executed_cases": 0,
+  "old_results_combined": false,
+  "files_sha256": {
+    "cases.jsonl": "4a1e4737593291d36670c9649a3a7b840e17d065c5e7834db3e51e3522b4b1d5",
+    "reviews.jsonl": "b0a9fe4d05f73a57a12aab7e452b284c141c588d3326275997ed079bae1028df",
+    "sources.json": "d97aede4a78567d7c9e16159a0f03f1b92d82fcd8238131bb5d6fd036308711e",
+    "review_policy.json": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "lineage.json": "400e03172fd44736f8b5cdb2b7b1ce304bc897d4e5f3864bc5df3a28b000618e",
+    "REVIEW.md": "63457d35b24b442641f40c3f463fb4c8e9bad77cbf45f14f3b7c9d5f17a316ef",
+    "README.md": "c936df57a9f1d693f948c05524df2c22dfb0eca191fc77c93ec41cbced33f073"
+  },
+  "implementation_sha256": {
+    "scripts/build_manufacturing_gold_100_v3.py": "06f654c7580431b007f54af596b2f02fac70b86a8a61662d122a387813827a14",
+    "scripts/check_manufacturing_gold_100_v3.py": "0986a1143a6061a976a2f0a55749c4afc0558d6288f986c1ebd0fc454419eb0c"
+  }
+}

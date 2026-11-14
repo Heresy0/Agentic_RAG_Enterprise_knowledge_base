@@ -1,0 +1,28 @@
+{
+  "bindings_sha256": "f1f3c086db43ff2eb5b604c8e7036fd3350cb878c238d6214892be5172fa3cd2",
+  "inputs": {
+    "scripts/confirm_manufacturing_empty_gap_filename.py": "50cf921ec44968b25d05ba47e3deaf88eebcdea0b16fa56554880e9227fafabd",
+    "scripts/manufacturing_gold_v4_grounded_live.py": "43c556ce2253e8bfce0348c437da2e6022ef494cffd8523d96c6d3a49938a985",
+    "scripts/manufacturing_gold_live.py": "d1574e8744bc01099891bf532866a6bc0c4ecd9097d985eedf0979f31ae655db",
+    "evals/manufacturing_gold_100_v4/cases.jsonl": "0e482e1e3b2d1209f48e71d11f8f1ec9a6109531d65d3b834379638e1c5cfbeb",
+    "evals/manufacturing_gold_100_v4/review_policy.json": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d"
+  },
+  "raw_results": {
+    "MFG-GOLD-010": "d05990ab8da3c06884d136bff8f842e5464ba497448c2ee13b1f4e1589c8b3ad",
+    "MFG-GOLD-019": "1443dc313bcccdccc5e007bcb3dc83a63ba6d64dbd2b3cd860f3b388e71012e8",
+    "MFG-GOLD-003": "81ec8a635de36b6cade74de81b51a4733879a09f4e0e8b0b0ef8265fddbaf780",
+    "MFG-GOLD-012": "6c8269d018863f755b25b824af6c15cbfa1b31eb9550e51319cc41d246c2a92c",
+    "MFG-GOLD-015": "82a5c7e764762e6573a17663cecf6ea3d592348fa269e95ef94f345021a0de0a",
+    "MFG-GOLD-036": "ea5aff2108510c4927745efca9d0ad493e8ec60de00e2917f06ccbce85972d60",
+    "MFG-GOLD-091": "0086a44692c681b6ff8d9ba7fa5ea01029bdbac36d4793ee0dceefba5bda2ab1"
+  },
+  "public_files": {
+    "audits.json": "697be77d259679556d87c2ee04448ee4e89d95a82da16344048166fb4f3ab675",
+    "results.jsonl": "fc0ba35dc4ed61c1fd879b25eaca77242004ec6365271d73a721f518f9d21da3",
+    "reviews.json": "7304f816b83aed27b2fa83416eebef1133f2bd8ee8925d606ad158acb5e014be",
+    "summary.json": "41b5e985d2952efae45141f562ddd386fa43fd9bb282387b35f249871e9bcb19"
+  },
+  "baseline_result_sha256": "4a1ab2260b3867dca117095e850a070ee59352da9b1992a2728da64e0e33b2ad",
+  "labels_sent_to_model": false,
+  "credentials_included": false
+}

@@ -1,0 +1,30 @@
+{
+  "input_sha256": {
+    "scripts/manufacturing_gold_v3_seven_live.py": "fffbad84b127e4abc9d0e05fba6fc24ff7af51dc06f5a93d1132c9d2630dcf28",
+    "scripts/manufacturing_gold_live.py": "d1574e8744bc01099891bf532866a6bc0c4ecd9097d985eedf0979f31ae655db",
+    "scripts/accept_erpnext_development_v2.py": "c007987bd5d60f689627dead7975368dca55f24fcd8e7d8c417811a06ddd2f83",
+    "scripts/build_manufacturing_gold_100_v3.py": "06f654c7580431b007f54af596b2f02fac70b86a8a61662d122a387813827a14",
+    "evals/manufacturing_gold_100_v3/cases.jsonl": "4a1e4737593291d36670c9649a3a7b840e17d065c5e7834db3e51e3522b4b1d5",
+    "evals/manufacturing_gold_100_v3/manifest.json": "f677d1df2b2ceca79147a554757bf82261703360bd269cb883dd62b6224952d5",
+    "evals/manufacturing_gold_100_v3/review_policy.json": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b"
+  },
+  "bindings_sha256": "3bd8812d86176439238fd701429c928a99f9d7fa00a1932494b53e09df5d4abf",
+  "raw_results": {
+    "MFG-GOLD-006": "47b1ccdff6c7de5572c83a11846c28aad01f209e6bd48b803eb24f3edeb0003c",
+    "MFG-GOLD-007": "1450a04d4a03da960bb5a9115359596a2e113fde3c747504f2861214672b9895",
+    "MFG-GOLD-011": "ddcf7a60f30e07f6e88b2fa0aebd161cfef4eb17f582138280c0576aa900c97a",
+    "MFG-GOLD-019": "b030cd77c4c73a2cc344a15e6fc47bd97b4be4a201c3f543aa9a3b110ad04e5e",
+    "MFG-GOLD-064": "ebb45a1895fbeb334578272a37a45bdb33dd6afb8859a8b0f00cdb2d65616717",
+    "MFG-GOLD-072": "617b093d46c410407bbc4f5009df95a72c88f898c4b17d440965b51261f145c0",
+    "MFG-GOLD-090": "b395e383d4f23db39e1c3a619c708ca119d278203fd8188182664107fa953922"
+  },
+  "files_sha256": {
+    "summary.json": "16daf08fa0e51be6996046b3b8c01d7938bed065922f8fe649403d2443bc67c3",
+    "reviews.json": "7498ea123b9301627cf1a54d799c9296fb3d47cc56496a2a6193869e82d4738d",
+    "audits.json": "5ad7903356cce17307a69f76526e332c4fe59c06eca476b2c05de4a65cca5900",
+    "results.jsonl": "1008fecba9c2128c9d554587b1f4773b75144423a06c2f00332f650539e1f370"
+  },
+  "labels_sent_to_model": false,
+  "credentials_included": false,
+  "old_scores_recomputed": false
+}

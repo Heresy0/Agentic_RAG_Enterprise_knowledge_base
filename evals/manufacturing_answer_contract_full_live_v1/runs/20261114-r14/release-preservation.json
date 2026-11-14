@@ -1,0 +1,10 @@
+{
+  "runtime_preservation_checked": 3180,
+  "runtime_unchanged": true,
+  "release_metadata_only_changes": [
+    "evals/manufacturing_answer_contract_full_live_v1/README.md"
+  ],
+  "other_protected_files_unchanged": 3179,
+  "old_results_trace_gold_changed": false,
+  "model_calls": 0
+}

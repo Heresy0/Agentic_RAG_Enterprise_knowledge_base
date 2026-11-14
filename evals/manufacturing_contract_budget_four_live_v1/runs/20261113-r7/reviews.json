@@ -1,0 +1,155 @@
+[
+  {
+    "case_id": "MFG-GOLD-036",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "不能据开工/Completed认定完成",
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ],
+        "passed": true
+      },
+      {
+        "id": "F02",
+        "text": "不能反推一定未完成",
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ],
+        "passed": true
+      },
+      {
+        "id": "F03",
+        "text": "核验实际检验与签署记录",
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ],
+        "passed": true
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [
+      "将工单、工序、作业卡三层Completed统一解释为“生产数量已登记或流程节点已关闭”。所引流程只说明报工完成与检验签署的边界，未定义三层Completed的统一含义。"
+    ],
+    "content_passed": false,
+    "passed": false,
+    "note": "程序边界明确不能据开工/Completed认定完成，也不能反推实际未完成，并要求核验实际检验与签署记录，三必答均满足；同一新草稿旧编译器无边界、新编译器生成有据边界。但主动补充的状态释义超过所引资料支持，按冻结truthfulness保守保留整题失败，不把契约通过当语义全过。该补充表述仍待独立复核。",
+    "raw_result_sha256": "0242cbea6303a6a54d3d583511a9f6c1b1195f972f578eeefd4155cc75d3aaf5"
+  },
+  {
+    "case_id": "MFG-GOLD-091",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "交接接收不等于质量放行",
+        "evidence_ids": [
+          "E01"
+        ],
+        "passed": true
+      },
+      {
+        "id": "F02",
+        "text": "保留本系列两个未完成项：首件复核结论缺失；新映射首件验证未完成",
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ],
+        "passed": true
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "content_passed": true,
+    "passed": true,
+    "note": "不能以交接签名证明放行、OP50首件复核结论缺失及OP60新MAP2首件未完成均明确且引用本系列交接原文。附加MAP1通过仍须维持待处置有来源。本次3条claim和覆盖索引有效，直接生成，未发修复模型；不宣称真实覆盖了修复路径。",
+    "raw_result_sha256": "fdcc311e9648f0de00a47749ced6f60e3e5451b03afaab89f38a011956b789ca"
+  },
+  {
+    "case_id": "MFG-GOLD-095",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "覆盖采集、管理、处理、分析、应用全过程",
+        "evidence_ids": [
+          "E01"
+        ],
+        "passed": true
+      },
+      {
+        "id": "F02",
+        "text": "明确各环节职责权限，强化跨部门及部门内机制",
+        "evidence_ids": [
+          "E01"
+        ],
+        "passed": true
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "content_passed": true,
+    "passed": true,
+    "note": "采集、管理、处理、分析、应用全过程及各环节职责权限、跨部门与部门内机制均完整，引用归档十四项原文，未断言企业已落实。5完整父块，无预算完整性拒绝，实际进入生成。",
+    "raw_result_sha256": "1c86be97bbd5e6d362ae46573bf725509cfc2a967144fdcefdc65d9644899d27"
+  },
+  {
+    "case_id": "MFG-GOLD-042",
+    "reviewer": "assistant_non_independent",
+    "human_review": false,
+    "independent": false,
+    "policy_sha256": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+    "required_facts": [
+      {
+        "id": "F01",
+        "text": "已登记项：首箱标签核对一致",
+        "evidence_ids": [
+          "E01"
+        ],
+        "passed": false
+      },
+      {
+        "id": "F02",
+        "text": "缺项：未登记末箱核对结果",
+        "evidence_ids": [
+          "E01"
+        ],
+        "passed": true
+      },
+      {
+        "id": "F03",
+        "text": "记录不完整，不能据此确认检查和复核全部完成",
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ],
+        "passed": true
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "content_passed": false,
+    "passed": false,
+    "note": "末箱核对结果未登记及不能确认相关检查完整明确；只说首箱标签核对完成，没有所问结果一致，不将核对动作完成等同合格结果。关键台账融合第7、重排第13被Top12截掉，正文依据交接资料。主POST200后快照GET前触发令牌生效时间保护；只读SQL复读已保存快照但原观察失败保持，不改分。",
+    "raw_result_sha256": "c6c0dd152e2bdbb306d6a46e5c2cc6d04afbc7c9b8b71b7a12b29a054ffdff68"
+  }
+]

@@ -62,9 +62,10 @@ class LocalGeneration:
         body = messages[1].content
         sources = re.findall(r"\[(资料\d+)\]\n(.*?)(?=\n\n\[资料|\n\n工单字段来源|\Z)", body.split("知识库资料：\n", 1)[1], re.S)
         if self.mode == "fact":
-            claims = [dict(business_field=self.field, claim_kind="business_fact")]
+            claims = [dict(source=next(item.citation_id for item in active.items
+                                       if item.field_name == self.field))]
         elif self.mode == "applicability":
-            claims = [dict(claim_kind="applicability")]
+            claims = [dict(source="后端适用性")]
         elif self.mode == "comparison":
             guides = [(key, content) for revision in ("1.0", "2.0") for key, content in sources
                 if f"业务版本：{revision}；" in content and "角色：instruction" in content]

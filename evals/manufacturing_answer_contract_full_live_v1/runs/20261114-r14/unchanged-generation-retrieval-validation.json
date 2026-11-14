@@ -1,0 +1,27 @@
+{
+  "baseline": "2cc1565",
+  "candidate": "7034c92",
+  "unchanged_files": {
+    "backend/app/knowledge/prompts.py": "8d874a5288e8f406eb8bf90da887e4bce64abfbe341680428fe22d4ec12f385d",
+    "backend/app/knowledge/answer_models.py": "6227554c96d1bd9d991a7e4d32e25aeee7522e72fbeb58c460593f8a8d26abd8",
+    "backend/app/knowledge/answer_coverage.py": "fd7ff75430f8e316e1dd384ab70019efe177b84ddb922a9d051289a0c33d1734",
+    "backend/app/knowledge/answer_validation.py": "aa015f7d9b1189ce05f22c386f726a49b43a66291eff3ba08e45bf1bd1758758",
+    "backend/app/knowledge/answer_contract.py": "75393a0c38ae665a6d6a24a637371baa37e2ff2cbc083a78b90c68f62b2396f9",
+    "backend/app/knowledge/answer_completion.py": "acbdb6a48246bc5f04dbdd2b4bff6249882cfbe96b0c5d2c9b60b7e0bafdb1d5",
+    "backend/app/knowledge/output_contract.py": "599f27381c2180c0303ca84b7bcde7be4ce2b8ef64294e9bd60757522c8e45af",
+    "backend/app/knowledge/answer_repair.py": "853c9b746f4f263b6f3c8535eb2e459f5cc4072a8fa3dd3f8e3ed2152ea0822f",
+    "backend/app/knowledge/retrieval_service.py": "053510d0f7b717a11bd4af67db8a61276d3f089c057786b107a55997232d46cf",
+    "backend/app/knowledge/context_builder.py": "5961577061497365eda082b0a23f6fb8e50611de29c80142426a03933d983e0c",
+    "backend/app/knowledge/evidence_coordinator.py": "af3b8da5ad36cb42f4cb4eff72d10f40ab44b8d78ea897d6efbcb3bd43d52d37",
+    "backend/app/knowledge/query_planner.py": "37be49da784eabd1276ce91ae03bf834aad750e6870f668887cb652c3c6945d5",
+    "backend/app/knowledge/reranker.py": "5c4ad84834206490fa0536aa232494aa39a8ffd173bcf947aca33697749d44dd",
+    "backend/app/knowledge/rerank_retriever.py": "36cbe0805ff52b0397004bcb3b9d437e65b297ee3d9e6b7a8c95be503aae5b8e",
+    "backend/app/knowledge/parent_context_selection.py": "7b7c56bf467414b946448551b96bf86dd4450a42b25af10268cfc2a67b1e82df",
+    "backend/app/manufacturing/answer_context.py": "46f61909bab1d7beccb02c8132f80d305c12652364823d1aed7742704e0a3916",
+    "backend/app/manufacturing/generation_models.py": "defd874082b94dd6716db2d3a4a6b582655753474d52a11195ef0a0fc6f908c3",
+    "backend/app/manufacturing/generation_selection.py": "317b3d99265c779fc3a41bfebefff034f68a2cb27bb2a96d8d1b46a570056b3b",
+    "backend/app/manufacturing/service.py": "c2541ac5fab11cafe65f4e3205f17c1a32c0d9851bd4fd72ed36401b15a1e917"
+  },
+  "all_business_matches_candidate": "ff7d75e",
+  "real_model_calls": 0
+}

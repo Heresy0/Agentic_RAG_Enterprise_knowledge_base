@@ -1,0 +1,72 @@
+{
+  "schema_version": "manufacturing-gold-build-v1",
+  "date": "2026-11-11",
+  "base_revision": "592a20148e2cd4b9a8b1aeea0be9cd4ba8f32574",
+  "status": "candidate_materials_checked_not_human_approved",
+  "cases": 40,
+  "categories": {
+    "guidance": 12,
+    "erpnext": 8,
+    "openmes": 8,
+    "safety": 8,
+    "conversation": 4
+  },
+  "pending_human_review": 40,
+  "approved_cases": 0,
+  "executed_cases": 0,
+  "new_model_calls": 0,
+  "new_model_tokens": 0,
+  "source_counts": {
+    "documents": 6,
+    "specifications": 4,
+    "archived_erp_contexts": 6,
+    "archived_mes_contexts": 1,
+    "archived_mapping": 1
+  },
+  "live_sources_rechecked": false,
+  "runtime_health_checked": false,
+  "database_model_ledger_checked": false,
+  "docker_engine_available": false,
+  "environment_changes": 0,
+  "index_rebuilt": false,
+  "workers_started": 0,
+  "old_results_combined": false,
+  "verification": {
+    "status": "passed",
+    "archived_projections_verified": 8,
+    "corruption_probes": [
+      {
+        "probe": "wrong_field",
+        "rejected": true
+      },
+      {
+        "probe": "wrong_reference",
+        "rejected": true
+      },
+      {
+        "probe": "false_approval",
+        "rejected": true
+      },
+      {
+        "probe": "false_holdout",
+        "rejected": true
+      },
+      {
+        "probe": "lose_protocol",
+        "rejected": true
+      }
+    ],
+    "old_files_unchanged": 722,
+    "credential_scan": "passed",
+    "docker_engine": "unavailable_before_and_no_start_requested",
+    "runtime_containers_inspected": false,
+    "database_ledger_inspected": false,
+    "model_requests_sent": 0,
+    "qa_requests_sent": 0,
+    "text_checkout_normalization_verified": true
+  },
+  "manifest_sha256": "f5ce368e88f45eaad8ff839b6c1d0e9fab69fc98642faa030363b9d78acf94b0",
+  "private_artifacts": "tmp/manufacturing-gold-20261111-r1/",
+  "local_links_verified": 249,
+  "general_suite_integrity_cases": 120
+}

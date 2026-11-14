@@ -110,6 +110,50 @@ def test_success_and_timeout_are_distinct_attempts_and_unknown_is_not_zero():
     assert context.events[0]["event_id"] != context.events[1]["event_id"]
 
 
+def test_wrapped_http_failure_links_status_and_supplier_id_to_trace_without_payload():
+    response = requests.Response()
+    response.status_code = 429
+    response.headers["x-request-id"] = "supplier-rate-limit-123"
+    response._content = b"SECRET RESPONSE BODY"
+    with usage_context(scope=scope(), request_id="local-request-1") as context, capture_trace() as trace:
+        with pytest.raises(RerankError):
+            with ModelCall("rerank", "test"):
+                try:
+                    raise requests.HTTPError("SECRET URL AND KEY", response=response)
+                except requests.HTTPError as error:
+                    raise RerankError("PRIVATE WRAPPER") from error
+    event = context.events[0]
+    assert event["request_id"] == "local-request-1"
+    assert event["details"]["error_chain"] == ["RerankError", "HTTPError"]
+    assert event["details"]["http_status_code"] == 429
+    assert event["details"]["provider_request_id"] == "supplier-rate-limit-123"
+    assert event["total_tokens"] is None and event["status"] == "error"
+    assert trace.stages["model_usage"] == context.events
+    assert not any(text in json.dumps(event) for text in ("SECRET", "PRIVATE"))
+
+
+def test_connection_failure_preserves_transport_cause_and_accounting_without_retry():
+    import httpx
+    from openai import APIConnectionError
+    request = httpx.Request("POST", "https://private.invalid/?key=SECRET")
+    with usage_context(scope=scope()) as context:
+        with pytest.raises(APIConnectionError):
+            with ModelCall("answer_generation", "test"):
+                try:
+                    try:
+                        raise ConnectionRefusedError(10061, "SECRET HOST")
+                    except OSError as error:
+                        raise httpx.ConnectError("SECRET URL", request=request) from error
+                except httpx.ConnectError as error:
+                    raise APIConnectionError(request=request) from error
+    details = context.events[0]["details"]
+    assert details["error_chain"] == ["APIConnectionError", "ConnectError", "ConnectionRefusedError"]
+    assert details["transport_errno"] == 10061 and details["http_status_code"] is None
+    assert details["provider_request_id"] is None
+    assert summarize_usage(context.events)["unknown_usage_calls"] == 1
+    assert "SECRET" not in json.dumps(context.events)
+
+
 def test_context_is_nested_request_local_and_reset():
     authorized = scope()
     def run(number):

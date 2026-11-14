@@ -1,0 +1,25 @@
+{
+  "edition": "manufacturing-zh-expansion-v1",
+  "status": "offline_corpus_candidate_pending_human_review",
+  "language": "zh-CN",
+  "total_documents": 55,
+  "new_documents": 34,
+  "referenced_documents": 21,
+  "public_documents": 12,
+  "new_synthetic_documents": 30,
+  "scan_documents": 0,
+  "formats": {
+    "pdf": 13,
+    "docx": 4,
+    "md": 32,
+    "txt": 6
+  },
+  "approved_documents": 0,
+  "indexed": false,
+  "external_model_calls": 0,
+  "runtime_modified": false,
+  "files_sha256": {
+    "sources.json": "d8f9af2b3ad47b8ea7b65c3e3d556f327415426880d6eb408a726b817d8abbe8",
+    "coverage.json": "dfc3da50682f9f376be13141825b5eae3cf3d6123317d33611005b00f1910e02"
+  }
+}

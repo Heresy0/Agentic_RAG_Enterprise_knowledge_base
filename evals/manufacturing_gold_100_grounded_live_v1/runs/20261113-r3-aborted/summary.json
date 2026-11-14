@@ -1,0 +1,37 @@
+{
+  "source_revision": "0cccf81e68213840f848ead54db69308c23ce6d0",
+  "planned": 100,
+  "executed": 7,
+  "stopped_reason": "Stopped early: the live context still showed legacy source-unit IDs, repeatedly used as invalid citations; new contract and context were inconsistent.",
+  "full100_score": null,
+  "usage": {
+    "matched": true,
+    "calls": 25,
+    "known_tokens": 85502,
+    "unknown_calls": 3,
+    "budget_tokens": 181502,
+    "by_stage": {
+      "query_embedding": 7,
+      "rerank": 7,
+      "answer_generation": 7,
+      "answer_repair": 3,
+      "query_planning": 1
+    },
+    "providers_models": [
+      "dashscope:qwen3-rerank",
+      "dashscope:qwen3.7-flash",
+      "dashscope:text-embedding-v4"
+    ],
+    "all_priced": false,
+    "pending": 0
+  },
+  "retries": 0,
+  "pending": 0,
+  "old_ledgers_checked": 15,
+  "old_ledgers_unchanged": true,
+  "protected_files": 1756,
+  "protected_files_unchanged": true,
+  "new_compute_stopped": 6,
+  "ordinary_workbenches_updated": false,
+  "not_combined_with_any_other_batch": true
+}

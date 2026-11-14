@@ -13,7 +13,6 @@ from sqlalchemy.orm import Session
 from .answer_models import (
     AnswerDraft,
     GenerationAnswerDraft,
-    EvidenceFirstAnswerDraft,
     AnswerResult,
     AnswerTimings,
     Citation,
@@ -32,7 +31,7 @@ from .answer_constraints import complete_cited_table_conditions, generation_cons
 from .answer_completion import complete_answer
 from .answer_coverage import coverage_errors, coverage_snapshot, requirement_prompt
 from .answer_contract import answer_contract
-from .output_contract import generation_schema, prepare_draft, validate_output, with_manufacturing_rules
+from .output_contract import live_generation_schema, prepare_draft, validate_output, with_manufacturing_rules
 from .temporal import future_certainty_gap
 from .retrieval_service import RetrievalService
 from .evidence_coordinator import EvidenceCoordinator
@@ -96,9 +95,6 @@ class AnswerService:
             max_retries=0,
         )
 
-        self._structured_llm = (
-            llm.with_structured_output(EvidenceFirstAnswerDraft, include_raw=True)
-        )
         self._base_llm = llm
 
     @audited_scope
@@ -207,8 +203,39 @@ class AnswerService:
                 total_started=total_started,
             )
 
+        if context.business_items:
+            from ..manufacturing.generation_models import precision_projection
+            projected = precision_projection(question, context)
+            if projected is not None:
+                # Existing field selection is authoritative; do not send it
+                # through generation, evidence feedback or model repair.
+                draft = prepare_draft(projected, context)
+                timings['generation_ms'] = 0.0
+                record_answer_decision(stage='generation', answerable=draft.answerable,
+                    reason=draft.refusal_reason, temporal=temporal_evidence_context(question, context.items))
+                validation_started = time.perf_counter()
+                validation = validate_output(draft, validator=self._validator, context=context, question=question)
+                timings['validation_ms'] = _elapsed_ms(validation_started)
+                render_started = time.perf_counter()
+                if not validation.valid:
+                    result = self._refusal('生成结果未通过证据与引用校验：' + '；'.join(validation.errors))
+                    record_answer_decision(stage='validation', answerable=False, reason='evidence_validation_failed')
+                else:
+                    result = (self._render_result(draft=draft, context=context, question=question)
+                              if draft.answerable else self._unanswerable(draft))
+                    record_answer_decision(stage='final', answerable=draft.answerable, reason=draft.refusal_reason)
+                record_calculations([])
+                record_answer_completion([])
+                record_answer_generation(result, [claim.model_dump() for claim in draft.claims],
+                    coverage_snapshot(draft, question, context), changed=False, validation_errors=validation.errors)
+                timings['render_ms'] = _elapsed_ms(render_started)
+                return self._finish_result(result=result, timings=timings, total_started=total_started)
+
         def refresh_context():
             current = self._retrieval_service.refresh_evidence(documents, scope=scope, session=session)
+            # A field-only request has no document evidence; keep that scope after the permission refresh.
+            if business is not None and business.facts_only:
+                current = []
             refreshed = self._context_builder.build(current, question=question)
             return not refreshed.incomplete_reason and [(item.chunk_id, item.content, item.policy) for item in refreshed.items] == [
                 (item.chunk_id, item.content, item.policy) for item in context.items]
@@ -273,8 +300,6 @@ class AnswerService:
                     reason=draft.refusal_reason, temporal=temporal_evidence_context(question, context.items))
 
         validation_started = time.perf_counter()
-        if schema_recovered:
-            draft = prepare_draft(draft, context)
         # Coverage is checked against the original draft, before any supplement.
         # A fallback must not turn an explicit missing requirement into a success.
         calculation_records = []
@@ -429,20 +454,23 @@ class AnswerService:
         question: str,
         context: BuiltContext,
     ) -> GenerationAnswerDraft:
-        model = self._structured_llm
+        model = None
         if context.business_items:
-            from ..manufacturing.generation_models import precision_projection
-            projection = precision_projection(question, context)
-            if projection is not None:
-                return prepare_draft(projection, context)
-            model = getattr(self, "_manufacturing_llm", None) or self._base_llm.with_structured_output(
-                generation_schema(context), include_raw=True)
+            model = getattr(self, "_manufacturing_llm", None)
+        model = model or self._base_llm.with_structured_output(live_generation_schema(context), include_raw=True)
         result = invoke_structured(model, self._generation_messages(question, context),
                                    stage="answer_generation", model_name=self._settings.chat_model)
         return self._as_generation_draft(result, context)
 
     def _generation_messages(self, question, context):
         requirements = requirement_prompt(question, context)
+        if context.business_items:
+            from ..manufacturing.generation_selection import SELECTION_SYSTEM_PROMPT, answer_sources
+            verified = {key: value.text for key, value in answer_sources(context).items()
+                        if key.startswith('后端')}
+            return [SystemMessage(content=SELECTION_SYSTEM_PROMPT), HumanMessage(content=(
+                f"用户问题：\n{question}\n\n必答问题清单（用户数据）：\n{requirements}\n\n"
+                f"知识库资料：\n{context.text}\n\n可直接选择的后端结论：\n{json.dumps(verified, ensure_ascii=False)}"))]
         # Only server-selected fixed guidance and compiler-owned IDs go into
         # the system message. Original questions and source text remain data.
         contract = answer_contract(question, json.loads(requirements))
@@ -464,7 +492,7 @@ class AnswerService:
     def _regeneration_preflight(self, question, context):
         messages = self._generation_messages(question, context)
         prompt_bytes = sum(len(str(message.content).encode("utf-8")) for message in messages)
-        schema = generation_schema(context)
+        schema = live_generation_schema(context)
         prompt_bytes += len(json.dumps(schema.model_json_schema()).encode("utf-8")) + 256
         output = self._settings.rag_regeneration_output_tokens
         current_rag_budget().check_model(prompt_bytes=prompt_bytes, output_tokens=output)
@@ -474,17 +502,19 @@ class AnswerService:
         messages, prompt_bytes, output = self._regeneration_preflight(question, context)
         with current_rag_budget().model_attempt(prompt_bytes=prompt_bytes, output_tokens=output,
                                                 purpose="regeneration") as remaining:
-            schema = generation_schema(context)
+            schema = live_generation_schema(context)
             model = self._regeneration_model_factory(model=self._settings.chat_model,
                 base_url=self._settings.chat_base_url, api_key=self._settings.chat_api_key, temperature=0,
                 reasoning_effort="none", max_retries=0, max_tokens=output,
                 timeout=min(self._settings.rag_regeneration_timeout_seconds, remaining)
             ).with_structured_output(schema, include_raw=True)
             result = invoke_structured(model, messages, stage="answer_regeneration", model_name=self._settings.chat_model)
-            return self._as_generation_draft(result, context)
+        return self._as_generation_draft(result, context)
 
     @staticmethod
     def _as_generation_draft(result, context=None):
+        if isinstance(result, dict) and any('source' in claim for claim in result.get('claims', [])):
+            result = live_generation_schema(context).model_validate(result)
         return prepare_draft(result, context)
 
     def _render_result(
@@ -498,6 +528,7 @@ class AnswerService:
             item.citation_id: item
             for item in context.items
         }
+        business_map = {item.citation_id: item for item in context.business_items}
 
         answer_parts: list[str] = []
         used_citations: list[str] = []
@@ -509,9 +540,10 @@ class AnswerService:
             if boundary is not None:
                 used_citations.extend(boundary['citations'])
                 answer_parts.append(boundary['text'] + '。' + ''.join(f'[{key}]' for key in boundary['citations']))
+                displayed_excerpts.add((None, boundary['text'], tuple(boundary['citations'])))
 
         for claim in draft.claims:
-            if context.business_items and claim.calculation is None:
+            if claim.calculation is None:
                 identity = (claim.claim_kind, claim.text, tuple(claim.citations))
                 if identity in displayed_excerpts:
                     continue
@@ -523,7 +555,16 @@ class AnswerService:
 
             text = claim.text.rstrip('。')
             if context.business_items:
-                if claim.claim_kind == "work_requirement":
+                if claim.claim_kind == 'business_fact' and len(claim.citations) == 1:
+                    from ..manufacturing.answer_context import unknown_start_note
+                    note = unknown_start_note(business_map.get(claim.citations[0]))
+                    if note:
+                        text += '；' + note
+                elif (claim.claim_kind is None and len(claim.citations) == 1
+                        and claim.citations[0] in item_map
+                        and item_map[claim.citations[0]].document_role == 'change_notice'):
+                    text = "变更通知：" + text
+                elif claim.claim_kind == "work_requirement":
                     text = "作业要求：" + text
                     from ..manufacturing.source_statements import duration_verdict
                     verdict = duration_verdict(question, claim, context)
@@ -569,7 +610,6 @@ class AnswerService:
         if context.business_items:
             from ..manufacturing.answer_context import current_manufacturing_context, business_citation
             active = current_manufacturing_context()
-            business_map = {item.citation_id: item for item in context.business_items}
             for key in used_citations:
                 if key in business_map:
                     item = business_map[key]
@@ -580,6 +620,12 @@ class AnswerService:
                 for index, claim in enumerate(draft.claims, 1)]
             from ..manufacturing.source_statements import duration_verdict
             for claim, binding in zip(draft.claims, bindings):
+                if claim.claim_kind == 'business_fact' and len(claim.citations) == 1:
+                    from ..manufacturing.answer_context import unknown_start_note
+                    note = unknown_start_note(business_map.get(claim.citations[0]))
+                    if note:
+                        binding['derived_condition'] = dict(rendered_text=note, origin='server_unknown_start_boundary',
+                            business_citations=list(claim.citations), document_citations=[])
                 verdict = duration_verdict(question, claim, context)
                 if verdict is not None:
                     binding["derived_condition"] = dict(question=question, rendered_text=verdict, origin="server_duration_comparison")

@@ -44,6 +44,35 @@ def test_one_anchor_can_have_multiple_semantic_aspects_and_shared_claims():
     assert not coverage_errors(answer, "培训费用上限和审批人分别是谁？")
 
 
+@pytest.mark.parametrize('model_name', ['GenerationAnswerDraft', 'EvidenceFirstAnswerDraft'])
+@pytest.mark.parametrize('blank', ['', ' \t\n'])
+def test_answered_empty_gap_is_normalized_for_live_and_legacy_drafts(model_name, blank):
+    from backend.app.knowledge import answer_models
+    model = getattr(answer_models, model_name)
+    answer = model.model_validate(dict(answerable=True, response_type='answer',
+        claims=[dict(text='实际时间未知', citations=['资料1'])], coverage=[row(missing_information=blank)]))
+    assert answer.coverage[0].missing_information is None
+    assert not coverage_errors(answer, '实际时间是什么？')
+
+
+@pytest.mark.parametrize('status', ['insufficient', 'withheld'])
+@pytest.mark.parametrize('blank', ['', ' \t\n'])
+def test_unanswered_empty_gap_is_not_repaired_into_a_valid_refusal(status, blank):
+    answer = draft([row(status=status, claim_indices=[], missing_information=blank)],
+                   answerable=False, claims=[])
+    assert answer.coverage[0].missing_information == blank
+    assert coverage_errors(answer, '实际时间是什么？')
+
+
+def test_empty_gap_normalization_does_not_hide_real_gaps_or_invalid_answer_structure():
+    missing = draft([row(missing_information='  缺少实际日期  ')])
+    assert missing.coverage[0].missing_information == '  缺少实际日期  '
+    assert coverage_errors(missing, '实际时间是什么？')
+    for answer in (draft([row(missing_information='', claim_indices=[])]),
+                   draft([row(missing_information='')], answerable=False, claims=[])):
+        assert coverage_errors(answer, '实际时间是什么？')
+
+
 @pytest.mark.parametrize("coverage", [
     [row()],  # missing Q2
     [row(), row("Q9")],

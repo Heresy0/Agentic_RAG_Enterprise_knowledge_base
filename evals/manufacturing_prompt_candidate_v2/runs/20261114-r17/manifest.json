@@ -1,0 +1,11 @@
+{
+  "files": {
+    "audits.json": "badf3f2f33805e134180a22003848fd35ec5cf2c1d7fe81a30b75dc434cc2ef2",
+    "inputs.json": "b52253d4262e357154784e72b6a7b2c32b530fde91f818d70806ccee18ad3422",
+    "plan.json": "70c88c0720f4159fb9c3757fe877e21724790695fc23dc4606092617f5a14a96",
+    "summary.json": "7e6e5f4dff0770bc70d67632879dcf4a5927428232ea9759b7f6901f26400372",
+    "trials.jsonl": "03b7dc6ead34af19ee93dd20300a6d801973a2f5de3fd800872fda20bf942aa7"
+  },
+  "credentials_scan_passed": true,
+  "serialization": "Public UTF-8/LF. plan.input_sha256 and audits.frozen_input_sha256 identify original private bytes; files.inputs.json identifies public serialization; JSON content unchanged."
+}

@@ -1,0 +1,295 @@
+[
+  {
+    "case_id": "MFG-GOLD-006",
+    "reviewer_type": "assistant",
+    "independent": false,
+    "human_reviewer": null,
+    "reviewed_at": "2026-11-12T14:43:25.349150+00:00",
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "passed": true,
+        "reason": "明确说恰好4小时不触发超过4小时条款，核心严格阈值判断正确。",
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [
+      {
+        "text": "只有当连续停机时间严格大于4小时（即超过4小时）时，才必须重新进行首件确认。",
+        "reason": "主动补充将停机阈值表述为重新首件的唯一必要条件，未限定为该停机后重新开工情形；原文为新工单、更换定位治具、超过4小时后重新开工任一情形。不是因未枚举其他触发条件或未复述题设而扣分。",
+        "source_id": "D07",
+        "unit_ids": [
+          "D07-U010",
+          "D07-U011",
+          "D07-U012",
+          "D07-U013"
+        ]
+      }
+    ],
+    "optional_facts_not_required": true,
+    "passed": false,
+    "raw_result_sha256": "47b1ccdff6c7de5572c83a11846c28aad01f209e6bd48b803eb24f3edeb0003c"
+  },
+  {
+    "case_id": "MFG-GOLD-007",
+    "reviewer_type": "assistant",
+    "independent": false,
+    "human_reviewer": null,
+    "reviewed_at": "2026-11-12T14:43:25.358709+00:00",
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "passed": true,
+        "reason": "明确说停机超过4小时后重新开工必须进行首件确认。",
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F02",
+        "passed": true,
+        "reason": "明确连续检查3件。",
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F03",
+        "passed": true,
+        "reason": "明确所有必检项目全部合格。",
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      },
+      {
+        "id": "F04",
+        "passed": true,
+        "reason": "明确恢复前由质量人员完成签署；补充记录及班长核对来自HC-FLOW-001。",
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "optional_facts_not_required": true,
+    "passed": true,
+    "raw_result_sha256": "1450a04d4a03da960bb5a9115359596a2e113fde3c747504f2861214672b9895"
+  },
+  {
+    "case_id": "MFG-GOLD-011",
+    "reviewer_type": "assistant",
+    "independent": false,
+    "human_reviewer": null,
+    "reviewed_at": "2026-11-12T14:43:25.367843+00:00",
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "passed": true,
+        "reason": "明确HC-A18不能直接套用该HC-A17变更，并正确说明不属于适用范围；主动补充的OP-20及独立指导书均有ECN原文支持。",
+        "evidence_ids": [
+          "E01",
+          "E02"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "optional_facts_not_required": true,
+    "passed": true,
+    "raw_result_sha256": "ddcf7a60f30e07f6e88b2fa0aebd161cfef4eb17f582138280c0576aa900c97a"
+  },
+  {
+    "case_id": "MFG-GOLD-019",
+    "reviewer_type": "assistant",
+    "independent": false,
+    "human_reviewer": null,
+    "reviewed_at": "2026-11-12T14:43:25.376540+00:00",
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "passed": true,
+        "reason": "明确当前作业卡PO-JOB00009，业务引用的实体及源编号均为本卡。",
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F02",
+        "passed": true,
+        "reason": "明确本卡实际开工时间未知，未说本卡确定没有执行。",
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      },
+      {
+        "id": "F03",
+        "passed": true,
+        "reason": "承接问句中另一张卡已开工的前提，仍回答本卡实际开工未知，语义上不由他卡推出本卡已开工；无需复述固定的禁止跨卡句式。",
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03",
+          "E04"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "optional_facts_not_required": true,
+    "passed": true,
+    "raw_result_sha256": "b030cd77c4c73a2cc344a15e6fc47bd97b4be4a201c3f543aa9a3b110ad04e5e"
+  },
+  {
+    "case_id": "MFG-GOLD-064",
+    "reviewer_type": "assistant",
+    "independent": false,
+    "human_reviewer": null,
+    "reviewed_at": "2026-11-12T14:43:25.384557+00:00",
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "passed": true,
+        "reason": "明确DEMO-ROW-C31-1及OP-30。",
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "passed": true,
+        "reason": "明确子行08:12:00。",
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "passed": true,
+        "reason": "明确DEMO-JC-C31-1。",
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F04",
+        "passed": true,
+        "reason": "明确卡08:17:00。",
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F05",
+        "passed": true,
+        "reason": "明确两者时间不同，卡与工序分别取值不能互补；合成资料范围正确。",
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "optional_facts_not_required": true,
+    "passed": true,
+    "raw_result_sha256": "ebb45a1895fbeb334578272a37a45bdb33dd6afb8859a8b0f00cdb2d65616717"
+  },
+  {
+    "case_id": "MFG-GOLD-072",
+    "reviewer_type": "assistant",
+    "independent": false,
+    "human_reviewer": null,
+    "reviewed_at": "2026-11-12T14:43:25.391977+00:00",
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "passed": true,
+        "reason": "明确编写日期不能作为批准日期。",
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "passed": true,
+        "reason": "明确必须重新读取并冻结新版本、保留旧版本。",
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "passed": true,
+        "reason": "明确不能直接回填旧快照，未主张可覆盖旧记录。",
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "optional_facts_not_required": true,
+    "passed": true,
+    "raw_result_sha256": "617b093d46c410407bbc4f5009df95a72c88f898c4b17d440965b51261f145c0"
+  },
+  {
+    "case_id": "MFG-GOLD-090",
+    "reviewer_type": "assistant",
+    "independent": false,
+    "human_reviewer": null,
+    "reviewed_at": "2026-11-12T14:43:25.399153+00:00",
+    "policy_sha256": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "required_facts": [
+      {
+        "id": "F01",
+        "passed": true,
+        "reason": "明确DEMO-D41编写日期不能作为批准日期。",
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F02",
+        "passed": true,
+        "reason": "明确重新读取并冻结新版本、保留旧版本。",
+        "evidence_ids": [
+          "E01"
+        ]
+      },
+      {
+        "id": "F03",
+        "passed": true,
+        "reason": "明确不能直接回填旧快照，未主张可覆盖旧记录。",
+        "evidence_ids": [
+          "E01"
+        ]
+      }
+    ],
+    "forbidden_violations": [],
+    "unsupported_additions": [],
+    "optional_facts_not_required": true,
+    "passed": true,
+    "raw_result_sha256": "b395e383d4f23db39e1c3a619c708ca119d278203fd8188182664107fa953922"
+  }
+]

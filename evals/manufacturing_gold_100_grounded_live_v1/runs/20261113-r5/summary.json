@@ -1,0 +1,267 @@
+{
+  "schema_version": "manufacturing-gold100-grounded-live-result-v1",
+  "executed": 100,
+  "dataset": "manufacturing_gold_100_v4",
+  "source_revision": "4c9663b3e299091ca70c3b8d3caea67f27904ec4",
+  "contract_passed": 93,
+  "assistant_non_independent_passed": 80,
+  "human_approved": 0,
+  "independent_holdout": false,
+  "cases_with_any_model_calls": 79,
+  "zero_model_cases": 21,
+  "model_cases_passed": 61,
+  "zero_model_cases_passed": 19,
+  "primary_question_calls_cases": 79,
+  "categories": {
+    "guidance": {
+      "cases": 30,
+      "contract_passed": 29,
+      "assistant_non_independent_passed": 20
+    },
+    "erpnext": {
+      "cases": 20,
+      "contract_passed": 19,
+      "assistant_non_independent_passed": 19
+    },
+    "openmes": {
+      "cases": 20,
+      "contract_passed": 19,
+      "assistant_non_independent_passed": 15
+    },
+    "safety": {
+      "cases": 20,
+      "contract_passed": 18,
+      "assistant_non_independent_passed": 18
+    },
+    "conversation": {
+      "cases": 10,
+      "contract_passed": 8,
+      "assistant_non_independent_passed": 8
+    }
+  },
+  "usage": {
+    "matched": true,
+    "calls": 241,
+    "known_tokens": 1018547,
+    "unknown_calls": 3,
+    "budget_tokens": 1114547,
+    "by_stage": {
+      "query_embedding": 71,
+      "rerank": 71,
+      "answer_generation": 78,
+      "query_planning": 9,
+      "answer_repair": 1,
+      "agent_decision": 10,
+      "context_selection": 1
+    },
+    "providers_models": [
+      "dashscope:qwen3-rerank",
+      "dashscope:qwen3.7-flash",
+      "dashscope:text-embedding-v4"
+    ],
+    "all_priced": false,
+    "pending": 0
+  },
+  "index_usage": {
+    "calls": 0,
+    "tokens": 0,
+    "reused_existing_index": true
+  },
+  "started_at": "2026-11-13T09:54:05.712115+00:00",
+  "finished_at": "2026-11-13T10:12:22.939529+00:00",
+  "elapsed_seconds": 1097.227,
+  "limits": {
+    "index": {
+      "max_model_calls": 0,
+      "max_tokens": 0,
+      "max_seconds": 300,
+      "reservation_tokens": 32000
+    },
+    "evaluation": {
+      "max_cases": 100,
+      "max_model_calls": 800,
+      "max_tokens": 5000000,
+      "max_seconds": 9000,
+      "reservation_tokens": 32000
+    }
+  },
+  "budget_origin": "explicit_user_authorization",
+  "request_retries": 0,
+  "continuations": false,
+  "old_results_combined": false,
+  "old_scores_recomputed": false,
+  "failed_ids": [
+    "MFG-GOLD-001",
+    "MFG-GOLD-003",
+    "MFG-GOLD-015",
+    "MFG-GOLD-021",
+    "MFG-GOLD-024",
+    "MFG-GOLD-036",
+    "MFG-GOLD-041",
+    "MFG-GOLD-042",
+    "MFG-GOLD-050",
+    "MFG-GOLD-057",
+    "MFG-GOLD-059",
+    "MFG-GOLD-060",
+    "MFG-GOLD-062",
+    "MFG-GOLD-068",
+    "MFG-GOLD-077",
+    "MFG-GOLD-080",
+    "MFG-GOLD-086",
+    "MFG-GOLD-091",
+    "MFG-GOLD-094",
+    "MFG-GOLD-095"
+  ],
+  "harness_error_ids": [
+    "MFG-GOLD-057",
+    "MFG-GOLD-094"
+  ],
+  "preservation": {
+    "original_containers": 108,
+    "changed_containers": [],
+    "protected_files": 1971,
+    "changed_files": []
+  },
+  "runtime_audit": {
+    "isolated_copies": {
+      "erp": {
+        "documents": 55,
+        "chunks": 885,
+        "active_vectors": 885,
+        "total_vectors": 927,
+        "active_index_jobs": 0,
+        "frozen_inventory_matches": true,
+        "current_original_hashes_verified": true,
+        "revised_documents_v2": 3
+      },
+      "mes": {
+        "documents": 55,
+        "chunks": 885,
+        "active_vectors": 885,
+        "total_vectors": 927,
+        "active_index_jobs": 0,
+        "frozen_inventory_matches": true,
+        "current_original_hashes_verified": true,
+        "revised_documents_v2": 3
+      }
+    },
+    "original_application_models_new_events": 0,
+    "original_application_ledgers_checked": 19,
+    "model_index_and_evaluation_ledgers_separate": true,
+    "normal_erp_mes_adapters_readonly": true,
+    "conflict_history_checks": [
+      {
+        "case_id": "MFG-GOLD-037",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-038",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-039",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-058",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-075",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-076",
+        "bound_turn_preserved": true,
+        "turns": 1
+      },
+      {
+        "case_id": "MFG-GOLD-093",
+        "bound_turn_preserved": true,
+        "turns": 1
+      }
+    ],
+    "unobserved_conflict_history": [
+      {
+        "case_id": "MFG-GOLD-057",
+        "harness_error": {
+          "type": "RuntimeError",
+          "message": "Fixture request failed: 401 /api/manufacturing/work-orders/4/context"
+        },
+        "history_observed": false
+      },
+      {
+        "case_id": "MFG-GOLD-094",
+        "harness_error": {
+          "type": "TokenVerificationError",
+          "message": "访问令牌无效或已过期。"
+        },
+        "history_observed": false
+      }
+    ],
+    "additional_browser_acceptance": false,
+    "live_platform_gold_sample_approvals": 0,
+    "formal_40_or_closed_loop_executed": false
+  },
+  "auxiliary_observation": {
+    "case": "MFG-GOLD-040",
+    "additional_command_model_calls": 0,
+    "response_type": "refuse",
+    "upstream_write_from_application": false,
+    "case031_post_observed": {
+      "status_code": 200,
+      "harness_error": null
+    },
+    "limitation": "Supplemental observations, not extra gold cases or browser acceptance."
+  },
+  "environment_closure": {
+    "new_containers_stopped": {
+      "gold100-v4-grounded-erp-20261113-r5": "exited",
+      "gold100-v4-grounded-mes-20261113-r5": "exited",
+      "gold100-v4-grounded-mes-adapter-20261113-r5": "exited",
+      "gold100-v4-grounded-upstream-mes-20261113-r5": "exited",
+      "gold100-v4-grounded-redis-20261113-r5": "exited",
+      "gold100-v4-grounded-upstream-pg-20261113-r5": "exited"
+    },
+    "shared_dependencies_restored": {
+      "gold100-v2-milvus-20261112-r1": {
+        "id": "bdb43e71ef60bb7bc2760627bf6ee74ad7264c515c7e8b79df97d2c6c4e4fb88",
+        "status": "exited",
+        "image": "sha256:544c055ed25a2d22e4d3366c7c6b6f8b2240494eee605994bd1988437fa27ac8",
+        "started_at_changed": true
+      },
+      "gold100-v2-minio-20261112-r1": {
+        "id": "8137d9c73485b066dba6c34545ee944d4e473c99d39c1f4ac29bc9d447241a99",
+        "status": "exited",
+        "image": "sha256:6aed1b6949018d1659310e66dc076711c9a9efeffa578b337ac3d1b82e0e9153",
+        "started_at_changed": true
+      },
+      "gold100-v2-etcd-20261112-r1": {
+        "id": "dc1f0e317453347f98ba84208390a5fba20c5c429fb8ac013a3ac0e2c1e8ed83",
+        "status": "exited",
+        "image": "sha256:ce1ffcaa22b901114f685eb972afd230849fdcd8c90a36f31d7dfa7072d00158",
+        "started_at_changed": true
+      }
+    },
+    "databases_and_volumes_deleted": false,
+    "old_erp_mes_or_workbench_containers_changed": false,
+    "model_calls": 0
+  },
+  "final_original_preservation": {
+    "old_containers": 108,
+    "unchanged_containers": 105,
+    "changed_only_dependency_start_times": [
+      "/gold100-v2-milvus-20261112-r1",
+      "/gold100-v2-minio-20261112-r1",
+      "/gold100-v2-etcd-20261112-r1"
+    ],
+    "old_statuses_restored": true,
+    "original_workbench_changes": false,
+    "models": 0
+  }
+}

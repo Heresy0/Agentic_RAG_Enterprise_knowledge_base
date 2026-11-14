@@ -1,0 +1,2647 @@
+{
+  "status": "passed",
+  "scope": "offline_corpus_integrity_not_gold_approval_or_model_score",
+  "documents": 55,
+  "topics": 60,
+  "external_model_calls": 0,
+  "manifest_sha256": "6ad90b6da748d8780068cb4f1ac4b7e613354da838406218cfc640500df760d3",
+  "checker_sha256": "9adc532b1c0c9595fa49c2531ff94b97d8356844b99920607ab5fc06259b6a59",
+  "probes": {
+    "文件哈希损坏": "rejected",
+    "英文语料混入": "rejected",
+    "伪造人工批准": "rejected",
+    "证据引用篡改": "rejected",
+    "伪造独立盲测": "rejected"
+  },
+  "actual_parser": {
+    "chunking_version": "structured-v7",
+    "documents": 55,
+    "chunks": 885,
+    "anchors": 169,
+    "rows": [
+      {
+        "id": "BASE-MFG-02",
+        "chunks": 4,
+        "source_sha256": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+        "chunk_types": {
+          "paragraph": 3,
+          "rule_group": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 8,
+            "changed_stages": 4,
+            "applied_rules": {
+              "unicode_nfkc": 2,
+              "remove_safe_marginalia": 2
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "BASE-MFG-06",
+        "chunks": 4,
+        "source_sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+        "chunk_types": {
+          "paragraph": 4
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 4,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 1
+      },
+      {
+        "id": "BASE-MFG-07",
+        "chunks": 5,
+        "source_sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+        "chunk_types": {
+          "paragraph": 4,
+          "rule_group": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 5,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 1
+      },
+      {
+        "id": "BASE-MFG-08",
+        "chunks": 4,
+        "source_sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+        "chunk_types": {
+          "paragraph": 3,
+          "table": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 5,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 1
+      },
+      {
+        "id": "BASE-MFG-09",
+        "chunks": 4,
+        "source_sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+        "chunk_types": {
+          "paragraph": 4
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 4,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 1
+      },
+      {
+        "id": "BASE-MFG-10",
+        "chunks": 4,
+        "source_sha256": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+        "chunk_types": {
+          "paragraph": 3,
+          "table": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 1,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 5,
+            "changed_stages": 1,
+            "applied_rules": {
+              "normalize_newlines": 1
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "BASE-MFG-12",
+        "chunks": 5,
+        "source_sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+        "chunk_types": {
+          "paragraph": 3,
+          "rule_group": 1,
+          "table": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 1,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 1,
+            "applied_rules": {
+              "normalize_newlines": 1
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "BASE-MFG-14",
+        "chunks": 6,
+        "source_sha256": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+        "chunk_types": {
+          "paragraph": 4,
+          "list": 2
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 2,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 1,
+            "applied_rules": {
+              "normalize_newlines": 1
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 2
+      },
+      {
+        "id": "BASE-MFG-15",
+        "chunks": 4,
+        "source_sha256": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+        "chunk_types": {
+          "paragraph": 4
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 2,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 5,
+            "changed_stages": 1,
+            "applied_rules": {
+              "normalize_newlines": 1
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 2
+      },
+      {
+        "id": "BASE-MFG-16",
+        "chunks": 4,
+        "source_sha256": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+        "chunk_types": {
+          "paragraph": 4
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 2,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 5,
+            "changed_stages": 1,
+            "applied_rules": {
+              "normalize_newlines": 1
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 2
+      },
+      {
+        "id": "BASE-MFGWO-01",
+        "chunks": 3,
+        "source_sha256": "43a90c111f1117895d3933ccf39ff4440c37c8ec11855f8cb417311477e158a6",
+        "chunk_types": {
+          "paragraph": 3
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 4,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "BASE-MFGWO-02",
+        "chunks": 3,
+        "source_sha256": "2332f98f9c6b0e54e0a0c0602c5b00f802608a7195135cfe4d79f2f3262fa497",
+        "chunk_types": {
+          "paragraph": 3
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 4,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "BASE-MFGWO-03",
+        "chunks": 3,
+        "source_sha256": "f773f6704aa53f8d06170474f0e06517c8729bd27d944285621eef99c608efad",
+        "chunk_types": {
+          "paragraph": 3
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 4,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-B21-01",
+        "chunks": 6,
+        "source_sha256": "de6048346e87685b44bb074fb08e08eabe09142674a8be53e3929d9da020ca0b",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-B21-02",
+        "chunks": 6,
+        "source_sha256": "5b4d7a61311ce96c0e802fe8584512e0491270ac931650a96da271132685dcd2",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-B21-03",
+        "chunks": 6,
+        "source_sha256": "d93c7bb5980d7525888709fa92f768f813d2a0a5187a964ad84ae6501fc8e0cd",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-B21-04",
+        "chunks": 6,
+        "source_sha256": "a763e64c450b69ee84ed99d8cf4267d6295bb68424e84d0ec5dc4868d2edc26e",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-B21-05",
+        "chunks": 1,
+        "source_sha256": "2282dd1785a9568161d312e6dc34649c1ab278cb8b55e8b7c9d113bc47dba060",
+        "chunk_types": {
+          "paragraph": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 3,
+            "changed_stages": 1,
+            "applied_rules": {
+              "unicode_nfkc": 1
+            }
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u06",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-B21-06",
+        "chunks": 1,
+        "source_sha256": "5827645b3ce7ad816eb66aaab7c609206a40c729034db4962bb65c0b4368d797",
+        "chunk_types": {
+          "paragraph": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 3,
+            "changed_stages": 1,
+            "applied_rules": {
+              "unicode_nfkc": 1
+            }
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u06",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-B21-07",
+        "chunks": 6,
+        "source_sha256": "2fcb4d63a9c660de8d018baa6cdd967a47d7e1f76d218f2cb9ae6c56bfbcab05",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-B21-08",
+        "chunks": 14,
+        "source_sha256": "414cf2ce8f71170d52d683fd5e7b2205f9422850a12deb4f1ad739742f1b4c05",
+        "chunk_types": {
+          "paragraph": 14
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 15,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              7
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              9
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              11
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u06",
+            "chunk_indices": [
+              13
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 14
+      },
+      {
+        "id": "ZH-B21-09",
+        "chunks": 5,
+        "source_sha256": "d46181d3e69050e043eec18bfcec86d3f9121363f9c3b4861b91f9d7f0c64679",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-B21-10",
+        "chunks": 5,
+        "source_sha256": "89c09d402f6e45eccb37d87398eee7e0fefc1fcfa52af3d22aaf4c73656af537",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-C31-01",
+        "chunks": 6,
+        "source_sha256": "471dfbe6ded685792244b65e90e28e8640061285fbc5f30e3e00d415a5986ae5",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-C31-02",
+        "chunks": 6,
+        "source_sha256": "79ba2fe94066f98c7af601dd056ac35e7bb31d8779d87ccd868018978632c469",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-C31-03",
+        "chunks": 6,
+        "source_sha256": "93de6040f28e01ee635d77a7761a2a12eb8fd0fa5ad2b708c3e3c4a6dee22e6d",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-C31-04",
+        "chunks": 6,
+        "source_sha256": "dd42e81a673efbef301bc4ba41294d318649718d7d4e6ca67353822b2c136a0a",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-C31-05",
+        "chunks": 1,
+        "source_sha256": "b361ef5a71879e8621127d61749a30d3b78e3a7410e4cccfaabd4123ec60eebb",
+        "chunk_types": {
+          "paragraph": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 3,
+            "changed_stages": 1,
+            "applied_rules": {
+              "unicode_nfkc": 1
+            }
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u06",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-C31-06",
+        "chunks": 2,
+        "source_sha256": "01878877878e504e6eaa48ffdadc64a8cb24822d7d7bb7fdf8bedd7fa5228f9b",
+        "chunk_types": {
+          "paragraph": 2
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 3,
+            "changed_stages": 1,
+            "applied_rules": {
+              "unicode_nfkc": 1
+            }
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u06",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-C31-07",
+        "chunks": 6,
+        "source_sha256": "eb8ce6085683cf2f37b03450cab102db2dc27770ac25402b76f843f3e083afb0",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-C31-08",
+        "chunks": 14,
+        "source_sha256": "060c026270c8282380afdaf29ef909e62f1aa9a43d081366a2f5e6df7bbe8f36",
+        "chunk_types": {
+          "paragraph": 14
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 15,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              7
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              9
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              11
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u06",
+            "chunk_indices": [
+              13
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 14
+      },
+      {
+        "id": "ZH-C31-09",
+        "chunks": 5,
+        "source_sha256": "1bc07785cda76414d1543ad69c60fe246e94d72bdaa58122494979a0d6cfe04a",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-C31-10",
+        "chunks": 5,
+        "source_sha256": "878c59ab34083bf52d5ebea995a874bc2a4f7792afc9b7610ea7eef509c2f35a",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-D41-01",
+        "chunks": 6,
+        "source_sha256": "e576097565e55e881d1885b5ec24afde2f7d4adef0a7b881516d46ed44d0963c",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-D41-02",
+        "chunks": 6,
+        "source_sha256": "c212885e28c89fd698be0f9da6dd6e19f1d2e360c9d268da81694150030786bb",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-D41-03",
+        "chunks": 6,
+        "source_sha256": "7f020b05fbe4ee758507a50fa0acb191e0c1572e59fb4439b9967acea6cb36f8",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-D41-04",
+        "chunks": 6,
+        "source_sha256": "de2d4ad5b5d021e5030b35dad1f27732d614d9efc79e00e49c1bf9252ffb3331",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-D41-05",
+        "chunks": 2,
+        "source_sha256": "6aab4ccfe54e6112d0efc19f2147a47145d3f2b095e54dad9b07e98a05f25f11",
+        "chunk_types": {
+          "paragraph": 2
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 3,
+            "changed_stages": 1,
+            "applied_rules": {
+              "unicode_nfkc": 1
+            }
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u06",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-D41-06",
+        "chunks": 2,
+        "source_sha256": "21631f4ec1634d8c64a2c56a19a5e6cd47fdd0cc1aa11d1b3cc4d8eff232bb17",
+        "chunk_types": {
+          "paragraph": 2
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 3,
+            "changed_stages": 1,
+            "applied_rules": {
+              "unicode_nfkc": 1
+            }
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          },
+          {
+            "unit_id": "u06",
+            "chunk_indices": [
+              0
+            ],
+            "pages": [
+              1
+            ]
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-D41-07",
+        "chunks": 6,
+        "source_sha256": "95a86e5ef893935246d5246261d0dd513f19fea667e2eae9c5564c8eb7ab8efd",
+        "chunk_types": {
+          "paragraph": 6
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 7,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-D41-08",
+        "chunks": 14,
+        "source_sha256": "8dc2ec7b3c5fa28d35c8b119c37fbca2f244a3f6b3de281cd09aea00eca53362",
+        "chunk_types": {
+          "paragraph": 14
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 15,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              5
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              7
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              9
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u05",
+            "chunk_indices": [
+              11
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u06",
+            "chunk_indices": [
+              13
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 14
+      },
+      {
+        "id": "ZH-D41-09",
+        "chunks": 5,
+        "source_sha256": "6aaad236fade8d156f5efc31f5acb0a81a6857904e03abafa107aa68c431e198",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-D41-10",
+        "chunks": 5,
+        "source_sha256": "dce4fc1b506c19d7bd0bc8a41d4429ad1357c35c89b6d4e77bfa6b568f330fdb",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-PUB-01",
+        "chunks": 24,
+        "source_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+        "chunk_types": {
+          "paragraph": 17,
+          "rule_group": 2,
+          "list": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 41,
+            "changed_stages": 9,
+            "applied_rules": {
+              "unicode_nfkc": 9
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-PUB-02",
+        "chunks": 83,
+        "source_sha256": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+        "chunk_types": {
+          "paragraph": 83
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 84,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-PUB-03",
+        "chunks": 115,
+        "source_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+        "chunk_types": {
+          "paragraph": 81,
+          "list": 33,
+          "table": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 116,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-PUB-04",
+        "chunks": 20,
+        "source_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+        "chunk_types": {
+          "paragraph": 8,
+          "list": 12
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 33,
+            "changed_stages": 10,
+            "applied_rules": {
+              "unicode_nfkc": 10
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 7
+      },
+      {
+        "id": "ZH-PUB-05",
+        "chunks": 90,
+        "source_sha256": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+        "chunk_types": {
+          "paragraph": 70,
+          "table": 12,
+          "list": 8
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 145,
+            "changed_stages": 33,
+            "applied_rules": {
+              "unicode_nfkc": 26,
+              "normalize_empty_cells": 4,
+              "normalize_cell_whitespace": 6,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 1
+      },
+      {
+        "id": "ZH-PUB-06",
+        "chunks": 49,
+        "source_sha256": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+        "chunk_types": {
+          "paragraph": 41,
+          "table": 7,
+          "list": 1
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 88,
+            "changed_stages": 25,
+            "applied_rules": {
+              "unicode_nfkc": 20,
+              "normalize_cell_whitespace": 4,
+              "normalize_empty_cells": 3
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 1
+      },
+      {
+        "id": "ZH-PUB-07",
+        "chunks": 212,
+        "source_sha256": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+        "chunk_types": {
+          "paragraph": 170,
+          "list": 7,
+          "table": 35
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 310,
+            "changed_stages": 66,
+            "applied_rules": {
+              "unicode_nfkc": 39,
+              "normalize_empty_cells": 22,
+              "normalize_cell_whitespace": 15,
+              "drop_empty_table_rows": 5
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 1
+      },
+      {
+        "id": "ZH-PUB-08",
+        "chunks": 48,
+        "source_sha256": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+        "chunk_types": {
+          "paragraph": 36,
+          "table": 8,
+          "list": 4
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 88,
+            "changed_stages": 25,
+            "applied_rules": {
+              "unicode_nfkc": 18,
+              "normalize_cell_whitespace": 7,
+              "normalize_empty_cells": 6,
+              "drop_empty_table_rows": 2
+            }
+          }
+        },
+        "anchors": [],
+        "empty_section_chunks": 1
+      },
+      {
+        "id": "ZH-PUB-09",
+        "chunks": 5,
+        "source_sha256": "11e3ba6008af4f05cf578fa5e235c21c39ea0fa1a7279ad8451fc6a55828fe9f",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-PUB-10",
+        "chunks": 5,
+        "source_sha256": "d64bd1e5088ecf5a2d9b036be1817350700b096ebd521f897f4b37d1a79fe413",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-PUB-11",
+        "chunks": 5,
+        "source_sha256": "50cf2b75c21ff5885bc288b3503cda313c06e530ea50bd8fd85962e3bd1f8cd5",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      },
+      {
+        "id": "ZH-PUB-12",
+        "chunks": 5,
+        "source_sha256": "92ec261d2b8163c80aaf33d3f2c1567ce43189027b39244c82bd74c0aa8c449c",
+        "chunk_types": {
+          "paragraph": 5
+        },
+        "quality": {
+          "cleaning_version": "conservative-v2",
+          "front_matter_chunks": 0,
+          "ocr_chunks": 0,
+          "review_required": false,
+          "review_reasons": [],
+          "cleaning": {
+            "version": "conservative-v2",
+            "trace_count": 6,
+            "changed_stages": 0,
+            "applied_rules": {}
+          }
+        },
+        "anchors": [
+          {
+            "unit_id": "u01",
+            "chunk_indices": [
+              1
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u02",
+            "chunk_indices": [
+              2
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u03",
+            "chunk_indices": [
+              3
+            ],
+            "pages": []
+          },
+          {
+            "unit_id": "u04",
+            "chunk_indices": [
+              4
+            ],
+            "pages": []
+          }
+        ],
+        "empty_section_chunks": 0
+      }
+    ]
+  },
+  "network_connect_attempts": 0
+}

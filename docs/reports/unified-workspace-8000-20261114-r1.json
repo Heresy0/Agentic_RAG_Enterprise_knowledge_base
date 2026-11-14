@@ -1,0 +1,152 @@
+{
+  "workspaces": {
+    "knowledge": {
+      "original_tables": 27,
+      "original_rows_preserved": 47160,
+      "old_row_changes": 0,
+      "original_files_preserved": 184,
+      "current_documents": 185,
+      "current_runs": 935,
+      "current_conversations": 17,
+      "new_model_events": 3,
+      "pending": 0,
+      "migration": "e9b2d4f60713",
+      "business_source_files_verified": 168
+    },
+    "erp": {
+      "original_tables": 31,
+      "original_rows_preserved": 3329,
+      "old_row_changes": 0,
+      "original_files_preserved": 13,
+      "current_documents": 13,
+      "current_runs": 229,
+      "current_conversations": 6,
+      "new_model_events": 3,
+      "pending": 0,
+      "migration": "e9b2d4f60713",
+      "business_source_files_verified": 168
+    },
+    "mes": {
+      "original_tables": 31,
+      "original_rows_preserved": 2388,
+      "old_row_changes": 0,
+      "original_files_preserved": 13,
+      "current_documents": 13,
+      "current_runs": 44,
+      "current_conversations": 12,
+      "new_model_events": 3,
+      "pending": 0,
+      "migration": "e9b2d4f60713",
+      "business_source_files_verified": 168
+    }
+  },
+  "published_port": 8000,
+  "loopback_only": true,
+  "retired_ports": [
+    8005,
+    8006
+  ],
+  "temporary_gateway_port_closed": true,
+  "source_revision": "a995666e4f446bf1f89b719f6c4c77c27a48b2b5",
+  "original_oidc_clients_unchanged": true,
+  "old_container_preservation": {
+    "old_containers": 162,
+    "unchanged_except_replaced": 157,
+    "expected_stopped_backup_containers": [
+      "enterprise-knowledge-api",
+      "enterprise-knowledge-worker",
+      "enterprise_knowladge-quality-worker-1",
+      "main-isolated-erpnext-api",
+      "main-isolated-openmes-api"
+    ],
+    "unexpected_changed_containers": []
+  },
+  "actual_model_calls": 9,
+  "pending": 0,
+  "databases_or_volumes_deleted": false,
+  "image": {
+    "image": "enterprise-knowledge-manufacturing:unified-8000-20261114-r1",
+    "image_id": "sha256:cd591b4fd73f86f48d375b7a23686e06cd475e1e2fc2a973702cb9dccca3d144",
+    "source_revision": "a995666e4f446bf1f89b719f6c4c77c27a48b2b5",
+    "offline_build": true,
+    "business_files": 168,
+    "prompt_sha256": "9c7adf3dc4ee825ef13c659a1b3fae77d64947a6a60f1e52bdb09be68b84621c"
+  },
+  "http_requests": 33,
+  "offline_tests": {
+    "node": 69,
+    "python": 15
+  },
+  "browser": {
+    "root_login": true,
+    "erp_login_return": "/erp/",
+    "mes_login_return": "/mes/",
+    "workspace_switches_verified": true,
+    "erp_operation_and_card_verified": true,
+    "mes_batch_and_step_verified": true,
+    "metrics": {
+      "scrollWidth": 1265,
+      "width": 1265
+    },
+    "console_errors": []
+  },
+  "model_smoke": {
+    "status": "closed",
+    "results": {
+      "knowledge": {
+        "http_status": 200,
+        "answerable": true,
+        "budget": {
+          "calls": 3,
+          "charged_tokens": 10718,
+          "unknown_calls": 0,
+          "elapsed_seconds": 35.972,
+          "limited_by": null
+        }
+      },
+      "erp": {
+        "http_status": 200,
+        "answerable": true,
+        "budget": {
+          "calls": 3,
+          "charged_tokens": 5119,
+          "unknown_calls": 0,
+          "elapsed_seconds": 21.59,
+          "limited_by": null
+        }
+      },
+      "mes": {
+        "http_status": 200,
+        "answerable": true,
+        "budget": {
+          "calls": 3,
+          "charged_tokens": 5119,
+          "unknown_calls": 0,
+          "elapsed_seconds": 15.389,
+          "limited_by": null
+        }
+      }
+    },
+    "physical_calls": 9,
+    "known_tokens": 20956,
+    "unknown_calls": 0,
+    "budget_tokens": 20956,
+    "pending": 0,
+    "unused_allowance_reusable": false,
+    "old_gold_scores_changed": false,
+    "retries": 0
+  },
+  "old_row_fingerprints_preserved": 52877,
+  "original_files_preserved": 210,
+  "new_index_calls": 0,
+  "new_gold100_run": false,
+  "workspace_urls": {
+    "knowledge": "http://127.0.0.1:8000/",
+    "erp": "http://127.0.0.1:8000/erp/",
+    "mes": "http://127.0.0.1:8000/mes/"
+  },
+  "screenshots": {
+    "erp-workspace.png": "42d5e2a3ca7510174b4b1390f80a43b710294d2e9bf33c8f4934dbc309a7e0d8",
+    "mes-workspace.png": "4ee982a0d3c6abf524aeea7424a6b7dd6b87ccd9c6b1df0b6648ab07cc6e03ee"
+  }
+}

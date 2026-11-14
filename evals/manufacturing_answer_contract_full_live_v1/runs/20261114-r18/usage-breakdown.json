@@ -1,0 +1,466 @@
+{
+  "all_physical_calls": {
+    "before": {
+      "agent_decision": {
+        "calls": 12,
+        "statuses": {
+          "success": 11,
+          "error": 1
+        },
+        "known_input_tokens": 24136,
+        "known_output_tokens": 392,
+        "known_total_tokens": 24528,
+        "unknown_calls": 1
+      },
+      "answer_generation": {
+        "calls": 79,
+        "statuses": {
+          "success": 76,
+          "error": 3
+        },
+        "known_input_tokens": 432288,
+        "known_output_tokens": 26565,
+        "known_total_tokens": 458853,
+        "unknown_calls": 3
+      },
+      "answer_repair": {
+        "calls": 2,
+        "statuses": {
+          "success": 2
+        },
+        "known_input_tokens": 5772,
+        "known_output_tokens": 682,
+        "known_total_tokens": 6454,
+        "unknown_calls": 0
+      },
+      "query_embedding": {
+        "calls": 71,
+        "statuses": {
+          "success": 71
+        },
+        "known_input_tokens": 2131,
+        "known_output_tokens": 0,
+        "known_total_tokens": 2131,
+        "unknown_calls": 0
+      },
+      "query_planning": {
+        "calls": 9,
+        "statuses": {
+          "success": 3,
+          "error": 6
+        },
+        "known_input_tokens": 755,
+        "known_output_tokens": 590,
+        "known_total_tokens": 1345,
+        "unknown_calls": 6
+      },
+      "rerank": {
+        "calls": 71,
+        "statuses": {
+          "success": 57,
+          "error": 14
+        },
+        "known_input_tokens": 0,
+        "known_output_tokens": 0,
+        "known_total_tokens": 282944,
+        "unknown_calls": 14
+      }
+    },
+    "after": {
+      "agent_decision": {
+        "calls": 7,
+        "statuses": {
+          "success": 7
+        },
+        "known_input_tokens": 15566,
+        "known_output_tokens": 259,
+        "known_total_tokens": 15825,
+        "unknown_calls": 0
+      },
+      "answer_generation": {
+        "calls": 79,
+        "statuses": {
+          "success": 78,
+          "error": 1
+        },
+        "known_input_tokens": 330689,
+        "known_output_tokens": 25802,
+        "known_total_tokens": 356491,
+        "unknown_calls": 1
+      },
+      "answer_repair": {
+        "calls": 1,
+        "statuses": {
+          "success": 1
+        },
+        "known_input_tokens": 2731,
+        "known_output_tokens": 506,
+        "known_total_tokens": 3237,
+        "unknown_calls": 0
+      },
+      "query_embedding": {
+        "calls": 71,
+        "statuses": {
+          "success": 71
+        },
+        "known_input_tokens": 2131,
+        "known_output_tokens": 0,
+        "known_total_tokens": 2131,
+        "unknown_calls": 0
+      },
+      "query_planning": {
+        "calls": 9,
+        "statuses": {
+          "success": 6,
+          "error": 3
+        },
+        "known_input_tokens": 1513,
+        "known_output_tokens": 1201,
+        "known_total_tokens": 2714,
+        "unknown_calls": 3
+      },
+      "rerank": {
+        "calls": 71,
+        "statuses": {
+          "success": 71
+        },
+        "known_input_tokens": 0,
+        "known_output_tokens": 0,
+        "known_total_tokens": 353009,
+        "unknown_calls": 0
+      }
+    }
+  },
+  "same_recorded_document_context_first_generation": {
+    "count": 46,
+    "pairs": [
+      {
+        "case_id": "MFG-GOLD-005",
+        "before_input": 7061,
+        "after_input": 5228,
+        "before_output": 328,
+        "after_output": 329
+      },
+      {
+        "case_id": "MFG-GOLD-006",
+        "before_input": 7858,
+        "after_input": 6025,
+        "before_output": 285,
+        "after_output": 229
+      },
+      {
+        "case_id": "MFG-GOLD-008",
+        "before_input": 5106,
+        "after_input": 3273,
+        "before_output": 254,
+        "after_output": 216
+      },
+      {
+        "case_id": "MFG-GOLD-009",
+        "before_input": 6890,
+        "after_input": 5057,
+        "before_output": 390,
+        "after_output": 236
+      },
+      {
+        "case_id": "MFG-GOLD-010",
+        "before_input": 5786,
+        "after_input": 3953,
+        "before_output": 284,
+        "after_output": 240
+      },
+      {
+        "case_id": "MFG-GOLD-011",
+        "before_input": 6694,
+        "after_input": 4861,
+        "before_output": 323,
+        "after_output": 229
+      },
+      {
+        "case_id": "MFG-GOLD-012",
+        "before_input": 6652,
+        "after_input": 4819,
+        "before_output": 555,
+        "after_output": 206
+      },
+      {
+        "case_id": "MFG-GOLD-041",
+        "before_input": 6155,
+        "after_input": 4424,
+        "before_output": 346,
+        "after_output": 506
+      },
+      {
+        "case_id": "MFG-GOLD-042",
+        "before_input": 5883,
+        "after_input": 4050,
+        "before_output": 403,
+        "after_output": 477
+      },
+      {
+        "case_id": "MFG-GOLD-044",
+        "before_input": 7298,
+        "after_input": 5465,
+        "before_output": 485,
+        "after_output": 374
+      },
+      {
+        "case_id": "MFG-GOLD-047",
+        "before_input": 7834,
+        "after_input": 6001,
+        "before_output": 323,
+        "after_output": 259
+      },
+      {
+        "case_id": "MFG-GOLD-050",
+        "before_input": 6304,
+        "after_input": 4471,
+        "before_output": 337,
+        "after_output": 323
+      },
+      {
+        "case_id": "MFG-GOLD-051",
+        "before_input": 5541,
+        "after_input": 3708,
+        "before_output": 152,
+        "after_output": 221
+      },
+      {
+        "case_id": "MFG-GOLD-053",
+        "before_input": 6398,
+        "after_input": 4565,
+        "before_output": 297,
+        "after_output": 332
+      },
+      {
+        "case_id": "MFG-GOLD-054",
+        "before_input": 5486,
+        "after_input": 3653,
+        "before_output": 309,
+        "after_output": 290
+      },
+      {
+        "case_id": "MFG-GOLD-059",
+        "before_input": 6341,
+        "after_input": 4508,
+        "before_output": 305,
+        "after_output": 436
+      },
+      {
+        "case_id": "MFG-GOLD-060",
+        "before_input": 6934,
+        "after_input": 5101,
+        "before_output": 468,
+        "after_output": 497
+      },
+      {
+        "case_id": "MFG-GOLD-061",
+        "before_input": 6449,
+        "after_input": 4617,
+        "before_output": 459,
+        "after_output": 556
+      },
+      {
+        "case_id": "MFG-GOLD-062",
+        "before_input": 5872,
+        "after_input": 4039,
+        "before_output": 373,
+        "after_output": 340
+      },
+      {
+        "case_id": "MFG-GOLD-064",
+        "before_input": 6224,
+        "after_input": 4391,
+        "before_output": 387,
+        "after_output": 363
+      },
+      {
+        "case_id": "MFG-GOLD-065",
+        "before_input": 7724,
+        "after_input": 5891,
+        "before_output": 358,
+        "after_output": 256
+      },
+      {
+        "case_id": "MFG-GOLD-067",
+        "before_input": 5872,
+        "after_input": 4039,
+        "before_output": 464,
+        "after_output": 372
+      },
+      {
+        "case_id": "MFG-GOLD-068",
+        "before_input": 5880,
+        "after_input": 4047,
+        "before_output": 355,
+        "after_output": 262
+      },
+      {
+        "case_id": "MFG-GOLD-070",
+        "before_input": 7267,
+        "after_input": 5434,
+        "before_output": 369,
+        "after_output": 269
+      },
+      {
+        "case_id": "MFG-GOLD-071",
+        "before_input": 5372,
+        "after_input": 3539,
+        "before_output": 327,
+        "after_output": 340
+      },
+      {
+        "case_id": "MFG-GOLD-072",
+        "before_input": 5314,
+        "after_input": 3481,
+        "before_output": 195,
+        "after_output": 258
+      },
+      {
+        "case_id": "MFG-GOLD-073",
+        "before_input": 6401,
+        "after_input": 4568,
+        "before_output": 346,
+        "after_output": 379
+      },
+      {
+        "case_id": "MFG-GOLD-074",
+        "before_input": 6815,
+        "after_input": 4982,
+        "before_output": 306,
+        "after_output": 236
+      },
+      {
+        "case_id": "MFG-GOLD-077",
+        "before_input": 5832,
+        "after_input": 3999,
+        "before_output": 484,
+        "after_output": 501
+      },
+      {
+        "case_id": "MFG-GOLD-078",
+        "before_input": 6584,
+        "after_input": 4751,
+        "before_output": 607,
+        "after_output": 508
+      },
+      {
+        "case_id": "MFG-GOLD-079",
+        "before_input": 5771,
+        "after_input": 3936,
+        "before_output": 550,
+        "after_output": 538
+      },
+      {
+        "case_id": "MFG-GOLD-081",
+        "before_input": 6459,
+        "after_input": 4626,
+        "before_output": 323,
+        "after_output": 277
+      },
+      {
+        "case_id": "MFG-GOLD-082",
+        "before_input": 6649,
+        "after_input": 4898,
+        "before_output": 404,
+        "after_output": 516
+      },
+      {
+        "case_id": "MFG-GOLD-083",
+        "before_input": 7401,
+        "after_input": 5568,
+        "before_output": 349,
+        "after_output": 258
+      },
+      {
+        "case_id": "MFG-GOLD-084",
+        "before_input": 6514,
+        "after_input": 4681,
+        "before_output": 418,
+        "after_output": 437
+      },
+      {
+        "case_id": "MFG-GOLD-085",
+        "before_input": 6099,
+        "after_input": 4266,
+        "before_output": 450,
+        "after_output": 465
+      },
+      {
+        "case_id": "MFG-GOLD-086",
+        "before_input": 6468,
+        "after_input": 4635,
+        "before_output": 397,
+        "after_output": 234
+      },
+      {
+        "case_id": "MFG-GOLD-088",
+        "before_input": 7891,
+        "after_input": 6058,
+        "before_output": 436,
+        "after_output": 377
+      },
+      {
+        "case_id": "MFG-GOLD-089",
+        "before_input": 6968,
+        "after_input": 5135,
+        "before_output": 316,
+        "after_output": 357
+      },
+      {
+        "case_id": "MFG-GOLD-090",
+        "before_input": 5748,
+        "after_input": 3915,
+        "before_output": 320,
+        "after_output": 295
+      },
+      {
+        "case_id": "MFG-GOLD-091",
+        "before_input": 5535,
+        "after_input": 3702,
+        "before_output": 496,
+        "after_output": 374
+      },
+      {
+        "case_id": "MFG-GOLD-092",
+        "before_input": 6090,
+        "after_input": 4257,
+        "before_output": 282,
+        "after_output": 236
+      },
+      {
+        "case_id": "MFG-GOLD-095",
+        "before_input": 6404,
+        "after_input": 4571,
+        "before_output": 338,
+        "after_output": 326
+      },
+      {
+        "case_id": "MFG-GOLD-096",
+        "before_input": 6785,
+        "after_input": 4952,
+        "before_output": 308,
+        "after_output": 328
+      },
+      {
+        "case_id": "MFG-GOLD-097",
+        "before_input": 5550,
+        "after_input": 3717,
+        "before_output": 253,
+        "after_output": 203
+      },
+      {
+        "case_id": "MFG-GOLD-100",
+        "before_input": 7104,
+        "after_input": 5271,
+        "before_output": 256,
+        "after_output": 475
+      }
+    ],
+    "before_input_tokens": 295263,
+    "after_input_tokens": 211128
+  },
+  "limit": "Recorded context equality is not identical complete supplier payload. Independent full runs include rerank transport adjustment and generation variation; no prompt-only quality attribution or fee calculation.",
+  "model_calls": 0,
+  "old_scores_recomputed": false
+}

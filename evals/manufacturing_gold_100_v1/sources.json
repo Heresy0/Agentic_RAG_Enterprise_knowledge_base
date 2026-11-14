@@ -1,0 +1,3489 @@
+{
+  "schema_version": "manufacturing-gold-100-sources-v1",
+  "base_revision": "1852279",
+  "current_live_verification": false,
+  "sources": {
+    "D06": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/06_HC-A17_OP20作业指导书历史版.docx",
+      "original_sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+      "extraction": "python-docx paragraphs then table rows",
+      "units": [
+        {
+          "id": "D06-U001",
+          "text": "HC A17 OP20作业指导书历史版"
+        },
+        {
+          "id": "D06-U002",
+          "text": "文档编号：HC-WI-A17-020"
+        },
+        {
+          "id": "D06-U003",
+          "text": "版本：1.0"
+        },
+        {
+          "id": "D06-U004",
+          "text": "生效日期：2026-01-01"
+        },
+        {
+          "id": "D06-U005",
+          "text": "状态：历史归档"
+        },
+        {
+          "id": "D06-U006",
+          "text": "适用范围：HC-A17的OP-20工序"
+        },
+        {
+          "id": "D06-U007",
+          "text": "失效日期：2026-09-30"
+        },
+        {
+          "id": "D06-U008",
+          "text": "1 适用作业"
+        },
+        {
+          "id": "D06-U009",
+          "text": "适用于产品HC-A17的OP-20工序。2026年9月30日及以前已开工的工单沿用本版；如有针对该工单的书面变更，按书面变更执行。"
+        },
+        {
+          "id": "D06-U010",
+          "text": "2 首件要求"
+        },
+        {
+          "id": "D06-U011",
+          "text": "每次开工连续检查2件，全部项目合格后由质量人员签署。更换定位治具后必须重新进行首件确认，不得沿用更换前的首件结论。"
+        },
+        {
+          "id": "D06-U012",
+          "text": "3 作业记录"
+        },
+        {
+          "id": "D06-U013",
+          "text": "记录工单号、批次号、指导书版本和签署人。本版归档后仍用于其有效期间的历史查询。"
+        }
+      ],
+      "document_code": "HC-WI-A17-020",
+      "business_revision": "1.0",
+      "checksum_mode": "raw_bytes",
+      "content_sha256": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205"
+    },
+    "D07": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/07_HC-A17_OP20作业指导书现行版.docx",
+      "original_sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+      "extraction": "python-docx paragraphs then table rows",
+      "units": [
+        {
+          "id": "D07-U001",
+          "text": "HC A17 OP20作业指导书现行版"
+        },
+        {
+          "id": "D07-U002",
+          "text": "文档编号：HC-WI-A17-020"
+        },
+        {
+          "id": "D07-U003",
+          "text": "版本：2.0"
+        },
+        {
+          "id": "D07-U004",
+          "text": "生效日期：2026-10-01"
+        },
+        {
+          "id": "D07-U005",
+          "text": "状态：现行"
+        },
+        {
+          "id": "D07-U006",
+          "text": "适用范围：HC-A17的OP-20工序"
+        },
+        {
+          "id": "D07-U007",
+          "text": "1 适用作业"
+        },
+        {
+          "id": "D07-U008",
+          "text": "适用于产品HC-A17的OP-20工序，自2026年10月1日起新开工工单使用2.0版。此前已开工工单的沿用与例外按ECN-2026-018执行。"
+        },
+        {
+          "id": "D07-U009",
+          "text": "2 首件确认条件"
+        },
+        {
+          "id": "D07-U010",
+          "text": "出现下列任一情形时必须重新进行首件确认："
+        },
+        {
+          "id": "D07-U011",
+          "text": "新工单开工。"
+        },
+        {
+          "id": "D07-U012",
+          "text": "更换定位治具。"
+        },
+        {
+          "id": "D07-U013",
+          "text": "连续停机超过4小时后重新开工。"
+        },
+        {
+          "id": "D07-U014",
+          "text": "首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。不允许只检1件，也不能用操作员口头确认替代质量签署。"
+        },
+        {
+          "id": "D07-U015",
+          "text": "3 检验与交接"
+        },
+        {
+          "id": "D07-U016",
+          "text": "必检项目按HC-QC-A17-001执行，交接按HC-FLOW-001执行。本指导书没有给出主轴转速、切削速度或进给量，操作前必须取得适用的批准工艺文件。"
+        }
+      ],
+      "document_code": "HC-WI-A17-020",
+      "business_revision": "2.0",
+      "checksum_mode": "raw_bytes",
+      "content_sha256": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e"
+    },
+    "D08": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_lite/documents/质量检验/08_HC-A17首件检验规范.docx",
+      "original_sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+      "extraction": "python-docx paragraphs then table rows",
+      "units": [
+        {
+          "id": "D08-U001",
+          "text": "HC A17首件检验规范"
+        },
+        {
+          "id": "D08-U002",
+          "text": "文档编号：HC-QC-A17-001"
+        },
+        {
+          "id": "D08-U003",
+          "text": "版本：1.0"
+        },
+        {
+          "id": "D08-U004",
+          "text": "生效日期：2026-10-01"
+        },
+        {
+          "id": "D08-U005",
+          "text": "状态：现行"
+        },
+        {
+          "id": "D08-U006",
+          "text": "适用范围：HC-A17的OP-20首件检验"
+        },
+        {
+          "id": "D08-U007",
+          "text": "1 检验范围"
+        },
+        {
+          "id": "D08-U008",
+          "text": "适用于HC-A17的OP-20首件检验，须按指导书要求逐件完成全部必检项目。"
+        },
+        {
+          "id": "D08-U009",
+          "text": "2 原始记录"
+        },
+        {
+          "id": "D08-U010",
+          "text": "外径和孔深是两个独立检查项目，不得混用上下限。零读数也必须记录。外观合格不能替代尺寸检查，尺寸合格不能替代质量签署。"
+        },
+        {
+          "id": "D08-U011",
+          "text": "项目 | 标准 | 工具 | 条件或备注"
+        },
+        {
+          "id": "D08-U012",
+          "text": "外径 | 19.95至20.05 mm，包含上下限 | MIC-025 | 记录每件原始读数"
+        },
+        {
+          "id": "D08-U013",
+          "text": "孔深 | 12.00至12.10 mm，包含上下限 | CAL-150 | 清洁孔内切屑后测量"
+        },
+        {
+          "id": "D08-U014",
+          "text": "外观 | 无可见毛刺和碰伤 | 目视 | 全部首件逐件检查"
+        },
+        {
+          "id": "D08-U015",
+          "text": "记录与签署 | 工单、批次、量具编号及质量人员签署齐全 | 检验记录 | 缺项时不得确认首件通过"
+        }
+      ],
+      "document_code": "HC-QC-A17-001",
+      "business_revision": "1.0",
+      "checksum_mode": "raw_bytes",
+      "content_sha256": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27"
+    },
+    "D09": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/09_工艺变更通知ECN-2026-018.docx",
+      "original_sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+      "extraction": "python-docx paragraphs then table rows",
+      "units": [
+        {
+          "id": "D09-U001",
+          "text": "工艺变更通知ECN 2026 018"
+        },
+        {
+          "id": "D09-U002",
+          "text": "文档编号：ECN-2026-018"
+        },
+        {
+          "id": "D09-U003",
+          "text": "版本：1.0"
+        },
+        {
+          "id": "D09-U004",
+          "text": "生效日期：2026-10-01"
+        },
+        {
+          "id": "D09-U005",
+          "text": "状态：现行"
+        },
+        {
+          "id": "D09-U006",
+          "text": "适用范围：HC-A17的OP-20工序"
+        },
+        {
+          "id": "D09-U007",
+          "text": "1 变更对象与时间"
+        },
+        {
+          "id": "D09-U008",
+          "text": "仅适用于HC-A17的OP-20工序。2026年10月1日起新开工工单由指导书1.0版切换为2.0版。判断依据为工单实际开工日期，不按报工日期或文档上传日期选择版本。"
+        },
+        {
+          "id": "D09-U009",
+          "text": "2 在制工单与例外"
+        },
+        {
+          "id": "D09-U010",
+          "text": "2026年9月30日及以前已经开工的工单继续沿用1.0版，即使在10月报工也不自动切换。仅当工艺负责人针对具体工单签发书面切换通知时，才按通知切换。没有通知不能推定已切换。"
+        },
+        {
+          "id": "D09-U011",
+          "text": "3 变更内容"
+        },
+        {
+          "id": "D09-U012",
+          "text": "首件数量由连续2件改为连续3件；2.0版增加连续停机超过4小时后重新首件确认。两版均要求更换定位治具后重新首件确认，并由质量人员签署。"
+        },
+        {
+          "id": "D09-U013",
+          "text": "HC-A18不属于本次变更范围，应查询其独立的指导书，不能套用HC-A17要求。"
+        }
+      ],
+      "document_code": "ECN-2026-018",
+      "business_revision": "1.0",
+      "checksum_mode": "raw_bytes",
+      "content_sha256": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415"
+    },
+    "D11": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_lite/documents/生产工艺/11_工艺常见问题.md",
+      "original_sha256": "f4dddd4fa5305665ab1f78407cb3007c36436250301ac8c94e3cb91a4b2abb5c",
+      "extraction": "UTF-8 nonempty stripped lines",
+      "units": [
+        {
+          "id": "D11-U001",
+          "text": "# 工艺常见问题"
+        },
+        {
+          "id": "D11-U002",
+          "text": "文档编号：HC-FAQ-001"
+        },
+        {
+          "id": "D11-U003",
+          "text": "版本：1.0"
+        },
+        {
+          "id": "D11-U004",
+          "text": "生效日期：2026-01-01"
+        },
+        {
+          "id": "D11-U005",
+          "text": "状态：现行"
+        },
+        {
+          "id": "D11-U006",
+          "text": "适用范围：衡川精密已授权人员"
+        },
+        {
+          "id": "D11-U007",
+          "text": "## 1 作业与正式文件"
+        },
+        {
+          "id": "D11-U008",
+          "text": "问：FAQ和正式指导书写法不一致时怎么办？"
+        },
+        {
+          "id": "D11-U009",
+          "text": "答：先核对适用产品、工序和时间。同一场景内以已批准的正式文件为依据；仍有冲突时提交工艺负责人核实，不自行选择更宽松要求。"
+        },
+        {
+          "id": "D11-U010",
+          "text": "## 2 记录示例"
+        },
+        {
+          "id": "D11-U011",
+          "text": "下列示例仅展示记录字段，不是对任意工单的执行证明。"
+        },
+        {
+          "id": "D11-U012",
+          "text": "```json"
+        },
+        {
+          "id": "D11-U013",
+          "text": "{\"work_order\": \"WO-EXAMPLE\", \"instruction_revision\": \"待核实\", \"note\": \"#不是章节|也不是表格\"}"
+        },
+        {
+          "id": "D11-U014",
+          "text": "```"
+        },
+        {
+          "id": "D11-U015",
+          "text": "问：只有计划检验时间能否证明已完成？"
+        },
+        {
+          "id": "D11-U016",
+          "text": "答：不能，须查实际检验与签署记录。"
+        }
+      ],
+      "document_code": "HC-FAQ-001",
+      "business_revision": "1.0",
+      "checksum_mode": "lf_normalized_text",
+      "content_sha256": "2cacc7dd8de7631f576c1f16f65e81b3d90b37d84252958c504abaec1f1a73b1"
+    },
+    "D12": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_lite/documents/质量检验/12_检验记录填写与追溯规则.md",
+      "original_sha256": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+      "extraction": "UTF-8 nonempty stripped lines",
+      "units": [
+        {
+          "id": "D12-U001",
+          "text": "# 检验记录填写与追溯规则"
+        },
+        {
+          "id": "D12-U002",
+          "text": "文档编号：HC-QC-REC"
+        },
+        {
+          "id": "D12-U003",
+          "text": "版本：1.0"
+        },
+        {
+          "id": "D12-U004",
+          "text": "生效日期：2026-01-01"
+        },
+        {
+          "id": "D12-U005",
+          "text": "状态：现行"
+        },
+        {
+          "id": "D12-U006",
+          "text": "适用范围：衡川精密已授权人员"
+        },
+        {
+          "id": "D12-U007",
+          "text": "## 1 必填记录"
+        },
+        {
+          "id": "D12-U008",
+          "text": "首件检验记录必须填写工单号、批次号、指导书版本、量具编号、检验人、检验时间、逐项结果和质量签署。"
+        },
+        {
+          "id": "D12-U009",
+          "text": "## 2 借用量具"
+        },
+        {
+          "id": "D12-U010",
+          "text": "借用量具必须同时满足以下条件："
+        },
+        {
+          "id": "D12-U011",
+          "text": "- 核对校准在有效期内，点检及零位确认正常。"
+        },
+        {
+          "id": "D12-U012",
+          "text": "- 登记借出方、借入方、量具编号和归还时间。"
+        },
+        {
+          "id": "D12-U013",
+          "text": "归还前清洁并复核状态；异常时隔离，不得只在交接记录中写正常后直接归还。"
+        },
+        {
+          "id": "D12-U014",
+          "text": "| 字段 | 允许值示例 |"
+        },
+        {
+          "id": "D12-U015",
+          "text": "| --- | --- |"
+        },
+        {
+          "id": "D12-U016",
+          "text": "| 记录标记 | 原始读数\\|复核读数 |"
+        },
+        {
+          "id": "D12-U017",
+          "text": "| 空值说明 | 未检与零读数分开登记 |"
+        }
+      ],
+      "document_code": "HC-QC-REC",
+      "business_revision": "1.0",
+      "checksum_mode": "lf_normalized_text",
+      "content_sha256": "480d5ca42d26a72ff6066ac15806c4daea8ceed7d2735a5169699b6d8ed4b546"
+    },
+    "P-QA": {
+      "kind": "platform_specification",
+      "repository_path": "docs/MANUFACTURING_QA.md",
+      "original_sha256": "725bc98c633479e7acbbf7be12a22c0b415862f806664a7b62243249e1ce79de",
+      "extraction": "UTF-8 nonempty stripped lines",
+      "units": [
+        {
+          "id": "P-QA-U001",
+          "text": "# 制造问答、两类引用与工单会话（M3）"
+        },
+        {
+          "id": "P-QA-U002",
+          "text": "M3 将 M1 的只读工单访问、M2 的适用性判断和既有 RAG 主流程接到正式制造入口及同源工作台。真实 ERP/MES、正式 40 题质量评测、业务样本审核与 Worker、候选部署仍属于后续范围。本阶段测试使用隔离数据、模型及 Redis 替身，没有运行付费问答或更新已有演示容器。"
+        },
+        {
+          "id": "P-QA-U003",
+          "text": "源码入口：`backend/app/api/manufacturing.py`、`backend/app/manufacturing/service.py`、`answer_context.py`、`generation_models.py`、`conversations.py`、`history_access.py`。共享生成、修复和预算仍位于 `backend/app/knowledge/`，没有复制另一套 RAG 主流程。"
+        },
+        {
+          "id": "P-QA-U004",
+          "text": "## 接口"
+        },
+        {
+          "id": "P-QA-U005",
+          "text": "所有入口使用原 Keycloak 认证和当前数据库用户映射；业务读取不继承知识库管理员或部门负责人身份。制造问答需要有效知识库检索范围，只读工单列表和上下文由业务权限独立控制。来源配置及凭据仅由后端选择。"
+        },
+        {
+          "id": "P-QA-U006",
+          "text": "| 方法及路径 | 行为 |"
+        },
+        {
+          "id": "P-QA-U007",
+          "text": "| --- | --- |"
+        },
+        {
+          "id": "P-QA-U008",
+          "text": "| `GET /api/manufacturing/work-orders` | 授权后分页，`limit=1..20`、可选签名 `cursor`；不返回跨范围总数 |"
+        },
+        {
+          "id": "P-QA-U009",
+          "text": "| `GET /api/manufacturing/work-orders/{id}/context` | 当前可见工单白名单字段、时间精度、源修订、哈希和查询/核验时间 |"
+        },
+        {
+          "id": "P-QA-U010",
+          "text": "| `POST /api/manufacturing/conversations` | 校验工单与知识库后创建私有制造对话，固定工单身份、修订及内容哈希 |"
+        },
+        {
+          "id": "P-QA-U011",
+          "text": "| `GET /api/manufacturing/conversations` | 当前可读制造会话列表，支持 `knowledge_base_id`、`limit`、`offset`；过滤在分页前完成 |"
+        },
+        {
+          "id": "P-QA-U012",
+          "text": "| `GET /api/manufacturing/conversations/{id}` | 原快照历史，支持 `knowledge_base_id`、`limit`、`before`；不向 MES 查询当前值来覆盖历史 |"
+        },
+        {
+          "id": "P-QA-U013",
+          "text": "| `DELETE /api/manufacturing/conversations/{id}` | 当前授权下删除自有且未占用的制造会话；`knowledge_base_id` 与创建范围一致 |"
+        },
+        {
+          "id": "P-QA-U014",
+          "text": "| `POST /api/manufacturing/qa` | 制造问题、最多三次 MES 核验、带证据回答及原子保存 |"
+        },
+        {
+          "id": "P-QA-U015",
+          "text": "问答请求示例："
+        },
+        {
+          "id": "P-QA-U016",
+          "text": "```json"
+        },
+        {
+          "id": "P-QA-U017",
+          "text": "{"
+        },
+        {
+          "id": "P-QA-U018",
+          "text": "\"question\": \"这张工单适用哪个指导书版本？\","
+        },
+        {
+          "id": "P-QA-U019",
+          "text": "\"work_order_id\": \"WO-018\","
+        },
+        {
+          "id": "P-QA-U020",
+          "text": "\"knowledge_base_id\": null,"
+        },
+        {
+          "id": "P-QA-U021",
+          "text": "\"conversation_id\": null,"
+        },
+        {
+          "id": "P-QA-U022",
+          "text": "\"expected_source_revision\": \"r1\""
+        },
+        {
+          "id": "P-QA-U023",
+          "text": "}"
+        },
+        {
+          "id": "P-QA-U024",
+          "text": "```"
+        },
+        {
+          "id": "P-QA-U025",
+          "text": "`knowledge_base_id=null` 仅表示当前授权的知识库集合。客户端不能额外传入源地址、租户、工厂、型号、实际开工日期、夹具版本或可信业务上下文。当前会话创建还支持来源允许的可选执行选择：ERPNext 的 `operation_id` / `job_card_id`，或 OpenMES 的 `batch_id` / `step_id`，两类不能混用。选择、来源修订及哈希在会话内固定，详情见[ERPNext](ERPNEXT_INTEGRATION.md)及[OpenMES](OPENMES_INTEGRATION.md)说明；最初 M3 示例仍是工单级请求。"
+        },
+        {
+          "id": "P-QA-U026",
+          "text": "成功响应继承普通 `answer/clarify/refuse`、文档 `citations` 和原生成耗时，扩展："
+        },
+        {
+          "id": "P-QA-U027",
+          "text": "- `work_order_context`：当前用户可见的来源字段；未知路线保留 `null`，日期精度不补齐。"
+        },
+        {
+          "id": "P-QA-U028",
+          "text": "- `applicability`：状态、选定文件/业务修订、规则 ID、缺口、文档技术版本/审核修订及原文锚点。`comparison_only` 文件不能作为当前工单执行依据；冲突来源标记为 `conflict_evidence`。"
+        },
+        {
+          "id": "P-QA-U029",
+          "text": "- `business_citations`：独立业务编号、字段和值、源系统/记录/工单身份、修订、内容哈希、精度、采集及最后核验时间。工单不伪装成文档分块。"
+        },
+        {
+          "id": "P-QA-U030",
+          "text": "- `claim_bindings`：稳定结论序号、可见文本、结论类型、文档及业务编号的绑定。"
+        },
+        {
+          "id": "P-QA-U031",
+          "text": "- `run_id`、`snapshot_status`、`conversation_id`、`request_id`、`manufacturing_total_ms` 和 `manufacturing_timings`。"
+        },
+        {
+          "id": "P-QA-U032",
+          "text": "制造响应禁止缓存；错误统一附请求 ID。主要错误为：认证失效 401；工单不存在或业务不可见 404；知识库权限不足/变化 403；请求格式非法 422；会话占用、绑定/修订冲突或制造目录失效 409；源响应损坏、同修订正文变化或凭据回显 502；源、治理或生成服务失败 503；沿用原治理额度的 429。错误正文不包含源地址、凭据、原始供应商错误或未核验字段。"
+        },
+        {
+          "id": "P-QA-U033",
+          "text": "2026-11-06 异常处理优化后，制造路由共用一个 HTTP 异常边界。已知业务失败保留上述状态；数据库错误明确返回 503，内部 `ValueError`、`TypeError`、`RuntimeError` 等未知错误返回 500，不再统称为输入不合法或服务暂不可用。只有专用 `ManufacturingInputError` 表示请求或追问条件无法处理。正式评测预算中止直接终止调用，在 HTTP 层单独返回 503 和 `manufacturing_evaluation_stopped`，不作为内部编程错误或可恢复模型失败。内部错误记录请求编号、错误类型、阶段和最近代码位置，不输出异常正文、代码原文、局部变量、异常链或供应商响应。失败事务回滚、源变化的会话失效、独立用量账本及并发租约释放继续生效。"
+        },
+        {
+          "id": "P-QA-U034",
+          "text": "## 来源、生成与一致性"
+        },
+        {
+          "id": "P-QA-U035",
+          "text": "### 只读能力边界"
+        },
+        {
+          "id": "P-QA-U036",
+          "text": "2026-11-07 起，制造业务服务在生成前检查原始问题和追问改写结果。明确要求平台执行放行、质量签署、恢复生产或修改 MES/ERP 记录时，返回固定 `response_type=refuse`、`answerable=false`，无文档或业务结论引用；不会把规则解释标为执行请求的完整答案。原问题已经明确要求执行时跳过追问改写和答案模型；只有改写后才出现执行意图时，保留已发生的改写用量，停止后续生成。"
+        },
+        {
+          "id": "P-QA-U037",
+          "text": "“放行需要什么条件”“报工能否证明质量签署完成”等规则或证据问题继续走共享问答；否定执行、引用命令作解释及单独主题词不因出现动作词而一律拒绝。识别范围是首期中文明确命令和系统能力询问，不是任意自然语言意图分类。连接器及模型工具本身继续只读。"
+        },
+        {
+          "id": "P-QA-U038",
+          "text": "拒答沿用现有事务、三次工单读取、当前权限、制造目录/来源、会话绑定和交付前校验，成功保存为业务拒答及审计。撤权、来源变化或核验失败仍中止交付；无权请求不能通过能力拒答取得工单信息。没有新增公共请求开关、执行工具、模型分类调用或独立策略框架。"
+        },
+        {
+          "id": "P-QA-U039",
+          "text": "```mermaid"
+        },
+        {
+          "id": "P-QA-U040",
+          "text": "flowchart LR"
+        },
+        {
+          "id": "P-QA-U041",
+          "text": "A[认证与当前授权] --> B[第一次读取工单]"
+        },
+        {
+          "id": "P-QA-U042",
+          "text": "B --> C[会话校验与追问解析]"
+        },
+        {
+          "id": "P-QA-U043",
+          "text": "C --> D[适用性目录与范围内检索]"
+        },
+        {
+          "id": "P-QA-U044",
+          "text": "D --> E[第二次核验：主生成前]"
+        },
+        {
+          "id": "P-QA-U045",
+          "text": "E --> F[共享生成、覆盖及引用校验]"
+        },
+        {
+          "id": "P-QA-U046",
+          "text": "F --> G[第三次核验：交付前]"
+        },
+        {
+          "id": "P-QA-U047",
+          "text": "G --> H[会话轮次、快照、范围与审计原子提交]"
+        },
+        {
+          "id": "P-QA-U048",
+          "text": "```"
+        },
+        {
+          "id": "P-QA-U049",
+          "text": "每次 MES 调用最多连接 2 秒、总调用 5 秒，不自动重试。第一次取得可信记录；第二次在检索和上下文构建之后、主答案生成之前执行；第三次在交付之前执行。澄清及确定性拒答也经过核验。修订或白名单内容哈希变化立即停止，不以新来源重启本轮生成；同修订的正文变化按源契约异常处理。"
+        },
+        {
+          "id": "P-QA-U050",
+          "text": "会话改写、规划、Agent、父块选择、答案生成、引用修复、schema 修复和再生成的每次模型调用前，都会复查当前业务/文档权限及相关制造目录。第二次核验跨同步生成线程返回异步 MES 客户端执行，没有创建额外源读取或绕开连接器截止时间。观察到撤权或目录失效的异常直接穿透相关组件，不降级交付旧答案。"
+        },
+        {
+          "id": "P-QA-U051",
+          "text": "最终核验后仍可能发生外部变化；响应和卡片明确给出最后核验时间，不承诺跨系统事务快照。平台仅查证及生成指导，不执行 MES/ERP 写入或生产放行。"
+        },
+        {
+          "id": "P-QA-U052",
+          "text": "## 两类来源的校验"
+        },
+        {
+          "id": "P-QA-U053",
+          "text": "文档仍使用 `资料1` 等编号，业务字段使用 `业务1` 等编号。生成上下文分开登记两类来源；数值匹配不能从工单编号、工序、批次等业务数字借用工艺参数。"
+        },
+        {
+          "id": "P-QA-U054",
+          "text": "| 结论类型 | 必要约束 |"
+        },
+        {
+          "id": "P-QA-U055",
+          "text": "| --- | --- |"
+        },
+        {
+          "id": "P-QA-U056",
+          "text": "| `business_fact` | 模型选择 `business_field`，后端生成单个业务字段的受控完整句子及该业务编号；不可追加作业要求或完成声明 |"
+        },
+        {
+          "id": "P-QA-U057",
+          "text": "| `applicability` | 后端确定的固定选版结论；同时绑定指导书/变更通知及工单编号、型号、工序、实际开工字段 |"
+        },
+        {
+          "id": "P-QA-U058",
+          "text": "| `work_requirement` | 逐字摘录所引规则的一句或连续完整原句，展示为“作业要求”；业务字段和问题中的数字不能豁免文档数值支持检查 |"
+        },
+        {
+          "id": "P-QA-U059",
+          "text": "| `version_comparison` | 仅用于明确的版本比较；逐字摘录各版指导书，后端显示所引业务版本；分别绑定至少两个业务修订，不得将对比版本用于当前工单要求 |"
+        },
+        {
+          "id": "P-QA-U060",
+          "text": "| `work_order_evidence` | 当前工单事件/检验记录的一句完整原文及工单编号业务来源，不能截掉前置条件、否定或限定 |"
+        },
+        {
+          "id": "P-QA-U061",
+          "text": "业务源包括工单编号、型号、工序、实际开工及精度、报工日期、路线修订、批次、源状态、工厂、登记通知、源修订/系统/记录、源更新时间和采集时间。纯字段问题直接使用业务来源；没有对应文档分块也可回答，未知字段不能从文档推定。"
+        },
+        {
+          "id": "P-QA-U062",
+          "text": "2026-11-06 起，制造生成契约支持后端字段选择。例如模型返回 `{\"claim_kind\":\"business_fact\",\"business_field\":\"actual_started_at\",\"text\":\"\",\"citations\":[]}`，编译器从本轮已核验上下文读取真实值，生成日期展示和对应业务引用。字段名须在白名单内；填写时它是本条唯一来源，附带文字、引用及文档指针均不参与取证，不能混入计算。日期精度、未知值、数组和源身份继续按原记录保留。未选择来源的旧逐字句式仍按严格原值及单字段引用校验，不会将伪造的旧格式断言改写为正确事实。"
+        },
+        {
+          "id": "P-QA-U063",
+          "text": "`applicability` 同样允许留空文字，由后端生成选版结论和两类来源绑定。首次生成、日期精度直接投影、格式恢复、修复和定向再生成共用编译入口，不增加模型调用。普通问答生成 schema 和公开问答请求均不增加可覆盖业务事实的字段。"
+        },
+        {
+          "id": "P-QA-U064",
+          "text": "2026-11-09 起，内部制造生成增加 `source_unit`，例如 `{\"claim_kind\":\"work_requirement\",\"source_unit\":\"资料3#2\",\"text\":\"\",\"citations\":[]}`。未填写业务字段时，按本轮授权上下文的原文索引取完整条目，由后端生成文字和引用；不使用模型附带展示，不与计算混用。索引中的短预览只用于定位，交付使用完整条目；原始分块及哈希不变。该字段不进入公开问答请求，也不能选择上下文之外的资料。"
+        },
+        {
+          "id": "P-QA-U065",
+          "text": "原文匹配识别标题后的段落边界；编号/项目列表保留引导语和全部条件，表格保留表头及完整行列。原文选择路径从实际资料角色确定“作业要求”或“工单记录”，记录继续绑定当前工单编号；版本比较仍单独核对指导书及业务修订。旧的手写断言不自动改写、补值或改角色，部分表格列、去掉前提的列表项及执行状态改写继续拒绝。未知条目不能编译为答案；若因此无法形成生成契约，沿用现有脱敏 `manufacturing_generation_invalid` 503，停止交付，不增加重试。"
+        },
+        {
+          "id": "P-QA-U066",
+          "text": "对于问题明确给出的连续停机时长，后端可比较适用指导书完整“任一情形”列表中的单个“超过”时长阈值，支持小时、分钟和秒换算，直接展示命中/未命中及依据。它只判断这一条件，不证明实际复检或放行，也不排除其他触发条件；含例外、阈值冲突、否定或模糊输入时不做该受限推导。缺少完整适用规则时不能仅重复阈值就算回答完整。派生判定和问题输入记录在 `claim_bindings.derived_condition`；权限、选版、三次来源核验及快照事务保持原实现。"
+        },
+        {
+          "id": "P-QA-U067",
+          "text": "同日实测后的兼容修正：未使用的 `source_unit` 为空字符串或空白时按 `null` 处理，不提供任何来源，也不能单独使空内容结论通过。业务字段优先于附带文档指针，确定唯一字段来源后不读取该指针；未指定字段才进入文档模式。模型附带展示不作为事实输入，Trace 记录哪些展示被忽略及文档指针是否未使用。未知字段始终失败；文档模式未知条目清空附带展示，不回退为旧断言或适用性结论。选择器混合计算、无来源又无文字的结论仍按明确类型拒绝。未带选择器的旧断言不改角色、不补值。相同文字、角色与引用的重复制造结论只展示一次，原始 claims、覆盖索引和快照绑定保留。"
+        },
+        {
+          "id": "P-QA-U068",
+          "text": "2026-11-06 后续边界修复将作业要求及版本对比收紧为完整原文摘录，只有排版空白和句末中文句号可忽略；问号和叹号保留，防止把疑问变成完成声明。逗号、分号和换行处的条件不能截断；匹配数字、短语或截掉否定不构成依据。工单记录使用同一完整句边界，仍须引用事件/检验记录及工单身份，规则原文不能作为已执行证明。后端显示“作业要求”“工单记录”及可信版本标识，不自动删除模型添加的当前工单主语，也不把改写内容转换成正确事实。旧的自由改写要求会被拒绝；普通问答不受此摘录约束影响。该约束不承担任意问题的语义覆盖判断，选取哪些原句仍须经过业务评测。"
+        },
+        {
+          "id": "P-QA-U069",
+          "text": "`backend/app/knowledge/output_contract.py` 统一普通/制造 schema 选择、无用诊断字段整理、制造字段与来源编译，以及覆盖、直接结论、交互格式和原有证据校验。首次生成、格式恢复、修复与再生成共用该入口；最后的补充仍沿用此前的覆盖判定，不能把未回答项变成成功，也不能推翻底层校验器的明确拒绝。"
+        },
+        {
+          "id": "P-QA-U070",
+          "text": "`generation_errors.py` 明确可恢复的超时、传输、供应商接口和模型输出格式异常。修复、查询规划、Agent 取证、父块选择和反馈再生成只对这些已知失败回退；未知编程错误、数据库异常、权限撤销、源及目录变化、正式评测 `EvaluationStopped` 均向上抛出。可选步骤自身的 `RagBudgetExceeded` 仍可停止该可选步骤并保留原草稿，不增加调用或放宽最终校验；它与必须终止任务的正式评测预算不同。"
+        },
+        {
+          "id": "P-QA-U071",
+          "text": "向量适配器明确抛出的 `VectorStoreUnavailable` 在制造 HTTP 层返回 503 和 `manufacturing_retrieval_unavailable`，不归为内部编程错误，也不回显供应商异常。首次检索失败直接终止且不启动生成；Agent 的可选补查失败会重新授权并从 SQL 刷新已有证据，反馈补查失败保留原拒答且不启动再生成。权限撤销、来源变化、数据库及正式预算异常继续终止；此类型只在取证流程局部处理，不加入通用模型失败集合，不增加重试。"
+        },
+        {
+          "id": "P-QA-U072",
+          "text": "`ManufacturingGenerationDraft` 单独要求结论类型；普通 `EvidenceFirstAnswerDraft` 的生成 schema 保持原样，不扩大旧格式修复预算。两者复用同一生成/修复/校验流程。业务引用格式可以在不调用模型的情况下修复；模型修复及再生成继续使用两类来源和既有共享预算。"
+        },
+        {
+          "id": "P-QA-U073",
+          "text": "制造作业要求额外核对“数量＋件/次”及其引用原文，数值解析继续识别中文和阿拉伯数词；完整原句约束同时要求沿用原文写法。文档版本 `2.0` 不能被用来支持错误的“2 件”，首件数量必须由所引指导书正文支持；这一检查不修改冻结评分规则。"
+        },
+        {
+          "id": "P-QA-U074",
+          "text": "生成前校验必需指导书、ECN/通知和检验摘录是否仍完整保留在上下文中。缺少决定性原文或预算不足时拒答，不靠 top-k 缺席来推定不存在通知。显式版本对比可补入同家族、已复核的其他业务修订；这些文档在 API 与页面上标为仅供对比。冲突原文可用于解释拒答，但不开放普通作业内容检索或确定性选版生成。"
+        },
+        {
+          "id": "P-QA-U075",
+          "text": "源连接器还拒绝把服务凭据回显为合法业务字段，避免进入页面、模型或快照。来源字段和文档文字都作为数据处理，不能改变工具、身份、地址或授权。"
+        },
+        {
+          "id": "P-QA-U076",
+          "text": "## 会话、快照与历史授权"
+        },
+        {
+          "id": "P-QA-U077",
+          "text": "制造会话复用原有成对轮次、6 轮追问窗口、租约及 CAS 提交。创建后不能改绑工单；每轮重新读取来源，同工单修订或内容变化也必须重新建会话。普通会话不能临时转换为制造会话，普通会话列表、详情、删除和 `/api/qa` 不能访问制造绑定。"
+        },
+        {
+          "id": "P-QA-U078",
+          "text": "列表、标题、历史、快照、反馈及相关下载按当前全部知识库和业务授权读取。读取自己的业务快照需要当前业务读取权限；非本人共享反馈还需全部相关知识库管理员权限，以及关联源系统/工厂的 `view+review`。知识库管理员不自动成为业务审核者。"
+        },
+        {
+          "id": "P-QA-U079",
+          "text": "制造会话新增永久失效时间。观察到撤权、来源修订/哈希变化或隐私上下文重置后，失效标记独立于后续会话 CAS 成败保存；重新授权不会让该会话继续作为当前事实上下文。授权恢复后可以查看合法的旧历史快照，其来源不会被当前 MES 值覆盖。"
+        },
+        {
+          "id": "P-QA-U080",
+          "text": "成功交付使用一个业务事务保存轮次、回答、文档范围、`QARunBusinessScope`、快照和审计；其中任一环节失败都不留下成功轮次或业务答案。模型调用记账沿用独立事务，回答失败不抹除已经发生的调用。"
+        },
+        {
+          "id": "P-QA-U081",
+          "text": "制造快照为 schema 3，兼容原 schema 1/2 读取，保存白名单工单上下文、选版及审核绑定、SQL 规则摘录、结论绑定、有限核验诊断及用量。原有诊断、候选及 2 MB 总快照上限继续生效；超限标记不完整，SQL 业务访问范围仍保留。关闭 `QA_SNAPSHOTS_ENABLED` 时不创建回答快照，已绑定会话仍按原历史机制私有保存。"
+        },
+        {
+          "id": "P-QA-U082",
+          "text": "M3 交付时暂时阻止制造记录导出为普通样本。当前 M4 已接入[业务证据审核与冻结输入 Worker](MANUFACTURING_QUALITY.md)：制造样本保留业务范围、活跃夹具及适用性绑定，不能退回普通样本或因快照降级、字段缺失绕过审核。实现状态与正式验收结果分别见[M4 记录](MANUFACTURING_M4_ACCEPTANCE.md)。"
+        },
+        {
+          "id": "P-QA-U083",
+          "text": "## 页面"
+        },
+        {
+          "id": "P-QA-U084",
+          "text": "工作台默认保留“普通知识查询”，新增“工单作业指导”。工单模式提供授权列表分页、只读上下文卡片、适用文件与选版依据、文档和业务字段两种预览。业务预览重新鉴权后查看当次快照；没有快照时核对当前源修订及哈希，不把变化后的值伪装成旧引用。"
+        },
+        {
+          "id": "P-QA-U085",
+          "text": "切换工单、知识库、模式或退出时清空关联状态，以请求代次丢弃旧异步结果。恢复历史标为历史快照；来源冲突、错误、撤权或无法核验时清除旧工单卡片及待展示答案，引导重新查询和新建会话。普通用户补充条件保留在普通模式，不作为 MES 可信字段提交。"
+        },
+        {
+          "id": "P-QA-U086",
+          "text": "## 运行配置与迁移"
+        },
+        {
+          "id": "P-QA-U087",
+          "text": "新增可选 `MANUFACTURING_SOURCES_FILE`，指向 M1 源配置文件，例如 `config/manufacturing_sources.example.json`。文件只引用凭据环境变量；一个租户首期配置一个源系统。未配置时普通功能照常运行，制造接口明确返回源未配置/不可用。不要将示例租户、用户或待审核清单当作新克隆的运行数据库默认值。"
+        },
+        {
+          "id": "P-QA-U088",
+          "text": "迁移 `e9a1c3d54670` 接续 `d8f0b2c43569`，只新增可空 `conversation_business_bindings.invalidated_at`，旧绑定原样保留。存在失效标记时拒绝直接降级。运行该源码的目标数据库需有相应迁移；本轮只迁移随机命名的独立测试库，未修改已有稳定/候选业务数据库或容器。部署与语料配置按 M4 单独记录。"
+        },
+        {
+          "id": "P-QA-U089",
+          "text": "2026-11-07 独立 8002 的 API/模拟 MES 已更新为只读能力修复镜像，并完成零模型预算运行核验；8000/8001 保持原样，尚未重跑正式模型验收。实际镜像、备份及核验边界见[阶段进度](MANUFACTURING_PHASE1_PROGRESS.md)及[脱敏运行报告](reports/manufacturing-capability-20261107.json)，不从最新文档提交号推断运行镜像。"
+        },
+        {
+          "id": "P-QA-U090",
+          "text": "复现检查："
+        },
+        {
+          "id": "P-QA-U091",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-QA-U092",
+          "text": "$env:PYTEST_DISABLE_PLUGIN_AUTOLOAD = '1'"
+        },
+        {
+          "id": "P-QA-U093",
+          "text": ".venv/Scripts/python.exe -m pytest tests/test_manufacturing_m3_api.py tests/test_manufacturing_m3_conversations.py tests/test_manufacturing_m3_validation.py tests/test_manufacturing_m1_runner.py -q -o 'addopts='"
+        },
+        {
+          "id": "P-QA-U094",
+          "text": "node --test tests/frontend_conversations.test.cjs"
+        },
+        {
+          "id": "P-QA-U095",
+          "text": ".venv/Scripts/python.exe scripts/run_manufacturing_m3_tests.py --create-test-database --output-dir tmp/manufacturing-phase1-m3/新的数据库验证批次"
+        },
+        {
+          "id": "P-QA-U096",
+          "text": ".venv/Scripts/python.exe scripts/manufacturing_phase1_workflow.py check"
+        },
+        {
+          "id": "P-QA-U097",
+          "text": ".venv/Scripts/python.exe scripts/evaluate.py check"
+        },
+        {
+          "id": "P-QA-U098",
+          "text": "```"
+        },
+        {
+          "id": "P-QA-U099",
+          "text": "PostgreSQL 入口只接受本机 `manufacturing_m3_test_<12位十六进制>` 数据库；从空库完整迁移、测试后清理、已有证据不覆盖。前端行为检查执行真实 `app.js` 处理器，使用本地 DOM/HTTP 替身；不是生产部署或真实浏览器视觉验收。实际轮次、成功数量和保留的失败报告见[阶段进度](MANUFACTURING_PHASE1_PROGRESS.md)。这些测试结果不代表 40 题语义准确率、全部权限/故障矩阵或首期发布验收已经完成。"
+        },
+        {
+          "id": "P-QA-U100",
+          "text": "## 对象、用途与直接回答约束"
+        },
+        {
+          "id": "P-QA-U101",
+          "text": "明确的 ERP 纯字段列举由现有字段投影读取对应工单、工序或作业卡；字段校验也核对问题要求的实体，不接受用父工单时间代替工序时间。歧义编号、复杂原因和条件问题继续走既有问答流程。未知时间与时间精度分别保留，缺少选择时澄清。"
+        },
+        {
+          "id": "P-QA-U102",
+          "text": "原文条目及精确旧格式引用的用途由字段、审核资料角色和后端确认的比较模式确定；非完整原句、混合或未知来源仍严格核验。对明确的开工登记推论问题，仅在完整原文明确说明边界或独立检验/签署要求时，由后端展示直接结论及来源，不把开工记录当作检验完成，也不推断实际未完成。"
+        },
+        {
+          "id": "P-QA-U103",
+          "text": "这些变化沿用原权限、来源复读和有限修复流程，没有新模型或规则服务。源码、离线回放及评分版本边界见[本轮验收](reports/manufacturing-answer-contracts-20261110-r1.md)；现有演示后端尚未部署这些变化，旧模型成绩不变。"
+        }
+      ],
+      "checksum_mode": "lf_normalized_text",
+      "content_sha256": "3a0d2270d172e65fbb381c2e6940111cc0b6728d5af92e61dc5a115cef1a6b31"
+    },
+    "P-ERP": {
+      "kind": "platform_specification",
+      "repository_path": "docs/ERPNEXT_INTEGRATION.md",
+      "original_sha256": "450dbf9d6e73c698de721826134211cbc103fbd6f54306f820e579399d32bb92",
+      "extraction": "UTF-8 nonempty stripped lines",
+      "units": [
+        {
+          "id": "P-ERP-U001",
+          "text": "# ERPNext 首期只读接入"
+        },
+        {
+          "id": "P-ERP-U002",
+          "text": "本次在 `codex/erpnext-readonly-phase1` 分阶段实施：E0 独立部署；E1 只读适配与来源映射；E2 当前平台集成和权限/来源验证；E3 具体工序和作业卡选择；E4 实时来源质量审核与冻结验证。范围为工单、工序、作业卡实际开工及支持这些事实的源身份；不开放修改、报工、放行或执行工具，不发起付费问答评测。"
+        },
+        {
+          "id": "P-ERP-U003",
+          "text": "## E0 独立环境"
+        },
+        {
+          "id": "P-ERP-U004",
+          "text": "固定 ERPNext `v16.54.0`，配置依据官方 [frappe_docker](https://github.com/frappe/frappe_docker/tree/46c7ced81efbd4a119e14b81bf78e3b77cad3309)。[Compose](../deploy/erpnext/compose.yaml) 使用独立项目 `manufacturing-erpnext`、MariaDB、Redis、站点/日志/队列持久卷，网页只绑定本机端口。初始密码由[准备脚本](../scripts/prepare_erpnext_environment.py)随机生成到忽略的 `tmp/`，不使用公开默认口令。"
+        },
+        {
+          "id": "P-ERP-U005",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-ERP-U006",
+          "text": ".venv/Scripts/python.exe scripts/prepare_erpnext_environment.py --output-dir tmp/本轮ERPNext/deployment --apply"
+        },
+        {
+          "id": "P-ERP-U007",
+          "text": "docker compose --env-file tmp/本轮ERPNext/deployment/deployment.env -f deploy/erpnext/compose.yaml up -d db redis-cache redis-queue configurator"
+        },
+        {
+          "id": "P-ERP-U008",
+          "text": "docker compose --env-file tmp/本轮ERPNext/deployment/deployment.env -f deploy/erpnext/compose.yaml run --rm create-site"
+        },
+        {
+          "id": "P-ERP-U009",
+          "text": "docker compose --env-file tmp/本轮ERPNext/deployment/deployment.env -f deploy/erpnext/compose.yaml up -d backend websocket worker scheduler frontend"
+        },
+        {
+          "id": "P-ERP-U010",
+          "text": "```"
+        },
+        {
+          "id": "P-ERP-U011",
+          "text": "初始化只对新站点执行，已有站点拒绝重建。停止使用 `docker compose ... stop`，保留卷与记录；不执行 `down -v`。部署验证须记录实际镜像摘要、安装版本、登录/API、持久性与端口隔离；这不是工厂生产上线。"
+        },
+        {
+          "id": "P-ERP-U012",
+          "text": "## E1 数据与来源契约"
+        },
+        {
+          "id": "P-ERP-U013",
+          "text": "ERPNext 通过固定的 Work Order REST 资源读取；专用 API 用户只具有必要读取权限，工单范围还受公司授权约束。平台仍使用现有 `WorkOrderRecord` 与 MES 只读接口，新增适配服务完成认证及字段转换，不让普通请求选择 ERP 地址或凭据。"
+        },
+        {
+          "id": "P-ERP-U014",
+          "text": "| 平台字段 | ERPNext 来源与约束 |"
+        },
+        {
+          "id": "P-ERP-U015",
+          "text": "| --- | --- |"
+        },
+        {
+          "id": "P-ERP-U016",
+          "text": "| 工单编号 | `Work Order.name`，原样保留 |"
+        },
+        {
+          "id": "P-ERP-U017",
+          "text": "| 产品型号 | `production_item` |"
+        },
+        {
+          "id": "P-ERP-U018",
+          "text": "| 工序 | `operations` 中唯一工序的 `operation`；多工序不擅选，保持未知并要求明确上下文 |"
+        },
+        {
+          "id": "P-ERP-U019",
+          "text": "| 实际开工 | `actual_start_date`；不使用 `planned_start_date` 或报工日期替代 |"
+        },
+        {
+          "id": "P-ERP-U020",
+          "text": "| 时间精度 | 保留日期/时间精度，时间戳按明确配置的站点时区转换 |"
+        },
+        {
+          "id": "P-ERP-U021",
+          "text": "| 工厂范围 | 服务端公司到工厂映射，结合 ERP 用户权限和平台业务授权 |"
+        },
+        {
+          "id": "P-ERP-U022",
+          "text": "| 源修订/更新时间 | 工单记录的稳定内容、上游修改时间及映射配置决定，不混入本次采集时间 |"
+        },
+        {
+          "id": "P-ERP-U023",
+          "text": "未接入的路线修订、批次和变更通知保持未知；不从相似字段推定。E1 的兼容入口不自动选择多工序；E3 增加显式工序和作业卡选择，仍不能把工单级开工时间标为任意工序的实际开工。"
+        },
+        {
+          "id": "P-ERP-U024",
+          "text": "ERPNext 的 `Work Order.actual_start_date` 由其作业卡流程回写；首期仅读取这个已登记的工单字段。作业卡计时已经开始但尚未回写工单时，仍按源工单的空值处理，不把计划时间、当前时间或未提交的作业卡时间补为工单实际开工。"
+        },
+        {
+          "id": "P-ERP-U025",
+          "text": "适配服务入口为 `services.erpnext_adapter.main:app`，配置样例见[字段与公司映射](../config/erpnext_adapter.example.json)、[平台源配置](../config/erpnext_sources.example.json)，部署覆盖文件见[适配服务 Compose](../deploy/erpnext/adapter.compose.yaml)。`ERPNEXT_API_KEY`、`ERPNEXT_API_SECRET`、`ERP_ADAPTER_READ_TOKEN` 只进入本机私有环境文件。平台源配置使用 `http://erpnext-adapter:8011`，仅候选 API 加入该私有网络。适配服务没有写路由，不暴露通用 ERP REST 代理，也不提供伪造的冻结夹具接口；ERPNext 来源尚未登记冻结评测时，质量样本审核/导出仍停止。"
+        },
+        {
+          "id": "P-ERP-U026",
+          "text": "源配置的租户须与平台数据库映射一致；给 `erpnext-hc` 单独配置业务 `view` 授权，ERP 账号不能替代 Keycloak 身份和知识库权限。首期不授予该来源的质量 `review` 权限，不将模拟夹具登记复制成真实 ERP 登记。"
+        },
+        {
+          "id": "P-ERP-U027",
+          "text": "## E2 验收要求"
+        },
+        {
+          "id": "P-ERP-U028",
+          "text": "- 实际运行的 ERPNext 创建演示工单，通过真实 API 读取型号、单工序和实际开工；未开工保持空值。"
+        },
+        {
+          "id": "P-ERP-U029",
+          "text": "- 平台业务授权及 ERP 用户只读权限同时生效；错误令牌、跨公司/工厂/租户、撤权及越权写入被拒绝。"
+        },
+        {
+          "id": "P-ERP-U030",
+          "text": "- 计划开工不能补实际开工，多工序不能自动选第一项；来源改变和不可用阻止旧上下文继续交付。"
+        },
+        {
+          "id": "P-ERP-U031",
+          "text": "- 沿用三次来源核验和原文/文档权限校验；服务端配置地址，凭据不进入响应、日志、快照或模型输入。"
+        },
+        {
+          "id": "P-ERP-U032",
+          "text": "- 端到端使用独立候选端口和数据库；原 8000/8001/8002、冻结资料、评测结果及停止的质量/索引 Worker 保留。"
+        },
+        {
+          "id": "P-ERP-U033",
+          "text": "- 实际模型调用为 0；模型替身与零预算验证明确标注，不宣称修复现有开发 13/16 或正式 31/40 的失败。"
+        },
+        {
+          "id": "P-ERP-U034",
+          "text": "## 2026-11-09 分阶段交付与实测结果"
+        },
+        {
+          "id": "P-ERP-U035",
+          "text": "E0～E2 已完成。结构化记录见[本轮报告](reports/erpnext-readonly-20261109-r1.json)；本机私有产物位于 `tmp/erpnext-phase1-20261109-r1/`，包括实际 API 响应、源码归档、各轮测试、故障夹具记录、零模型账本和备份。"
+        },
+        {
+          "id": "P-ERP-U036",
+          "text": "| 阶段 | 实际完成情况 |"
+        },
+        {
+          "id": "P-ERP-U037",
+          "text": "| --- | --- |"
+        },
+        {
+          "id": "P-ERP-U038",
+          "text": "| E0 独立部署 | ERPNext 16.54.0 / Frappe 16.55.2，网页 `http://127.0.0.1:18080`；独立 MariaDB、Redis、站点卷与网络；前端单独配置本机端口网络，数据服务不暴露宿主端口 |"
+        },
+        {
+          "id": "P-ERP-U039",
+          "text": "| E1 只读适配 | 通过真实 ERP API 读取 4 张演示工单，读取账号可见授权公司内 3 张；另一个公司的工单返回 403；创建、修改、删除请求均返回 403 |"
+        },
+        {
+          "id": "P-ERP-U040",
+          "text": "| E2 当前项目集成 | 独立工作台 `http://127.0.0.1:8003`，新数据库 `erpnext_readonly_phase1`、独立文档副本、Redis 和 PKCE 客户端；沿用原演示登录身份，业务范围只在新库配置 |"
+        },
+        {
+          "id": "P-ERP-U041",
+          "text": "ERPNext 管理员为 `Administrator`，随机密码保留在本机 `tmp/erpnext-phase1-20261109-r1/deployment/secrets/admin-password`；读取账号的 API 凭据仅在私有配置中。不要将这些文件提交到 Git。ERP 中创建的是演示数据，工单实际开工来自正常提交的作业卡流程，不能称为真实工厂执行记录。"
+        },
+        {
+          "id": "P-ERP-U042",
+          "text": "演示工单包括 `ERP-WO-STARTED`（HC-A17 / OP-20，实际开工有值）、`ERP-WO-NOTSTARTED`（计划时间有值、实际开工为空）、`ERP-WO-MULTI`（多工序，平台不擅选）及另一公司的 `ERP-WO-OTHER`（读取账号不可访问）。网页可由管理员查看和维护原系统记录，平台适配服务只发 GET 请求。"
+        },
+        {
+          "id": "P-ERP-U043",
+          "text": "平台末轮正常/权限检查 **16 项通过**，包括实际字段投影、业务引用、三次来源核验、快照、缺字段澄清、多工序澄清、执行请求拒绝，以及生成后撤销业务授权使交付返回 404。额外验证真实源修订变化返回 **409**、适配服务停机返回 **503**，故障夹具和授权均已恢复；部署后直接访问 8003 的上下文也与 ERP 原始记录一致，连续读取的源修订和哈希稳定。"
+        },
+        {
+          "id": "P-ERP-U044",
+          "text": "问答环节明确使用确定性生成替身和零模型硬预算；真实的是认证、数据库、ERP HTTP 及来源/权限/快照链路。各轮保存了 51 条同进程 HTTP 观察，另有 2 条部署端口的上下文观察；对其中 41 个可观测请求 ID 核对数据库独立账本，全部观察 Trace 均无模型用量，新物理模型调用 **0**。无独立请求 ID 的记录是未认证请求和快照读取，不作为新增问答计数。这不是模型准确率或外部网关压测，不把接入检查合并到旧开发/正式成绩。"
+        },
+        {
+          "id": "P-ERP-U045",
+          "text": "最终业务提交 `a5174272d86e1940317b3ff254d2ac28464f2659` 的候选镜像为 `enterprise-knowledge-manufacturing:erpnext-readonly-20261109-r3`，ID 为 `sha256:d7984272ce0c8042c554c28950e2b3eec832d75127c553204c08f3d5e1ed5082`。157 个业务 Python 文件及 4 个适配服务文件与 Git 归档一致；业务代码哈希 `9336ac89f58a3666918ec192ab7946f49c339ce793c1d9d325e72b4b434847e0`。原 8000/8001/8002 镜像保持，候选使用复制后的 13 份原件/53 个 SQL 分块，并以已有只读凭据访问同一演示集合的 53 个向量；未重建索引或启动候选知识库索引/质量 Worker。ERPNext 自己的队列 Worker 与调度器正常运行。"
+        },
+        {
+          "id": "P-ERP-U046",
+          "text": "工程验证末轮为 **2213 项通过、1 项既有 PostgreSQL 开关测试跳过、95 项集成测试排除**；定向 69 项通过，通用 120 题与首期 40 题冻结完整性通过。部署使用真实 MariaDB/ERPNext，平台观察与撤权验证使用独立 PostgreSQL 候选库；本轮没有重跑旧的全部 PostgreSQL 集成测试。各轮重叠测试不相加作为样本数。"
+        },
+        {
+          "id": "P-ERP-U047",
+          "text": "初次缺 ERP 主数据、前端内部网络端口与队列参数，以及验证脚本误用授权表主键/Bench 布尔参数的失败记录均保留。已通过官方初始化函数、部署配置和验证脚本修正，不放宽生产权限/来源规则，不覆盖旧结果。最终 ERP 后端重启后记录仍可读取；ERP 站点及候选 PostgreSQL 已备份，备份目录核对通过，未做完整恢复演练。"
+        },
+        {
+          "id": "P-ERP-U048",
+          "text": "## E3 按工单选择工序与作业卡"
+        },
+        {
+          "id": "P-ERP-U049",
+          "text": "工单列表对支持选择的来源返回 `selection_supported=true`；该能力由服务端源配置的 `execution_selection` 开启，旧 MES 默认关闭。工作台依次选择工单、具体工序、可选作业卡；切换父级会清除子级选择并开始新会话。历史会话保存原工序和作业卡身份，刷新不暗换对象。"
+        },
+        {
+          "id": "P-ERP-U050",
+          "text": "工序使用 `Work Order.operations[].name` 子行编号定位，不能只传 `operation` 工序代码：同一工单可以重复执行相同工序。作业卡必须属于所选工单和该子行，且工序代码、产品、公司均一致；已取消的卡不可选。平台继续校验租户和工厂业务授权，ERP 用户继续受公司 `User Permission` 约束。读取账号仅新增 `Job Card` 的 read/select，写入、报工、提交、取消和放行均未开放。"
+        },
+        {
+          "id": "P-ERP-U051",
+          "text": "| 时间层级 | 实际来源 | 用途 |"
+        },
+        {
+          "id": "P-ERP-U052",
+          "text": "| --- | --- | --- |"
+        },
+        {
+          "id": "P-ERP-U053",
+          "text": "| 工单实际开工 | `Work Order.actual_start_date` | 保持既有选版依据 |"
+        },
+        {
+          "id": "P-ERP-U054",
+          "text": "| 所选工序实际开工 | 对应 `Work Order Operation.actual_start_time` | 回答该工序的已登记实际开工 |"
+        },
+        {
+          "id": "P-ERP-U055",
+          "text": "| 所选作业卡实际开工 | 对应 `Job Card.actual_start_date` | 回答该卡的计时记录 |"
+        },
+        {
+          "id": "P-ERP-U056",
+          "text": "三者独立展示，空值保持未知，不能互补，也不使用计划时间。ERPNext 的工单/工序实际时间与已提交卡有关；一张草稿卡可以已有计时记录而未回写父级，卡状态与开工时间同时保留，不能据此声称已报工完成。本轮简单的开工时间查询由后端直接投影已核验字段；复杂知识问答仍走原问答流程。"
+        },
+        {
+          "id": "P-ERP-U057",
+          "text": "平台新增只读入口："
+        },
+        {
+          "id": "P-ERP-U058",
+          "text": "```text"
+        },
+        {
+          "id": "P-ERP-U059",
+          "text": "GET /api/manufacturing/work-orders/{work_order_id}/operations"
+        },
+        {
+          "id": "P-ERP-U060",
+          "text": "GET /api/manufacturing/work-orders/{work_order_id}/operations/{operation_id}/job-cards?limit=20&cursor=..."
+        },
+        {
+          "id": "P-ERP-U061",
+          "text": "GET /api/manufacturing/work-orders/{work_order_id}/context?operation_id=...&job_card_id=..."
+        },
+        {
+          "id": "P-ERP-U062",
+          "text": "```"
+        },
+        {
+          "id": "P-ERP-U063",
+          "text": "创建会话和问答的请求可增加 `operation_id`、`job_card_id`，选卡必须同时指定工序；不接受浏览器传入实际时间等来源事实。工序列表上限 100，作业卡每页最多 20；游标签名绑定工单、工序、授权工厂、分页大小及父级修订。未提供选择时保留冻结的 `work-order-v1`；明确选择后使用独立的 `work-order-execution-v1`，不修改旧评测契约与历史字节。"
+        },
+        {
+          "id": "P-ERP-U064",
+          "text": "每次问答的三次来源读取都保留同一选择。组合上下文包含父工单、选中工序及作业卡修订；父子分开读取时额外复核一次父级，来源已变返回 409，不可用返回 503。未选中卡的单独变化不进入当前卡的修订。交付前继续复核业务授权和文档范围。业务引用分别标明 `Work Order` / `Work Order Operation` / `Job Card`，使用对应记录编号、字段值和时间精度；知识引用仍由后端按原文与选版规则编译。"
+        },
+        {
+          "id": "P-ERP-U065",
+          "text": "数据库迁移 `f2b8c0a961d3` 为 `conversation_business_bindings` 增加可空工序/卡编号，旧会话保持可读；同一会话不能换卡继续回答。存在这些绑定时降级迁移会拒绝丢失选择边界，回滚应用应先保留数据库并停止候选，不强制删除绑定。"
+        },
+        {
+          "id": "P-ERP-U066",
+          "text": "在已完成 E0～E2 的专用站点，可复制最新[演示脚本](../services/erpnext_adapter/provision_demo.py)，调用 `frappe._knowledge_demo_setup.execution_demo` 创建新的 `ERP-WO-EXECUTION`，不重复初始化旧资料。此管理员工具只用于本机演示夹具，适配服务没有通往它的路由。新工单包含 OP-20、OP-30；OP-20 有一张已提交卡、一张较晚计时的草稿卡和一张时间未知的卡，供验证三层时间及来源变更。ERP 来源的质量审核/冻结评测仍未开放，旧开发和正式问答失败状态不变。"
+        },
+        {
+          "id": "P-ERP-U067",
+          "text": "### 2026-11-09 E3 实测与交付"
+        },
+        {
+          "id": "P-ERP-U068",
+          "text": "E3 已在独立 8003 部署。最终业务提交 `024011d4424688069923f0fec9561005882212df`，镜像 `enterprise-knowledge-manufacturing:erpnext-execution-20261109-r2`，ID `sha256:f1b9027d536168f51b336798b9f1cf8c02a7dbd7c209364f6188c5fe0e0dd195`；158 个业务 Python 文件及适配服务、迁移、页面等共 192 个文件与 Git 归档一致，业务源码哈希 `7f7bf9aba2930f42666ee62da2bee531c9a0348b8445ac2da0fa6c1826d45dc6`。仅新候选数据库迁移至 `f2b8c0a961d3`，原 8000/8001/8002 镜像保持。"
+        },
+        {
+          "id": "P-ERP-U069",
+          "text": "在 [8003 工作台](http://127.0.0.1:8003/) 登录原演示账号，进入“工单问答”，选择 `ERP-WO-EXECUTION` → OP-20 的具体工序记录 → `PO-JOB00008`，可见作业卡开工为 `2026-10-26 09:30 +08:00`，工单/该工序均为 `2026-09-28 08:10 +08:00`，知识选版仍按工单开工采用 1.0。`PO-JOB00009` 未登记实际开工；OP-30 也未登记工序实际开工。上述均为管理员通过正常 ERP 文档及计时流程创建的演示记录，较晚计时的卡仍为草稿，不代表已提交报工或真实工厂执行。"
+        },
+        {
+          "id": "P-ERP-U070",
+          "text": "真实 ERP API **9 项**、平台末轮 **33 项**、作业卡修订变化 **2 项**、来源停机 **1 项**及部署端口 **9 项**检查通过。平台核验真实 Keycloak、PostgreSQL、ERP HTTP 和三次来源/权限链路；简单开工问答使用实际后端投影，**没有生成替身**。错卡/错工序/跨工单/跨公司拒绝，游标不可跨工序，会话不可换卡；交付前撤权阻止返回，单独修改选中草稿卡使旧修订返回 409，停机返回 503，故障夹具及权限已恢复。"
+        },
+        {
+          "id": "P-ERP-U071",
+          "text": "模型硬预算为 0 次调用/0 Token，全部观察 Trace 无模型用量；包括失败首轮在内的 **57 个**可观测请求 ID 经数据库独立账本核对，新增物理模型调用 **0**。这些接入检查不是模型质量评分。完整非集成末轮 **2249 通过、1 个既有跳过、96 个集成排除**，专项末轮 **134 通过**；独立 PostgreSQL M1/M3/M4 分别 **9/12/12** 项通过，测试库均已移除；前端 DOM/认证 **53 项通过**，部署页面与资源逐字节匹配归档，本轮未做浏览器视觉检查。重叠检查不相加作为样本数，冻结 120/40 题完整性通过。"
+        },
+        {
+          "id": "P-ERP-U072",
+          "text": "首轮联调暴露“把作业卡登记为已开工”的命令识别缺口，零预算在模型调用前拦截，既未调用模型也未写 ERP；随后补齐新对象的只读拒绝边界并复验。两项公开上下文断言误读内部版本字段、初始化工厂函数参数及测试替身问题的失败记录也保留。部署前后均有 ERP 站点与候选数据库备份，PostgreSQL 备份目录校验通过，未做完整恢复演练。原模型结果与所有旧报告保留。"
+        },
+        {
+          "id": "P-ERP-U073",
+          "text": "完整结构化记录见 [E3 验收报告](reports/erpnext-execution-20261109-r1.json)，私有原始响应、Trace、源码归档、101 项产物哈希清单及备份位于 `tmp/erpnext-execution-20261109-r1/`。API 密钥、登录令牌和备份不提交。ERP 质量审核/冻结样本仍未开放，开发 13/16、正式 31/40 的失败状态不变。"
+        },
+        {
+          "id": "P-ERP-U074",
+          "text": "## E4 质量审核与冻结验证"
+        },
+        {
+          "id": "P-ERP-U075",
+          "text": "工单、所选工序和作业卡现已接入共享反馈、质量审核、不可变版本导出及冻结 Worker。实时来源使用鉴权 `/v1/source` 与 v2 服务端登记，未伪造 `/v1/fixture`；批准、导出及执行前复读对应记录。字段证据保留各自实体和记录编号，会话选择、权限、时间层级及三次来源核验继续生效。"
+        },
+        {
+          "id": "P-ERP-U076",
+          "text": "最终 `2680ce0` 的 `erpnext-quality-20261109-r2` 已在 8003 实测；完成三个零模型任务，正式 CLI 仅领取零预算任务。18 个可观测请求 ID 及三个任务的独立账本新增模型调用 0，旧来源变更样本仍失效并另建当前版本。使用步骤、部署指纹、限制及完整验证详见 [E4 说明](ERPNEXT_QUALITY.md)和[报告](reports/erpnext-quality-20261109-r1.json)。这是自建 ERP 工程接入验证，旧模型质量失败状态不变。"
+        },
+        {
+          "id": "P-ERP-U077",
+          "text": "## 运行、复现与回滚"
+        },
+        {
+          "id": "P-ERP-U078",
+          "text": "E4 当前本机配置如下；E0～E3 的旧配置仍保留供追溯，启动当前候选时使用 E4 配置："
+        },
+        {
+          "id": "P-ERP-U079",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-ERP-U080",
+          "text": "docker compose --env-file tmp/erpnext-quality-20261109-r1/deployment.env -f deploy/erpnext/compose.yaml -f deploy/erpnext/adapter.compose.yaml ps"
+        },
+        {
+          "id": "P-ERP-U081",
+          "text": "docker compose -f tmp/erpnext-quality-20261109-r1/compose.json ps"
+        },
+        {
+          "id": "P-ERP-U082",
+          "text": "```"
+        },
+        {
+          "id": "P-ERP-U083",
+          "text": "新环境先完成 E0 的新站点初始化，再用 ERP 页面建立公司和制造数据，或在本次专用 `erpnext.localhost` 站点使用[演示初始化脚本](../services/erpnext_adapter/provision_demo.py)。该脚本在 ERP 容器内通过 Frappe 正常文档 insert/submit 创建公司、BOM、工单、作业卡和只读用户；输入文件是私有 JSON，仅包含随机生成的 `api_key` / `api_secret`，复制至 `/tmp/erpnext-seed-input.json` 后执行："
+        },
+        {
+          "id": "P-ERP-U084",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-ERP-U085",
+          "text": "# 本机参数示例；新环境替换目录并准备新的私有输入文件，不覆盖已有数据。"
+        },
+        {
+          "id": "P-ERP-U086",
+          "text": "$erpComposeArgs = @('--env-file', 'tmp/erpnext-phase1-20261109-r1/deployment/deployment.env', '-f', 'deploy/erpnext/compose.yaml')"
+        },
+        {
+          "id": "P-ERP-U087",
+          "text": "docker compose @erpComposeArgs cp services/erpnext_adapter/provision_demo.py backend:/home/frappe/frappe-bench/apps/frappe/frappe/_knowledge_demo_setup.py"
+        },
+        {
+          "id": "P-ERP-U088",
+          "text": "docker compose @erpComposeArgs cp tmp/erpnext-phase1-20261109-r1/erpnext-seed-input.json backend:/tmp/erpnext-seed-input.json"
+        },
+        {
+          "id": "P-ERP-U089",
+          "text": "docker compose @erpComposeArgs exec -T backend bench --site erpnext.localhost execute frappe._knowledge_demo_setup.run"
+        },
+        {
+          "id": "P-ERP-U090",
+          "text": "```"
+        },
+        {
+          "id": "P-ERP-U091",
+          "text": "接入适配服务时，以实际租户/公司替换样例，配置专用只读用户凭据和平台源授权。新克隆的资料发布、Keycloak 映射与库授权仍须按[首期独立初始化说明](MANUFACTURING_QUALITY.md)建立；本机候选通过已审核演示库的一致性副本启动，不把私有 `tmp` 当作仓库默认数据或通用自动安装器。"
+        },
+        {
+          "id": "P-ERP-U092",
+          "text": "回滚可停止 `erpnext-readonly` 候选和 `manufacturing-erpnext` 项目，保留新数据库、卷与记录；或将新候选的私有配置切回保留镜像。原 8000/8001/8002 不需要回滚，本轮未更新它们。最近真实模型开发 **13/16、关键 4/6** 和正式 **31/40、关键 9/12** 的失败状态仍保留，后续模型复验需另有明确范围。"
+        },
+        {
+          "id": "P-ERP-U093",
+          "text": "## E5 独立真实模型结果"
+        },
+        {
+          "id": "P-ERP-U094",
+          "text": "用户另批的 ERPNext 16 题开发批次已在当前 E4 镜像一次执行完成：自动及助手非独立复核均 **10/16，关键2/6，未达开发门槛**；36次物理调用、146493已知及预算Token、92.545秒。12道实际调用模型题通过6道，4道零模型边界题全过。没有改业务源码、更新容器或重建索引，ERP继续只读，权限/来源校验保留；授权收尾，无重试补跑。"
+        },
+        {
+          "id": "P-ERP-U095",
+          "text": "详见[独立题集](../evals/erpnext_zh_v1/README.md)和[完整报告](reports/erpnext-development-20261109-r1.md)。该套件与旧模拟开发16题不同，不直接比较或拼分；旧13/16及正式31/40失败状态分别保留。"
+        }
+      ],
+      "checksum_mode": "lf_normalized_text",
+      "content_sha256": "7dc2fce0a4308daef52a94ddb6a96fa26dfbc83881297108c4b0c496ad578a81"
+    },
+    "P-MES": {
+      "kind": "platform_specification",
+      "repository_path": "docs/OPENMES_INTEGRATION.md",
+      "original_sha256": "cb06ebc9d6bd765015bffcb1f20da5ed0b57fd4c7a534ed112d4799cd8b75d85",
+      "extraction": "UTF-8 nonempty stripped lines",
+      "units": [
+        {
+          "id": "P-MES-U001",
+          "text": "# OpenMES 独立部署与首期只读接入"
+        },
+        {
+          "id": "P-MES-U002",
+          "text": "已完成 O0 独立部署、O1 只读适配、O2 平台执行查询、O3 制造问答与会话绑定，以及后续 O4 步骤指导书审核分配和 O5 批次/步骤质量冻结。范围为工单、生产批次、工序步骤及各自实际开工，保留 ERPNext 和原应用环境。自建 MES 中建立的是演示记录，不视为真实工厂执行证据。"
+        },
+        {
+          "id": "P-MES-U003",
+          "text": "## 来源与权限"
+        },
+        {
+          "id": "P-MES-U004",
+          "text": "采用官方 [OpenMES 0.28.0 源码](https://github.com/Mes-Open/OpenMes/tree/eb184a2984b74d685e65ee24df9b8c7b34c765f6)，提交 `eb184a2984b74d685e65ee24df9b8c7b34c765f6`；官方镜像固定为 `ghcr.io/mes-open/openmes@sha256:0b64934615eaa60697777ed9d18423eb91bc38b27ea1e0cbba3e326f74cc94fe`。上游核心使用 AGPL-3.0，新增上游中间件和演示初始化脚本在源码中公开，标注 AGPL-3.0-or-later；上游完整源码和许可证仍以该固定仓库为准。"
+        },
+        {
+          "id": "P-MES-U005",
+          "text": "上游普通 Operator 角色可以执行步骤，仅建立操作员令牌不足以形成只读边界。本项目增加[只读令牌中间件](../deploy/openmes/ReadOnlyIntegration.php)：具有 `knowledge:read-only` 能力的专用 Sanctum 令牌，仅允许 GET 工单列表/详情、工单批次和批次详情；写入、令牌刷新和其他接口均拒绝。原认证、令牌撤销、产线分配和工单访问策略保留，管理员通过原系统维护演示数据。适配服务另使用独立源令牌、平台租户和工厂范围，不向浏览器传递上游令牌。"
+        },
+        {
+          "id": "P-MES-U006",
+          "text": "源地址、上游租户及“真实产线 ID → 平台工厂”映射仅由服务端配置决定，见[适配配置样例](../config/openmes_adapter.example.json)和[平台配置样例](../config/openmes_sources.example.json)。平台仍通过 Keycloak 和数据库中的业务 view 授权检查访问，仅读取执行字段不要求提升知识库管理员或业务 review 权限。"
+        },
+        {
+          "id": "P-MES-U007",
+          "text": "## 数据层级与时间语义"
+        },
+        {
+          "id": "P-MES-U008",
+          "text": "OpenMES 的结构为“工单 → 批次 → 步骤”，使用独立 `openmes-execution-v1` 查询契约。批次不作为 ERPNext 作业卡，步骤也不作为任意工单级工序；父子实体按真实 ID 绑定，不能通过名称或序号自动选择。"
+        },
+        {
+          "id": "P-MES-U009",
+          "text": "| 层级 | 实际来源 | 本期行为 |"
+        },
+        {
+          "id": "P-MES-U010",
+          "text": "| --- | --- | --- |"
+        },
+        {
+          "id": "P-MES-U011",
+          "text": "| 工单 | `WorkOrder` | 固定版本无工单实际开工字段，显示未知；不取计划日期或最早批次时间 |"
+        },
+        {
+          "id": "P-MES-U012",
+          "text": "| 批次 | `Batch.started_at` | 读取该批次已登记时间，空值保持未知 |"
+        },
+        {
+          "id": "P-MES-U013",
+          "text": "| 步骤 | `BatchStep.started_at` | 读取所选步骤已登记时间，空值保持未知 |"
+        },
+        {
+          "id": "P-MES-U014",
+          "text": "批次号、批号、步骤名称、状态、实际时间、时间精度和源更新时间保留。源时间须有明确时区；上游站点配置 Asia/Shanghai，JSON 来源的 UTC 时间仍按其精度保存。开工记录不能证明检验、签署、报工完成或质量放行。"
+        },
+        {
+          "id": "P-MES-U015",
+          "text": "原有开工窗口选版仍使用工单级来源；该 OpenMES 版本缺少工单实际开工和唯一工序。O3 的独立 `openmes-work-order-v1` 问答契约保留所选批次及步骤，不能将其开工时间补给工单，也不能将步骤名称认作已审核工序代码。O4 另支持由审核者为具体步骤明确分配指导书业务版本，未完成映射复核时澄清；这项分配与工单开工窗口区分。批次/步骤质量冻结见[O4/O5说明](OPENMES_GUIDANCE_QUALITY.md)。O2 执行查询契约不变，ERP-MES 同步尚未接入。"
+        },
+        {
+          "id": "P-MES-U016",
+          "text": "## 接口与核验"
+        },
+        {
+          "id": "P-MES-U017",
+          "text": "沿用鉴权工单列表和工单上下文；新增："
+        },
+        {
+          "id": "P-MES-U018",
+          "text": "```text"
+        },
+        {
+          "id": "P-MES-U019",
+          "text": "GET /api/manufacturing/work-orders/{work_order_id}/batches"
+        },
+        {
+          "id": "P-MES-U020",
+          "text": "GET /api/manufacturing/work-orders/{work_order_id}/batches/{batch_id}/steps"
+        },
+        {
+          "id": "P-MES-U021",
+          "text": "GET /api/manufacturing/work-orders/{work_order_id}/execution-context?batch_id=...&step_id=..."
+        },
+        {
+          "id": "P-MES-U022",
+          "text": "```"
+        },
+        {
+          "id": "P-MES-U023",
+          "text": "选择步骤必须指定批次，外来工单/批次/步骤拒绝。执行上下文在返回前读取两次并比较完整白名单记录和配置哈希，每次异步读取前后检查当前业务授权；与原工单问答三次校验分别记录。预期修订不匹配或读取中来源变化返回 409，来源不可用返回 503，业务无权或不存在返回 404；不回退至旧快照。字段引用标明 `Work Order`、`Batch`、`Batch Step`、真实记录 ID、字段值及本次来源修订。"
+        },
+        {
+          "id": "P-MES-U024",
+          "text": "工作台选择工单后显示“MES 执行记录”区域，依次选择批次、步骤并重新核验。O3 的展示、问答及来源预览共用同一已核验问答上下文，切换任一选择会开始新会话。历史会话展示冻结的原选择，重新核验后另建会话；不会混入当前实时字段。字段使用文本渲染；切换工单、退出登录、来源变化或权限失败时清空执行视图，晚到响应不能恢复旧数据。"
+        },
+        {
+          "id": "P-MES-U025",
+          "text": "## O3 问答、绑定与引用"
+        },
+        {
+          "id": "P-MES-U026",
+          "text": "`GET /api/manufacturing/work-orders/{id}/context`、`POST /api/manufacturing/qa` 和 `POST /api/manufacturing/conversations` 接受可选 `batch_id`、`step_id`。选择步骤必须同时指定所属批次，不能混入 ERPNext 的 `operation_id` / `job_card_id`。适配器使用鉴权的 `/v1/work-orders/{id}/qa-context`，仍只向上游发送 GET。浏览器不能传入时间、状态或自行构造来源记录。"
+        },
+        {
+          "id": "P-MES-U027",
+          "text": "会话绑定保存工单、批次、步骤、来源修订和上下文摘要；后续提问不能更换或省略原选择。切换选择须另建会话。每次问答保留获取来源、生成前、交付前三次完整来源与权限核验，均带原选择；任何一步变更返回 409，不使用旧快照继续回答。历史、快照访问继续检查当前权限。"
+        },
+        {
+          "id": "P-MES-U028",
+          "text": "模型只选择后端白名单业务字段；文字、字段值和引用由后端编译。业务引用标明 `Work Order` / `Batch` / `Batch Step`、真实记录编号、字段、值、时间精度、所选批次/步骤及修订；文档引用仍独立保留原件和已审核版本约束。单一层级的简单实际开工问题可直接投影已核验字段，不调用模型；空值明确显示未知，缺选择先澄清。其他事实问题接入既有生成及修复流程。开工登记不证明检验完成或质量签署，执行请求仍在生成前拒绝。"
+        },
+        {
+          "id": "P-MES-U029",
+          "text": "迁移 `d7a1c3e5f902` 仅增加可空的批次/步骤绑定列和父子/互斥约束，旧 ERP 会话保持原语义。本机只迁移 OpenMES 候选库；旧 ERPNext 容器和数据库不随源码升级。存在批次或步骤绑定会话时降级会拒绝丢弃绑定，回滚须先处理这些会话，不能直接删除列。"
+        },
+        {
+          "id": "P-MES-U030",
+          "text": "每个租户仍只允许一个业务源。本机用新的候选数据库、配置、文档卷及浏览器 PKCE 客户端接入 OpenMES，ERPNext 环境继续独立保留；本期不实现 ERPNext 与 OpenMES 的工单同步或自动关联。"
+        },
+        {
+          "id": "P-MES-U031",
+          "text": "## 部署与复现"
+        },
+        {
+          "id": "P-MES-U032",
+          "text": "独立[Compose](../deploy/openmes/compose.yaml)包含 PostgreSQL、OpenMES 后端、WebSocket 和前端，数据库/后端不暴露宿主端口，页面仅绑定本机 18081，设置独立内存限额、持久卷，关闭可选遥测。首先生成私有凭据："
+        },
+        {
+          "id": "P-MES-U033",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-MES-U034",
+          "text": ".venv/Scripts/python.exe scripts/prepare_openmes_environment.py --output-dir tmp/新的OpenMES/deployment --image enterprise-openmes:readonly-0.28.0-r1 --upstream-image ghcr.io/mes-open/openmes@sha256:0b64934615eaa60697777ed9d18423eb91bc38b27ea1e0cbba3e326f74cc94fe --upstream-revision eb184a2984b74d685e65ee24df9b8c7b34c765f6"
+        },
+        {
+          "id": "P-MES-U035",
+          "text": "docker build -t enterprise-openmes:readonly-0.28.0-r1 deploy/openmes"
+        },
+        {
+          "id": "P-MES-U036",
+          "text": "docker compose --env-file tmp/新的OpenMES/deployment/deployment.env -f deploy/openmes/compose.yaml up -d"
+        },
+        {
+          "id": "P-MES-U037",
+          "text": "```"
+        },
+        {
+          "id": "P-MES-U038",
+          "text": "准备工具拒绝覆盖已有目录，密码随机生成，不使用公开默认值。现有站点不重复初始化；可在原 MES 页面建立产线、产品、工艺路线、工单和批次，或在全新本机站点使用[演示初始化脚本](../services/openmes_adapter/provision_demo.php)，它调用上游正常模型/业务服务，已有工单时拒绝运行。上游 API 凭据和专用读令牌只写私有文件。"
+        },
+        {
+          "id": "P-MES-U039",
+          "text": "适配器通过[覆盖 Compose](../deploy/openmes/adapter.compose.yaml)启动，平台镜像包含 `services.openmes_adapter.main:app` 工厂。新克隆可使用根 Dockerfile 构建；本机依赖下载失败时可用[依赖复用构建](../deploy/openmes/platform.Dockerfile)，但必须逐字节匹配基础镜像的 requirements.txt，不能为下载问题关闭 TLS 校验。当前本机配置入口见下面交付记录；私有 tmp 不是新克隆自动具备的配置。"
+        },
+        {
+          "id": "P-MES-U040",
+          "text": "回滚只停止新 OpenMES 或新候选，保留数据库和卷；不要执行 `down -v`。原 ERPNext、原应用端口及旧评测不需要回滚。"
+        },
+        {
+          "id": "P-MES-U041",
+          "text": "## 验证入口"
+        },
+        {
+          "id": "P-MES-U042",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-MES-U043",
+          "text": ".venv/Scripts/python.exe -m pytest tests/test_openmes_adapter.py tests/test_openmes_api.py tests/test_openmes_qa.py tests/test_erpnext_adapter.py tests/test_erpnext_execution.py tests/test_manufacturing_m3_api.py"
+        },
+        {
+          "id": "P-MES-U044",
+          "text": "node --test tests/frontend_conversations.test.cjs tests/frontend/auth.test.mjs"
+        },
+        {
+          "id": "P-MES-U045",
+          "text": ".venv/Scripts/python.exe scripts/evaluate.py check"
+        },
+        {
+          "id": "P-MES-U046",
+          "text": ".venv/Scripts/python.exe scripts/manufacturing_phase1_workflow.py check"
+        },
+        {
+          "id": "P-MES-U047",
+          "text": "```"
+        },
+        {
+          "id": "P-MES-U048",
+          "text": "在允许本机回环连接的环境执行异步测试。集成验收须记录真实源响应、上游写入拒绝、平台撤权、父子身份错配、源修订变化和来源停机；不以单元测试代替实际部署验证，也不以零模型字段查询计算模型准确率。本阶段不发起付费评测，不改变旧 ERPNext 10/16 或旧模拟开发/正式失败状态。"
+        },
+        {
+          "id": "P-MES-U049",
+          "text": "## 2026-11-09 实测与交付"
+        },
+        {
+          "id": "P-MES-U050",
+          "text": "O0～O2 已完成。OpenMES 位于 [18081](http://127.0.0.1:18081/)，新平台位于 [8004](http://127.0.0.1:8004/)，使用独立数据库 `openmes_readonly_phase1`、文档卷、Redis 和浏览器 PKCE 客户端；原 ERPNext 的 18080 / 8003 及原 8000 / 8001 / 8002 保留。候选仅给现有知识管理员配置 `openmes-hc / HC-P01 / view`，未增加业务 review、知识库或 ERPNext 权限。"
+        },
+        {
+          "id": "P-MES-U051",
+          "text": "业务提交 `af1c767f2d5a1b9f20cc4a8f3a6038c83aad02a4` 已从 Git 归档构建为 `enterprise-knowledge-manufacturing:openmes-readonly-20261109-r1`，镜像 ID `sha256:987e85406dabc57cabca4a7a33e5eba7a33daa0fe296640788654823fba49e94`；API 和适配器的 298 个文件逐字节匹配归档，其中后端 Python 163 个。OpenMES 增强镜像 ID 为 `sha256:171e1a452a5e22dbb6a53d944bb59e8b7a81a170fe759e9149a8df90229d1969`，11 个上游关键文件及扩展与固定源码核对一致，bootstrap 只增加专用令牌限制。"
+        },
+        {
+          "id": "P-MES-U052",
+          "text": "通过正常上游模型和业务服务创建 3 张演示工单、6 个批次、12 个步骤；读取用户仅分配一条产线，可见其中 2 张工单。首张工单第一批次第一步骤已开始，第二步骤和其他批次实际开始保持未知；工单级实际开工始终未知。演示管理员初始化和故障夹具维护与平台只读链路分别记录，不称为真实工厂数据。"
+        },
+        {
+          "id": "P-MES-U053",
+          "text": "上游 HTTP **8 项**、平台 HTTP **25 项**通过，包括跨产线/工单/批次/步骤拒绝、令牌写入/刷新拒绝、平台撤权、来源修订变化和来源停机。故障期间返回 409 / 503 / 404，恢复字段值仍保留新修订，不回填原更新时间。两项硬零预算问答分别验证执行请求拒绝及缺条件澄清，均有三次来源读取与快照；新增物理模型调用和 Token **0**，22 个可观测请求 ID 及整个独立候选用量账本核对一致。"
+        },
+        {
+          "id": "P-MES-U054",
+          "text": "完整非外部集成回归 **2305 通过、1 既有跳过**；专项 **113 通过**。之后补充字段引用清单，最终 OpenMES 定向 **23 通过**并完成上述真实链路验证；前端 **58 通过**。原 120 题及 40 题契约完整性通过，4 项新旧端口健康和 4 项页面资源字节检查通过。8 个原容器的 ID / 镜像 / 启动时间不变，15 份旧报告哈希一致；仍为 13 份原件、53 分块，未重建索引，未启动新候选索引或质量 Worker，质量任务 0。"
+        },
+        {
+          "id": "P-MES-U055",
+          "text": "首轮 Windows 沙箱异步 socket 阻塞、测试模块加载遗漏、来源摘要 UUID 序列化错误、TLS 依赖下载失败、新候选缺少只读向量凭据挂载，以及验收脚本误取旧扁平响应均保留对应记录。最终没有关闭 TLS、放宽认证或修改旧结果。新平台和 MES 数据库已备份且目录核验通过，未做完整恢复演练；本轮未做浏览器视觉检查。"
+        },
+        {
+          "id": "P-MES-U056",
+          "text": "当前私有配置、源码归档、备份、原始响应和 67 项证据清单在 `tmp/openmes-phase1-20261109-r1/`，凭据不提交。检查与停止入口："
+        },
+        {
+          "id": "P-MES-U057",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-MES-U058",
+          "text": "docker compose --env-file tmp/openmes-phase1-20261109-r1/deployment/deployment.env -f deploy/openmes/compose.yaml -f deploy/openmes/adapter.compose.yaml ps"
+        },
+        {
+          "id": "P-MES-U059",
+          "text": "docker compose -f tmp/openmes-phase1-20261109-r1/candidate/compose.json ps"
+        },
+        {
+          "id": "P-MES-U060",
+          "text": "# 需要回滚时只停止新候选/新 MES，保留卷和数据库。"
+        },
+        {
+          "id": "P-MES-U061",
+          "text": "docker compose -f tmp/openmes-phase1-20261109-r1/candidate/compose.json stop"
+        },
+        {
+          "id": "P-MES-U062",
+          "text": "docker compose --env-file tmp/openmes-phase1-20261109-r1/deployment/deployment.env -f deploy/openmes/compose.yaml -f deploy/openmes/adapter.compose.yaml stop"
+        },
+        {
+          "id": "P-MES-U063",
+          "text": "```"
+        },
+        {
+          "id": "P-MES-U064",
+          "text": "完整结构化结果见[OpenMES 首期验收报告](reports/openmes-readonly-20261109-r1.json)。以上为工程接入验收通过，旧 ERPNext 开发 **10/16、关键2/6**、旧模拟开发 **13/16、关键4/6** 和正式 **31/40、关键9/12** 的失败状态分别保留；本轮没有模型准确率、模型改进收益或真实改进闭环通过的结论。"
+        },
+        {
+          "id": "P-MES-U065",
+          "text": "## 2026-11-10 O3 实测与交付"
+        },
+        {
+          "id": "P-MES-U066",
+          "text": "O3 已在 `codex/openmes-qa-phase2` 完成。业务提交 `7348bfbc3e7c341c08ee54bf4710c9ad8442e05d` 从 Git 归档构建为 `enterprise-knowledge-manufacturing:openmes-qa-20261110-r1`，镜像 ID `sha256:60218c864404db4f7818506480221f6ea11beabdd2880b2b58a4f394a31efdf0`，仅更新 8004 和 OpenMES 适配器。两者各 302 个部署文件（含依赖清单和 alembic.ini，后端 Python 164 个）与归档逐字节一致。OpenMES 上游镜像和 11 个关键来源文件保持原版。"
+        },
+        {
+          "id": "P-MES-U067",
+          "text": "仅 `openmes_readonly_phase1` 迁移至 `d7a1c3e5f902`，ERPNext 库仍为 `f2b8c0a961d3`。本轮发现 Docker 启动后原 ERP 候选 Redis 未启动，原 API 因 Redis 连接失败退出；仅启动原 `erpnext-readonly-redis` 和 `erpnext-readonly-api` 恢复 8003，未替换其镜像、配置或数据库。8 个保留容器 ID / 镜像不变，其中 7 个启动时间不变，原 ERP API 重启单独记录；16 份旧报告哈希一致。"
+        },
+        {
+          "id": "P-MES-U068",
+          "text": "完整非集成回归 **2325 通过、1 既有跳过**；前端 **61 通过**；独立 PostgreSQL M1/M3/M4 **9/13/12 通过**，测试数据库均已移除。绑定列、父子/互斥约束及有绑定时拒绝降级均通过。原 120 题和首期 40 题契约完整性通过，没有运行这些题的模型评测。"
+        },
+        {
+          "id": "P-MES-U069",
+          "text": "最终真实链路包含 **56 个请求**（包括快照读取），覆盖三层实际开工及引用、未知值、缺选择澄清、执行拒绝、两轮会话、历史恢复、不能换选或丢选、父子身份、伪造字段、来源变化及撤权/停机恢复；**13 个成功问答快照均有三次完整来源校验**。一般事实生成及事实追问使用工程替身验证；真实第二轮是执行拒绝，不调用追问模型。上游只读令牌 GET 及开始/写入/刷新拒绝 **4 项**、新旧端口 **4 项**、页面资源字节 **4 项**通过。故障后恢复源字段值，不恢复旧更新时间/修订，失效会话不能恢复使用；view 授权及适配器已恢复。"
+        },
+        {
+          "id": "P-MES-U070",
+          "text": "同进程问答全程使用硬零预算，所有尝试含 **62 个可观察请求 ID** 与整个独立候选用量账本均无新增调用；物理模型调用和 Token **0**。这是工程接入验收，不产生 OpenMES 模型准确率。自由表达、多实体问答和模型追问质量尚需另行真实模型验证，旧 ERPNext 10/16、模拟开发13/16及正式31/40失败状态不变。"
+        },
+        {
+          "id": "P-MES-U071",
+          "text": "首轮旧断言、缺知识库范围参数、空上下文探测失败已修正并回归。私有验收脚本的模块路径、Windows 编码、公开上下文/预期修订契约误断言，以及上游刷新探针路由错误保留原始记录；未放宽权限、修改旧结果或调用模型补跑。迁移前后平台与 MES 数据库共 4 份备份目录核验通过，未做完整恢复演练或浏览器视觉检查；仍为 13 份原件、53 个分块，未重建索引、启动新候选 Worker 或增加业务 review。"
+        },
+        {
+          "id": "P-MES-U072",
+          "text": "本轮配置及原始证据在 `tmp/openmes-qa-20261110-r1/`，不能提交凭据。当前检查入口："
+        },
+        {
+          "id": "P-MES-U073",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-MES-U074",
+          "text": "docker compose -f tmp/openmes-qa-20261110-r1/compose.json ps"
+        },
+        {
+          "id": "P-MES-U075",
+          "text": "docker compose --env-file tmp/openmes-phase1-20261109-r1/deployment/deployment.env -f deploy/openmes/compose.yaml -f tmp/openmes-qa-20261110-r1/adapter.compose.json ps"
+        },
+        {
+          "id": "P-MES-U076",
+          "text": "```"
+        },
+        {
+          "id": "P-MES-U077",
+          "text": "完整结果见[O3 问答与会话验收报告](reports/openmes-qa-20261110-r1.json)。旧首期私有配置仍保留用于历史复现，不用旧 Compose 误降当前 8004。批次/步骤质量审核、冻结及 ERP-MES 同步不在本轮范围。"
+        },
+        {
+          "id": "P-MES-U078",
+          "text": "## 后续 O4/O5 当前部署"
+        },
+        {
+          "id": "P-MES-U079",
+          "text": "步骤指导书审核分配、批次/步骤证据审核及冻结已完成，流程、约束和复现入口见[专项说明](OPENMES_GUIDANCE_QUALITY.md)。当前8004/API和适配器运行 `609d23d` 业务源码的 `openmes-guidance-quality-20261110-r2`，OpenMES候选库迁移头 `e9b2d4f60713`；原ERPNext镜像和数据库不变。现行私有 Compose 为 `tmp/openmes-guidance-quality-20261110-r1/compose.json` 及该目录 `adapter.compose.json`，旧阶段配置仅供历史复现。"
+        },
+        {
+          "id": "P-MES-U080",
+          "text": "真实链路71个请求和两次两题零预算Worker任务通过；完整非集成2352通过、1既有跳过，前端65通过，独立PG9/14/12通过。新增物理模型调用0，不产生模型准确率。完整证据、镜像和限制见[O4/O5报告](reports/openmes-guidance-quality-20261110-r1.json)。"
+        }
+      ],
+      "checksum_mode": "lf_normalized_text",
+      "content_sha256": "6d745ce1876e5e800407fd212070283ab0492809b4a04a916d31921010dd004f"
+    },
+    "P-MAP": {
+      "kind": "platform_specification",
+      "repository_path": "docs/OPENMES_GUIDANCE_QUALITY.md",
+      "original_sha256": "1cfe34ba4f260b66ba9ce0f0811a76cd305529e859a4fc8a65dee7359dbfd1c6",
+      "extraction": "UTF-8 nonempty stripped lines",
+      "units": [
+        {
+          "id": "P-MAP-U001",
+          "text": "# OpenMES 步骤指导书映射与质量冻结"
+        },
+        {
+          "id": "P-MAP-U002",
+          "text": "本阶段复用制造文档适用性审核、业务来源校验和质量 Worker，连接 OpenMES 的具体步骤与指导书，并将工单、批次、步骤纳入反馈审核及不可变样本。平台审核写入本地数据库，OpenMES 仍只有 GET 读取；ERPNext 环境独立保留。"
+        },
+        {
+          "id": "P-MAP-U003",
+          "text": "## 审核映射"
+        },
+        {
+          "id": "P-MAP-U004",
+          "text": "映射采用**具体步骤明确分配版本**：范围为源系统、工厂、工单、批次、步骤和知识库，审核者选择已发布、已完成制造适用性复核的指导书及业务版本，明确工艺编码与审核说明。系统校验文档的产品、工厂、路线、工单和工艺范围及原文锚点；不从步骤名称识别工序，不将步骤或批次时间补为工单实际开工，也不据此套用工单开工窗口。平台映射和 OpenMES 原始字段分别展示，不能把平台审核编码称为 MES 工单源字段。"
+        },
+        {
+          "id": "P-MAP-U005",
+          "text": "这是经授权的步骤版本分配，审核者须核对在制沿用及相关通知；已有明确工单例外与分配版本冲突时拒绝。相关已发布通知仍进入来源目录和回答证据，并参与新增、撤回与变化检查。本阶段不做模板级自动批量映射，也不自动把“最新”指导书分配给所有步骤。"
+        },
+        {
+          "id": "P-MAP-U006",
+          "text": "审核需要该知识库 `admin` 及对应工厂业务 `view+review`。先保存草稿，再以相同来源记录与指导书版本复核；仅最新 `reviewed` 修订生效。新草稿和撤回停止使用旧分配，各次状态与理由追加为新记录，旧历史不覆盖。来源、文档版本、制造复核或发布状态变化后，须重新采集并审核。一个查询范围内多个知识库给同一步骤不同分配时返回冲突，要求明确范围。"
+        },
+        {
+          "id": "P-MAP-U007",
+          "text": "工作台选择单一管理知识库及具体步骤后，在“步骤指导书审核映射”加载当前版本、候选指导书及修订历史。选择指导书、填写依据，依次保存草稿和复核启用；也可撤回。保存后开始新会话。历史会话不提供映射修改入口，来源或权限错误清除旧审核表单，晚到响应不能恢复旧范围数据。"
+        },
+        {
+          "id": "P-MAP-U008",
+          "text": "接口（均使用现有认证）："
+        },
+        {
+          "id": "P-MAP-U009",
+          "text": "```text"
+        },
+        {
+          "id": "P-MAP-U010",
+          "text": "GET /api/manufacturing/work-orders/{wo}/batches/{batch}/steps/{step}/guidance-mapping?knowledge_base_id=..."
+        },
+        {
+          "id": "P-MAP-U011",
+          "text": "GET /api/manufacturing/work-orders/{wo}/batches/{batch}/steps/{step}/guidance-mapping/candidates?knowledge_base_id=..."
+        },
+        {
+          "id": "P-MAP-U012",
+          "text": "PUT /api/manufacturing/work-orders/{wo}/batches/{batch}/steps/{step}/guidance-mapping?knowledge_base_id=..."
+        },
+        {
+          "id": "P-MAP-U013",
+          "text": "```"
+        },
+        {
+          "id": "P-MAP-U014",
+          "text": "PUT 使用 `expected_revision`、`state=draft|reviewed|withdrawn`、`review_note`；草稿/复核另需 `document_id`、`operation_code`、`expected_source_revision`。正文、业务版本、源字段值及原文锚点由后端复读，不接受客户端覆盖。GET 历史可用 `before_revision`，每页最多50条。审核保留来源前后复读及最终权限检查，知识库范围和来源由服务器配置决定。"
+        },
+        {
+          "id": "P-MAP-U015",
+          "text": "制造问答保留三次完整来源与权限校验，额外复查本轮步骤的映射修订。回答的 `applicability.step_guidance` 记录分配修订、指导书及业务版本、审核工艺编码、理由和审核者，文档原文仍使用既有引用。会话首次提问绑定步骤映射摘要；映射变更后旧会话在追问模型调用前返回409。其他步骤的独立映射变化不影响本轮。"
+        },
+        {
+          "id": "P-MAP-U016",
+          "text": "迁移 `e9b2d4f60713` 增加追加式 `step_guidance_revisions` 和可空会话映射摘要，仅部署到 OpenMES 候选库。已有审核历史或映射绑定会话时拒绝降级丢弃数据；原 ERPNext 库和容器不随源码迁移。"
+        },
+        {
+          "id": "P-MAP-U017",
+          "text": "## 批次与步骤质量审核"
+        },
+        {
+          "id": "P-MAP-U018",
+          "text": "实时来源使用鉴权 `/v1/source`、`openmes-live-source-v1` 和 `openmes-read-only-v1:qa-v1`。服务端 [v2登记样例](../config/openmes_evaluation_registry.example.json)须填入真实描述的配置摘要，全零示例不能通过核验。审核批准、导出、Worker和结果访问都复读对应选择的完整来源，不能以归档响应或来源描述单独授权。"
+        },
+        {
+          "id": "P-MAP-U019",
+          "text": "业务证据选择保留 Work Order / Batch / Batch Step、真实记录编号、批次及步骤编号、字段值、时间精度、源修订和哈希。客户端只能选快照中的字段，不能改值或实体；可回答样本须选工单及所选批次、步骤身份。批次样本不伪造步骤，未知时间保持未知。作业指导样本还须有有效步骤映射、型号及决定版本的指导书/通知原文；没有映射的字段样本不能直接批准为作业指导样本。"
+        },
+        {
+          "id": "P-MAP-U020",
+          "text": "反馈共享、导出同意、知识库管理员和业务 `view+review` 继续分别校验。同一来源、同一工单下的不同批次/步骤属于同组，不能拆入固定集和反馈集。冻结版本保存原完整上下文、映射和适用性；来源或映射改变后旧版本失效，不覆盖旧版本或恢复旧修订。"
+        },
+        {
+          "id": "P-MAP-U021",
+          "text": "Worker 原样传回批次、步骤编号，保持三次校验；新增 `manufacturing-openmes-v1` 评分核对完整上下文和逐实体引用，旧工单及 ERPNext 评分口径不变。默认零模型任务与 `--once --zero-model-calls` 继续执行硬零预算，需要模型时停止，不自动改额度。真实模型验证需按现有显式模型模式及预算执行，本阶段工程验收不产生模型准确率。"
+        },
+        {
+          "id": "P-MAP-U022",
+          "text": "## 验证入口"
+        },
+        {
+          "id": "P-MAP-U023",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-MAP-U024",
+          "text": ".venv/Scripts/python.exe -m pytest tests/test_openmes_guidance.py tests/test_openmes_quality.py tests/test_openmes_qa.py tests/test_erpnext_quality.py"
+        },
+        {
+          "id": "P-MAP-U025",
+          "text": ".venv/Scripts/python.exe scripts/run_manufacturing_m3_tests.py --create-test-database --output-dir tmp/新的步骤审核数据库验证"
+        },
+        {
+          "id": "P-MAP-U026",
+          "text": ".venv/Scripts/python.exe scripts/run_manufacturing_m4_tests.py --create-test-database --output-dir tmp/新的质量数据库验证"
+        },
+        {
+          "id": "P-MAP-U027",
+          "text": "node --test tests/frontend_conversations.test.cjs tests/frontend/auth.test.mjs"
+        },
+        {
+          "id": "P-MAP-U028",
+          "text": "```"
+        },
+        {
+          "id": "P-MAP-U029",
+          "text": "实际部署、失败记录及本轮验证结果在收尾报告中单独记录。自建 OpenMES 演示记录不是真实工厂证据，工程替身和零模型验证不视为真实模型或独立业务验收。"
+        },
+        {
+          "id": "P-MAP-U030",
+          "text": "## 2026-11-10 工程验收"
+        },
+        {
+          "id": "P-MAP-U031",
+          "text": "业务提交 `609d23d2095cc1324192a67be08c33f29dcf745b` 已从Git归档部署到 [8004工作台](http://127.0.0.1:8004/) 及 OpenMES适配器，最终镜像 `enterprise-knowledge-manufacturing:openmes-guidance-quality-20261110-r2`，ID `sha256:035737a9a4e4412ec1e28e281863139fe2bc2035ebeaaba62faa9e6eac801a61`。两者306个部署文件（含依赖清单及alembic.ini、后端167个Python）与归档一致，提交标签一致；仅OpenMES库迁移到 `e9b2d4f60713`。ERPNext库仍为 `f2b8c0a961d3`，8个原容器ID/镜像/启动时间和17份旧报告哈希不变。"
+        },
+        {
+          "id": "P-MAP-U032",
+          "text": "完整非集成 **2352通过、1既有跳过、98集成排除**，前端 **65通过**，独立PostgreSQL M1/M3/M4 **9/14/12通过**并移除测试库。自动测试覆盖指导书回答、作业样本审核与映射变更失效、工单例外冲突、历史与会话、来源/文档/权限变化及批次/步骤冻结；生成使用工程替身。原120题及首期40题契约完整性通过，没有运行模型题。"
+        },
+        {
+          "id": "P-MAP-U033",
+          "text": "真实来源验收 **71个请求**（含快照读取），包含5次映射修订、5个审核样本和5份冻结版本；7个成功问答快照均有三次来源校验。先后两次使用正式 `--once --zero-model-calls` CLI完成各2题任务，分别包含真实批次和步骤来源；场景有重叠，不计模型准确率。故障验证证明：映射撤回阻止旧会话并使相关冻结版本失效；步骤源变化返回409，恢复字段值不恢复旧修订；撤销review阻止审核/导出而普通view查询仍可用；登记变化和适配器停机中止使用旧证据。最后恢复映射、源值、权限、登记和适配器，并重新采集冻结两份当前版本完成第二次任务，无活动质量任务。"
+        },
+        {
+          "id": "P-MAP-U034",
+          "text": "同进程问答及Worker均有硬零预算，25个可观察请求ID、两个任务及整个候选独立模型账本新增调用和Token **0**。r2最终部署端口另外5项、上游只读4项、新旧健康端口4项及页面资源字节4项通过。仅给现有知识管理员增加新候选 `openmes-hc / HC-P01 / review`，未提升知识库、部门、上游或ERPNext权限。"
+        },
+        {
+          "id": "P-MAP-U035",
+          "text": "首轮旧测试仍要求缺工单开工时间，按新映射契约修正后通过；原记录保留。r1镜像应用文件正确但继承了依赖镜像的旧提交标签，保留r1后构建r2显式标注本轮提交；业务代码、数据库和模型用量没有二次变化。迁移前后平台/MES数据库共4份备份目录核验通过，未做完整恢复演练；未重建索引、常驻新Worker或做浏览器视觉检查。"
+        },
+        {
+          "id": "P-MAP-U036",
+          "text": "私有配置、备份、原始响应及Trace在 `tmp/openmes-guidance-quality-20261110-r1/`，凭据不提交。当前检查和零模型任务入口："
+        },
+        {
+          "id": "P-MAP-U037",
+          "text": "```powershell"
+        },
+        {
+          "id": "P-MAP-U038",
+          "text": "docker compose -f tmp/openmes-guidance-quality-20261110-r1/compose.json ps"
+        },
+        {
+          "id": "P-MAP-U039",
+          "text": "docker compose --env-file tmp/openmes-phase1-20261109-r1/deployment/deployment.env -f deploy/openmes/compose.yaml -f tmp/openmes-guidance-quality-20261110-r1/adapter.compose.json ps"
+        },
+        {
+          "id": "P-MAP-U040",
+          "text": "# 仅在页面创建零调用任务后执行；不会领取允许模型的任务。"
+        },
+        {
+          "id": "P-MAP-U041",
+          "text": "docker compose -f tmp/openmes-guidance-quality-20261110-r1/compose.json run --rm --no-deps api python scripts/run_quality_worker.py --once --zero-model-calls"
+        },
+        {
+          "id": "P-MAP-U042",
+          "text": "```"
+        },
+        {
+          "id": "P-MAP-U043",
+          "text": "完整结构化结果见[本轮报告](reports/openmes-guidance-quality-20261110-r1.json)。这是工程接入通过，真实模型问答质量仍待独立验证，旧ERPNext10/16、模拟开发13/16及正式31/40失败状态不变。"
+        },
+        {
+          "id": "P-MAP-U044",
+          "text": "## 2026-11-10 页面修复部署补充"
+        },
+        {
+          "id": "P-MAP-U045",
+          "text": "8004当前镜像为 `enterprise-knowledge-manufacturing:openmes-ui-20261110-r1`，只更新引用计数、重复拒绝及窄屏布局，后端仍为609d23d，权限和来源校验不变。重建API时，在上述基础compose之后叠加 `-f tmp/frontend-deploy-20261110-r1/openmes-override.json`；上游及适配器沿用原配置。当前完整启动命令、镜像校验和回滚入口见[页面部署记录](reports/frontend-deploy-20261110-r1.md)。本轮未新建零模型任务或更新旧模型成绩。"
+        }
+      ],
+      "checksum_mode": "lf_normalized_text",
+      "content_sha256": "c6da16eef0d13098a9169fcb0427246c1b1ada83cbb0f013206611a1c55ba98e"
+    },
+    "B-ERP-OLD": {
+      "kind": "archived_business_snapshot",
+      "capture_origin": {
+        "private_artifact": "tmp/erpnext-model-v2-20261110-r1/batch/prepared.json",
+        "artifact_sha256": "a4536669283cd24ee5b4f8de5340cba81323d0618a25892777712fb7225aa0da",
+        "locator": "cases[id=ERPDEV-Q001].business_context_binding.context"
+      },
+      "captured_at": "2026-11-10T12:02:26.663988Z",
+      "live_verified_this_batch": false,
+      "upstream_payload_sha256": "f925fdc37b106954c71707634bb8f88cd3cfe75800d8042b8b00a5aca0926f80",
+      "projection_sha256": "c6c5914e3fe14fe00dda8ebc59df7fa301e1cc124c258175747a8828c640ad39",
+      "data": {
+        "source_system_id": "erpnext-hc",
+        "plant_code": "HC-P01",
+        "work_order_id": "ERP-WO-EXECUTION",
+        "source_record_id": "ERP-WO-EXECUTION",
+        "product_model": "HC-A17",
+        "operation_code": "OP-20",
+        "route_revision": null,
+        "batch_no": null,
+        "actual_started_at": "2026-09-28T08:10:00+08:00",
+        "actual_start_precision": "datetime",
+        "reported_at": null,
+        "status": "In Process",
+        "change_notice_refs": [],
+        "source_revision": "erp-ba2c990dc42c86fffbb19eb159aa84f5a18629c65ea840c6c94b7807dea7",
+        "source_updated_at": "2026-11-09T20:52:07.069642+08:00",
+        "execution": {
+          "operation_id": "7pvg4cgbg0",
+          "operation_actual_started_at": "2026-09-28T08:10:00+08:00",
+          "operation_start_precision": "datetime",
+          "operation_status": "Work in Progress",
+          "job_card_id": "PO-JOB00008",
+          "job_card_actual_started_at": "2026-10-26T09:30:00+08:00",
+          "job_card_start_precision": "datetime",
+          "job_card_status": "Work In Progress",
+          "job_card_updated_at": "2026-11-09T20:52:07.069642+08:00"
+        }
+      }
+    },
+    "B-ERP-OPEN": {
+      "kind": "archived_business_snapshot",
+      "capture_origin": {
+        "private_artifact": "tmp/erpnext-model-v2-20261110-r1/batch/prepared.json",
+        "artifact_sha256": "a4536669283cd24ee5b4f8de5340cba81323d0618a25892777712fb7225aa0da",
+        "locator": "cases[id=ERPDEV-Q003].business_context_binding.context"
+      },
+      "captured_at": "2026-11-10T12:02:27.170773Z",
+      "live_verified_this_batch": false,
+      "upstream_payload_sha256": "7317a6f83b8940c82fecb84b15932f5de5cf5adbc56da60e1001235aca36f036",
+      "projection_sha256": "33518e443f2b4415c387fab3f521b09b9e54d4e9b25d777443edf4b9174bd2f4",
+      "data": {
+        "source_system_id": "erpnext-hc",
+        "plant_code": "HC-P01",
+        "work_order_id": "ERP-WO-EXECUTION",
+        "source_record_id": "ERP-WO-EXECUTION",
+        "product_model": "HC-A17",
+        "operation_code": "OP-20",
+        "route_revision": null,
+        "batch_no": null,
+        "actual_started_at": "2026-09-28T08:10:00+08:00",
+        "actual_start_precision": "datetime",
+        "reported_at": null,
+        "status": "In Process",
+        "change_notice_refs": [],
+        "source_revision": "erp-1c1560e48ce0d6ca1c1e1a292ea468aa25e220044050b3d63cb75e2b089f",
+        "source_updated_at": "2026-11-09T20:02:27.401835+08:00",
+        "execution": {
+          "operation_id": "7pvg4cgbg0",
+          "operation_actual_started_at": "2026-09-28T08:10:00+08:00",
+          "operation_start_precision": "datetime",
+          "operation_status": "Work in Progress",
+          "job_card_id": "PO-JOB00009",
+          "job_card_actual_started_at": null,
+          "job_card_start_precision": null,
+          "job_card_status": "Open",
+          "job_card_updated_at": "2026-11-09T20:02:27.401835+08:00"
+        }
+      }
+    },
+    "B-ERP-OP30": {
+      "kind": "archived_business_snapshot",
+      "capture_origin": {
+        "private_artifact": "tmp/erpnext-model-v2-20261110-r1/batch/prepared.json",
+        "artifact_sha256": "a4536669283cd24ee5b4f8de5340cba81323d0618a25892777712fb7225aa0da",
+        "locator": "cases[id=ERPDEV-Q004].business_context_binding.context"
+      },
+      "captured_at": "2026-11-10T12:02:27.467755Z",
+      "live_verified_this_batch": false,
+      "upstream_payload_sha256": "bfc32e6d5e5e7e054f211dbd70d50fdd3a367f50feb5b8c2e1f65d5d7e165ffe",
+      "projection_sha256": "de16c04faced91ea852b4b9945285d9046d94b1ce680e4e180a2ec3417fd0451",
+      "data": {
+        "source_system_id": "erpnext-hc",
+        "plant_code": "HC-P01",
+        "work_order_id": "ERP-WO-EXECUTION",
+        "source_record_id": "ERP-WO-EXECUTION",
+        "product_model": "HC-A17",
+        "operation_code": "OP-30",
+        "route_revision": null,
+        "batch_no": null,
+        "actual_started_at": "2026-09-28T08:10:00+08:00",
+        "actual_start_precision": "datetime",
+        "reported_at": null,
+        "status": "In Process",
+        "change_notice_refs": [],
+        "source_revision": "erp-1c95fbc2f54197bb0e757753a986281180b43f9b2c8febd1fddfd958202a",
+        "source_updated_at": "2026-11-09T20:02:27.365871+08:00",
+        "execution": {
+          "operation_id": "7pvhaa8m4o",
+          "operation_actual_started_at": null,
+          "operation_start_precision": null,
+          "operation_status": "Pending",
+          "job_card_id": "PO-JOB00007",
+          "job_card_actual_started_at": null,
+          "job_card_start_precision": null,
+          "job_card_status": "Open",
+          "job_card_updated_at": "2026-11-09T20:02:27.253004+08:00"
+        }
+      }
+    },
+    "B-ERP-NEW": {
+      "kind": "archived_business_snapshot",
+      "capture_origin": {
+        "private_artifact": "tmp/erpnext-model-v2-20261110-r1/batch/prepared.json",
+        "artifact_sha256": "a4536669283cd24ee5b4f8de5340cba81323d0618a25892777712fb7225aa0da",
+        "locator": "cases[id=ERPDEV-Q006].business_context_binding.context"
+      },
+      "captured_at": "2026-11-10T12:02:27.909563Z",
+      "live_verified_this_batch": false,
+      "upstream_payload_sha256": "b8ce50227fbe48f2e7906da9368e0a7806c166c6407ac770e092d91b7aa97b5b",
+      "projection_sha256": "944a7713b6fd4b9b5ee4bc553c4d826465614cad097e043f4e2542405ae9b890",
+      "data": {
+        "source_system_id": "erpnext-hc",
+        "plant_code": "HC-P01",
+        "work_order_id": "ERP-WO-STARTED",
+        "source_record_id": "ERP-WO-STARTED",
+        "product_model": "HC-A17",
+        "operation_code": "OP-20",
+        "route_revision": null,
+        "batch_no": null,
+        "actual_started_at": "2026-11-09T16:55:29.735215+08:00",
+        "actual_start_precision": "datetime",
+        "reported_at": null,
+        "status": "In Process",
+        "change_notice_refs": [],
+        "source_revision": "erp-75d1bb1b11a275fc39d4d8f09c88d7dfb3f542fb81ebcd0199d116f3143d",
+        "source_updated_at": "2026-11-09T17:38:58.619197+08:00",
+        "execution": {
+          "operation_id": "eojkf47oip",
+          "operation_actual_started_at": "2026-11-09T16:55:29.735215+08:00",
+          "operation_start_precision": "datetime",
+          "operation_status": "Completed",
+          "job_card_id": "PO-JOB00001",
+          "job_card_actual_started_at": "2026-11-09T16:55:29.735215+08:00",
+          "job_card_start_precision": "datetime",
+          "job_card_status": "Completed",
+          "job_card_updated_at": "2026-11-09T17:30:29.798501+08:00"
+        }
+      }
+    },
+    "B-ERP-NOSTART": {
+      "kind": "archived_business_snapshot",
+      "capture_origin": {
+        "private_artifact": "tmp/erpnext-model-v2-20261110-r1/batch/prepared.json",
+        "artifact_sha256": "a4536669283cd24ee5b4f8de5340cba81323d0618a25892777712fb7225aa0da",
+        "locator": "cases[id=ERPDEV-Q013].business_context_binding.context"
+      },
+      "captured_at": "2026-11-10T12:02:29.399433Z",
+      "live_verified_this_batch": false,
+      "upstream_payload_sha256": "0bedf48ddb012c29ec2e841464984fa283d19cac6f3ddb3658eceab7a21f773c",
+      "projection_sha256": "75a970f26434f03254264f1148b57a29e1df6837c05b8e505fa401977e6f9711",
+      "data": {
+        "source_system_id": "erpnext-hc",
+        "plant_code": "HC-P01",
+        "work_order_id": "ERP-WO-NOTSTARTED",
+        "source_record_id": "ERP-WO-NOTSTARTED",
+        "product_model": "HC-A17",
+        "operation_code": "OP-20",
+        "route_revision": null,
+        "batch_no": null,
+        "actual_started_at": null,
+        "actual_start_precision": null,
+        "reported_at": null,
+        "status": "Not Started",
+        "change_notice_refs": [],
+        "source_revision": "erp-1a7889cb0149f4bb0ebf000797a591d47c2c3286cb48b78b720a53023534",
+        "source_updated_at": "2026-11-09T17:30:29.956392+08:00"
+      }
+    },
+    "B-ERP-MULTI": {
+      "kind": "archived_business_snapshot",
+      "capture_origin": {
+        "private_artifact": "tmp/erpnext-model-v2-20261110-r1/batch/prepared.json",
+        "artifact_sha256": "a4536669283cd24ee5b4f8de5340cba81323d0618a25892777712fb7225aa0da",
+        "locator": "cases[id=ERPDEV-Q014].business_context_binding.context"
+      },
+      "captured_at": "2026-11-10T12:02:29.499003Z",
+      "live_verified_this_batch": false,
+      "upstream_payload_sha256": "b4b9845bc828ff158e6dd97f953d9ffba113d16c5d1845f862c1ff133be93161",
+      "projection_sha256": "c6300792422df16338210806d4e5b3c7a8a07eecc60294d549329f38733e6201",
+      "data": {
+        "source_system_id": "erpnext-hc",
+        "plant_code": "HC-P01",
+        "work_order_id": "ERP-WO-MULTI",
+        "source_record_id": "ERP-WO-MULTI",
+        "product_model": "HC-A17",
+        "operation_code": null,
+        "route_revision": null,
+        "batch_no": null,
+        "actual_started_at": null,
+        "actual_start_precision": null,
+        "reported_at": null,
+        "status": "Not Started",
+        "change_notice_refs": [],
+        "source_revision": "erp-039a9ef1f8b8469070714f6ab1564d81271f4d57eeb4bf4041fd3ae3ed68",
+        "source_updated_at": "2026-11-09T17:30:30.229396+08:00"
+      }
+    },
+    "B-MES-STEP": {
+      "kind": "archived_business_snapshot",
+      "capture_origin": {
+        "private_artifact": "tmp/main-isolated-demo-20261110-r1/smoke-r2/smoke-requests.jsonl",
+        "artifact_sha256": "ef8fc519001d6a4e7950182fde868327f38924b092af51f9a2cdbf032e6f730f",
+        "locator": "target=openmes, GET execution-context, status=200, body.record"
+      },
+      "captured_at": "2026-11-10T13:03:40.586462Z",
+      "live_verified_this_batch": false,
+      "upstream_payload_sha256": null,
+      "projection_sha256": "85421b429a5dbe1c580d875cef5063027624ef118e945a4b8c5ef12a3edf51bf",
+      "data": {
+        "source_system_id": "openmes-hc",
+        "plant_code": "HC-P01",
+        "work_order_id": "1",
+        "source_record_id": "1",
+        "product_model": "HC-A17",
+        "operation_code": null,
+        "route_revision": null,
+        "batch_no": null,
+        "actual_started_at": null,
+        "actual_start_precision": null,
+        "reported_at": null,
+        "status": "IN_PROGRESS",
+        "change_notice_refs": [],
+        "source_revision": "mes-0cea49b906e3eadb7b4ce3caa9a98c52797c5870f0be9bae2d84b412b8f6",
+        "source_updated_at": "2026-11-09T00:10:00Z",
+        "work_order_number": "MES-WO-STARTED",
+        "batch": {
+          "actual_started_at": "2026-11-09T00:10:00.000000Z",
+          "actual_start_precision": "datetime",
+          "batch_id": "1",
+          "work_order_id": "1",
+          "batch_number": 1,
+          "lot_number": "MES-WO-STARTED-B1",
+          "status": "IN_PROGRESS",
+          "source_updated_at": "2026-11-09T00:10:00Z"
+        },
+        "step": {
+          "actual_started_at": "2026-11-09T00:10:00.000000Z",
+          "actual_start_precision": "datetime",
+          "step_id": "1",
+          "batch_id": "1",
+          "work_order_id": "1",
+          "step_number": 1,
+          "name": "OP-20 机加工",
+          "status": "IN_PROGRESS",
+          "source_updated_at": "2026-11-10T06:29:00Z"
+        }
+      }
+    },
+    "B-MES-MAP": {
+      "kind": "archived_mapping_snapshot",
+      "capture_origin": {
+        "private_artifact": "tmp/main-isolated-demo-20261110-r1/smoke-r2/smoke-requests.jsonl",
+        "artifact_sha256": "ef8fc519001d6a4e7950182fde868327f38924b092af51f9a2cdbf032e6f730f",
+        "locator": "target=openmes, label=deterministic_fields, body.applicability.step_guidance (server metadata only; answer excluded)"
+      },
+      "captured_at": "2026-11-10T07:51:52.357588+00:00",
+      "live_verified_this_batch": false,
+      "projection_sha256": "ed37edb46e1570bce52ed00d7a7b242cf274c8cf8aed88d298e9708dfe54c116",
+      "data": {
+        "revision": 7,
+        "document_code": "HC-WI-A17-020",
+        "business_revision": "2.0",
+        "operation_code": "OP-20",
+        "basis": "reviewed_step_assignment",
+        "source_revision": "mes-e9f616c0e2fe9b67394d83f8d8caa8be70442998ba1179ffddf54f6a8eb9",
+        "reviewed_at": "2026-11-10T07:51:52.357588+00:00"
+      }
+    },
+    "ZH-B21-01": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-01_DEMO-B21_OP-10来料与基准核对_历史版.md",
+      "original_sha256": "de6048346e87685b44bb074fb08e08eabe09142674a8be53e3929d9da020ca0b",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "B21",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本指导书仅适用于演示产品DEMO-B21的OP-10来料与基准核对，不得因产品名称相似用于其他系列。文件业务版本为1.0，全部条款为合成规则。",
+          "heading": "适用范围",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "本版从2026-01-01起适用，至2026-10-31结束，起止日期均包含当日。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "heading": "版本区间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "核对毛坯标签与工单型号；基准面标记可辨认后登记领料。",
+          "heading": "作业要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "异常发现后保持物料与记录可追溯，提请质量人员确认后再处理。",
+          "heading": "变更后复核",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "使用演示图样受控副本与条码读取器核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "heading": "工具与记录",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-B21-02": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+      "original_sha256": "5b4d7a61311ce96c0e802fe8584512e0491270ac931650a96da271132685dcd2",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "B21",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本指导书仅适用于演示产品DEMO-B21的OP-10来料与基准核对，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "heading": "适用范围",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "本版从2026-11-01起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "heading": "版本区间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "逐项核对毛坯标签、物料批号和基准面标记；任一标识缺失时转入待确认区，工艺员补充书面结论后才能继续流转。",
+          "heading": "作业要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "更换物料批次后重新执行标识核对，沿用上一批签名不能替代本批确认。",
+          "heading": "变更后复核",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "使用演示图样受控副本与条码读取器核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "heading": "工具与记录",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-B21-04": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-04_DEMO-B21_OP-20定位孔尺寸复核_现行演示版.md",
+      "original_sha256": "a763e64c450b69ee84ed99d8cf4267d6295bb68424e84d0ec5dc4868d2edc26e",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "B21",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本指导书仅适用于演示产品DEMO-B21的OP-20定位孔尺寸复核，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "heading": "适用范围",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "本版从2026-11-01起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "heading": "版本区间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "定位孔在相互垂直的两个方向各测量一次，分别保存原始读数；任一方向超出演示图样范围时标记待处置，不能仅以两个读数的平均值判定合格。",
+          "heading": "作业要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "更换检具或定位治具后重新进行首件确认，质量复核签署前不得登记批量放行。",
+          "heading": "变更后复核",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "使用有效状态的演示内径量具核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "heading": "工具与记录",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-B21-05": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+      "original_sha256": "2282dd1785a9568161d312e6dc34649c1ab278cb8b55e8b7c9d113bc47dba060",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "B21",
+      "language": "zh-CN",
+      "format": "pdf",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本规范适用于DEMO-B21的OP-10来料与基准核对。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "heading": "适用对象",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u02",
+          "text": "物料批号与领料记录一致，基准面标记完整且方向与演示图样说明一致。",
+          "heading": "检查要求",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u03",
+          "text": "每批核对首箱及末箱标签；发现混批时隔离该批全部未确认物料。",
+          "heading": "取样与触发",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u04",
+          "text": "标签照片、领料记录号与基准方向检查结果分别登记。",
+          "heading": "演示记录辨析",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u05",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "heading": "签署与处置",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u06",
+          "text": "登记产品DEMO-B21、工单DEMO-WO-B2101、工序OP-10、物料批号DEMO-LOT-B21-1102、文件版次及原始记录编号，保留更正前的历史记录。",
+          "heading": "来源追溯",
+          "physical_pages": [
+            1
+          ]
+        }
+      ]
+    },
+    "ZH-B21-06": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+      "original_sha256": "5827645b3ce7ad816eb66aaab7c609206a40c729034db4962bb65c0b4368d797",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "B21",
+      "language": "zh-CN",
+      "format": "pdf",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本规范适用于DEMO-B21的OP-20定位孔尺寸复核。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "heading": "适用对象",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u02",
+          "text": "演示定位孔尺寸范围为10.00至10.05毫米，两个方向的原始读数均须在范围内。",
+          "heading": "检查要求",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u03",
+          "text": "首件逐项检查；批内抽查不能替代换检具后的首件复核。",
+          "heading": "取样与触发",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u04",
+          "text": "演示首件两个方向读数为10.02毫米和10.06毫米；第二个读数超出范围。",
+          "heading": "演示记录辨析",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u05",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "heading": "签署与处置",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u06",
+          "text": "登记产品DEMO-B21、工单DEMO-WO-B2101、工序OP-20、物料批号DEMO-LOT-B21-1102、文件版次及原始记录编号，保留更正前的历史记录。",
+          "heading": "来源追溯",
+          "physical_pages": [
+            1
+          ]
+        }
+      ]
+    },
+    "ZH-B21-07": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-07_DEMO-B21工艺变更通知.md",
+      "original_sha256": "2fcb4d63a9c660de8d018baa6cdd967a47d7e1f76d218f2cb9ae6c56bfbcab05",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "B21",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "演示变更单DEMO-ECN-B21-02将DEMO-B21的两份作业指导书更新至2.0版，切换日期为2026-11-01，仅适用于本系列明确列出的两道工序。",
+          "heading": "变更对象",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "OP-10新增要求：逐项核对毛坯标签、物料批号和基准面标记；任一标识缺失时转入待确认区，工艺员补充书面结论后才能继续流转。；OP-20新增要求：定位孔在相互垂直的两个方向各测量一次，分别保存原始读数；任一方向超出演示图样范围时标记待处置，不能仅以两个读数的平均值判定合格。",
+          "heading": "变更内容",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "工单时间只能作为选版条件之一；仍须核对产品、工序、有效区间和已审核适用性。通知已编写不表示平台审核已批准；本资料包所有映射仍是草案。",
+          "heading": "切换条件",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "未取得明确书面切换指示的既有工单，不因新通知存在就自动切换指导书；多个书面指示冲突时应保留冲突并请求审核者确认。",
+          "heading": "已开工工单",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "对应的新指导书来源编号为ZH-B21-02、ZH-B21-04，引用变更单不能替代对所选指导书原文及版本的核对。",
+          "heading": "关联文件",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-B21-08": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+      "original_sha256": "414cf2ce8f71170d52d683fd5e7b2205f9422850a12deb4f1ad739742f1b4c05",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "B21",
+      "language": "zh-CN",
+      "format": "txt",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本台账为合成离线记录，工单DEMO-WO-B2101，产品DEMO-B21，计划数量120件，物料演示铝合金毛坯，物料批号DEMO-LOT-B21-1102；不来自ERPNext或OpenMES实时API。",
+          "heading": "记录身份",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "计划开工为2026-11-0208:00:00+08:00，工单级实际开工未登记。计划时间不得当作实际时间，任何子级记录也不得补填工单级实际开工。",
+          "heading": "工单时间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "ERPNext离线夹具设计：工序子行DEMO-ROW-B21-1属于OP-10，工序实际开工为2026-11-0208:12:00+08:00；作业卡DEMO-JC-B21-1实际开工为08:17:00+08:00，日期同本工单演示日期。第二工序子行DEMO-ROW-B21-2和作业卡DEMO-JC-B21-2均未登记实际开工。卡与工序分别取值，不能互补。",
+          "heading": "工序与作业卡",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "OpenMES离线夹具设计：批次DEMO-BATCH-B21-1实际开工为2026-11-0209:00:00+08:00，步骤DEMO-STEP-B21-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-B21-2未登记实际开工。另有同工单批次DEMO-BATCH-B21-2，其步骤DEMO-STEP-B21-3与第一批次不构成父子关系。",
+          "heading": "批次与步骤",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "OP-10：首箱标签核对一致，但未登记末箱核对结果；OP-20：已保存两方向原始读数，但质量复核人未签署。这些状态为样例事实，不表示真实系统当前状态。",
+          "heading": "记录状态",
+          "physical_pages": []
+        },
+        {
+          "id": "u06",
+          "text": "步骤DEMO-STEP-B21-1拟分配来源ZH-B21-02的2.0版，步骤DEMO-STEP-B21-2拟分配来源ZH-B21-04的2.0版。两个分配均待人工审核，尚未登记到平台，不能称为已批准映射或用于线上会话绑定。",
+          "heading": "指导书映射草案",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-B21-09": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-09_DEMO-B21工单例外通知草案.md",
+      "original_sha256": "d46181d3e69050e043eec18bfcec86d3f9121363f9c3b4861b91f9d7f0c64679",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "B21",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "演示例外单DEMO-EX-B21-01只针对DEMO-WO-B2101，不适用于同型号其他工单，也不是平台已审核授权。",
+          "heading": "例外身份",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "DEMO-WO-B2101的OP-10因首批标签模板切换，可在工艺员完成补充标签记录后继续使用本系列2.0版；本例外不豁免物料批号核对，也不改变OP-20的质量签署要求。",
+          "heading": "例外要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "本通知尚未审核，保留草案状态；不能把作者编写时间当作批准时间。若后续审核版本与当前快照不同，必须重新读取并冻结新版本，保留旧版本。",
+          "heading": "审核边界",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "本通知可说明假设场景的例外条件，不能证明例外已经执行、质量已经签署或平台已经授予访问权限。",
+          "heading": "引用用途",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-B21-10": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-B21-10_DEMO-B21班次交接与未完成项.md",
+      "original_sha256": "89c09d402f6e45eccb37d87398eee7e0fefc1fcfa52af3d22aaf4c73656af537",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "B21",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "合成交接记录DEMO-HO-B21-01，工单DEMO-WO-B2101，日期2026-11-02，对象为本系列两道工序，全部角色与事实均为演示设定。",
+          "heading": "交接身份",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "早班已完成首箱标签核对，末箱核对尚未登记；检验台已保存定位孔两方向读数，第二方向超限品置于待处置区。晚班应先核对隔离标识及待处置单，不能将交接接收签名视为质量放行。",
+          "heading": "交接内容",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "OP-10：未登记末箱核对结果；OP-20：质量复核人未签署。",
+          "heading": "未完成项",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "接班后新增的检查、处置和签署应另建记录，注明记录号和时间；不得覆盖本交接原件，也不得把后来的合格结论回填为交接时已知事实。",
+          "heading": "追溯与更正",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-C31-01": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-01_DEMO-C31_OP-30密封组件核对与装配记录_历史版.md",
+      "original_sha256": "471dfbe6ded685792244b65e90e28e8640061285fbc5f30e3e00d415a5986ae5",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "C31",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本指导书仅适用于演示产品DEMO-C31的OP-30密封组件核对与装配记录，不得因产品名称相似用于其他系列。文件业务版本为1.0，全部条款为合成规则。",
+          "heading": "适用范围",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "本版从2026-01-01起适用，至2026-11-02结束，起止日期均包含当日。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "heading": "版本区间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "核对密封组件型号后记录装配完成数量。",
+          "heading": "作业要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "异常发现后保持物料与记录可追溯，提请质量人员确认后再处理。",
+          "heading": "变更后复核",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "使用演示物料清单与方向示意说明核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "heading": "工具与记录",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-C31-02": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-02_DEMO-C31_OP-30密封组件核对与装配记录_现行演示版.md",
+      "original_sha256": "79ba2fe94066f98c7af601dd056ac35e7bb31d8779d87ccd868018978632c469",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "C31",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本指导书仅适用于演示产品DEMO-C31的OP-30密封组件核对与装配记录，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "heading": "适用范围",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "本版从2026-11-03起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "heading": "版本区间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "核对密封组件型号、批号及装配方向，确认表面无可见破损后填写装配检查记录；仅有完成数量不能证明装配方向已检查。",
+          "heading": "作业要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "密封组件开包后发现混料或破损时隔离同包组件，经质量人员确认后决定后续处置。",
+          "heading": "变更后复核",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "使用演示物料清单与方向示意说明核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "heading": "工具与记录",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-C31-04": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-04_DEMO-C31_OP-40气密检测结果复核_现行演示版.md",
+      "original_sha256": "dd42e81a673efbef301bc4ba41294d318649718d7d4e6ca67353822b2c136a0a",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "C31",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本指导书仅适用于演示产品DEMO-C31的OP-40气密检测结果复核，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "heading": "适用范围",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "本版从2026-11-03起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "heading": "版本区间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "同时保存设备结果、检测程序版本和原始数据记录号；缺少任一项时将该件标记为待复核，不得用设备运行结束时间补写质量签署。",
+          "heading": "作业要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "检测程序版本变更后先核对受控程序清单并进行验证记录复核；程序名称相同不能证明程序版本相同。",
+          "heading": "变更后复核",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "使用受控检测程序清单及原始数据索引核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "heading": "工具与记录",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-C31-05": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+      "original_sha256": "b361ef5a71879e8621127d61749a30d3b78e3a7410e4cccfaabd4123ec60eebb",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "C31",
+      "language": "zh-CN",
+      "format": "pdf",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本规范适用于DEMO-C31的OP-30密封组件核对与装配记录。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "heading": "适用对象",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u02",
+          "text": "型号与演示物料清单一致，批号可追溯，方向检查与外观检查均有独立结果。",
+          "heading": "检查要求",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u03",
+          "text": "每件保存方向检查结果，开包核对不能代替逐件方向确认。",
+          "heading": "取样与触发",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u04",
+          "text": "演示装配记录数量为20件，方向检查栏为空；不能据此判定20件全部通过装配检查。",
+          "heading": "演示记录辨析",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u05",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "heading": "签署与处置",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u06",
+          "text": "登记产品DEMO-C31、工单DEMO-WO-C3101、工序OP-30、物料批号DEMO-LOT-C31-1104、文件版次及原始记录编号，保留更正前的历史记录。",
+          "heading": "来源追溯",
+          "physical_pages": [
+            1
+          ]
+        }
+      ]
+    },
+    "ZH-C31-06": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+      "original_sha256": "01878877878e504e6eaa48ffdadc64a8cb24822d7d7bb7fdf8bedd7fa5228f9b",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "C31",
+      "language": "zh-CN",
+      "format": "pdf",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本规范适用于DEMO-C31的OP-40气密检测结果复核。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "heading": "适用对象",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u02",
+          "text": "设备结果为合格，程序版本为演示清单指定的P2，且原始数据记录号非空，三项同时满足后仍需质量人员签署放行。",
+          "heading": "检查要求",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u03",
+          "text": "每件关联原始数据记录号，批次汇总截图不能替代逐件数据关联。",
+          "heading": "取样与触发",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u04",
+          "text": "演示记录设备结果为合格，程序版本P2，原始数据记录号为空，应判为资料待复核。",
+          "heading": "演示记录辨析",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u05",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "heading": "签署与处置",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u06",
+          "text": "登记产品DEMO-C31、工单DEMO-WO-C3101、工序OP-40、物料批号DEMO-LOT-C31-1104、文件版次及原始记录编号，保留更正前的历史记录。",
+          "heading": "来源追溯",
+          "physical_pages": [
+            1
+          ]
+        }
+      ]
+    },
+    "ZH-C31-07": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-07_DEMO-C31工艺变更通知.md",
+      "original_sha256": "eb8ce6085683cf2f37b03450cab102db2dc27770ac25402b76f843f3e083afb0",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "C31",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "演示变更单DEMO-ECN-C31-02将DEMO-C31的两份作业指导书更新至2.0版，切换日期为2026-11-03，仅适用于本系列明确列出的两道工序。",
+          "heading": "变更对象",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "OP-30新增要求：核对密封组件型号、批号及装配方向，确认表面无可见破损后填写装配检查记录；仅有完成数量不能证明装配方向已检查。；OP-40新增要求：同时保存设备结果、检测程序版本和原始数据记录号；缺少任一项时将该件标记为待复核，不得用设备运行结束时间补写质量签署。",
+          "heading": "变更内容",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "工单时间只能作为选版条件之一；仍须核对产品、工序、有效区间和已审核适用性。通知已编写不表示平台审核已批准；本资料包所有映射仍是草案。",
+          "heading": "切换条件",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "未取得明确书面切换指示的既有工单，不因新通知存在就自动切换指导书；多个书面指示冲突时应保留冲突并请求审核者确认。",
+          "heading": "已开工工单",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "对应的新指导书来源编号为ZH-C31-02、ZH-C31-04，引用变更单不能替代对所选指导书原文及版本的核对。",
+          "heading": "关联文件",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-C31-08": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+      "original_sha256": "060c026270c8282380afdaf29ef909e62f1aa9a43d081366a2f5e6df7bbe8f36",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "C31",
+      "language": "zh-CN",
+      "format": "txt",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本台账为合成离线记录，工单DEMO-WO-C3101，产品DEMO-C31，计划数量80件，物料演示壳体与密封组件，物料批号DEMO-LOT-C31-1104；不来自ERPNext或OpenMES实时API。",
+          "heading": "记录身份",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "计划开工为2026-11-0408:00:00+08:00，工单级实际开工未登记。计划时间不得当作实际时间，任何子级记录也不得补填工单级实际开工。",
+          "heading": "工单时间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "ERPNext离线夹具设计：工序子行DEMO-ROW-C31-1属于OP-30，工序实际开工为2026-11-0408:12:00+08:00；作业卡DEMO-JC-C31-1实际开工为08:17:00+08:00，日期同本工单演示日期。第二工序子行DEMO-ROW-C31-2和作业卡DEMO-JC-C31-2均未登记实际开工。卡与工序分别取值，不能互补。",
+          "heading": "工序与作业卡",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "OpenMES离线夹具设计：批次DEMO-BATCH-C31-1实际开工为2026-11-0409:00:00+08:00，步骤DEMO-STEP-C31-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-C31-2未登记实际开工。另有同工单批次DEMO-BATCH-C31-2，其步骤DEMO-STEP-C31-3与第一批次不构成父子关系。",
+          "heading": "批次与步骤",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "OP-30：已登记装配数量20件，但方向检查结果未登记；OP-40：设备结果登记为合格，但原始数据记录号缺失。这些状态为样例事实，不表示真实系统当前状态。",
+          "heading": "记录状态",
+          "physical_pages": []
+        },
+        {
+          "id": "u06",
+          "text": "步骤DEMO-STEP-C31-1拟分配来源ZH-C31-02的2.0版，步骤DEMO-STEP-C31-2拟分配来源ZH-C31-04的2.0版。两个分配均待人工审核，尚未登记到平台，不能称为已批准映射或用于线上会话绑定。",
+          "heading": "指导书映射草案",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-C31-09": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-09_DEMO-C31工单例外通知草案.md",
+      "original_sha256": "1bc07785cda76414d1543ad69c60fe246e94d72bdaa58122494979a0d6cfe04a",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "C31",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "演示例外单DEMO-EX-C31-01只针对DEMO-WO-C3101，不适用于同型号其他工单，也不是平台已审核授权。",
+          "heading": "例外身份",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "DEMO-WO-C3101的OP-40因数据归档接口维护，允许先保存本地原始文件并登记临时索引；只有质量人员核对临时索引可读取且完成书面确认后，才可补齐正式关联。本例外不允许空索引直接放行，不影响OP-30的逐件方向检查。",
+          "heading": "例外要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "本通知尚未审核，保留草案状态；不能把作者编写时间当作批准时间。若后续审核版本与当前快照不同，必须重新读取并冻结新版本，保留旧版本。",
+          "heading": "审核边界",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "本通知可说明假设场景的例外条件，不能证明例外已经执行、质量已经签署或平台已经授予访问权限。",
+          "heading": "引用用途",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-C31-10": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-C31-10_DEMO-C31班次交接与未完成项.md",
+      "original_sha256": "878c59ab34083bf52d5ebea995a874bc2a4f7792afc9b7610ea7eef509c2f35a",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "C31",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "合成交接记录DEMO-HO-C31-01，工单DEMO-WO-C3101，日期2026-11-04，对象为本系列两道工序，全部角色与事实均为演示设定。",
+          "heading": "交接身份",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "装配台累计登记20件，方向检查记录仍缺失；检测台已有设备合格结果，但正式原始数据关联尚未完成。交班人只确认这些记录已移交，接班人应先核对临时索引和书面确认，不得推断本批已经质量放行。",
+          "heading": "交接内容",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "OP-30：方向检查结果未登记；OP-40：原始数据记录号缺失。",
+          "heading": "未完成项",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "接班后新增的检查、处置和签署应另建记录，注明记录号和时间；不得覆盖本交接原件，也不得把后来的合格结论回填为交接时已知事实。",
+          "heading": "追溯与更正",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-D41-01": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+      "original_sha256": "e576097565e55e881d1885b5ec24afde2f7d4adef0a7b881516d46ed44d0963c",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "D41",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本指导书仅适用于演示产品DEMO-D41的OP-50端子压接记录核对，不得因产品名称相似用于其他系列。文件业务版本为1.0，全部条款为合成规则。",
+          "heading": "适用范围",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "本版从2026-01-01起适用，至2026-11-04结束，起止日期均包含当日。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "heading": "版本区间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "记录端子型号和压接数量后提交首件样品。",
+          "heading": "作业要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "异常发现后保持物料与记录可追溯，提请质量人员确认后再处理。",
+          "heading": "变更后复核",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "使用演示工艺卡与首件记录台账核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "heading": "工具与记录",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-D41-02": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+      "original_sha256": "c212885e28c89fd698be0f9da6dd6e19f1d2e360c9d268da81694150030786bb",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "D41",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本指导书仅适用于演示产品DEMO-D41的OP-50端子压接记录核对，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "heading": "适用范围",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "本版从2026-11-05起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "heading": "版本区间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "分别登记端子批号、线材批号、模具编号和首件检查记录号，确认四项对应本工单后提交质量复核；压接机启动记录不能替代首件检查记录。",
+          "heading": "作业要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "更换模具或端子批次时重新建立首件记录；设备点检正常不能免除本次首件检查。",
+          "heading": "变更后复核",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "使用演示工艺卡与首件记录台账核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "heading": "工具与记录",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-D41-04": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-04_DEMO-D41_OP-60导通检测与标识核对_现行演示版.md",
+      "original_sha256": "de2d4ad5b5d021e5030b35dad1f27732d614d9efc79e00e49c1bf9252ffb3331",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "D41",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本指导书仅适用于演示产品DEMO-D41的OP-60导通检测与标识核对，不得因产品名称相似用于其他系列。文件业务版本为2.0，全部条款为合成规则。",
+          "heading": "适用范围",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "本版从2026-11-05起适用，结束日期尚未设定。产品、工序和时间窗口均匹配且完成业务适用性审核后才能用于平台选版。",
+          "heading": "版本区间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "核对检测程序版本、针位映射版本和产品序列号，再分别登记导通结果与标签核对结果；导通通过不能证明标签内容或针位映射版本正确。",
+          "heading": "作业要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "针位映射变更后使用新映射进行首件核对；旧映射的通过记录不得复制为新映射的验证结论。",
+          "heading": "变更后复核",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "使用受控针位映射清单及序列号标签核对并保存本工单记录。引用本指导书只能证明作业要求，不能证明现场已经执行，也不能替代检验签署。",
+          "heading": "工具与记录",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-D41-05": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+      "original_sha256": "6aab4ccfe54e6112d0efc19f2147a47145d3f2b095e54dad9b07e98a05f25f11",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "D41",
+      "language": "zh-CN",
+      "format": "pdf",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本规范适用于DEMO-D41的OP-50端子压接记录核对。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "heading": "适用对象",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u02",
+          "text": "端子与线材批号可追溯，模具编号与演示工艺卡一致，首件检查记录有对应质量复核结论。",
+          "heading": "检查要求",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u03",
+          "text": "首件检查按每次换模或换端子批次触发，不以班次开始的一份记录覆盖后续全部变更。",
+          "heading": "取样与触发",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u04",
+          "text": "演示记录模具编号为MJ-D41-02，首件记录号为DEMO-FA-D41-01，复核结论尚未填写。",
+          "heading": "演示记录辨析",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u05",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "heading": "签署与处置",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u06",
+          "text": "登记产品DEMO-D41、工单DEMO-WO-D4101、工序OP-50、物料批号DEMO-LOT-D41-1106、文件版次及原始记录编号，保留更正前的历史记录。",
+          "heading": "来源追溯",
+          "physical_pages": [
+            1
+          ]
+        }
+      ]
+    },
+    "ZH-D41-06": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+      "original_sha256": "21631f4ec1634d8c64a2c56a19a5e6cd47fdd0cc1aa11d1b3cc4d8eff232bb17",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "D41",
+      "language": "zh-CN",
+      "format": "pdf",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本规范适用于DEMO-D41的OP-60导通检测与标识核对。检验限值和样例数据均为演示假设，不能用于真实设备或产品验收。",
+          "heading": "适用对象",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u02",
+          "text": "程序版本T3与映射版本MAP-2匹配，导通结果通过且标签序列号与该件记录一致。",
+          "heading": "检查要求",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u03",
+          "text": "每件独立关联序列号和检测记录，合并上传不能丢失单件对应关系。",
+          "heading": "取样与触发",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u04",
+          "text": "演示记录程序版本T3、映射版本MAP-1、导通结果通过；映射版本不符，应保持待处置。",
+          "heading": "演示记录辨析",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u05",
+          "text": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "heading": "签署与处置",
+          "physical_pages": [
+            1
+          ]
+        },
+        {
+          "id": "u06",
+          "text": "登记产品DEMO-D41、工单DEMO-WO-D4101、工序OP-60、物料批号DEMO-LOT-D41-1106、文件版次及原始记录编号，保留更正前的历史记录。",
+          "heading": "来源追溯",
+          "physical_pages": [
+            1
+          ]
+        }
+      ]
+    },
+    "ZH-D41-07": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-07_DEMO-D41工艺变更通知.md",
+      "original_sha256": "95a86e5ef893935246d5246261d0dd513f19fea667e2eae9c5564c8eb7ab8efd",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "D41",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "演示变更单DEMO-ECN-D41-02将DEMO-D41的两份作业指导书更新至2.0版，切换日期为2026-11-05，仅适用于本系列明确列出的两道工序。",
+          "heading": "变更对象",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "OP-50新增要求：分别登记端子批号、线材批号、模具编号和首件检查记录号，确认四项对应本工单后提交质量复核；压接机启动记录不能替代首件检查记录。；OP-60新增要求：核对检测程序版本、针位映射版本和产品序列号，再分别登记导通结果与标签核对结果；导通通过不能证明标签内容或针位映射版本正确。",
+          "heading": "变更内容",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "工单时间只能作为选版条件之一；仍须核对产品、工序、有效区间和已审核适用性。通知已编写不表示平台审核已批准；本资料包所有映射仍是草案。",
+          "heading": "切换条件",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "未取得明确书面切换指示的既有工单，不因新通知存在就自动切换指导书；多个书面指示冲突时应保留冲突并请求审核者确认。",
+          "heading": "已开工工单",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "对应的新指导书来源编号为ZH-D41-02、ZH-D41-04，引用变更单不能替代对所选指导书原文及版本的核对。",
+          "heading": "关联文件",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-D41-08": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+      "original_sha256": "8dc2ec7b3c5fa28d35c8b119c37fbca2f244a3f6b3de281cd09aea00eca53362",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "D41",
+      "language": "zh-CN",
+      "format": "txt",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "本台账为合成离线记录，工单DEMO-WO-D4101，产品DEMO-D41，计划数量60件，物料演示端子与线材组件，物料批号DEMO-LOT-D41-1106；不来自ERPNext或OpenMES实时API。",
+          "heading": "记录身份",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "计划开工为2026-11-0608:00:00+08:00，工单级实际开工未登记。计划时间不得当作实际时间，任何子级记录也不得补填工单级实际开工。",
+          "heading": "工单时间",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "ERPNext离线夹具设计：工序子行DEMO-ROW-D41-1属于OP-50，工序实际开工为2026-11-0608:12:00+08:00；作业卡DEMO-JC-D41-1实际开工为08:17:00+08:00，日期同本工单演示日期。第二工序子行DEMO-ROW-D41-2和作业卡DEMO-JC-D41-2均未登记实际开工。卡与工序分别取值，不能互补。",
+          "heading": "工序与作业卡",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "OpenMES离线夹具设计：批次DEMO-BATCH-D41-1实际开工为2026-11-0609:00:00+08:00，步骤DEMO-STEP-D41-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-D41-2未登记实际开工。另有同工单批次DEMO-BATCH-D41-2，其步骤DEMO-STEP-D41-3与第一批次不构成父子关系。",
+          "heading": "批次与步骤",
+          "physical_pages": []
+        },
+        {
+          "id": "u05",
+          "text": "OP-50：模具编号与首件记录号已登记，但首件复核结论缺失；OP-60：旧映射下导通结果通过，但新映射首件验证未完成。这些状态为样例事实，不表示真实系统当前状态。",
+          "heading": "记录状态",
+          "physical_pages": []
+        },
+        {
+          "id": "u06",
+          "text": "步骤DEMO-STEP-D41-1拟分配来源ZH-D41-02的2.0版，步骤DEMO-STEP-D41-2拟分配来源ZH-D41-04的2.0版。两个分配均待人工审核，尚未登记到平台，不能称为已批准映射或用于线上会话绑定。",
+          "heading": "指导书映射草案",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-D41-09": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-09_DEMO-D41工单例外通知草案.md",
+      "original_sha256": "6aaad236fade8d156f5efc31f5acb0a81a6857904e03abafa107aa68c431e198",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "D41",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "演示例外单DEMO-EX-D41-01只针对DEMO-WO-D4101，不适用于同型号其他工单，也不是平台已审核授权。",
+          "heading": "例外身份",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "DEMO-WO-D4101的OP-60仅允许工程人员在隔离的演示验证件上对照MAP-1与MAP-2，不得将MAP-1的通过结果转写成MAP-2验证通过；演示验证件不计入可交付数量。本例外不豁免OP-50的换模首件复核。",
+          "heading": "例外要求",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "本通知尚未审核，保留草案状态；不能把作者编写时间当作批准时间。若后续审核版本与当前快照不同，必须重新读取并冻结新版本，保留旧版本。",
+          "heading": "审核边界",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "本通知可说明假设场景的例外条件，不能证明例外已经执行、质量已经签署或平台已经授予访问权限。",
+          "heading": "引用用途",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-D41-10": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_expansion_v1/documents/合成业务/ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+      "original_sha256": "dce4fc1b506c19d7bd0bc8a41d4429ad1357c35c89b6d4e77bfa6b568f330fdb",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "synthetic_business",
+      "source_family": "D41",
+      "language": "zh-CN",
+      "format": "md",
+      "unit_coverage": "selected_sections_not_full_document",
+      "extraction": "frozen_corpus_sections_checked_against_original",
+      "live_verified_this_batch": false,
+      "corpus_review_state": "draft_not_platform_approved",
+      "units": [
+        {
+          "id": "u01",
+          "text": "合成交接记录DEMO-HO-D41-01，工单DEMO-WO-D4101，日期2026-11-06，对象为本系列两道工序，全部角色与事实均为演示设定。",
+          "heading": "交接身份",
+          "physical_pages": []
+        },
+        {
+          "id": "u02",
+          "text": "压接台已登记模具及首件记录号，质量结论为空；电测台在MAP-1下显示通过，新MAP-2首件尚未完成。接班时应区分验证件与待交付件，不能因导通通过或交接签名而改变待处置状态。",
+          "heading": "交接内容",
+          "physical_pages": []
+        },
+        {
+          "id": "u03",
+          "text": "OP-50：首件复核结论缺失；OP-60：新映射首件验证未完成。",
+          "heading": "未完成项",
+          "physical_pages": []
+        },
+        {
+          "id": "u04",
+          "text": "接班后新增的检查、处置和签署应另建记录，注明记录号和时间；不得覆盖本交接原件，也不得把后来的合格结论回填为交接时已知事实。",
+          "heading": "追溯与更正",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-PUB-01": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+      "original_sha256": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "frozen_chinese_public_reference",
+      "source_family": "industrial-quality-responsibility-75",
+      "language": "zh-CN",
+      "format": "pdf",
+      "extraction": "pypdf selected complete clauses with physical pages; no semantic rewriting",
+      "unit_coverage": "selected_sections_not_full_document",
+      "source_url": "https://scjgj.fujian.gov.cn/zt/gyxkgg/zzwj/202308/P020230811375289284467.pdf",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "validity_status": "archived_edition_not_current_legal_or_factory_certification",
+      "live_verified_this_batch": false,
+      "units": [
+        {
+          "id": "PAGE-002",
+          "text": "第三条 生产单位应当建立健全产品质量安全管理制度 ，落\n实产品质量安全责任制，依法配备与单位规模、产品类别、风险等\n级相适应的质量安全总监和质量安全员，明确生产单位主要负责\n人、质量安全总监和质量安全员的岗位职责。\n生产单位主要负责人对本单位的产品质量安全工作全面负\n责，建立并落实产品质量安全主体责任的长效机制 。质量安全总",
+          "physical_pages": [
+            2
+          ]
+        },
+        {
+          "id": "PAGE-003",
+          "text": "监、质量安全员应当按照岗位职责协助生产单位主要负责人做好\n产品质量安全管理工作。",
+          "physical_pages": [
+            3
+          ]
+        }
+      ]
+    },
+    "ZH-PUB-03": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+      "original_sha256": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "frozen_chinese_public_reference",
+      "source_family": "industrial-product-traceability-2024",
+      "language": "zh-CN",
+      "format": "md",
+      "extraction": "selected original nonblank lines retaining original line numbers",
+      "unit_coverage": "selected_sections_not_full_document",
+      "source_url": "https://www.huitong.gov.cn/huitong/c133799/202410/b80f039537524cc5b646c790a27c4b6e.shtml",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "validity_status": "archived_edition_not_current_legal_or_factory_certification",
+      "live_verified_this_batch": false,
+      "units": [
+        {
+          "id": "LINE-016",
+          "text": "（三）明确追溯方式。通过商品条码、物联网标识编码（Ecode）、数字身份码、强制性产品认证（CCC认证）编码，或者其他能够提供产品质量安全关键信息的任一种已有追溯码，以及具有产品质量安全关键信息的已有追溯系统，与追溯平台对接并实时获取相关质量安全关键信息。生产销售单位可自主选择任一种能实现质量安全追溯并与追溯平台实现对接的追溯方式。",
+          "physical_pages": []
+        },
+        {
+          "id": "LINE-017",
+          "text": "（四）统一技术要求。不同的产品质量安全追溯方式应统一数据要求（见附件2），明确追溯数据内容、赋码途径、公开权限等。尚未实现产品质量安全追溯的生产销售单位，可免费选用商品条码、物联网标识编码（Ecode）、数字身份码、强制性产品认证（CCC认证）编码中任一种追溯技术（方案见附件3），与追溯平台实现对接。对可以不使用信息化追溯的定制产品，生产方和使用方应通过记录台账或签订合同等方式实现产品质量安全追溯，有关记录或台账至少保留3年。",
+          "physical_pages": []
+        },
+        {
+          "id": "LINE-020",
+          "text": "（七）保障追溯数据安全。参加追溯的相关方应做好追溯平台和追溯数据的安全防护，确保重点工业产品质量安全追溯数据真实、完整、准确、安全，做到可查证和不可篡改。市场监管总局会同有关部门和单位，加强相关信息基础设施安全保护和网络安全等级保护，实现对追溯平台安全防护技术保障和产品质量安全追溯数据全生命周期安全管理。",
+          "physical_pages": []
+        }
+      ]
+    },
+    "ZH-PUB-04": {
+      "kind": "document",
+      "repository_path": "sample_docs/manufacturing_zh_v3/documents/公共参考/MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+      "original_sha256": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+      "checksum_mode": "raw_bytes",
+      "source_origin": "frozen_chinese_public_reference",
+      "source_family": "manufacturing-quality-digitalization-2021",
+      "language": "zh-CN",
+      "format": "pdf",
+      "extraction": "pypdf selected complete clauses with physical pages; no semantic rewriting",
+      "unit_coverage": "selected_sections_not_full_document",
+      "source_url": "https://gdkfq.ezhou.gov.cn/zwdt/ztzl/gdjkqhqzcfwzl/gjj/zcwj/kjcx/202310/P020250903408157648769.pdf",
+      "rights_status": "official_public_access; no blanket open-redistribution licence asserted",
+      "validity_status": "archived_edition_not_current_legal_or_factory_certification",
+      "live_verified_this_batch": false,
+      "units": [
+        {
+          "id": "PAGE-006",
+          "text": "（十二）实施全流程物料数字化管理。企业应建立与数\n字化制造相适应的仓储物流系统，在采购、生产、仓储、物\n流、交付及售后服务全过程提高物料数字化追溯管理水平。\n与重要供应商建立协同的数字化管理系统，共享采购产品质\n量、批次、交期等信息。有条件的企业应对关键物料实施一\n物一码管理，实现全流程质量追溯。",
+          "physical_pages": [
+            6
+          ]
+        },
+        {
+          "id": "PAGE-007",
+          "text": "（十四）加强质量数据管理。企业应将质量数据纳入数\n据资产管理范畴，加强质量数据标准化管理，开展企业数据\n管理能力建设。加强质量数据采集、管理、处理、分析、应\n用等全过程管理，明确各环节的职责和权限，强化跨部门及\n部门内数据管理机制建设。完善数据架构设计，促进质量数\n据在业务活动之间高效率交换共享。",
+          "physical_pages": [
+            7
+          ]
+        }
+      ]
+    }
+  }
+}

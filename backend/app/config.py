@@ -242,6 +242,7 @@ class Settings:
             os.getenv("OIDC_FRONTEND_CLIENT_ID", "enterprise-knowledge-web").strip()
             or "enterprise-knowledge-web"
         )
+        self.unified_workspace_navigation = os.getenv("UNIFIED_WORKSPACE_NAVIGATION", "false").strip().lower() == "true"
 
         self.chat_model = required_env("DASHSCOPE_MODEL")
         self.chat_base_url = required_env("DASHSCOPE_BASE_URL")

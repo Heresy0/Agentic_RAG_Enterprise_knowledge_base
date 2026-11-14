@@ -1,0 +1,36 @@
+{
+  "schema_version": "manufacturing-gold-100-manifest-v4",
+  "dataset": "manufacturing_gold_100_v4",
+  "status": "candidate_assistant_reviewed_non_independent",
+  "cases": 100,
+  "categories": {
+    "guidance": 30,
+    "erpnext": 20,
+    "openmes": 20,
+    "safety": 20,
+    "conversation": 10
+  },
+  "assistant_reviewed_cases": 100,
+  "human_approved_cases": 0,
+  "professional_factory_approved_cases": 0,
+  "platform_approved_cases": 0,
+  "executable": false,
+  "live_verified": false,
+  "model_calls": 0,
+  "executed_cases": 0,
+  "old_results_combined": false,
+  "files_sha256": {
+    "cases.jsonl": "0e482e1e3b2d1209f48e71d11f8f1ec9a6109531d65d3b834379638e1c5cfbeb",
+    "reviews.jsonl": "fdaff7d613d24b9f72a59f4c67fe7d1bfbce073353debdc1d5dac73638d851c0",
+    "scope_audit.jsonl": "c36439406cdbdb2e9be8f4298aa77951701b47e74dbccd6b7b52ab4acfaf789d",
+    "sources.json": "d97aede4a78567d7c9e16159a0f03f1b92d82fcd8238131bb5d6fd036308711e",
+    "review_policy.json": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+    "lineage.json": "242772f8520ee0f57eadef9f84c0d4bfdf82d0d9c7c430692268df334dfda2dc",
+    "REVIEW.md": "6a95d68a650ed8433ffd70f220ad83139bbb28b5678c049c4beff5b8bc5fc9a6",
+    "README.md": "5aa737bfa1f4a1f3437d072c6ca93aa07b6730ce51690780f697472235301cc3"
+  },
+  "implementation_sha256": {
+    "scripts/build_manufacturing_gold_100_v4.py": "7dd424cfab789b0498187a172d248d2bfe7920f488872777b93371d52461328b",
+    "scripts/check_manufacturing_gold_100_v4.py": "f4663573123d55fabff9fb2a0d2a6113f68ca9f41c4fc0049ba5db0dcdb0ba92"
+  }
+}

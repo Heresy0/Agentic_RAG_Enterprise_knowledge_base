@@ -47,7 +47,7 @@ def test_missing_type_never_reaches_business_refusal_without_repair(monkeypatch,
 @pytest.mark.parametrize('changes', [{}, {'response_type': None}])
 def test_missing_type_uses_existing_explicit_protocol_failure_path(monkeypatch, changes):
     service, calls, _ = schema_service(monkeypatch, candidate=TimeoutError('repair unavailable'))
-    service._structured_llm.invoke = lambda messages: payload(**changes)
+    service._base_llm.structured_llm.invoke = lambda messages: payload(**changes)
     with capture_trace() as trace:
         result = answer(service, '设备需要什么条件？')
     assert not result.answerable and not result.citations and len(calls) == 1
@@ -60,7 +60,7 @@ def test_missing_type_uses_existing_explicit_protocol_failure_path(monkeypatch, 
 
 def test_missing_type_can_be_recovered_by_existing_single_schema_repair(monkeypatch):
     service, calls, _ = schema_service(monkeypatch)
-    service._structured_llm.invoke = lambda messages: payload()
+    service._base_llm.structured_llm.invoke = lambda messages: payload()
     with capture_trace() as trace:
         result = answer(service, '温度是多少？')
     assert result.answerable and result.response_type == 'answer' and len(calls) == 1

@@ -1,0 +1,20 @@
+{
+  "erp": {
+    "candidate_sha256": "9c7adf3dc4ee825ef13c659a1b3fae77d64947a6a60f1e52bdb09be68b84621c",
+    "ordinary_static_prefix_only": true,
+    "production_prompt_module_unchanged": true,
+    "manufacturing_prompt_unchanged": true,
+    "model_calls": 0,
+    "chat_model": "qwen3.7-flash",
+    "rerank_timeout_seconds": "10"
+  },
+  "mes": {
+    "candidate_sha256": "9c7adf3dc4ee825ef13c659a1b3fae77d64947a6a60f1e52bdb09be68b84621c",
+    "ordinary_static_prefix_only": true,
+    "production_prompt_module_unchanged": true,
+    "manufacturing_prompt_unchanged": true,
+    "model_calls": 0,
+    "chat_model": "qwen3.7-flash",
+    "rerank_timeout_seconds": "10"
+  }
+}

@@ -183,13 +183,15 @@ class RetrievalService:
             documents = select_evidence(query, documents, scope=scope)
         record_documents("rerank", documents)
         if getattr(self._settings, 'rag_parent_context_enabled', False):
-            original = {doc.metadata['chunk_id']:doc.metadata for doc in documents}
+            # Bound ranked hits before expansion; filling top-k with distinct
+            # parents also expands generation and repair context budgets.
+            original = {doc.metadata['chunk_id']: doc.metadata for doc in documents}
             parents = repository.parent_chunks(scope=scope, expected=original)
             documents = [stored_chunk_to_document(row) for row in parents]
             for doc in documents:
                 for key in RANK_METADATA_KEYS:
-                    if key in original.get(doc.metadata['chunk_id'],{}):
-                        doc.metadata[key]=original[doc.metadata['chunk_id']][key]
+                    if key in original.get(doc.metadata['chunk_id'], {}):
+                        doc.metadata[key] = original[doc.metadata['chunk_id']][key]
             documents = select_evidence(query, documents, scope=scope)
             record_documents('parent_context', documents)
         names = {str(kb_id): name for kb_id, name in scope.knowledge_base_names}

@@ -1,0 +1,793 @@
+{
+  "metadata": {
+    "schema_version": "manufacturing-v3-regression13-diagnosis-v1",
+    "report_date": "2026-11-13",
+    "analysis_base_commit": "5f49787cc078e113e466a9143f639f537dec9ed0",
+    "business_commit": "b741bd2",
+    "diagnostic_source_sha256": "ac2e2aa6a1e67915cc4173cb6b33952025e8e5dc58b097bcbccf4b8bdc8a5bb4",
+    "local_diagnostic_script": {
+      "path": "tmp/manufacturing-v3-regression13-diagnosis-20261112-r1/diagnose.py",
+      "sha256": "6c29067eaa682d328020e6661311f30c6b53bf69d4fa94b3c23307e07939a21a",
+      "private_local_file_not_published": true
+    },
+    "classification_counts": {
+      "generation_or_answer_contract": 4,
+      "gold_or_review_scope": 5,
+      "runtime": 2,
+      "backend_false_rejection": 2
+    },
+    "diagnoses": [
+      {
+        "case_id": "MFG-GOLD-002",
+        "primary_category": "generation_or_answer_contract",
+        "root_cause_or_priority_scope_issue": "附加恢复规则遗漏第四项暂停条件，完整条件校验正确拒绝",
+        "confidence": "confirmed_trace_and_leaf_replay"
+      },
+      {
+        "case_id": "MFG-GOLD-009",
+        "primary_category": "generation_or_answer_contract",
+        "root_cause_or_priority_scope_issue": "数值端点被扩写成无来源的孔底及基准面解释，现有校验放过",
+        "confidence": "confirmed_trace_and_validator_replay"
+      },
+      {
+        "case_id": "MFG-GOLD-010",
+        "primary_category": "gold_or_review_scope",
+        "root_cause_or_priority_scope_issue": "不能直接给出参数已答，金标附加未问的取得批准文件建议",
+        "confidence": "scope_interpretation_requires_new_frozen_standard"
+      },
+      {
+        "case_id": "MFG-GOLD-029",
+        "primary_category": "runtime",
+        "root_cause_or_priority_scope_issue": "API认证401先于业务view检查，具体JWT或JWKS失败原因未记录",
+        "confidence": "authentication_layer_confirmed_subcause_unknown"
+      },
+      {
+        "case_id": "MFG-GOLD-043",
+        "primary_category": "gold_or_review_scope",
+        "root_cause_or_priority_scope_issue": "核对方式和变更触发已答，金标附加放行签署要求",
+        "confidence": "scope_interpretation_question_ambiguity"
+      },
+      {
+        "case_id": "MFG-GOLD-044",
+        "primary_category": "generation_or_answer_contract",
+        "root_cause_or_priority_scope_issue": "把未签署推断为质量结论缺失，混淆独立记录角色",
+        "confidence": "confirmed_trace_and_validator_replay"
+      },
+      {
+        "case_id": "MFG-GOLD-047",
+        "primary_category": "backend_false_rejection",
+        "root_cause_or_priority_scope_issue": "正文已绑定的资料1被数值抽取误识别为业务数字1",
+        "confidence": "confirmed_counterfactual_validator_replay"
+      },
+      {
+        "case_id": "MFG-GOLD-054",
+        "primary_category": "gold_or_review_scope",
+        "root_cause_or_priority_scope_issue": "日期与快照边界已答，金标仍要求未问待审核状态",
+        "confidence": "scope_policy_and_sibling_inconsistency"
+      },
+      {
+        "case_id": "MFG-GOLD-062",
+        "primary_category": "generation_or_answer_contract",
+        "root_cause_or_priority_scope_issue": "遗漏问句要求的独立质量签署放行条件，结构覆盖仍判完整",
+        "confidence": "confirmed_trace_and_validator_replay"
+      },
+      {
+        "case_id": "MFG-GOLD-068",
+        "primary_category": "backend_false_rejection",
+        "root_cause_or_priority_scope_issue": "正文已绑定的资料1被数值抽取误识别为业务数字1",
+        "confidence": "confirmed_counterfactual_validator_replay"
+      },
+      {
+        "case_id": "MFG-GOLD-070",
+        "primary_category": "gold_or_review_scope",
+        "root_cause_or_priority_scope_issue": "拟分配不等于已审核已答，金标附加未问状态和完整审核路径",
+        "confidence": "scope_interpretation_requires_new_frozen_standard"
+      },
+      {
+        "case_id": "MFG-GOLD-082",
+        "primary_category": "gold_or_review_scope",
+        "root_cause_or_priority_scope_issue": "对象和时刻及不同已答，金标附加工序代码及日期时区",
+        "confidence": "scope_policy_and_template_inconsistency"
+      },
+      {
+        "case_id": "MFG-GOLD-087",
+        "primary_category": "runtime",
+        "root_cause_or_priority_scope_issue": "生成读取超时约120秒，无结构化草稿，API503",
+        "confidence": "read_timeout_confirmed_provider_or_network_subcause_unknown"
+      }
+    ],
+    "limits": [
+      "助手非独立诊断，不是独立人工复核或新成绩。",
+      "12题记录的上下文正文、顺序及引用编号一致，不代表完整供应商请求逐字节相同。",
+      "首次草稿是Trace解析后的记录，不是供应商原始响应。",
+      "5题范围问题是修订建议，未直接改判或增加旧分数。",
+      "029认证子原因与087网络/供应商内部子原因证据不足。",
+      "本地普通输出校验回放不代替运行时权限、来源或部署验收。"
+    ],
+    "actions": {
+      "new_model_calls": 0,
+      "qa_api_requests": 0,
+      "database_operations": 0,
+      "docker_operations": 0,
+      "business_source_modified": false,
+      "gold_modified": false,
+      "old_scores_modified": false,
+      "independent_runtime_ledger_verified": false,
+      "selected_input_hashes_verified": 38
+    }
+  },
+  "case_ids": [
+    "MFG-GOLD-002",
+    "MFG-GOLD-009",
+    "MFG-GOLD-010",
+    "MFG-GOLD-029",
+    "MFG-GOLD-043",
+    "MFG-GOLD-044",
+    "MFG-GOLD-047",
+    "MFG-GOLD-054",
+    "MFG-GOLD-062",
+    "MFG-GOLD-068",
+    "MFG-GOLD-070",
+    "MFG-GOLD-082",
+    "MFG-GOLD-087"
+  ],
+  "input_sha256": {
+    "evals/manufacturing_gold_100_live_v2/runs/20261112-r1/results.jsonl": "b5434c7b4ec982ea9c64dd86765a6da15dc0e14598413a400d38f50bfe6dd7e0",
+    "evals/manufacturing_gold_100_live_v3/runs/20261112-r1/results.jsonl": "45872be68e8c9f67581a9714ffcb9827c65004354f1f0e33ed9716ebca1dae6a",
+    "evals/manufacturing_gold_100_v3/cases.jsonl": "4a1e4737593291d36670c9649a3a7b840e17d065c5e7834db3e51e3522b4b1d5",
+    "evals/manufacturing_gold_100_v3/review_policy.json": "65285143680f05b08c45639f07e6981e438c8e39ccd0c97432d1a88efe74710b",
+    "backend/app/knowledge/answer_validation.py": "b4f05bb89bbd01fd353930f5448cf999201dbba99a30830b0ef4db84388ad8be",
+    "backend/app/knowledge/answer_coverage.py": "6b8f126b625f50738c2c687405f46943733feef87087ad2d1ea975d1d3e0739f",
+    "backend/app/knowledge/answer_repair.py": "47211ffa525051da08e1a7f7d3d74b30da4140777bdc0123456f2a48222dc2ec",
+    "backend/app/knowledge/output_contract.py": "2c3cb917b0b4d11a36fae218e1e2c0b59294013af4a62f7e286901c422523096",
+    "backend/app/manufacturing/source_statements.py": "ecae62e2c8ebfe1d5e916bce8e20b8635e49f813bd8e6a6f08b85053fba72544",
+    "backend/app/security/oidc.py": "f2daf1f4e3960d60c8f429b486f78a014e3622e985e816f21890fde9ee2c38c4",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-002-result.json": "13c7328c8c83d71615b6ac796d14301f4ee986be14f62d7417fc38d15c7d0193",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-002-result.json": "89bd0e27e3de1f9407a9093e6bf26a4a0c819957a703aa9417deaeef0ea7deb7",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-009-result.json": "e36ad4c1c8cc5d883cc7a0c2389e142fdf501ab2c5b2cf36280d8cce1bb4c49b",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-009-result.json": "8606377fe0c0f5a369b469f96fdd9bbcb094374586df1a144c3685269e9a2390",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-010-result.json": "89a08ca9a0710b22e99c31131f4afce58b8616d59f75d8a614bfa999ce0f3f49",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-010-result.json": "f16896eed561e17bf0fa9e84950637f01c831f5985a4336c977e292d69fb886f",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-029-result.json": "60204f8a438d463bf547cd4486c31f3d86829dc7c1b47a87a56a966541e7e8e8",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-029-result.json": "cda4236518fbb9336a2410bc8dfd436e98c96911277363969778e9deb0a13ca0",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-029-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-043-result.json": "0a705f75add111312f2822e5c596cc60b31b1350033f7d5c539fd40480f474bd",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-043-result.json": "96ce55d02f1200430f974b6e34912784a402e3c145861b0b7b71ab181854b048",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-044-result.json": "1679018180efc5379a754878dbbff1946b262361eae19e683bbe07aaeebb09ae",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-044-result.json": "4f12f31acfd36086af27843ab1a5474d655c2306334e2859bea1c878e0d7691d",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-047-result.json": "7409d467bbf33bedc2b16e77f83edb56f2d4ccc668886e56bf2c1c7cc3040bdc",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-047-result.json": "4b0a0e5c3c08471f8bb3568d87bb7fabe9dc79575b5cbbe339ecd9423a7c54e1",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-054-result.json": "be3d0b8f9b36fda6c63b44d183ad0dabfa0988fd1cccd675795e544ee80704f2",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-054-result.json": "85d4f9d8d0e9b4941d6b73f3fa4c276f24ebeba19f9b075bf5a64a3ac0459f0d",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-062-result.json": "3459e893c2ca02899803fcc0948f028b3e292cd425aa38448a22fdf648f78f45",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-062-result.json": "7d3bc7f7a7b850fcb37818db3052c929367a1ad47114bc01f50124597455ce9f",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-068-result.json": "43f4478ea9dd45ab46ff58969905d0730fd5c88b09c403f050ad00139065b93d",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-068-result.json": "27ca9467fced12559eddcb2c89b531cabd0ca0533b6585efaa4e0d67f3687a43",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-070-result.json": "b4965e76f769b9fb7e9766d7b921b474986cd37d572140378e5c5ea608c243ec",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-070-result.json": "4316b4885682f1841d2c55f2309f3029f1664eb2d388a26986a39ac12100c4db",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-082-result.json": "2f5738f14d45ed1576a153636d6b71e468e7c30e67b75ad30c55083b3fd1c90e",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-082-result.json": "cdfd58265e85142c9eb0d0a8ec1cafd45c9e0a69a7337b7bf9badfaea70aa946",
+    "tmp/manufacturing-gold-100-v2-live-20261112-r1/MFG-GOLD-087-result.json": "3ec876a594e9a571d0924838a3d719c5df007aa7e11d5fe70cf2696aa56ffab5",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-087-result.json": "77b17bd651a7770717fadb8df7e5cffc924dc13e49b54f837b0a8854e6e08763",
+    "tmp/manufacturing-gold-100-v3-live-20261112-r1/MFG-GOLD-087-stderr.log": "d13a2485ea588ed68bba21a431c08007b25bdea2f5b1a7e4e7164b9061ad772a"
+  },
+  "comparisons": [
+    {
+      "case_id": "MFG-GOLD-002",
+      "context_items": 5,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "sha256": "e7d5167744de624ccdd8395c901c886f241cc94f812c145b53cbc30cd71c6fda"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "09_工艺变更通知ECN-2026-018.docx",
+          "sha256": "19a080abcf6f2eb3a604b0c6274f0a62c46f2b3320f61ebcb44065c3eecb9b6e"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "08_HC-A17首件检验规范.docx",
+          "sha256": "0677040f26f0f3196ce18f56bfdb198c176e1f153807aa589c4d80ddf626f20a"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "12_检验记录填写与追溯规则.md",
+          "sha256": "74f22891c727e16fc6fad3b769cb3ea094a614a340b06756e83fdd8cb9bf6d49"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "02_首件确认与工序交接流程.pdf",
+          "sha256": "260faf7e3e71e3b7738035a8536c28a6d106557198741515b8c18981d306c6c0"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200
+    },
+    {
+      "case_id": "MFG-GOLD-009",
+      "context_items": 8,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "08_HC-A17首件检验规范.docx",
+          "sha256": "0677040f26f0f3196ce18f56bfdb198c176e1f153807aa589c4d80ddf626f20a"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "16_首件检验记录B-1026-017.txt",
+          "sha256": "bb20f001cfd038cc22c0f1dc1cb0d9f93634a7bc3d1a6b05f9cfebba0f6f7dde"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "12_检验记录填写与追溯规则.md",
+          "sha256": "74f22891c727e16fc6fad3b769cb3ea094a614a340b06756e83fdd8cb9bf6d49"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-B21-03_DEMO-B21_OP-20定位孔尺寸复核_历史版.md",
+          "sha256": "c0fd01bf59da514d69e78f146b03a3a32b21635b0c0c7c8783fc3d24ec13318a"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "ZH-B21-04_DEMO-B21_OP-20定位孔尺寸复核_现行演示版.md",
+          "sha256": "5c56c56785adac57f6fd3b26bb30aa2c69e2b793cb38bbbb423f26aa5c8e1592"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+          "sha256": "123a414b609c8f9439046cbbd5941bcc3bc7cb8b499852f079a0e7f8abe6f26f"
+        },
+        {
+          "citation_id": "资料7",
+          "document_name": "MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+          "sha256": "9c3d18263bbd8e1b02c7fd3df1f0489bfa70dd06a2155bfc2547faeb4d4b4fb5"
+        },
+        {
+          "citation_id": "资料8",
+          "document_name": "MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+          "sha256": "6d9b604f9154972edeefc1fd898e4a1377e62824aabca5c933e15a0d3d604aea"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": true,
+      "local_errors": [],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-010",
+      "context_items": 6,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "sha256": "e7d5167744de624ccdd8395c901c886f241cc94f812c145b53cbc30cd71c6fda"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "01_WO019书面切换通知.md",
+          "sha256": "6f494d52a2dd19871655a98e24c197198009f266f610479b3bbf5399c0213f75"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "02_WO024书面指示A.md",
+          "sha256": "b9da7b6953560884f88caa354b21c3e43c5bf706eb60faa0b98b7a6276d9cd36"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "06_HC-A17_OP20作业指导书历史版.docx",
+          "sha256": "7a367686e56653bb7d0020de11d735191c3195e4238d031ed296895caefa327a"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "10_产品工序与文件路由.md",
+          "sha256": "b60988c8f3c4b80735da269f121d4ab66e0548bf46027ebf8fab82ddd665401d"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "03_WO024书面指示B.md",
+          "sha256": "4731136d4dd24c99b6156d56bd9ed55fb540d4b49df5d9cf692719f7e2e073c4"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": true,
+      "local_errors": [],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-029",
+      "context_items": 0,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [],
+      "v2_http": 404,
+      "v3_http": 401,
+      "model_calls": 0,
+      "request_id": null,
+      "response_detail": "访问令牌无效或已过期。",
+      "trace_stage_count": 0,
+      "precise_jwt_error_reason_recorded": false
+    },
+    {
+      "case_id": "MFG-GOLD-043",
+      "context_items": 5,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+          "sha256": "2d33631038c7cac63776331714ac7d042591ff85d6f06a7f6ad654622bf8d2df"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "ZH-B21-04_DEMO-B21_OP-20定位孔尺寸复核_现行演示版.md",
+          "sha256": "5c56c56785adac57f6fd3b26bb30aa2c69e2b793cb38bbbb423f26aa5c8e1592"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+          "sha256": "fd87f644d5a3cd2fa4989ba2d4ac37fd6ecb43c9c621342e6d490aaa9927e35d"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-B21-03_DEMO-B21_OP-20定位孔尺寸复核_历史版.md",
+          "sha256": "c0fd01bf59da514d69e78f146b03a3a32b21635b0c0c7c8783fc3d24ec13318a"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+          "sha256": "c4813782c13743f4b44c21040c6b4654051eb0133b6c092ba16fb30661cb732a"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": true,
+      "local_errors": [],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-044",
+      "context_items": 8,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+          "sha256": "2d33631038c7cac63776331714ac7d042591ff85d6f06a7f6ad654622bf8d2df"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+          "sha256": "fd87f644d5a3cd2fa4989ba2d4ac37fd6ecb43c9c621342e6d490aaa9927e35d"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+          "sha256": "9c8214cf75662a1fe3142d91756ef33566af88ef1cede43468d9690bef64d79b"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-B21-09_DEMO-B21工单例外通知草案.md",
+          "sha256": "158e4814f88fb99cb02e1cad47c2dcef936d701bc55fdbe0d2ef1fcca91eb04d"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+          "sha256": "c4813782c13743f4b44c21040c6b4654051eb0133b6c092ba16fb30661cb732a"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+          "sha256": "d9818fad89445bdf40c47a3b996feb16697e2246a9081fb8854d63fb96e2e3e5"
+        },
+        {
+          "citation_id": "资料7",
+          "document_name": "ZH-B21-01_DEMO-B21_OP-10来料与基准核对_历史版.md",
+          "sha256": "901e59331460c4f65f60af7714f26b09f5928f3ca8c88723cb418868eaedf67b"
+        },
+        {
+          "citation_id": "资料8",
+          "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+          "sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": true,
+      "local_errors": [],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-047",
+      "context_items": 8,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+          "sha256": "d9818fad89445bdf40c47a3b996feb16697e2246a9081fb8854d63fb96e2e3e5"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+          "sha256": "9e8f5f1cb46d8b4c17fb422bc1654b8b942a249f010f430b3e235aba2b600c86"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+          "sha256": "a896951f444350b1ad33bd785eb943c35630f99f225929535cda7c39bd63da42"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+          "sha256": "c4813782c13743f4b44c21040c6b4654051eb0133b6c092ba16fb30661cb732a"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "ZH-B21-01_DEMO-B21_OP-10来料与基准核对_历史版.md",
+          "sha256": "901e59331460c4f65f60af7714f26b09f5928f3ca8c88723cb418868eaedf67b"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+          "sha256": "9c8214cf75662a1fe3142d91756ef33566af88ef1cede43468d9690bef64d79b"
+        },
+        {
+          "citation_id": "资料7",
+          "document_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+          "sha256": "fd87f644d5a3cd2fa4989ba2d4ac37fd6ecb43c9c621342e6d490aaa9927e35d"
+        },
+        {
+          "citation_id": "资料8",
+          "document_name": "ZH-B21-10_DEMO-B21班次交接与未完成项.md",
+          "sha256": "07d72e2eed9c49b77a510e8d198d057b19f4e5b0e0479bd7e4626f228e2e7c2b"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": false,
+      "local_errors": [
+        "第2个结论中的数字或日期缺少证据支持：['1']"
+      ],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-054",
+      "context_items": 4,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "ZH-B21-09_DEMO-B21工单例外通知草案.md",
+          "sha256": "158e4814f88fb99cb02e1cad47c2dcef936d701bc55fdbe0d2ef1fcca91eb04d"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+          "sha256": "fd87f644d5a3cd2fa4989ba2d4ac37fd6ecb43c9c621342e6d490aaa9927e35d"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "ZH-B21-01_DEMO-B21_OP-10来料与基准核对_历史版.md",
+          "sha256": "901e59331460c4f65f60af7714f26b09f5928f3ca8c88723cb418868eaedf67b"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+          "sha256": "c4813782c13743f4b44c21040c6b4654051eb0133b6c092ba16fb30661cb732a"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": true,
+      "local_errors": [],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-062",
+      "context_items": 5,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+          "sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "ZH-C31-03_DEMO-C31_OP-40气密检测结果复核_历史版.md",
+          "sha256": "0b864d271334e11c9e26c93d5031ff09b9286712f9be691ab0953890154b38b9"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "ZH-C31-09_DEMO-C31工单例外通知草案.md",
+          "sha256": "906365adf94c8c5831a6159349a9104d4679632bfacb017eebd7dbe52ccd1703"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-C31-04_DEMO-C31_OP-40气密检测结果复核_现行演示版.md",
+          "sha256": "9372487107065a3019ad08ed78144e388f95cfc29f80b196a3575881b2e24f1b"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+          "sha256": "f0b3d13e0ce8c5a5709c7159af488016e7c5bfd390c7cf60cee43cc5f22dda54"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": true,
+      "local_errors": [],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-068",
+      "context_items": 5,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+          "sha256": "a896951f444350b1ad33bd785eb943c35630f99f225929535cda7c39bd63da42"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+          "sha256": "f0b3d13e0ce8c5a5709c7159af488016e7c5bfd390c7cf60cee43cc5f22dda54"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+          "sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-C31-01_DEMO-C31_OP-30密封组件核对与装配记录_历史版.md",
+          "sha256": "feaa0a7b54fd4461062afe6a9aeb15b80958e14181efe322df67a370da7493df"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+          "sha256": "404b3bcef824ce27427a92badd350c880ce26425f54e894782d54ab04fb88483"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": false,
+      "local_errors": [
+        "第1个结论中的数字或日期缺少证据支持：['1']",
+        "第2个结论中的数字或日期缺少证据支持：['1']"
+      ],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-070",
+      "context_items": 8,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+          "sha256": "a896951f444350b1ad33bd785eb943c35630f99f225929535cda7c39bd63da42"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+          "sha256": "f0b3d13e0ce8c5a5709c7159af488016e7c5bfd390c7cf60cee43cc5f22dda54"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "ZH-C31-09_DEMO-C31工单例外通知草案.md",
+          "sha256": "906365adf94c8c5831a6159349a9104d4679632bfacb017eebd7dbe52ccd1703"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+          "sha256": "404b3bcef824ce27427a92badd350c880ce26425f54e894782d54ab04fb88483"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "ZH-C31-03_DEMO-C31_OP-40气密检测结果复核_历史版.md",
+          "sha256": "0b864d271334e11c9e26c93d5031ff09b9286712f9be691ab0953890154b38b9"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+          "sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+        },
+        {
+          "citation_id": "资料7",
+          "document_name": "ZH-C31-04_DEMO-C31_OP-40气密检测结果复核_现行演示版.md",
+          "sha256": "9372487107065a3019ad08ed78144e388f95cfc29f80b196a3575881b2e24f1b"
+        },
+        {
+          "citation_id": "资料8",
+          "document_name": "ZH-C31-10_DEMO-C31班次交接与未完成项.md",
+          "sha256": "93b1cc204994344583520ff821037452b193670e46b8327867c1707c7ed63490"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": true,
+      "local_errors": [],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-082",
+      "context_items": 6,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+          "sha256": "9e8f5f1cb46d8b4c17fb422bc1654b8b942a249f010f430b3e235aba2b600c86"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+          "sha256": "e641b9ab5f40392dd7557e12ddc49c0ea4d8c295cd75e45878ec9c8d978c1003"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+          "sha256": "b2b012068817886a41dabba9b42cc80cd27bae464063fb715c4ed1dc85b42292"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+          "sha256": "d9818fad89445bdf40c47a3b996feb16697e2246a9081fb8854d63fb96e2e3e5"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+          "sha256": "8b401124b9fab0872983b09649e0ccb1ad8c2ef792f589f0055d4bb25f1009dc"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+          "sha256": "b7bd67329f28933a75846125ec75d0d4f36b34ae9d1721e93bdc2bc852ee7abc"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 200,
+      "local_original_draft_valid": true,
+      "local_errors": [],
+      "completion_changed": false
+    },
+    {
+      "case_id": "MFG-GOLD-087",
+      "context_items": 6,
+      "same_context_body_order_and_citation_ids": true,
+      "comparison_granularity": "recorded context content/order/citation IDs, not full provider request bytes",
+      "context_signature": [
+        {
+          "citation_id": "资料1",
+          "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+          "sha256": "9e8f5f1cb46d8b4c17fb422bc1654b8b942a249f010f430b3e235aba2b600c86"
+        },
+        {
+          "citation_id": "资料2",
+          "document_name": "ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+          "sha256": "8b401124b9fab0872983b09649e0ccb1ad8c2ef792f589f0055d4bb25f1009dc"
+        },
+        {
+          "citation_id": "资料3",
+          "document_name": "ZH-D41-04_DEMO-D41_OP-60导通检测与标识核对_现行演示版.md",
+          "sha256": "b6c960bce32857d02a81bb7c12da8c72d54076a79987c8631b7fbf323c4df4ee"
+        },
+        {
+          "citation_id": "资料4",
+          "document_name": "ZH-D41-03_DEMO-D41_OP-60导通检测与标识核对_历史版.md",
+          "sha256": "f9e100134378747163b30d3e933ecd4e94e002c3257089d7057fea37759e9a0a"
+        },
+        {
+          "citation_id": "资料5",
+          "document_name": "ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+          "sha256": "b7bd67329f28933a75846125ec75d0d4f36b34ae9d1721e93bdc2bc852ee7abc"
+        },
+        {
+          "citation_id": "资料6",
+          "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+          "sha256": "b2b012068817886a41dabba9b42cc80cd27bae464063fb715c4ed1dc85b42292"
+        }
+      ],
+      "v2_http": 200,
+      "v3_http": 503,
+      "provider_failure": {
+        "usage_source": "unknown",
+        "cached_input_tokens": null,
+        "reasoning_tokens": null,
+        "duration_ms": 120186.949,
+        "error_type": "APITimeoutError",
+        "provider_request_id": null,
+        "price_snapshot": null
+      },
+      "model_calls": 3,
+      "answer_generation_recorded": false
+    }
+  ],
+  "replays": {
+    "2": {
+      "core_three_piece_signature_rule_complete": true,
+      "extra_claim_index": 7,
+      "source_has_fourth_pause_condition": true,
+      "extra_claim_omits_fourth_condition": true,
+      "incomplete_claim_rejected": true,
+      "complete_source_unit_accepted": true,
+      "model_calls": 0
+    },
+    "9": {
+      "unsupported_prose_passes_existing_validator": true,
+      "business_items": 0,
+      "all_citations_exist": true,
+      "numeric_or_identity_errors": [],
+      "model_calls": 0
+    },
+    "44": {
+      "unsupported_prose_passes_existing_validator": true,
+      "business_items": 0,
+      "all_citations_exist": true,
+      "numeric_or_identity_errors": [],
+      "model_calls": 0
+    },
+    "47": {
+      "original_errors": [
+        "第2个结论中的数字或日期缺少证据支持：['1']"
+      ],
+      "inline_references_rephrased": 1,
+      "only_reference_attribution_words_changed": true,
+      "structured_citations_unchanged": true,
+      "normalized_valid": true,
+      "normalized_errors": [],
+      "unsupported_date_still_rejected": true,
+      "unknown_reference_still_rejected": true,
+      "unsupported_one_piece_still_rejected": true,
+      "model_calls": 0,
+      "recorded_answer_or_grade_changed": false
+    },
+    "62": {
+      "quality_signature_requirement_present_in_context": true,
+      "signature_omitted_from_claims": true,
+      "coverage_reported_complete": true,
+      "validator_accepts": true,
+      "model_calls": 0
+    },
+    "68": {
+      "original_errors": [
+        "第1个结论中的数字或日期缺少证据支持：['1']",
+        "第2个结论中的数字或日期缺少证据支持：['1']"
+      ],
+      "inline_references_rephrased": 2,
+      "only_reference_attribution_words_changed": true,
+      "structured_citations_unchanged": true,
+      "normalized_valid": true,
+      "normalized_errors": [],
+      "unsupported_date_still_rejected": true,
+      "unknown_reference_still_rejected": true,
+      "unsupported_one_piece_still_rejected": true,
+      "model_calls": 0,
+      "recorded_answer_or_grade_changed": false
+    }
+  },
+  "model_calls": 0,
+  "network_forbidden": true,
+  "old_raw_inputs_unchanged": true,
+  "old_scores_recomputed": false
+}

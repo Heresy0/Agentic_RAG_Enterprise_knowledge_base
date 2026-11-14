@@ -1,3 +1,5 @@
+from dataclasses import replace
+
 import pytest
 
 from backend.app.knowledge.answer_models import (
@@ -76,6 +78,95 @@ def test_valid_claim_with_existing_citation_passes() -> None:
 
     assert result.valid is True
     assert result.errors == []
+
+
+@pytest.mark.parametrize('code', ['ZH-C31-04','ZH-C31-09'])
+def test_cited_document_code_is_an_identity_not_a_quantity(code):
+    context=make_context('偏差必须保留原始读数并暂停后续作业。')
+    context=replace(context,items=[replace(context.items[0],document_name=code+'偏差处理.txt')])
+    result=validate(make_answerable_draft(code+'要求保留原始读数并暂停后续作业。'),context)
+    assert result.valid, result.errors
+
+
+def test_complete_code_needs_matching_cited_identity_not_matching_digits():
+    context=make_context('ZH-C31-04要求连续检查9件。')
+    result=validate(make_answerable_draft('ZH-C31-09要求连续检查9件。'),context)
+    assert not result.valid and any('完整标识' in error for error in result.errors)
+
+
+def test_uncited_document_name_cannot_supply_an_identifier():
+    context=make_context('暂停后续作业。','暂停后续作业。')
+    context=replace(context,items=[context.items[0],replace(context.items[1],document_name='ZH-C31-09.txt')])
+    assert not validate(make_answerable_draft('ZH-C31-09要求暂停后续作业。'),context).valid
+
+
+@pytest.mark.parametrize('location', ['body','name','question'])
+def test_identifier_digits_never_prove_business_quantities(location):
+    context=make_context('ZH-C31-04要求首件检查。' if location=='body' else '要求首件检查。')
+    if location=='name':
+        context=replace(context,items=[replace(context.items[0],document_name='ZH-C31-04.txt')])
+    question='ZH-C31-04要求多少件？' if location=='question' else ''
+    result=validate(make_answerable_draft('ZH-C31-04要求首件检查4件。'),context,question)
+    assert not result.valid and any('数字' in error or '数值' in error for error in result.errors)
+
+
+def test_identifier_handling_keeps_dates_and_measurement_validation():
+    context=make_context('ZH-C31-04规定2026-11-02启用，尺寸为15.0±0.2mm。')
+    assert validate(make_answerable_draft('ZH-C31-04于2026-11-02启用，尺寸为15.0±0.2mm。'),context).valid
+    assert not validate(make_answerable_draft('ZH-C31-04于2026-11-03启用。'),context).valid
+    assert not validate(make_answerable_draft('ZH-C31-04规定尺寸为15.0±0.4mm。'),context).valid
+
+
+@pytest.mark.parametrize('name', ['07_HC-A17_OP20作业指导书现行版.docx', '2026-11-03_参数(2.0).pdf'])
+def test_exact_cited_filename_is_not_a_business_number_or_date(name):
+    context=make_context('本文件未提供主轴转速或进给量。')
+    context=replace(context,items=[replace(context.items[0],document_name=name)])
+    result=validate(make_answerable_draft(f'依据《{name}》，本文件未提供主轴转速或进给量。'),context)
+    assert result.valid, result.errors
+
+
+@pytest.mark.parametrize('mentioned', ['08_检查.docx', '07_检查.docx.bak', 'x07_检查.docx', '旧07_检查.docx'])
+def test_unknown_or_partial_filename_is_not_exempt(mentioned):
+    context=make_context('检查要求见正文。')
+    context=replace(context,items=[replace(context.items[0],document_name='07_检查.docx')])
+    assert not validate(make_answerable_draft(f'依据《{mentioned}》执行检查。'),context).valid
+
+
+def test_uncited_filename_is_not_exempt_even_when_present_in_other_context():
+    context=make_context('检查要求见正文。','检查要求见正文。')
+    context=replace(context,items=[context.items[0],replace(context.items[1],document_name='07_检查.docx')])
+    assert not validate(make_answerable_draft('依据《07_检查.docx》执行检查。'),context).valid
+
+
+@pytest.mark.parametrize('name,extra', [
+    ('07_检查.docx', '需要检查7件'),
+    ('2026-11-03_检查.pdf', '自2026-11-03起启用'),
+    ('2.0_检查.txt', '使用2.0版'),
+])
+def test_filename_digits_never_support_quantities_dates_or_versions(name, extra):
+    context=make_context('检查要求见正文。')
+    context=replace(context,items=[replace(context.items[0],document_name=name)])
+    result=validate(make_answerable_draft(f'依据《{name}》，{extra}。'),context)
+    assert not result.valid and any('数字或日期' in error for error in result.errors)
+
+
+@pytest.mark.parametrize('location', ['body', 'question'])
+def test_bound_filename_in_body_or_question_cannot_lend_its_number_to_a_claim(location):
+    name='07_检查.docx'
+    context=make_context(f'《{name}》未说明检查数量。' if location=='body' else '未说明检查数量。')
+    context=replace(context,items=[replace(context.items[0],document_name=name)])
+    question=f'《{name}》需要检查几件？' if location=='question' else ''
+    assert not validate(make_answerable_draft('需要检查7件。'),context,question).valid
+
+
+def test_filename_handling_preserves_real_parameters_and_invalid_citation_checks():
+    context=make_context('2026-11-02起使用2.0版，首件检查3件，尺寸10.05毫米。')
+    context=replace(context,items=[replace(context.items[0],document_name='07_检查.docx')])
+    prefix='依据《07_检查.docx》，'
+    assert validate(make_answerable_draft(prefix+'2026-11-02起使用2.0版，首件检查3件，尺寸10.05毫米。'),context).valid
+    for wrong in ('2026-11-03起使用', '使用4.0版', '首件检查7件', '尺寸10.06毫米'):
+        assert not validate(make_answerable_draft(prefix+wrong),context).valid
+    assert not validate(make_answerable_draft(prefix+'首件检查3件。',citations=['资料99']),context).valid
 
 
 def test_question_shared_year_is_valid_but_not_new_business_numbers():

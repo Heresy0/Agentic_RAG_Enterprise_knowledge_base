@@ -71,6 +71,20 @@ function setup() {
   return { $, requests, run, ask, sandbox };
 }
 
+test("workspace API calls retain their prefix instead of reaching the general database", async () => {
+  for (const prefix of ["", "/erp", "/mes"]) {
+    const h = setup();
+    h.run(`state.config = { base_path: ${JSON.stringify(prefix)} };`);
+    h.sandbox.fetch = async (url, options) => {
+      h.requests.push({ url, authorization: options.headers.get("Authorization") });
+      return { ok: true, status: 200, headers: new Headers(), json: async () => ({ items: [] }) };
+    };
+    await h.run('api("/api/manufacturing/conversations")');
+    assert.equal(h.requests[0].url, prefix + "/api/manufacturing/conversations");
+    assert.equal(h.requests[0].authorization, "Bearer test");
+  }
+});
+
 function openmesSetup() {
   const h = setup(); h.saved = [];
   const makeContext = selected => ({ work_order_id: "1", work_order_number: "MES-WO-1", source_system_id: "openmes-hc", source_record_id: "1",

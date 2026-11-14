@@ -1,0 +1,4297 @@
+{
+  "schema_version": "manufacturing-grounded-regression10-diagnosis-v1",
+  "old_source": "5947aa1",
+  "new_source": "4c9663b",
+  "model_calls": 0,
+  "api_calls": 0,
+  "database_calls": 0,
+  "container_operations": 0,
+  "network_connections_allowed": false,
+  "inputs_unchanged": true,
+  "input_sha256": {
+    "evals/manufacturing_gold_100_v4/cases.jsonl": "0e482e1e3b2d1209f48e71d11f8f1ec9a6109531d65d3b834379638e1c5cfbeb",
+    "evals/manufacturing_gold_100_v4/sources.json": "d97aede4a78567d7c9e16159a0f03f1b92d82fcd8238131bb5d6fd036308711e",
+    "evals/manufacturing_gold_100_v4/review_policy.json": "86b559af89dc6f078eb616175cbe1b4009a26c2e998c4e83faf3779b2604ad5d",
+    "evals/manufacturing_gold_100_v4/manifest.json": "c800b45dab8c2daebb4c8a86b812889eb1ad630be88079be89274ed78005794d",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-024-result.json": "b09cefd3cbf2f7fb89c71559ec69f5aaff56c50fc48b40173eee3ee27f04743a",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-024-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-024-stdout.log": "fea7d4d521bdf6d8db54c24a8ae382dca6934d5a68bda15f11c541ff618e1529",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-036-result.json": "8a677566c37654e056708588a7a7016a5da695f007c9a5b585e0e6adb8ec9eb2",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-036-stderr.log": "efd7cbd6a8a6cd1ac91e2d4e5a24419f1d43f46f1ec4d8fef073d81f492ce49b",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-036-stdout.log": "6d2f87877e754c5bc2b012020f087e2e70ebfaa430e71ba040e9dfa336503397",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-050-result.json": "0d29f8c52f3a60071bc6ec76b56aba8d340b426dd0a7212db5a443ab37a1f06f",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-050-stderr.log": "eec38997c222ba1f602c12e05e28df1cb70aa4c6dd7b3a231d3f435b71698a35",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-050-stdout.log": "286fdf39cc1c556ec4450918cc9f4d34865120bb37359bc2b1cff82074bd7def",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-057-result.json": "e60b34cc287b832dba5e4874e9614b6118dd2f9e2cd0e6a5717142cf9982c5ba",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-057-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-057-stdout.log": "36788e41e817e0764dfc8d471746d3795111b7e1425c655aaa072f828599a5ee",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-060-result.json": "2e00f6bdaab8180fe69d39b5b39d6015479e4547616680f80a21027bc4960e97",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-060-stderr.log": "935dcba1d1e437b62f7073a0e04819b3ef8c33418582571f555fbfbe53b57e81",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-060-stdout.log": "c24d99206e50ac6d4dbf1309ac545b92aa6ad01d519a7b1758a4857c0def55f2",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-068-result.json": "cf609ece5c5c8306512f27fb2c4eca924d0d5dcf4314dca75478066ee6cb4337",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-068-stderr.log": "e48861eaa0e62aee59e9e79c866e7239375d03e7dcc041758352a00d9a96df9b",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-068-stdout.log": "cb4316c53ad37a9fb507cb3eb19ae44cd0b0b56f00491401eb57f08735fbffbf",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-077-result.json": "d586b2aeb8c21c001fa04349682515dd573b33186a4d5a12cfc374fc3d22af28",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-077-stderr.log": "348fb82064813211cb1da758482f57c276dcf3e42e9a8743a238403810211f44",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-077-stdout.log": "439685e8d0bf53cf9cd5c3eb17642d709312b1fd0bcb214633ba26b82d5a4c1e",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-091-result.json": "af60b1298b58df213111649c6b1465a9352cd21d44e7823460c9ced9c910f9ec",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-091-stderr.log": "8caac8521febeeb54bb99aa2b1c53396d427a84cd61accbacc0d17f08f182b69",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-091-stdout.log": "e356bcb3d76501fc962b56776207ecedba08f6a9bda4f22e91d62d749c382819",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-094-result.json": "7d7e98bb88db29aa36b3d6542b6b6a10fce36445ded4b2b7148d9fc07f272b02",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-094-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-094-stdout.log": "bf4dc048b071f1ef0f22b7e58c858490f1ac07f388ad04435465d70c5ba6e929",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-095-result.json": "b8b1c231b69380b94e5806c3c41a0b0a3c34a670e0a01cefad0874406f5c6f69",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-095-stderr.log": "a12bbc34da8806fdd1b0c42c769e81212dd78ad2a22db74cddacb2b3d22d6f69",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/MFG-GOLD-095-stdout.log": "3f1f1e1037236cb6cf874135cd3330532fff63209c09840b9c3ef71b3be90efc",
+    "evals/manufacturing_gold_100_selection_live_v1/runs/20261113-r2/audits.json": "14192a92cdb1c2ca1791211e5028b8a010ac9f59325f042745152669bc5c93b6",
+    "evals/manufacturing_gold_100_selection_live_v1/runs/20261113-r2/manifest.json": "41cccd0e204e1a5350451771b043002de55bd8154fa2ebec85c02622e09c618a",
+    "evals/manufacturing_gold_100_selection_live_v1/runs/20261113-r2/results.jsonl": "6ef23dc6734cf98ca8046d56032770bd26d647c6b355ce325e5cb09ccd2a17b4",
+    "evals/manufacturing_gold_100_selection_live_v1/runs/20261113-r2/reviews.json": "1265b2206fb96343eb3a64fd87821c52356f7cb26fb8000f9662f87fd35e5d0d",
+    "evals/manufacturing_gold_100_selection_live_v1/runs/20261113-r2/summary.json": "e17fe33a8980fc109e7a350eae2da5b01f853ba517f56cdeb523e8d644ec6698",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-024-result.json": "9bbdd7877cd9087fbd78c766af00c9b9f0190bbb18970f318c2959e6ffa61fea",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-024-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-024-stdout.log": "30b1d2147675848c33006fb5dc535fc21620e4215446b1be307346a94b624ad0",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-036-result.json": "4bb888f240de5ea4fbab81a1c1a68f2a06d5a1f081721b6e8026a62f30b1a19a",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-036-stderr.log": "f59614cce124aaa31bfbdc94635d36befa32609e782058618b8f707c592bfbfe",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-036-stdout.log": "e83c807c18db75a52acb980f9a0768715298b3dd4ebe9a28ac12c579690906dd",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-050-result.json": "03ad6d0dcff92590c0cd591b48ba88203b3121a0f22311cee3b0cb1789dc09f0",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-050-stderr.log": "6e15a02bf08210f77e9076dff4bd809b66c5e0536edb441071a13e7301a3a154",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-050-stdout.log": "539f9e67f84fc606783793caaeedcbde649847cad39189eb38a41c0882a3bd20",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-057-result.json": "c3ced00ddd5bd373d72169b9b2317179f105eacc78c7329c52122a7d34563f8a",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-057-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-057-stdout.log": "43c3ec42fe6da0c1f5cbc94aaab7c28c5a975a6f6ba426a98d5d06c0bcc3737f",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-060-result.json": "c42761d71781df6410a213ae3a858d92dd0725b84c84365ec5629e0b06234185",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-060-stderr.log": "d15ccc043a976d99a0d4bddce6203fe277a64e4e7488e784612df57ab062a504",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-060-stdout.log": "03eb1c1237bfbe2cf3e2744098455ca5733c1932d5f8bff14a55d39d9b10806c",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-068-result.json": "9861166df629e68e0dec7aa5b9e58d790279dacf1cc2f797d6b9738eba3c565e",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-068-stderr.log": "20def2d3f20933eb149cd29cd8742d253a14adeb07a94fce3255b784c81bf9c3",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-068-stdout.log": "96b7f92c3bbe438615f7b9e234733153b5169b2692a6a313b88224c29a1b7d09",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-077-result.json": "a480ee3e2b7adb5c7d0d89d8ae7a326db706298764f88fbba1334caed6a94bf8",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-077-stderr.log": "4a476a77fd67ac2520468e7eb7ed0d7eb141d2cb2713313a908d3456bddd9a6e",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-077-stdout.log": "21849d3d24ca5dbd50c03e63d11fdf3585f37d556507a0a7281a2a4ab1a8f049",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-091-result.json": "f72745ce2d5e812e868c40db40f6e7497986341c60db500989025da44726d587",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-091-stderr.log": "cd5bb9f2bce78324e92c4bd5a69101cb6f85756a3bc2ff2ce031b6e35f2380cf",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-091-stdout.log": "0a9992cb36a723164b54a0d7d5044886194740a34ece167dfd70767757461b28",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-094-result.json": "8799da028bb16800084ab760d01b8c963a496cc5c5292e18fce73023ab8c5615",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-094-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-094-stdout.log": "1b0d5a34cd58287883d44f964cae0ad08900ec9556dbe4f45e50b19f3f4da4a8",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-095-result.json": "adb35484c7dec68b0c4f1f8cd61ba159ba8a85b8ddd7ff98e5cc0656b63afac9",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-095-stderr.log": "2e7ded105713fb2521d4e6966f9bb95a321f6ff0b21c1e3f858000e4bd3d993d",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/MFG-GOLD-095-stdout.log": "b58e3134e31756619271e4c656fc6fa5f6b1502d6438bb28e1b243160c208a11",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/audits.json": "16875fc3ae38cd22bb6fa94de09292c4c05d8a80e722b11d3a8fa0164e1bb48e",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/manifest.json": "ff8f14354d3fae1f037840523be1b820a60b30d216791dfc833ae995a49c44f6",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/results.jsonl": "ce4c4afae60dd9a32a0b2c374e9054604325d9f2e621dfc1743117dd068831e6",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/reviews.json": "2328a0d0b42714a0a3979cea827312f4f4c436dda5ca8f7f3c8a2ea3fb57e512",
+    "evals/manufacturing_gold_100_grounded_live_v1/runs/20261113-r5/summary.json": "bb38395b38c9853334b2b1b3569706f59a71c20ac70344f35feafb363ca6ffaf",
+    "backend/app/knowledge/answer_validation.py": "b7745a93a5b47894ea848d959694a769789e58bce76605dec0193e310b993a60",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/knowledge/answer_validation.py": "b7745a93a5b47894ea848d959694a769789e58bce76605dec0193e310b993a60",
+    "backend/app/knowledge/answer_repair.py": "8f7e3e5318eefd040a9996e96d8931b82157825c65c894ec004884eb04e5db9a",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/knowledge/answer_repair.py": "8f7e3e5318eefd040a9996e96d8931b82157825c65c894ec004884eb04e5db9a",
+    "backend/app/knowledge/answer_coverage.py": "6b8f126b625f50738c2c687405f46943733feef87087ad2d1ea975d1d3e0739f",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/knowledge/answer_coverage.py": "6b8f126b625f50738c2c687405f46943733feef87087ad2d1ea975d1d3e0739f",
+    "backend/app/knowledge/context_builder.py": "e188fe911f463c4a966622d1fea3e4e94e47b9becc98141ec7351041ef456d95",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/knowledge/context_builder.py": "e188fe911f463c4a966622d1fea3e4e94e47b9becc98141ec7351041ef456d95",
+    "backend/app/knowledge/output_contract.py": "72a33aa8813af532b64bbfefafff74df76b21c2e3240b5158d7f9b23f1c17ab3",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/knowledge/output_contract.py": "72a33aa8813af532b64bbfefafff74df76b21c2e3240b5158d7f9b23f1c17ab3",
+    "backend/app/manufacturing/source_statements.py": "b08e1ad8927f10fdd758b19c39033c47d9c61594ebe642ded4c216b339e66eaa",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/manufacturing/source_statements.py": "b08e1ad8927f10fdd758b19c39033c47d9c61594ebe642ded4c216b339e66eaa",
+    "backend/app/manufacturing/generation_models.py": "79f1b9e160016f3dd45d6e3d9b30476beaa8003df990439c5d47913e253d0e34",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/manufacturing/generation_models.py": "79f1b9e160016f3dd45d6e3d9b30476beaa8003df990439c5d47913e253d0e34",
+    "backend/app/manufacturing/generation_selection.py": "a1a17fde3db37760717c56ee8b0d24862ac88eb0f378054c246d439455c1b62f",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/manufacturing/generation_selection.py": "a1a17fde3db37760717c56ee8b0d24862ac88eb0f378054c246d439455c1b62f",
+    "backend/app/knowledge/retrieval_service.py": "fc0ade6b759d1e4153659911c91d7b89b3e66ffca1055154dca34fe5acfa8def",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/knowledge/retrieval_service.py": "fc0ade6b759d1e4153659911c91d7b89b3e66ffca1055154dca34fe5acfa8def",
+    "backend/app/knowledge/rerank_retriever.py": "47c963e778547d5ca988dba08f073fd81547a801f5ac2e430f4ba8355984e991",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/knowledge/rerank_retriever.py": "47c963e778547d5ca988dba08f073fd81547a801f5ac2e430f4ba8355984e991",
+    "backend/app/security/oidc.py": "f2daf1f4e3960d60c8f429b486f78a014e3622e985e816f21890fde9ee2c38c4",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/security/oidc.py": "f2daf1f4e3960d60c8f429b486f78a014e3622e985e816f21890fde9ee2c38c4",
+    "backend/app/config.py": "3a41e0796687a3999e1c693d744afd8ecb3be023b631c8321f77cb5a01f8bd67",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/backend/app/config.py": "3a41e0796687a3999e1c693d744afd8ecb3be023b631c8321f77cb5a01f8bd67",
+    "scripts/diagnose_manufacturing_grounded_regressions.py": "104fb11d5ba9dc869d034f4d7bf9bbfdab6667859ec90eaca344442c70203268",
+    "scripts/diagnose_manufacturing_selection_failures.py": "633817a29835daa066a6586a4e6b0f96d3ddadcdb7750e9d410486ba51a75199",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/source/backend/app/security/oidc.py": "f2daf1f4e3960d60c8f429b486f78a014e3622e985e816f21890fde9ee2c38c4",
+    "tmp/manufacturing-gold-100-v4-selection-live-20261113-r2/source/scripts/accept_erpnext_development_v2.py": "c007987bd5d60f689627dead7975368dca55f24fcd8e7d8c417811a06ddd2f83",
+    "tmp/manufacturing-gold-100-v4-grounded-live-20261113-r5/source/scripts/accept_erpnext_development_v2.py": "c007987bd5d60f689627dead7975368dca55f24fcd8e7d8c417811a06ddd2f83"
+  },
+  "frozen_replay_code_matches": [
+    "knowledge/answer_validation.py",
+    "knowledge/answer_repair.py",
+    "knowledge/answer_coverage.py",
+    "knowledge/context_builder.py",
+    "knowledge/output_contract.py",
+    "manufacturing/source_statements.py",
+    "manufacturing/generation_models.py",
+    "manufacturing/generation_selection.py",
+    "knowledge/retrieval_service.py",
+    "knowledge/rerank_retriever.py",
+    "security/oidc.py",
+    "config.py"
+  ],
+  "auth_runtime_code_unchanged": {
+    "backend/app/security/oidc.py": true,
+    "scripts/accept_erpnext_development_v2.py": true
+  },
+  "old_scores_recomputed": false,
+  "cases": [
+    {
+      "case_id": "MFG-GOLD-024",
+      "question": "工单、批次、步骤编号都是1时，业务引用如何区分？",
+      "old": {
+        "route": "/api/manufacturing/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/qa",
+            "status": 200,
+            "model_calls": 1
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/df424b24-99a8-48a2-bada-4d85eda3fb5b",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": true,
+        "context_count": 0,
+        "context_characters": null,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {},
+        "context_documents": [],
+        "first_claims": [
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的工单源记录编号为1",
+            "citations": [
+              "业务1"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的产品型号为HC-A17",
+            "citations": [
+              "业务2"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的工序为未知",
+            "citations": [
+              "业务3"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的工单实际开工时间为未知",
+            "citations": [
+              "业务4"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的工单开工时间精度为未知",
+            "citations": [
+              "业务5"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的报工日期为未知",
+            "citations": [
+              "业务6"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的路线修订为未知",
+            "citations": [
+              "业务7"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的工单登记批号（本来源未提供）为未知",
+            "citations": [
+              "业务8"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的源记录状态为IN_PROGRESS",
+            "citations": [
+              "业务9"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的工厂为HC-P01",
+            "citations": [
+              "业务10"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的登记通知编号为[]",
+            "citations": [
+              "业务11"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的源修订为mes-e9f616c0e2fe9b67394d83f8d8caa8be70442998ba1179ffddf54f6a8eb9",
+            "citations": [
+              "业务12"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的源系统为openmes-hc",
+            "citations": [
+              "业务13"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的源记录编号为1",
+            "citations": [
+              "业务14"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的源更新时间为2026-11-09T00:10:00+00:00",
+            "citations": [
+              "业务15"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的本次采集时间为2026-11-13T08:08:21.337160+00:00",
+            "citations": [
+              "业务16"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的原始工单编号为MES-WO-STARTED",
+            "citations": [
+              "业务17"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的批次记录编号为1",
+            "citations": [
+              "业务18"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的批次序号为1",
+            "citations": [
+              "业务19"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的批号为MES-WO-STARTED-B1",
+            "citations": [
+              "业务20"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的批次状态为IN_PROGRESS",
+            "citations": [
+              "业务21"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的实际开工时间为2026-11-09T00:10:00.000000Z",
+            "citations": [
+              "业务22"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的开工时间精度为datetime",
+            "citations": [
+              "业务23"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的源更新时间为2026-11-09T00:10:00+00:00",
+            "citations": [
+              "业务24"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的步骤1的步骤记录编号为1",
+            "citations": [
+              "业务25"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的步骤1的步骤序号为1",
+            "citations": [
+              "业务26"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的步骤1的步骤名称为OP-20 机加工",
+            "citations": [
+              "业务27"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的步骤1的步骤状态为IN_PROGRESS",
+            "citations": [
+              "业务28"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z",
+            "citations": [
+              "业务29"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的步骤1的开工时间精度为datetime",
+            "citations": [
+              "业务30"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单1的批次1的步骤1的源更新时间为2026-11-10T06:29:00+00:00",
+            "citations": [
+              "业务31"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "工单、批次、步骤编号都是1时，业务引用如何区分？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "工单、批次、步骤编号都是1时，业务引用如何区分？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/manufacturing/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/qa",
+            "status": 200,
+            "model_calls": 1
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/844bbcc5-df1f-4c5d-9efa-cd836aaf7b4e",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": true,
+        "context_count": 0,
+        "context_characters": 1786,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 3,
+          "source_limited_count": 3,
+          "selected_count": 3,
+          "selected_characters": 1786,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [],
+        "first_claims": [
+          {
+            "text": "通过层级实体ID区分：工单使用work_order_id（源记录编号为1），批次使用batch_id（批次记录编号为1），步骤使用step_id（步骤记录编号为1）。",
+            "citations": []
+          },
+          {
+            "text": "通过唯一业务编号区分：工单使用work_order_number（原始工单编号为MES-WO-STARTED），批次使用batch_lot_number（批号为MES-WO-STARTED-B1），步骤使用step_name（步骤名称为OP-20 机加工）或step_number（步骤序号为1，需结合父级标识）。",
+            "citations": []
+          },
+          {
+            "text": "系统来源分别包含工单、生产批次及工序步骤；batch_*只表示所选批次，step_*只表示所选步骤，不能互换或混淆。",
+            "citations": []
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "工单、批次、步骤编号都是1时，业务引用如何区分？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "工单、批次、步骤编号都是1时，业务引用如何区分？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [
+          "第1个结论没有引用",
+          "第2个结论没有引用",
+          "第3个结论没有引用"
+        ],
+        "routing": [
+          {
+            "kind": "strategy_transition",
+            "selected_strategy": "reflective",
+            "reason": "repairable_validation"
+          },
+          {
+            "kind": "repair",
+            "outcome": "evidence_changed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "ordered_child_inputs_equal": null,
+      "old_contexts_retained_in_new": 0,
+      "equal_positions": 0,
+      "source_evidence": [
+        {
+          "evidence_id": "E04",
+          "quote": "选择步骤必须指定批次，外来工单/批次/步骤拒绝。执行上下文在返回前读取两次并比较完整白名单记录和配置哈希，每次异步读取前后检查当前业务授权；与原工单问答三次校验分别记录。预期修订不匹配或读取中来源变化返回 409，来源不可用返回 503，业务无权或不存在返回 404；不回退至旧快照。字段引用标明 `Work Order`、`Batch`、`Batch Step`、真实记录 ID、字段值及本次来源修订。",
+          "old_context_hits": [],
+          "new_context_hits": []
+        }
+      ],
+      "local_probe": {
+        "original": {
+          "valid": false,
+          "errors": [
+            "第1个结论没有引用",
+            "第2个结论没有引用",
+            "第3个结论没有引用"
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-036",
+      "question": "所选卡已有开工并显示Completed，能否认定首件检验和质量签署完成？",
+      "old": {
+        "route": "/api/manufacturing/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/36006667-eef3-4687-a757-fd60af5102a9",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": true,
+        "context_count": 5,
+        "context_characters": 2850,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 5,
+          "source_limited_count": 5,
+          "selected_count": 5,
+          "selected_characters": 2850,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+            "characters": 402,
+            "content_sha256": "e7d5167744de624ccdd8395c901c886f241cc94f812c145b53cbc30cd71c6fda"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "09_工艺变更通知ECN-2026-018.docx",
+            "characters": 407,
+            "content_sha256": "19a080abcf6f2eb3a604b0c6274f0a62c46f2b3320f61ebcb44065c3eecb9b6e"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "08_HC-A17首件检验规范.docx",
+            "characters": 370,
+            "content_sha256": "0677040f26f0f3196ce18f56bfdb198c176e1f153807aa589c4d80ddf626f20a"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "02_首件确认与工序交接流程.pdf",
+            "characters": 321,
+            "content_sha256": "260faf7e3e71e3b7738035a8536c28a6d106557198741515b8c18981d306c6c0"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "12_检验记录填写与追溯规则.md",
+            "characters": 316,
+            "content_sha256": "74f22891c727e16fc6fad3b769cb3ea094a614a340b06756e83fdd8cb9bf6d49"
+          }
+        ],
+        "first_claims": [
+          {
+            "claim_kind": "work_requirement",
+            "text": "操作员按适用指导书完成首件检查,检验员核对全部必检项目。报工完成只说明已登记生产数量,不证明首件确认或质量签署已经完成。",
+            "citations": [
+              "资料4"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "work_requirement",
+            "text": "恢复后续作业前必须同时满足以下条件:\n1. 适用指导书要求的首件检查全部合格。\n2. 检验记录写明工单、批次和量具编号。\n3. 质量人员完成签署,生产班长确认记录齐全。\n4. 存在未关闭的暂停要求时,须按书面批准的恢复条件执行。",
+            "citations": [
+              "资料4"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "work_requirement",
+            "text": "首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。不允许只检1件，也不能用操作员口头确认替代质量签署。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "applicability",
+            "text": "工单ERP-WO-STARTED适用HC-WI-A17-020业务版本2.0",
+            "citations": [
+              "资料1",
+              "资料2",
+              "业务1",
+              "业务2",
+              "业务3",
+              "业务4"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "所选卡已有开工并显示Completed，能否认定首件检验和质量签署完成？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "开工状态与首件检验/签署的独立性",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/manufacturing/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/79532225-fdd5-4832-bce8-4972f856313c",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": true,
+        "context_count": 6,
+        "context_characters": 3402,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 6,
+          "source_limited_count": 6,
+          "selected_count": 6,
+          "selected_characters": 3402,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+            "characters": 402,
+            "content_sha256": "e7d5167744de624ccdd8395c901c886f241cc94f812c145b53cbc30cd71c6fda"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "09_工艺变更通知ECN-2026-018.docx",
+            "characters": 407,
+            "content_sha256": "19a080abcf6f2eb3a604b0c6274f0a62c46f2b3320f61ebcb44065c3eecb9b6e"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "08_HC-A17首件检验规范.docx",
+            "characters": 370,
+            "content_sha256": "0677040f26f0f3196ce18f56bfdb198c176e1f153807aa589c4d80ddf626f20a"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "02_首件确认与工序交接流程.pdf",
+            "characters": 321,
+            "content_sha256": "260faf7e3e71e3b7738035a8536c28a6d106557198741515b8c18981d306c6c0"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "12_检验记录填写与追溯规则.md",
+            "characters": 316,
+            "content_sha256": "74f22891c727e16fc6fad3b769cb3ea094a614a340b06756e83fdd8cb9bf6d49"
+          },
+          {
+            "citation_id": "资料6",
+            "document_name": "10_产品工序与文件路由.md",
+            "characters": 338,
+            "content_sha256": "b60988c8f3c4b80735da269f121d4ab66e0548bf46027ebf8fab82ddd665401d"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "不能认定。工单、工序或作业卡显示“Completed”仅表示生产报工或流程节点已登记，不证明首件检验或质量签署已经完成。",
+            "citations": [
+              "资料4"
+            ]
+          },
+          {
+            "text": "首件确认必须连续检查3件（适用版本2.0），所有必检项目全部合格，且必须由质量人员完成签署后才能恢复后续作业。",
+            "citations": [
+              "资料1",
+              "资料2"
+            ]
+          },
+          {
+            "text": "仅有口头同意、报工记录或计划签署时间，均不能证明首件确认条件和质量签署已经满足。",
+            "citations": [
+              "资料4"
+            ]
+          },
+          {
+            "claim_kind": "applicability",
+            "text": "工单ERP-WO-STARTED适用HC-WI-A17-020业务版本2.0",
+            "citations": [
+              "资料1",
+              "资料2",
+              "业务1",
+              "业务2",
+              "业务3",
+              "业务4"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "所选卡已有开工并显示Completed，能否认定首件检验和质量签署完成？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "开工与状态显示的证据边界",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [
+          "开工登记与检验签署的边界回答缺少适用指导书的独立检验及质量签署要求或对应开工来源"
+        ],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "ineligible",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "ordered_child_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "old_contexts_retained_in_new": 5,
+      "equal_positions": 5,
+      "source_evidence": [
+        {
+          "evidence_id": "E03",
+          "quote": "答：不能，须查实际检验与签署记录。",
+          "old_context_hits": [],
+          "new_context_hits": []
+        },
+        {
+          "evidence_id": "E04",
+          "quote": "首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。不允许只检1件，也不能用操作员口头确认替代质量签署。",
+          "old_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料1",
+              "chunk_id": "c70434c8e49c9111e69919b98b789f11b979c43c5122752b2bcb10d24386cec3",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "07_HC-A17_OP20作业指导书现行版.docx",
+              "citation_id": "资料1",
+              "chunk_id": "c70434c8e49c9111e69919b98b789f11b979c43c5122752b2bcb10d24386cec3",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "local_probe": {
+        "original": {
+          "valid": false,
+          "errors": [
+            "开工登记与检验签署的边界回答缺少适用指导书的独立检验及质量签署要求或对应开工来源"
+          ]
+        },
+        "start_source_present": {
+          "citation": "业务22",
+          "field": "job_card_actual_started_at"
+        },
+        "claim_kinds": [
+          null,
+          null,
+          null,
+          "applicability"
+        ],
+        "only_add_correct_start_citation": {
+          "valid": false,
+          "errors": [
+            "开工登记与检验签署的边界回答缺少适用指导书的独立检验及质量签署要求或对应开工来源"
+          ]
+        },
+        "replace_only_second_claim_with_cited_original": {
+          "valid": true,
+          "errors": []
+        },
+        "exact_source_text": "首件确认须连续检查3件，所有必检项目全部合格，并由质量人员签署后才能恢复后续作业。不允许只检1件，也不能用操作员口头确认替代质量签署。",
+        "same_exact_text_only_remove_internal_role": {
+          "valid": false,
+          "errors": [
+            "开工登记与检验签署的边界回答缺少适用指导书的独立检验及质量签署要求或对应开工来源"
+          ]
+        },
+        "limitation": "Proves legacy role/exact-text coupling, not semantic approval of the unchanged other claims."
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-050",
+      "question": "仅按DEMO-B21合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？",
+      "old": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/b37a96c9-aa9a-45d8-8c2a-25decf1de234",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 5,
+        "context_characters": 4383,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 5,
+          "source_limited_count": 5,
+          "selected_count": 5,
+          "selected_characters": 4383,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+            "characters": 893,
+            "content_sha256": "d9818fad89445bdf40c47a3b996feb16697e2246a9081fb8854d63fb96e2e3e5"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+            "characters": 630,
+            "content_sha256": "fd87f644d5a3cd2fa4989ba2d4ac37fd6ecb43c9c621342e6d490aaa9927e35d"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+            "characters": 900,
+            "content_sha256": "9e8f5f1cb46d8b4c17fb422bc1654b8b942a249f010f430b3e235aba2b600c86"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+            "characters": 593,
+            "content_sha256": "c4813782c13743f4b44c21040c6b4654051eb0133b6c092ba16fb30661cb732a"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-B21-01_DEMO-B21_OP-10来料与基准核对_历史版.md",
+            "characters": 568,
+            "content_sha256": "901e59331460c4f65f60af7714f26b09f5928f3ca8c88723cb418868eaedf67b"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "不应填写相同的实际开工时间。根据资料1，同一批次内的不同步骤（如DEMO-STEP-B21-1和DEMO-STEP-B21-2）是独立记录项，各自拥有独立的实际开工时间字段，且示例中显示它们的时间并不相同（分别为09:06:00和未登记）。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "各层级记录（工单、工序、作业卡、批次、步骤）的实际开工时间是分别取值的，不能互相补填或默认相同。资料1明确指出“卡与工序分别取值，不能互补”，且批次与步骤也是分开登记的实体。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-B21合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "卡与工序分别取值，不能互补。...批次DEMO-BATCH-B21-1实际开工为2026-11-02T09:00:00+08:00，步骤DEMO-STEP-B21-1实际开工为09:06:00+08:00...同批次步骤DEMO-STEP-B21-2未登记实际开工。",
+              "aspect": "第一批次已开工，第二步骤也应填相同的实际开工吗？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/9c172027-375d-4ae0-9721-3f20a22fac6b",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 12,
+        "context_characters": 9223,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 12,
+          "source_limited_count": 12,
+          "selected_count": 12,
+          "selected_characters": 9223,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+            "characters": 893,
+            "content_sha256": "d9818fad89445bdf40c47a3b996feb16697e2246a9081fb8854d63fb96e2e3e5"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+            "characters": 630,
+            "content_sha256": "fd87f644d5a3cd2fa4989ba2d4ac37fd6ecb43c9c621342e6d490aaa9927e35d"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+            "characters": 900,
+            "content_sha256": "9e8f5f1cb46d8b4c17fb422bc1654b8b942a249f010f430b3e235aba2b600c86"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+            "characters": 593,
+            "content_sha256": "c4813782c13743f4b44c21040c6b4654051eb0133b6c092ba16fb30661cb732a"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-B21-01_DEMO-B21_OP-10来料与基准核对_历史版.md",
+            "characters": 568,
+            "content_sha256": "901e59331460c4f65f60af7714f26b09f5928f3ca8c88723cb418868eaedf67b"
+          },
+          {
+            "citation_id": "资料6",
+            "document_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+            "characters": 459,
+            "content_sha256": "9c8214cf75662a1fe3142d91756ef33566af88ef1cede43468d9690bef64d79b"
+          },
+          {
+            "citation_id": "资料7",
+            "document_name": "ZH-B21-10_DEMO-B21班次交接与未完成项.md",
+            "characters": 474,
+            "content_sha256": "07d72e2eed9c49b77a510e8d198d057b19f4e5b0e0479bd7e4626f228e2e7c2b"
+          },
+          {
+            "citation_id": "资料8",
+            "document_name": "ZH-B21-09_DEMO-B21工单例外通知草案.md",
+            "characters": 473,
+            "content_sha256": "158e4814f88fb99cb02e1cad47c2dcef936d701bc55fdbe0d2ef1fcca91eb04d"
+          },
+          {
+            "citation_id": "资料9",
+            "document_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+            "characters": 638,
+            "content_sha256": "1685d86fbece4394511ed31136624b57cf5c52dad5a8312a37ceb9ed7543e908"
+          },
+          {
+            "citation_id": "资料10",
+            "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+            "characters": 896,
+            "content_sha256": "a896951f444350b1ad33bd785eb943c35630f99f225929535cda7c39bd63da42"
+          },
+          {
+            "citation_id": "资料11",
+            "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+            "characters": 495,
+            "content_sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+          },
+          {
+            "citation_id": "资料12",
+            "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+            "characters": 488,
+            "content_sha256": "b2b012068817886a41dabba9b42cc80cd27bae464063fb715c4ed1dc85b42292"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "不应填写相同的实际开工时间。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "因为工单执行记录明确规定“卡与工序分别取值，不能互补”，且同一批次下的不同步骤（如DEMO-STEP-B21-1与DEMO-STEP-B21-2）是独立的记录实体，各自拥有独立的时间字段。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-B21合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "卡与工序分别取值，不能互补。同批次步骤DEMO-STEP-B21-2未登记实际开工。",
+              "aspect": "第二步骤是否应填相同实际开工",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "ordered_child_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "old_contexts_retained_in_new": 5,
+      "equal_positions": 5,
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "OpenMES离线夹具设计：批次DEMO-BATCH-B21-1实际开工为2026-11-02T09:00:00+08:00，步骤DEMO-STEP-B21-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-B21-2未登记实际开工。另有同工单批次DEMO-BATCH-B21-2，其步骤DEMO-STEP-B21-3与第一批次不构成父子关系。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料1",
+              "chunk_id": "ebba9a9c86196101ec4870dc03827f323aad2a3b9debdee4249204a3954dba33",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料1",
+              "chunk_id": "ebba9a9c86196101ec4870dc03827f323aad2a3b9debdee4249204a3954dba33",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-057",
+      "question": "隔离协议设计：DEMO-B21会话绑定第一批次第一步骤后，改成同批次第二步骤追问，应如何处理？",
+      "old": {
+        "route": "/api/manufacturing/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "GET",
+            "path": "/api/manufacturing/work-orders/4/context",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/conversations",
+            "status": 201,
+            "model_calls": 0
+          },
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/qa",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/e9cfc396-8004-409c-bcba-8367c56446db",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/qa",
+            "status": 409,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": true,
+        "context_count": 0,
+        "context_characters": null,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {},
+        "context_documents": [],
+        "first_claims": [
+          {
+            "claim_kind": "business_fact",
+            "text": "工单4的批次7的步骤13的实际开工时间为2026-11-02T01:06:00.000000Z",
+            "citations": [
+              "业务29"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单4的批次7的步骤13的开工时间精度为datetime",
+            "citations": [
+              "业务30"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "所选步骤实际开工时间是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "所选步骤实际开工时间是什么？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": []
+      },
+      "new": {
+        "route": null,
+        "harness_error": {
+          "type": "RuntimeError",
+          "message": "Fixture request failed: 401 /api/manufacturing/work-orders/4/context"
+        },
+        "events": [
+          {
+            "method": "GET",
+            "path": "/api/manufacturing/work-orders/4/context",
+            "status": 401,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 0,
+        "context_characters": null,
+        "context_status": [],
+        "context_selection": {},
+        "context_documents": [],
+        "first_claims": null,
+        "coverage": null,
+        "validation_errors": null,
+        "routing": [],
+        "model_stages": []
+      },
+      "ordered_child_inputs_equal": null,
+      "old_contexts_retained_in_new": 0,
+      "equal_positions": 0,
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "OpenMES离线夹具设计：批次DEMO-BATCH-B21-1实际开工为2026-11-02T09:00:00+08:00，步骤DEMO-STEP-B21-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-B21-2未登记实际开工。另有同工单批次DEMO-BATCH-B21-2，其步骤DEMO-STEP-B21-3与第一批次不构成父子关系。",
+          "old_context_hits": [],
+          "new_context_hits": []
+        },
+        {
+          "evidence_id": "E02",
+          "quote": "会话绑定保存工单、批次、步骤、来源修订和上下文摘要；后续提问不能更换或省略原选择。切换选择须另建会话。每次问答保留获取来源、生成前、交付前三次完整来源与权限核验，均带原选择；任何一步变更返回 409，不使用旧快照继续回答。历史、快照访问继续检查当前权限。",
+          "old_context_hits": [],
+          "new_context_hits": []
+        }
+      ],
+      "local_probe": {
+        "no_main_post": true,
+        "stderr_bytes": 0,
+        "limitation": "No saved JWT/JWKS inner exception; cannot determine expiry, clock or key cause."
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-060",
+      "question": "仅按DEMO-C31合成资料，OP-30目前记录了什么、还缺什么，能否确认相关检查已经完整完成？",
+      "old": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/e77e5162-4e96-48fb-8c6f-7c0b7616eee9",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 7,
+        "context_characters": 5384,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 7,
+          "source_limited_count": 7,
+          "selected_count": 7,
+          "selected_characters": 5384,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+            "characters": 477,
+            "content_sha256": "404b3bcef824ce27427a92badd350c880ce26425f54e894782d54ab04fb88483"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-C31-10_DEMO-C31班次交接与未完成项.md",
+            "characters": 484,
+            "content_sha256": "93b1cc204994344583520ff821037452b193670e46b8327867c1707c7ed63490"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+            "characters": 627,
+            "content_sha256": "f0b3d13e0ce8c5a5709c7159af488016e7c5bfd390c7cf60cee43cc5f22dda54"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+            "characters": 896,
+            "content_sha256": "a896951f444350b1ad33bd785eb943c35630f99f225929535cda7c39bd63da42"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-C31-02_DEMO-C31_OP-30密封组件核对与装配记录_现行演示版.md",
+            "characters": 628,
+            "content_sha256": "1a858ea9ab9c70930bbe87c3503c05817aa808e2cf77bbc86df9f1ca8fe6d70e"
+          },
+          {
+            "citation_id": "资料6",
+            "document_name": "ZH-C31-09_DEMO-C31工单例外通知草案.md",
+            "characters": 499,
+            "content_sha256": "906365adf94c8c5831a6159349a9104d4679632bfacb017eebd7dbe52ccd1703"
+          },
+          {
+            "citation_id": "资料7",
+            "document_name": "ZH-C31-01_DEMO-C31_OP-30密封组件核对与装配记录_历史版.md",
+            "characters": 587,
+            "content_sha256": "feaa0a7b54fd4461062afe6a9aeb15b80958e14181efe322df67a370da7493df"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "仅按DEMO-C31合成资料，OP-30目前记录了装配数量20件，但缺失方向检查结果。",
+            "citations": [
+              "资料4"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "根据现行指导书（业务版本2.0）的作业要求，OP-30必须核对密封组件型号、批号及装配方向并填写装配检查记录，仅有完成数量不能证明装配方向已检查。",
+            "citations": [
+              "资料5"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "由于方向检查结果未登记，且仅有完成数量不能证明装配方向已检查，因此无法确认相关检查已经完整完成。",
+            "citations": [
+              "资料4",
+              "资料5"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-C31合成资料，OP-30目前记录了什么、还缺什么，能否确认相关检查已经完整完成？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "OP-30：已登记装配数量20件，但方向检查结果未登记；... OP-30新增要求：核对密封组件型号、批号及装配方向，确认表面无可见破损后填写装配检查记录；仅有完成数量不能证明装配方向已检查。",
+              "aspect": "OP-30目前记录了什么、还缺什么，能否确认相关检查已经完整完成？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/262bca01-5960-44e5-b40f-efbb984f354a",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 12,
+        "context_characters": 8993,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 12,
+          "source_limited_count": 12,
+          "selected_count": 12,
+          "selected_characters": 8993,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+            "characters": 477,
+            "content_sha256": "404b3bcef824ce27427a92badd350c880ce26425f54e894782d54ab04fb88483"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-C31-10_DEMO-C31班次交接与未完成项.md",
+            "characters": 484,
+            "content_sha256": "93b1cc204994344583520ff821037452b193670e46b8327867c1707c7ed63490"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+            "characters": 627,
+            "content_sha256": "f0b3d13e0ce8c5a5709c7159af488016e7c5bfd390c7cf60cee43cc5f22dda54"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+            "characters": 896,
+            "content_sha256": "a896951f444350b1ad33bd785eb943c35630f99f225929535cda7c39bd63da42"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-C31-02_DEMO-C31_OP-30密封组件核对与装配记录_现行演示版.md",
+            "characters": 628,
+            "content_sha256": "1a858ea9ab9c70930bbe87c3503c05817aa808e2cf77bbc86df9f1ca8fe6d70e"
+          },
+          {
+            "citation_id": "资料6",
+            "document_name": "ZH-C31-09_DEMO-C31工单例外通知草案.md",
+            "characters": 499,
+            "content_sha256": "906365adf94c8c5831a6159349a9104d4679632bfacb017eebd7dbe52ccd1703"
+          },
+          {
+            "citation_id": "资料7",
+            "document_name": "ZH-C31-01_DEMO-C31_OP-30密封组件核对与装配记录_历史版.md",
+            "characters": 587,
+            "content_sha256": "feaa0a7b54fd4461062afe6a9aeb15b80958e14181efe322df67a370da7493df"
+          },
+          {
+            "citation_id": "资料8",
+            "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+            "characters": 495,
+            "content_sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+          },
+          {
+            "citation_id": "资料9",
+            "document_name": "ZH-C31-04_DEMO-C31_OP-40气密检测结果复核_现行演示版.md",
+            "characters": 621,
+            "content_sha256": "9372487107065a3019ad08ed78144e388f95cfc29f80b196a3575881b2e24f1b"
+          },
+          {
+            "citation_id": "资料10",
+            "document_name": "ZH-C31-03_DEMO-C31_OP-40气密检测结果复核_历史版.md",
+            "characters": 568,
+            "content_sha256": "0b864d271334e11c9e26c93d5031ff09b9286712f9be691ab0953890154b38b9"
+          },
+          {
+            "citation_id": "资料11",
+            "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+            "characters": 488,
+            "content_sha256": "b2b012068817886a41dabba9b42cc80cd27bae464063fb715c4ed1dc85b42292"
+          },
+          {
+            "citation_id": "资料12",
+            "document_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+            "characters": 479,
+            "content_sha256": "c0ce98fb2c67744fa66d97821b93243ce6edb3fa3d7f484771305a25d2d813f6"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "仅按DEMO-C31合成资料，OP-30目前记录了装配数量20件，但方向检查结果未登记。",
+            "citations": [
+              "资料4"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "仅按DEMO-C31合成资料，OP-30还缺少逐件的方向检查结果登记（以及相应的质量复核结论和放行签署）。",
+            "citations": [
+              "资料1",
+              "资料2",
+              "资料4"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "仅按DEMO-C31合成资料，不能确认OP-30相关检查已经完整完成，因为方向检查结果未登记且正式原始数据关联尚未完成。",
+            "citations": [
+              "资料2",
+              "资料4"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-C31合成资料，OP-30目前记录了什么、还缺什么，能否确认相关检查已经完整完成？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "OP-30：方向检查结果未登记；OP-40：原始数据记录号缺失。这些状态为样例事实，不表示真实系统当前状态。",
+              "aspect": "OP-30目前记录了什么、还缺什么，能否确认相关检查已经完整完成？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "ordered_child_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "old_contexts_retained_in_new": 7,
+      "equal_positions": 7,
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "OP-30：已登记装配数量20件，但方向检查结果未登记；OP-40：设备结果登记为合格，但原始数据记录号缺失。这些状态为样例事实，不表示真实系统当前状态。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料4",
+              "chunk_id": "729193fbab0894552e521a988540f093f44ffb07f3496b6c6c5598d5b3bd818e",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料4",
+              "chunk_id": "729193fbab0894552e521a988540f093f44ffb07f3496b6c6c5598d5b3bd818e",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E02",
+          "quote": "操作员记录、质量复核结论和放行签署分别保存。缺失或超限项保持待复核或待处置；交接签名、设备启动时间和完成数量均不能代填质量结论。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "08fe78234e5c7c80769b3b62196893349d4eb6fe51bbbee9d4578ef60636a7fb",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "08fe78234e5c7c80769b3b62196893349d4eb6fe51bbbee9d4578ef60636a7fb",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+              "citation_id": "资料8",
+              "chunk_id": "3ada07f33ec4b5615f86e785297a144001c6eebef2e0205d7f192c153f37ccb6",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+              "citation_id": "资料11",
+              "chunk_id": "6ccea0b390fed60ad776781de8bb2622a6fc126256860b612d97fdbbd6d25a00",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-068",
+      "question": "仅按DEMO-C31合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？",
+      "old": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/7c2bc785-f20a-4327-b3c0-821ca9372297",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 5,
+        "context_characters": 3811,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 5,
+          "source_limited_count": 5,
+          "selected_count": 5,
+          "selected_characters": 3811,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+            "characters": 896,
+            "content_sha256": "a896951f444350b1ad33bd785eb943c35630f99f225929535cda7c39bd63da42"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+            "characters": 627,
+            "content_sha256": "f0b3d13e0ce8c5a5709c7159af488016e7c5bfd390c7cf60cee43cc5f22dda54"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+            "characters": 495,
+            "content_sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-C31-01_DEMO-C31_OP-30密封组件核对与装配记录_历史版.md",
+            "characters": 587,
+            "content_sha256": "feaa0a7b54fd4461062afe6a9aeb15b80958e14181efe322df67a370da7493df"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+            "characters": 477,
+            "content_sha256": "404b3bcef824ce27427a92badd350c880ce26425f54e894782d54ab04fb88483"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "根据DEMO-C31合成资料，第一批次已开工（如批次DEMO-BATCH-C31-1或步骤DEMO-STEP-C31-1），但同批次的第二步骤（DEMO-STEP-C31-2）以及对应的第二工序子行和作业卡均未登记实际开工，因此不能填写与第一步骤相同的实际开工时间。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "工单级、工序级、批次级和步骤级的实际开工时间是分别取值的，卡与工序分别取值，不能互补。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-C31合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "第二工序子行DEMO-ROW-C31-2和作业卡DEMO-JC-C31-2均未登记实际开工。...同批次步骤DEMO-STEP-C31-2未登记实际开工。",
+              "aspect": "第一批次已开工，第二步骤也应填相同的实际开工吗？",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/618ea0c9-c89f-4ac0-a68c-23bb1831b18d",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 12,
+        "context_characters": 9008,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 12,
+          "source_limited_count": 12,
+          "selected_count": 12,
+          "selected_characters": 9008,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+            "characters": 896,
+            "content_sha256": "a896951f444350b1ad33bd785eb943c35630f99f225929535cda7c39bd63da42"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+            "characters": 627,
+            "content_sha256": "f0b3d13e0ce8c5a5709c7159af488016e7c5bfd390c7cf60cee43cc5f22dda54"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+            "characters": 495,
+            "content_sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-C31-01_DEMO-C31_OP-30密封组件核对与装配记录_历史版.md",
+            "characters": 587,
+            "content_sha256": "feaa0a7b54fd4461062afe6a9aeb15b80958e14181efe322df67a370da7493df"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+            "characters": 477,
+            "content_sha256": "404b3bcef824ce27427a92badd350c880ce26425f54e894782d54ab04fb88483"
+          },
+          {
+            "citation_id": "资料6",
+            "document_name": "ZH-C31-10_DEMO-C31班次交接与未完成项.md",
+            "characters": 484,
+            "content_sha256": "93b1cc204994344583520ff821037452b193670e46b8327867c1707c7ed63490"
+          },
+          {
+            "citation_id": "资料7",
+            "document_name": "ZH-C31-03_DEMO-C31_OP-40气密检测结果复核_历史版.md",
+            "characters": 568,
+            "content_sha256": "0b864d271334e11c9e26c93d5031ff09b9286712f9be691ab0953890154b38b9"
+          },
+          {
+            "citation_id": "资料8",
+            "document_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+            "characters": 638,
+            "content_sha256": "1685d86fbece4394511ed31136624b57cf5c52dad5a8312a37ceb9ed7543e908"
+          },
+          {
+            "citation_id": "资料9",
+            "document_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+            "characters": 630,
+            "content_sha256": "fd87f644d5a3cd2fa4989ba2d4ac37fd6ecb43c9c621342e6d490aaa9927e35d"
+          },
+          {
+            "citation_id": "资料10",
+            "document_name": "ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+            "characters": 503,
+            "content_sha256": "e641b9ab5f40392dd7557e12ddc49c0ea4d8c295cd75e45878ec9c8d978c1003"
+          },
+          {
+            "citation_id": "资料11",
+            "document_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+            "characters": 893,
+            "content_sha256": "d9818fad89445bdf40c47a3b996feb16697e2246a9081fb8854d63fb96e2e3e5"
+          },
+          {
+            "citation_id": "资料12",
+            "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+            "characters": 488,
+            "content_sha256": "b2b012068817886a41dabba9b42cc80cd27bae464063fb715c4ed1dc85b42292"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "不应填写相同的实际开工。根据资料1，同一工单下的不同批次（如DEMO-BATCH-C31-1与DEMO-BATCH-C31-2）及其对应的步骤（如DEMO-STEP-C31-1与DEMO-STEP-C31-3）不构成父子关系，各自独立记录。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "即使在同一批次内，不同步骤的实际开工时间也是独立的（例如资料1中DEMO-STEP-C31-1为09:06:00，而DEMO-STEP-C31-2未登记），且“卡与工序分别取值，不能互补”，因此不存在自动继承或必须相同的规定。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-C31合成资料，第一批次已开工，第二步骤也应填相同的实际开工吗？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "卡与工序分别取值，不能互补。...批次DEMO-BATCH-C31-1实际开工为2026-11-04T09:00:00+08:00，步骤DEMO-STEP-C31-1实际开工为09:06:00+08:00...同批次步骤DEMO-STEP-C31-2未登记实际开工。另有同工单批次DEMO-BATCH-C31-2，其步骤DEMO-STEP-C31-3与第一批次不构成父子关系。",
+              "aspect": "第二步骤是否应填相同的实际开工",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "ordered_child_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "old_contexts_retained_in_new": 5,
+      "equal_positions": 5,
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "OpenMES离线夹具设计：批次DEMO-BATCH-C31-1实际开工为2026-11-04T09:00:00+08:00，步骤DEMO-STEP-C31-1实际开工为09:06:00+08:00，日期同本工单演示日期；同批次步骤DEMO-STEP-C31-2未登记实际开工。另有同工单批次DEMO-BATCH-C31-2，其步骤DEMO-STEP-C31-3与第一批次不构成父子关系。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料1",
+              "chunk_id": "bb7b671157e4ff24ded414c66979cefc81e24ac81b31f947ee483f9753e058d8",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+              "citation_id": "资料1",
+              "chunk_id": "bb7b671157e4ff24ded414c66979cefc81e24ac81b31f947ee483f9753e058d8",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-077",
+      "question": "仅按DEMO-D41合成资料，比较OP-50两版的作业要求，2.0新增了哪些核对和缺项处理？",
+      "old": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 5
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/6b7ce634-0501-465c-8134-321b104cba3c",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 5,
+        "context_characters": 3743,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 5,
+          "source_limited_count": 5,
+          "selected_count": 5,
+          "selected_characters": 3743,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+            "characters": 638,
+            "content_sha256": "1685d86fbece4394511ed31136624b57cf5c52dad5a8312a37ceb9ed7543e908"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+            "characters": 503,
+            "content_sha256": "e641b9ab5f40392dd7557e12ddc49c0ea4d8c295cd75e45878ec9c8d978c1003"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+            "characters": 613,
+            "content_sha256": "8b401124b9fab0872983b09649e0ccb1ad8c2ef792f589f0055d4bb25f1009dc"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+            "characters": 566,
+            "content_sha256": "b7bd67329f28933a75846125ec75d0d4f36b34ae9d1721e93bdc2bc852ee7abc"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+            "characters": 479,
+            "content_sha256": "c0ce98fb2c67744fa66d97821b93243ce6edb3fa3d7f484771305a25d2d813f6"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "在2.0版中，新增了针对“端子批号”、“线材批号”、“模具编号”和“首件检查记录号”这四项内容的分别登记与核对，并要求确认它们与本工单的对应关系后方可提交质量复核。",
+            "citations": [
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "2.0版明确增加了“压接机启动记录不能替代首件检查记录”的核对限制。",
+            "citations": [
+              "资料3"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "相较于1.0版仅要求“记录端子型号和压接数量后提交首件样品”，2.0版的核对项从两项扩展为四项，且对首件记录的依赖程度更高。",
+            "citations": [
+              "资料3",
+              "资料4"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "对于缺项（如首件复核结论缺失）的处理，规定应保持“待复核或待处置”状态，且交接签名、设备启动时间等不能代填质量结论。",
+            "citations": [
+              "资料2"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，比较OP-50两版的作业要求，2.0新增了哪些核对和缺项处理？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "OP-50新增要求：分别登记端子批号、线材批号、模具编号和首件检查记录号，确认四项对应本工单后提交质量复核；压接机启动记录不能替代首件检查记录。",
+              "aspect": "2.0版作业要求与核对项",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "记录端子型号和压接数量后提交首件样品。",
+              "aspect": "1.0版作业要求与核对项",
+              "status": "answered",
+              "claim_indices": [
+                3
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "缺失或超限项保持待复核或待处置;交接签名、设备启动时间和完成数量均不能代填质量结论。",
+              "aspect": "缺项处理机制",
+              "status": "answered",
+              "claim_indices": [
+                4
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "fallback",
+            "intent": "comparison",
+            "strategy": "agentic",
+            "subquestions": [],
+            "reason": "multiple_aspects"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "agentic",
+            "selected_strategy": "agentic",
+            "reason": "input_plan",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 2,
+            "charged_tokens": 5728,
+            "optional_seconds": 3.322,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_planning",
+            "status": "error",
+            "error_type": "ValidationError"
+          },
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "agent_decision",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 6
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/f294de47-0fb6-469b-afbd-97ef65e4dbf9",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 12,
+        "context_characters": 9124,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 12,
+          "source_limited_count": 12,
+          "selected_count": 12,
+          "selected_characters": 9124,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+            "characters": 638,
+            "content_sha256": "1685d86fbece4394511ed31136624b57cf5c52dad5a8312a37ceb9ed7543e908"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+            "characters": 613,
+            "content_sha256": "8b401124b9fab0872983b09649e0ccb1ad8c2ef792f589f0055d4bb25f1009dc"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+            "characters": 503,
+            "content_sha256": "e641b9ab5f40392dd7557e12ddc49c0ea4d8c295cd75e45878ec9c8d978c1003"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+            "characters": 566,
+            "content_sha256": "b7bd67329f28933a75846125ec75d0d4f36b34ae9d1721e93bdc2bc852ee7abc"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+            "characters": 479,
+            "content_sha256": "c0ce98fb2c67744fa66d97821b93243ce6edb3fa3d7f484771305a25d2d813f6"
+          },
+          {
+            "citation_id": "资料6",
+            "document_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+            "characters": 900,
+            "content_sha256": "9e8f5f1cb46d8b4c17fb422bc1654b8b942a249f010f430b3e235aba2b600c86"
+          },
+          {
+            "citation_id": "资料7",
+            "document_name": "ZH-D41-09_DEMO-D41工单例外通知草案.md",
+            "characters": 497,
+            "content_sha256": "4cf154e50abb37a1da6e0eeb76ff93ed78f7bd8b7e412b02f34d2049c7b00af3"
+          },
+          {
+            "citation_id": "资料8",
+            "document_name": "ZH-D41-04_DEMO-D41_OP-60导通检测与标识核对_现行演示版.md",
+            "characters": 626,
+            "content_sha256": "b6c960bce32857d02a81bb7c12da8c72d54076a79987c8631b7fbf323c4df4ee"
+          },
+          {
+            "citation_id": "资料9",
+            "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+            "characters": 488,
+            "content_sha256": "b2b012068817886a41dabba9b42cc80cd27bae464063fb715c4ed1dc85b42292"
+          },
+          {
+            "citation_id": "资料10",
+            "document_name": "ZH-D41-03_DEMO-D41_OP-60导通检测与标识核对_历史版.md",
+            "characters": 572,
+            "content_sha256": "f9e100134378747163b30d3e933ecd4e94e002c3257089d7057fea37759e9a0a"
+          },
+          {
+            "citation_id": "资料11",
+            "document_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+            "characters": 630,
+            "content_sha256": "fd87f644d5a3cd2fa4989ba2d4ac37fd6ecb43c9c621342e6d490aaa9927e35d"
+          },
+          {
+            "citation_id": "资料12",
+            "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+            "characters": 495,
+            "content_sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "2.0版新增了四项核对要求：分别登记端子批号、线材批号、模具编号和首件检查记录号，并确认这四项均对应本工单后方可提交质量复核。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "2.0版明确了缺项/异常处理规则：压接机启动记录不能替代首件检查记录（即缺失首件检查记录时不可用其他记录补位）。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，比较OP-50两版的作业要求，2.0新增了哪些核对和缺项处理？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "OP-50新增要求：分别登记端子批号、线材批号、模具编号和首件检查记录号，确认四项对应本工单后提交质量复核；压接机启动记录不能替代首件检查记录。",
+              "aspect": "2.0版新增的核对与缺项处理",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "fallback",
+            "intent": "comparison",
+            "strategy": "agentic",
+            "subquestions": [],
+            "reason": "multiple_aspects"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "agentic",
+            "selected_strategy": "agentic",
+            "reason": "input_plan",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 3,
+            "charged_tokens": 8128,
+            "optional_seconds": 5.278,
+            "searches": 1,
+            "reads": 1,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_planning",
+            "status": "error",
+            "error_type": "ValidationError"
+          },
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "agent_decision",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "agent_decision",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "ordered_child_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "old_contexts_retained_in_new": 4,
+      "equal_positions": 3,
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "记录端子型号和压接数量后提交首件样品。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+              "citation_id": "资料4",
+              "chunk_id": "182805623396482a128b39b86ee6f642bdd529e35b69825ccaa597cade23dfd0",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+              "citation_id": "资料4",
+              "chunk_id": "182805623396482a128b39b86ee6f642bdd529e35b69825ccaa597cade23dfd0",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E02",
+          "quote": "分别登记端子批号、线材批号、模具编号和首件检查记录号，确认四项对应本工单后提交质量复核；压接机启动记录不能替代首件检查记录。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+              "citation_id": "资料1",
+              "chunk_id": "618178faa51a05c0780c41ac7be52166c2b6ce8d801ea25016777384a3bbfbac",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+              "citation_id": "资料3",
+              "chunk_id": "e29739675f4cfe613e0ef3e7f9ffc765c9344cd4f88a30a7f21b0b1fa68f9121",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+              "citation_id": "资料1",
+              "chunk_id": "618178faa51a05c0780c41ac7be52166c2b6ce8d801ea25016777384a3bbfbac",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            },
+            {
+              "document_name": "ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+              "citation_id": "资料2",
+              "chunk_id": "ff4fe5177599738c5f7c23eb19ff8257f109d44f35f477d36fda7a54ab7ccf6f",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "local_probe": {
+        "original": {
+          "valid": true,
+          "errors": []
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-091",
+      "question": "仅按DEMO-D41合成资料，交接签名能证明质量放行吗，接班时还应关注哪些未完成项？",
+      "old": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/cc8ae39b-e5c6-4c98-8bb3-86aef3c586c5",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 5,
+        "context_characters": 3318,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 5,
+          "source_limited_count": 5,
+          "selected_count": 5,
+          "selected_characters": 3318,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+            "characters": 479,
+            "content_sha256": "c0ce98fb2c67744fa66d97821b93243ce6edb3fa3d7f484771305a25d2d813f6"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+            "characters": 488,
+            "content_sha256": "b2b012068817886a41dabba9b42cc80cd27bae464063fb715c4ed1dc85b42292"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+            "characters": 503,
+            "content_sha256": "e641b9ab5f40392dd7557e12ddc49c0ea4d8c295cd75e45878ec9c8d978c1003"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-B21-10_DEMO-B21班次交接与未完成项.md",
+            "characters": 474,
+            "content_sha256": "07d72e2eed9c49b77a510e8d198d057b19f4e5b0e0479bd7e4626f228e2e7c2b"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-D41-03_DEMO-D41_OP-60导通检测与标识核对_历史版.md",
+            "characters": 572,
+            "content_sha256": "f9e100134378747163b30d3e933ecd4e94e002c3257089d7057fea37759e9a0a"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "仅按DEMO-D41合成资料，交接签名不能证明质量放行。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "接班时应关注的未完成项包括：OP-50工序的首件复核结论缺失。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "接班时应关注的未完成项包括：OP-60工序的新映射（MAP-2）首件验证尚未完成。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，交接签名能证明质量放行吗，接班时还应关注哪些未完成项？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "不能因导通通过或交接签名而改变待处置状态。",
+              "aspect": "交接签名能否证明质量放行",
+              "status": "answered",
+              "claim_indices": [
+                1
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "OP-50：首件复核结论缺失；OP-60：新映射首件验证未完成。",
+              "aspect": "接班时还应关注哪些未完成项",
+              "status": "answered",
+              "claim_indices": [
+                2,
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "fact",
+            "strategy": "standard",
+            "subquestions": [],
+            "reason": "direct_lookup"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "standard",
+            "selected_strategy": "standard",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/edda8fa4-f0d5-4381-8931-73006d381681",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 12,
+        "context_characters": 8303,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 12,
+          "source_limited_count": 12,
+          "selected_count": 12,
+          "selected_characters": 8303,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+            "characters": 479,
+            "content_sha256": "c0ce98fb2c67744fa66d97821b93243ce6edb3fa3d7f484771305a25d2d813f6"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+            "characters": 488,
+            "content_sha256": "b2b012068817886a41dabba9b42cc80cd27bae464063fb715c4ed1dc85b42292"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+            "characters": 503,
+            "content_sha256": "e641b9ab5f40392dd7557e12ddc49c0ea4d8c295cd75e45878ec9c8d978c1003"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "ZH-B21-10_DEMO-B21班次交接与未完成项.md",
+            "characters": 474,
+            "content_sha256": "07d72e2eed9c49b77a510e8d198d057b19f4e5b0e0479bd7e4626f228e2e7c2b"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "ZH-D41-03_DEMO-D41_OP-60导通检测与标识核对_历史版.md",
+            "characters": 572,
+            "content_sha256": "f9e100134378747163b30d3e933ecd4e94e002c3257089d7057fea37759e9a0a"
+          },
+          {
+            "citation_id": "资料6",
+            "document_name": "ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+            "characters": 613,
+            "content_sha256": "8b401124b9fab0872983b09649e0ccb1ad8c2ef792f589f0055d4bb25f1009dc"
+          },
+          {
+            "citation_id": "资料7",
+            "document_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+            "characters": 459,
+            "content_sha256": "9c8214cf75662a1fe3142d91756ef33566af88ef1cede43468d9690bef64d79b"
+          },
+          {
+            "citation_id": "资料8",
+            "document_name": "ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+            "characters": 566,
+            "content_sha256": "b7bd67329f28933a75846125ec75d0d4f36b34ae9d1721e93bdc2bc852ee7abc"
+          },
+          {
+            "citation_id": "资料9",
+            "document_name": "ZH-C31-10_DEMO-C31班次交接与未完成项.md",
+            "characters": 484,
+            "content_sha256": "93b1cc204994344583520ff821037452b193670e46b8327867c1707c7ed63490"
+          },
+          {
+            "citation_id": "资料10",
+            "document_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+            "characters": 638,
+            "content_sha256": "1685d86fbece4394511ed31136624b57cf5c52dad5a8312a37ceb9ed7543e908"
+          },
+          {
+            "citation_id": "资料11",
+            "document_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+            "characters": 495,
+            "content_sha256": "52e9af875a4f0c7fa060c82822cfbb6d1d80829d4b801a201bc1b5922bc6292b"
+          },
+          {
+            "citation_id": "资料12",
+            "document_name": "ZH-D41-09_DEMO-D41工单例外通知草案.md",
+            "characters": 497,
+            "content_sha256": "4cf154e50abb37a1da6e0eeb76ff93ed78f7bd8b7e412b02f34d2049c7b00af3"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "仅按DEMO-D41合成资料，交接签名不能证明质量放行。",
+            "citations": [
+              "资料1",
+              "资料2"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "接班时应关注的未完成项包括：OP-50工序的首件复核结论缺失，以及OP-60工序的新映射（MAP-2）首件验证未完成。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "仅按DEMO-D41合成资料，交接签名能证明质量放行吗，接班时还应关注哪些未完成项？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "不能因导通通过或交接签名而改变待处置状态。",
+              "aspect": "交接签名能否证明质量放行",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            },
+            {
+              "requirement_id": "Q1",
+              "source_quote": "OP-50：首件复核结论缺失；OP-60：新映射首件验证未完成。",
+              "aspect": "接班时还应关注哪些未完成项",
+              "status": "answered",
+              "claim_indices": [
+                3
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [
+            "必答要点关联了重复或不存在的结论：Q1"
+          ],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "原文摘录不在对应引用资料中：Q1"
+          ],
+          "structurally_complete": false,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [
+          "必答要点关联了重复或不存在的结论：Q1"
+        ],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "fact",
+            "strategy": "standard",
+            "subquestions": [],
+            "reason": "direct_lookup"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "standard",
+            "selected_strategy": "standard",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "strategy_transition",
+            "selected_strategy": "reflective",
+            "reason": "repairable_validation"
+          },
+          {
+            "kind": "repair",
+            "outcome": "prompt_budget",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "ordered_child_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "old_contexts_retained_in_new": 5,
+      "equal_positions": 5,
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "压接台已登记模具及首件记录号，质量结论为空；电测台在MAP-1下显示通过，新MAP-2首件尚未完成。接班时应区分验证件与待交付件，不能因导通通过或交接签名而改变待处置状态。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+              "citation_id": "资料1",
+              "chunk_id": "e8ec588c2db68468848f382ec55af77128f56c32cb1a1ef56e266cf8da47ecb0",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+              "citation_id": "资料1",
+              "chunk_id": "e8ec588c2db68468848f382ec55af77128f56c32cb1a1ef56e266cf8da47ecb0",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        },
+        {
+          "evidence_id": "E02",
+          "quote": "OP-50：首件复核结论缺失；OP-60：新映射首件验证未完成。",
+          "old_context_hits": [
+            {
+              "document_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+              "citation_id": "资料1",
+              "chunk_id": "e8ec588c2db68468848f382ec55af77128f56c32cb1a1ef56e266cf8da47ecb0",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+              "citation_id": "资料1",
+              "chunk_id": "e8ec588c2db68468848f382ec55af77128f56c32cb1a1ef56e266cf8da47ecb0",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "local_probe": {
+        "original": {
+          "valid": false,
+          "errors": [
+            "必答要点关联了重复或不存在的结论：Q1"
+          ]
+        },
+        "only_change_second_coverage_index_3_to_2": {
+          "valid": true,
+          "errors": []
+        },
+        "repair_prompt_bytes_new_context": 26344,
+        "repair_prompt_bytes_old_context_same_new_draft": 16703,
+        "repair_prompt_bytes_first_five_same_new_draft": 16703,
+        "frozen_default_limit_bytes": 24000,
+        "limitation": "Proves budget eligibility difference only; no claim that a hypothetical model repair would succeed."
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-094",
+      "question": "隔离协议设计：DEMO-D41会话绑定已复核步骤映射后，该步骤映射出现新修订，还能沿用原会话继续问吗？",
+      "old": {
+        "route": "/api/manufacturing/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "GET",
+            "path": "/api/manufacturing/work-orders/7/context",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/conversations",
+            "status": 201,
+            "model_calls": 0
+          },
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/qa",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/fccd9a1c-e628-432e-8902-dc61412b005b",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "GET",
+            "path": "/api/manufacturing/work-orders/7/batches/13/steps/25/guidance-mapping?knowledge_base_id=da8a470d-e735-46a6-9f0b-8628dc721840",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "GET",
+            "path": "/api/manufacturing/work-orders/7/batches/13/steps/25/guidance-mapping/candidates?knowledge_base_id=da8a470d-e735-46a6-9f0b-8628dc721840",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "PUT",
+            "path": "/api/manufacturing/work-orders/7/batches/13/steps/25/guidance-mapping?knowledge_base_id=da8a470d-e735-46a6-9f0b-8628dc721840",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "PUT",
+            "path": "/api/manufacturing/work-orders/7/batches/13/steps/25/guidance-mapping?knowledge_base_id=da8a470d-e735-46a6-9f0b-8628dc721840",
+            "status": 200,
+            "model_calls": 0
+          },
+          {
+            "method": "POST",
+            "path": "/api/manufacturing/qa",
+            "status": 409,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": true,
+        "context_count": 0,
+        "context_characters": null,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {},
+        "context_documents": [],
+        "first_claims": [
+          {
+            "claim_kind": "business_fact",
+            "text": "工单7的批次13的步骤25的实际开工时间为2026-11-06T01:06:00.000000Z",
+            "citations": [
+              "业务29"
+            ],
+            "calculation": null
+          },
+          {
+            "claim_kind": "business_fact",
+            "text": "工单7的批次13的步骤25的开工时间精度为datetime",
+            "citations": [
+              "业务30"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "所选步骤实际开工时间是什么？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": null,
+              "aspect": "所选步骤实际开工时间是什么？",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [
+            "已回答要点缺少原文摘录：Q1"
+          ],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": []
+      },
+      "new": {
+        "route": null,
+        "harness_error": {
+          "type": "TokenVerificationError",
+          "message": "访问令牌无效或已过期。"
+        },
+        "events": [],
+        "manufacturing_context": false,
+        "context_count": 0,
+        "context_characters": null,
+        "context_status": [],
+        "context_selection": {},
+        "context_documents": [],
+        "first_claims": null,
+        "coverage": null,
+        "validation_errors": null,
+        "routing": [],
+        "model_stages": []
+      },
+      "ordered_child_inputs_equal": null,
+      "old_contexts_retained_in_new": 0,
+      "equal_positions": 0,
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "步骤DEMO-STEP-D41-1拟分配来源ZH-D41-02的2.0版，步骤DEMO-STEP-D41-2拟分配来源ZH-D41-04的2.0版。两个分配均待人工审核，尚未登记到平台，不能称为已批准映射或用于线上会话绑定。",
+          "old_context_hits": [],
+          "new_context_hits": []
+        },
+        {
+          "evidence_id": "E02",
+          "quote": "制造问答保留三次完整来源与权限校验，额外复查本轮步骤的映射修订。回答的 `applicability.step_guidance` 记录分配修订、指导书及业务版本、审核工艺编码、理由和审核者，文档原文仍使用既有引用。会话首次提问绑定步骤映射摘要；映射变更后旧会话在追问模型调用前返回409。其他步骤的独立映射变化不影响本轮。",
+          "old_context_hits": [],
+          "new_context_hits": []
+        }
+      ],
+      "local_probe": {
+        "no_main_post": true,
+        "stderr_bytes": 0,
+        "limitation": "No saved JWT/JWKS inner exception; cannot determine expiry, clock or key cause."
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-095",
+      "question": "按本库归档的制造业质量管理数字化实施指南第十四项，质量数据管理覆盖哪些环节，职责与权限如何处理？",
+      "old": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/a1b75c7b-ab3e-46c2-81ec-0ab918722c6d",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 5,
+        "context_characters": 5838,
+        "context_status": [
+          {
+            "incomplete_reason": null
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 5,
+          "source_limited_count": 5,
+          "selected_count": 5,
+          "selected_characters": 5838,
+          "exclusions": [],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": false,
+          "reservations": [],
+          "incomplete_reason": null
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+            "characters": 1497,
+            "content_sha256": "e425deb2018077c3e54591e778ddfe3170b14788ecb5982a52f9083422b01d51"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+            "characters": 1392,
+            "content_sha256": "4530988471ce9d7adf96034373fc2e9bb4808d1b2b36e21c7ded1842ae36ded3"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+            "characters": 290,
+            "content_sha256": "c4919273048335a6bab8a901801237a0f959a97239da15ddcd863d8c9b8b96fb"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+            "characters": 1222,
+            "content_sha256": "26ff093d6290e71b8b6d99c1c882964e896f0880d842b207a78efdb541a13a84"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+            "characters": 901,
+            "content_sha256": "158ff8f0f6e17003b376abcd35b2ba700935606a4ca53b879fae7e792203eddd"
+          }
+        ],
+        "first_claims": [
+          {
+            "text": "质量数据管理覆盖数据采集、管理、处理、分析、应用等全过程环节。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          },
+          {
+            "text": "职责与权限的处理方式是：明确各环节的职责和权限，并强化跨部门及部门内数据管理机制建设。",
+            "citations": [
+              "资料1"
+            ],
+            "calculation": null
+          }
+        ],
+        "coverage": {
+          "requirements": [
+            {
+              "id": "Q1",
+              "question": "按本库归档的制造业质量管理数字化实施指南第十四项，质量数据管理覆盖哪些环节，职责与权限如何处理？"
+            }
+          ],
+          "coverage": [
+            {
+              "requirement_id": "Q1",
+              "source_quote": "(十四)加强质量数据管理。企业应将质量数据纳入数据资产管理范畴,加强质量数据标准化管理,开展企业数据管理能力建设。加强质量数据采集、管理、处理、分析、应用等全过程管理,明确各环节的职责和权限,强化跨部门及部门内数据管理机制建设。完善数据架构设计,促进质量数据在业务活动之间高效率交换共享。",
+              "aspect": "质量数据管理覆盖环节与职责权限处理方式",
+              "status": "answered",
+              "claim_indices": [
+                1,
+                2
+              ],
+              "missing_information": null
+            }
+          ],
+          "errors": [],
+          "plan_warnings": [],
+          "quote_warnings": [],
+          "structurally_complete": true,
+          "limitation": "Quote diagnostics are non-blocking; required-point selection and semantic completeness still need independent review."
+        },
+        "validation_errors": [],
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "repair",
+            "outcome": "not_needed",
+            "model_calls": 0
+          },
+          {
+            "kind": "budget",
+            "calls": 0,
+            "charged_tokens": 0,
+            "optional_seconds": 0,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "answer_generation",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "new": {
+        "route": "/api/qa",
+        "harness_error": null,
+        "events": [
+          {
+            "method": "POST",
+            "path": "/api/qa",
+            "status": 200,
+            "model_calls": 3
+          },
+          {
+            "method": "GET",
+            "path": "/api/qa/runs/bf9719ec-04d7-4c20-bfa2-1f7c77059362",
+            "status": 200,
+            "model_calls": 0
+          }
+        ],
+        "manufacturing_context": false,
+        "context_count": 8,
+        "context_characters": 11383,
+        "context_status": [
+          {
+            "incomplete_reason": "parent_context_budget_incomplete"
+          }
+        ],
+        "context_selection": {
+          "candidate_count": 12,
+          "source_limited_count": 11,
+          "selected_count": 8,
+          "selected_characters": 11383,
+          "exclusions": [
+            {
+              "chunk_id": "b89c35221dbd49182334b209ad03a343aa89f260261414f9a2ca9c97c7e12060",
+              "reason": "per_source_limit"
+            },
+            {
+              "chunk_id": "265e0a4ce1e8382578da45e57e96200e1dbfe10eded51fd2eda136ba7e16ba13",
+              "reason": "complete_parent_exceeds_remaining_budget"
+            },
+            {
+              "chunk_id": "4a6bda87ce06e409bc9b16aee79cb08681dadca195f391d4d423f1a011c6f76e",
+              "reason": "complete_parent_exceeds_remaining_budget"
+            },
+            {
+              "chunk_id": "5f5d1ad07cb368f00b85d768a9e901b481eddab3c800b89cb1c5f09ace751bde",
+              "reason": "complete_parent_exceeds_remaining_budget"
+            }
+          ],
+          "max_characters": 12000,
+          "max_chunks_per_source": 4,
+          "source_limit_applied": true,
+          "reservations": [],
+          "incomplete_reason": "parent_context_budget_incomplete"
+        },
+        "context_documents": [
+          {
+            "citation_id": "资料1",
+            "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+            "characters": 1497,
+            "content_sha256": "e425deb2018077c3e54591e778ddfe3170b14788ecb5982a52f9083422b01d51"
+          },
+          {
+            "citation_id": "资料2",
+            "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+            "characters": 1392,
+            "content_sha256": "4530988471ce9d7adf96034373fc2e9bb4808d1b2b36e21c7ded1842ae36ded3"
+          },
+          {
+            "citation_id": "资料3",
+            "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+            "characters": 290,
+            "content_sha256": "c4919273048335a6bab8a901801237a0f959a97239da15ddcd863d8c9b8b96fb"
+          },
+          {
+            "citation_id": "资料4",
+            "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+            "characters": 1222,
+            "content_sha256": "26ff093d6290e71b8b6d99c1c882964e896f0880d842b207a78efdb541a13a84"
+          },
+          {
+            "citation_id": "资料5",
+            "document_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+            "characters": 1482,
+            "content_sha256": "4e82fca197c812d862ba31d2e524e3f10f05a747b8033e3d7233c4aa2c69c9ad"
+          },
+          {
+            "citation_id": "资料6",
+            "document_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+            "characters": 1478,
+            "content_sha256": "0c31a253f0eda74604ab21bdc87c68ee10668c5c4fb1d440706ecff92afbb4af"
+          },
+          {
+            "citation_id": "资料7",
+            "document_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+            "characters": 1424,
+            "content_sha256": "1e9f63c4bac4aa4e6026117d4ce30a71a372c74086d3ae44140117948b00b63e"
+          },
+          {
+            "citation_id": "资料8",
+            "document_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+            "characters": 1315,
+            "content_sha256": "04fc6c1226e10da81a4725c01e711a673d11eb198b4b9d8a4ee244d8496ad279"
+          }
+        ],
+        "first_claims": null,
+        "coverage": null,
+        "validation_errors": null,
+        "routing": [
+          {
+            "kind": "plan",
+            "source": "rules",
+            "intent": "procedure",
+            "strategy": "reflective",
+            "subquestions": [],
+            "reason": "answer_constraints"
+          },
+          {
+            "kind": "retrieval_route",
+            "initial_strategy": "reflective",
+            "selected_strategy": "reflective",
+            "reason": "initial_evidence",
+            "agent_enabled": true
+          },
+          {
+            "kind": "budget",
+            "calls": 1,
+            "charged_tokens": 592,
+            "optional_seconds": 0.808,
+            "searches": 1,
+            "reads": 0,
+            "feedback_attempts": 0,
+            "regenerations": 0,
+            "limited_by": null
+          }
+        ],
+        "model_stages": [
+          {
+            "stage": "query_embedding",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "rerank",
+            "status": "success",
+            "error_type": null
+          },
+          {
+            "stage": "context_selection",
+            "status": "success",
+            "error_type": null
+          }
+        ]
+      },
+      "ordered_child_inputs_equal": {
+        "fusion": true,
+        "policy_candidates": true,
+        "rerank_model": true
+      },
+      "old_contexts_retained_in_new": 4,
+      "equal_positions": 4,
+      "source_evidence": [
+        {
+          "evidence_id": "E01",
+          "quote": "（十四）加强质量数据管理。企业应将质量数据纳入数\n据资产管理范畴，加强质量数据标准化管理，开展企业数据\n管理能力建设。加强质量数据采集、管理、处理、分析、应\n用等全过程管理，明确各环节的职责和权限，强化跨部门及\n部门内数据管理机制建设。完善数据架构设计，促进质量数\n据在业务活动之间高效率交换共享。",
+          "old_context_hits": [
+            {
+              "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "e4aaf77256e93be9407d71063cfaf57fa9067a45d43f8e837de22874dd666214",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ],
+          "new_context_hits": [
+            {
+              "document_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+              "citation_id": "资料1",
+              "chunk_id": "e4aaf77256e93be9407d71063cfaf57fa9067a45d43f8e837de22874dd666214",
+              "rank": null,
+              "model_rank": null,
+              "final_rank": null,
+              "rerank_score": null
+            }
+          ]
+        }
+      ],
+      "local_probe": {
+        "all_saved_parents_reason": "parent_context_budget_incomplete",
+        "first_parent_only_reason": null,
+        "first_parent_characters": 1497,
+        "answer_generation_calls": 0,
+        "pre_generation_decisions": [
+          {
+            "stage": "pre_generation",
+            "answerable": false,
+            "reason": "parent_context_budget_incomplete",
+            "temporal": null
+          }
+        ],
+        "model_context_selection": [
+          {
+            "chunk_id": "e4aaf77256e93be9407d71063cfaf57fa9067a45d43f8e837de22874dd666214",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "full_parent_default",
+            "original_characters": 1497,
+            "selected_characters": 1497,
+            "spans": [
+              [
+                0,
+                1497
+              ]
+            ]
+          },
+          {
+            "chunk_id": "0c69994498f76f55939c5adfa51dc226ad84fa20399559ee9fb7a3564a6f1588",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "full_parent_default",
+            "original_characters": 1392,
+            "selected_characters": 1392,
+            "spans": [
+              [
+                0,
+                1392
+              ]
+            ]
+          },
+          {
+            "chunk_id": "9c11268cab47dedcd79d3c5ab65c119a31cf1fabff9710c7ff6fd6b8e2fb3866",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "full_parent_default",
+            "original_characters": 290,
+            "selected_characters": 290,
+            "spans": [
+              [
+                0,
+                290
+              ]
+            ]
+          },
+          {
+            "chunk_id": "1e02eeb2b34261427d5e14b89ee80df2f4ee9d1e8279885d3963fc1fe1d1980a",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "full_parent_default",
+            "original_characters": 1222,
+            "selected_characters": 1222,
+            "spans": [
+              [
+                0,
+                1222
+              ]
+            ]
+          },
+          {
+            "chunk_id": "f4ae573a84c29b9d3a0c99939a93196330725fe4323ddbe228dadda94df6e0c1",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "full_parent_default",
+            "original_characters": 1482,
+            "selected_characters": 1482,
+            "spans": [
+              [
+                0,
+                1482
+              ]
+            ]
+          },
+          {
+            "chunk_id": "9ae67f70997286bf539b6393c030bda72c138e7ab64ede92a79fe12d29e45664",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "full_parent_default",
+            "original_characters": 1478,
+            "selected_characters": 1478,
+            "spans": [
+              [
+                0,
+                1478
+              ]
+            ]
+          },
+          {
+            "chunk_id": "7f51840fc00eb3e9e7a30e2471ab9c636bebf10eb2d5b806464fc9b0656fe9b1",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "full_parent_default",
+            "original_characters": 1424,
+            "selected_characters": 1424,
+            "spans": [
+              [
+                0,
+                1424
+              ]
+            ]
+          },
+          {
+            "chunk_id": "aaba5b183ef3d1fc9d24ff9b0eac0f93611958b1162048484fbf24d319f86929",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "full_parent_default",
+            "original_characters": 1315,
+            "selected_characters": 1315,
+            "spans": [
+              [
+                0,
+                1315
+              ]
+            ]
+          },
+          {
+            "chunk_id": "265e0a4ce1e8382578da45e57e96200e1dbfe10eded51fd2eda136ba7e16ba13",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "insufficient_section_structure",
+            "original_characters": 1428,
+            "selected_characters": 1428,
+            "spans": [
+              [
+                0,
+                1428
+              ]
+            ]
+          },
+          {
+            "chunk_id": "4a6bda87ce06e409bc9b16aee79cb08681dadca195f391d4d423f1a011c6f76e",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "insufficient_section_structure",
+            "original_characters": 1457,
+            "selected_characters": 1457,
+            "spans": [
+              [
+                0,
+                1457
+              ]
+            ]
+          },
+          {
+            "chunk_id": "5f5d1ad07cb368f00b85d768a9e901b481eddab3c800b89cb1c5f09ace751bde",
+            "version": "budgeted-parent-sections-v1",
+            "reason": "model_requested_full_parent",
+            "original_characters": 499,
+            "selected_characters": 499,
+            "spans": [
+              [
+                0,
+                499
+              ]
+            ]
+          }
+        ],
+        "limitation": "No parent selector/model is invoked; metadata missing from traces prevents exact byte/character replay. Keeping only one parent is a diagnostic counterfactual, not a proposed production rule."
+      }
+    }
+  ],
+  "limits": "Saved context and processed draft only; not complete supplier HTTP requests. No live permission/source checks. Offline validity probes do not create new semantic scores or prove stochastic generation causality."
+}

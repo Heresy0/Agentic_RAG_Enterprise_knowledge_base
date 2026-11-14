@@ -1,0 +1,35 @@
+{
+  "status": "verified_assistant_reviewed_candidate",
+  "cases": 100,
+  "categories": {
+    "guidance": 30,
+    "erpnext": 20,
+    "openmes": 20,
+    "safety": 20,
+    "conversation": 10
+  },
+  "sources": 48,
+  "assistant_reviewed": 100,
+  "human_approved": 0,
+  "professional_factory_approved": 0,
+  "executed_cases": 0,
+  "model_calls": 0,
+  "manifest_sha256": "32fc34b834e9bc820ef3ac9a37c21758cb923d030c292040f6c30f5f64dffbc5",
+  "repository_sources": 40,
+  "source_units": 558,
+  "archived_projections": 8,
+  "text_evidence": 152,
+  "field_evidence": 62,
+  "damage_probes": {
+    "伪造人工审核": "rejected",
+    "伪造独立盲测": "rejected",
+    "合成文档冒充API字段": "rejected",
+    "业务字段类型篡改": "rejected",
+    "必答点断开证据": "rejected",
+    "摘录与原文不符": "rejected",
+    "离线题伪造HTTP结果": "rejected",
+    "会话协议被删除": "rejected",
+    "未问细节恢复为必答": "rejected"
+  },
+  "network_connect_attempts": 0
+}

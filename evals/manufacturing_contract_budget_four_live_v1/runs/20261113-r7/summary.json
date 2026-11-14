@@ -1,0 +1,89 @@
+{
+  "schema_version": "manufacturing-contract-budget-four-live-result-v1",
+  "source_revision": "c207559cd67fd37f5c347e3c8fede662ff379938",
+  "business_revision": "48eac53",
+  "executed": 4,
+  "contract_passed": 3,
+  "assistant_non_independent_passed": 2,
+  "usage": {
+    "matched": true,
+    "calls": 12,
+    "known_tokens": 44576,
+    "unknown_calls": 0,
+    "budget_tokens": 44576,
+    "by_stage": {
+      "query_embedding": 4,
+      "rerank": 4,
+      "answer_generation": 4
+    },
+    "providers_models": [
+      "dashscope:qwen3-rerank",
+      "dashscope:qwen3.7-flash",
+      "dashscope:text-embedding-v4"
+    ],
+    "all_priced": false,
+    "pending": 0
+  },
+  "elapsed_seconds": 52.785,
+  "limits": {
+    "max_model_calls": 40,
+    "max_tokens": 400000,
+    "max_seconds": 900,
+    "reservation_tokens": 32000
+  },
+  "request_retries": 0,
+  "index_calls": 0,
+  "human_approved": 0,
+  "independent_holdout": false,
+  "old_results_combined": false,
+  "full100_score_recomputed": false,
+  "authorization_closed": true,
+  "failed_ids": [
+    "MFG-GOLD-036",
+    "MFG-GOLD-042"
+  ],
+  "harness_error_ids": [
+    "MFG-GOLD-042"
+  ],
+  "environment_closure": {
+    "new_containers_stopped": {
+      "gold100-v4-grounded-erp-20261113-r7": "exited",
+      "gold100-v4-grounded-redis-20261113-r7": "exited"
+    },
+    "shared_dependencies_restored": {
+      "gold100-v2-milvus-20261112-r1": {
+        "id": "bdb43e71ef60bb7bc2760627bf6ee74ad7264c515c7e8b79df97d2c6c4e4fb88",
+        "status": "exited",
+        "image": "sha256:544c055ed25a2d22e4d3366c7c6b6f8b2240494eee605994bd1988437fa27ac8",
+        "started_at_changed": true
+      },
+      "gold100-v2-minio-20261112-r1": {
+        "id": "8137d9c73485b066dba6c34545ee944d4e473c99d39c1f4ac29bc9d447241a99",
+        "status": "exited",
+        "image": "sha256:6aed1b6949018d1659310e66dc076711c9a9efeffa578b337ac3d1b82e0e9153",
+        "started_at_changed": true
+      },
+      "gold100-v2-etcd-20261112-r1": {
+        "id": "dc1f0e317453347f98ba84208390a5fba20c5c429fb8ac013a3ac0e2c1e8ed83",
+        "status": "exited",
+        "image": "sha256:ce1ffcaa22b901114f685eb972afd230849fdcd8c90a36f31d7dfa7072d00158",
+        "started_at_changed": true
+      }
+    },
+    "databases_and_volumes_deleted": false,
+    "old_erp_mes_or_workbench_containers_changed": false,
+    "model_calls": 0
+  },
+  "original_preservation": {
+    "old_containers": 120,
+    "unchanged_containers": 117,
+    "changed_only_dependency_start_times": [
+      "/gold100-v2-milvus-20261112-r1",
+      "/gold100-v2-minio-20261112-r1",
+      "/gold100-v2-etcd-20261112-r1"
+    ],
+    "old_statuses_restored": true,
+    "original_workbench_changes": false,
+    "models": 0
+  }
+}

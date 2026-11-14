@@ -1,0 +1,508 @@
+[
+  {
+    "case_id": "MFG-GOLD-002",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5095.58,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-007",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 126125.652,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "APITimeoutError",
+        "ReadTimeout",
+        "ReadTimeout"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-036",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5075.956,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-041",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 8651.273,
+      "error_type": "ValidationError",
+      "provider_request_id": "cddd8f47-76fd-9199-b3de-d60062f8a038",
+      "price_snapshot": null,
+      "error_chain": [
+        "ValidationError"
+      ],
+      "http_status_code": 200,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-043",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5076.458,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-045",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5074.872,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-046",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5038.676,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-048",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5074.457,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-049",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5073.033,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-052",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 123311.032,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "APITimeoutError",
+        "ReadTimeout",
+        "ReadTimeout"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-055",
+    "stage": "answer_generation",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 123959.692,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "APITimeoutError",
+        "ReadTimeout",
+        "ReadTimeout"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-056",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5072.759,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-059",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 8676.84,
+      "error_type": "ValidationError",
+      "provider_request_id": "98ccc77b-acc9-9fce-b320-196b35d7d016",
+      "price_snapshot": null,
+      "error_chain": [
+        "ValidationError"
+      ],
+      "http_status_code": 200,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-061",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 8108.364,
+      "error_type": "APITimeoutError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "APITimeoutError",
+        "ConnectTimeout",
+        "ConnectTimeout"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-061",
+    "stage": "agent_decision",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 1830.002,
+      "error_type": "ValidationError",
+      "provider_request_id": "030c7f17-c4f3-9707-89a7-66278882de67",
+      "price_snapshot": null,
+      "error_chain": [
+        "ValidationError"
+      ],
+      "http_status_code": 200,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-064",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 8221.153,
+      "error_type": "ValidationError",
+      "provider_request_id": "ff95b919-b25d-95f7-bbff-6b6120a243c4",
+      "price_snapshot": null,
+      "error_chain": [
+        "ValidationError"
+      ],
+      "http_status_code": 200,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-066",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5068.186,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-069",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5040.886,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-077",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 8672.605,
+      "error_type": "ValidationError",
+      "provider_request_id": "1d055b1e-5a04-9bfa-9529-12ba848dbac7",
+      "price_snapshot": null,
+      "error_chain": [
+        "ValidationError"
+      ],
+      "http_status_code": 200,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-080",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5069.163,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-082",
+    "stage": "query_planning",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 3688.897,
+      "error_type": "ValidationError",
+      "provider_request_id": "cdddf57f-e250-99b6-89a9-3c245f776458",
+      "price_snapshot": null,
+      "error_chain": [
+        "ValidationError"
+      ],
+      "http_status_code": 200,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-087",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5072.146,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-098",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5027.553,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  },
+  {
+    "case_id": "MFG-GOLD-099",
+    "stage": "rerank",
+    "status": "error",
+    "details": {
+      "usage_source": "unknown",
+      "cached_input_tokens": null,
+      "reasoning_tokens": null,
+      "duration_ms": 5065.243,
+      "error_type": "RerankError",
+      "provider_request_id": null,
+      "price_snapshot": null,
+      "error_chain": [
+        "RerankError",
+        "ReadTimeout",
+        "ReadTimeoutError",
+        "TimeoutError"
+      ],
+      "http_status_code": null,
+      "transport_errno": null
+    }
+  }
+]

@@ -1,26 +1,20 @@
 # 制造业项目演示指南
 
-当前main的独立零模型候选已部署到[ERP工作台8005](http://127.0.0.1:8005/)和[MES工作台8006](http://127.0.0.1:8006/)，独立数据库、Redis及原件副本保留，原8003/8004和上游不变。可演示确定性字段查询、来源、映射原文和历史会话；需要新模型生成的问题在调用前停止。本轮不产生新模型成绩，启动方式、版本和浏览器复验见[隔离部署记录](reports/main-isolated-demo-20261110-r1.md)。以下8000固定展示与评分口径继续独立保留。
+当前入口统一为[8000](http://127.0.0.1:8000/)，左侧可切换通用知识、[ERP工作区](http://127.0.0.1:8000/erp/)及[MES工作区](http://127.0.0.1:8000/mes/)。已更新当前分支版本及第二版默认提示，支持真实模型；三个原数据库、原件、权限和历史保持，8005/8006旧容器停止且关闭自动启动。版本、数据指纹和验收见[统一部署报告](reports/unified-workspace-8000-20261114-r1.md)。
 
-本指南使用固定展示版的16份中文原件、98题精简回归配置及既有工作台。公开规范放在公共参考库；生产工艺、质量检验库沿用现有角色权限配置。8000固定展示版没有ERP/MES实时接口；独立8003的[ERPNext接入](ERPNEXT_INTEGRATION.md)及8004的[OpenMES分层问答](OPENMES_INTEGRATION.md)另行记录，不改变本指南冻结评分。视觉解析待单独配置与实测。
+最近完整隔离百题r18为结构96/100、助手非独立语义85/100，见[报告](reports/manufacturing-prompt-v2-full-live-20261114-r18.md)。本次部署的三个真实问答为功能冒烟，不形成新的百题或生产准确率。
 
-展示发布清单固定在[`demo_release.json`](../evals/manufacturing_zh_lite_v1/demo_release.json)：稳定展示源码`43aeafc`、镜像ID和r13评分口径分别记录。8001候选容器对应`868005e`，辅助计划收敛、生成诊断及超时调整的验证结果见[收尾记录](../evals/manufacturing_zh_lite_v1/reports/20261030-wrapup-r1/README.md)。相关源码已合入Git主线，但本机容器仍独立保留：8000为稳定展示，8001为候选；合并源码没有更新这些容器。涉及部署时，以实际容器镜像和配置为准。
+下文16份中文原件、98题、部门及评分内容属于历史冻结展示，保留原口径。旧发布清单[`demo_release.json`](../evals/manufacturing_zh_lite_v1/demo_release.json)记录历史源码`43aeafc`，不再代表当前8000；旧8000容器保留为停止备份，8001旧候选未更新。ERP/MES原独立接入记录继续保留。
 
 ## 启动与版本
 
-在项目根目录复用已构建的最终镜像，不重建索引、不重放整套问答：
+在项目根目录复用本次已构建镜像，不重建索引、不重放问答：
 
 ```powershell
-$demoRelease = Get-Content -LiteralPath 'evals/manufacturing_zh_lite_v1/demo_release.json' -Raw | ConvertFrom-Json
-$env:MANUFACTURING_IMAGE=$demoRelease.stable.image_id
-docker compose -f compose.yaml -f compose.manufacturing.yaml up -d --no-deps --no-build api worker quality-worker
-.venv/Scripts/python.exe scripts/manufacturing_workflow.py tokens --run-dir tmp/manufacturing-finalize-r1 --apply
-.venv/Scripts/python.exe scripts/manufacturing_workflow.py status --run-dir tmp/manufacturing-finalize-r1
+docker compose -f tmp/unified-workspace-8000-20261114-r1/compose.json --profile workers up -d --pull never
 ```
 
-基础服务沿用现有Compose环境。浏览器打开`http://127.0.0.1:8000`，使用本机`tmp/manufacturing-finalize-r1/credentials.json`中的演示账号。该目录被Git忽略，凭据不要放入演示截图或报告。管理员完成复核和评测操作，普通角色用于展示可见知识库范围。16份公开原件并非企业私密生产数据。
-
-镜像按本机已有ID启动，继续使用`--no-build`；镜像标签仅作检索说明。启动命令需要原有数据库、向量、Keycloak等基础服务就绪。上述命令只操作既有稳定版；候选镜像`enterprise-knowledge-manufacturing:timeout-868005e`独立保留，切勿把其局部补跑成绩当成稳定版的新成绩。
+本机实际Compose、凭据、备份及回退脚本在忽略目录`tmp/unified-workspace-8000-20261114-r1/`。基础服务沿用现有配置，三个工作区使用正常企业登录；账号和权限仍以原工作区配置为准，截图不展示凭据。不要使用旧稳定版或8005/8006启动配置覆盖当前入口。具体版本和回退范围见部署报告。
 
 ## 本机部门与账号
 

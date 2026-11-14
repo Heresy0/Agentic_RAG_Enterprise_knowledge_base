@@ -223,6 +223,59 @@ def test_http_missing_start_and_missing_card_do_not_fall_back_to_work_order_time
     assert response.status_code == 200 and response.json()['response_type'] == 'clarify'
 
 
+@pytest.mark.parametrize('card,expected', [('JC-A','2026-10-26'),('JC-A2','未知'),(None,'请先选择')])
+def test_backend_delivery_bypasses_generation_feedback_and_repair(execution_harness,monkeypatch,card,expected):
+    h=execution_harness
+    def unexpected(*a,**k):raise AssertionError('已确定的业务字段不得进入生成、补查或修复')
+    monkeypatch.setattr(h.answer,'_generate_draft',unexpected)
+    monkeypatch.setattr(h.answer._evidence_feedback,'run',unexpected)
+    monkeypatch.setattr(h.answer._answer_repair,'repair',unexpected)
+    payload=dict(work_order_id='WO-017',operation_id='ROW-A',question='所选作业卡实际开工时间是什么？')
+    if card:payload['job_card_id']=card
+    response=h.client.post('/api/manufacturing/qa',json=payload)
+    assert response.status_code==200,response.text
+    body=response.json();assert expected in body['answer']
+    assert body['response_type']==('answer' if card else 'clarify') and not h.generation.calls
+    snapshot=h.client.get('/api/qa/runs/'+body['run_id']).json()['snapshot']['manufacturing']
+    assert snapshot['validation']['mes_reads']==3
+    assert snapshot['business_context']['record']['execution']['operation_id']=='ROW-A'
+
+
+def test_backend_delivery_still_requires_output_validation(execution_harness,monkeypatch):
+    from backend.app.knowledge.answer_validation import ValidationResult
+    h=execution_harness
+    monkeypatch.setattr(h.answer._validator,'validate',lambda **k:ValidationResult(valid=False,errors=['本地拒绝探针']))
+    response=h.client.post('/api/manufacturing/qa',json=dict(work_order_id='WO-017',operation_id='ROW-A',
+        job_card_id='JC-A',question='所选作业卡实际开工时间是什么？'))
+    assert response.status_code==200,response.text
+    body=response.json();assert not body['answerable'] and '本地拒绝探针' in body['refusal_reason']
+    assert not body['business_citations'] and not h.generation.calls
+
+
+@pytest.mark.parametrize('change,status',[('source',409),('revoke',404)])
+def test_backend_delivery_rechecks_source_and_authority_before_commit(execution_harness,monkeypatch,change,status):
+    from sqlalchemy import delete,select
+    from backend.app.db.business_models import BusinessScopeGrant
+    from backend.app.db.quality_models import QARun
+    h=execution_harness;reads=[]
+    def unexpected(*a,**k):raise AssertionError('业务直答不得生成')
+    monkeypatch.setattr(h.answer,'_generate_draft',unexpected)
+    def late_change(graph,request):
+        if request.url.path!='/api/resource/Job Card/JC-A':return
+        reads.append(request.url.path)
+        if len(reads)!=3:return
+        if change=='source':graph.cards['JC-A']['actual_start_date']='2026-10-26 10:00:00'
+        else:
+            with h.c.session_factory() as session:
+                session.execute(delete(BusinessScopeGrant));session.commit()
+    h.graph.hook=late_change
+    response=h.client.post('/api/manufacturing/qa',json=dict(work_order_id='WO-017',operation_id='ROW-A',
+        job_card_id='JC-A',question='所选作业卡实际开工时间是什么？'))
+    assert response.status_code==status,response.text
+    assert len(reads)==3 and not h.generation.calls
+    with h.c.session_factory() as session:assert list(session.scalars(select(QARun)))==[]
+
+
 def test_card_citation_precision_uses_card_scope_instead_of_work_order(execution_harness):
     h = execution_harness
     h.graph.cards['JC-A']['actual_start_date'] = '2026-10-26'

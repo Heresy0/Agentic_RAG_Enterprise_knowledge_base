@@ -1,0 +1,11 @@
+{
+  "files": {
+    "audits.json": "59908c0d1baf508a76f3eaf50ae435148f8caf5133d52d195aed4da9e17a646b",
+    "inputs.json": "23583ae2bd0f7c18f11f70b1fa5c42df70fe8d463e0d622c1311803a0e85cb2e",
+    "plan.json": "1e16add0d4abc2653934fb52f7451ba2f1975ddd9ddcb5a4dc19e22f7a65c6bc",
+    "summary.json": "4079765f78fe1140a244b81d7ed846c31a2b1eb3fee12289e029d61ea51204ab",
+    "trials.jsonl": "545f8044d36ddd0636e90eb3a2c0fdda96b6e1bd3e3277cc07661928df2d195e"
+  },
+  "credentials_scan_passed": true,
+  "serialization": "Public files use UTF-8 with LF. plan.input_sha256 and audits.frozen_input_sha256 identify original private frozen input bytes; files.inputs.json identifies public serialization. JSON payloads are identical."
+}

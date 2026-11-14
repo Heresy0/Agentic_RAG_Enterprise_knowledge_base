@@ -1,0 +1,39 @@
+{
+  "business_source": {
+    "erp": {
+      "container": "gold100-v2-erp-20261112-r1",
+      "business_python_files": 167,
+      "matches_business_commit": "b741bd2",
+      "matches": true
+    },
+    "mes": {
+      "container": "gold100-v2-mes-20261112-r1",
+      "business_python_files": 167,
+      "matches_business_commit": "b741bd2",
+      "matches": true
+    }
+  },
+  "snapshots": {
+    "observed_requests": 253,
+    "qa_post_requests": 110,
+    "snapshot_get_requests": 95,
+    "manufacturing_snapshots": 34,
+    "all_three_reads_and_validations": true
+  },
+  "v2_preflight": {
+    "erp_zero_model_requests": 6,
+    "mes_zero_model_requests": 23,
+    "models_in_preflight": 0,
+    "documents_per_platform": 55,
+    "chunks_per_platform": 885,
+    "business_source_commit": "b741bd2",
+    "entry_frozen_commit": "a210db9",
+    "business_python_files_per_platform": 167,
+    "dedicated_vector_service": true,
+    "original_role_limit": 10,
+    "source_dns_isolated": true,
+    "ordinary_request_payload_only": true,
+    "gold_labels_sent_to_model": false,
+    "authorization_receipt_sha256": "d234d751bf8da4df665d4597f123ec0cf7e5521dfb61dde1026acdddd913621e"
+  }
+}

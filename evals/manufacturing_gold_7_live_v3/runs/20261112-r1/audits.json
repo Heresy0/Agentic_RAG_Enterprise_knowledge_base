@@ -1,0 +1,1154 @@
+{
+  "preservation": {
+    "original_containers": 76,
+    "changed_containers": [],
+    "old_files": 779,
+    "changed_files": [],
+    "old_application_ledgers": 8,
+    "changed_old_ledgers": [],
+    "new_container_no_published_ports": true,
+    "mounts_all_read_only": true
+  },
+  "preflight": {
+    "inventory": {
+      "documents": [
+        {
+          "id": "021138e6-9770-402b-a44d-5f3799311f3b",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-PUB-10_智能制造典型场景与工艺知识导读.md",
+          "content_hash": "d64bd1e5088ecf5a2d9b036be1817350700b096ebd521f897f4b37d1a79fe413",
+          "version": 1,
+          "metadata_sha256": "45332bf7f52e9c0ee57c88b6317126a6c2369bd1cf8db759a57a865fff6b4e41"
+        },
+        {
+          "id": "04c96fdd-835c-4bce-9d4c-ecacbe9421a6",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-01_DEMO-C31_OP-30密封组件核对与装配记录_历史版.md",
+          "content_hash": "471dfbe6ded685792244b65e90e28e8640061285fbc5f30e3e00d415a5986ae5",
+          "version": 1,
+          "metadata_sha256": "e98522b28e61efae114315ea1861afc3594809222c87d367261e7764dc3736db"
+        },
+        {
+          "id": "06a24536-22cc-4aca-bee5-0dc4b9347aa8",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+          "content_hash": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+          "version": 1,
+          "metadata_sha256": "edcf727707a19cc3056453ce953c6b9111b05d6596d77f4c5a1d5160b816793b"
+        },
+        {
+          "id": "0d962ba7-f4a1-46a5-81b6-e4c0584debe8",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-04_DEMO-C31_OP-40气密检测结果复核_现行演示版.md",
+          "content_hash": "dd42e81a673efbef301bc4ba41294d318649718d7d4e6ca67353822b2c136a0a",
+          "version": 1,
+          "metadata_sha256": "2c21b97415d68c3f85546c17c64edd4b114b1b14156822a782e1a6d8cd89c02d"
+        },
+        {
+          "id": "12059b15-b7d9-4d31-8e77-c54d1e139999",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+          "content_hash": "dce4fc1b506c19d7bd0bc8a41d4429ad1357c35c89b6d4e77bfa6b568f330fdb",
+          "version": 1,
+          "metadata_sha256": "b71728579618cf5fbd480f639edfce695a1d85c85a26ed81ce308217eb3b7c97"
+        },
+        {
+          "id": "129c2e11-a146-4137-a22e-31d69f6bda79",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+          "content_hash": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+          "version": 1,
+          "metadata_sha256": "9190081082e39487e75abe5bc694cd799a9728cda723aeb0200f63b92a5bb0c9"
+        },
+        {
+          "id": "13e2ce94-2577-4066-bfb2-072dd27f744e",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-09_DEMO-C31工单例外通知草案.md",
+          "content_hash": "1bc07785cda76414d1543ad69c60fe246e94d72bdaa58122494979a0d6cfe04a",
+          "version": 1,
+          "metadata_sha256": "75abb9b52f6203eda680c008f24fd2824ea4cf5875029d738c703a1be2dca3d3"
+        },
+        {
+          "id": "16d967e0-892e-402c-8eb5-7f3464072a34",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+          "content_hash": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+          "version": 1,
+          "metadata_sha256": "8c494dc04be6e4d45b93392de570b16dd4487ff2923c47185e5b6c5652aa1897"
+        },
+        {
+          "id": "19ae172e-9959-44b8-830f-a103ac9880d8",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-PUB-12_质量基础设施与质量目标导读.md",
+          "content_hash": "92ec261d2b8163c80aaf33d3f2c1567ce43189027b39244c82bd74c0aa8c449c",
+          "version": 1,
+          "metadata_sha256": "59c8cdc5927a9576ca47a73e82734c6f48bd969a575d26ca27901c14b6271d85"
+        },
+        {
+          "id": "1fcaae8c-2440-4b50-bafe-7167982b81a6",
+          "knowledge_base_id": "3cd86e3d-572b-4ea8-8bf3-12fd2b704f5a",
+          "file_name": "16_首件检验记录B-1026-017.txt",
+          "content_hash": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+          "version": 1,
+          "metadata_sha256": "d75872127b8c84404ceda8c24ac2152a1ecd583b1304985fd455d08e7849d1b2"
+        },
+        {
+          "id": "20ed96cd-4c80-4482-adf4-c5c69ffeeba8",
+          "knowledge_base_id": "3cd86e3d-572b-4ea8-8bf3-12fd2b704f5a",
+          "file_name": "08_HC-A17首件检验规范.docx",
+          "content_hash": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+          "version": 1,
+          "metadata_sha256": "188bbbd5613c348bd000d7dd409ad3932dc7dfa1edf333560557bafaf1169efb"
+        },
+        {
+          "id": "313b8e89-7753-4647-b6a0-ee0cb70c07aa",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+          "content_hash": "01878877878e504e6eaa48ffdadc64a8cb24822d7d7bb7fdf8bedd7fa5228f9b",
+          "version": 1,
+          "metadata_sha256": "21b06bcd4732afae90d4aa21d61586d0471e1b4819717469e55f595ad87777b4"
+        },
+        {
+          "id": "32b19cc8-ad1c-499f-8e17-418df848b336",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+          "content_hash": "b361ef5a71879e8621127d61749a30d3b78e3a7410e4cccfaabd4123ec60eebb",
+          "version": 1,
+          "metadata_sha256": "198e6d097d5653d85b0a95d8c2a8fd0ed43893602c1a5971496d8c64aca28595"
+        },
+        {
+          "id": "4dd2314a-7f3f-4200-9647-ccb1910cd649",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+          "content_hash": "95a86e5ef893935246d5246261d0dd513f19fea667e2eae9c5564c8eb7ab8efd",
+          "version": 1,
+          "metadata_sha256": "84e47847fcdf30409a60ad77b84a0c0618bcbfa989561a268787140a1d85761c"
+        },
+        {
+          "id": "5018e239-326b-4a65-9ed5-e7233f099cc2",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-04_DEMO-B21_OP-20定位孔尺寸复核_现行演示版.md",
+          "content_hash": "a763e64c450b69ee84ed99d8cf4267d6295bb68424e84d0ec5dc4868d2edc26e",
+          "version": 1,
+          "metadata_sha256": "bb1578ea7cb54bb817d54a103199085a90350a6cf1da1c7ae1c4676c3bd9719e"
+        },
+        {
+          "id": "5b0d27f1-8f05-409e-85a5-6eda95a45a7f",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-01_DEMO-B21_OP-10来料与基准核对_历史版.md",
+          "content_hash": "de6048346e87685b44bb074fb08e08eabe09142674a8be53e3929d9da020ca0b",
+          "version": 1,
+          "metadata_sha256": "bbad6c5b41df3a39edbef6db71afb94e2b010fb78a1cd64f70c1215376654d2e"
+        },
+        {
+          "id": "678a8fdb-2fa6-4c57-b99c-de442f11f25e",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "15_工单WO-018班次交接记录.txt",
+          "content_hash": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+          "version": 1,
+          "metadata_sha256": "e283074f91703be108f7057ccde530fc03fb72d308776276b71b1eb0065e68c3"
+        },
+        {
+          "id": "6a0412bd-2c4a-4964-b136-58ce7b6b0ea0",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-03_DEMO-D41_OP-60导通检测与标识核对_历史版.md",
+          "content_hash": "7f020b05fbe4ee758507a50fa0acb191e0c1572e59fb4439b9967acea6cb36f8",
+          "version": 1,
+          "metadata_sha256": "91330ab6509f5a315ddcf52d2c0d18c532c6b52f5599ec3293d7e5e7853eee61"
+        },
+        {
+          "id": "6aa8d7c1-132b-497c-bee9-32ac52e86b1d",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "content_hash": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+          "version": 1,
+          "metadata_sha256": "20d2beb1f6ae6b5356b178cb1e01ed75388f3370f050ac4c7d055285aa7109d0"
+        },
+        {
+          "id": "6fe41f12-cd3a-4924-83ea-2af706b8442d",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+          "content_hash": "21631f4ec1634d8c64a2c56a19a5e6cd47fdd0cc1aa11d1b3cc4d8eff232bb17",
+          "version": 1,
+          "metadata_sha256": "936abf647c7cfcf6d906551080999f34c650a117166bfa0c929ba8f6abe6d3ec"
+        },
+        {
+          "id": "72adbc31-1791-490c-9dd6-cee2ef379914",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+          "content_hash": "446e8f6eaa46026cbe0d31cb0d5f6c6cdc5bb3cb68405c4a45399a2248760235",
+          "version": 2,
+          "metadata_sha256": "de3d7bb3d0777cb9020a7b698bbe1b702d328673a182d05993c6af046151219d"
+        },
+        {
+          "id": "73de0dfc-eb3a-43bf-904c-42b8034de5c7",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "03_WO024书面指示B.md",
+          "content_hash": "f773f6704aa53f8d06170474f0e06517c8729bd27d944285621eef99c608efad",
+          "version": 1,
+          "metadata_sha256": "8c0699ef6ab0fd50552d9931daa5fe325e278334293f37041000dfa8a670e525"
+        },
+        {
+          "id": "76ed1280-0279-401c-b090-b7bd1659ec3a",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-09_DEMO-D41工单例外通知草案.md",
+          "content_hash": "6aaad236fade8d156f5efc31f5acb0a81a6857904e03abafa107aa68c431e198",
+          "version": 1,
+          "metadata_sha256": "a800dc5590e90d4f16149d452360a344c4935a873db61070daa1c7cad6de0e40"
+        },
+        {
+          "id": "7792685e-dc85-4155-9c15-70bafc318754",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-03_DEMO-C31_OP-40气密检测结果复核_历史版.md",
+          "content_hash": "93de6040f28e01ee635d77a7761a2a12eb8fd0fa5ad2b708c3e3c4a6dee22e6d",
+          "version": 1,
+          "metadata_sha256": "3019bd3424b714251e734b7b21a3ba33e6454588341199306a20cb3bbf2d2e8b"
+        },
+        {
+          "id": "78313287-26a6-4a5f-a7a7-a8efa741295d",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+          "content_hash": "508b97f2b42b57eae7b42341d643eb9e7bb485f068329250eed0b526aa96dcfc",
+          "version": 2,
+          "metadata_sha256": "7fd002d084332302c383d321ca7e051e62cd042748b394ed13c0c43029afff1d"
+        },
+        {
+          "id": "797be548-e9ab-4ba4-a3ef-583ad380d331",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+          "content_hash": "eb8ce6085683cf2f37b03450cab102db2dc27770ac25402b76f843f3e083afb0",
+          "version": 1,
+          "metadata_sha256": "4a720a842eac12725f1d302fb01a794b4e84d15888bb56111c64daf35ce88ef5"
+        },
+        {
+          "id": "7cd986f6-8f6c-4b9b-99eb-f735e8984e89",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+          "content_hash": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+          "version": 1,
+          "metadata_sha256": "c8c7ee3c4183607f5e9c0d1c8a62bf906a4e90071cdc8c8a0eaa6511781f990b"
+        },
+        {
+          "id": "809dfe13-a992-4b8f-ad5a-eb5ee4e8d244",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-04_DEMO-D41_OP-60导通检测与标识核对_现行演示版.md",
+          "content_hash": "de2d4ad5b5d021e5030b35dad1f27732d614d9efc79e00e49c1bf9252ffb3331",
+          "version": 1,
+          "metadata_sha256": "9576ca28f283efc945f989ba5af8eddd7c8d2b50e5fe38cf73454265e359916b"
+        },
+        {
+          "id": "828327d2-92ee-4452-9243-29eaced0f7db",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-02_DEMO-C31_OP-30密封组件核对与装配记录_现行演示版.md",
+          "content_hash": "79ba2fe94066f98c7af601dd056ac35e7bb31d8779d87ccd868018978632c469",
+          "version": 1,
+          "metadata_sha256": "d75c4426ebecf022f32d408e13e4f2977cbf8117439df6b5947f249ecc265e10"
+        },
+        {
+          "id": "83cb1ed5-bc7b-486a-af96-62b84cd16745",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-10_DEMO-B21班次交接与未完成项.md",
+          "content_hash": "89c09d402f6e45eccb37d87398eee7e0fefc1fcfa52af3d22aaf4c73656af537",
+          "version": 1,
+          "metadata_sha256": "918efee973af35e532adc73c5d76c6e80af05e5797c5f57ffcc891a99d86db68"
+        },
+        {
+          "id": "865efbd3-2822-4f06-bb51-e9d8f42575a0",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+          "content_hash": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+          "version": 1,
+          "metadata_sha256": "373d96476a93058c98c93aeb9ed2e90480c7bac502de86968164df4b5cd7f567"
+        },
+        {
+          "id": "8816d029-405b-4c1b-9e3a-e878d3d70dda",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+          "content_hash": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+          "version": 1,
+          "metadata_sha256": "4cfdd67c6f67a82327a75a188b188e35a2c3a7596fd186669a0c6732dbdcf0d2"
+        },
+        {
+          "id": "88a9143c-a744-45b7-988f-04a5065198a6",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-09_DEMO-B21工单例外通知草案.md",
+          "content_hash": "d46181d3e69050e043eec18bfcec86d3f9121363f9c3b4861b91f9d7f0c64679",
+          "version": 1,
+          "metadata_sha256": "bad3071f99c2d3194a81fa13af165016b3f1b695bf8624522e187d68800ac1e5"
+        },
+        {
+          "id": "8a37dcc5-38b7-4987-9dd0-a520fa0a2e4c",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-03_DEMO-B21_OP-20定位孔尺寸复核_历史版.md",
+          "content_hash": "d93c7bb5980d7525888709fa92f768f813d2a0a5187a964ad84ae6501fc8e0cd",
+          "version": 1,
+          "metadata_sha256": "2892ce93f2c851f2e802981ba9311b61b32ac6b34a243530bad54727054b4199"
+        },
+        {
+          "id": "8c6be94c-3021-4f0a-bd8b-e892a5fb8e32",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+          "content_hash": "5b4d7a61311ce96c0e802fe8584512e0491270ac931650a96da271132685dcd2",
+          "version": 1,
+          "metadata_sha256": "39a7d7dd926bf5a50a4fb5240e7e75d94923495e7f8e5a9cf3ff7038f5066698"
+        },
+        {
+          "id": "98d82315-9a67-486c-8b32-cd9add3d3254",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+          "content_hash": "2282dd1785a9568161d312e6dc34649c1ab278cb8b55e8b7c9d113bc47dba060",
+          "version": 1,
+          "metadata_sha256": "8a4884217e1871b14b888655e058c431875576d43d452e178eb764127a1304cb"
+        },
+        {
+          "id": "a3599b26-0c0e-4856-bcc2-87e7b9c2eb3b",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "06_HC-A17_OP20作业指导书历史版.docx",
+          "content_hash": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+          "version": 1,
+          "metadata_sha256": "93472067db9180d8a226c5dd9e7bf53ca468ba5ea3f763d1a569cf9745ba4619"
+        },
+        {
+          "id": "a99c942a-da2e-45da-80c6-75dfad907ece",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "09_工艺变更通知ECN-2026-018.docx",
+          "content_hash": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+          "version": 1,
+          "metadata_sha256": "50777b1bf3ebbecbd9ab853cd47a134308333304820d6893db51b463298ba72f"
+        },
+        {
+          "id": "a9db2fc7-4238-4a18-bd6e-44a37910bd4c",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-10_DEMO-C31班次交接与未完成项.md",
+          "content_hash": "878c59ab34083bf52d5ebea995a874bc2a4f7792afc9b7610ea7eef509c2f35a",
+          "version": 1,
+          "metadata_sha256": "daa94370cd074363b907d3166ee37c587120379e0a22700765319d3376fa79a8"
+        },
+        {
+          "id": "acdeca1d-b332-48bb-9d0f-2dbe23cabdcf",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+          "content_hash": "2fcb4d63a9c660de8d018baa6cdd967a47d7e1f76d218f2cb9ae6c56bfbcab05",
+          "version": 1,
+          "metadata_sha256": "1d6187e6875b51c87ee98e04386e9141774d45150de880369f635739ee0932d8"
+        },
+        {
+          "id": "ae7b39c9-9c72-4496-8e62-ed2379990e18",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-PUB-09_中小企业数字化转型路径导读.md",
+          "content_hash": "11e3ba6008af4f05cf578fa5e235c21c39ea0fa1a7279ad8451fc6a55828fe9f",
+          "version": 1,
+          "metadata_sha256": "f4f2cf5be426823df6e8841fcaef0c4e946e6c860919809ab661953a58243585"
+        },
+        {
+          "id": "b0641de0-1103-4825-b63c-699087c6b045",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+          "content_hash": "258063f5efac40dd0a5fe509c997e16b349c305f787088932f19bd3d9d8f0be6",
+          "version": 2,
+          "metadata_sha256": "e4f75bd16cf15807e8076201a82a7096d2f008bdece17d28d4c03ff5f164e825"
+        },
+        {
+          "id": "b64b8bb8-0b44-4f53-8c76-d1a8a9a39976",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "02_首件确认与工序交接流程.pdf",
+          "content_hash": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+          "version": 1,
+          "metadata_sha256": "9f4bac4109685d092d328c95d219df0bbe605464c8fcb931e9bc03712e6b7c5a"
+        },
+        {
+          "id": "c12bcb19-c35a-449a-b8fb-16d87ccd4f5a",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "02_WO024书面指示A.md",
+          "content_hash": "2332f98f9c6b0e54e0a0c0602c5b00f802608a7195135cfe4d79f2f3262fa497",
+          "version": 1,
+          "metadata_sha256": "bb041d9696676a178fd3802ba588339394b9a02ebca9ace3e9f99012e8a8fbb3"
+        },
+        {
+          "id": "c186e318-8259-4a18-a447-98fea824ea0b",
+          "knowledge_base_id": "4de5d6a9-b3c6-417b-b31e-12d960bc5dfb",
+          "file_name": "10_产品工序与文件路由.md",
+          "content_hash": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+          "version": 1,
+          "metadata_sha256": "4ca339ce0d4bb6764bea30d673ba5415bb2ac627a4e3be3b0f96f9127b9bc87d"
+        },
+        {
+          "id": "c6df0cb7-0e60-41ac-93df-c07746a40189",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "content_hash": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+          "version": 1,
+          "metadata_sha256": "54e53ff1aa70cc5b8a12eedbc96f8f918685a43e1e05ac145e97230358e33833"
+        },
+        {
+          "id": "cd4b119a-a3f9-49c2-a08b-e0f37f47585e",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "14_工单WO-017班次交接记录.txt",
+          "content_hash": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+          "version": 1,
+          "metadata_sha256": "e9c58cce0a56bbcd37a2e1db1799e4ca9dd17e52dc0ed74b38ca089b7a671e94"
+        },
+        {
+          "id": "d240a67c-17f6-4eab-9b42-d19fd0711b41",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+          "content_hash": "c212885e28c89fd698be0f9da6dd6e19f1d2e360c9d268da81694150030786bb",
+          "version": 1,
+          "metadata_sha256": "58376a62a3c7239886ff649982a3a28cd88b00bdd82ffbfe9fd6c4c483fdea38"
+        },
+        {
+          "id": "d9f19f71-76d2-4c5c-beb1-8e126208c8ff",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+          "content_hash": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+          "version": 1,
+          "metadata_sha256": "5f998bd86b93285790de898e334f13ee09ee1e8118288fe4eba7a9e820d1c9a4"
+        },
+        {
+          "id": "dd86bd26-3aae-466e-bbf6-0739f24f0e5a",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "01_WO019书面切换通知.md",
+          "content_hash": "43a90c111f1117895d3933ccf39ff4440c37c8ec11855f8cb417311477e158a6",
+          "version": 1,
+          "metadata_sha256": "b878fffccb74b816d93ef663f67911fd00e5b51c1c780c8d300ab402e75ac0cc"
+        },
+        {
+          "id": "dfecd8be-8d53-44a6-b17c-d5af1886fccb",
+          "knowledge_base_id": "3cd86e3d-572b-4ea8-8bf3-12fd2b704f5a",
+          "file_name": "12_检验记录填写与追溯规则.md",
+          "content_hash": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+          "version": 1,
+          "metadata_sha256": "7f346fcedb87a8984b84d248356f7b92d935ce5df03341812b68587e8ca82cf9"
+        },
+        {
+          "id": "e41b9b7c-7d06-4e9d-ad76-dbbbf7809fd9",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-PUB-11_智能制造标准体系建设通知导读.md",
+          "content_hash": "50cf2b75c21ff5885bc288b3503cda313c06e530ea50bd8fd85962e3bd1f8cd5",
+          "version": 1,
+          "metadata_sha256": "9b2d65047c2d8474c543a653e8b6f4eec88c891d6a5003c669fab3d56f19a822"
+        },
+        {
+          "id": "ea28748a-fec7-4f2a-9cf4-e456ccb72197",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+          "content_hash": "5827645b3ce7ad816eb66aaab7c609206a40c729034db4962bb65c0b4368d797",
+          "version": 1,
+          "metadata_sha256": "c025c783e951045822ef64d684c5c68a7120293bfdde584dd67c77cbadd29409"
+        },
+        {
+          "id": "ed884691-098e-42aa-940e-7613e7de90d3",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+          "content_hash": "e576097565e55e881d1885b5ec24afde2f7d4adef0a7b881516d46ed44d0963c",
+          "version": 1,
+          "metadata_sha256": "186f6ee80511d61b66736d31b2108d2e965b7a1d0225b9212f02d753924f3f5a"
+        },
+        {
+          "id": "fdef9b05-233f-4734-9f46-91a740570e7b",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+          "content_hash": "6aab4ccfe54e6112d0efc19f2147a47145d3f2b095e54dad9b07e98a05f25f11",
+          "version": 1,
+          "metadata_sha256": "8b2846ff18f1635e853e6144d64d4939cffdd488cfa2ff65eef1ef102a6a9906"
+        }
+      ],
+      "chunks": 885,
+      "active_index_jobs": 0
+    },
+    "context": {
+      "source_system_id": "erpnext-hc",
+      "plant_code": "HC-P01",
+      "work_order_id": "ERP-WO-EXECUTION",
+      "source_record_id": "ERP-WO-EXECUTION",
+      "product_model": "HC-A17",
+      "operation_code": "OP-20",
+      "route_revision": null,
+      "batch_no": null,
+      "actual_started_at": "2026-09-28T08:10:00+08:00",
+      "actual_start_precision": "datetime",
+      "reported_at": null,
+      "status": "In Process",
+      "change_notice_refs": [],
+      "source_revision": "erp-1c1560e48ce0d6ca1c1e1a292ea468aa25e220044050b3d63cb75e2b089f",
+      "source_updated_at": "2026-11-09T20:02:27.401835+08:00",
+      "execution": {
+        "operation_id": "7pvg4cgbg0",
+        "operation_actual_started_at": "2026-09-28T08:10:00+08:00",
+        "operation_start_precision": "datetime",
+        "operation_status": "Work in Progress",
+        "job_card_id": "PO-JOB00009",
+        "job_card_actual_started_at": null,
+        "job_card_start_precision": null,
+        "job_card_status": "Open",
+        "job_card_updated_at": "2026-11-09T20:02:27.401835+08:00"
+      },
+      "fetched_at": "2026-11-12T14:38:45.367260+00:00",
+      "last_verified_at": "2026-11-12T14:38:45.367260+00:00",
+      "payload_sha256": "7317a6f83b8940c82fecb84b15932f5de5cf5adbc56da60e1001235aca36f036"
+    },
+    "events": [
+      {
+        "method": "GET",
+        "path": "/api/manufacturing/work-orders/ERP-WO-EXECUTION/context",
+        "status_code": 200,
+        "response": {
+          "source_system_id": "erpnext-hc",
+          "plant_code": "HC-P01",
+          "work_order_id": "ERP-WO-EXECUTION",
+          "source_record_id": "ERP-WO-EXECUTION",
+          "product_model": "HC-A17",
+          "operation_code": "OP-20",
+          "route_revision": null,
+          "batch_no": null,
+          "actual_started_at": "2026-09-28T08:10:00+08:00",
+          "actual_start_precision": "datetime",
+          "reported_at": null,
+          "status": "In Process",
+          "change_notice_refs": [],
+          "source_revision": "erp-1c1560e48ce0d6ca1c1e1a292ea468aa25e220044050b3d63cb75e2b089f",
+          "source_updated_at": "2026-11-09T20:02:27.401835+08:00",
+          "execution": {
+            "operation_id": "7pvg4cgbg0",
+            "operation_actual_started_at": "2026-09-28T08:10:00+08:00",
+            "operation_start_precision": "datetime",
+            "operation_status": "Work in Progress",
+            "job_card_id": "PO-JOB00009",
+            "job_card_actual_started_at": null,
+            "job_card_start_precision": null,
+            "job_card_status": "Open",
+            "job_card_updated_at": "2026-11-09T20:02:27.401835+08:00"
+          },
+          "fetched_at": "2026-11-12T14:38:45.367260+00:00",
+          "last_verified_at": "2026-11-12T14:38:45.367260+00:00",
+          "payload_sha256": "7317a6f83b8940c82fecb84b15932f5de5cf5adbc56da60e1001235aca36f036"
+        },
+        "request_id": "43a1e64757104c0a80e64215ef4f0167",
+        "trace": {
+          "query": "",
+          "scope": {},
+          "stages": {}
+        },
+        "model_calls": 0
+      }
+    ],
+    "budget": {
+      "calls": 0,
+      "charged_tokens": 0,
+      "unknown_calls": 0,
+      "elapsed_seconds": 0.907,
+      "limited_by": null
+    }
+  },
+  "after": {
+    "inventory": {
+      "documents": [
+        {
+          "id": "021138e6-9770-402b-a44d-5f3799311f3b",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-PUB-10_智能制造典型场景与工艺知识导读.md",
+          "content_hash": "d64bd1e5088ecf5a2d9b036be1817350700b096ebd521f897f4b37d1a79fe413",
+          "version": 1,
+          "metadata_sha256": "45332bf7f52e9c0ee57c88b6317126a6c2369bd1cf8db759a57a865fff6b4e41"
+        },
+        {
+          "id": "04c96fdd-835c-4bce-9d4c-ecacbe9421a6",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-01_DEMO-C31_OP-30密封组件核对与装配记录_历史版.md",
+          "content_hash": "471dfbe6ded685792244b65e90e28e8640061285fbc5f30e3e00d415a5986ae5",
+          "version": 1,
+          "metadata_sha256": "e98522b28e61efae114315ea1861afc3594809222c87d367261e7764dc3736db"
+        },
+        {
+          "id": "06a24536-22cc-4aca-bee5-0dc4b9347aa8",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH07_热工仪表校验仪校准规范_JJF吉31-2021.pdf",
+          "content_hash": "3ac80cf79cfa1fcb0f8702664b94d829d452b70b36f1cac0641dc839411e48ee",
+          "version": 1,
+          "metadata_sha256": "edcf727707a19cc3056453ce953c6b9111b05d6596d77f4c5a1d5160b816793b"
+        },
+        {
+          "id": "0d962ba7-f4a1-46a5-81b6-e4c0584debe8",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-04_DEMO-C31_OP-40气密检测结果复核_现行演示版.md",
+          "content_hash": "dd42e81a673efbef301bc4ba41294d318649718d7d4e6ca67353822b2c136a0a",
+          "version": 1,
+          "metadata_sha256": "2c21b97415d68c3f85546c17c64edd4b114b1b14156822a782e1a6d8cd89c02d"
+        },
+        {
+          "id": "12059b15-b7d9-4d31-8e77-c54d1e139999",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-10_DEMO-D41班次交接与未完成项.md",
+          "content_hash": "dce4fc1b506c19d7bd0bc8a41d4429ad1357c35c89b6d4e77bfa6b568f330fdb",
+          "version": 1,
+          "metadata_sha256": "b71728579618cf5fbd480f639edfce695a1d85c85a26ed81ce308217eb3b7c97"
+        },
+        {
+          "id": "129c2e11-a146-4137-a22e-31d69f6bda79",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH02_辽宁省工业产品生产销售单位落实质量安全主体责任工作指南_2023.md",
+          "content_hash": "8e24702c64385c0fa09fc2ff63baf1a64b9808fe0bb1611fb1810e641a02c4ee",
+          "version": 1,
+          "metadata_sha256": "9190081082e39487e75abe5bc694cd799a9728cda723aeb0200f63b92a5bb0c9"
+        },
+        {
+          "id": "13e2ce94-2577-4066-bfb2-072dd27f744e",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-09_DEMO-C31工单例外通知草案.md",
+          "content_hash": "1bc07785cda76414d1543ad69c60fe246e94d72bdaa58122494979a0d6cfe04a",
+          "version": 1,
+          "metadata_sha256": "75abb9b52f6203eda680c008f24fd2824ea4cf5875029d738c703a1be2dca3d3"
+        },
+        {
+          "id": "16d967e0-892e-402c-8eb5-7f3464072a34",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH08_压合机校准规范_JJF吉103-2022.pdf",
+          "content_hash": "ad5484efb70e87bde9b99cb2d5a2be9279c131fa3ec85bf981e945d92113bc4a",
+          "version": 1,
+          "metadata_sha256": "8c494dc04be6e4d45b93392de570b16dd4487ff2923c47185e5b6c5652aa1897"
+        },
+        {
+          "id": "19ae172e-9959-44b8-830f-a103ac9880d8",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-PUB-12_质量基础设施与质量目标导读.md",
+          "content_hash": "92ec261d2b8163c80aaf33d3f2c1567ce43189027b39244c82bd74c0aa8c449c",
+          "version": 1,
+          "metadata_sha256": "59c8cdc5927a9576ca47a73e82734c6f48bd969a575d26ca27901c14b6271d85"
+        },
+        {
+          "id": "1fcaae8c-2440-4b50-bafe-7167982b81a6",
+          "knowledge_base_id": "3cd86e3d-572b-4ea8-8bf3-12fd2b704f5a",
+          "file_name": "16_首件检验记录B-1026-017.txt",
+          "content_hash": "70b3f2f9d42abebb95a6ff6ba8976f6ac5e539c3bf5e96f41c791f91bb9ee7c0",
+          "version": 1,
+          "metadata_sha256": "d75872127b8c84404ceda8c24ac2152a1ecd583b1304985fd455d08e7849d1b2"
+        },
+        {
+          "id": "20ed96cd-4c80-4482-adf4-c5c69ffeeba8",
+          "knowledge_base_id": "3cd86e3d-572b-4ea8-8bf3-12fd2b704f5a",
+          "file_name": "08_HC-A17首件检验规范.docx",
+          "content_hash": "d1d3830c48c08e2907e5d7763aa9369c3d1a04321b8ee6ee77f250cdc0ba9d27",
+          "version": 1,
+          "metadata_sha256": "188bbbd5613c348bd000d7dd409ad3932dc7dfa1edf333560557bafaf1169efb"
+        },
+        {
+          "id": "313b8e89-7753-4647-b6a0-ee0cb70c07aa",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-06_DEMO-C31_OP-40检验要求与记录辨析.pdf",
+          "content_hash": "01878877878e504e6eaa48ffdadc64a8cb24822d7d7bb7fdf8bedd7fa5228f9b",
+          "version": 1,
+          "metadata_sha256": "21b06bcd4732afae90d4aa21d61586d0471e1b4819717469e55f595ad87777b4"
+        },
+        {
+          "id": "32b19cc8-ad1c-499f-8e17-418df848b336",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-05_DEMO-C31_OP-30检验要求与记录辨析.pdf",
+          "content_hash": "b361ef5a71879e8621127d61749a30d3b78e3a7410e4cccfaabd4123ec60eebb",
+          "version": 1,
+          "metadata_sha256": "198e6d097d5653d85b0a95d8c2a8fd0ed43893602c1a5971496d8c64aca28595"
+        },
+        {
+          "id": "4dd2314a-7f3f-4200-9647-ccb1910cd649",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-07_DEMO-D41工艺变更通知.md",
+          "content_hash": "95a86e5ef893935246d5246261d0dd513f19fea667e2eae9c5564c8eb7ab8efd",
+          "version": 1,
+          "metadata_sha256": "84e47847fcdf30409a60ad77b84a0c0618bcbfa989561a268787140a1d85761c"
+        },
+        {
+          "id": "5018e239-326b-4a65-9ed5-e7233f099cc2",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-04_DEMO-B21_OP-20定位孔尺寸复核_现行演示版.md",
+          "content_hash": "a763e64c450b69ee84ed99d8cf4267d6295bb68424e84d0ec5dc4868d2edc26e",
+          "version": 1,
+          "metadata_sha256": "bb1578ea7cb54bb817d54a103199085a90350a6cf1da1c7ae1c4676c3bd9719e"
+        },
+        {
+          "id": "5b0d27f1-8f05-409e-85a5-6eda95a45a7f",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-01_DEMO-B21_OP-10来料与基准核对_历史版.md",
+          "content_hash": "de6048346e87685b44bb074fb08e08eabe09142674a8be53e3929d9da020ca0b",
+          "version": 1,
+          "metadata_sha256": "bbad6c5b41df3a39edbef6db71afb94e2b010fb78a1cd64f70c1215376654d2e"
+        },
+        {
+          "id": "678a8fdb-2fa6-4c57-b99c-de442f11f25e",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "15_工单WO-018班次交接记录.txt",
+          "content_hash": "de748def4601cd1dc9128102bb3b769c08c18c4d8880509a8d5990da710b63be",
+          "version": 1,
+          "metadata_sha256": "e283074f91703be108f7057ccde530fc03fb72d308776276b71b1eb0065e68c3"
+        },
+        {
+          "id": "6a0412bd-2c4a-4964-b136-58ce7b6b0ea0",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-03_DEMO-D41_OP-60导通检测与标识核对_历史版.md",
+          "content_hash": "7f020b05fbe4ee758507a50fa0acb191e0c1572e59fb4439b9967acea6cb36f8",
+          "version": 1,
+          "metadata_sha256": "91330ab6509f5a315ddcf52d2c0d18c532c6b52f5599ec3293d7e5e7853eee61"
+        },
+        {
+          "id": "6aa8d7c1-132b-497c-bee9-32ac52e86b1d",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH05_盐雾试验设备校准规范_JJF吉92-2021.pdf",
+          "content_hash": "8b6333ccbf6e1cd2772c16e9d4edce9ed806f445c66cc55e3ceca30b85f4472e",
+          "version": 1,
+          "metadata_sha256": "20d2beb1f6ae6b5356b178cb1e01ed75388f3370f050ac4c7d055285aa7109d0"
+        },
+        {
+          "id": "6fe41f12-cd3a-4924-83ea-2af706b8442d",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-06_DEMO-D41_OP-60检验要求与记录辨析.pdf",
+          "content_hash": "21631f4ec1634d8c64a2c56a19a5e6cd47fdd0cc1aa11d1b3cc4d8eff232bb17",
+          "version": 1,
+          "metadata_sha256": "936abf647c7cfcf6d906551080999f34c650a117166bfa0c929ba8f6abe6d3ec"
+        },
+        {
+          "id": "72adbc31-1791-490c-9dd6-cee2ef379914",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-08_DEMO-C31工单执行记录与离线夹具设计.txt",
+          "content_hash": "446e8f6eaa46026cbe0d31cb0d5f6c6cdc5bb3cb68405c4a45399a2248760235",
+          "version": 2,
+          "metadata_sha256": "de3d7bb3d0777cb9020a7b698bbe1b702d328673a182d05993c6af046151219d"
+        },
+        {
+          "id": "73de0dfc-eb3a-43bf-904c-42b8034de5c7",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "03_WO024书面指示B.md",
+          "content_hash": "f773f6704aa53f8d06170474f0e06517c8729bd27d944285621eef99c608efad",
+          "version": 1,
+          "metadata_sha256": "8c0699ef6ab0fd50552d9931daa5fe325e278334293f37041000dfa8a670e525"
+        },
+        {
+          "id": "76ed1280-0279-401c-b090-b7bd1659ec3a",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-09_DEMO-D41工单例外通知草案.md",
+          "content_hash": "6aaad236fade8d156f5efc31f5acb0a81a6857904e03abafa107aa68c431e198",
+          "version": 1,
+          "metadata_sha256": "a800dc5590e90d4f16149d452360a344c4935a873db61070daa1c7cad6de0e40"
+        },
+        {
+          "id": "7792685e-dc85-4155-9c15-70bafc318754",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-03_DEMO-C31_OP-40气密检测结果复核_历史版.md",
+          "content_hash": "93de6040f28e01ee635d77a7761a2a12eb8fd0fa5ad2b708c3e3c4a6dee22e6d",
+          "version": 1,
+          "metadata_sha256": "3019bd3424b714251e734b7b21a3ba33e6454588341199306a20cb3bbf2d2e8b"
+        },
+        {
+          "id": "78313287-26a6-4a5f-a7a7-a8efa741295d",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-08_DEMO-B21工单执行记录与离线夹具设计.txt",
+          "content_hash": "508b97f2b42b57eae7b42341d643eb9e7bb485f068329250eed0b526aa96dcfc",
+          "version": 2,
+          "metadata_sha256": "7fd002d084332302c383d321ca7e051e62cd042748b394ed13c0c43029afff1d"
+        },
+        {
+          "id": "797be548-e9ab-4ba4-a3ef-583ad380d331",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-07_DEMO-C31工艺变更通知.md",
+          "content_hash": "eb8ce6085683cf2f37b03450cab102db2dc27770ac25402b76f843f3e083afb0",
+          "version": 1,
+          "metadata_sha256": "4a720a842eac12725f1d302fb01a794b4e84d15888bb56111c64daf35ce88ef5"
+        },
+        {
+          "id": "7cd986f6-8f6c-4b9b-99eb-f735e8984e89",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH03_推进重点工业产品质量安全追溯的实施意见及附件_2024.md",
+          "content_hash": "5584eb26a208fddcf0678ad62da8e51a9231a21e1f5f7f60ce1f695b02bda72b",
+          "version": 1,
+          "metadata_sha256": "c8c7ee3c4183607f5e9c0d1c8a62bf906a4e90071cdc8c8a0eaa6511781f990b"
+        },
+        {
+          "id": "809dfe13-a992-4b8f-ad5a-eb5ee4e8d244",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-04_DEMO-D41_OP-60导通检测与标识核对_现行演示版.md",
+          "content_hash": "de2d4ad5b5d021e5030b35dad1f27732d614d9efc79e00e49c1bf9252ffb3331",
+          "version": 1,
+          "metadata_sha256": "9576ca28f283efc945f989ba5af8eddd7c8d2b50e5fe38cf73454265e359916b"
+        },
+        {
+          "id": "828327d2-92ee-4452-9243-29eaced0f7db",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-02_DEMO-C31_OP-30密封组件核对与装配记录_现行演示版.md",
+          "content_hash": "79ba2fe94066f98c7af601dd056ac35e7bb31d8779d87ccd868018978632c469",
+          "version": 1,
+          "metadata_sha256": "d75c4426ebecf022f32d408e13e4f2977cbf8117439df6b5947f249ecc265e10"
+        },
+        {
+          "id": "83cb1ed5-bc7b-486a-af96-62b84cd16745",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-10_DEMO-B21班次交接与未完成项.md",
+          "content_hash": "89c09d402f6e45eccb37d87398eee7e0fefc1fcfa52af3d22aaf4c73656af537",
+          "version": 1,
+          "metadata_sha256": "918efee973af35e532adc73c5d76c6e80af05e5797c5f57ffcc891a99d86db68"
+        },
+        {
+          "id": "865efbd3-2822-4f06-bb51-e9d8f42575a0",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH01_工业产品生产单位落实质量安全主体责任监督管理规定_第75号令_2023.pdf",
+          "content_hash": "1f0c0f65f9c299c9843581b34368996757d21db0b56b3c6cce5c4357eaa838c6",
+          "version": 1,
+          "metadata_sha256": "373d96476a93058c98c93aeb9ed2e90480c7bac502de86968164df4b5cd7f567"
+        },
+        {
+          "id": "8816d029-405b-4c1b-9e3a-e878d3d70dda",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH06_砂尘试验设备校准规范_JJF吉121-2023.pdf",
+          "content_hash": "9ddf9a66ae5e9d9723c4e83facf099b8c476729e34e4dffa8ba78b87046f9104",
+          "version": 1,
+          "metadata_sha256": "4cfdd67c6f67a82327a75a188b188e35a2c3a7596fd186669a0c6732dbdcf0d2"
+        },
+        {
+          "id": "88a9143c-a744-45b7-988f-04a5065198a6",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-09_DEMO-B21工单例外通知草案.md",
+          "content_hash": "d46181d3e69050e043eec18bfcec86d3f9121363f9c3b4861b91f9d7f0c64679",
+          "version": 1,
+          "metadata_sha256": "bad3071f99c2d3194a81fa13af165016b3f1b695bf8624522e187d68800ac1e5"
+        },
+        {
+          "id": "8a37dcc5-38b7-4987-9dd0-a520fa0a2e4c",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-03_DEMO-B21_OP-20定位孔尺寸复核_历史版.md",
+          "content_hash": "d93c7bb5980d7525888709fa92f768f813d2a0a5187a964ad84ae6501fc8e0cd",
+          "version": 1,
+          "metadata_sha256": "2892ce93f2c851f2e802981ba9311b61b32ac6b34a243530bad54727054b4199"
+        },
+        {
+          "id": "8c6be94c-3021-4f0a-bd8b-e892a5fb8e32",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-02_DEMO-B21_OP-10来料与基准核对_现行演示版.md",
+          "content_hash": "5b4d7a61311ce96c0e802fe8584512e0491270ac931650a96da271132685dcd2",
+          "version": 1,
+          "metadata_sha256": "39a7d7dd926bf5a50a4fb5240e7e75d94923495e7f8e5a9cf3ff7038f5066698"
+        },
+        {
+          "id": "98d82315-9a67-486c-8b32-cd9add3d3254",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-05_DEMO-B21_OP-10检验要求与记录辨析.pdf",
+          "content_hash": "2282dd1785a9568161d312e6dc34649c1ab278cb8b55e8b7c9d113bc47dba060",
+          "version": 1,
+          "metadata_sha256": "8a4884217e1871b14b888655e058c431875576d43d452e178eb764127a1304cb"
+        },
+        {
+          "id": "a3599b26-0c0e-4856-bcc2-87e7b9c2eb3b",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "06_HC-A17_OP20作业指导书历史版.docx",
+          "content_hash": "43de634b3d007ccbf698d644422021ca8e46aa90f919106b0806755f010f0205",
+          "version": 1,
+          "metadata_sha256": "93472067db9180d8a226c5dd9e7bf53ca468ba5ea3f763d1a569cf9745ba4619"
+        },
+        {
+          "id": "a99c942a-da2e-45da-80c6-75dfad907ece",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "09_工艺变更通知ECN-2026-018.docx",
+          "content_hash": "a5e7df86bba769729d638e2c367b222b63fd04d6aab664d4abde7d0615591415",
+          "version": 1,
+          "metadata_sha256": "50777b1bf3ebbecbd9ab853cd47a134308333304820d6893db51b463298ba72f"
+        },
+        {
+          "id": "a9db2fc7-4238-4a18-bd6e-44a37910bd4c",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-C31-10_DEMO-C31班次交接与未完成项.md",
+          "content_hash": "878c59ab34083bf52d5ebea995a874bc2a4f7792afc9b7610ea7eef509c2f35a",
+          "version": 1,
+          "metadata_sha256": "daa94370cd074363b907d3166ee37c587120379e0a22700765319d3376fa79a8"
+        },
+        {
+          "id": "acdeca1d-b332-48bb-9d0f-2dbe23cabdcf",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-07_DEMO-B21工艺变更通知.md",
+          "content_hash": "2fcb4d63a9c660de8d018baa6cdd967a47d7e1f76d218f2cb9ae6c56bfbcab05",
+          "version": 1,
+          "metadata_sha256": "1d6187e6875b51c87ee98e04386e9141774d45150de880369f635739ee0932d8"
+        },
+        {
+          "id": "ae7b39c9-9c72-4496-8e62-ed2379990e18",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-PUB-09_中小企业数字化转型路径导读.md",
+          "content_hash": "11e3ba6008af4f05cf578fa5e235c21c39ea0fa1a7279ad8451fc6a55828fe9f",
+          "version": 1,
+          "metadata_sha256": "f4f2cf5be426823df6e8841fcaef0c4e946e6c860919809ab661953a58243585"
+        },
+        {
+          "id": "b0641de0-1103-4825-b63c-699087c6b045",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-08_DEMO-D41工单执行记录与离线夹具设计.txt",
+          "content_hash": "258063f5efac40dd0a5fe509c997e16b349c305f787088932f19bd3d9d8f0be6",
+          "version": 2,
+          "metadata_sha256": "e4f75bd16cf15807e8076201a82a7096d2f008bdece17d28d4c03ff5f164e825"
+        },
+        {
+          "id": "b64b8bb8-0b44-4f53-8c76-d1a8a9a39976",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "02_首件确认与工序交接流程.pdf",
+          "content_hash": "3e340c645d67cb846b91439a99f90a2a67e262a79db698134fa7da830c3f4413",
+          "version": 1,
+          "metadata_sha256": "9f4bac4109685d092d328c95d219df0bbe605464c8fcb931e9bc03712e6b7c5a"
+        },
+        {
+          "id": "c12bcb19-c35a-449a-b8fb-16d87ccd4f5a",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "02_WO024书面指示A.md",
+          "content_hash": "2332f98f9c6b0e54e0a0c0602c5b00f802608a7195135cfe4d79f2f3262fa497",
+          "version": 1,
+          "metadata_sha256": "bb041d9696676a178fd3802ba588339394b9a02ebca9ace3e9f99012e8a8fbb3"
+        },
+        {
+          "id": "c186e318-8259-4a18-a447-98fea824ea0b",
+          "knowledge_base_id": "4de5d6a9-b3c6-417b-b31e-12d960bc5dfb",
+          "file_name": "10_产品工序与文件路由.md",
+          "content_hash": "87839384a5274749c99b899af731af5c953609d9f679fcd3fd41271d70789d81",
+          "version": 1,
+          "metadata_sha256": "4ca339ce0d4bb6764bea30d673ba5415bb2ac627a4e3be3b0f96f9127b9bc87d"
+        },
+        {
+          "id": "c6df0cb7-0e60-41ac-93df-c07746a40189",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "07_HC-A17_OP20作业指导书现行版.docx",
+          "content_hash": "b3cf371dc664766f5aa71f1d62f1317ab10b6200ee76fd884db69a0e3605385e",
+          "version": 1,
+          "metadata_sha256": "54e53ff1aa70cc5b8a12eedbc96f8f918685a43e1e05ac145e97230358e33833"
+        },
+        {
+          "id": "cd4b119a-a3f9-49c2-a08b-e0f37f47585e",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "14_工单WO-017班次交接记录.txt",
+          "content_hash": "4d1dab70b791c5463e7fd179353725cd870a5c2133de93a9cfba20d293344ebd",
+          "version": 1,
+          "metadata_sha256": "e9c58cce0a56bbcd37a2e1db1799e4ca9dd17e52dc0ed74b38ca089b7a671e94"
+        },
+        {
+          "id": "d240a67c-17f6-4eab-9b42-d19fd0711b41",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-02_DEMO-D41_OP-50端子压接记录核对_现行演示版.md",
+          "content_hash": "c212885e28c89fd698be0f9da6dd6e19f1d2e360c9d268da81694150030786bb",
+          "version": 1,
+          "metadata_sha256": "58376a62a3c7239886ff649982a3a28cd88b00bdd82ffbfe9fd6c4c483fdea38"
+        },
+        {
+          "id": "d9f19f71-76d2-4c5c-beb1-8e126208c8ff",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "MFG-ZH04_制造业质量管理数字化实施指南_试行_2021.pdf",
+          "content_hash": "bddfaa57ec764cadbdaab42ec676e7e256dee21960a697974e8509fdbed20653",
+          "version": 1,
+          "metadata_sha256": "5f998bd86b93285790de898e334f13ee09ee1e8118288fe4eba7a9e820d1c9a4"
+        },
+        {
+          "id": "dd86bd26-3aae-466e-bbf6-0739f24f0e5a",
+          "knowledge_base_id": "2a29982a-9b3c-41b5-abca-22473521b2ca",
+          "file_name": "01_WO019书面切换通知.md",
+          "content_hash": "43a90c111f1117895d3933ccf39ff4440c37c8ec11855f8cb417311477e158a6",
+          "version": 1,
+          "metadata_sha256": "b878fffccb74b816d93ef663f67911fd00e5b51c1c780c8d300ab402e75ac0cc"
+        },
+        {
+          "id": "dfecd8be-8d53-44a6-b17c-d5af1886fccb",
+          "knowledge_base_id": "3cd86e3d-572b-4ea8-8bf3-12fd2b704f5a",
+          "file_name": "12_检验记录填写与追溯规则.md",
+          "content_hash": "41ff2598302f613a97e67f44f0ca64841f9acd700e574417f659cecc009b30a4",
+          "version": 1,
+          "metadata_sha256": "7f346fcedb87a8984b84d248356f7b92d935ce5df03341812b68587e8ca82cf9"
+        },
+        {
+          "id": "e41b9b7c-7d06-4e9d-ad76-dbbbf7809fd9",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-PUB-11_智能制造标准体系建设通知导读.md",
+          "content_hash": "50cf2b75c21ff5885bc288b3503cda313c06e530ea50bd8fd85962e3bd1f8cd5",
+          "version": 1,
+          "metadata_sha256": "9b2d65047c2d8474c543a653e8b6f4eec88c891d6a5003c669fab3d56f19a822"
+        },
+        {
+          "id": "ea28748a-fec7-4f2a-9cf4-e456ccb72197",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-B21-06_DEMO-B21_OP-20检验要求与记录辨析.pdf",
+          "content_hash": "5827645b3ce7ad816eb66aaab7c609206a40c729034db4962bb65c0b4368d797",
+          "version": 1,
+          "metadata_sha256": "c025c783e951045822ef64d684c5c68a7120293bfdde584dd67c77cbadd29409"
+        },
+        {
+          "id": "ed884691-098e-42aa-940e-7613e7de90d3",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-01_DEMO-D41_OP-50端子压接记录核对_历史版.md",
+          "content_hash": "e576097565e55e881d1885b5ec24afde2f7d4adef0a7b881516d46ed44d0963c",
+          "version": 1,
+          "metadata_sha256": "186f6ee80511d61b66736d31b2108d2e965b7a1d0225b9212f02d753924f3f5a"
+        },
+        {
+          "id": "fdef9b05-233f-4734-9f46-91a740570e7b",
+          "knowledge_base_id": "da8a470d-e735-46a6-9f0b-8628dc721840",
+          "file_name": "ZH-D41-05_DEMO-D41_OP-50检验要求与记录辨析.pdf",
+          "content_hash": "6aab4ccfe54e6112d0efc19f2147a47145d3f2b095e54dad9b07e98a05f25f11",
+          "version": 1,
+          "metadata_sha256": "8b2846ff18f1635e853e6144d64d4939cffdd488cfa2ff65eef1ef102a6a9906"
+        }
+      ],
+      "chunks": 885,
+      "active_index_jobs": 0
+    },
+    "context": {
+      "source_system_id": "erpnext-hc",
+      "plant_code": "HC-P01",
+      "work_order_id": "ERP-WO-EXECUTION",
+      "source_record_id": "ERP-WO-EXECUTION",
+      "product_model": "HC-A17",
+      "operation_code": "OP-20",
+      "route_revision": null,
+      "batch_no": null,
+      "actual_started_at": "2026-09-28T08:10:00+08:00",
+      "actual_start_precision": "datetime",
+      "reported_at": null,
+      "status": "In Process",
+      "change_notice_refs": [],
+      "source_revision": "erp-1c1560e48ce0d6ca1c1e1a292ea468aa25e220044050b3d63cb75e2b089f",
+      "source_updated_at": "2026-11-09T20:02:27.401835+08:00",
+      "execution": {
+        "operation_id": "7pvg4cgbg0",
+        "operation_actual_started_at": "2026-09-28T08:10:00+08:00",
+        "operation_start_precision": "datetime",
+        "operation_status": "Work in Progress",
+        "job_card_id": "PO-JOB00009",
+        "job_card_actual_started_at": null,
+        "job_card_start_precision": null,
+        "job_card_status": "Open",
+        "job_card_updated_at": "2026-11-09T20:02:27.401835+08:00"
+      },
+      "fetched_at": "2026-11-12T14:42:30.545552+00:00",
+      "last_verified_at": "2026-11-12T14:42:30.545552+00:00",
+      "payload_sha256": "7317a6f83b8940c82fecb84b15932f5de5cf5adbc56da60e1001235aca36f036"
+    },
+    "events": [
+      {
+        "method": "GET",
+        "path": "/api/manufacturing/work-orders/ERP-WO-EXECUTION/context",
+        "status_code": 200,
+        "response": {
+          "source_system_id": "erpnext-hc",
+          "plant_code": "HC-P01",
+          "work_order_id": "ERP-WO-EXECUTION",
+          "source_record_id": "ERP-WO-EXECUTION",
+          "product_model": "HC-A17",
+          "operation_code": "OP-20",
+          "route_revision": null,
+          "batch_no": null,
+          "actual_started_at": "2026-09-28T08:10:00+08:00",
+          "actual_start_precision": "datetime",
+          "reported_at": null,
+          "status": "In Process",
+          "change_notice_refs": [],
+          "source_revision": "erp-1c1560e48ce0d6ca1c1e1a292ea468aa25e220044050b3d63cb75e2b089f",
+          "source_updated_at": "2026-11-09T20:02:27.401835+08:00",
+          "execution": {
+            "operation_id": "7pvg4cgbg0",
+            "operation_actual_started_at": "2026-09-28T08:10:00+08:00",
+            "operation_start_precision": "datetime",
+            "operation_status": "Work in Progress",
+            "job_card_id": "PO-JOB00009",
+            "job_card_actual_started_at": null,
+            "job_card_start_precision": null,
+            "job_card_status": "Open",
+            "job_card_updated_at": "2026-11-09T20:02:27.401835+08:00"
+          },
+          "fetched_at": "2026-11-12T14:42:30.545552+00:00",
+          "last_verified_at": "2026-11-12T14:42:30.545552+00:00",
+          "payload_sha256": "7317a6f83b8940c82fecb84b15932f5de5cf5adbc56da60e1001235aca36f036"
+        },
+        "request_id": "10287a325324424d9fc24b890b0b065e",
+        "trace": {
+          "query": "",
+          "scope": {},
+          "stages": {}
+        },
+        "model_calls": 0
+      }
+    ],
+    "budget": {
+      "calls": 0,
+      "charged_tokens": 0,
+      "unknown_calls": 0,
+      "elapsed_seconds": 0.172,
+      "limited_by": null
+    }
+  },
+  "snapshots": {
+    "snapshots": 7,
+    "new_unique_snapshots": true,
+    "records": [
+      {
+        "case_id": "MFG-GOLD-006",
+        "snapshot_status": "captured",
+        "run_id": "db964741-81d1-420c-9abd-33dfd6b017b7",
+        "new_run": true,
+        "stored_response_matches_delivered": true,
+        "source_reads": null
+      },
+      {
+        "case_id": "MFG-GOLD-007",
+        "snapshot_status": "captured",
+        "run_id": "8f7e5e06-c19b-4687-80f9-1c39e4d7addb",
+        "new_run": true,
+        "stored_response_matches_delivered": true,
+        "source_reads": null
+      },
+      {
+        "case_id": "MFG-GOLD-011",
+        "snapshot_status": "captured",
+        "run_id": "3bfffe87-f1ee-4e3b-af9b-5c931565e654",
+        "new_run": true,
+        "stored_response_matches_delivered": true,
+        "source_reads": null
+      },
+      {
+        "case_id": "MFG-GOLD-019",
+        "snapshot_status": "captured",
+        "run_id": "a45c48e5-bc2d-4ad7-b0b4-11eabd32d0bd",
+        "new_run": true,
+        "stored_response_matches_delivered": true,
+        "source_reads": 3,
+        "persisted_validation": {
+          "source_verified": true,
+          "document_scope_verified": true,
+          "business_citations_verified": true,
+          "mes_reads": 3
+        },
+        "source_revision": "erp-1c1560e48ce0d6ca1c1e1a292ea468aa25e220044050b3d63cb75e2b089f",
+        "payload_sha256": "7317a6f83b8940c82fecb84b15932f5de5cf5adbc56da60e1001235aca36f036"
+      },
+      {
+        "case_id": "MFG-GOLD-064",
+        "snapshot_status": "captured",
+        "run_id": "1d3e1525-898c-4ab4-a75e-1bc17f74eaed",
+        "new_run": true,
+        "stored_response_matches_delivered": true,
+        "source_reads": null
+      },
+      {
+        "case_id": "MFG-GOLD-072",
+        "snapshot_status": "captured",
+        "run_id": "6c9d80ef-ffb3-4edb-989c-ab6453c9a1a2",
+        "new_run": true,
+        "stored_response_matches_delivered": true,
+        "source_reads": null
+      },
+      {
+        "case_id": "MFG-GOLD-090",
+        "snapshot_status": "captured",
+        "run_id": "3d0f72ca-2837-4eb1-879a-d57f1495c5ff",
+        "new_run": true,
+        "stored_response_matches_delivered": true,
+        "source_reads": null
+      }
+    ],
+    "model_calls_for_review_and_proof": 0
+  },
+  "runtime": {
+    "business_python_files": 167,
+    "matches_revision": "b741bd2",
+    "entry_revision": "c7d30a01143976ad7e00bd53f350d49e4b91afb2",
+    "independent_database": "gold100_v3_erp7_20261112_r1",
+    "source_inventory_before_after_equal": true,
+    "model_destination": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com",
+    "new_index_calls": 0
+  }
+}

@@ -16,6 +16,7 @@ from sqlalchemy.orm import Session
 from backend.app.api.feedback import FeedbackInput
 from backend.app.config import required_env
 from backend.app.db.conversation_models import Conversation
+from backend.app.db.business_models import BusinessScopeGrant, QARunBusinessScope
 from backend.app.db.models import AuditEvent, Department, DepartmentMembership, KnowledgeBase, KnowledgeBaseDepartmentGrant, KnowledgeBaseUserGrant, KnowledgeDocument, Tenant, User
 from backend.app.db.quality_models import QARun, QARunScope, QAFeedback
 from backend.app.db.review_models import QualityCase, QualityCaseRevision, QualityDatasetVersion
@@ -66,6 +67,10 @@ def test_postgres_legacy_consent_concurrent_reviews_and_export():
                 migration.upgrade()
             for model in (QualityCase, QualityCaseRevision, QualityDatasetVersion):
                 assert {c["name"] for c in inspect(connection).get_columns(model.__tablename__)} == set(model.__table__.columns.keys())
+            # Current history authorization queries these later tables even for
+            # ordinary QA. Keep their real schema and leave business rows empty.
+            for model in (BusinessScopeGrant, QARunBusinessScope):
+                model.__table__.create(connection)
         principal = Principal(user_id, tenant_id, "reviewer")
         with Session(engine, expire_on_commit=False) as session:
             assert session.scalar(select(QAFeedback)).allow_dataset_export is False

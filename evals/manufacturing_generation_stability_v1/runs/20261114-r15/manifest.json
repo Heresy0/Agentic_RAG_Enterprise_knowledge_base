@@ -1,0 +1,10 @@
+{
+  "files": {
+    "audits.json": "c7d7d77e68e1dc24c0ad0e56975c762574030edd30d23bea01d3e87fd4dfed48",
+    "inputs.json": "b0ffb52eba6de5bcf56a42e61e01d48cbdda1798dfe68d08adc1cb003e35e286",
+    "plan.json": "5641112d022242782c0ebb1fd925acf4177ab22c4be9df3c2638b039e990dafe",
+    "summary.json": "c3b0fef703ff0f9b967025bbb5923ec3062f3c830727af3b4138f5e99adb9c3d",
+    "trials.jsonl": "9199bf2455145a7b100d7f17e9736b568ecb8ee5626258969c18d083a45a8a1f"
+  },
+  "credentials_scan_passed": true
+}

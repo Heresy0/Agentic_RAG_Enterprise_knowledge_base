@@ -44,3 +44,36 @@ evals/erpnext_zh_v1/** text eol=lf
 scripts/accept_erpnext_development.py text eol=lf
 # Deployment guard is recorded by its exact image SHA-256.
 deploy/isolated_demo/zero_runtime.py text eol=lf
+# Independent candidate dataset artifacts are byte-hashed.
+evals/manufacturing_gold_v1/** text eol=lf
+scripts/check_manufacturing_gold.py text eol=lf
+# New Chinese-only corpus references historical assets without rewriting them.
+sample_docs/manufacturing_zh_expansion_v1/** text eol=lf
+sample_docs/manufacturing_zh_expansion_v1/**/*.pdf binary
+docs/reports/manufacturing-zh-expansion-20261112-r1.json text eol=lf
+evals/manufacturing_gold_100_v1/** text eol=lf
+scripts/*manufacturing_gold_100*.py text eol=lf
+docs/reports/manufacturing-gold-100-20261112-r1.json text eol=lf
+evals/manufacturing_gold_100_live_v1/** text eol=lf
+scripts/*manufacturing_gold_live*.py text eol=lf
+scripts/manufacturing_gold_fixture_plan.py text eol=lf
+scripts/prepare_manufacturing_gold_runtime.py text eol=lf
+scripts/run_manufacturing_gold100_isolated.py text eol=lf
+sample_docs/manufacturing_zh_corrections_v2/** text eol=lf
+evals/manufacturing_gold_100_v2/** text eol=lf
+evals/manufacturing_gold_100_live_v2/** text eol=lf
+scripts/report_manufacturing_gold_v2_live.py text eol=lf
+evals/manufacturing_gold_100_v3/** text eol=lf
+evals/manufacturing_gold_7_live_v3/** text eol=lf
+scripts/manufacturing_gold_v3_seven_live.py text eol=lf
+scripts/report_manufacturing_gold_v3_seven.py text eol=lf
+scripts/manufacturing_gold_v3_live.py text eol=lf
+scripts/run_manufacturing_gold100_v3_isolated.py text eol=lf
+scripts/report_manufacturing_gold_v3_live.py text eol=lf
+evals/manufacturing_gold_100_live_v3/** text eol=lf
+tests/test_manufacturing_gold_v3_seven_live.py text eol=lf
+evals/manufacturing_gold_100_v4/** text eol=lf
+evals/manufacturing_gold_100_live_v4/** text eol=lf
+scripts/*manufacturing_gold*v4*.py text eol=lf
+evals/manufacturing_answer_contract_full_live_v1/** -text whitespace=cr-at-eol
+evals/manufacturing_generation_stability_v1/** -text whitespace=cr-at-eol

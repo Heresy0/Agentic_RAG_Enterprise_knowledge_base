@@ -1,0 +1,42 @@
+{
+  "source_revision": "31444e42150025e639552bcbde288f6de3ea6697",
+  "tests": {
+    "exit_code": 0,
+    "elapsed_seconds": 182.312,
+    "network": {
+      "internal_socketpairs": 1345,
+      "denied_connections": 0,
+      "denied_dns": 0
+    },
+    "model_calls": 0,
+    "source_api_calls": 0,
+    "container_operations": 0
+  },
+  "offline_replay": {
+    "replayed": 178,
+    "successful_saved_drafts": 143,
+    "successful_without_saved_drafts": 18,
+    "all_validation_results_equal": true,
+    "protected_inputs": 635,
+    "model_calls": 0
+  },
+  "unchanged_code_sha256": {
+    "backend/app/knowledge/retrieval_service.py": "85e4cf33d055770d8ec2889511fb35d07833aa5ef092cf258af9d2e69e65d4c9",
+    "backend/app/knowledge/rerank_retriever.py": "47c963e778547d5ca988dba08f073fd81547a801f5ac2e430f4ba8355984e991",
+    "backend/app/knowledge/hybrid_retriever.py": "5977a26c4c9fa385f9ca8df79073cf4b871dfbca52552c35702a3d91c2f73c04",
+    "backend/app/knowledge/context_builder.py": "e188fe911f463c4a966622d1fea3e4e94e47b9becc98141ec7351041ef456d95",
+    "backend/app/knowledge/context_selection.py": "8ecf4de6560f56407d009ee8f4b508de48f93e207aefbb6cb31ef7b46116dff8",
+    "backend/app/knowledge/parent_context_selection.py": "82e9de6609584e66ecec2fbd17ca167a0cc348e9d0f62183732f3aef1de8eaaa",
+    "backend/app/knowledge/answer_validation.py": "43ca2f36d6c4966b5fafbe13d4ee381432e5a623b2424e427c82543da54f85ff",
+    "backend/app/knowledge/answer_coverage.py": "6b8f126b625f50738c2c687405f46943733feef87087ad2d1ea975d1d3e0739f",
+    "backend/app/knowledge/evidence_coordinator.py": "0f5863946e411851cbc8935dc5aefdd072c0bafdac5bddc56917c7c3a7adef0f"
+  },
+  "prompt_characters": {
+    "shared_before": 6356,
+    "shared_after": 1673,
+    "manufacturing_before": 956,
+    "manufacturing_after_includes_shared": 1867
+  },
+  "old_scores_recomputed": false,
+  "new_model_quality_conclusion": false
+}

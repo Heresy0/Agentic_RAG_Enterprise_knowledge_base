@@ -52,17 +52,6 @@ def source_units(context):
         for item in context.items for index, text in enumerate(statement_units(item.content), 1)}
 
 
-def annotate_sources(context):
-    rendered = context.text
-    for item in context.items:
-        units = statement_units(item.content)
-        annotated = "\n".join(f"[原文条目 {item.citation_id}#{index}] {text[:160]}{'…（完整原文见下方内容）' if len(text) > 160 else ''}"
-            for index, text in enumerate(units, 1))
-        # ContextItem and its hash still contain the original content. Only the
-        # model-facing view gains selectors; source metadata remains intact.
-        rendered = rendered.replace("内容：" + item.content, "原文条目索引：\n" + annotated + "\n内容：" + item.content, 1)
-    return rendered
-
 
 _DURATION = r"(\d+(?:\.\d{1,6})?)(小时|分钟|秒)"
 
@@ -117,12 +106,13 @@ def execution_boundary_question(question):
 
 def execution_boundary_verdict(question, draft, context):
     """Derive only the evidence boundary supported by explicit independent requirements."""
-    from .answer_context import current_manufacturing_context, complete_source_statement
+    from .answer_context import current_manufacturing_context, complete_source_statement, execution_question_text
+    from .generation_selection import GroundedDraft
     active = current_manufacturing_context()
     if (not execution_boundary_question(question) or active is None or not draft.answerable
             or active.comparison or active.decision.state != 'applicable'):
         return None
-    premise = question.split('开工', 1)[0]
+    premise = execution_question_text(question).split('开工', 1)[0]
     names = {'作业卡': 'job_card_actual_started_at', '工序': 'operation_actual_started_at',
         '步骤': 'step_actual_started_at', '批次': 'batch_actual_started_at', '工单': 'actual_started_at'}
     mentioned = [name for name in names if name in premise]
@@ -136,19 +126,33 @@ def execution_boundary_verdict(question, draft, context):
         guides = [sources[key] for key in claim.citations if key in sources
             and sources[key].document_role in ('instruction', 'inspection', 'reference')
             and (sources[key].document_role != 'instruction' or sources[key].business_revision == active.decision.selected_business_revision)]
-        if (claim.claim_kind != 'work_requirement' or claim.calculation is not None
-                or not complete_source_statement(claim.text, guides)):
+        if claim.calculation is not None:
             continue
-        # Supported rule forms explicitly require inspection AND quality sign-off.
-        # Exceptions and other wording need a normal evidence-based answer.
-        if re.search(r'除非|除外|无需|不必|免检|豁免', claim.text):
+        if isinstance(draft, GroundedDraft) and claim.claim_kind is None:
+            # New prose does not carry a role or an exact excerpt. Derive the
+            # same bounded verdict from complete units of its cited sources.
+            statements = [(text, [guide]) for guide in guides for text in statement_units(guide.content)]
+        elif claim.claim_kind == 'work_requirement' and complete_source_statement(claim.text, guides):
+            statements = [(claim.text, guides)]
+        else:
             continue
-        independent = re.search(r'(?:首件确认(?:须|必须)|每次开工连续检查)[^。；\n]*(?:所有必检项目全部合格|全部项目合格后)[，,]?(?:并)?由质量人员签署', claim.text)
-        direct = re.search(r'开工(?:登记|记录)(?:本身)?(?:不能|无法|不足以)(?:证明|认定)[^。；\n]*首件[^。；\n]*质量签署[^。；\n]*完成', claim.text)
-        if independent or direct:
-            text = '仅凭实际开工登记，不能认定首件检验或质量签署已经完成'
-            if independent:
-                text += '；仍需核验适用指导书要求的检验记录及质量签署'
-            return dict(claim_index=index, text=text,
-                citations=list(dict.fromkeys([start.citation_id, *[item.citation_id for item in guides]])))
+        for text, cited_guides in statements:
+            # Supported rule forms explicitly require inspection AND quality sign-off.
+            # Exceptions and other wording need a normal evidence-based answer.
+            if re.search(r'除非|除外|无需|不必|免检|豁免', text):
+                continue
+            independent = re.search(r'(?:首件确认(?:须|必须)|每次开工连续检查)[^。；\n]*(?:所有必检项目全部合格|全部项目合格后)[，,]?(?:并)?由质量人员签署', text)
+            # A complete, explicit AND-list is another independent-requirement form.
+            # Merely finding inspection/signature words in adjacent prose is not proof.
+            if (not independent and re.match(r'^恢复后续作业前必须同时满足以下条件[:：]\s*\n', text)
+                    and re.search(r'(?m)^\s*[0-9]+[.、]\s*适用指导书要求的首件检查全部合格[。.]?\s*$', text)
+                    and re.search(r'(?m)^\s*[0-9]+[.、]\s*质量人员完成签署(?:[，,][^。\n]*)?[。.]?\s*$', text)):
+                independent = True
+            direct = re.search(r'开工(?:登记|记录)(?:本身)?(?:不能|无法|不足以)(?:证明|认定)[^。；\n]*首件[^。；\n]*质量签署[^。；\n]*完成', text)
+            if independent or direct:
+                rendered = '仅凭实际开工登记，不能认定首件检验或质量签署已经完成，也不能据此判断实际是否完成'
+                if independent:
+                    rendered += '；仍需核验适用指导书要求的检验记录及质量签署'
+                return dict(claim_index=index, text=rendered,
+                    citations=list(dict.fromkeys([start.citation_id, *[item.citation_id for item in cited_guides]])))
     return None

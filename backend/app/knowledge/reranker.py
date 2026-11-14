@@ -1,9 +1,10 @@
 from dataclasses import dataclass
+from time import monotonic
 
 import requests
 from pydantic import BaseModel, SecretStr
 from ..model_usage import ModelCall
-from .request_budget import remaining_timeout
+from .request_budget import evidence_deadline, remaining_timeout
 
 
 class RerankError(RuntimeError):
@@ -31,13 +32,25 @@ class QwenReranker(BaseReranker):
     endpoint: str
     api_key: SecretStr
     model: str = "qwen3-rerank"
-    timeout_seconds: float = 5.0
+    timeout_seconds: float = 10.0
 
     def rerank(self, *, query, documents, top_n):
         if not documents:
             return []
-        with ModelCall("rerank", self.model) as call:
-            return self._rerank(query=query, documents=documents, top_n=top_n, call=call)
+        try:
+            deadline = monotonic() + remaining_timeout(2 * self.timeout_seconds)
+        except TimeoutError as exc:
+            raise RerankError("重排序调用时间预算已耗尽") from exc
+        with evidence_deadline(deadline):
+            for attempt in range(2):
+                try:
+                    # Each physical attempt has its own permission/budget check and ledger event.
+                    with ModelCall("rerank", self.model) as call:
+                        return self._rerank(query=query, documents=documents, top_n=top_n, call=call)
+                except RerankError as exc:
+                    if (attempt or monotonic() >= deadline
+                            or not isinstance(exc.__cause__, (requests.Timeout, requests.ConnectionError))):
+                        raise
 
     def _rerank(
             self,
@@ -79,7 +92,7 @@ class QwenReranker(BaseReranker):
              data = response.json()
              if isinstance(data, dict):
                  call.observe(data.get("usage"), data.get("request_id"))
-        except requests.RequestException as exc:
+        except (requests.RequestException, TimeoutError) as exc:
             raise RerankError(
                 f"重排序接口调用失败：{exc}"
             )from exc

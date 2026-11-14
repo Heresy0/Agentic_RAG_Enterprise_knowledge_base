@@ -256,7 +256,8 @@ def test_verdict_repair_cannot_weaken_validation_or_rewrite_original_claims(muta
     service, calls, _ = repair_service(candidate.claims[0])
     result, _, trace = execute(service, original, context=context, question='本批次是否满足验收条件？')
     assert result == original and len(calls) == 1
-    assert trace.stages['rag_routing'][-1]['outcome'] == 'rejected'
+    # An unknown enum value is rejected during parsing, before fact validation.
+    assert trace.stages['rag_routing'][-1]['outcome'] == ('fallback' if mutation=='citation' else 'rejected')
 
 
 def test_verdict_repair_obeys_budget_and_evidence_refresh():

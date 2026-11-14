@@ -230,7 +230,7 @@ def test_reflected_service_credential_is_never_exposed_as_a_business_field(harne
 def test_malformed_model_output_is_a_service_failure_and_not_a_client_input_error(harness):
     h = harness
     def malformed(messages):
-        return dict(answerable=True, response_type="answer", claims=[dict(text="missing kind", citations=["业务2"])],
+        return dict(answerable=True, response_type="answer", claims=[dict(citations=["业务2"])],
             coverage=[dict(requirement_id="Q1", aspect="型号", status="answered", claim_indices=[1], missing_information=None)])
     h.generation.invoke = malformed
     with TestClient(h.c.app) as client:

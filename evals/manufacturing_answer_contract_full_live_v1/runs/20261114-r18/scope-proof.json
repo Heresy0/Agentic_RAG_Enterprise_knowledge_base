@@ -1,0 +1,40 @@
+{
+  "baseline_source": "7034c926fded5b3f1255ecdf4bc28ed31b082460",
+  "candidate_source": "be2f50e0957e88a4f138ad3839494928a788317b",
+  "business_source_files_changed_since_last_full": [
+    "backend/app/knowledge/reranker.py"
+  ],
+  "changed_during_this_batch": [],
+  "runtime_settings": {
+    "erp": {
+      "unchanged_model_endpoint_keys": [
+        "DASHSCOPE_BASE_URL",
+        "DASHSCOPE_EMBEDDING_MODEL",
+        "DASHSCOPE_MODEL",
+        "DASHSCOPE_RERANK_MODEL",
+        "DASHSCOPE_RERANK_URL"
+      ],
+      "chat_model": "qwen3.7-flash",
+      "rerank_timeout_before": "5",
+      "rerank_timeout_after": "10"
+    },
+    "mes": {
+      "unchanged_model_endpoint_keys": [
+        "DASHSCOPE_BASE_URL",
+        "DASHSCOPE_EMBEDDING_MODEL",
+        "DASHSCOPE_MODEL",
+        "DASHSCOPE_RERANK_MODEL",
+        "DASHSCOPE_RERANK_URL"
+      ],
+      "chat_model": "qwen3.7-flash",
+      "rerank_timeout_before": "5",
+      "rerank_timeout_after": "10"
+    }
+  },
+  "candidate_sha256": "9c7adf3dc4ee825ef13c659a1b3fae77d64947a6a60f1e52bdb09be68b84621c",
+  "static_prompt_only_in_new_evaluation_process": true,
+  "production_prompt_or_workbench_updated": false,
+  "dynamic_contract_human_schema_retrieval_validation_unchanged": true,
+  "comparison_limit": "Since r14: pre-existing reranker timeout/retry adjustment plus isolated document static prompt v2. Component r17 explicitly set enable_thinking=false; full application parameters remain unchanged here.",
+  "model_calls": 0
+}
