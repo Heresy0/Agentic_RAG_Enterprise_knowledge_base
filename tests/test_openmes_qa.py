@@ -31,8 +31,12 @@ def conversation(c,h,**changes):
     ('所选步骤的实际开工时间是什么？','Batch Step','step_actual_started_at',True),
     ('这个批次的实际开工时间是什么？','Batch','batch_actual_started_at',True),
     ('工单实际开工时间是什么？','Work Order','actual_started_at',False)])
-def test_simple_time_queries_project_exact_entity_and_keep_three_rechecks(mes,question,entity,field,known):
+def test_simple_time_queries_project_exact_entity_and_keep_three_rechecks(mes,monkeypatch,question,entity,field,known):
     h,g=mes
+    def unexpected(*a,**k):raise AssertionError('已确定的业务字段不得进入生成、补查或修复')
+    monkeypatch.setattr(h.answer,'_generate_draft',unexpected)
+    monkeypatch.setattr(h.answer._evidence_feedback,'run',unexpected)
+    monkeypatch.setattr(h.answer._answer_repair,'repair',unexpected)
     with TestClient(h.c.app) as c:
         response=c.post('/api/manufacturing/qa',json=request(h,question=question))
         assert response.status_code==200,response.text

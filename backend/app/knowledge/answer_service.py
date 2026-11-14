@@ -203,6 +203,34 @@ class AnswerService:
                 total_started=total_started,
             )
 
+        if context.business_items:
+            from ..manufacturing.generation_models import precision_projection
+            projected = precision_projection(question, context)
+            if projected is not None:
+                # Existing field selection is authoritative; do not send it
+                # through generation, evidence feedback or model repair.
+                draft = prepare_draft(projected, context)
+                timings['generation_ms'] = 0.0
+                record_answer_decision(stage='generation', answerable=draft.answerable,
+                    reason=draft.refusal_reason, temporal=temporal_evidence_context(question, context.items))
+                validation_started = time.perf_counter()
+                validation = validate_output(draft, validator=self._validator, context=context, question=question)
+                timings['validation_ms'] = _elapsed_ms(validation_started)
+                render_started = time.perf_counter()
+                if not validation.valid:
+                    result = self._refusal('生成结果未通过证据与引用校验：' + '；'.join(validation.errors))
+                    record_answer_decision(stage='validation', answerable=False, reason='evidence_validation_failed')
+                else:
+                    result = (self._render_result(draft=draft, context=context, question=question)
+                              if draft.answerable else self._unanswerable(draft))
+                    record_answer_decision(stage='final', answerable=draft.answerable, reason=draft.refusal_reason)
+                record_calculations([])
+                record_answer_completion([])
+                record_answer_generation(result, [claim.model_dump() for claim in draft.claims],
+                    coverage_snapshot(draft, question, context), changed=False, validation_errors=validation.errors)
+                timings['render_ms'] = _elapsed_ms(render_started)
+                return self._finish_result(result=result, timings=timings, total_started=total_started)
+
         def refresh_context():
             current = self._retrieval_service.refresh_evidence(documents, scope=scope, session=session)
             # A field-only request has no document evidence; keep that scope after the permission refresh.
@@ -428,10 +456,6 @@ class AnswerService:
     ) -> GenerationAnswerDraft:
         model = None
         if context.business_items:
-            from ..manufacturing.generation_models import precision_projection
-            projection = precision_projection(question, context)
-            if projection is not None:
-                return prepare_draft(projection, context)
             model = getattr(self, "_manufacturing_llm", None)
         model = model or self._base_llm.with_structured_output(live_generation_schema(context), include_raw=True)
         result = invoke_structured(model, self._generation_messages(question, context),
