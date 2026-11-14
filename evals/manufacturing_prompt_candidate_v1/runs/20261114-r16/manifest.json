@@ -1,10 +1,11 @@
 {
   "files": {
-    "audits.json": "3dcceffe091b39b476fd1d8554e567e1dfad4c833d957c6d2513e94d0bf14055",
-    "inputs.json": "0662f268194ab9bba73c4c6a57020a36e03dd16b85233864e889df945da2973c",
-    "plan.json": "58ae80f20fdcbb00dcbe9c996d5d06d41f685735f85e4d1bac5016e1dfd517c4",
-    "summary.json": "c55fab7cb69ae4074ab24ac88d9d5015589295a358ecf3fe6ec81f65afed3159",
-    "trials.jsonl": "e1a3e2155feb94ba4280e40f9644a6e6e857df69b56bae9f446fb5ba7de1695c"
+    "audits.json": "59908c0d1baf508a76f3eaf50ae435148f8caf5133d52d195aed4da9e17a646b",
+    "inputs.json": "23583ae2bd0f7c18f11f70b1fa5c42df70fe8d463e0d622c1311803a0e85cb2e",
+    "plan.json": "1e16add0d4abc2653934fb52f7451ba2f1975ddd9ddcb5a4dc19e22f7a65c6bc",
+    "summary.json": "4079765f78fe1140a244b81d7ed846c31a2b1eb3fee12289e029d61ea51204ab",
+    "trials.jsonl": "545f8044d36ddd0636e90eb3a2c0fdda96b6e1bd3e3277cc07661928df2d195e"
   },
-  "credentials_scan_passed": true
+  "credentials_scan_passed": true,
+  "serialization": "Public files use UTF-8 with LF. plan.input_sha256 and audits.frozen_input_sha256 identify original private frozen input bytes; files.inputs.json identifies public serialization. JSON payloads are identical."
 }
