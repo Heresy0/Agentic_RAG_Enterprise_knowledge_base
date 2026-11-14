@@ -1,0 +1,169 @@
+# Application layer only. Restore/provision dependencies separately.
+# All relative host paths are resolved from deploy/unified_workspace/.
+name: ${UNIFIED_PROJECT_NAME:-knowledge-unified-portable}
+
+x-app: &app
+  image: ${UNIFIED_IMAGE:-enterprise-knowledge-api:unified-local}
+  build:
+    context: ../..
+    dockerfile: Dockerfile
+  restart: unless-stopped
+  networks: [workspaces, dependencies]
+  healthcheck:
+    test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=4)"]
+    interval: 10s
+    timeout: 5s
+    start_period: 20s
+    retries: 12
+
+x-environment: &environment
+  UNIFIED_WORKSPACE_NAVIGATION: "true"
+  DOCUMENT_STORAGE_DIR: /app/data/documents
+  MILVUS_TOKEN: ""
+  MILVUS_TOKEN_FILE: /run/secrets/milvus_api_token
+  MILVUS_WORKER_TOKEN_FILE: ""
+
+services:
+  knowledge:
+    <<: *app
+    env_file:
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/common.env", format: raw}
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/knowledge.env", format: raw}
+    environment: *environment
+    command: [python, -m, uvicorn, backend.app.main:app, --host, 0.0.0.0, --port, "8000", --no-access-log]
+    volumes:
+      - knowledge_documents:/app/data/documents
+    secrets:
+      - {source: knowledge_api_token, target: milvus_api_token}
+
+  erp:
+    <<: *app
+    env_file:
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/common.env", format: raw}
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/erp.env", format: raw}
+    environment:
+      <<: *environment
+      MANUFACTURING_SOURCES_FILE: /app/config/manufacturing/sources.json
+      MANUFACTURING_EVALUATION_REGISTRY: /app/config/manufacturing/evaluation-registry.json
+    command: [python, -m, uvicorn, backend.app.main:app, --host, 0.0.0.0, --port, "8000", --no-access-log, --root-path, /erp]
+    volumes:
+      - erp_documents:/app/data/documents
+      - type: bind
+        source: ${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/erp-sources.json
+        target: /app/config/manufacturing/sources.json
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: ${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/erp-evaluation-registry.json
+        target: /app/config/manufacturing/evaluation-registry.json
+        read_only: true
+        bind: {create_host_path: false}
+    secrets:
+      - {source: erp_api_token, target: milvus_api_token}
+
+  mes:
+    <<: *app
+    env_file:
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/common.env", format: raw}
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/mes.env", format: raw}
+    environment:
+      <<: *environment
+      MANUFACTURING_SOURCES_FILE: /app/config/manufacturing/sources.json
+      MANUFACTURING_EVALUATION_REGISTRY: /app/config/manufacturing/evaluation-registry.json
+    command: [python, -m, uvicorn, backend.app.main:app, --host, 0.0.0.0, --port, "8000", --no-access-log, --root-path, /mes]
+    volumes:
+      - mes_documents:/app/data/documents
+      - type: bind
+        source: ${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/mes-sources.json
+        target: /app/config/manufacturing/sources.json
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: ${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/mes-evaluation-registry.json
+        target: /app/config/manufacturing/evaluation-registry.json
+        read_only: true
+        bind: {create_host_path: false}
+    secrets:
+      - {source: mes_api_token, target: milvus_api_token}
+
+  gateway:
+    image: ${CADDY_IMAGE:-caddy:2-alpine}
+    restart: unless-stopped
+    ports: ["127.0.0.1:8000:8000"]
+    volumes:
+      - type: bind
+        source: ./Caddyfile
+        target: /etc/caddy/Caddyfile
+        read_only: true
+        bind: {create_host_path: false}
+    networks: [edge, workspaces]
+    depends_on:
+      knowledge: {condition: service_healthy}
+      erp: {condition: service_healthy}
+      mes: {condition: service_healthy}
+
+  index_worker:
+    <<: *app
+    profiles: [workers]
+    env_file:
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/common.env", format: raw}
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/knowledge.env", format: raw}
+    environment:
+      <<: *environment
+      MILVUS_WORKER_TOKEN_FILE: /run/secrets/milvus_worker_token
+    command: [python, scripts/run_indexing_worker.py]
+    volumes:
+      - knowledge_documents:/app/data/documents
+    secrets:
+      - {source: knowledge_api_token, target: milvus_api_token}
+      - {source: knowledge_worker_token, target: milvus_worker_token}
+    healthcheck:
+      test: [CMD, python, scripts/check_indexing_worker_health.py]
+      interval: 15s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+    depends_on:
+      knowledge: {condition: service_healthy}
+
+  quality_worker:
+    <<: *app
+    profiles: [workers]
+    env_file:
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/common.env", format: raw}
+      - {path: "${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/knowledge.env", format: raw}
+    environment: *environment
+    command: [python, scripts/run_quality_worker.py, --allow-model-calls]
+    secrets:
+      - {source: knowledge_api_token, target: milvus_api_token}
+    healthcheck: {disable: true}
+    depends_on:
+      knowledge: {condition: service_healthy}
+
+networks:
+  edge: {}
+  workspaces: {internal: true}
+  dependencies:
+    external: true
+    name: ${UNIFIED_DEPENDENCY_NETWORK:?Set the prepared dependency network name}
+
+volumes:
+  knowledge_documents:
+    external: true
+    name: ${KNOWLEDGE_DOCUMENT_VOLUME:?Set the restored knowledge document volume}
+  erp_documents:
+    external: true
+    name: ${ERP_DOCUMENT_VOLUME:?Set the restored ERP document volume}
+  mes_documents:
+    external: true
+    name: ${MES_DOCUMENT_VOLUME:?Set the restored MES document volume}
+
+secrets:
+  knowledge_api_token:
+    file: ${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/knowledge-api.token
+  knowledge_worker_token:
+    file: ${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/knowledge-worker.token
+  erp_api_token:
+    file: ${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/erp-api.token
+  mes_api_token:
+    file: ${UNIFIED_PRIVATE_DIR:?Set UNIFIED_PRIVATE_DIR}/mes-api.token
