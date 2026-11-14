@@ -1,0 +1,1949 @@
+{
+  "baseline": "2cc1565",
+  "candidate": "7034c926fded5b3f1255ecdf4bc28ed31b082460",
+  "backend_ordinary_case_ids": [
+    "MFG-GOLD-017",
+    "MFG-GOLD-018"
+  ],
+  "backend_ordinary": {
+    "cases": 2,
+    "passed": 2
+  },
+  "direct_turns_before": 12,
+  "direct_turns_after": 12,
+  "protocol_direct_turns": 10,
+  "direct_output_comparisons": [
+    {
+      "case_id": "MFG-GOLD-017",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-017",
+        "qa_ordinal": 1,
+        "question": "所选OP-30工序状态、实际开工和精度分别是什么？",
+        "protocol_turn": false,
+        "ordinary_primary": true,
+        "model_calls": 0,
+        "generation_ms": 19.93,
+        "stable_output_sha256": "65d54997baa27c4ea6bda7f1365793c0e80c20d9b4ebe6759103c28291ca50f8",
+        "stable_output": {
+          "answer": "工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的工序状态为Pending。[业务20]\n工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的实际开工时间为未知；本来源未提供该实际开工时间，不能据此确认已开工或认定实际未开工；不能用其他实体或计划时间补值。[业务18]\n工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的开工时间精度为未知。[业务19]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务20",
+              "source_record_id": "7pvhaa8m4o",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "operation_status",
+              "value": "Pending",
+              "actual_start_precision": null,
+              "source_entity": "Work Order Operation",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务18",
+              "source_record_id": "7pvhaa8m4o",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "operation_actual_started_at",
+              "value": null,
+              "actual_start_precision": null,
+              "source_entity": "Work Order Operation",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务19",
+              "source_record_id": "7pvhaa8m4o",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "operation_start_precision",
+              "value": null,
+              "actual_start_precision": null,
+              "source_entity": "Work Order Operation",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的工序状态为Pending",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务20"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的实际开工时间为未知",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务18"
+              ],
+              "derived_condition": {
+                "rendered_text": "本来源未提供该实际开工时间，不能据此确认已开工或认定实际未开工；不能用其他实体或计划时间补值",
+                "origin": "server_unknown_start_boundary",
+                "business_citations": [
+                  "业务18"
+                ],
+                "document_citations": []
+              }
+            },
+            {
+              "claim_index": 3,
+              "text": "工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的开工时间精度为未知",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务19"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-017",
+        "qa_ordinal": 1,
+        "question": "所选OP-30工序状态、实际开工和精度分别是什么？",
+        "protocol_turn": false,
+        "ordinary_primary": true,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "65d54997baa27c4ea6bda7f1365793c0e80c20d9b4ebe6759103c28291ca50f8",
+        "stable_output": {
+          "answer": "工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的工序状态为Pending。[业务20]\n工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的实际开工时间为未知；本来源未提供该实际开工时间，不能据此确认已开工或认定实际未开工；不能用其他实体或计划时间补值。[业务18]\n工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的开工时间精度为未知。[业务19]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务20",
+              "source_record_id": "7pvhaa8m4o",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "operation_status",
+              "value": "Pending",
+              "actual_start_precision": null,
+              "source_entity": "Work Order Operation",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务18",
+              "source_record_id": "7pvhaa8m4o",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "operation_actual_started_at",
+              "value": null,
+              "actual_start_precision": null,
+              "source_entity": "Work Order Operation",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务19",
+              "source_record_id": "7pvhaa8m4o",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "operation_start_precision",
+              "value": null,
+              "actual_start_precision": null,
+              "source_entity": "Work Order Operation",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的工序状态为Pending",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务20"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的实际开工时间为未知",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务18"
+              ],
+              "derived_condition": {
+                "rendered_text": "本来源未提供该实际开工时间，不能据此确认已开工或认定实际未开工；不能用其他实体或计划时间补值",
+                "origin": "server_unknown_start_boundary",
+                "business_citations": [
+                  "业务18"
+                ],
+                "document_citations": []
+              }
+            },
+            {
+              "claim_index": 3,
+              "text": "工单ERP-WO-EXECUTION的工序记录7pvhaa8m4o的开工时间精度为未知",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务19"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-018",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-018",
+        "qa_ordinal": 1,
+        "question": "OP-30下所选作业卡的编号、状态和实际开工是什么？",
+        "protocol_turn": false,
+        "ordinary_primary": true,
+        "model_calls": 0,
+        "generation_ms": 17.88,
+        "stable_output_sha256": "ad0cc5b0dd706412a056958350a2baea95701059105a96f283ff7f3baa66c7ef",
+        "stable_output": {
+          "answer": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的作业卡编号为PO-JOB00007。[业务21]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00007的作业卡状态为Open。[业务24]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00007的实际开工时间为未知；本来源未提供该实际开工时间，不能据此确认已开工或认定实际未开工；不能用其他实体或计划时间补值。[业务22]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00007的开工时间精度为未知。[业务23]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务21",
+              "source_record_id": "PO-JOB00007",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_id",
+              "value": "PO-JOB00007",
+              "actual_start_precision": null,
+              "source_entity": "Job Card",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务24",
+              "source_record_id": "PO-JOB00007",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_status",
+              "value": "Open",
+              "actual_start_precision": null,
+              "source_entity": "Job Card",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务22",
+              "source_record_id": "PO-JOB00007",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_actual_started_at",
+              "value": null,
+              "actual_start_precision": null,
+              "source_entity": "Job Card",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务23",
+              "source_record_id": "PO-JOB00007",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_start_precision",
+              "value": null,
+              "actual_start_precision": null,
+              "source_entity": "Job Card",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的作业卡编号为PO-JOB00007",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务21"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的作业卡状态为Open",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务24"
+              ]
+            },
+            {
+              "claim_index": 3,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的实际开工时间为未知",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务22"
+              ],
+              "derived_condition": {
+                "rendered_text": "本来源未提供该实际开工时间，不能据此确认已开工或认定实际未开工；不能用其他实体或计划时间补值",
+                "origin": "server_unknown_start_boundary",
+                "business_citations": [
+                  "业务22"
+                ],
+                "document_citations": []
+              }
+            },
+            {
+              "claim_index": 4,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的开工时间精度为未知",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务23"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-018",
+        "qa_ordinal": 1,
+        "question": "OP-30下所选作业卡的编号、状态和实际开工是什么？",
+        "protocol_turn": false,
+        "ordinary_primary": true,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "ad0cc5b0dd706412a056958350a2baea95701059105a96f283ff7f3baa66c7ef",
+        "stable_output": {
+          "answer": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的作业卡编号为PO-JOB00007。[业务21]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00007的作业卡状态为Open。[业务24]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00007的实际开工时间为未知；本来源未提供该实际开工时间，不能据此确认已开工或认定实际未开工；不能用其他实体或计划时间补值。[业务22]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00007的开工时间精度为未知。[业务23]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务21",
+              "source_record_id": "PO-JOB00007",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_id",
+              "value": "PO-JOB00007",
+              "actual_start_precision": null,
+              "source_entity": "Job Card",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务24",
+              "source_record_id": "PO-JOB00007",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_status",
+              "value": "Open",
+              "actual_start_precision": null,
+              "source_entity": "Job Card",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务22",
+              "source_record_id": "PO-JOB00007",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_actual_started_at",
+              "value": null,
+              "actual_start_precision": null,
+              "source_entity": "Job Card",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            },
+            {
+              "citation_id": "业务23",
+              "source_record_id": "PO-JOB00007",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_start_precision",
+              "value": null,
+              "actual_start_precision": null,
+              "source_entity": "Job Card",
+              "operation_id": "7pvhaa8m4o",
+              "job_card_id": "PO-JOB00007"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的作业卡编号为PO-JOB00007",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务21"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的作业卡状态为Open",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务24"
+              ]
+            },
+            {
+              "claim_index": 3,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的实际开工时间为未知",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务22"
+              ],
+              "derived_condition": {
+                "rendered_text": "本来源未提供该实际开工时间，不能据此确认已开工或认定实际未开工；不能用其他实体或计划时间补值",
+                "origin": "server_unknown_start_boundary",
+                "business_citations": [
+                  "业务22"
+                ],
+                "document_citations": []
+              }
+            },
+            {
+              "claim_index": 4,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00007的开工时间精度为未知",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务23"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-037",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-037",
+        "qa_ordinal": 1,
+        "question": "所选作业卡实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 19.29,
+        "stable_output_sha256": "822123617b2b4cb1d0ae7206c31d2e29b21b452dad55cc6b6cb23b4e299d7743",
+        "stable_output": {
+          "answer": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的实际开工时间为2026-10-26T09:30:00+08:00。[业务22]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00008的开工时间精度为datetime。[业务23]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务22",
+              "source_record_id": "PO-JOB00008",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_actual_started_at",
+              "value": "2026-10-26T09:30:00+08:00",
+              "actual_start_precision": "datetime",
+              "source_entity": "Job Card",
+              "operation_id": "7pvg4cgbg0",
+              "job_card_id": "PO-JOB00008"
+            },
+            {
+              "citation_id": "业务23",
+              "source_record_id": "PO-JOB00008",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Job Card",
+              "operation_id": "7pvg4cgbg0",
+              "job_card_id": "PO-JOB00008"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的实际开工时间为2026-10-26T09:30:00+08:00",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务22"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务23"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-037",
+        "qa_ordinal": 1,
+        "question": "所选作业卡实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "822123617b2b4cb1d0ae7206c31d2e29b21b452dad55cc6b6cb23b4e299d7743",
+        "stable_output": {
+          "answer": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的实际开工时间为2026-10-26T09:30:00+08:00。[业务22]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00008的开工时间精度为datetime。[业务23]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务22",
+              "source_record_id": "PO-JOB00008",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_actual_started_at",
+              "value": "2026-10-26T09:30:00+08:00",
+              "actual_start_precision": "datetime",
+              "source_entity": "Job Card",
+              "operation_id": "7pvg4cgbg0",
+              "job_card_id": "PO-JOB00008"
+            },
+            {
+              "citation_id": "业务23",
+              "source_record_id": "PO-JOB00008",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Job Card",
+              "operation_id": "7pvg4cgbg0",
+              "job_card_id": "PO-JOB00008"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的实际开工时间为2026-10-26T09:30:00+08:00",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务22"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务23"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-038",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-038",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 17.73,
+        "stable_output_sha256": "6880e553f62fe31edc0523751f43095f01a547d27a6e01bc856c7b60fc44b8f4",
+        "stable_output": {
+          "answer": "工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z。[业务29]\n工单1的批次1的步骤1的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "1",
+              "work_order_id": "1",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-09T00:10:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "1",
+              "step_id": "1"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "1",
+              "work_order_id": "1",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "1",
+              "step_id": "1"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单1的批次1的步骤1的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-038",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "6880e553f62fe31edc0523751f43095f01a547d27a6e01bc856c7b60fc44b8f4",
+        "stable_output": {
+          "answer": "工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z。[业务29]\n工单1的批次1的步骤1的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "1",
+              "work_order_id": "1",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-09T00:10:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "1",
+              "step_id": "1"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "1",
+              "work_order_id": "1",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "1",
+              "step_id": "1"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单1的批次1的步骤1的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-039",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-039",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 22.57,
+        "stable_output_sha256": "6880e553f62fe31edc0523751f43095f01a547d27a6e01bc856c7b60fc44b8f4",
+        "stable_output": {
+          "answer": "工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z。[业务29]\n工单1的批次1的步骤1的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "1",
+              "work_order_id": "1",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-09T00:10:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "1",
+              "step_id": "1"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "1",
+              "work_order_id": "1",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "1",
+              "step_id": "1"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单1的批次1的步骤1的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-039",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "6880e553f62fe31edc0523751f43095f01a547d27a6e01bc856c7b60fc44b8f4",
+        "stable_output": {
+          "answer": "工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z。[业务29]\n工单1的批次1的步骤1的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "1",
+              "work_order_id": "1",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-09T00:10:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "1",
+              "step_id": "1"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "1",
+              "work_order_id": "1",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "1",
+              "step_id": "1"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单1的批次1的步骤1的实际开工时间为2026-11-09T00:10:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单1的批次1的步骤1的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-040",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-040",
+        "qa_ordinal": 1,
+        "question": "所选作业卡实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 17.78,
+        "stable_output_sha256": "822123617b2b4cb1d0ae7206c31d2e29b21b452dad55cc6b6cb23b4e299d7743",
+        "stable_output": {
+          "answer": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的实际开工时间为2026-10-26T09:30:00+08:00。[业务22]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00008的开工时间精度为datetime。[业务23]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务22",
+              "source_record_id": "PO-JOB00008",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_actual_started_at",
+              "value": "2026-10-26T09:30:00+08:00",
+              "actual_start_precision": "datetime",
+              "source_entity": "Job Card",
+              "operation_id": "7pvg4cgbg0",
+              "job_card_id": "PO-JOB00008"
+            },
+            {
+              "citation_id": "业务23",
+              "source_record_id": "PO-JOB00008",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Job Card",
+              "operation_id": "7pvg4cgbg0",
+              "job_card_id": "PO-JOB00008"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的实际开工时间为2026-10-26T09:30:00+08:00",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务22"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务23"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-040",
+        "qa_ordinal": 1,
+        "question": "所选作业卡实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "822123617b2b4cb1d0ae7206c31d2e29b21b452dad55cc6b6cb23b4e299d7743",
+        "stable_output": {
+          "answer": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的实际开工时间为2026-10-26T09:30:00+08:00。[业务22]\n工单ERP-WO-EXECUTION的作业卡PO-JOB00008的开工时间精度为datetime。[业务23]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务22",
+              "source_record_id": "PO-JOB00008",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_actual_started_at",
+              "value": "2026-10-26T09:30:00+08:00",
+              "actual_start_precision": "datetime",
+              "source_entity": "Job Card",
+              "operation_id": "7pvg4cgbg0",
+              "job_card_id": "PO-JOB00008"
+            },
+            {
+              "citation_id": "业务23",
+              "source_record_id": "PO-JOB00008",
+              "work_order_id": "ERP-WO-EXECUTION",
+              "field_name": "job_card_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Job Card",
+              "operation_id": "7pvg4cgbg0",
+              "job_card_id": "PO-JOB00008"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的实际开工时间为2026-10-26T09:30:00+08:00",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务22"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单ERP-WO-EXECUTION的作业卡PO-JOB00008的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务23"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-057",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-057",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 19.17,
+        "stable_output_sha256": "1ed1903b58a74ebe3d5ffee0a9e01078895d517568b08d6331acc1be693592a5",
+        "stable_output": {
+          "answer": "工单4的批次7的步骤13的实际开工时间为2026-11-02T01:06:00.000000Z。[业务29]\n工单4的批次7的步骤13的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "13",
+              "work_order_id": "4",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-02T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "7",
+              "step_id": "13"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "13",
+              "work_order_id": "4",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "7",
+              "step_id": "13"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单4的批次7的步骤13的实际开工时间为2026-11-02T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单4的批次7的步骤13的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-057",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "1ed1903b58a74ebe3d5ffee0a9e01078895d517568b08d6331acc1be693592a5",
+        "stable_output": {
+          "answer": "工单4的批次7的步骤13的实际开工时间为2026-11-02T01:06:00.000000Z。[业务29]\n工单4的批次7的步骤13的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "13",
+              "work_order_id": "4",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-02T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "7",
+              "step_id": "13"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "13",
+              "work_order_id": "4",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "7",
+              "step_id": "13"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单4的批次7的步骤13的实际开工时间为2026-11-02T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单4的批次7的步骤13的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-058",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-058",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 22.05,
+        "stable_output_sha256": "1ed1903b58a74ebe3d5ffee0a9e01078895d517568b08d6331acc1be693592a5",
+        "stable_output": {
+          "answer": "工单4的批次7的步骤13的实际开工时间为2026-11-02T01:06:00.000000Z。[业务29]\n工单4的批次7的步骤13的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "13",
+              "work_order_id": "4",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-02T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "7",
+              "step_id": "13"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "13",
+              "work_order_id": "4",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "7",
+              "step_id": "13"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单4的批次7的步骤13的实际开工时间为2026-11-02T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单4的批次7的步骤13的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-058",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "1ed1903b58a74ebe3d5ffee0a9e01078895d517568b08d6331acc1be693592a5",
+        "stable_output": {
+          "answer": "工单4的批次7的步骤13的实际开工时间为2026-11-02T01:06:00.000000Z。[业务29]\n工单4的批次7的步骤13的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "13",
+              "work_order_id": "4",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-02T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "7",
+              "step_id": "13"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "13",
+              "work_order_id": "4",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "7",
+              "step_id": "13"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单4的批次7的步骤13的实际开工时间为2026-11-02T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单4的批次7的步骤13的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-075",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-075",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 18.6,
+        "stable_output_sha256": "c3829d250f051ebdc477f65974980a08b2ca2b77f82b9034471c32bea08e797b",
+        "stable_output": {
+          "answer": "工单6的批次11的步骤21的实际开工时间为2026-11-04T01:06:00.000000Z。[业务29]\n工单6的批次11的步骤21的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "21",
+              "work_order_id": "6",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-04T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "11",
+              "step_id": "21"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "21",
+              "work_order_id": "6",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "11",
+              "step_id": "21"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单6的批次11的步骤21的实际开工时间为2026-11-04T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单6的批次11的步骤21的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-075",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "c3829d250f051ebdc477f65974980a08b2ca2b77f82b9034471c32bea08e797b",
+        "stable_output": {
+          "answer": "工单6的批次11的步骤21的实际开工时间为2026-11-04T01:06:00.000000Z。[业务29]\n工单6的批次11的步骤21的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "21",
+              "work_order_id": "6",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-04T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "11",
+              "step_id": "21"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "21",
+              "work_order_id": "6",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "11",
+              "step_id": "21"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单6的批次11的步骤21的实际开工时间为2026-11-04T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单6的批次11的步骤21的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-076",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-076",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 19.09,
+        "stable_output_sha256": "c3829d250f051ebdc477f65974980a08b2ca2b77f82b9034471c32bea08e797b",
+        "stable_output": {
+          "answer": "工单6的批次11的步骤21的实际开工时间为2026-11-04T01:06:00.000000Z。[业务29]\n工单6的批次11的步骤21的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "21",
+              "work_order_id": "6",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-04T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "11",
+              "step_id": "21"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "21",
+              "work_order_id": "6",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "11",
+              "step_id": "21"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单6的批次11的步骤21的实际开工时间为2026-11-04T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单6的批次11的步骤21的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-076",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "c3829d250f051ebdc477f65974980a08b2ca2b77f82b9034471c32bea08e797b",
+        "stable_output": {
+          "answer": "工单6的批次11的步骤21的实际开工时间为2026-11-04T01:06:00.000000Z。[业务29]\n工单6的批次11的步骤21的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "21",
+              "work_order_id": "6",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-04T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "11",
+              "step_id": "21"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "21",
+              "work_order_id": "6",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "11",
+              "step_id": "21"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单6的批次11的步骤21的实际开工时间为2026-11-04T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单6的批次11的步骤21的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-093",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-093",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 24.43,
+        "stable_output_sha256": "aa95368c7cd6080072681efcdd17f5e606356bf6358ac35e5f583936a67c26c9",
+        "stable_output": {
+          "answer": "工单7的批次13的步骤25的实际开工时间为2026-11-06T01:06:00.000000Z。[业务29]\n工单7的批次13的步骤25的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "25",
+              "work_order_id": "7",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-06T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "13",
+              "step_id": "25"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "25",
+              "work_order_id": "7",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "13",
+              "step_id": "25"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单7的批次13的步骤25的实际开工时间为2026-11-06T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单7的批次13的步骤25的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-093",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "aa95368c7cd6080072681efcdd17f5e606356bf6358ac35e5f583936a67c26c9",
+        "stable_output": {
+          "answer": "工单7的批次13的步骤25的实际开工时间为2026-11-06T01:06:00.000000Z。[业务29]\n工单7的批次13的步骤25的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "25",
+              "work_order_id": "7",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-06T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "13",
+              "step_id": "25"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "25",
+              "work_order_id": "7",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "13",
+              "step_id": "25"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单7的批次13的步骤25的实际开工时间为2026-11-06T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单7的批次13的步骤25的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-094",
+      "qa_ordinal": 1,
+      "observed_before": true,
+      "observed_after": true,
+      "stable_output_equal": true,
+      "old": {
+        "case_id": "MFG-GOLD-094",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 17.87,
+        "stable_output_sha256": "aa95368c7cd6080072681efcdd17f5e606356bf6358ac35e5f583936a67c26c9",
+        "stable_output": {
+          "answer": "工单7的批次13的步骤25的实际开工时间为2026-11-06T01:06:00.000000Z。[业务29]\n工单7的批次13的步骤25的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "25",
+              "work_order_id": "7",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-06T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "13",
+              "step_id": "25"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "25",
+              "work_order_id": "7",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "13",
+              "step_id": "25"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单7的批次13的步骤25的实际开工时间为2026-11-06T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单7的批次13的步骤25的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      },
+      "new": {
+        "case_id": "MFG-GOLD-094",
+        "qa_ordinal": 1,
+        "question": "所选步骤实际开工时间是什么？",
+        "protocol_turn": true,
+        "ordinary_primary": false,
+        "model_calls": 0,
+        "generation_ms": 0.0,
+        "stable_output_sha256": "aa95368c7cd6080072681efcdd17f5e606356bf6358ac35e5f583936a67c26c9",
+        "stable_output": {
+          "answer": "工单7的批次13的步骤25的实际开工时间为2026-11-06T01:06:00.000000Z。[业务29]\n工单7的批次13的步骤25的开工时间精度为datetime。[业务30]",
+          "answerable": true,
+          "response_type": "answer",
+          "missing_fields": null,
+          "clarification_questions": null,
+          "business_citations": [
+            {
+              "citation_id": "业务29",
+              "source_record_id": "25",
+              "work_order_id": "7",
+              "field_name": "step_actual_started_at",
+              "value": "2026-11-06T01:06:00.000000Z",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "13",
+              "step_id": "25"
+            },
+            {
+              "citation_id": "业务30",
+              "source_record_id": "25",
+              "work_order_id": "7",
+              "field_name": "step_start_precision",
+              "value": "datetime",
+              "actual_start_precision": "datetime",
+              "source_entity": "Batch Step",
+              "batch_id": "13",
+              "step_id": "25"
+            }
+          ],
+          "claim_bindings": [
+            {
+              "claim_index": 1,
+              "text": "工单7的批次13的步骤25的实际开工时间为2026-11-06T01:06:00.000000Z",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务29"
+              ]
+            },
+            {
+              "claim_index": 2,
+              "text": "工单7的批次13的步骤25的开工时间精度为datetime",
+              "claim_kind": "business_fact",
+              "document_citations": [],
+              "business_citations": [
+                "业务30"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "all_observed_direct_outputs_equal": true,
+  "baseline_model_workload_ids": [
+    "MFG-GOLD-001",
+    "MFG-GOLD-002",
+    "MFG-GOLD-003",
+    "MFG-GOLD-004",
+    "MFG-GOLD-005",
+    "MFG-GOLD-006",
+    "MFG-GOLD-007",
+    "MFG-GOLD-008",
+    "MFG-GOLD-009",
+    "MFG-GOLD-010",
+    "MFG-GOLD-011",
+    "MFG-GOLD-012",
+    "MFG-GOLD-013",
+    "MFG-GOLD-014",
+    "MFG-GOLD-015",
+    "MFG-GOLD-016",
+    "MFG-GOLD-019",
+    "MFG-GOLD-021",
+    "MFG-GOLD-022",
+    "MFG-GOLD-023",
+    "MFG-GOLD-024",
+    "MFG-GOLD-025",
+    "MFG-GOLD-026",
+    "MFG-GOLD-027",
+    "MFG-GOLD-036",
+    "MFG-GOLD-041",
+    "MFG-GOLD-042",
+    "MFG-GOLD-043",
+    "MFG-GOLD-044",
+    "MFG-GOLD-045",
+    "MFG-GOLD-046",
+    "MFG-GOLD-047",
+    "MFG-GOLD-048",
+    "MFG-GOLD-049",
+    "MFG-GOLD-050",
+    "MFG-GOLD-051",
+    "MFG-GOLD-052",
+    "MFG-GOLD-053",
+    "MFG-GOLD-054",
+    "MFG-GOLD-055",
+    "MFG-GOLD-056",
+    "MFG-GOLD-059",
+    "MFG-GOLD-060",
+    "MFG-GOLD-061",
+    "MFG-GOLD-062",
+    "MFG-GOLD-063",
+    "MFG-GOLD-064",
+    "MFG-GOLD-065",
+    "MFG-GOLD-066",
+    "MFG-GOLD-067",
+    "MFG-GOLD-068",
+    "MFG-GOLD-069",
+    "MFG-GOLD-070",
+    "MFG-GOLD-071",
+    "MFG-GOLD-072",
+    "MFG-GOLD-073",
+    "MFG-GOLD-074",
+    "MFG-GOLD-077",
+    "MFG-GOLD-078",
+    "MFG-GOLD-079",
+    "MFG-GOLD-080",
+    "MFG-GOLD-081",
+    "MFG-GOLD-082",
+    "MFG-GOLD-083",
+    "MFG-GOLD-084",
+    "MFG-GOLD-085",
+    "MFG-GOLD-086",
+    "MFG-GOLD-087",
+    "MFG-GOLD-088",
+    "MFG-GOLD-089",
+    "MFG-GOLD-090",
+    "MFG-GOLD-091",
+    "MFG-GOLD-092",
+    "MFG-GOLD-095",
+    "MFG-GOLD-096",
+    "MFG-GOLD-097",
+    "MFG-GOLD-098",
+    "MFG-GOLD-099",
+    "MFG-GOLD-100"
+  ],
+  "baseline_model_workload": {
+    "before": {
+      "cases": 79,
+      "passed": 51
+    },
+    "after": {
+      "cases": 79,
+      "passed": 57
+    }
+  },
+  "ordinary_document_qa": {
+    "case_ids": [
+      "MFG-GOLD-005",
+      "MFG-GOLD-006",
+      "MFG-GOLD-007",
+      "MFG-GOLD-008",
+      "MFG-GOLD-009",
+      "MFG-GOLD-010",
+      "MFG-GOLD-011",
+      "MFG-GOLD-012",
+      "MFG-GOLD-041",
+      "MFG-GOLD-042",
+      "MFG-GOLD-043",
+      "MFG-GOLD-044",
+      "MFG-GOLD-045",
+      "MFG-GOLD-046",
+      "MFG-GOLD-047",
+      "MFG-GOLD-048",
+      "MFG-GOLD-049",
+      "MFG-GOLD-050",
+      "MFG-GOLD-051",
+      "MFG-GOLD-052",
+      "MFG-GOLD-053",
+      "MFG-GOLD-054",
+      "MFG-GOLD-055",
+      "MFG-GOLD-056",
+      "MFG-GOLD-059",
+      "MFG-GOLD-060",
+      "MFG-GOLD-061",
+      "MFG-GOLD-062",
+      "MFG-GOLD-063",
+      "MFG-GOLD-064",
+      "MFG-GOLD-065",
+      "MFG-GOLD-066",
+      "MFG-GOLD-067",
+      "MFG-GOLD-068",
+      "MFG-GOLD-069",
+      "MFG-GOLD-070",
+      "MFG-GOLD-071",
+      "MFG-GOLD-072",
+      "MFG-GOLD-073",
+      "MFG-GOLD-074",
+      "MFG-GOLD-077",
+      "MFG-GOLD-078",
+      "MFG-GOLD-079",
+      "MFG-GOLD-080",
+      "MFG-GOLD-081",
+      "MFG-GOLD-082",
+      "MFG-GOLD-083",
+      "MFG-GOLD-084",
+      "MFG-GOLD-085",
+      "MFG-GOLD-086",
+      "MFG-GOLD-087",
+      "MFG-GOLD-088",
+      "MFG-GOLD-089",
+      "MFG-GOLD-090",
+      "MFG-GOLD-091",
+      "MFG-GOLD-092",
+      "MFG-GOLD-095",
+      "MFG-GOLD-096",
+      "MFG-GOLD-097",
+      "MFG-GOLD-098",
+      "MFG-GOLD-099",
+      "MFG-GOLD-100"
+    ],
+    "before": {
+      "cases": 62,
+      "passed": 39
+    },
+    "after": {
+      "cases": 62,
+      "passed": 44
+    }
+  },
+  "unprojected_manufacturing_model_qa": {
+    "case_ids": [
+      "MFG-GOLD-001",
+      "MFG-GOLD-002",
+      "MFG-GOLD-003",
+      "MFG-GOLD-004",
+      "MFG-GOLD-013",
+      "MFG-GOLD-014",
+      "MFG-GOLD-015",
+      "MFG-GOLD-016",
+      "MFG-GOLD-019",
+      "MFG-GOLD-021",
+      "MFG-GOLD-022",
+      "MFG-GOLD-023",
+      "MFG-GOLD-024",
+      "MFG-GOLD-025",
+      "MFG-GOLD-026",
+      "MFG-GOLD-027",
+      "MFG-GOLD-036"
+    ],
+    "before": {
+      "cases": 17,
+      "passed": 12
+    },
+    "after": {
+      "cases": 17,
+      "passed": 13
+    }
+  },
+  "other_zero_model_protocols": {
+    "case_ids": [
+      "MFG-GOLD-020",
+      "MFG-GOLD-028",
+      "MFG-GOLD-029",
+      "MFG-GOLD-030",
+      "MFG-GOLD-031",
+      "MFG-GOLD-032",
+      "MFG-GOLD-033",
+      "MFG-GOLD-034",
+      "MFG-GOLD-035",
+      "MFG-GOLD-037",
+      "MFG-GOLD-038",
+      "MFG-GOLD-039",
+      "MFG-GOLD-040",
+      "MFG-GOLD-057",
+      "MFG-GOLD-058",
+      "MFG-GOLD-075",
+      "MFG-GOLD-076",
+      "MFG-GOLD-093",
+      "MFG-GOLD-094"
+    ],
+    "before": {
+      "cases": 19,
+      "passed": 19
+    },
+    "after": {
+      "cases": 19,
+      "passed": 19
+    }
+  },
+  "observed_cases_with_model_calls": 79,
+  "observed_zero_model_cases": 21,
+  "backend_direct_turn_model_calls": 0,
+  "model_calls": 0,
+  "old_scores_changed": false,
+  "limits": "Projection identified offline using recorded inputs; current generation_ms=0 and model_calls=0 verified. Stable comparison excludes volatile source/collection timestamps and run IDs. Protocol turns are not extra scored cases; other zero-model refusals are not field direct answers. Model workload follows complete r12 identities, not a new classifier."
+}

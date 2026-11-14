@@ -1,0 +1,456 @@
+{
+  "baseline_source": "2cc1565",
+  "candidate_source": "7034c926fded5b3f1255ecdf4bc28ed31b082460",
+  "candidate_business": "7034c926fded5b3f1255ecdf4bc28ed31b082460",
+  "scoring_policy_unchanged": true,
+  "all_cases": {
+    "before": {
+      "cases": 100,
+      "contract_passed": 93,
+      "assistant_non_independent_passed": 72,
+      "required_facts": 274,
+      "required_facts_satisfied": 238,
+      "delivered_answers": 74,
+      "delivered_required_facts": 206,
+      "delivered_required_facts_unsatisfied": 18,
+      "delivered_all_required_satisfied": 59,
+      "unsupported_addition_cases": 8,
+      "forbidden_violation_cases": 0,
+      "harness_error_cases": 0,
+      "answer_characters": 14817
+    },
+    "after": {
+      "cases": 100,
+      "contract_passed": 95,
+      "assistant_non_independent_passed": 78,
+      "required_facts": 274,
+      "required_facts_satisfied": 247,
+      "delivered_answers": 76,
+      "delivered_required_facts": 213,
+      "delivered_required_facts_unsatisfied": 16,
+      "delivered_all_required_satisfied": 63,
+      "unsupported_addition_cases": 7,
+      "forbidden_violation_cases": 0,
+      "harness_error_cases": 0,
+      "answer_characters": 14085
+    }
+  },
+  "both_delivered_answer_tasks": {
+    "case_ids": [
+      "MFG-GOLD-002",
+      "MFG-GOLD-003",
+      "MFG-GOLD-004",
+      "MFG-GOLD-005",
+      "MFG-GOLD-006",
+      "MFG-GOLD-008",
+      "MFG-GOLD-009",
+      "MFG-GOLD-010",
+      "MFG-GOLD-011",
+      "MFG-GOLD-012",
+      "MFG-GOLD-013",
+      "MFG-GOLD-014",
+      "MFG-GOLD-015",
+      "MFG-GOLD-016",
+      "MFG-GOLD-017",
+      "MFG-GOLD-018",
+      "MFG-GOLD-019",
+      "MFG-GOLD-021",
+      "MFG-GOLD-022",
+      "MFG-GOLD-023",
+      "MFG-GOLD-024",
+      "MFG-GOLD-025",
+      "MFG-GOLD-026",
+      "MFG-GOLD-027",
+      "MFG-GOLD-036",
+      "MFG-GOLD-041",
+      "MFG-GOLD-042",
+      "MFG-GOLD-043",
+      "MFG-GOLD-044",
+      "MFG-GOLD-045",
+      "MFG-GOLD-046",
+      "MFG-GOLD-047",
+      "MFG-GOLD-048",
+      "MFG-GOLD-049",
+      "MFG-GOLD-050",
+      "MFG-GOLD-051",
+      "MFG-GOLD-053",
+      "MFG-GOLD-054",
+      "MFG-GOLD-056",
+      "MFG-GOLD-060",
+      "MFG-GOLD-061",
+      "MFG-GOLD-062",
+      "MFG-GOLD-063",
+      "MFG-GOLD-064",
+      "MFG-GOLD-067",
+      "MFG-GOLD-068",
+      "MFG-GOLD-069",
+      "MFG-GOLD-070",
+      "MFG-GOLD-071",
+      "MFG-GOLD-072",
+      "MFG-GOLD-074",
+      "MFG-GOLD-078",
+      "MFG-GOLD-079",
+      "MFG-GOLD-080",
+      "MFG-GOLD-082",
+      "MFG-GOLD-083",
+      "MFG-GOLD-084",
+      "MFG-GOLD-085",
+      "MFG-GOLD-086",
+      "MFG-GOLD-087",
+      "MFG-GOLD-088",
+      "MFG-GOLD-089",
+      "MFG-GOLD-090",
+      "MFG-GOLD-091",
+      "MFG-GOLD-092",
+      "MFG-GOLD-095",
+      "MFG-GOLD-096",
+      "MFG-GOLD-097",
+      "MFG-GOLD-098",
+      "MFG-GOLD-099",
+      "MFG-GOLD-100"
+    ],
+    "before": {
+      "cases": 71,
+      "contract_passed": 71,
+      "assistant_non_independent_passed": 51,
+      "required_facts": 201,
+      "required_facts_satisfied": 185,
+      "delivered_answers": 71,
+      "delivered_required_facts": 201,
+      "delivered_required_facts_unsatisfied": 16,
+      "delivered_all_required_satisfied": 57,
+      "unsupported_addition_cases": 8,
+      "forbidden_violation_cases": 0,
+      "harness_error_cases": 0,
+      "answer_characters": 14149
+    },
+    "after": {
+      "cases": 71,
+      "contract_passed": 71,
+      "assistant_non_independent_passed": 55,
+      "required_facts": 201,
+      "required_facts_satisfied": 186,
+      "delivered_answers": 71,
+      "delivered_required_facts": 201,
+      "delivered_required_facts_unsatisfied": 15,
+      "delivered_all_required_satisfied": 59,
+      "unsupported_addition_cases": 6,
+      "forbidden_violation_cases": 0,
+      "harness_error_cases": 0,
+      "answer_characters": 13020
+    }
+  },
+  "ordinary_same_recorded_document_context": {
+    "case_ids": [
+      "MFG-GOLD-006",
+      "MFG-GOLD-012",
+      "MFG-GOLD-041",
+      "MFG-GOLD-042",
+      "MFG-GOLD-044",
+      "MFG-GOLD-050",
+      "MFG-GOLD-051",
+      "MFG-GOLD-053",
+      "MFG-GOLD-061",
+      "MFG-GOLD-062",
+      "MFG-GOLD-064",
+      "MFG-GOLD-068",
+      "MFG-GOLD-069",
+      "MFG-GOLD-070",
+      "MFG-GOLD-071",
+      "MFG-GOLD-072",
+      "MFG-GOLD-074",
+      "MFG-GOLD-078",
+      "MFG-GOLD-079",
+      "MFG-GOLD-082",
+      "MFG-GOLD-083",
+      "MFG-GOLD-084",
+      "MFG-GOLD-085",
+      "MFG-GOLD-088",
+      "MFG-GOLD-089",
+      "MFG-GOLD-090",
+      "MFG-GOLD-091",
+      "MFG-GOLD-092",
+      "MFG-GOLD-095",
+      "MFG-GOLD-096",
+      "MFG-GOLD-097",
+      "MFG-GOLD-100"
+    ],
+    "before": {
+      "cases": 32,
+      "contract_passed": 32,
+      "assistant_non_independent_passed": 22,
+      "required_facts": 91,
+      "required_facts_satisfied": 81,
+      "delivered_answers": 32,
+      "delivered_required_facts": 91,
+      "delivered_required_facts_unsatisfied": 10,
+      "delivered_all_required_satisfied": 24,
+      "unsupported_addition_cases": 3,
+      "forbidden_violation_cases": 0,
+      "harness_error_cases": 0,
+      "answer_characters": 6266
+    },
+    "after": {
+      "cases": 32,
+      "contract_passed": 32,
+      "assistant_non_independent_passed": 23,
+      "required_facts": 91,
+      "required_facts_satisfied": 81,
+      "delivered_answers": 32,
+      "delivered_required_facts": 91,
+      "delivered_required_facts_unsatisfied": 10,
+      "delivered_all_required_satisfied": 24,
+      "unsupported_addition_cases": 1,
+      "forbidden_violation_cases": 0,
+      "harness_error_cases": 0,
+      "answer_characters": 5633
+    }
+  },
+  "improved_ids": [
+    "MFG-GOLD-002",
+    "MFG-GOLD-006",
+    "MFG-GOLD-026",
+    "MFG-GOLD-065",
+    "MFG-GOLD-066",
+    "MFG-GOLD-069",
+    "MFG-GOLD-073",
+    "MFG-GOLD-081",
+    "MFG-GOLD-087",
+    "MFG-GOLD-095",
+    "MFG-GOLD-098"
+  ],
+  "regressed_ids": [
+    "MFG-GOLD-025",
+    "MFG-GOLD-050",
+    "MFG-GOLD-052",
+    "MFG-GOLD-055",
+    "MFG-GOLD-068"
+  ],
+  "required_fact_changes": [
+    {
+      "case_id": "MFG-GOLD-042",
+      "before": [
+        false,
+        true,
+        false
+      ],
+      "after": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-050",
+      "before": [
+        true,
+        true
+      ],
+      "after": [
+        true,
+        false
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-052",
+      "before": [
+        true
+      ],
+      "after": [
+        false
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-055",
+      "before": [
+        true,
+        true
+      ],
+      "after": [
+        false,
+        false
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-062",
+      "before": [
+        true,
+        false,
+        false
+      ],
+      "after": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-065",
+      "before": [
+        false,
+        false,
+        false
+      ],
+      "after": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-066",
+      "before": [
+        false,
+        false,
+        false
+      ],
+      "after": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-068",
+      "before": [
+        true,
+        true
+      ],
+      "after": [
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-069",
+      "before": [
+        false,
+        true
+      ],
+      "after": [
+        true,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-073",
+      "before": [
+        false,
+        false
+      ],
+      "after": [
+        true,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-077",
+      "before": [
+        false,
+        false
+      ],
+      "after": [
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-080",
+      "before": [
+        true,
+        false,
+        true
+      ],
+      "after": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-081",
+      "before": [
+        false,
+        false
+      ],
+      "after": [
+        true,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-087",
+      "before": [
+        false,
+        true
+      ],
+      "after": [
+        true,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-095",
+      "before": [
+        true,
+        false
+      ],
+      "after": [
+        true,
+        true
+      ]
+    },
+    {
+      "case_id": "MFG-GOLD-098",
+      "before": [
+        true,
+        false
+      ],
+      "after": [
+        true,
+        true
+      ]
+    }
+  ],
+  "unsupported_addition_ids": {
+    "before": [
+      "MFG-GOLD-002",
+      "MFG-GOLD-006",
+      "MFG-GOLD-009",
+      "MFG-GOLD-026",
+      "MFG-GOLD-036",
+      "MFG-GOLD-042",
+      "MFG-GOLD-060",
+      "MFG-GOLD-078"
+    ],
+    "after": [
+      "MFG-GOLD-009",
+      "MFG-GOLD-021",
+      "MFG-GOLD-025",
+      "MFG-GOLD-036",
+      "MFG-GOLD-060",
+      "MFG-GOLD-077",
+      "MFG-GOLD-078"
+    ]
+  },
+  "interpretation": [
+    "required_facts_unsatisfied includes omissions and wrong facts, not pure omission counts. Non-delivery is reported separately.",
+    "Both-delivered tasks keep the same question set; they are not a controlled supplier-request A/B.",
+    "Same recorded document context does not establish identical complete prompts, runtime state or provider requests.",
+    "The last full100 baseline uses the same retrieval and gold. Since that baseline the candidate moves existing projection delivery and adds safe error metadata; runtime conditions and stochastic model variation remain; score changes are not causal proof.",
+    "Answer length is descriptive only; shorter is not automatically better."
+  ],
+  "model_calls": 0,
+  "old_scores_recomputed": false,
+  "old_results_combined": false,
+  "baseline_sha256": {
+    "audits.json": "359471478776ee9e5b0e155b1af3bdfaef0c256e73fd15d7fbfad2c51686c410",
+    "comparison.json": "b5abaa4f5c522ec7ef11a30459131d5e65cfa7b8661cd6394b5b288017755e28",
+    "manifest.json": "a34883300f1002f67a18eec47dcdaeeeaaa600416b0565c7a4208978bca4858f",
+    "model-error-proof.json": "0cc571a810f9f0a46bea45ab4730959808713039b372a0c353ce0abc504ae72a",
+    "r8-comparison.json": "12d48d2ff9aaf87f62744138701c92c1c47c2d8a7ca39dcd6cdc429f2e174d08",
+    "results.jsonl": "06d974dd0a4ed8486663d2b87d22b428cb4111168ce1c4215447618869940ac1",
+    "reviews.json": "d852813b2473ffb2cedc388580b966ec139d661a4b39d875cbd366e0245c4f95",
+    "summary.json": "2a8260b79cb52da620b9f951da9d3b84030ef2526efbcc479eaca863cc2cb43e"
+  }
+}

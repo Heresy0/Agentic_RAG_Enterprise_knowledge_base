@@ -1,0 +1,26 @@
+{
+  "erp": {
+    "unchanged": true,
+    "keys": [
+      "DASHSCOPE_BASE_URL",
+      "DASHSCOPE_EMBEDDING_MODEL",
+      "DASHSCOPE_MODEL",
+      "DASHSCOPE_RERANK_MODEL",
+      "DASHSCOPE_RERANK_URL",
+      "RERANK_TIMEOUT_SECONDS"
+    ],
+    "values_sha256": "458bca425f3bcdd0a4faf295a28d1836acb8799bfb151ec11da526c76381db0c"
+  },
+  "mes": {
+    "unchanged": true,
+    "keys": [
+      "DASHSCOPE_BASE_URL",
+      "DASHSCOPE_EMBEDDING_MODEL",
+      "DASHSCOPE_MODEL",
+      "DASHSCOPE_RERANK_MODEL",
+      "DASHSCOPE_RERANK_URL",
+      "RERANK_TIMEOUT_SECONDS"
+    ],
+    "values_sha256": "458bca425f3bcdd0a4faf295a28d1836acb8799bfb151ec11da526c76381db0c"
+  }
+}

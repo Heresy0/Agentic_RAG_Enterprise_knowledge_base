@@ -7,5 +7,8 @@
 | [20261113-r10](runs/20261113-r10/summary.json) | 31444e4 | 72/100 | 60/100 | 低于完整r8的95/81，不接受为改善版，不部署 |
 | [20261113-r11](runs/20261113-r11/summary.json) | 2472c98 | 95/100 | 81/100 | 与r8持平，12改善/12退步，无依据补充5→7；保留开发候选，不合并部署 |
 | [20261114-r12](runs/20261114-r12/summary.json) | 2cc1565 | 93/100 | 72/100 | 在线路径简化版；5改善/14退步，5题连接/超时未交付，零模型21/21；不证明保持或改善，不合并部署 |
+| [20261114-r14](runs/20261114-r14/summary.json) | 7034c92 | 95/100 | 78/100 | 后端普通直答2/2；普通文档44/62；11题改善、5道原成功题转失败，不宣称整体无退步或稳定改善 |
 
-[首版报告](../../docs/reports/manufacturing-answer-contract-full-live-20261113-r10.md)、[修订版报告](../../docs/reports/manufacturing-answer-contract-revised-full-live-20261113-r11.md)、[路径简化版报告](../../docs/reports/answer-path-full-live-20261114-r12.md)。r11于UTC 2026-11-13执行，北京时间跨至11月14日；r12于11月14日执行。原始Trace与私有配置在忽略的tmp中，禁止提交凭据；三个批次均已关闭，不能复用或补跑。
+[首版报告](../../docs/reports/manufacturing-answer-contract-full-live-20261113-r10.md)、[修订版报告](../../docs/reports/manufacturing-answer-contract-revised-full-live-20261113-r11.md)、[路径简化版报告](../../docs/reports/answer-path-full-live-20261114-r12.md)。r11于UTC 2026-11-13执行，北京时间跨至11月14日；r12于11月14日执行。原始Trace与私有配置在忽略的tmp中，禁止提交凭据；四个完整批次均已关闭，不能复用或补跑。
+
+[后端直接交付候选报告](../../docs/reports/manufacturing-backend-delivery-full-live-20261114-r14.md)，r14同样使用不变v4及既有端点，100题各一次，无补跑拼分，授权已关闭。

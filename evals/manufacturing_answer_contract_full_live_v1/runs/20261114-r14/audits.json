@@ -1,0 +1,121 @@
+{
+  "business_source": {
+    "normal_erp_adapter_readonly": true,
+    "normal_openmes_token_probe": {
+      "read_status": 200,
+      "write_status": 403,
+      "records_unchanged": true,
+      "model_calls": 0
+    },
+    "fixture_controller_only_new_mes_clone": "gold100-v4-grounded-upstream-mes-20261114-r14",
+    "old_application_ledgers_checked": 33,
+    "old_ledgers_unchanged": true,
+    "business_files_before_after": {
+      "erp": {
+        "files": 168,
+        "matches_revision": "7034c926fded5b3f1255ecdf4bc28ed31b082460"
+      },
+      "mes": {
+        "files": 168,
+        "matches_revision": "7034c926fded5b3f1255ecdf4bc28ed31b082460"
+      }
+    },
+    "model_endpoints": {
+      "erp": {
+        "DASHSCOPE_BASE_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com",
+        "DASHSCOPE_RERANK_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com"
+      },
+      "mes": {
+        "DASHSCOPE_BASE_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com",
+        "DASHSCOPE_RERANK_URL": "ws-u4iicqspr49vavjx.cn-beijing.maas.aliyuncs.com"
+      }
+    },
+    "model_postflight_calls": 0,
+    "new_index_calls": 0
+  },
+  "snapshots": {
+    "observed_requests": 251,
+    "qa_post_requests": 110,
+    "snapshot_get_requests": 93,
+    "manufacturing_snapshots": 34,
+    "all_three_reads_and_validations": true
+  },
+  "v4_preflight": {
+    "platforms": 2,
+    "documents_each": 55,
+    "chunks_each": 885,
+    "index_calls": 0,
+    "auth": "normal_keycloak_sub_and_existing_grants",
+    "fresh_identity_files_owned_by_application": true,
+    "source_faults_only_new_mes_clone": true,
+    "old_environments_modified": false
+  },
+  "inventory_preflight": {
+    "erp": {
+      "documents": 55,
+      "chunks": 885,
+      "active_vectors": 885,
+      "total_vectors": 927,
+      "active_index_jobs": 0,
+      "frozen_inventory_matches": true,
+      "current_original_hashes_verified": true,
+      "revised_documents_v2": 3
+    },
+    "mes": {
+      "documents": 55,
+      "chunks": 885,
+      "active_vectors": 885,
+      "total_vectors": 927,
+      "active_index_jobs": 0,
+      "frozen_inventory_matches": true,
+      "current_original_hashes_verified": true,
+      "revised_documents_v2": 3
+    }
+  },
+  "ledger": {
+    "matched": true,
+    "calls": 244,
+    "known_tokens": 776255,
+    "unknown_calls": 24,
+    "budget_tokens": 1544255,
+    "by_stage": {
+      "query_embedding": 71,
+      "rerank": 71,
+      "answer_generation": 79,
+      "answer_repair": 2,
+      "query_planning": 9,
+      "agent_decision": 12
+    },
+    "providers_models": [
+      "dashscope:qwen3-rerank",
+      "dashscope:qwen3.7-flash",
+      "dashscope:text-embedding-v4"
+    ],
+    "all_priced": false,
+    "pending": 0
+  },
+  "authorization_closure": {
+    "status": "closed",
+    "closed_at": "2026-11-14T09:54:34.553289+00:00",
+    "executed": 100,
+    "physical_calls": 244,
+    "budget_tokens": 1544255,
+    "unknown_calls": 24,
+    "request_retries": 0,
+    "continuations": false,
+    "unused_allowance_reusable": false,
+    "postflight_ledger_unchanged": true
+  },
+  "final_original_preservation": {
+    "old_containers": 149,
+    "unchanged_containers": 146,
+    "changed_only_dependency_start_times": [
+      "/gold100-v2-milvus-20261112-r1",
+      "/gold100-v2-minio-20261112-r1",
+      "/gold100-v2-etcd-20261112-r1"
+    ],
+    "old_statuses_restored": true,
+    "original_workbench_changes": false,
+    "models": 0
+  }
+}
