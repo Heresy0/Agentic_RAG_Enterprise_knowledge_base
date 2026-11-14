@@ -191,6 +191,31 @@ def current_usage_context():
     return _current.get()
 
 
+def _failure_details(error):
+    """Keep exception types and transport metadata, never messages or bodies."""
+    chain, seen = [], set()
+    status = request_id = transport_errno = None
+    while error is not None and id(error) not in seen:
+        seen.add(id(error))
+        chain.append(type(error).__name__)
+        response = getattr(error, "response", None)
+        code = getattr(error, "status_code", None)
+        if code is None and response is not None:
+            code = response.status_code
+        if status is None and type(code) is int and 100 <= code <= 599:
+            status = code
+        candidate = getattr(error, "request_id", None)
+        if candidate is None and response is not None:
+            candidate = response.headers.get("x-request-id") or response.headers.get("request-id")
+        if request_id is None and isinstance(candidate, str) and re.fullmatch(r"[\w.-]{1,128}", candidate):
+            request_id = candidate
+        if isinstance(error, OSError) and type(error.errno) is int:
+            transport_errno = error.errno
+        error = error.__cause__ or (None if error.__suppress_context__ else error.__context__)
+    return dict(error_chain=chain, http_status_code=status, transport_errno=transport_errno,
+                provider_request_id=request_id)
+
+
 class ModelCall:
     def __init__(self, stage, model, provider="dashscope"):
         if stage not in STAGES:
@@ -241,13 +266,16 @@ class ModelCall:
         self.finished = True
         duration = perf_counter() - self.started
         status = "error" if exc_type else "success"
+        failure = _failure_details(exc) if exc is not None else {}
+        error_request_id = failure.pop("provider_request_id", None)
+        self.provider_request_id = self.provider_request_id or error_request_id
         price = self.context.prices.get(f"{self.provider}:{self.model}") if self.context else None
         cost = estimate_cost(self.usage, price)
         details = dict(self.context.links if self.context else {},
                        usage_source=self.usage["usage_source"], cached_input_tokens=self.usage["cached_input_tokens"],
                        reasoning_tokens=self.usage["reasoning_tokens"], duration_ms=round(duration * 1000, 3),
                        error_type=exc_type.__name__ if exc_type else None,
-                       provider_request_id=self.provider_request_id, price_snapshot=price)
+                       provider_request_id=self.provider_request_id, price_snapshot=price, **failure)
         values = dict(status=status, **{key: self.usage[key] for key in ("input_tokens", "output_tokens", "total_tokens")},
                       estimated_cost=cost, currency=price["currency"] if price else None, details=details)
         stored = self._write("finish", self.id, self.context.scope.tenant_id, values) if self.persisted else False
