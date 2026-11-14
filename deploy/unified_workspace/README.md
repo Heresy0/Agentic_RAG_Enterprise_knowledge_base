@@ -9,3 +9,11 @@
 本机实际compose、模型凭据、OIDC客户端备份、构建日志和验收记录放在忽略的 `tmp/unified-workspace-8000-20261114-r1/`。不得直接输出或提交环境变量和私有配置。部署完成后的本机启动入口以该目录的compose为准，避免旧部署配置重新发布8005/8006。
 
 现有数据库迁移版本、旧记录和原件须在切换前后核对；仅在确认无活动索引/评测任务后更新对应API和共享Worker。部署验收不重算旧黄金题成绩，也不自动重跑100题。
+
+本机已完成部署，API及两个通用Worker统一源码`a995666`，8005/8006旧容器停止并关闭自动启动。入口网关单独连接边缘网络以发布回环8000，后端无主机端口。部署后使用：
+
+```powershell
+docker compose -f tmp/unified-workspace-8000-20261114-r1/compose.json --profile workers up -d --pull never
+```
+
+数据核验、正常登录与真实模型冒烟、旧容器保留和显式回退命令见[部署验收](../../docs/reports/unified-workspace-8000-20261114-r1.md)。不要用旧根Compose覆盖此应用入口。
