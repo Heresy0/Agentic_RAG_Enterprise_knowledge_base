@@ -1,0 +1,368 @@
+{
+  "schema_version": "manufacturing-fixed-generation-stability-v1",
+  "source_revision": "f389f957ad176c2f5eea470aa5ecf3fe78f80451",
+  "generation_cases": 12,
+  "repeats": 3,
+  "generation_attempts": 36,
+  "rerank_probe_attempts": 9,
+  "physical_calls": 45,
+  "generation_transport_success": 35,
+  "rerank_transport_success": 7,
+  "local_valid": 35,
+  "assistant_non_independent_passed": 27,
+  "required_facts_satisfied": 78,
+  "required_fact_observations": 87,
+  "unsupported_or_citation_issue_trials": 4,
+  "stable_pass_cases": 8,
+  "stable_fail_cases": 2,
+  "mixed_outcome_cases": [
+    "MFG-GOLD-026",
+    "MFG-GOLD-060"
+  ],
+  "r12_success_subset": {
+    "cases": 6,
+    "attempts": 18,
+    "passed": 15
+  },
+  "r12_failure_subset": {
+    "cases": 6,
+    "attempts": 18,
+    "passed": 12
+  },
+  "usage": {
+    "known_tokens": 242661,
+    "unknown_calls": 3,
+    "budget_tokens": 338661,
+    "pending": 0,
+    "all_priced": false,
+    "by_stage": {
+      "answer_generation": 36,
+      "rerank": 9
+    }
+  },
+  "elapsed_seconds": 311.469,
+  "error_diagnostics": [
+    {
+      "case_id": "MFG-GOLD-060",
+      "repeat": 2,
+      "kind": "generation",
+      "details": {
+        "usage_source": "unknown",
+        "cached_input_tokens": null,
+        "reasoning_tokens": null,
+        "duration_ms": 120012.126,
+        "error_type": "APITimeoutError",
+        "provider_request_id": null,
+        "price_snapshot": null,
+        "error_chain": [
+          "APITimeoutError",
+          "ReadTimeout",
+          "ReadTimeout"
+        ],
+        "http_status_code": null,
+        "transport_errno": null
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-009",
+      "repeat": 2,
+      "kind": "rerank_probe",
+      "details": {
+        "usage_source": "unknown",
+        "cached_input_tokens": null,
+        "reasoning_tokens": null,
+        "duration_ms": 5305.697,
+        "error_type": "RerankError",
+        "provider_request_id": null,
+        "price_snapshot": null,
+        "error_chain": [
+          "RerankError",
+          "ReadTimeout",
+          "ReadTimeoutError",
+          "TimeoutError"
+        ],
+        "http_status_code": null,
+        "transport_errno": null
+      }
+    },
+    {
+      "case_id": "MFG-GOLD-009",
+      "repeat": 3,
+      "kind": "rerank_probe",
+      "details": {
+        "usage_source": "unknown",
+        "cached_input_tokens": null,
+        "reasoning_tokens": null,
+        "duration_ms": 5345.747,
+        "error_type": "RerankError",
+        "provider_request_id": null,
+        "price_snapshot": null,
+        "error_chain": [
+          "RerankError",
+          "ReadTimeout",
+          "ReadTimeoutError",
+          "TimeoutError"
+        ],
+        "http_status_code": null,
+        "transport_errno": null
+      }
+    }
+  ],
+  "latency_ms": {
+    "generation": {
+      "min": 2574.48,
+      "median": 3829.067,
+      "max": 120012.126
+    },
+    "rerank": {
+      "min": 1168.555,
+      "median": 5135.722,
+      "max": 6575.671
+    }
+  },
+  "cases": [
+    {
+      "case_id": "MFG-GOLD-004",
+      "source_r12_passed": true,
+      "passed_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "required_complete_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "passes": 3,
+      "distinct_answer_texts": 2,
+      "request_sha256": "86115babab4535ffa2c7856fec2607ff4d1ffeec45daba91cf7d9fda78dca85b",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-006",
+      "source_r12_passed": false,
+      "passed_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "required_complete_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "passes": 3,
+      "distinct_answer_texts": 3,
+      "request_sha256": "6bc494ccc75e5a448b198facb99eea47bea2ae11984bc0d2ef5b7d6e10411078",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-010",
+      "source_r12_passed": true,
+      "passed_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "required_complete_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "passes": 3,
+      "distinct_answer_texts": 3,
+      "request_sha256": "4dbb09ad698438ed148712ed1f8a94804a800161e09dba4b39bd84c1bc6df8e3",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-012",
+      "source_r12_passed": true,
+      "passed_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "required_complete_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "passes": 3,
+      "distinct_answer_texts": 2,
+      "request_sha256": "ab0db0878f024a2b2a04d83c380d14b54c7d1f8a4a3e0826cc31421695dce6e6",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-021",
+      "source_r12_passed": false,
+      "passed_by_repeat": [
+        false,
+        false,
+        false
+      ],
+      "required_complete_by_repeat": [
+        false,
+        true,
+        false
+      ],
+      "passes": 0,
+      "distinct_answer_texts": 3,
+      "request_sha256": "33a1b737c426bfc2216b14fdb5c5b324d5c4f51c96ebed2367ea68db1f71dd2a",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-026",
+      "source_r12_passed": false,
+      "passed_by_repeat": [
+        false,
+        true,
+        true
+      ],
+      "required_complete_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "passes": 2,
+      "distinct_answer_texts": 3,
+      "request_sha256": "3a41e9a8a164926b5f6f7af2444f8d7372901939842922c0ec33b092f2deb5f7",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-043",
+      "source_r12_passed": true,
+      "passed_by_repeat": [
+        false,
+        false,
+        false
+      ],
+      "required_complete_by_repeat": [
+        false,
+        false,
+        false
+      ],
+      "passes": 0,
+      "distinct_answer_texts": 3,
+      "request_sha256": "9f1097b00a9f436fa88629defde00af2f74cdd5daaac7507d78dce92cb43ea5d",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-051",
+      "source_r12_passed": false,
+      "passed_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "required_complete_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "passes": 3,
+      "distinct_answer_texts": 3,
+      "request_sha256": "c3dfaa22d9a6c0a24f924af3c4d0f68ea90e30d28c1bbfe19057a169bc806bd6",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-060",
+      "source_r12_passed": false,
+      "passed_by_repeat": [
+        true,
+        false,
+        false
+      ],
+      "required_complete_by_repeat": [
+        true,
+        false,
+        false
+      ],
+      "passes": 1,
+      "distinct_answer_texts": 2,
+      "request_sha256": "86c604fd9c88204ff82e6336d0b45d5af9ea9da004382d04a143f3174578fcdf",
+      "runtime_failures": 1
+    },
+    {
+      "case_id": "MFG-GOLD-064",
+      "source_r12_passed": true,
+      "passed_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "required_complete_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "passes": 3,
+      "distinct_answer_texts": 2,
+      "request_sha256": "6993d3b79ba0c7659089e1463366415b77883c88720d7de7c82aff6f4d7003a9",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-091",
+      "source_r12_passed": true,
+      "passed_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "required_complete_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "passes": 3,
+      "distinct_answer_texts": 3,
+      "request_sha256": "42dee758ee6619398e81feab4a20a82dca63a6a8a36f1b8eafec51672221de09",
+      "runtime_failures": 0
+    },
+    {
+      "case_id": "MFG-GOLD-095",
+      "source_r12_passed": false,
+      "passed_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "required_complete_by_repeat": [
+        true,
+        true,
+        true
+      ],
+      "passes": 3,
+      "distinct_answer_texts": 3,
+      "request_sha256": "55dc7bcaa8a7043a3132d791f1294669c9c8cac41041d940919689b72df9cf9a",
+      "runtime_failures": 0
+    }
+  ],
+  "tests": {
+    "targeted_passed": 202,
+    "full_suite_executed": false
+  },
+  "changed_business_files": [
+    "backend/app/model_usage.py"
+  ],
+  "business_answer_prompt_schema_retrieval_validation_unchanged": true,
+  "protected_input_files": 277,
+  "protected_inputs_unchanged": true,
+  "source_permissions_revalidated_live": false,
+  "gold100_score": false,
+  "old_scores_modified": false,
+  "independent": false,
+  "human_factory_platform_approvals": 0,
+  "limits": {
+    "max_model_calls": 45,
+    "max_tokens": 1500000,
+    "max_seconds": 5400,
+    "reservation_tokens": 32000
+  },
+  "authorization_closed": true,
+  "request_retries": 0,
+  "scope_limitation": "Reconstructed document headers; unmatched-child header metadata was not saved. Not exact historical full requests or fresh source/permission validation.",
+  "qa_and_source_api_calls": 0,
+  "runtime_database_calls": 0,
+  "docker_operations": 0
+}

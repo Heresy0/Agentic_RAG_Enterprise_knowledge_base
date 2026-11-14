@@ -76,3 +76,4 @@ evals/manufacturing_gold_100_v4/** text eol=lf
 evals/manufacturing_gold_100_live_v4/** text eol=lf
 scripts/*manufacturing_gold*v4*.py text eol=lf
 evals/manufacturing_answer_contract_full_live_v1/** -text whitespace=cr-at-eol
+evals/manufacturing_generation_stability_v1/** -text whitespace=cr-at-eol
