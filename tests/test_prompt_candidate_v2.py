@@ -36,7 +36,15 @@ def test_v2_only_replaces_system_prefix(monkeypatch):
     assert checked==9
 
 
-def test_v2_freeze_keeps_old_evidence_and_new_entry_protected(tmp_path):
+def test_v2_freeze_keeps_old_evidence_and_new_entry_protected(tmp_path,monkeypatch):
+    # The historical trace is private; freeze tests supply its fingerprint without
+    # depending on a previous paid run existing on the developer's machine.
+    historical=candidate.experiment.SOURCE/'evaluation-results.json'
+    fixture=tmp_path/'historical-result.json'
+    fixture.write_text('{"test_fixture": true}\n',encoding='utf-8')
+    digest=candidate.experiment.digest
+    monkeypatch.setattr(candidate.experiment,'digest',lambda path: digest(fixture if path==historical else path))
+    monkeypatch.setattr(candidate.experiment,'CANDIDATE',candidate.CANDIDATE)
     candidate.freeze(tmp_path/'new-run')
     plan=candidate.experiment.read(tmp_path/'new-run/plan.json')
     assert plan['candidate_version']=='v2'
@@ -44,5 +52,6 @@ def test_v2_freeze_keeps_old_evidence_and_new_entry_protected(tmp_path):
     assert 'scripts/compare_manufacturing_prompt_candidate_v2.py' in plan['protected']
     assert 'evals/manufacturing_prompt_candidate_v1/candidate-system.txt' in plan['protected']
     assert 'evals/manufacturing_prompt_candidate_v1/runs/20261114-r16/trials.jsonl' in plan['protected']
+    assert plan['protected'][historical.relative_to(candidate.ROOT).as_posix()]==digest(fixture)
     assert plan['limits']['max_model_calls']==54
     with pytest.raises(FileExistsError):candidate.freeze(tmp_path/'new-run')

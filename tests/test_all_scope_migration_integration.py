@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from uuid import uuid4
 
 from backend.app.db.conversation_models import Conversation, ConversationTurn
+from backend.app.db.business_models import BusinessScopeGrant, ConversationBusinessBinding
 from backend.app.db.models import KnowledgeBase, Tenant, User
 from backend.app.knowledge.answer_models import AnswerResult
 from backend.app.knowledge.conversations import ConversationStore
@@ -50,15 +51,24 @@ def test_postgres_migration_preserves_legacy_history_and_all_scope_tenant_fk(iso
     bm25_session.add(user)
     bm25_session.flush()
     principal = Principal(user.id, tenant.id, user.external_subject)
-    store = ConversationStore(bm25_session, principal, scope)
-    cid = store.create().id
-    token = store.acquire(cid)
-    store.append(cid, token, "old question", "old question", AnswerResult(answer="old answer", answerable=False, citations=[]))
+    # Seed legacy history directly: the current store also queries business
+    # bindings, whose later FK must not exist during this migration round trip.
+    conversation = Conversation(tenant_id=tenant.id, user_id=user.id, knowledge_base_id=scope.knowledge_base_id, turn_count=1)
+    bm25_session.add(conversation)
+    bm25_session.flush()
+    cid = conversation.id
+    bm25_session.add(ConversationTurn(tenant_id=tenant.id, knowledge_base_id=scope.knowledge_base_id,
+        conversation_id=cid, turn_index=1, question="old question", retrieval_question="old question",
+        result_json=AnswerResult(answer="old answer", answerable=False, citations=[]).model_dump(mode='json')))
+    bm25_session.flush()
     migration = importlib.import_module("migrations.versions.b8d0f2a4c607_all_accessible_conversations")
     connection = bm25_session.connection()
     with Operations.context(MigrationContext.configure(connection)):
         migration.downgrade()
         migration.upgrade()
+    for model in (BusinessScopeGrant, ConversationBusinessBinding):
+        model.__table__.create(connection)
+    store = ConversationStore(bm25_session, principal, scope)
     bm25_session.expire_all()
     assert store.get(cid).knowledge_base_id == scope.knowledge_base_id
     history = store.turns(cid)
