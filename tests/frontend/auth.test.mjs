@@ -122,3 +122,27 @@ test("failed refresh clears credentials and allows a new login", async () => {
   auth.useToken(token());
   assert.equal(await auth.token(), auth.accessToken);
 });
+
+test("workspace callbacks, logout and PKCE remain within their own prefix", async () => {
+  const values = browser();
+  const erp = new AuthSession({ ...config, client_id: "erp-web", base_path: "/erp" });
+  const mes = new AuthSession({ ...config, client_id: "mes-web", base_path: "/mes" });
+  await erp.login();
+  const erpRequest = new URL(location.destination);
+  assert.equal(erpRequest.searchParams.get("redirect_uri"), `${location.origin}/erp/`);
+  await mes.login();
+  assert.equal(values.size, 2);
+  const pending = JSON.parse(values.get("knowledge-workspace-pkce/erp"));
+  history.replaceState = (_state, _title, path) => { location.search = ""; location.path = path; };
+  erp.exchange = async fields => {
+    assert.equal(fields.redirect_uri, `${location.origin}/erp/`);
+    return { access_token: token(), id_token: "erp-id" };
+  };
+  location.search = `?code=erp-code&state=${pending.state}`;
+  assert.equal(await erp.callback(), true);
+  assert.equal(location.path, "/erp/");
+  assert.ok(values.has("knowledge-workspace-pkce/mes"));
+  erp.logout();
+  assert.equal(new URL(location.destination).searchParams.get("post_logout_redirect_uri"), `${location.origin}/erp/`);
+  assert.ok(values.has("knowledge-workspace-pkce/mes"));
+});

@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>知序 · 企业知识工作台</title>
-  <link rel="stylesheet" href="/ui/assets/styles.css">
-  <script type="module" src="/ui/assets/app.js"></script>
+  <link rel="stylesheet" href="./ui/assets/styles.css">
+  <script type="module" src="./ui/assets/app.js"></script>
 </head>
 <body>
   <aside class="sidebar">
-    <a class="brand" href="/" aria-label="知序首页"><span class="brand-mark">知</span><span>知序<span class="brand-en">KNOWLEDGE WORKSPACE</span></span></a>
+    <a class="brand" href="./" aria-label="知序首页"><span class="brand-mark">知</span><span>知序<span class="brand-en">KNOWLEDGE WORKSPACE</span></span></a>
+    <label id="workspace-selector" class="workspace-selector" hidden>工作区<select id="workspace-switch" aria-label="切换工作区"></select></label>
     <div class="workspace-label">企业工作空间 <span class="workspace-dot"></span></div>
     <nav aria-label="主导航">
       <button class="nav-item active" data-tab="qa"><span class="nav-symbol">✧</span>知识问答<span class="nav-arrow">↗</span></button>

@@ -52,6 +52,12 @@ def frontend_config(request: Request) -> JSONResponse:
             "issuer": settings.oidc_issuer,
             "client_id": settings.oidc_frontend_client_id,
             "max_upload_bytes": settings.max_upload_bytes,
+            "base_path": request.scope.get("root_path", ""),
+            "workspaces": [
+                {"label": "通用知识", "path": "/"},
+                {"label": "ERP工作区", "path": "/erp/"},
+                {"label": "MES工作区", "path": "/mes/"},
+            ] if getattr(settings, "unified_workspace_navigation", False) else [],
         },
         headers={"Cache-Control": "no-store"},
     )

@@ -1,0 +1,19 @@
+{
+    admin off
+    auto_https off
+}
+
+:8000 {
+    redir /erp /erp/ 308
+    redir /mes /mes/ 308
+
+    handle_path /erp/* {
+        reverse_proxy erp:8000
+    }
+    handle_path /mes/* {
+        reverse_proxy mes:8000
+    }
+    handle {
+        reverse_proxy knowledge:8000
+    }
+}
