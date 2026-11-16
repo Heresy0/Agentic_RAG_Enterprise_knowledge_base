@@ -6,13 +6,13 @@
 
 核心知识问答、ERP/MES只读接入、权限与来源追溯、反馈审核和预算评测链路已实现。当前定位为本地演示与技术验证平台，具备试点准备基础；真实工厂接入、独立业务验收、完整恢复演练和生产容量验证尚未完成。
 
-当前本机统一入口为[8000](http://127.0.0.1:8000/)，左侧切换通用知识、[ERP工作区](http://127.0.0.1:8000/erp/)和[MES工作区](http://127.0.0.1:8000/mes/)。统一部署已启用真实模型及第二版默认提示，原三库、资料、权限与历史保留；8005/8006旧API已停止常驻。[部署验收](docs/reports/unified-workspace-8000-20261114-r1.md)记录2026-11-14的版本与验证范围。
+当前本机统一入口为[8000](http://127.0.0.1:8000/)，左侧切换通用知识、[ERP工作区](http://127.0.0.1:8000/erp/)和[MES工作区](http://127.0.0.1:8000/mes/)。2026-11-16已更新新版前端，原功能、三库、资料、权限与历史保留；后台继续使用原统一版本及第二版默认提示，支持真实模型，8005/8006旧API停止常驻。见[新版前端与部署核验](docs/reports/frontend-workspace-deploy-20261116-r1.md)和[原统一部署记录](docs/reports/unified-workspace-8000-20261114-r1.md)。
 
 最近一次完整真实模型百题r18为**结构96/100、助手非独立语义85/100**，保留15题失败；答全程度改善，无依据补充和跨工序错误仍需改进。这是已知开发集结果，不是生产准确率或独立工厂验收。[完整报告](docs/reports/manufacturing-prompt-v2-full-live-20261114-r18.md)
 
 问答收敛与统一部署、可移植模板已分别通过[PR #19](https://github.com/Heresy0/Agentic_RAG_Enterprise_knowledge_base/pull/19)和[PR #20](https://github.com/Heresy0/Agentic_RAG_Enterprise_knowledge_base/pull/20)合入`main`，完整CI通过。换机器使用[无凭据Compose模板与恢复说明](deploy/unified_workspace/README.md)，先准备依赖、原数据和身份配置；模板仅做离线检查，尚未完成新机器实际恢复验收。
 
-求职展示可从[5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)开始；AI应用开发与后端／制造业IT两版介绍见[简历项目描述](docs/MANUFACTURING_RESUME.md)。以下当前状态整理于**2026-11-15**，模型与部署证据沿用各自已完成批次；历史报告和成绩独立保留。
+求职展示可从[5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)开始；AI应用开发与后端／制造业IT两版介绍见[简历项目描述](docs/MANUFACTURING_RESUME.md)。以下当前状态整理于**2026-11-16**，模型与部署证据沿用各自已完成批次；历史报告和成绩独立保留。
 
 ## 典型业务场景
 
@@ -33,9 +33,9 @@
 | 步骤指导书审核映射、批次/步骤样本冻结 | [OpenMES 审核与质量冻结](docs/OPENMES_GUIDANCE_QUALITY.md) |
 | 历史实施阶段及当轮验收边界 | [分阶段进度](docs/MANUFACTURING_PHASE1_PROGRESS.md)、[OpenMES O4/O5 报告](docs/reports/openmes-guidance-quality-20261110-r1.json) |
 | ERPNext 历史16题真实模型验证与未通过项 | [评分v2完整16题报告](docs/reports/erpnext-model-v2-20261110-r1.md) |
-| 当前8000统一入口、ERP/MES及原数据保留 | [部署版本、启动入口及验收记录](docs/reports/unified-workspace-8000-20261114-r1.md)；[旧8005/8006部署历史](docs/reports/main-isolated-demo-20261110-r1.md) |
+| 当前8000统一入口、ERP/MES及原数据保留 | [新版前端、当前启动与核验](docs/reports/frontend-workspace-deploy-20261116-r1.md)；[原统一部署](docs/reports/unified-workspace-8000-20261114-r1.md)；[旧8005/8006部署历史](docs/reports/main-isolated-demo-20261110-r1.md) |
 | 换机器复现8000统一入口 | [无凭据Compose模板与迁移说明](deploy/unified_workspace/README.md)，复用分别恢复的三库、资料、向量及认证，不切换当前部署 |
-| 新版前端源码与独立预览 | [页面功能、8788演示入口与检查范围](docs/FRONTEND_WORKSPACE.md)，沿用现有API，尚未更新8000部署 |
+| 新版前端源码与独立预览 | [页面功能、按需预览与检查范围](docs/FRONTEND_WORKSPACE.md)，已更新8000，沿用现有API |
 | 求职演示与简历 | [5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)、[两版简历描述](docs/MANUFACTURING_RESUME.md) |
 | 制造业40题黄金候选与人工审阅 | [题集说明](evals/manufacturing_gold_v1/README.md)、[逐题答案与证据](evals/manufacturing_gold_v1/REVIEW.md)；40题待审核，未执行、无新成绩 |
 | 中文100题候选与隔离单次验证 | [候选与证据](evals/manufacturing_gold_100_v1/README.md)、[隔离运行说明](evals/manufacturing_gold_100_live_v1/README.md)、[本轮报告](docs/reports/manufacturing-gold100-live-20261112-r1.md)；结构89/100、助手非独立语义69/100，独立人工批准0，未全量通过 |
@@ -100,7 +100,7 @@ flowchart LR
 
 平台统一保留知识库权限、工厂业务范围与来源核验。步骤映射和样本批准还需知识库 `admin` 及业务 `view+review`。审核、反馈和样本写入平台数据库，连接器不向 ERP/MES 登记开工、报工或质量放行。
 
-本机入口与部署版本（2026-11-14验收记录）：
+本机入口与部署版本（2026-11-16前端更新）：
 
 | 工作区 | 平台入口 | 数据与版本 |
 | --- | --- | --- |
@@ -108,9 +108,9 @@ flowchart LR
 | ERPNext | [8000/erp/](http://127.0.0.1:8000/erp/) | 原`main_isolated_erpnext_20261110_r1`库、资料及业务授权保留 |
 | OpenMES | [8000/mes/](http://127.0.0.1:8000/mes/) | 原`main_isolated_openmes_20261110_r1`库、步骤映射及历史保留 |
 
-三个API及两个通用Worker使用同一代码镜像，部署冻结源码为`a995666`，采用第二版普通文档默认提示，支持真实模型。后续主线合并补齐测试依赖、夹具和可移植模板，没有重新部署应用。只有网关发布回环8000；旧8005/8006API停止并关闭自动重启，原容器、镜像及备份保留，8003/8004保持停止。上游仍为自建ERPNext/OpenMES，只读适配范围保持。
+三个API使用新版前端镜像`frontend-20261116-r2`，前端源码为`106ac8a`；两个通用Worker保留原镜像。后台业务仍为原统一版本，每个API其余167个Python文件保持原始字节，采用第二版普通文档默认提示，支持真实模型。只有网关发布回环8000；旧8005/8006API停止并关闭自动重启，原镜像、备份与业务历史保留，8003/8004保持停止。上游仍为自建ERPNext/OpenMES，只读适配范围保持。
 
-本机实际启动仍使用忽略目录`tmp/unified-workspace-8000-20261114-r1/compose.json`；新机器使用[可移植模板](deploy/unified_workspace/README.md)，不将新模板直接套用到现有部署。租户、用户、授权、凭据和业务记录属于运行数据，不随Git克隆生成。[统一部署与数据保留记录](docs/reports/unified-workspace-8000-20261114-r1.md)
+本机实际启动使用原`tmp/unified-workspace-8000-20261114-r1/compose.json`加`tmp/frontend-workspace-deploy-20261116-r1/compose.override.json`，具体命令与回退见[当前部署记录](docs/reports/frontend-workspace-deploy-20261116-r1.md)。新机器使用[可移植模板](deploy/unified_workspace/README.md)，不将新模板直接套用到现有部署。租户、用户、授权、凭据和业务记录属于运行数据，不随Git克隆生成。[原统一部署与数据保留记录](docs/reports/unified-workspace-8000-20261114-r1.md)
 
 <details>
 <summary>历史独立入口与隔离验证环境（2026-11-10至12）</summary>

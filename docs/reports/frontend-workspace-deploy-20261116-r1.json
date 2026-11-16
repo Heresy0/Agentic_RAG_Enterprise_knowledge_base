@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-16",
+  "status": "passed",
+  "frontend_revision": "106ac8af2f1ef0963e7ea7f73aa2dbcb6ce46b08",
+  "image": {
+    "image": "enterprise-knowledge-manufacturing:frontend-20261116-r2",
+    "id": "sha256:6b13c1ed1ae55ec0a21f3173c899fbffd4823388ac502a15c1f6dcbf37525189",
+    "revision": "106ac8af2f1ef0963e7ea7f73aa2dbcb6ce46b08",
+    "frontend_files": 7,
+    "base_image": "sha256:cd591b4fd73f86f48d375b7a23686e06cd475e1e2fc2a973702cb9dccca3d144"
+  },
+  "feature_audit": {
+    "original_ids": 116,
+    "current_ids": 158,
+    "missing_original_ids": [],
+    "duplicate_ids": [],
+    "changed_form_constraints": [],
+    "existing_api_templates_preserved": true,
+    "unchanged_modules": {
+      "auth.js": true,
+      "quality.js": true,
+      "openmes.js": true
+    }
+  },
+  "checks": {
+    "node": 74,
+    "frontend_api": 16,
+    "container": 36,
+    "final_http_get": 79
+  },
+  "preservation": {
+    "knowledge": {
+      "old_rows_preserved": 47170,
+      "original_files_preserved": 184,
+      "business_python_unchanged": 167,
+      "model_usage_unchanged": true
+    },
+    "erp": {
+      "old_rows_preserved": 3355,
+      "original_files_preserved": 13,
+      "business_python_unchanged": 167,
+      "model_usage_unchanged": true
+    },
+    "mes": {
+      "old_rows_preserved": 2414,
+      "original_files_preserved": 13,
+      "business_python_unchanged": 167,
+      "model_usage_unchanged": true
+    }
+  },
+  "original_rows_preserved": 52939,
+  "original_files_preserved": 210,
+  "other_containers_unchanged": 73,
+  "old_compose_unchanged": true,
+  "physical_model_calls": 0,
+  "browser": {
+    "desktop": {
+      "height": 1000,
+      "overflow": false,
+      "width": 1440
+    },
+    "mobile": {
+      "height": 844,
+      "overflow": false,
+      "width": 390
+    },
+    "wide": {
+      "height": 1308,
+      "overflow": false,
+      "width": 2552
+    },
+    "shortDesktop": {
+      "flexShrink": "0",
+      "libraryButtonHeights": [
+        39.796875,
+        39.796875,
+        39.796875,
+        39.796875
+      ],
+      "libraryListHeight": 171.1875,
+      "overflow": false,
+      "sidebarHeight": 713,
+      "sidebarScrollHeight": 895,
+      "viewport": {
+        "height": 713,
+        "width": 1265
+      }
+    }
+  },
+  "published_port": 8000,
+  "retired_ports": [
+    8005,
+    8006
+  ],
+  "temporary_preview_stopped": 8788,
+  "new_token_file_created": false,
+  "database_migrations": 0,
+  "index_rebuilds": 0,
+  "notes": [
+    "auth.js/quality.js/openmes.js original deployed bytes preserved",
+    "Docker Mounts order checked against complete original hash",
+    "original backend image and database backups retained"
+  ]
+}
