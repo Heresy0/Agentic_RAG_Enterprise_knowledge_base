@@ -126,8 +126,10 @@ export function createVerificationWorkspace({ $, element, api, state, sameContex
         if (["queued","running"].includes(job.status)) card.append(button("取消后续执行",async()=>{try { await api(`/api/quality/evaluations/${job.id}/cancel`,{method:"POST"}); if (sameContext(revision)) await refresh(); } catch(error){if(sameContext(revision))errorNotice(error);} }));
         $("verification-jobs").append(card);
       }
+      if (!jobs.length) $("verification-jobs").append(element("p", "暂无评测任务。选择样本版本并确认预算后可创建。", "empty-row"));
       $("improvement-list").replaceChildren();
       for (const row of improvements.data.items) { const card = element("article",undefined,"feedback-card"); card.append(element("strong",row.description),element("p",`${statuses[row.status]} · ${row.change_ref}`,"answer-meta"),button("查看与验证",()=>showImprovement(row.id,true))); $("improvement-list").append(card); }
+      if (!improvements.data.items.length) $("improvement-list").append(element("p", "暂无改进记录。审核确认问题后，可记录修复并进入验证。", "empty-row"));
       if (state.tab === "verification" && jobs.some(job=>["queued","running"].includes(job.status))) polling=setTimeout(()=>refresh(),5000);
     } catch(error){if(sameContext(revision)&&token===epoch)errorNotice(error);}
   }

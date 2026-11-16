@@ -71,6 +71,83 @@ function setup() {
   return { $, requests, run, ask, sandbox };
 }
 
+test("guidance navigation uses only the existing GET selection APIs before explicit querying", async () => {
+  const h = setup();
+  await h.run('setTab("guidance")');
+  assert.equal(h.run('state.mode'), 'manufacturing');
+  assert.equal(h.$('qa-panel').hidden, false);
+  assert.equal(h.$('manufacturing-panel').hidden, false);
+  assert.equal(h.$('heading').textContent, '作业指导');
+  assert(h.requests.every(r => r.method === 'GET'));
+  assert(h.requests.some(r => r.url === '/api/manufacturing/work-orders'));
+  assert(!h.requests.some(r => r.url.endsWith('/qa')));
+  await h.run('setTab("qa")');
+  assert.equal(h.run('state.mode'), 'knowledge');
+  assert.equal(h.$('manufacturing-panel').hidden, true);
+});
+
+test("late guidance loading cannot pause evaluation refresh after navigating to verification", async () => {
+  const h = setup();
+  let finishOrders;
+  h.sandbox.fetch = async url => {
+    if (url.endsWith('/work-orders')) return new Promise(resolve => { finishOrders = resolve; });
+    return jsonResponse({items: []});
+  };
+  h.run('var pauseCount = 0; var verificationRefreshes = 0; verificationWorkspace.pause = () => { pauseCount += 1; }; verificationWorkspace.refresh = () => { verificationRefreshes += 1; };');
+  const pending = h.run('setTab("guidance")');
+  await new Promise(resolve => setImmediate(resolve));
+  await h.run('setTab("verification")');
+  const pausesWhenLeaving = h.run('pauseCount');
+  finishOrders(jsonResponse({items: [], next_cursor: null}));
+  await pending;
+  assert.equal(h.run('state.tab'), 'verification');
+  assert.equal(h.run('verificationRefreshes'), 1);
+  assert.equal(h.run('pauseCount'), pausesWhenLeaving);
+});
+
+test("an explicit guidance query keeps backend text, citation and feedback handlers in the reading card", async () => {
+  const h = setup();
+  const result = { answer: '<script>never executed</script>\n来源原文', answerable: true, run_id:'run-guide', citations:[{citation_id:1,knowledge_base_id:'kb1',document_id:'d1',chunk_id:'ch1',document_name:'作业指导.pdf',section_path:'4.2'}], business_citations:[{citation_id:'B1',field_name:'actual_started_at'}] };
+  h.run('state.mode = "manufacturing"');
+  h.sandbox.guidanceResult = result;
+  h.run('const guide = message("assistant", "正在查询"); renderAnswer(guide, guidanceResult, "request-1", true);');
+  const guide = h.$('guidance-content').children[0];
+  assert.equal(guide.querySelector('.message-text').textContent, result.answer);
+  assert.equal(guide.querySelector('.citation-list').children.length, 2);
+  assert(guide.querySelector('.answer-feedback'));
+  h.run('clearConversation()');
+  assert(!treeText(h.$('guidance-content')).includes('never executed'));
+});
+
+test("document filters search only the loaded scope and keep totals from that scope", () => {
+  const h = setup();
+  h.run('state.documents = [{id:"a",file_name:"首件指导.pdf",status:"ready",version:1,chunk_count:3,updated_at:"2026-11-16T00:00:00Z",publication:{state:"published"}},{id:"b",file_name:"扫描件.pdf",status:"ready",version:1,chunk_count:2,updated_at:"2026-11-16T00:00:00Z",publication:{state:"draft"}}]');
+  h.$('document-search').value = '首件';
+  h.run('renderDocuments()');
+  assert.equal(h.$('documents-body').children.length, 1);
+  assert.match(treeText(h.$('documents-body')), /首件指导/);
+  assert.equal(h.$('documents-total').textContent, 2);
+  assert.equal(h.$('document-count').textContent, 1);
+  h.$('document-filter').value = 'draft';
+  h.run('renderDocuments()');
+  assert.match(treeText(h.$('documents-body')), /没有符合条件/);
+  h.run('state.documents = []; renderDocuments()');
+  assert.equal(h.$('documents-total').textContent, 0);
+  assert(!treeText(h.$('documents-body')).includes('首件指导'));
+  assert.equal(h.requests.length, 0);
+});
+
+test("viewers can open published originals without receiving review or deletion controls", () => {
+  const h = setup();
+  h.run('state.documents = [{id:"a",file_name:"已发布.pdf",mime_type:"application/pdf",status:"ready",version:1,chunk_count:3,updated_at:"2026-11-16T00:00:00Z",publication:{state:"published"}},{id:"b",file_name:"草稿.pdf",mime_type:"application/pdf",status:"ready",version:1,chunk_count:2,updated_at:"2026-11-16T00:00:00Z",publication:{state:"draft"}}]; renderDocuments()');
+  const rows = h.$('documents-body').children;
+  assert.match(treeText(rows[0]), /查看原始PDF/);
+  assert(!treeText(rows[1]).includes('查看原始PDF'));
+  assert(!treeText(h.$('documents-body')).includes('预览／复核'));
+  assert(!treeText(h.$('documents-body')).includes('删除'));
+  assert.equal(h.requests.length, 0);
+});
+
 test("workspace API calls retain their prefix instead of reaching the general database", async () => {
   for (const prefix of ["", "/erp", "/mes"]) {
     const h = setup();

@@ -35,6 +35,7 @@
 | ERPNext 历史16题真实模型验证与未通过项 | [评分v2完整16题报告](docs/reports/erpnext-model-v2-20261110-r1.md) |
 | 当前8000统一入口、ERP/MES及原数据保留 | [部署版本、启动入口及验收记录](docs/reports/unified-workspace-8000-20261114-r1.md)；[旧8005/8006部署历史](docs/reports/main-isolated-demo-20261110-r1.md) |
 | 换机器复现8000统一入口 | [无凭据Compose模板与迁移说明](deploy/unified_workspace/README.md)，复用分别恢复的三库、资料、向量及认证，不切换当前部署 |
+| 新版前端源码与独立预览 | [页面功能、8788演示入口与检查范围](docs/FRONTEND_WORKSPACE.md)，沿用现有API，尚未更新8000部署 |
 | 求职演示与简历 | [5分钟演示流程](docs/MANUFACTURING_FIVE_MINUTE_DEMO.md)、[两版简历描述](docs/MANUFACTURING_RESUME.md) |
 | 制造业40题黄金候选与人工审阅 | [题集说明](evals/manufacturing_gold_v1/README.md)、[逐题答案与证据](evals/manufacturing_gold_v1/REVIEW.md)；40题待审核，未执行、无新成绩 |
 | 中文100题候选与隔离单次验证 | [候选与证据](evals/manufacturing_gold_100_v1/README.md)、[隔离运行说明](evals/manufacturing_gold_100_live_v1/README.md)、[本轮报告](docs/reports/manufacturing-gold100-live-20261112-r1.md)；结构89/100、助手非独立语义69/100，独立人工批准0，未全量通过 |

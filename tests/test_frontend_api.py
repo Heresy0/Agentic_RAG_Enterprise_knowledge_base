@@ -62,7 +62,7 @@ def test_workspace_config_keeps_the_server_root_path(client, prefix):
     assert 'src="./ui/assets/app.js"' in page.text
 
 
-@pytest.mark.parametrize("asset", ["app.js", "auth.js", "quality.js", "verification.js", "styles.css"])
+@pytest.mark.parametrize("asset", ["app.js", "auth.js", "quality.js", "verification.js", "styles.css", "noto-sans-sc-variable.woff2", "FONT-OFL.txt"])
 def test_browser_assets_are_served(client, asset):
     response = client.get(f"/ui/assets/{asset}")
     assert response.status_code == 200

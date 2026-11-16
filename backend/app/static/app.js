@@ -45,6 +45,13 @@ function updateControls() {
   $("manufacturing-job-cards-more").disabled = !canAsk() || state.loading;
   qualityWorkspace.updateControls();
   verificationWorkspace.updateControls();
+  for (const [tab, id] of [["quality", "quality-nav"], ["verification", "verification-nav"]]) {
+    document.querySelectorAll(`#quality-subnav [data-tab="${tab}"]`).forEach(button => { button.disabled = $(id).disabled; });
+  }
+  document.body.classList.toggle("guidance-mode", state.mode === "manufacturing");
+  $("guidance-assistant-heading").hidden = state.mode !== "manufacturing";
+  $("guidance-order-picker").hidden = state.mode !== "manufacturing" || !["guidance", "qa"].includes(state.tab);
+  $("guidance-query").disabled = !canAsk() || !state.manufacturing.context || state.asking || state.loading;
   $("question").disabled = !canAsk() || state.asking || state.loading;
   for (const id of ["work-model", "work-process", "work-date", "work-order"]) $(id).disabled = !canAsk() || state.asking || state.loading;
   $("ask-button").disabled = !canAsk() || state.asking || state.loading;
@@ -88,7 +95,7 @@ async function api(path, options = {}) {
 
 function resetWorkspace() {
   state.revision += 1;
-  state.asking = false; state.mode = "knowledge"; $("qa-mode").value = "knowledge"; resetManufacturing();
+  state.asking = false; state.mode = state.tab === "guidance" ? "manufacturing" : "knowledge"; $("qa-mode").value = state.mode; resetManufacturing();
   resetFeedback();
   $("feedback-view").value = "mine"; $("feedback-rating").value = "";
   clearTimeout(state.polling);
@@ -115,6 +122,11 @@ function clearConversation({ preserveWorkContext = false } = {}) {
   $("answer-area").replaceChildren(welcome);
   welcome.hidden = false;
   $("question").value = "";
+  state.guidanceRequested = false;
+  $("guidance-binding").textContent = "选择工单，查看适用资料与作业要求";
+  const empty = element("div", undefined, "empty-state");
+  empty.append(element("h3", "从当前工单开始"), element("p", "选择工单与执行层级，再点击“查询作业要求”。回答将保留原文引用，执行情况请另行核对。"));
+  $("guidance-content").replaceChildren(empty);
   if (!preserveWorkContext) for (const id of ["work-model", "work-process", "work-date", "work-order"]) $(id).value = "";
 }
 function renderBases() {
@@ -182,6 +194,7 @@ function resetManufacturing() {
   $("manufacturing-order").value = ""; $("manufacturing-more").hidden = true;
   $("manufacturing-context").replaceChildren(element("p", "选择工单后查看可信来源字段。"));
   $("manufacturing-applicability").replaceChildren(); $("manufacturing-applicability").hidden = true;
+  $("execution-fields").replaceChildren(element("p", "选择工单后查看执行记录。", "empty-row"));
 }
 function invalidateManufacturingView(text) {
   ++state.revision; state.asking = false; state.loading = false;
@@ -213,7 +226,16 @@ async function refreshManufacturingOrders(more = false) {
 function renderWorkOrder(context, historical = false) {
   if (historical) openmesWorkspace.clear();
   if (context.work_order_number) openmesWorkspace.renderContext(context, historical);
-  const target = $("manufacturing-context"); target.replaceChildren();
+  const root = $("manufacturing-context"); root.replaceChildren(element("h3", historical ? "回答当次工单" : "当前工单"), element("div", context.product_model || "型号未提供", "context-model"));
+  const summary = element("dl", undefined, "context-fields");
+  for (const [label, value] of [["工单编号", context.work_order_id], ["当前工序", context.execution?.operation_code || context.operation_code], ["工单实际开工", context.actual_started_at], ["工序实际开工", context.execution?.operation_actual_started_at]]) {
+    if (label === "工序实际开工" && !context.execution) continue;
+    const row = element("div"); row.append(element("dt", label), element("dd", value ?? "未登记", value == null ? "unknown" : "")); summary.append(row);
+  }
+  root.append(summary, element("p", "指导书说明作业要求；完成情况请核对相应执行记录。", "context-note"));
+  const target = element("details", undefined, "source-details"); target.append(element("summary", "来源与完整字段")); root.append(target);
+  $("guidance-binding").textContent = `${context.work_order_id} · ${context.step?.name || context.operation_code || "工序未提供"} · ${context.execution ? "所选工序" : context.step ? "所选步骤" : "工单级"}${historical ? " · 历史快照" : ""}`;
+  renderExecutionFields(context);
   target.append(element("h3", `${historical ? "历史工单快照" : "已核验工单"} · ${context.work_order_id}`));
   for (const [name, label] of [["product_model", "型号"], ["operation_code", "工序"], ["actual_started_at", context.execution ? "工单实际开工（选版依据）" : "实际开工"], ["actual_start_precision", "工单时间精度"], ["route_revision", "路线修订"], ["source_system_id", "来源"], ["source_revision", "源修订"], ["last_verified_at", "最后核验时间"]]) {
     target.append(element("p", `${label}：${context[name] ?? "未知"}`));
@@ -254,6 +276,25 @@ function renderManufacturingSelectors() {
   for (const row of value.jobCards) { const option = element("option", `${row.job_card_id} · ${row.status} · ${row.actual_started_at ?? "实际开工未登记"}`); option.value = row.job_card_id; $("manufacturing-job-card").append(option); }
   if (value.jobCardId && !value.jobCards.some(row => row.job_card_id === value.jobCardId)) { const selected = element("option", `已选作业卡 · ${value.jobCardId}`); selected.value = value.jobCardId; $("manufacturing-job-card").append(selected); }
   $("manufacturing-job-card").value = value.jobCardId || ""; $("manufacturing-job-cards-more").hidden = !value.jobCursor;
+}
+
+function renderExecutionFields(context) {
+  const target = $("execution-fields"); target.replaceChildren();
+  const groups = [["工单", [["工单编号", context.work_order_id], ["实际开工", context.actual_started_at], ["时间精度", context.actual_start_precision]]]];
+  if (context.execution) groups.push(["所选工序", [["记录编号", context.execution.operation_id], ["实际开工", context.execution.operation_actual_started_at], ["时间精度", context.execution.operation_start_precision], ["登记状态", context.execution.operation_status]]]);
+  if (context.execution?.job_card_id) groups.push(["所选作业卡", [["记录编号", context.execution.job_card_id], ["实际开工", context.execution.job_card_actual_started_at], ["时间精度", context.execution.job_card_start_precision], ["登记状态", context.execution.job_card_status]]]);
+  for (const [title, fields] of groups) {
+    const section = element("section", undefined, "execution-section"), list = element("dl", undefined, "context-fields");
+    section.append(element("h3", title));
+    for (const [label, value] of fields) { const row = element("div"); row.append(element("dt", label), element("dd", value ?? "未登记", value == null ? "unknown" : "")); list.append(row); }
+    section.append(list); target.append(section);
+  }
+  target.append(element("p", "各层级分别显示来源字段，未登记不代表未执行。MES批次与步骤的详细记录见下方。", "context-note"));
+}
+
+function renderGuidanceAnswer(container) {
+  container.classList.add("guidance-result");
+  $("guidance-content").replaceChildren(container);
 }
 async function selectManufacturingOperation(id) {
   state.manufacturing.operationId = id || null; state.manufacturing.jobCardId = null;
@@ -336,7 +377,7 @@ async function refreshConversations() {
     state.conversations = data.items; renderConversations();
   } catch (error) { if (sameContext(revision)) errorNotice(error); }
 }
-function renderAnswer(container, data, requestId) {
+function renderAnswer(container, data, requestId, guidanceRequest = false) {
   if (state.mode === "manufacturing" && data.work_order_context) { state.manufacturing.context = data.work_order_context; renderWorkOrder(data.work_order_context); renderApplicability(data.applicability, data.run_id); }
   const answer = container.querySelector(".message-text"); answer.classList.remove("loading"); answer.textContent = data.answer;
   if (data.response_type === "clarify") container.append(element("p", `请补充：${(data.missing_fields || []).join("、")}。回复后会继续当前问题。`, "answer-meta"));
@@ -358,6 +399,7 @@ function renderAnswer(container, data, requestId) {
   container.append(element("div", `${seconds}文档引用 ${data.citations?.length || 0} 条 · 业务引用 ${data.business_citations?.length || 0} 条${requestId ? ` · 请求编号 ${requestId}` : ""}`, "answer-meta"));
   if (data.run_id) addFeedbackControls(container, data.run_id);
   else if (data.snapshot_status === "unavailable") container.append(element("p", "本次回答快照暂不可用，无法关联反馈。", "answer-meta"));
+  if (guidanceRequest && state.mode === "manufacturing") renderGuidanceAnswer(container);
 }
 
 function resetFeedback() {
@@ -677,12 +719,18 @@ async function reviewDocument(doc) {
 }
 function renderDocuments() {
   const body = $("documents-body"); body.replaceChildren();
-  $("document-count").textContent = state.documents.length;
-  if (!state.documents.length) {
-    const row = element("tr"), cell = element("td", state.kb ? "这里还没有文档。上传第一份资料，开始积累团队知识。" : "登录并选择知识库后查看文档", "empty-row");
+  const query = $("document-search").value.trim().toLocaleLowerCase(), filter = $("document-filter").value;
+  const documents = state.documents.filter(doc => (!query || doc.file_name.toLocaleLowerCase().includes(query)) && (!filter || (doc.publication?.state || "published") === filter));
+  $("documents-total").textContent = state.documents.length;
+  $("documents-published").textContent = state.documents.filter(doc => (doc.publication?.state || "published") === "published").length;
+  $("documents-review").textContent = state.documents.filter(doc => doc.publication?.state === "draft").length;
+  $("documents-processing").textContent = state.documents.filter(doc => ["pending", "queued", "running"].includes(doc.status)).length;
+  $("document-count").textContent = documents.length;
+  if (!documents.length) {
+    const row = element("tr"), cell = element("td", !state.kb ? "请选择左侧的具体知识库查看文档" : query || filter ? "没有符合条件的文档，请调整搜索或筛选。" : "这里还没有文档。上传第一份资料，开始积累团队知识。", "empty-row");
     cell.colSpan = 5; row.append(cell); body.append(row); return;
   }
-  for (const doc of state.documents) {
+  for (const doc of documents) {
     const row = element("tr");
     const name = element("td"); name.append(element("span", "▤  "), element("span", doc.file_name));
     const status = element("td"); status.append(statusNode(doc.status));
@@ -698,7 +746,13 @@ function renderDocuments() {
         $("delete-dialog").showModal();
       });
       action.append(button);
-    } else action.textContent = "只读";
+    } else {
+      action.append(element("span", "只读", "answer-meta"));
+      if (doc.status === "ready" && (doc.publication?.state || "published") === "published") {
+        const revision = state.revision, kbId = state.kb.id;
+        sourceLink(action, kbId, doc, null, () => sameContext(revision) && state.kb?.id === kbId);
+      }
+    }
     row.append(name, status, element("td", `v${doc.version} / ${doc.chunk_count} 块`), element("td", formatDate(doc.updated_at)), action);
     body.append(row);
   }
@@ -728,19 +782,23 @@ function renderJobs() {
     container.append(info, actions); $("jobs-list").append(container);
   }
 }
-function setTab(tab) {
+async function setTab(tab) {
+  if (state.tab !== tab) notice();
   state.tab = tab;
   document.querySelectorAll("[data-tab]").forEach(button => { button.classList.toggle("active", button.dataset.tab === tab); button.setAttribute("aria-current", button.dataset.tab === tab ? "page" : "false"); });
-  $("qa-panel").hidden = tab !== "qa"; $("documents-panel").hidden = tab !== "documents";
+  $("qa-panel").hidden = !["qa", "guidance"].includes(tab); $("documents-panel").hidden = tab !== "documents";
   $("feedback-panel").hidden = tab !== "feedback";
   $("quality-panel").hidden = tab !== "quality";
   $("verification-panel").hidden = tab !== "verification";
-  $("page-name").textContent = { qa: "知识问答", documents: "文档管理", feedback: "问答反馈", quality: "质量工作台", verification:"评测与改进" }[tab];
-  $("heading").textContent = { qa: "把团队知识，变成可靠答案。", documents: "让团队的经验，有序沉淀。", feedback: "让每一次反馈，都有据可查。", quality: "把发现的问题，变成改进的依据。", verification:"让改进经过验证，再关闭问题。" }[tab];
-  $("subheading").textContent = { qa: "从内部文档中查找答案，每一个结论都有据可循。", documents: "管理知识库资料，追踪索引进度，让新知识随时可用。", feedback: "关联当次答案与证据，为持续改进留下可靠线索。", quality: "审核反馈、核对标准，逐步积累可追溯的回归样本。", verification:"对比固定集与反馈集，核对答案、耗时和用量，保留验证依据。" }[tab];
+  const title = { guidance:"作业指导", qa:"知识问答", documents:"文档中心", feedback:"问答反馈", quality:"质量中心", verification:"评测与改进" }[tab];
+  $("page-name").textContent = title; $("heading").textContent = title;
+  $("subheading").textContent = { guidance:"找到当前工序的要求，带着依据开展工作。", qa:"从工艺资料中找到答案，沿引用核对依据。", documents:"管理工艺文件与团队资料，跟进复核、发布和索引状态。", feedback:"回看问题、回答与当次依据，留下有用的改进线索。", quality:"审核共享反馈，核对证据，积累可追溯的回归样本。", verification:"对比基线与候选结果，跟进评测任务与改进记录。" }[tab];
+  $("quality-subnav").hidden = !["quality", "feedback", "verification"].includes(tab);
+  $("guidance-order-picker").hidden = tab !== "guidance";
   if (tab === "feedback") refreshFeedback();
   if (tab === "quality") qualityWorkspace.refresh();
   if (tab === "verification") verificationWorkspace.refresh(); else verificationWorkspace.pause();
+  if (["qa", "guidance"].includes(tab)) await switchQueryMode(tab === "guidance" ? "manufacturing" : "knowledge");
 }
 function message(role, text) {
   $("welcome").hidden = true;
@@ -830,6 +888,7 @@ $("question-form").addEventListener("submit", async event => {
   event.preventDefault();
   let question = $("question").value.trim();
   if (!question || !canAsk() || state.asking || state.loading) return;
+  const guidanceRequest = state.guidanceRequested === true; state.guidanceRequested = false;
   const conditions = [["work-model", "产品／设备型号"], ["work-process", "工序"], ["work-date", "业务日期"], ["work-order", "工单编号"]]
     .filter(([id]) => $(id).value.trim()).map(([id, label]) => `${label}：${$(id).value.trim()}`);
   const manufacturing = state.mode === "manufacturing";
@@ -838,7 +897,7 @@ $("question-form").addEventListener("submit", async event => {
   if (question.length > 1000) { notice("问题与补充条件合计不能超过1000字，请适当缩短。", true); return; }
   const revision = state.revision;
   state.asking = true; updateControls(); notice();
-  message("user", question); $("question").value = "";
+  const askedMessage = message("user", question); $("question").value = "";
   const pending = message("assistant", "正在检索资料并生成答案，请稍候…");
   pending.querySelector(".message-text").classList.add("loading");
   try {
@@ -853,7 +912,8 @@ $("question-form").addEventListener("submit", async event => {
     if (manufacturing) { input.work_order_id = state.manufacturing.orderId; input.expected_source_revision = state.manufacturing.context.source_revision; Object.assign(input, manufacturingSelection()); }
     const { data, requestId } = await api(manufacturing ? "/api/manufacturing/qa" : "/api/qa", { method: "POST", body: JSON.stringify(input) });
     if (!sameContext(revision)) return;
-    renderAnswer(pending, data, requestId);
+    renderAnswer(pending, data, requestId, guidanceRequest);
+    if (guidanceRequest) askedMessage.remove();
     await refreshConversations();
   } catch (error) {
     if (revision === state.revision) {
@@ -865,11 +925,14 @@ $("question-form").addEventListener("submit", async event => {
     }
   } finally { if (revision === state.revision) { state.asking = false; updateControls(); } }
 });
-$("qa-mode").addEventListener("change", async event => {
-  state.mode = event.target.value === "manufacturing" ? "manufacturing" : "knowledge";
+async function switchQueryMode(mode) {
+  if (state.mode === mode) return;
+  state.mode = mode; $("qa-mode").value = mode;
   ++state.revision; state.asking = false; resetManufacturing(); clearConversation(); state.conversations = []; renderConversations(); updateControls();
+  if (!canAsk()) return;
   await Promise.all([refreshConversations(), state.mode === "manufacturing" ? refreshManufacturingOrders() : Promise.resolve()]);
-});
+}
+$("qa-mode").addEventListener("change", event => switchQueryMode(event.target.value === "manufacturing" ? "manufacturing" : "knowledge"));
 $("manufacturing-order").addEventListener("change", event => selectManufacturingOrder(event.target.value));
 $("manufacturing-refresh").addEventListener("click", async () => { const id = state.manufacturing.orderId; if (await refreshManufacturingOrders() && id && state.mode === "manufacturing") await loadManufacturingSelection(true, true); });
 $("manufacturing-more").addEventListener("click", () => refreshManufacturingOrders(true));
@@ -887,6 +950,31 @@ $("question").addEventListener("keydown", event => {
   if (event.key === "Enter" && !event.shiftKey && !event.isComposing) { event.preventDefault(); $("question-form").requestSubmit(); }
 });
 
+$("guidance-query").addEventListener("click", () => {
+  if (state.asking || state.loading || !state.manufacturing.context) return;
+  state.guidanceRequested = true;
+  $("question").value = "当前所选工单和执行层级有哪些作业要求？请列出适用指导书中的必要条件，并区分要求与实际执行记录。";
+  $("question-form").requestSubmit();
+});
+$("document-search").addEventListener("input", renderDocuments);
+$("document-filter").addEventListener("change", renderDocuments);
+$("help-button").addEventListener("click", () => $("help-dialog").showModal());
+function selectGuidanceView(view) {
+  $("guidance-card").hidden = view !== "guide"; $("execution-card").hidden = view !== "execution";
+  for (const [id, selected] of [["guidance-tab", view === "guide"], ["execution-tab", view === "execution"]]) {
+    $(id).setAttribute("aria-selected", String(selected)); $(id).setAttribute("tabindex", selected ? "0" : "-1");
+  }
+}
+document.querySelectorAll("[data-guidance-view]").forEach(button => {
+  button.addEventListener("click", () => selectGuidanceView(button.dataset.guidanceView));
+  button.addEventListener("keydown", event => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const view = event.key === "Home" ? "guide" : event.key === "End" ? "execution" : button.dataset.guidanceView === "guide" ? "execution" : "guide";
+    selectGuidanceView(view); $(view === "guide" ? "guidance-tab" : "execution-tab").focus();
+  });
+});
+
 async function init() {
   try {
     const response = await fetch("./ui/config");
@@ -899,6 +987,9 @@ async function init() {
       $("workspace-switch").append(option);
     }
     $("workspace-switch").value = (state.config.base_path || "") + "/";
+    const workspaceName = workspaces.find(item => item.path === (state.config.base_path || "") + "/")?.label || "知识工作区";
+    $("workspace-name").textContent = workspaceName; $("page-scope").textContent = workspaceName;
+    await setTab(["/erp", "/mes"].includes(state.config.base_path) ? "guidance" : "qa");
     $("upload-description").textContent = `支持 PDF、DOCX、TXT、Markdown · 单文件最大 ${Math.round(state.config.max_upload_bytes / 1048576)} MB`;
     if (await state.auth.callback()) await connect();
     else notice("登录企业账号后，即可在有权限的知识库中提问。", false);
