@@ -108,9 +108,9 @@ flowchart LR
 | ERPNext | [8000/erp/](http://127.0.0.1:8000/erp/) | 原`main_isolated_erpnext_20261110_r1`库、资料及业务授权保留 |
 | OpenMES | [8000/mes/](http://127.0.0.1:8000/mes/) | 原`main_isolated_openmes_20261110_r1`库、步骤映射及历史保留 |
 
-三个API使用新版前端镜像`frontend-20261117-r2`，前端源码为`fe65392`；两个通用Worker保留原镜像。后台业务仍为原统一版本，每个API其余167个Python文件保持原始字节，采用第二版普通文档默认提示，支持真实模型。只有网关发布回环8000；旧8005/8006API停止并关闭自动重启，原镜像、备份与业务历史保留，8003/8004保持停止。上游仍为自建ERPNext/OpenMES，只读适配范围保持。
+三个API使用新版前端镜像`frontend-20261117-r3`，前端源码为`6aeda6b`，采用SOPilot品牌及B款工序双轨标识；两个通用Worker保留原镜像。后台业务仍为原统一版本，每个API其余167个Python文件保持原始字节，采用第二版普通文档默认提示，支持真实模型。只有网关发布回环8000；旧8005/8006API停止并关闭自动重启，原镜像、备份与业务历史保留，8003/8004保持停止。上游仍为自建ERPNext/OpenMES，只读适配范围保持。
 
-本机实际启动使用原`tmp/unified-workspace-8000-20261114-r1/compose.json`加`tmp/frontend-polish-deploy-20261117-r1/compose.override.json`，具体命令与回退见[当前部署记录](docs/reports/frontend-polish-deploy-20261117-r1.md)。新机器使用[可移植模板](deploy/unified_workspace/README.md)，不将新模板直接套用到现有部署。租户、用户、授权、凭据和业务记录属于运行数据，不随Git克隆生成。[原统一部署与数据保留记录](docs/reports/unified-workspace-8000-20261114-r1.md)
+本机实际启动使用原`tmp/unified-workspace-8000-20261114-r1/compose.json`加`tmp/sopilot-brand-deploy-20261117-r1/compose.override.json`，具体命令与回退见[当前部署记录](docs/reports/sopilot-brand-deploy-20261117-r1.md)。新机器使用[可移植模板](deploy/unified_workspace/README.md)，不将新模板直接套用到现有部署。租户、用户、授权、凭据和业务记录属于运行数据，不随Git克隆生成。[原统一部署与数据保留记录](docs/reports/unified-workspace-8000-20261114-r1.md)
 
 <details>
 <summary>历史独立入口与隔离验证环境（2026-11-10至12）</summary>

@@ -1,4 +1,4 @@
-# 知序前端工作空间
+# SOPilot前端工作空间
 
 本轮前端位于 `codex/frontend-workspace` 分支，沿用已确认的浅色布局、靛蓝控件和 Noto Sans SC 中文字体。已接入原有同源API并更新8000三工作区，原数据库、资料及历史记录保持；当前版本、启动与回退入口见[部署记录](reports/frontend-workspace-deploy-20261116-r1.md)。
 
@@ -56,3 +56,5 @@
 2026-11-17移除了知识问答首页三张示例问题卡片，已同步8000。当前镜像和启动覆盖文件见[首页精简记录](reports/frontend-welcome-cleanup-20261117-r1.md)。
 
 2026-11-17字体、配色、控件及空白提示精修版已部署8000，源码`fe65392`、镜像`frontend-20261117-r2`。当前启动入口和回退命令见[精修部署记录](reports/frontend-polish-deploy-20261117-r1.md)。
+
+SOPilot品牌及B款工序双轨标识已部署8000，源码`6aeda6b`、镜像`frontend-20261117-r3`。当前启动/回退入口及验收见[品牌部署记录](reports/sopilot-brand-deploy-20261117-r1.md)，[品牌预览记录](reports/sopilot-brand-preview-20261117-r1.md)保留设计过程。
