@@ -1,0 +1,37 @@
+{
+  "workspaces": {
+    "knowledge": {
+      "healthy": true,
+      "unchanged_rows": 47182,
+      "unchanged_originals": 184,
+      "unchanged_python": 168,
+      "model_usage_unchanged": true
+    },
+    "erp": {
+      "healthy": true,
+      "unchanged_rows": 3355,
+      "unchanged_originals": 13,
+      "unchanged_python": 168,
+      "model_usage_unchanged": true
+    },
+    "mes": {
+      "healthy": true,
+      "unchanged_rows": 2414,
+      "unchanged_originals": 13,
+      "unchanged_python": 168,
+      "model_usage_unchanged": true
+    }
+  },
+  "other_containers_preserved": 73,
+  "http_gets": 6,
+  "image": "enterprise-knowledge-manufacturing:frontend-20261118-r1",
+  "source_revision": "406b9935f3852f88513ad8bf5190966b83a2c318",
+  "frontend_files": [
+    "index.html",
+    "styles.css"
+  ],
+  "frontend_node_tests": 84,
+  "frontend_wrapper_tests": 17,
+  "authenticated_http_gets": 79,
+  "new_model_calls": 0
+}

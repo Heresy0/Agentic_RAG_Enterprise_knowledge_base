@@ -1,10 +1,10 @@
 # SOPilot前端工作空间
 
-当前8000已部署强化视觉统一版：源码`d5268c4`、镜像`frontend-20261117-r6`。作业指导、问答、文档、质量、评测和反馈页面统一视觉，上传区保持展开；当前启动和回退入口见[部署验收](reports/frontend-enhanced-deploy-20261117-r1.md)。
+当前8000已部署简洁版前端：源码`406b993`、镜像`frontend-20261118-r1`。Ask SOPilot为浅紫色，各页面采用轻量布局和导航同款页标，指定上传区保持展开；当前启动和回退入口见[部署验收](reports/frontend-quiet-deploy-20261118-r1.md)。
 
 过程记录：[交互第一轮](reports/frontend-task-flow-20261117-r1.md)、[文档与管理交互](reports/frontend-management-flow-20261117-r1.md)、[文档视觉](reports/document-center-visual-preview-20261117-r1.md)、[问答与作业指导视觉](reports/qa-guidance-visual-preview-20261117-r1.md)。8788仅独立演示。
 
-本轮前端位于 `codex/frontend-workspace` 分支，沿用已确认的浅色布局、靛蓝控件和 Noto Sans SC 中文字体。已接入原有同源API并更新8000三工作区，原数据库、资料及历史记录保持；当前版本、启动与回退入口见[部署记录](reports/frontend-enhanced-deploy-20261117-r1.md)。
+本轮前端位于 `codex/frontend-workspace` 分支，沿用已确认的浅色布局、靛蓝控件和 Noto Sans SC 中文字体。已接入原有同源API并更新8000三工作区，原数据库、资料及历史记录保持；当前版本、启动与回退入口见[部署记录](reports/frontend-quiet-deploy-20261118-r1.md)。
 
 ## 页面与功能
 
