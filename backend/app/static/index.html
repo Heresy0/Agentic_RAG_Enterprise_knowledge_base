@@ -70,9 +70,9 @@
         <div class="qa-thread"><div id="guidance-assistant-heading" class="assistant-heading" hidden><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><h2>询问 SOPilot</h2><span>绑定当前业务对象</span></div>
         <div class="conversation-toolbar"><label for="conversation-list">最近对话</label><select id="conversation-list" disabled><option value="">新对话</option></select><button id="new-conversation" class="secondary" disabled>＋ 新对话</button><button id="delete-conversation" class="secondary" disabled>删除对话</button></div>
         <section id="answer-area" class="answer-area" aria-live="polite">
-          <div id="welcome" class="welcome"><div class="welcome-icon">✧</div><h2>从一个问题开始。</h2><p>直接提问，自动查找有权限的知识库；查询作业要求时，请写明型号、工序和业务日期。</p></div>
+          <div id="welcome" class="welcome"><div class="welcome-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-brand"/></svg></div><h2>向 SOPilot 提问</h2><p>查找工艺规范与作业要求，沿引用核对原文。</p></div>
         </section>
-        <details id="user-work-conditions" class="work-context"><summary>补充作业条件（选填）</summary><p>填写用户已知的条件，帮助定位适用资料；普通模式不查询工单系统。修改条件后会开始新对话。</p><div class="feedback-filters"><label>产品／设备型号<input id="work-model" maxlength="80"></label><label>工序<input id="work-process" maxlength="60"></label><label>业务日期<input id="work-date" type="date"></label><label>工单编号<input id="work-order" maxlength="60"></label></div></details>
+        <details id="user-work-conditions" class="work-context"><summary>补充作业条件（选填）</summary><p>查询作业要求时，可填写型号、工序和业务日期，帮助定位适用资料；普通模式不查询工单系统。修改条件后会开始新对话。</p><div class="feedback-filters"><label>产品／设备型号<input id="work-model" maxlength="80"></label><label>工序<input id="work-process" maxlength="60"></label><label>业务日期<input id="work-date" type="date"></label><label>工单编号<input id="work-order" maxlength="60"></label></div></details>
         <form id="question-form" class="composer"><label for="question" class="sr-only">向当前知识库提问</label><textarea id="question" rows="2" maxlength="1000" placeholder="例如：2026年10月新开工的 HC-A17 OP-20 应执行哪些首件检查？" disabled></textarea><div class="composer-bottom"><span>依据资料回答 · 点击引用查看原文</span><button id="ask-button" class="primary" type="submit" disabled>发送问题 <span>↑</span></button></div></form>
         <p class="footnote">AI 答案仅供参考，重要事项请核对原始文档。</p>
 </div>
@@ -113,8 +113,6 @@
         <div class="section-title"><h3>最近评测任务</h3><span>执行完成表示已取得结果，仍需核对自动评分和人工复核</span></div><div id="verification-jobs" class="feedback-list"></div>
         <div class="section-title"><h3>改进记录</h3><span>在质量审核中确认问题后，点击“记录修复并进入验证”</span></div><div id="improvement-list" class="feedback-list"></div>
       </section>
-
-      <footer class="page-footer"><span>SOPilot · 工艺知识与作业指导平台</span><span>工作有据，步步有序</span></footer>
     </main>
   </div>
   <dialog id="login-dialog" aria-labelledby="login-title"><form method="dialog"><button class="dialog-close" aria-label="关闭登录窗口">×</button></form><div class="dialog-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-brand"/></svg></div><div class="eyebrow">SOPILOT WORKSPACE</div><h2 id="login-title">欢迎使用 SOPilot</h2><p>使用企业账号登录，访问属于你的知识库。</p><button id="oidc-login" class="primary login-primary">使用企业账号登录 ↗</button><p id="login-help" class="login-help">通过 Keycloak 安全登录</p><details><summary>已有访问令牌？临时登录</summary><form id="token-form"><label for="token">访问令牌</label><textarea id="token" rows="3" spellcheck="false" autocomplete="off" placeholder="粘贴 Access Token（不含 Bearer 前缀）"></textarea><p class="login-help">令牌仅保存在当前页面内存中，刷新后需要重新登录。</p><button class="secondary" type="submit">连接工作空间</button></form></details></dialog>
