@@ -483,7 +483,9 @@ test("answer metadata distinguishes document and business references, including 
       business_citations: Array.from({ length: business }, (_, i) => ({ citation_id: `业务${i + 1}`, field_name: "step_actual_started_at" })) };
     run('renderAnswer(message("assistant", ""), response, "request-1")');
     const rendered = $("answer-area").children.at(-1);
-    assert.equal(rendered.querySelector(".citation-list").children.length, documents + business);
+    assert.equal(rendered.querySelector(".citation-list")?.children.length || 0, documents + business);
+    assert.equal(!!rendered.querySelector(".answer-evidence"), documents + business > 0);
+    assert.equal(rendered.querySelector(".answer-details").querySelector(".answer-meta").textContent, `文档引用 ${documents} 条 · 业务引用 ${business} 条 · 请求编号 request-1`);
     assert.equal(rendered.querySelector(".answer-meta").textContent, `文档引用 ${documents} 条 · 业务引用 ${business} 条 · 请求编号 request-1`);
   }
 });
@@ -994,4 +996,121 @@ test("zero-call evaluation sends hard zero budgets and resets consent on mode ch
   assert.equal(submitted.allow_model_calls,false);assert.equal(submitted.max_model_calls,0);assert.equal(submitted.max_tokens,0);
   $("evaluation-consent").checked=true;$("evaluation-mode").value="model";$("evaluation-mode").listeners.change();
   assert.equal($("evaluation-consent").checked,false);assert.equal($("evaluation-max-calls").disabled,false);
+});
+
+test("document overview filters processing separately and clearing restores the loaded scope", () => {
+  const h = setup();
+  h.run('state.documents = [{id:"a",file_name:"已发布.pdf",status:"ready",version:1,chunk_count:3,updated_at:"2026-11-16T00:00:00Z",publication:{state:"published"}},{id:"b",file_name:"待索引.pdf",status:"queued",version:1,chunk_count:0,updated_at:"2026-11-16T00:00:00Z",publication:{state:"draft"}}]; renderDocuments()');
+  h.$('documents-processing-filter').click();
+  assert.match(treeText(h.$('documents-body')), /待索引/);
+  assert(!treeText(h.$('documents-body')).includes('已发布.pdf'));
+  assert.equal(h.$('documents-total').textContent, 2);
+  h.$('documents-published-filter').click();
+  assert.equal(h.$('document-processing-filter').value, '');
+  assert.match(treeText(h.$('documents-body')), /已发布.pdf/);
+  h.$('document-clear-filters').click();
+  assert.equal(h.$('documents-body').children.length, 2);
+  assert.equal(h.requests.length, 0);
+});
+
+test("failed document reads stop loading and expose local recovery without erasing the last loaded list", async () => {
+  const h = setup();
+  h.run('state.documents = [{id:"old", file_name:"上次加载.pdf"}];');
+  h.sandbox.fetch = async () => { throw new Error('offline'); };
+  await h.run('refreshDocuments()');
+  assert.equal(h.$('documents-retry').hidden, false);
+  assert.match(h.$('document-status').textContent, /上次加载结果/);
+  assert.equal(h.run('state.loading'), false);
+  assert.equal(h.run('state.documents[0].id'), 'old');
+  h.sandbox.fetch = async () => jsonResponse({items:[]});
+  await h.$('documents-retry').click();
+  assert.equal(h.$('documents-retry').hidden, true);
+  assert.equal(h.$('document-status').hidden, true);
+});
+
+test("failed QA keeps the original editable question and does not duplicate conditions on manual resubmission", async () => {
+  const h = setup(); let attempts = 0; const submitted = [];
+  h.run('state.conversationId = "c1";'); h.$('work-model').value = 'HC-A17';
+  h.sandbox.fetch = async (url, options = {}) => {
+    if (url === '/api/qa') {
+      attempts++; submitted.push(JSON.parse(options.body).question);
+      if (attempts === 1) throw new Error('offline');
+      return jsonResponse({answer:'完成',answerable:true,citations:[]});
+    }
+    return jsonResponse({items:[]});
+  };
+  const original = '  首件检查条件？  ';
+  await h.ask(original);
+  assert.equal(h.$('question').value, original);
+  assert.equal(attempts, 1);
+  assert.match(h.$('notice').textContent, /问题已保留/);
+  await h.ask(h.$('question').value);
+  assert.equal(attempts, 2); assert.equal(submitted[0], submitted[1]);
+  assert.equal(h.$('question').value, '');
+});
+
+test("wait notices report elapsed time without sending another request and stop after completion", async () => {
+  const h = setup(); const timers = []; const cancelled = [];
+  h.sandbox.setTimeout = (callback, delay) => { const timer = {callback, delay}; timers.push(timer); return timer; };
+  h.sandbox.clearTimeout = timer => cancelled.push(timer);
+  h.run('state.conversationId = "c1";');
+  let release, started; const ready = new Promise(resolve => { started = resolve; }); let calls = 0;
+  h.sandbox.fetch = async url => {
+    if (url === '/api/qa') { calls++; started(); await new Promise(resolve => { release = resolve; }); return jsonResponse({answer:'最终回答',answerable:true,citations:[]}); }
+    return jsonResponse({items:[]});
+  };
+  const pending = h.ask('问题'); await ready;
+  const timer = timers.find(item => item.delay === 15000); timer.callback();
+  assert.match(treeText(h.$('answer-area')), /已等待/); assert.equal(calls, 1);
+  release(); await pending;
+  assert.match(treeText(h.$('answer-area')), /最终回答/);
+  assert(cancelled.includes(timers.at(-1)));
+  timer.callback(); assert(!treeText(h.$('answer-area')).includes('已等待'));
+});
+
+test("management navigation follows the selected library permission and remains grouped on verification", async () => {
+  const h = setup(); h.run('updateControls()');
+  assert.equal(h.$('quality-nav').hidden, true);
+  admin(h.run); await h.run('setTab("verification")');
+  assert.equal(h.$('quality-nav').hidden, false);
+  assert.equal(h.$('quality-subnav').hidden, false);
+  await h.run('setTab("feedback")'); assert.equal(h.$('quality-subnav').hidden, true);
+  h.run('state.kb.permission = "viewer"; updateControls()');
+  assert.equal(h.$('quality-nav').hidden, true);
+});
+
+test("quality list read failure replaces the loading placeholder with actionable local text", async () => {
+  const h = setup(); admin(h.run);
+  h.sandbox.fetch = async () => { throw new Error('offline'); };
+  await h.run('qualityWorkspace.refresh()');
+  assert.match(treeText(h.$('quality-list')), /审核列表加载失败/);
+  assert(!treeText(h.$('quality-list')).includes('正在加载'));
+});
+
+test("verification read failure is explicit and permission loss prevents additional reads", async () => {
+  const h = setup(); admin(h.run); let calls = 0;
+  h.sandbox.fetch = async () => { calls++; throw new Error('offline'); };
+  await h.run('verificationWorkspace.refresh()');
+  assert.equal(h.$('verification-status').hidden, false);
+  assert.match(h.$('verification-status').textContent, /上次加载结果/);
+  const previous = calls;
+  h.run('state.kb.permission="viewer"; updateControls()');
+  await h.run('verificationWorkspace.refresh()'); assert.equal(calls, previous);
+  h.run('resetWorkspace()'); assert.equal(h.$('verification-status').hidden, true);
+});
+
+test("answer completion cancels the wait notice before a slow conversation list refresh", async () => {
+  const h = setup(); const timers = [], cancelled = [];
+  h.sandbox.setTimeout = (callback, delay) => { const timer = {callback, delay}; timers.push(timer); return timer; };
+  h.sandbox.clearTimeout = timer => cancelled.push(timer);
+  h.run('state.conversationId="c1"'); let release, started;
+  const ready = new Promise(resolve => { started = resolve; });
+  h.sandbox.fetch = async url => {
+    if (url === '/api/qa') return jsonResponse({answer:'已完成回答',answerable:true,citations:[]});
+    started(); await new Promise(resolve => { release=resolve; }); return jsonResponse({items:[]});
+  };
+  const pending = h.ask('问题'); await ready;
+  assert.match(treeText(h.$('answer-area')), /已完成回答/);
+  assert(cancelled.includes(timers.find(item=>item.delay===15000)));
+  release(); await pending;
 });

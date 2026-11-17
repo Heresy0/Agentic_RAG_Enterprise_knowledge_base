@@ -9,7 +9,7 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
   const canReview = () => !!state.auth?.authenticated && (state.kb ? state.kb.permission === "admin" : state.bases.some(kb => kb.permission === "admin"));
   const current = (revision, epoch) => sameContext(revision) && epoch === detailEpoch && $("quality-dialog").open;
   const button = (text, handler, className = "secondary") => { const node = element("button", text, className); node.type = "button"; node.addEventListener("click", handler); return node; };
-  function updateControls() { $("quality-nav").disabled = !canReview(); $("quality-refresh").disabled = !canReview(); $("quality-export").disabled = !canReview() || !selected.size; }
+  function updateControls() { $("quality-selection-count").textContent = `已选 ${selected.size} 项`; $("quality-nav").disabled = !canReview(); $("quality-refresh").disabled = !canReview(); $("quality-export").disabled = !canReview() || !selected.size; }
   function reset() {
     queueEpoch += 1; detailEpoch += 1; cursor = null; selected.clear();
     $("quality-list").replaceChildren(); $("quality-versions").replaceChildren(); $("quality-more").hidden = true;
@@ -163,14 +163,15 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
     if (more && cursor) { params.set("before", cursor.before); params.set("before_id", cursor.before_id); }
     else { selected.clear(); $("quality-list").replaceChildren(element("p", "正在加载…", "empty-row")); }
     $("quality-more").disabled = true; updateControls();
+    let queueLoaded = false;
     try {
       const { data } = await api(`/api/quality/cases?${params}`);
       if (!sameContext(revision) || epoch !== queueEpoch) return;
       if (!more) $("quality-list").replaceChildren();
       for (const item of data.items) {
-        const card = element("article", undefined, "feedback-card");
+        const card = element("article", undefined, "feedback-card quality-queue-card");
         card.append(element("strong", item.question), element("p", `${labels[item.review_status]} · ${item.sample_status === "approved" ? "样本已审核" : "样本草稿"}${item.root_cause ? ` · ${causes[item.root_cause]}` : ""}`, "answer-meta"));
-        if (item.feedback.comment) card.append(element("p", item.feedback.comment));
+        if (item.feedback.comment) { const excerpt = element("p", item.feedback.comment, "quality-queue-excerpt"); excerpt.title = item.feedback.comment; card.append(excerpt); }
         card.append(element("p", `${item.feedback.rating === "up" ? "有帮助" : "待改进"} · ${feedbackLabels[item.feedback.reason] || "未分类"}`, "answer-meta"));
         if (item.export_blocked_reason) card.append(element("p", blocked[item.export_blocked_reason], "answer-meta"));
         card.append(button("查看与审核", () => open(item.run_id)));
@@ -180,9 +181,13 @@ export function createQualityWorkspace({ $, element, api, state, sameContext, er
         $("quality-list").append(card);
       }
       if (!more && !data.items.length) $("quality-list").append(element("p", "当前范围暂无共享反馈。", "empty-row"));
+      queueLoaded = true;
       cursor = data.next_cursor; $("quality-more").hidden = !cursor;
       if (!more) { const { data: versions } = await api("/api/quality/datasets"); if (sameContext(revision) && epoch === queueEpoch) renderVersions(versions.items); }
-    } catch (error) { if (sameContext(revision) && epoch === queueEpoch) errorNotice(error); }
+    } catch (error) { if (sameContext(revision) && epoch === queueEpoch) {
+      if (!more && !queueLoaded) $("quality-list").replaceChildren(element("p", "审核列表加载失败，请点击上方刷新重试。", "empty-row"));
+      errorNotice(error);
+    } }
     finally { if (epoch === queueEpoch) $("quality-more").disabled = false; }
   }
   $("quality-refresh").addEventListener("click", () => refresh());

@@ -34,7 +34,19 @@ function errorNotice(error) {
   if (!state.auth?.authenticated) resetWorkspace();
   notice(error.message || "操作失败，请稍后重试。", true);
 }
+function updateManagementNavigation() {
+  const managing = ["quality", "verification"].includes(state.tab);
+  $("quality-nav").hidden = $("quality-nav").disabled;
+  $("quality-nav").classList.toggle("active", managing);
+  $("quality-nav").setAttribute("aria-current", managing ? "page" : "false");
+  $("quality-subnav").hidden = !managing || $("quality-nav").disabled;
+  $("management-access").hidden = !managing || !$("quality-nav").disabled;
+}
 function updateControls() {
+  $("composer-access").hidden = !!state.auth?.authenticated;
+  const composerState = !state.auth?.authenticated ? "" : state.loading ? "正在加载当前范围，请稍候…" : !canAsk() ? "当前账号没有可访问的知识库，请联系管理员授权。" : state.mode === "manufacturing" && !state.manufacturing.context ? "请先选择并核验业务对象，再查询或提问。" : "";
+  $("composer-state").hidden = !composerState; $("composer-state").textContent = composerState;
+  $("guidance-query").textContent = state.asking ? "正在查询…" : "查询作业要求 →";
   $("permission").hidden = !state.auth?.authenticated || !state.bases.length;
   $("manufacturing-panel").hidden = state.mode !== "manufacturing";
   $("user-work-conditions").hidden = state.mode === "manufacturing";
@@ -46,6 +58,7 @@ function updateControls() {
   $("manufacturing-job-cards-more").disabled = !canAsk() || state.loading;
   qualityWorkspace.updateControls();
   verificationWorkspace.updateControls();
+  updateManagementNavigation();
   for (const [tab, id] of [["quality", "quality-nav"], ["verification", "verification-nav"]]) {
     document.querySelectorAll(`#quality-subnav [data-tab="${tab}"]`).forEach(button => { button.disabled = $(id).disabled; });
   }
@@ -60,6 +73,9 @@ function updateControls() {
   $("ask-button").firstChild.textContent = state.asking ? "生成中… " : "发送问题 ";
   for (const id of ["new-conversation", "conversation-list"]) $(id).disabled = !canAsk() || state.asking || state.loading;
   $("delete-conversation").disabled = !state.conversationId || state.asking || state.loading;
+  $("upload-form").hidden = !editable();
+  $("documents-retry").disabled = state.loading;
+  $("documents-body").setAttribute("aria-busy", String(state.loading));
   $("upload-file").disabled = !editable() || state.uploading || state.loading;
   $("upload-button").disabled = !editable() || !$("upload-file").files.length || state.uploading || state.loading;
   $("upload-button").textContent = state.uploading ? "正在上传…" : "上传并索引";
@@ -108,6 +124,9 @@ function resetWorkspace() {
   $("current-kb").textContent = "未登录";
   $("document-kb").textContent = "知识库文档";
   $("permission").textContent = "请先登录";
+  $("upload-form").hidden = true;
+  $("document-status").hidden = true; $("documents-retry").hidden = true;
+  $("upload-status").textContent = "";
   $("upload-form").reset();
   $("selected-file").textContent = "尚未选择文件";
   clearConversation(); renderDocuments(); renderJobs(); updateControls();
@@ -173,6 +192,9 @@ async function selectBase(kb) {
   $("current-kb").textContent = kb?.name || "全部可访问知识库";
   $("document-kb").textContent = kb?.name || "请选择文档所属知识库";
   $("permission").textContent = kb ? (permissions[kb.permission] || kb.permission) : "按当前账号权限检索";
+  $("upload-form").hidden = true;
+  $("document-status").hidden = true; $("documents-retry").hidden = true;
+  $("upload-status").textContent = "";
   $("upload-form").reset();
   $("selected-file").textContent = !kb ? "上传或管理文档，请先选择左侧的具体知识库。" : (editable() ? "尚未选择文件" : "你拥有只读权限，可查看文档和提问。");
   clearConversation(); renderBases(); renderDocuments(); renderJobs(); notice(); updateControls();
@@ -395,9 +417,15 @@ function renderAnswer(container, data, requestId, guidanceRequest = false) {
     const button = element("button", `[${citation.citation_id}] 工单字段 · ${citation.field_name} ↗`, "citation"); button.type = "button";
     button.addEventListener("click", () => previewBusinessCitation(citation, data.run_id)); citations.append(button);
   }
-  container.append(citations);
+  if (citations.children.length) {
+    const evidence = element("section", undefined, "answer-evidence");
+    evidence.setAttribute("aria-label", "回答依据");
+    evidence.append(element("h3", "回答依据"), citations); container.append(evidence);
+  }
   const seconds = data.timings ? `${(data.timings.total_ms / 1000).toFixed(1)} 秒 · ` : "";
-  container.append(element("div", `${seconds}文档引用 ${data.citations?.length || 0} 条 · 业务引用 ${data.business_citations?.length || 0} 条${requestId ? ` · 请求编号 ${requestId}` : ""}`, "answer-meta"));
+  const details = element("details", undefined, "answer-details");
+  details.append(element("summary", "回答详情"), element("div", `${seconds}文档引用 ${data.citations?.length || 0} 条 · 业务引用 ${data.business_citations?.length || 0} 条${requestId ? ` · 请求编号 ${requestId}` : ""}`, "answer-meta"));
+  container.append(details);
   if (data.run_id) addFeedbackControls(container, data.run_id);
   else if (data.snapshot_status === "unavailable") container.append(element("p", "本次回答快照暂不可用，无法关联反馈。", "answer-meta"));
   if (guidanceRequest && state.mode === "manufacturing") renderGuidanceAnswer(container);
@@ -622,6 +650,9 @@ async function refreshDocuments(automatic = false) {
   const revision = state.revision;
   const path = `/api/knowledge-bases/${state.kb.id}`;
   if (!automatic) { state.loading = true; updateControls(); }
+  $("document-status").hidden = false;
+  $("document-status").textContent = automatic ? "正在更新文档与索引任务状态…" : "正在加载当前知识库文档…";
+  $("documents-retry").hidden = true;
   try {
     const hadActiveJobs = state.jobs.some(job => ["queued", "running"].includes(job.status));
     const results = await Promise.all([api(`${path}/documents`), editable() ? api(`${path}/indexing-jobs?limit=20`) : Promise.resolve({ data: { items: [] } })]);
@@ -634,12 +665,16 @@ async function refreshDocuments(automatic = false) {
       if (!sameContext(revision)) return;
       state.documents = latest.data.items;
     }
-    renderDocuments(); renderJobs();
+    renderDocuments(); renderJobs(); $("document-status").hidden = true;
     clearTimeout(state.polling);
     if (hasActiveJobs) {
       state.polling = setTimeout(() => refreshDocuments(true), 5000);
     }
-  } catch (error) { if (revision === state.revision) errorNotice(error); }
+  } catch (error) { if (revision === state.revision) {
+    $("document-status").hidden = false;
+    $("document-status").textContent = state.documents.length ? "更新失败，列表保留上次加载结果。请重新加载。" : "文档加载失败，请重新加载。";
+    $("documents-retry").hidden = false; errorNotice(error);
+  } }
   finally { if (revision === state.revision) { state.loading = false; updateControls(); } }
 }
 function statusNode(status) { return element("span", statuses[status] || status, `status ${status}`); }
@@ -721,21 +756,32 @@ async function reviewDocument(doc) {
 function renderDocuments() {
   const body = $("documents-body"); body.replaceChildren();
   const query = $("document-search").value.trim().toLocaleLowerCase(), filter = $("document-filter").value;
-  const documents = state.documents.filter(doc => (!query || doc.file_name.toLocaleLowerCase().includes(query)) && (!filter || (doc.publication?.state || "published") === filter));
+  const processing = $("document-processing-filter").value;
+  const isProcessing = doc => ["pending", "queued", "running"].includes(doc.status);
+  $("document-clear-filters").hidden = !query && !filter && !processing;
+  for (const [id, active] of [["total", !filter && !processing], ["published", filter === "published"], ["review", filter === "draft"], ["processing", processing === "processing"]]) $(`documents-${id}-filter`).setAttribute("aria-pressed", String(active));
+  const documents = state.documents.filter(doc => (!query || doc.file_name.toLocaleLowerCase().includes(query)) && (!filter || (doc.publication?.state || "published") === filter) && (!processing || (processing === "processing" ? isProcessing(doc) : doc.status === processing)));
   $("documents-total").textContent = state.documents.length;
   $("documents-published").textContent = state.documents.filter(doc => (doc.publication?.state || "published") === "published").length;
   $("documents-review").textContent = state.documents.filter(doc => doc.publication?.state === "draft").length;
   $("documents-processing").textContent = state.documents.filter(doc => ["pending", "queued", "running"].includes(doc.status)).length;
   $("document-count").textContent = documents.length;
   if (!documents.length) {
-    const row = element("tr"), cell = element("td", !state.kb ? "请选择左侧的具体知识库查看文档" : query || filter ? "没有符合条件的文档，请调整搜索或筛选。" : "这里还没有文档。上传第一份资料，开始积累团队知识。", "empty-row");
-    cell.colSpan = 5; row.append(cell); body.append(row); return;
+    const row = element("tr"), cell = element("td", !state.auth?.authenticated ? "登录后选择知识库，即可查看文档。" : !state.kb ? "请从知识库菜单选择具体知识库查看文档。" : query || filter || processing ? "没有符合条件的文档，请调整搜索或筛选。" : editable() ? "这里还没有文档。点击上传资料，添加第一份文档。" : "当前知识库暂无可查看的文档，请联系管理员。", "empty-row");
+    cell.colSpan = 6; row.append(cell); body.append(row); return;
   }
   for (const doc of documents) {
     const row = element("tr");
-    const name = element("td"); name.append(element("span", "▤  "), element("span", doc.file_name));
+    const name = element("td"), file = element("div", undefined, "document-file");
+    const extension = doc.file_name.split(".").pop().toLowerCase();
+    const format = ["pdf", "docx", "txt", "md"].includes(extension) ? extension : "file";
+    const icon = element("span", {pdf:"PDF",docx:"DOC",txt:"TXT",md:"MD",file:"FILE"}[format], `file-format file-format-${format}`);
+    icon.setAttribute("aria-hidden", "true");
+    file.append(icon, element("span", doc.file_name, "document-file-name")); name.append(file);
     const status = element("td"); status.append(statusNode(doc.status));
-    status.append(element("p", publicationLabels[doc.publication?.state] || "历史已发布", "answer-meta"));
+    const publication = element("td");
+    const publicationState = ["published", "draft", "withdrawn"].includes(doc.publication?.state) ? doc.publication.state : "legacy";
+    publication.append(element("span", publicationLabels[doc.publication?.state] || "历史已发布", `document-publication publication-${publicationState}`));
     if (doc.quality?.review_required) status.append(element("p", "OCR待复核", "answer-meta"));
     const action = element("td");
     if (editable()) {
@@ -746,7 +792,7 @@ function renderDocuments() {
         $("delete-description").textContent = doc.file_name;
         $("delete-dialog").showModal();
       });
-      action.append(button);
+      const more = element("details", undefined, "document-more"); more.append(element("summary", "更多"), button); action.append(more);
     } else {
       action.append(element("span", "只读", "answer-meta"));
       if (doc.status === "ready" && (doc.publication?.state || "published") === "published") {
@@ -754,7 +800,8 @@ function renderDocuments() {
         sourceLink(action, kbId, doc, null, () => sameContext(revision) && state.kb?.id === kbId);
       }
     }
-    row.append(name, status, element("td", `v${doc.version} / ${doc.chunk_count} 块`), element("td", formatDate(doc.updated_at)), action);
+    row.append(name, status, publication, element("td", `v${doc.version} / ${doc.chunk_count} 块`), element("td", formatDate(doc.updated_at)), action);
+    Array.from(row.children).forEach((cell, index) => cell.setAttribute("data-label", ["文档名称", "处理状态", "发布状态", "版本 / 分块", "更新时间", "操作"][index]));
     body.append(row);
   }
 }
@@ -794,7 +841,7 @@ async function setTab(tab) {
   const title = { guidance:"作业指导", qa:"知识问答", documents:"文档中心", feedback:"问答反馈", quality:"质量中心", verification:"评测与改进" }[tab];
   $("page-name").textContent = title; $("heading").textContent = title;
   $("subheading").textContent = { guidance:"找到当前工序的要求，带着依据开展工作。", qa:"从工艺资料中找到答案，沿引用核对依据。", documents:"管理工艺文件与团队资料，跟进复核、发布和索引状态。", feedback:"回看问题、回答与当次依据，留下有用的改进线索。", quality:"审核共享反馈，核对证据，积累可追溯的回归样本。", verification:"对比基线与候选结果，跟进评测任务与改进记录。" }[tab];
-  $("quality-subnav").hidden = !["quality", "feedback", "verification"].includes(tab);
+  updateManagementNavigation();
   $("guidance-order-picker").hidden = tab !== "guidance";
   if (tab === "feedback") refreshFeedback();
   if (tab === "quality") qualityWorkspace.refresh();
@@ -858,15 +905,16 @@ $("upload-form").addEventListener("submit", async event => {
   if (!/\.(pdf|docx|txt|md)$/i.test(file.name)) { notice("请选择 PDF、DOCX、TXT 或 Markdown 文件。", true); return; }
   if (file.size > state.config.max_upload_bytes) { notice("文件超过单次上传大小限制，请选择较小的文件。", true); return; }
   const revision = state.revision;
-  state.uploading = true; updateControls();
+  state.uploading = true; $("upload-status").textContent = "正在上传文件，请勿重复提交…"; updateControls();
   const form = new FormData(); form.append("file", file);
   try {
     const { data } = await api(`/api/knowledge-bases/${state.kb.id}/documents`, { method: "POST", body: form });
     if (!sameContext(revision)) return;
+    $("upload-status").textContent = "文件已接收，等待索引。索引完成后须复核发布才用于问答。";
     notice(`已接收「${data.document.file_name}」，正在等待后台索引。完成后请预览复核并发布。`);
     $("upload-form").reset(); $("selected-file").textContent = "尚未选择文件";
     await refreshDocuments();
-  } catch (error) { if (revision === state.revision) errorNotice(error); }
+  } catch (error) { if (revision === state.revision) { $("upload-status").textContent = "上传未完成，已保留所选文件。请检查错误提示后重试。"; errorNotice(error); } }
   finally { state.uploading = false; updateControls(); }
 });
 $("delete-cancel").addEventListener("click", () => $("delete-dialog").close());
@@ -883,7 +931,8 @@ $("delete-confirm").addEventListener("click", async () => {
 });
 $("question-form").addEventListener("submit", async event => {
   event.preventDefault();
-  let question = $("question").value.trim();
+  const originalQuestion = $("question").value;
+  let question = originalQuestion.trim();
   if (!question || !canAsk() || state.asking || state.loading) return;
   const guidanceRequest = state.guidanceRequested === true; state.guidanceRequested = false;
   const conditions = [["work-model", "产品／设备型号"], ["work-process", "工序"], ["work-date", "业务日期"], ["work-order", "工单编号"]]
@@ -895,7 +944,14 @@ $("question-form").addEventListener("submit", async event => {
   const revision = state.revision;
   state.asking = true; updateControls(); notice();
   const askedMessage = message("user", question); $("question").value = "";
-  const pending = message("assistant", "正在检索资料并生成答案，请稍候…");
+  const pending = message("assistant", "正在处理问题，请稍候…");
+  const started = Date.now(); let waitTimer;
+  const showWait = () => {
+    if (!sameContext(revision) || !state.asking) return;
+    pending.querySelector(".message-text").textContent = `请求处理中，已等待 ${Math.floor((Date.now() - started) / 1000)} 秒。请勿重复提交，完成后会显示答案。`;
+    waitTimer = setTimeout(showWait, 15000);
+  };
+  waitTimer = setTimeout(showWait, 15000);
   pending.querySelector(".message-text").classList.add("loading");
   try {
     if (!state.conversationId) {
@@ -909,6 +965,7 @@ $("question-form").addEventListener("submit", async event => {
     if (manufacturing) { input.work_order_id = state.manufacturing.orderId; input.expected_source_revision = state.manufacturing.context.source_revision; Object.assign(input, manufacturingSelection()); }
     const { data, requestId } = await api(manufacturing ? "/api/manufacturing/qa" : "/api/qa", { method: "POST", body: JSON.stringify(input) });
     if (!sameContext(revision)) return;
+    clearTimeout(waitTimer);
     renderAnswer(pending, data, requestId, guidanceRequest);
     if (guidanceRequest) askedMessage.remove();
     await refreshConversations();
@@ -918,9 +975,11 @@ $("question-form").addEventListener("submit", async event => {
       else {
         if (manufacturing && ![422, 429].includes(error.status)) { invalidateManufacturingView("来源或权限无法继续确认，请重新查询并开始新对话。"); message("assistant", error.message); }
         else { pending.classList.add("error"); const text = pending.querySelector(".message-text"); text.classList.remove("loading"); text.textContent = error.name === "TimeoutError" ? "请求超时，请稍后重新提问。" : error.message; }
+        $("question").value = originalQuestion;
+        notice(manufacturing ? "问题已保留在输入框。请检查错误提示；来源或权限失效时，须重新核验业务对象再发送。" : "问题已保留在输入框。请检查错误提示，确认当前范围后再发送。", true);
       }
     }
-  } finally { if (revision === state.revision) { state.asking = false; updateControls(); } }
+  } finally { clearTimeout(waitTimer); if (revision === state.revision) { state.asking = false; updateControls(); } }
 });
 async function switchQueryMode(mode) {
   if (state.mode === mode) return;
@@ -953,8 +1012,23 @@ $("guidance-query").addEventListener("click", () => {
   $("question").value = "当前所选工单和执行层级有哪些作业要求？请列出适用指导书中的必要条件，并区分要求与实际执行记录。";
   $("question-form").requestSubmit();
 });
+$("documents-retry").addEventListener("click", () => refreshDocuments());
+function clearDocumentFilters() {
+  for (const id of ["document-search", "document-filter", "document-processing-filter"]) $(id).value = "";
+}
+for (const [id, value] of [["total", ""], ["published", "published"], ["review", "draft"], ["processing", "processing"]]) $(`documents-${id}-filter`).addEventListener("click", () => {
+  clearDocumentFilters(); $(id === "processing" ? "document-processing-filter" : "document-filter").value = value; renderDocuments();
+});
+$("document-clear-filters").addEventListener("click", () => { clearDocumentFilters(); renderDocuments(); });
+$("document-processing-filter").addEventListener("change", renderDocuments);
 $("document-search").addEventListener("input", renderDocuments);
 $("document-filter").addEventListener("change", renderDocuments);
+$("composer-login").addEventListener("click", () => $("login-dialog").showModal());
+$("mobile-library-toggle").addEventListener("click", () => {
+  const expanded = $("mobile-library-toggle").getAttribute("aria-expanded") !== "true";
+  $("mobile-library-toggle").setAttribute("aria-expanded", String(expanded));
+  document.body.classList.toggle("mobile-library-open", expanded);
+});
 $("help-button").addEventListener("click", () => $("help-dialog").showModal());
 function selectGuidanceView(view) {
   $("guidance-card").hidden = view !== "guide"; $("execution-card").hidden = view !== "execution";

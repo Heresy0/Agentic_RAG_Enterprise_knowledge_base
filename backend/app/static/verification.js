@@ -9,6 +9,7 @@ export function createVerificationWorkspace({ $, element, api, state, sameContex
   function updateControls() { $("verification-nav").disabled = !canManage(); $("evaluation-submit").disabled = !canManage() || !$("evaluation-consent").checked;
     for (const id of ['evaluation-max-calls', 'evaluation-max-tokens']) $(id).disabled = $("evaluation-mode").value === 'zero'; }
   function reset() {
+    $("verification-status").hidden = true;
     epoch += 1; detailEpoch += 1; clearTimeout(polling); jobs = [];
     $("evaluation-consent").checked = false; $("verification-jobs").replaceChildren(); $("improvement-list").replaceChildren();
     $("evaluation-fixed").replaceChildren(); $("evaluation-feedback").replaceChildren();
@@ -115,11 +116,13 @@ export function createVerificationWorkspace({ $, element, api, state, sameContex
   async function refresh() {
     clearTimeout(polling); if (!canManage()) return;
     const revision = state.revision, token = ++epoch;
+    $("verification-status").hidden = false; $("verification-status").textContent = "正在更新样本版本、评测任务与改进记录…";
     try {
       const [versions, evaluations, improvements] = await Promise.all([api("/api/quality/datasets"),api("/api/quality/evaluations"),api("/api/quality/improvements")]);
       if (!sameContext(revision) || token !== epoch) return;
       const options = versions.data.items.filter(item => item.current).map(item => ({id:item.id,label:`${item.name} · ${item.manifest.sample_count}条 · ${item.id.slice(0,8)}`}));
       for (const id of ["evaluation-fixed","evaluation-feedback"]) { const old = $(id).value, values = select(options, old); $(id).replaceChildren(...values.children); $(id).value = options.some(item => item.id === old) ? old : ""; }
+      $("verification-status").hidden = true;
       jobs = evaluations.data.items; $("verification-jobs").replaceChildren();
       for (const job of jobs) { const card = element("article",undefined,"feedback-card");
         card.append(element("strong",`${statuses[job.status]} · ${job.completed_cases}/${job.expected_cases}`),element("p",`${job.id}${job.current ? "" : " · 输入已变化"}`,"answer-meta"),button("查看结果与复核",()=>showJob(job.id)));
@@ -131,7 +134,7 @@ export function createVerificationWorkspace({ $, element, api, state, sameContex
       for (const row of improvements.data.items) { const card = element("article",undefined,"feedback-card"); card.append(element("strong",row.description),element("p",`${statuses[row.status]} · ${row.change_ref}`,"answer-meta"),button("查看与验证",()=>showImprovement(row.id,true))); $("improvement-list").append(card); }
       if (!improvements.data.items.length) $("improvement-list").append(element("p", "暂无改进记录。审核确认问题后，可记录修复并进入验证。", "empty-row"));
       if (state.tab === "verification" && jobs.some(job=>["queued","running"].includes(job.status))) polling=setTimeout(()=>refresh(),5000);
-    } catch(error){if(sameContext(revision)&&token===epoch)errorNotice(error);}
+    } catch(error){if(sameContext(revision)&&token===epoch){ $("verification-status").hidden = false; $("verification-status").textContent = "更新失败，已有内容保留上次加载结果。请点击上方刷新重试。"; errorNotice(error); }}
   }
   $("evaluation-consent").addEventListener("change",updateControls);
   $("verification-refresh").addEventListener("click",()=>refresh());
