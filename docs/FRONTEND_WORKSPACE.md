@@ -1,5 +1,7 @@
 # SOPilot前端工作空间
 
+另有尚未部署的[作业指导强化视觉候选](reports/guidance-enhanced-preview-20261117-r1.md)，独立预览8792；8000保持下述已部署版本。
+
 当前8000已部署交互与视觉统一版：源码`5d0220d`、镜像`frontend-20261117-r5`。上传区保持展开；当前启动和回退入口见[部署验收](reports/frontend-visual-deploy-20261117-r1.md)。
 
 过程记录：[交互第一轮](reports/frontend-task-flow-20261117-r1.md)、[文档与管理交互](reports/frontend-management-flow-20261117-r1.md)、[文档视觉](reports/document-center-visual-preview-20261117-r1.md)、[问答与作业指导视觉](reports/qa-guidance-visual-preview-20261117-r1.md)。8788仅独立演示。
@@ -62,3 +64,5 @@
 2026-11-17字体、配色、控件及空白提示精修版已部署8000，源码`fe65392`、镜像`frontend-20261117-r2`。该次发布的启动入口和回退命令见[精修部署记录](reports/frontend-polish-deploy-20261117-r1.md)。
 
 SOPilot品牌及B款工序双轨标识已部署8000，源码`6aeda6b`、镜像`frontend-20261117-r3`。该次品牌发布的启动/回退入口及验收见[品牌部署记录](reports/sopilot-brand-deploy-20261117-r1.md)，[品牌预览记录](reports/sopilot-brand-preview-20261117-r1.md)保留设计过程。
+
+- 2026-11-17：[其他页面强化视觉预览](reports/workspace-visual-extension-20261117-r1.md)，深靛页头与双轨图形延伸至问答、文档、质量、评测和反馈；8792演示预览，上传区展开，8000未变更。

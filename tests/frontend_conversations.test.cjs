@@ -1114,3 +1114,24 @@ test("answer completion cancels the wait notice before a slow conversation list 
   assert(cancelled.includes(timers.find(item=>item.delay===15000)));
   release(); await pending;
 });
+
+test("guidance identity uses the canonical context operation and keeps missing source fields unknown", () => {
+  const h = setup();
+  h.run('renderGuidanceHero({work_order_id:"order1",product_model:"HC-A17",operation_code:"OP-30",execution:{operation_id:"op1"}},true)');
+  assert.equal(h.$('guidance-hero-model').textContent, 'HC-A17');
+  assert.equal(h.$('guidance-hero-level').textContent, '历史快照 · 工序级');
+  assert.equal(h.$('guidance-hero-order').textContent, 'order1 · OP-30');
+  h.run('renderGuidanceHero({work_order_id:"order1",product_model:"HC-A17",operation_code:null,execution:{operation_id:"op1"}})');
+  assert.equal(h.$('guidance-hero-order').textContent, 'order1 · 工序未提供');
+  h.run('renderGuidanceHero({work_order_id:"order1",product_model:"<script>unsafe</script>",execution:{operation_code:"OP-30",job_card_id:"card1"}})');
+  assert.equal(h.$('guidance-hero-model').textContent, '<script>unsafe</script>');
+  assert.equal(h.$('guidance-hero-level').textContent, '作业卡级');
+});
+
+test("source invalidation clears the additional guidance identity together with the bound business fields", () => {
+  const h = setup();
+  h.run('state.mode="manufacturing"; renderGuidanceHero({work_order_id:"PRIVATE-ORDER",product_model:"PRIVATE-MODEL"}); invalidateManufacturingView("权限已变化")');
+  assert.equal(h.$('guidance-hero-model').textContent, '请选择作业对象');
+  assert.equal(h.$('guidance-hero-level').textContent, '尚未选择');
+  assert(!h.$('guidance-hero-order').textContent.includes('PRIVATE'));
+});

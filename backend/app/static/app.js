@@ -132,6 +132,7 @@ function resetWorkspace() {
   clearConversation(); renderDocuments(); renderJobs(); updateControls();
 }
 function clearConversation({ preserveWorkContext = false } = {}) {
+  renderGuidanceHero();
   clearCitationPreview();
   clearDocumentReview();
   state.snapshotEpoch += 1; $("snapshot-dialog").close(); $("snapshot-content").replaceChildren();
@@ -205,6 +206,7 @@ function conversationPath() { return state.mode === "manufacturing" ? "/api/manu
 function conversationUrl(id = "") { return conversationPath() + (id ? `/${encodeURIComponent(id)}` : "") + (state.mode === "manufacturing" && state.kb ? `?knowledge_base_id=${encodeURIComponent(state.kb.id)}` : ""); }
 
 function resetManufacturing() {
+  renderGuidanceHero();
   openmesWorkspace.clear(); state.manufacturing.batchStepSupported = false;
   state.manufacturing.batchId = null; state.manufacturing.stepId = null;
   state.manufacturing.listEpoch += 1;
@@ -246,7 +248,15 @@ async function refreshManufacturingOrders(more = false) {
     return true;
   } catch (error) { if (sameContext(revision) && epoch === state.manufacturing.listEpoch) { invalidateManufacturingView("工单来源或权限无法确认，请重新查询。"); errorNotice(error); } return false; }
 }
+function renderGuidanceHero(context = null, historical = false) {
+  $("guidance-hero-model").textContent = context ? context.product_model || "型号未提供" : "请选择作业对象";
+  const level = !context ? "尚未选择" : context.execution?.job_card_id ? "作业卡级" : context.execution ? "工序级" : context.step ? "步骤级" : context.batch ? "批次级" : "工单级";
+  $("guidance-hero-level").textContent = `${historical ? "历史快照 · " : ""}${level}`;
+  const operation = context?.operation_code || context?.step?.name || "工序未提供";
+  $("guidance-hero-order").textContent = context ? `${context.work_order_number || context.work_order_id} · ${operation}` : "选择工单与执行层级，查看对应的作业要求。";
+}
 function renderWorkOrder(context, historical = false) {
+  renderGuidanceHero(context, historical);
   if (historical) openmesWorkspace.clear();
   if (context.work_order_number) openmesWorkspace.renderContext(context, historical);
   const root = $("manufacturing-context"); root.replaceChildren(element("h3", historical ? "回答当次工单" : "当前工单"), element("div", context.product_model || "型号未提供", "context-model"));
