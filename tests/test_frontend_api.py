@@ -25,7 +25,7 @@ def client():
 def test_frontend_page_and_security_headers(client):
     response = client.get("/")
     assert response.status_code == 200
-    assert "知序" in response.text
+    assert "SOPilot" in response.text
     assert "/ui/assets/app.js" in response.text
     assert "frame-ancestors 'none'" in response.headers["Content-Security-Policy"]
     assert "connect-src 'self' http://127.0.0.1:8080" in response.headers["Content-Security-Policy"]

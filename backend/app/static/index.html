@@ -4,14 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="知序，制造业工艺知识与作业指导平台。">
-  <title>知序 · 工艺知识与作业指导</title>
+  <meta name="description" content="SOPilot，工艺知识与作业指导平台。">
+  <title>SOPilot · 工艺知识与作业指导</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20color%3D%22%235753c8%22%3E%3Cpath%20d%3D%22M13%2011h43L43%2024H27l-8%208H5Z%22%20fill%3D%22currentColor%22%2F%3E%3Cpath%20d%3D%22M51%2053H8l13-13h16l8-8h14Z%22%20fill%3D%22currentColor%22%2F%3E%3C%2Fsvg%3E">
   <link rel="preload" href="./ui/assets/noto-sans-sc-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./ui/assets/styles.css">
   <script type="module" src="./ui/assets/app.js"></script>
 </head>
 <body>
   <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-brand" viewBox="0 0 64 64"><path d="M13 11h43L43 24H27l-8 8H5Z" fill="currentColor"/><path d="M51 53H8l13-13h16l8-8h14Z" fill="currentColor"/></symbol>
     <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
     <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></symbol>
     <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-6 3V6a2 2 0 0 1 2-2Z"/><path d="M7 9h10M7 13h6"/></symbol>
@@ -35,7 +37,7 @@
 
   <a class="skip-link" href="#main">跳转到主要内容</a>
   <aside class="sidebar" aria-label="工作空间导航">
-    <a class="brand" href="./" aria-label="知序首页"><span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 8h18L11 24h14M7 16h15"/></svg></span><span>知序<span class="brand-en">工作有据，步步有序</span></span></a>
+    <a class="brand" href="./" aria-label="SOPilot首页"><span class="brand-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-brand"/></svg></span><span>SOPilot<span class="brand-en">工作有据，步步有序</span></span></a>
     <div class="workspace-label"><span class="workspace-avatar">制</span><span>制造业务空间<small id="workspace-name">知识工作区</small></span></div>
     <label id="workspace-selector" class="workspace-selector" hidden>切换工作区<select id="workspace-switch" aria-label="切换工作区"></select></label>
     <nav class="nav-list" aria-label="主导航">
@@ -65,7 +67,7 @@
             <section id="openmes-execution" class="source-card" aria-label="MES批次与步骤查询" hidden><h3>MES 批次与步骤</h3><p class="answer-meta">问答绑定当前工单、批次与步骤。</p><div class="feedback-filters"><label>生产批次<select id="openmes-batch" disabled></select></label><label>工序步骤<select id="openmes-step" disabled></select></label><button id="openmes-refresh" class="secondary" type="button">重新核验</button></div><div id="openmes-context" role="status" aria-live="polite"></div><section id="openmes-mapping" hidden></section></section>
           </div><aside class="context-column" aria-label="当前工单信息"><div id="manufacturing-context" class="business-context" role="status">选择工单后查看来源字段。</div><div id="manufacturing-applicability" class="source-card" hidden></div></aside></div>
         </section>
-        <div class="qa-thread"><div id="guidance-assistant-heading" class="assistant-heading" hidden><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><h2>还有疑问？问问知序</h2><span>绑定当前业务对象</span></div>
+        <div class="qa-thread"><div id="guidance-assistant-heading" class="assistant-heading" hidden><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg><h2>询问 SOPilot</h2><span>绑定当前业务对象</span></div>
         <div class="conversation-toolbar"><label for="conversation-list">最近对话</label><select id="conversation-list" disabled><option value="">新对话</option></select><button id="new-conversation" class="secondary" disabled>＋ 新对话</button><button id="delete-conversation" class="secondary" disabled>删除对话</button></div>
         <section id="answer-area" class="answer-area" aria-live="polite">
           <div id="welcome" class="welcome"><div class="welcome-icon">✧</div><h2>从一个问题开始。</h2><p>直接提问，自动查找有权限的知识库；查询作业要求时，请写明型号、工序和业务日期。</p></div>
@@ -112,10 +114,10 @@
         <div class="section-title"><h3>改进记录</h3><span>在质量审核中确认问题后，点击“记录修复并进入验证”</span></div><div id="improvement-list" class="feedback-list"></div>
       </section>
 
-      <footer class="page-footer"><span>知序 · 制造业工艺知识与作业指导平台</span><span>工作有据，步步有序</span></footer>
+      <footer class="page-footer"><span>SOPilot · 工艺知识与作业指导平台</span><span>工作有据，步步有序</span></footer>
     </main>
   </div>
-  <dialog id="login-dialog" aria-labelledby="login-title"><form method="dialog"><button class="dialog-close" aria-label="关闭登录窗口">×</button></form><div class="dialog-logo">知</div><div class="eyebrow">WELCOME TO YOUR WORKSPACE</div><h2 id="login-title">连接你的团队知识</h2><p>使用企业账号登录，访问属于你的知识库。</p><button id="oidc-login" class="primary login-primary">使用企业账号登录 ↗</button><p id="login-help" class="login-help">通过 Keycloak 安全登录</p><details><summary>已有访问令牌？临时登录</summary><form id="token-form"><label for="token">访问令牌</label><textarea id="token" rows="3" spellcheck="false" autocomplete="off" placeholder="粘贴 Access Token（不含 Bearer 前缀）"></textarea><p class="login-help">令牌仅保存在当前页面内存中，刷新后需要重新登录。</p><button class="secondary" type="submit">连接工作空间</button></form></details></dialog>
+  <dialog id="login-dialog" aria-labelledby="login-title"><form method="dialog"><button class="dialog-close" aria-label="关闭登录窗口">×</button></form><div class="dialog-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-brand"/></svg></div><div class="eyebrow">SOPILOT WORKSPACE</div><h2 id="login-title">欢迎使用 SOPilot</h2><p>使用企业账号登录，访问属于你的知识库。</p><button id="oidc-login" class="primary login-primary">使用企业账号登录 ↗</button><p id="login-help" class="login-help">通过 Keycloak 安全登录</p><details><summary>已有访问令牌？临时登录</summary><form id="token-form"><label for="token">访问令牌</label><textarea id="token" rows="3" spellcheck="false" autocomplete="off" placeholder="粘贴 Access Token（不含 Bearer 前缀）"></textarea><p class="login-help">令牌仅保存在当前页面内存中，刷新后需要重新登录。</p><button class="secondary" type="submit">连接工作空间</button></form></details></dialog>
   <dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">删除这份文档？</h2><p id="delete-description"></p><p>删除后将无法从这份文档检索答案。此操作无法撤销。</p><div class="dialog-actions"><button id="delete-cancel" class="secondary">取消</button><button id="delete-confirm" class="danger">确认删除</button></div></dialog>
   <dialog id="citation-dialog" aria-labelledby="citation-title"><form method="dialog"><button class="dialog-close" aria-label="关闭原文预览">×</button></form><h2 id="citation-title">引用原文</h2><p id="citation-meta" role="status"></p><pre id="citation-content"></pre></dialog>
   <dialog id="document-review-dialog" aria-labelledby="document-review-title"><form method="dialog"><button class="dialog-close" aria-label="关闭文档复核">×</button></form><h2 id="document-review-title">文档复核与发布</h2><p id="document-review-status" role="status"></p><div id="document-review-content"></div></dialog>
@@ -123,6 +125,6 @@
   <dialog id="quality-dialog" aria-labelledby="quality-title"><form method="dialog"><button class="dialog-close" aria-label="关闭质量审核">×</button></form><h2 id="quality-title">反馈审核与样本标注</h2><p id="quality-dialog-status" role="status"></p><div id="quality-detail"></div></dialog>
   <dialog id="verification-dialog" aria-labelledby="verification-title"><form method="dialog"><button class="dialog-close" aria-label="关闭验证详情">×</button></form><h2 id="verification-title">评测与改进详情</h2><div id="verification-detail"></div></dialog>
 
-  <dialog id="help-dialog" aria-labelledby="help-title"><form method="dialog"><button class="dialog-close" aria-label="关闭使用帮助">×</button></form><h2 id="help-title">使用知序</h2><div class="help-items"><section><h3>作业指导</h3><p>选择工作区、工单和执行层级，再主动查询作业要求。执行登记与作业要求分别展示。</p></section><section><h3>知识问答</h3><p>选择知识库后提问；点击回答引用核对原文，可查看历史或提交反馈。</p></section><section><h3>文档与质量</h3><p>有编辑权限时可上传、复核与发布资料；管理员可审核反馈、整理样本及创建评测任务。</p></section></div></dialog>
+  <dialog id="help-dialog" aria-labelledby="help-title"><form method="dialog"><button class="dialog-close" aria-label="关闭使用帮助">×</button></form><h2 id="help-title">使用 SOPilot</h2><div class="help-items"><section><h3>作业指导</h3><p>选择工作区、工单和执行层级，再主动查询作业要求。执行登记与作业要求分别展示。</p></section><section><h3>知识问答</h3><p>选择知识库后提问；点击回答引用核对原文，可查看历史或提交反馈。</p></section><section><h3>文档与质量</h3><p>有编辑权限时可上传、复核与发布资料；管理员可审核反馈、整理样本及创建评测任务。</p></section></div></dialog>
 </body>
 </html>

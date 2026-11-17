@@ -804,7 +804,7 @@ async function setTab(tab) {
 function message(role, text) {
   $("welcome").hidden = true;
   const container = element("article", undefined, `message ${role}`);
-  container.append(element("div", role === "user" ? "你" : "✧ 知序 · 知识助手", "message-label"), element("div", text, "message-text"));
+  container.append(element("div", role === "user" ? "你" : "SOPilot", "message-label"), element("div", text, "message-text"));
   $("answer-area").append(container);
   container.scrollIntoView({ block: "nearest" });
   return container;
