@@ -1,5 +1,7 @@
 # SOPilot前端工作空间
 
+当前8000为欢迎区及页脚调整版：源码`c4040d2`、镜像`frontend-20261117-r4`。启动与回退入口见[当前部署记录](reports/sopilot-welcome-deploy-20261117-r1.md)。
+
 本轮前端位于 `codex/frontend-workspace` 分支，沿用已确认的浅色布局、靛蓝控件和 Noto Sans SC 中文字体。已接入原有同源API并更新8000三工作区，原数据库、资料及历史记录保持；当前版本、启动与回退入口见[部署记录](reports/frontend-workspace-deploy-20261116-r1.md)。
 
 ## 页面与功能

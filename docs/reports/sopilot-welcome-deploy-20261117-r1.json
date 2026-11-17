@@ -1,0 +1,40 @@
+{
+  "image": {
+    "image": "enterprise-knowledge-manufacturing:frontend-20261117-r4",
+    "id": "sha256:be2efc33d93c6604b79ac016a023ef0755da2f14aac5897f963f332d1ea3da45",
+    "revision": "c4040d2f11e279ffe505d1200ef1bb3b954d8697"
+  },
+  "verification": {
+    "workspaces": {
+      "knowledge": {
+        "healthy": true,
+        "unchanged_rows": 47170,
+        "unchanged_originals": 184,
+        "unchanged_python": 168,
+        "model_usage_unchanged": true
+      },
+      "erp": {
+        "healthy": true,
+        "unchanged_rows": 3355,
+        "unchanged_originals": 13,
+        "unchanged_python": 168,
+        "model_usage_unchanged": true
+      },
+      "mes": {
+        "healthy": true,
+        "unchanged_rows": 2414,
+        "unchanged_originals": 13,
+        "unchanged_python": 168,
+        "model_usage_unchanged": true
+      }
+    },
+    "other_containers_preserved": 73,
+    "http_gets": 6
+  },
+  "http_gets": 79,
+  "tests": {
+    "node": 74,
+    "frontend_api": 16
+  },
+  "models_called": false
+}
