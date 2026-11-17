@@ -818,10 +818,6 @@ async function checkHealth() {
 }
 
 document.querySelectorAll("[data-tab]").forEach(button => button.addEventListener("click", () => setTab(button.dataset.tab)));
-document.querySelectorAll("[data-question]").forEach(button => button.addEventListener("click", () => {
-  if (!canAsk()) { $("login-dialog").showModal(); return; }
-  if (!state.asking) { $("question").value = button.dataset.question; $("question").focus(); }
-}));
 $("session-button").addEventListener("click", () => {
   if (state.auth?.authenticated) { state.auth.logout(); resetWorkspace(); notice("已退出当前工作空间。"); }
   else $("login-dialog").showModal();
