@@ -35,6 +35,7 @@ function errorNotice(error) {
   notice(error.message || "操作失败，请稍后重试。", true);
 }
 function updateControls() {
+  $("permission").hidden = !state.auth?.authenticated || !state.bases.length;
   $("manufacturing-panel").hidden = state.mode !== "manufacturing";
   $("user-work-conditions").hidden = state.mode === "manufacturing";
   $("qa-mode").disabled = !state.auth?.authenticated;
@@ -104,7 +105,7 @@ function resetWorkspace() {
   state.loading = false;
   $("kb-list").replaceChildren(element("p", "登录后查看可访问的知识库", "sidebar-empty"));
   $("kb-count").textContent = "—";
-  $("current-kb").textContent = "尚未选择";
+  $("current-kb").textContent = "未登录";
   $("document-kb").textContent = "知识库文档";
   $("permission").textContent = "请先登录";
   $("upload-form").reset();
@@ -988,7 +989,6 @@ async function init() {
     await setTab(["/erp", "/mes"].includes(state.config.base_path) ? "guidance" : "qa");
     $("upload-description").textContent = `支持 PDF、DOCX、TXT、Markdown · 单文件最大 ${Math.round(state.config.max_upload_bytes / 1048576)} MB`;
     if (await state.auth.callback()) await connect();
-    else notice("登录企业账号后，即可在有权限的知识库中提问。", false);
   } catch (error) { notice(error.message, true); }
   updateControls(); await checkHealth();
   setInterval(checkHealth, 60000);
