@@ -1,12 +1,10 @@
 # SOPilot前端工作空间
 
-视觉候选预览8788：[文档中心](reports/document-center-visual-preview-20261117-r1.md)、[知识问答与作业指导](reports/qa-guidance-visual-preview-20261117-r1.md)。上传区保持展开；这些候选尚未更新8000。
+当前8000已部署交互与视觉统一版：源码`5d0220d`、镜像`frontend-20261117-r5`。上传区保持展开；当前启动和回退入口见[部署验收](reports/frontend-visual-deploy-20261117-r1.md)。
 
-当前8000为欢迎区及页脚调整版：源码`c4040d2`、镜像`frontend-20261117-r4`。启动与回退入口见[当前部署记录](reports/sopilot-welcome-deploy-20261117-r1.md)。
+过程记录：[交互第一轮](reports/frontend-task-flow-20261117-r1.md)、[文档与管理交互](reports/frontend-management-flow-20261117-r1.md)、[文档视觉](reports/document-center-visual-preview-20261117-r1.md)、[问答与作业指导视觉](reports/qa-guidance-visual-preview-20261117-r1.md)。8788仅独立演示。
 
-本地另有尚未部署的交互优化候选，独立预览8788；见[问答与作业指导调整](reports/frontend-task-flow-20261117-r1.md)和[文档、管理导航及状态体验调整](reports/frontend-management-flow-20261117-r1.md)。当前8000启动入口保持不变。
-
-本轮前端位于 `codex/frontend-workspace` 分支，沿用已确认的浅色布局、靛蓝控件和 Noto Sans SC 中文字体。已接入原有同源API并更新8000三工作区，原数据库、资料及历史记录保持；当前版本、启动与回退入口见[部署记录](reports/sopilot-welcome-deploy-20261117-r1.md)。
+本轮前端位于 `codex/frontend-workspace` 分支，沿用已确认的浅色布局、靛蓝控件和 Noto Sans SC 中文字体。已接入原有同源API并更新8000三工作区，原数据库、资料及历史记录保持；当前版本、启动与回退入口见[部署记录](reports/frontend-visual-deploy-20261117-r1.md)。
 
 ## 页面与功能
 
@@ -33,7 +31,7 @@
 
 打开 <http://127.0.0.1:8788/erp/>，点击登录并使用“使用企业账号登录”进入本地演示身份。无需填写账号或令牌。也可打开通用 `/` 和 MES `/mes/`。
 
-本轮部署收尾已停止8788临时服务，日常使用8000；需要独立演示时再执行上述命令。
+日常使用8000；8788由上述脚本独立启动，仅供演示，不作为实际部署入口。
 
 预览服务仅绑定127.0.0.1，直接提供当前 `backend/app/static/` 源码和内存夹具。页面顶部始终显示演示标识；OIDC形状的登录夹具只属于这个独立预览脚本，业务应用不会挂载它。该脚本不导入业务应用、不读取私有配置、不连接数据库和ERP/MES、不调用模型或启动Worker。重启即重置演示数据；未配置的写操作返回明确提示，上传、索引、评测等后台工作需在真实后端中执行。
 

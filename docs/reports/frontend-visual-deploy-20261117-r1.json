@@ -1,0 +1,79 @@
+{
+  "source": {
+    "image": "enterprise-knowledge-manufacturing:frontend-20261117-r5",
+    "id": "sha256:91fce4a4f434fb02d1b8245507de831810be3ec31afe90af3c0ad17d83778f66",
+    "revision": "5d0220d89e9cf5e254d50c82b8bd19d435bf65f8",
+    "flattened_base": "enterprise-knowledge-manufacturing:frontend-20261117-r4-flat"
+  },
+  "verification": {
+    "workspaces": {
+      "knowledge": {
+        "healthy": true,
+        "unchanged_rows": 47170,
+        "unchanged_originals": 184,
+        "unchanged_python": 168,
+        "model_usage_unchanged": true
+      },
+      "erp": {
+        "healthy": true,
+        "unchanged_rows": 3355,
+        "unchanged_originals": 13,
+        "unchanged_python": 168,
+        "model_usage_unchanged": true
+      },
+      "mes": {
+        "healthy": true,
+        "unchanged_rows": 2414,
+        "unchanged_originals": 13,
+        "unchanged_python": 168,
+        "model_usage_unchanged": true
+      }
+    },
+    "other_containers_preserved": 73,
+    "http_gets": 6
+  },
+  "feature_audit": {
+    "original_ids": 159,
+    "current_ids": 176,
+    "duplicate_ids": 0,
+    "form_constraints_preserved": true,
+    "api_templates_preserved": true,
+    "auth_and_openmes_unchanged": true
+  },
+  "flatten": {
+    "original": "enterprise-knowledge-manufacturing:frontend-20261117-r4",
+    "flattened": "enterprise-knowledge-manufacturing:frontend-20261117-r4-flat",
+    "filesystem_entries_equal": 26372,
+    "config_equal": true,
+    "original_layers": 127
+  },
+  "browser": {
+    "status": "passed",
+    "normal_oidc_pkce": true,
+    "user_authorized_keycloak_8080": true,
+    "documents_upload_always_visible": true,
+    "mobile_width": 390,
+    "mobile_overflow": false,
+    "erp_operation_and_job_card": true,
+    "existing_erp_history_read": true,
+    "mes_batch_and_step": true,
+    "browser_console_errors": 0,
+    "new_questions": 0,
+    "model_calls": 0
+  },
+  "http": {
+    "status": "passed",
+    "requests": 79,
+    "methods": [
+      "GET"
+    ]
+  },
+  "tests": {
+    "node": 82,
+    "frontend_python": 17
+  },
+  "database_migrations": 0,
+  "new_questions": 0,
+  "new_model_calls": 0,
+  "new_evaluations": 0
+}
