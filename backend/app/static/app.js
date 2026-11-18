@@ -451,7 +451,7 @@ async function refreshFeedback(more = false) {
       }
       $("feedback-list").append(card);
     }
-    if (!more && !data.items.length) $("feedback-list").append(element("p", "当前范围没有反馈。", "empty-row"));
+    if (!more && !data.items.length) $("feedback-list").append(element("p", "当前范围暂无可访问的反馈。", "empty-row"));
     state.feedbackCursor = data.next_cursor; $("feedback-more").hidden = !data.next_cursor;
   } catch (error) { if (sameContext(revision) && epoch === state.feedbackEpoch) { if (!more) $("feedback-list").replaceChildren(element("p", "反馈加载失败，请刷新重试。", "empty-row")); errorNotice(error); } }
   finally { if (epoch === state.feedbackEpoch) $("feedback-more").disabled = false; }
