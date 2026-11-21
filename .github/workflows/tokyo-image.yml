@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 env:
-  SOURCE_REVISION: 09ec518a7ed106aba84250ddc6f2c61d6bbe9fc7
+  SOURCE_REVISION: 8ee874e1d89d29260afdaf3c949c87f73f842964
   IMAGE_REPOSITORY: ghcr.io/heresy0/enterprise-knowledge-tokyo
 
 jobs:
