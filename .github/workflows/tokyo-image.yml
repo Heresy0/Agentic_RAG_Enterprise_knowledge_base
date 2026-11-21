@@ -1,0 +1,60 @@
+name: Build Tokyo candidate image
+
+on:
+  push:
+    branches:
+      - codex/tokyo-image
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  SOURCE_REVISION: 09ec518a7ed106aba84250ddc6f2c61d6bbe9fc7
+  IMAGE_REPOSITORY: ghcr.io/heresy0/enterprise-knowledge-tokyo
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out application source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          ref: ${{ env.SOURCE_REVISION }}
+          persist-credentials: false
+
+      - name: Verify source revision
+        shell: bash
+        run: |
+          actual_revision="$(git rev-parse HEAD)"
+          printf 'Source revision: %s\n' "$actual_revision"
+          test "$actual_revision" = "$SOURCE_REVISION"
+
+      - name: Log in to GHCR
+        uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push candidate
+        id: publish
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:sha-${{ env.SOURCE_REVISION }}
+          labels: |
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.revision=${{ env.SOURCE_REVISION }}
+
+      - name: Print pull reference
+        shell: bash
+        env:
+          DIGEST: ${{ steps.publish.outputs.digest }}
+        run: |
+          test -n "$DIGEST"
+          printf 'Pull reference: %s@%s\n' "$IMAGE_REPOSITORY" "$DIGEST"
+
