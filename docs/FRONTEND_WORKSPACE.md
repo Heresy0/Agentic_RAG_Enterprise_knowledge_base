@@ -1,6 +1,6 @@
 # SOPilot前端工作空间
 
-当前8000已部署简洁版前端：源码`406b993`、镜像`frontend-20261118-r1`。Ask SOPilot为浅紫色，各页面采用轻量布局和导航同款页标，指定上传区保持展开；当前启动和回退入口见[部署验收](reports/frontend-quiet-deploy-20261118-r1.md)。
+当前8000运行简洁版前端及灰紫折带 Logo（源码 `8ee874e`，镜像 `frontend-20261118-ribbon-r1`）。本机启动用原 `tmp/unified-workspace-8000-20261114-r1/compose.json` 加 `tmp/sopilot-ribbon-deploy-20261118-r1/compose.override.json`。退回上一版应用，使用 `tmp/frontend-quiet-deploy-20261118-r1/compose.override.json`。上一轮完整简洁版验收见[部署记录](reports/frontend-quiet-deploy-20261118-r1.md)。
 
 过程记录：[交互第一轮](reports/frontend-task-flow-20261117-r1.md)、[文档与管理交互](reports/frontend-management-flow-20261117-r1.md)、[文档视觉](reports/document-center-visual-preview-20261117-r1.md)、[问答与作业指导视觉](reports/qa-guidance-visual-preview-20261117-r1.md)。8788仅独立演示。
 
